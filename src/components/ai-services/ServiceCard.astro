@@ -1,0 +1,69 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  icon: string;
+  features: string[];
+  href: string;
+  featured?: boolean;
+}
+
+const { title, description, icon, features, href, featured = false } = Astro.props;
+---
+
+<div
+  class={`
+    relative p-6 rounded-xl border transition-all duration-300 hover:shadow-lg
+    ${featured
+      ? 'border-accent-200 bg-gradient-to-br from-accent-50 to-accent-100 hover:shadow-accent-200/50'
+      : 'border-base-200 bg-base-25 hover:shadow-base-200/50 hover:border-accent-200'
+    }
+  `}
+>
+  {featured && (
+    <div class="absolute -top-3 left-6">
+      <span class="bg-accent-600 text-white text-xs font-semibold px-3 py-1 rounded-full">
+        Más Popular
+      </span>
+    </div>
+  )}
+
+  <div class="flex items-center gap-4 mb-4">
+    <div class={`
+      w-12 h-12 rounded-lg flex items-center justify-center text-2xl
+      ${featured ? 'bg-accent-600 text-white' : 'bg-accent-100 text-accent-600'}
+    `}>
+      {icon}
+    </div>
+    <h3 class="text-xl font-semibold text-base-900">{title}</h3>
+  </div>
+
+  <p class="text-base-600 mb-6">{description}</p>
+
+  <ul class="space-y-3 mb-6">
+    {features.map((feature) => (
+      <li class="flex items-start gap-3">
+        <svg class="w-5 h-5 text-accent-600 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+        </svg>
+        <span class="text-base-700">{feature}</span>
+      </li>
+    ))}
+  </ul>
+
+  <a
+    href={href}
+    class={`
+      inline-flex items-center justify-center w-full px-4 py-3 rounded-lg font-medium transition-all duration-200
+      ${featured
+        ? 'bg-accent-600 text-white hover:bg-accent-700 shadow-lg hover:shadow-xl'
+        : 'bg-base-100 text-base-800 hover:bg-accent-50 border border-base-200 hover:border-accent-300'
+      }
+    `}
+  >
+    Más información
+    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+    </svg>
+  </a>
+</div>

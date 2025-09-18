@@ -1,0 +1,131 @@
+---
+import OptimizedImage from "../../layouts/utilities/OptimizedImage.astro";
+---
+
+<section class="relative bg-gradient-to-br from-base-25 via-accent-25 to-base-50 py-20 lg:py-32">
+  <!-- Background pattern -->
+  <div class="absolute inset-0 opacity-10">
+    <svg class="w-full h-full" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
+          <path d="M 10 0 L 0 0 0 10" fill="none" stroke="currentColor" stroke-width="1"/>
+        </pattern>
+      </defs>
+      <rect width="100" height="100" fill="url(#grid)" />
+    </svg>
+  </div>
+
+  <div class="relative max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <!-- Content -->
+      <div class="space-y-8">
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-accent-100 text-accent-700 rounded-full text-sm font-medium">
+          <span class="w-2 h-2 bg-accent-600 rounded-full animate-pulse"></span>
+          Impulsado por Inteligencia Artificial
+        </div>
+
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-base-900 leading-tight">
+          Automatiza tu negocio con
+          <span class="text-accent-600 block">Inteligencia Artificial</span>
+        </h1>
+
+        <p class="text-xl text-base-600 leading-relaxed max-w-2xl">
+          Transformamos empresas con soluciones de IA personalizadas: chatbots inteligentes,
+          gestión documental automatizada, atención telefónica 24/7 y automatización de procesos.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a
+            href="/reunion"
+            class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-accent-600 hover:bg-accent-700 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200"
+          >
+            Consulta Gratuita
+            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-3.582 8-8 8a8.955 8.955 0 01-4.126-.98L3 20l1.98-5.874A8.955 8.955 0 013 12c0-4.418 3.582-8 8-8s8 3.582 8 8z"></path>
+            </svg>
+          </a>
+          <a
+            href="/#servicios"
+            class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-base-700 bg-base-100 hover:bg-base-200 rounded-xl border border-base-200 hover:border-accent-300 transition-all duration-200"
+          >
+            Ver Servicios
+            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Stats -->
+        <div class="grid grid-cols-3 gap-8 pt-8 border-t border-base-200">
+          <div class="text-center">
+            <div class="text-3xl font-bold text-accent-600">24/7</div>
+            <div class="text-sm text-base-500">Disponibilidad</div>
+          </div>
+          <div class="text-center">
+            <div class="text-3xl font-bold text-accent-600">85%</div>
+            <div class="text-sm text-base-500">Reducción de costos</div>
+          </div>
+          <div class="text-center">
+            <div class="text-3xl font-bold text-accent-600">98%</div>
+            <div class="text-sm text-base-500">Precisión IA</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Visual -->
+      <div class="relative">
+        <div class="relative z-10 bg-base-25 rounded-2xl shadow-2xl border border-base-200 p-8">
+          <!-- Simulated AI Interface -->
+          <div class="space-y-6">
+            <div class="flex items-center gap-3">
+              <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+              <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+              <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+              <span class="text-sm text-base-500 ml-4">IA Empresarial Dashboard</span>
+            </div>
+
+            <div class="space-y-4">
+              <div class="flex items-center gap-3 p-3 bg-accent-50 rounded-lg">
+                <div class="w-8 h-8 bg-accent-600 rounded-full flex items-center justify-center text-white text-sm">🤖</div>
+                <div class="flex-1">
+                  <div class="text-sm font-medium text-base-800">Chatbot activo</div>
+                  <div class="text-xs text-base-500">Respondiendo 24 consultas/hora</div>
+                </div>
+                <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+              </div>
+
+              <div class="flex items-center gap-3 p-3 bg-blue-50 rounded-lg">
+                <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white text-sm">📄</div>
+                <div class="flex-1">
+                  <div class="text-sm font-medium text-base-800">Procesando documentos</div>
+                  <div class="text-xs text-base-500">156 documentos analizados hoy</div>
+                </div>
+                <div class="w-3 h-3 bg-blue-500 rounded-full animate-pulse"></div>
+              </div>
+
+              <div class="flex items-center gap-3 p-3 bg-green-50 rounded-lg">
+                <div class="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center text-white text-sm">📅</div>
+                <div class="flex-1">
+                  <div class="text-sm font-medium text-base-800">Citas programadas</div>
+                  <div class="text-xs text-base-500">12 citas agendadas automáticamente</div>
+                </div>
+                <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+              </div>
+            </div>
+
+            <div class="mt-6 p-4 bg-gradient-to-r from-accent-500 to-blue-600 rounded-lg text-white">
+              <div class="text-center">
+                <div class="text-2xl font-bold">€2,847</div>
+                <div class="text-sm opacity-90">Ahorros este mes</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Decorative elements -->
+        <div class="absolute -top-4 -right-4 w-24 h-24 bg-accent-600 rounded-full opacity-20 animate-pulse"></div>
+        <div class="absolute -bottom-6 -left-6 w-16 h-16 bg-blue-600 rounded-full opacity-20 animate-pulse delay-1000"></div>
+      </div>
+    </div>
+  </div>
+</section>

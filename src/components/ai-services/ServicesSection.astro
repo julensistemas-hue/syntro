@@ -1,0 +1,121 @@
+---
+import ServiceCard from "./ServiceCard.astro";
+
+const services = [
+  {
+    title: "Chatbot Inteligente",
+    description: "Automatiza la atención al cliente 24/7 con IA conversacional avanzada que entiende y responde de manera natural.",
+    icon: "🤖",
+    features: [
+      "Respuestas instantáneas 24/7",
+      "Integración con WhatsApp, Telegram y web",
+      "Aprendizaje continuo de conversaciones",
+      "Escalado automático a agentes humanos"
+    ],
+    href: "/servicios/chatbot",
+    featured: true
+  },
+  {
+    title: "Gestor Documental IA",
+    description: "Organiza, analiza y extrae información de documentos automáticamente con inteligencia artificial.",
+    icon: "📄",
+    features: [
+      "Clasificación automática de documentos",
+      "Extracción de datos estructurados",
+      "Búsqueda semántica avanzada",
+      "Cumplimiento normativo automatizado"
+    ],
+    href: "/servicios/gestor-documental"
+  },
+  {
+    title: "Gestor de Citas IA",
+    description: "Sistema inteligente que programa, confirma y gestiona citas automáticamente optimizando tu agenda.",
+    icon: "📅",
+    features: [
+      "Programación automática de citas",
+      "Confirmaciones y recordatorios inteligentes",
+      "Optimización de horarios disponibles",
+      "Integración con calendarios existentes"
+    ],
+    href: "/servicios/gestor-citas"
+  },
+  {
+    title: "Atención de Llamadas IA",
+    description: "Asistente virtual que atiende llamadas, toma mensajes y deriva consultas de forma natural y eficiente.",
+    icon: "📞",
+    features: [
+      "Atención telefónica automatizada",
+      "Reconocimiento de voz en español",
+      "Toma de mensajes inteligente",
+      "Derivación contextual de llamadas"
+    ],
+    href: "/servicios/atencion-llamadas"
+  },
+  {
+    title: "Automatización de Procesos",
+    description: "Optimiza flujos de trabajo repetitivos con IA que aprende y mejora tus procesos empresariales.",
+    icon: "⚙️",
+    features: [
+      "Análisis de procesos existentes",
+      "Automatización de tareas repetitivas",
+      "Integración con sistemas ERP/CRM",
+      "Monitoreo y optimización continua"
+    ],
+    href: "/servicios/automatizacion"
+  },
+  {
+    title: "Consultoría Personalizada",
+    description: "Evaluamos tu negocio y diseñamos soluciones de IA específicas para tus necesidades únicas.",
+    icon: "💡",
+    features: [
+      "Análisis de necesidades empresariales",
+      "Diseño de soluciones personalizadas",
+      "Implementación guiada paso a paso",
+      "Soporte técnico especializado"
+    ],
+    href: "/reunion"
+  }
+];
+---
+
+<section id="servicios" class="py-20 bg-base-25">
+  <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold text-base-900 mb-6">
+        Servicios de <span class="text-accent-600">Inteligencia Artificial</span>
+      </h2>
+      <p class="text-xl text-base-600 max-w-3xl mx-auto">
+        Transformamos tu negocio con soluciones de IA diseñadas específicamente para empresas que buscan
+        automatizar procesos, mejorar la eficiencia y ofrecer experiencias excepcionales a sus clientes.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {services.map((service) => (
+        <ServiceCard
+          title={service.title}
+          description={service.description}
+          icon={service.icon}
+          features={service.features}
+          href={service.href}
+          featured={service.featured}
+        />
+      ))}
+    </div>
+
+    <div class="text-center mt-16">
+      <a
+        href="/reunion"
+        class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-accent-600 hover:bg-accent-700 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200"
+      >
+        Solicitar Consulta Gratuita
+        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-3.582 8-8 8a8.955 8.955 0 01-4.126-.98L3 20l1.98-5.874A8.955 8.955 0 013 12c0-4.418 3.582-8 8-8s8 3.582 8 8z"></path>
+        </svg>
+      </a>
+      <p class="text-base-500 mt-4">
+        Hablemos sobre cómo la IA puede transformar tu negocio
+      </p>
+    </div>
+  </div>
+</section>

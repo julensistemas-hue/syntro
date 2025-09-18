@@ -33,6 +33,35 @@
   --color-base-950: #030712;
 }
 
+@theme dark {
+  /* Base colors inverted for dark mode */
+  --color-base-25: #030712;
+  --color-base-50: #111827;
+  --color-base-100: #1f2937;
+  --color-base-200: #374151;
+  --color-base-300: #4b5563;
+  --color-base-400: #6b7280;
+  --color-base-500: #9ca3af;
+  --color-base-600: #d1d5db;
+  --color-base-700: #e5e7eb;
+  --color-base-800: #f3f4f6;
+  --color-base-900: #f9fafb;
+  --color-base-950: #fafafa;
+  /* Accent remains the same but adjusted for dark */
+  --color-accent-25: #072364;
+  --color-accent-50: #02379e;
+  --color-accent-100: #003dd4;
+  --color-accent-200: #004cff;
+  --color-accent-300: #0065ff;
+  --color-accent-400: #0b8aff;
+  --color-accent-500: #38b1ff;
+  --color-accent-600: #78ceff;
+  --color-accent-700: #afdfff;
+  --color-accent-800: #d2edff;
+  --color-accent-900: #ebf7ff;
+  --color-accent-950: #f5fbff;
+}
+
 /* CSS */
 :root {
   font-family: Inter, sans-serif;
