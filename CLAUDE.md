@@ -50,3 +50,20 @@ src/
 - Sitemap integration enabled
 - Site URL configured as "https://yoursite.com" (update for production)
 - GPL-3.0 licensed template originally by Michael Andreuzza, modified by Bektur Aslan
+
+## Deployment
+
+This project is deployed on Vercel with automatic deployments from GitHub:
+
+1. **Git Workflow**:
+   - Changes must be committed to GitHub repository
+   - Vercel automatically deploys on push to main branch
+   - Use `git add .`, `git commit -m "message"`, `git push` to deploy
+
+2. **Production URL**: https://syntro-r4j7d2htk-julensistemas-projects.vercel.app/
+
+3. **Deployment Process**:
+   - Commit changes to git
+   - Push to GitHub repository
+   - Vercel automatically builds and deploys
+   - Changes are live within minutes

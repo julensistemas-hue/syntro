@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ciberseguridad e IA | IA Security</title>
+    <meta name="description" content="Servicios especializados en ciberseguridad e Inteligencia Artificial. Wazuh, automatizaciones IA, ChatBots y seguridad de LLMs." />
+    <meta name="author" content="IA Security" />
+    <meta property="og:image" content="/og-image.svg" />
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.geist-ui.dev/font.css" rel="stylesheet">
+    
+    <style>
+      :root {
+        --background: 220 13% 8%;
+        --background-secondary: 220 13% 6%;
+        --foreground: 0 0% 98%;
+        --card: 220 13% 8%;
+        --card-foreground: 0 0% 98%;
+        --primary: 217 91% 60%;
+        --primary-foreground: 0 0% 100%;
+        --secondary: 220 13% 12%;
+        --secondary-foreground: 0 0% 98%;
+        --muted: 220 13% 12%;
+        --muted-foreground: 0 0% 64%;
+        --accent: 220 13% 12%;
+        --accent-foreground: 0 0% 98%;
+        --border: 220 13% 15%;
+        --gradient-background: linear-gradient(135deg, hsl(220 13% 8%) 0%, hsl(220 13% 6%) 50%, hsl(220 15% 9%) 100%);
+      }
+
+      :root.light {
+        --background: 0 0% 98%;
+        --background-secondary: 210 40% 96%;
+        --foreground: 222.2 84% 4.9%;
+        --card: 0 0% 100%;
+        --card-foreground: 222.2 84% 4.9%;
+        --primary: 217 91% 60%;
+        --primary-foreground: 0 0% 100%;
+        --secondary: 210 40% 94%;
+        --secondary-foreground: 222.2 47.4% 11.2%;
+        --muted: 210 40% 94%;
+        --muted-foreground: 215.4 16.3% 46.9%;
+        --accent: 210 40% 94%;
+        --accent-foreground: 222.2 47.4% 11.2%;
+        --border: 214.3 31.8% 91.4%;
+        --gradient-background: linear-gradient(135deg, hsl(210 40% 98%) 0%, hsl(220 60% 95%) 30%, hsl(200 100% 97%) 70%, hsl(180 100% 98%) 100%);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Geist', 'Inter', sans-serif;
+        color: hsl(var(--foreground));
+        background: var(--gradient-background);
+        background-attachment: fixed;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        transition: all 0.3s ease;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      .theme-toggle {
+        position: fixed;
+        top: 2rem;
+        right: 2rem;
+        z-index: 1000;
+        background: hsl(var(--card));
+        border: 1px solid hsl(var(--border));
+        border-radius: 50px;
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: hsl(var(--foreground));
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 4px 20px hsl(var(--primary) / 0.1);
+      }
+
+      .theme-toggle:hover {
+        background: hsl(var(--accent));
+        transform: translateY(-2px);
+        box-shadow: 0 8px 30px hsl(var(--primary) / 0.2);
+      }
+
+      .theme-icon {
+        width: 20px;
+        height: 20px;
+        transition: transform 0.3s ease;
+      }
+
+      .theme-toggle:hover .theme-icon {
+        transform: rotate(180deg);
+      }
+
+      /* Header Navigation */
+      .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 999;
+        background: hsl(var(--background) / 0.9);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid hsl(var(--border));
+        padding: 1rem 0;
+        transition: all 0.3s ease;
+      }
+
+      .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: between;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: hsl(var(--primary));
+        text-decoration: none;
+        margin-right: auto;
+      }
+
+      .nav-menu {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        list-style: none;
+        margin-right: 2rem;
+      }
+
+      .nav-item {
+        position: relative;
+      }
+
+      .nav-link {
+        color: hsl(var(--foreground));
+        text-decoration: none;
+        font-weight: 500;
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .nav-link:hover {
+        background: hsl(var(--accent));
+        color: hsl(var(--primary));
+      }
+
+      .dropdown {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        min-width: 250px;
+        background: hsl(var(--card));
+        border: 1px solid hsl(var(--border));
+        border-radius: 0.75rem;
+        box-shadow: 0 10px 40px hsl(var(--primary) / 0.1);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition: all 0.3s ease;
+        backdrop-filter: blur(20px);
+      }
+
+      .nav-item:hover .dropdown {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+
+      .dropdown-item {
+        padding: 0.75rem 1rem;
+        border-bottom: 1px solid hsl(var(--border) / 0.5);
+      }
+
+      .dropdown-item:last-child {
+        border-bottom: none;
+      }
+
+      .dropdown-item a {
+        color: hsl(var(--foreground));
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-weight: 500;
+        transition: color 0.3s ease;
+      }
+
+      .dropdown-item:hover a {
+        color: hsl(var(--primary));
+      }
+
+      .mobile-menu-button {
+        display: none;
+        background: none;
+        border: none;
+        color: hsl(var(--foreground));
+        cursor: pointer;
+        padding: 0.5rem;
+      }
+
+      .hero {
+        padding-top: 6rem;
+      }
+
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 5rem 0;
+      }
+
+      .hero-content {
+        max-width: 800px;
+      }
+
+      .hero h1 {
+        font-size: 3.5rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        background: linear-gradient(45deg, hsl(var(--primary)), #0ea5e9, #06b6d4, #8b5cf6);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        line-height: 1.2;
+        animation: gradient-shift 3s ease-in-out infinite;
+        background-size: 300% 300%;
+      }
+
+      @keyframes gradient-shift {
+        0%, 100% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+      }
+
+      .hero p {
+        font-size: 1.25rem;
+        color: hsl(var(--muted-foreground));
+        margin-bottom: 2rem;
+        line-height: 1.6;
+      }
+
+      .cta-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 1rem 2rem;
+        background: linear-gradient(to right, hsl(var(--primary)), #0ea5e9);
+        color: white;
+        text-decoration: none;
+        border-radius: 9999px;
+        font-weight: 500;
+        transition: opacity 0.3s ease;
+        border: none;
+        cursor: pointer;
+      }
+
+      .cta-button:hover {
+        opacity: 0.9;
+      }
+
+      .services {
+        padding: 5rem 0;
+        background: linear-gradient(180deg, hsl(var(--background-secondary) / 0.3), hsl(var(--background) / 0.8), hsl(var(--background-secondary) / 0.4));
+      }
+
+      .services h2 {
+        font-size: 2.5rem;
+        font-weight: 600;
+        text-align: center;
+        margin-bottom: 3rem;
+        color: hsl(var(--foreground));
+      }
+
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+      }
+
+      .service-card {
+        background: linear-gradient(135deg, hsl(var(--card) / 0.9), hsl(var(--background-secondary) / 0.95));
+        border: 1px solid hsl(var(--border));
+        border-radius: 1rem;
+        padding: 2rem;
+        backdrop-filter: blur(16px);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .service-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, hsl(var(--primary) / 0.1), transparent);
+        transition: left 0.5s ease;
+      }
+
+      .service-card:hover::before {
+        left: 100%;
+      }
+
+      .service-card:hover {
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 0 25px 50px -12px hsl(var(--primary) / 0.2);
+        border-color: hsl(var(--primary) / 0.3);
+      }
+
+      .service-card h3 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: hsl(var(--primary));
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .service-card p {
+        color: hsl(var(--muted-foreground));
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+      }
+
+      .service-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1.5rem;
+        background: linear-gradient(45deg, hsl(var(--primary)), #0ea5e9);
+        color: white;
+        text-decoration: none;
+        border-radius: 50px;
+        font-weight: 500;
+        font-size: 0.9rem;
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 4px 15px hsl(var(--primary) / 0.3);
+      }
+
+      .service-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px hsl(var(--primary) / 0.4);
+        opacity: 0.9;
+      }
+
+      .about {
+        padding: 5rem 0;
+      }
+
+      .about h2 {
+        font-size: 2.5rem;
+        font-weight: 600;
+        text-align: center;
+        margin-bottom: 3rem;
+        color: hsl(var(--foreground));
+      }
+
+      .about-content {
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .about p {
+        font-size: 1.125rem;
+        color: hsl(var(--muted-foreground));
+        margin-bottom: 1.5rem;
+        line-height: 1.7;
+      }
+
+      /* Footer Styles */
+      .footer {
+        background: linear-gradient(135deg, hsl(var(--background-secondary)), hsl(var(--background)));
+        border-top: 1px solid hsl(var(--border));
+        padding: 4rem 0 2rem;
+        margin-top: 5rem;
+      }
+
+      .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 3rem;
+        margin-bottom: 2rem;
+      }
+
+      .footer-section h3 {
+        color: hsl(var(--primary));
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+      }
+
+      .footer-section ul {
+        list-style: none;
+      }
+
+      .footer-section ul li {
+        margin-bottom: 0.5rem;
+      }
+
+      .footer-section ul li a {
+        color: hsl(var(--muted-foreground));
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .footer-section ul li a:hover {
+        color: hsl(var(--primary));
+      }
+
+      .footer-section p {
+        color: hsl(var(--muted-foreground));
+        line-height: 1.6;
+        margin-bottom: 1rem;
+      }
+
+      .social-links {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+
+      .social-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background: hsl(var(--accent));
+        border-radius: 50%;
+        color: hsl(var(--foreground));
+        transition: all 0.3s ease;
+      }
+
+      .social-link:hover {
+        background: hsl(var(--primary));
+        color: white;
+        transform: translateY(-2px);
+      }
+
+      .footer-bottom {
+        border-top: 1px solid hsl(var(--border));
+        padding-top: 2rem;
+        text-align: center;
+        color: hsl(var(--muted-foreground));
+      }
+
+      @media (max-width: 768px) {
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+        
+        .hero p {
+          font-size: 1.1rem;
+        }
+        
+        .services h2,
+        .about h2 {
+          font-size: 2rem;
+        }
+        
+        .container {
+          padding: 0 1rem;
+        }
+
+        .nav-menu {
+          display: none;
+        }
+
+        .mobile-menu-button {
+          display: block;
+        }
+
+        .theme-toggle {
+          top: 1rem;
+          right: 1rem;
+          padding: 0.4rem 0.8rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <nav class="nav-container">
+        <a href="/" class="logo">
+          🛡️ IA Security
+        </a>
+        
+        <ul class="nav-menu">
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              Servicios ⬇️
+            </a>
+            <div class="dropdown">
+              <div class="dropdown-item">
+                <a href="/wazuh">🔒 Wazuh SIEM</a>
+              </div>
+              <div class="dropdown-item">
+                <a href="/automatizaciones-ia">🤖 Automatizaciones IA</a>
+              </div>
+              <div class="dropdown-item">
+                <a href="/chatbot">💬 ChatBot Inteligente</a>
+              </div>
+              <div class="dropdown-item">
+                <a href="/mcp">🔌 MCP Connectivity</a>
+              </div>
+              <div class="dropdown-item">
+                <a href="/secureyourllm">🛡️ Seguridad LLMs</a>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a href="#about" class="nav-link">Nosotros</a>
+          </li>
+          <li class="nav-item">
+            <a href="#contact" class="nav-link">Contacto</a>
+          </li>
+          <li class="nav-item">
+            <a href="/blog" class="nav-link">Blog</a>
+          </li>
+        </ul>
+
+        <button class="mobile-menu-button">☰</button>
+      </nav>
+    </header>
+
+    <!-- Theme Toggle -->
+    <div class="theme-toggle" onclick="toggleTheme()">
+      <svg class="theme-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="theme-text">Modo Oscuro</span>
+    </div>
+
+    <main>
+      <!-- Hero Section -->
+      <section class="hero">
+        <div class="container">
+          <div class="hero-content">
+            <h1>Ciberseguridad e IA Avanzada</h1>
+            <p>
+              Protegemos y automatizamos tu empresa con las últimas tecnologías de ciberseguridad e Inteligencia Artificial. 
+              Desde Wazuh hasta ChatBots inteligentes y seguridad de LLMs.
+            </p>
+            <button class="cta-button" onclick="scrollToSection('services')">
+              🚀 Explora nuestros servicios
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Services Section -->
+      <section class="services" id="services">
+        <div class="container">
+          <h2>🛡️ Nuestros Servicios Especializados</h2>
+          <div class="services-grid">
+            <div class="service-card">
+              <h3>🔒 Wazuh - SIEM Avanzado</h3>
+              <p>
+                Implementación y gestión completa de Wazuh para monitoreo de seguridad en tiempo real, 
+                detección de amenazas y cumplimiento normativo. Protección integral para tu infraestructura.
+              </p>
+              <a href="/wazuh" class="service-button">
+                Ver más detalles →
+              </a>
+            </div>
+            <div class="service-card">
+              <h3>🤖 Automatizaciones IA</h3>
+              <p>
+                Desarrollamos sistemas de automatización inteligente que optimizan procesos empresariales, 
+                reducen errores humanos y aumentan la eficiencia operativa mediante IA avanzada.
+              </p>
+              <a href="/automatizaciones-ia" class="service-button">
+                Descubrir soluciones →
+              </a>
+            </div>
+            <div class="service-card">
+              <h3>💬 ChatBot Inteligente</h3>
+              <p>
+                ChatBots avanzados para WhatsApp, correo electrónico y llamadas telefónicas con IA conversacional, 
+                integración CRM y análisis de sentimientos para atención al cliente 24/7.
+              </p>
+              <a href="/chatbot" class="service-button">
+                Probar demo →
+              </a>
+            </div>
+            <div class="service-card">
+              <h3>🔌 MCP - Conectividad IA</h3>
+              <p>
+                Model Context Protocol (MCP) para conectar la IA con tus sistemas y herramientas principales. 
+                Integración perfecta con APIs, bases de datos y aplicaciones empresariales.
+              </p>
+              <a href="/mcp" class="service-button">
+                Ver integraciones →
+              </a>
+            </div>
+            <div class="service-card">
+              <h3>🛡️ Seguridad de LLMs</h3>
+              <p>
+                Auditoría, protección y securización de modelos de lenguaje grandes (LLMs). 
+                Prevención de ataques de prompt injection, data leakage y compliance con regulaciones.
+              </p>
+              <a href="/secureyourllm" class="service-button">
+                Asegurar tu LLM →
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- About Section -->
+      <section class="about" id="about">
+        <div class="container">
+          <h2>✨ ¿Por qué elegirnos?</h2>
+          <div class="about-content">
+            <p>
+              🚀 Somos pioneros en ciberseguridad e IA con más de 10 años de experiencia protegiendo 
+              empresas y desarrollando soluciones inteligentes que transforman negocios.
+            </p>
+            <p>
+              🛡️ Nuestro enfoque único combina seguridad de clase enterprise con innovación en IA, 
+              garantizando que cada implementación sea robusta, escalable y completamente segura.
+            </p>
+            <p>
+              🤝 Te acompañamos en cada paso: desde el análisis inicial hasta el despliegue completo, 
+              con soporte 24/7 y formación personalizada para tu equipo.
+            </p>
+            <p>
+              🏆 Certificados en las principales plataformas de seguridad y con casos de éxito en 
+              sectores críticos como banca, salud, gobierno y tecnología.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h3>🛡️ IA Security</h3>
+            <p>
+              Protegemos y automatizamos tu empresa con las tecnologías más avanzadas en ciberseguridad e Inteligencia Artificial.
+            </p>
+            <div class="social-links">
+              <a href="#" class="social-link" aria-label="LinkedIn">💼</a>
+              <a href="#" class="social-link" aria-label="Twitter">🐦</a>
+              <a href="#" class="social-link" aria-label="GitHub">👨‍💻</a>
+              <a href="#" class="social-link" aria-label="Email">✉️</a>
+            </div>
+          </div>
+
+          <div class="footer-section">
+            <h3>Servicios</h3>
+            <ul>
+              <li><a href="/wazuh">🔒 Wazuh SIEM</a></li>
+              <li><a href="/automatizaciones-ia">🤖 Automatizaciones IA</a></li>
+              <li><a href="/chatbot">💬 ChatBot Inteligente</a></li>
+              <li><a href="/mcp">🔌 MCP Connectivity</a></li>
+              <li><a href="/secureyourllm">🛡️ Seguridad LLMs</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-section">
+            <h3>Empresa</h3>
+            <ul>
+              <li><a href="#about">Nosotros</a></li>
+              <li><a href="/casos-exito">Casos de Éxito</a></li>
+              <li><a href="/certificaciones">Certificaciones</a></li>
+              <li><a href="/carreras">Carreras</a></li>
+              <li><a href="/contacto">Contacto</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-section">
+            <h3>Recursos</h3>
+            <ul>
+              <li><a href="/blog">Blog</a></li>
+              <li><a href="/documentacion">Documentación</a></li>
+              <li><a href="/whitepapers">Whitepapers</a></li>
+              <li><a href="/webinars">Webinars</a></li>
+              <li><a href="/soporte">Soporte Técnico</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-section">
+            <h3>Contacto</h3>
+            <p>📧 info@aisecurity.es</p>
+            <p>📞 +34 900 123 456</p>
+            <p>📍 Madrid, España</p>
+            <p>🕒 Lun-Vie 9:00-18:00</p>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>&copy; 2024 IA Security. Todos los derechos reservados. | 
+          <a href="/privacidad" style="color: hsl(var(--primary));">Política de Privacidad</a> | 
+          <a href="/terminos" style="color: hsl(var(--primary));">Términos de Servicio</a></p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      function scrollToSection(sectionId) {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+
+      function toggleTheme() {
+        const root = document.documentElement;
+        const themeText = document.querySelector('.theme-text');
+        const themeIcon = document.querySelector('.theme-icon path');
+        
+        if (root.classList.contains('light')) {
+          // Switch to dark mode
+          root.classList.remove('light');
+          themeText.textContent = 'Modo Claro';
+          themeIcon.setAttribute('d', 'M12 3V4M12 20V21M4 12H3M6.31412 6.31412L5.5 5.5M17.6859 6.31412L18.5 5.5M6.31412 17.69L5.5 18.5M17.6859 17.69L18.5 18.5M21 12H20M16 12C16 14.2091 14.2091 16 12 16C9.79086 16 8 14.2091 8 12C8 9.79086 9.79086 8 12 8C14.2091 8 16 9.79086 16 12Z');
+          localStorage.setItem('theme', 'dark');
+        } else {
+          // Switch to light mode
+          root.classList.add('light');
+          themeText.textContent = 'Modo Oscuro';
+          themeIcon.setAttribute('d', 'M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z');
+          localStorage.setItem('theme', 'light');
+        }
+      }
+
+      // Check for saved theme preference or default to light mode
+      document.addEventListener('DOMContentLoaded', function() {
+        const savedTheme = localStorage.getItem('theme');
+        const root = document.documentElement;
+        const themeText = document.querySelector('.theme-text');
+        const themeIcon = document.querySelector('.theme-icon path');
+        
+        // Default to light mode
+        if (savedTheme === 'dark') {
+          root.classList.remove('light');
+          themeText.textContent = 'Modo Claro';
+          themeIcon.setAttribute('d', 'M12 3V4M12 20V21M4 12H3M6.31412 6.31412L5.5 5.5M17.6859 6.31412L18.5 5.5M6.31412 17.69L5.5 18.5M17.6859 17.69L18.5 18.5M21 12H20M16 12C16 14.2091 14.2091 16 12 16C9.79086 16 8 14.2091 8 12C8 9.79086 9.79086 8 12 8C14.2091 8 16 9.79086 16 12Z');
+        } else {
+          // Default light mode
+          root.classList.add('light');
+          themeText.textContent = 'Modo Oscuro';
+          themeIcon.setAttribute('d', 'M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z');
+        }
+      });
+    </script>
+  </body>
+</html>
