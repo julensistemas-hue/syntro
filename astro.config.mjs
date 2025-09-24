@@ -2,6 +2,7 @@ import { defineConfig, fontProviders } from "astro/config";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 export default defineConfig({
+  output: "static",
   site: "https://yoursite.com",
   experimental: {
     fonts: [

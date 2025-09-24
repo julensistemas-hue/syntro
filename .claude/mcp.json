@@ -1,0 +1,30 @@
+{
+  "mcpServers": {
+    "context": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@upstash/context-mcp"]
+    },
+    "sequentialthinking": {
+      "type": "stdio",
+      "command": "docker",
+      "args": ["run", "--rm", "-i", "mcp/sequentialthinking"]
+    },
+    "playwright": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@playwright/mcp"]
+    },
+    "shadcn": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "shadcn-registry", "mcp"],
+      "registry_url": "https://ui-registry.vercel.app/r/registry.json"
+    },
+    "shadcn-components": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["@plutolabs/shadcn-ui-mcp-server"]
+    }
+  }
+}
