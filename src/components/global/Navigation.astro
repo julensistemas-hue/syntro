@@ -4,7 +4,7 @@ import ThemeToggle from "../theme/ThemeToggle.astro";
 ---
 
 <header
-  class="border-b border-base-200 sticky top-0 z-50 bg-base-25/40 backdrop-blur-2xl">
+  class="border-b border-base-200 sticky top-0 z-50 bg-transparent backdrop-blur-2xl">
   <div class="w-full mx-auto px-8 max-w-7xl lg:px-16">
     <div
       x-data="{ open: false }"
@@ -12,7 +12,7 @@ import ThemeToggle from "../theme/ThemeToggle.astro";
       <div class="flex flex-row items-center justify-between lg:justify-start">
         <a href="/" class="text-base-900 inline-flex items-center gap-3">
           <OptimizedImage width={40} src="/logo.svg" alt="logo" />
-          <span class="font-bold">Syntro</span>
+          <span class="font-bold">AI SECURITY</span>
         </a>
         <button
           @click="open = !open"
