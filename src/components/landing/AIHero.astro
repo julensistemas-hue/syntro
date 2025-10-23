@@ -21,7 +21,7 @@ import OptimizedImage from "../../layouts/utilities/OptimizedImage.astro";
       <div class="space-y-8">
         <div class="inline-flex items-center gap-2 px-4 py-2 bg-accent-100 text-accent-700 rounded-full text-sm font-medium">
           <span class="w-2 h-2 bg-accent-600 rounded-full animate-pulse"></span>
-          Impulsado por Inteligencia Artificial
+          Diseñado con Inteligencia Artificial
         </div>
 
         <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-base-900 leading-tight">
@@ -85,37 +85,86 @@ import OptimizedImage from "../../layouts/utilities/OptimizedImage.astro";
             </div>
 
             <div class="space-y-4">
-              <div class="flex items-center gap-3 p-3 bg-accent-100 rounded-lg border border-accent-200">
-                <div class="w-8 h-8 bg-accent-600 rounded-full flex items-center justify-center text-white text-sm">🤖</div>
-                <div class="flex-1">
-                  <div class="text-sm font-semibold text-base-900">Chatbot activo</div>
-                  <div class="text-xs text-base-700">Respondiendo 24 consultas/hora</div>
+              <!-- Chatbot -->
+              <details class="group">
+                <summary class="flex items-center gap-3 p-3 bg-accent-50 rounded-lg border border-accent-200 cursor-pointer hover:bg-accent-100 transition-colors">
+                  <div class="w-8 h-8 bg-accent-600 rounded-full flex items-center justify-center text-white text-sm">🤖</div>
+                  <div class="flex-1">
+                    <div class="text-sm font-semibold text-base-900">Chatbot activo</div>
+                    <div class="text-xs text-base-600">Respondiendo 24 consultas/hora</div>
+                  </div>
+                  <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                  <svg class="w-4 h-4 text-base-600 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                  </svg>
+                </summary>
+                <div class="mt-2 ml-11 p-3 bg-accent-25 rounded-lg border-l-4 border-accent-600">
+                  <div class="text-sm font-bold text-accent-900">Ahorro mensual: €850</div>
+                  <div class="text-xs text-base-600 mt-1">Equivalente a 1.5 empleados de atención al cliente</div>
                 </div>
-                <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-              </div>
+              </details>
 
-              <div class="flex items-center gap-3 p-3 bg-blue-100 rounded-lg border border-blue-200">
-                <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white text-sm">📄</div>
-                <div class="flex-1">
-                  <div class="text-sm font-semibold text-base-900">Procesando documentos</div>
-                  <div class="text-xs text-base-700">156 documentos analizados hoy</div>
+              <!-- Gestor Documental -->
+              <details class="group">
+                <summary class="flex items-center gap-3 p-3 bg-blue-600 rounded-lg border border-blue-500 cursor-pointer hover:bg-blue-700 transition-colors">
+                  <div class="w-8 h-8 bg-blue-800 rounded-full flex items-center justify-center text-white text-sm">📄</div>
+                  <div class="flex-1">
+                    <div class="text-sm font-semibold text-white">Gestor Documental</div>
+                    <div class="text-xs text-blue-100">156 documentos analizados hoy</div>
+                  </div>
+                  <div class="w-3 h-3 bg-blue-200 rounded-full animate-pulse"></div>
+                  <svg class="w-4 h-4 text-white transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                  </svg>
+                </summary>
+                <div class="mt-2 ml-11 p-3 bg-blue-500 rounded-lg border-l-4 border-blue-700">
+                  <div class="text-sm font-bold text-white">Ahorro mensual: €1,200</div>
+                  <div class="text-xs text-blue-50 mt-1">Reducción del 75% en tiempo de procesamiento manual</div>
                 </div>
-                <div class="w-3 h-3 bg-blue-500 rounded-full animate-pulse"></div>
-              </div>
+              </details>
 
-              <div class="flex items-center gap-3 p-3 bg-green-100 rounded-lg border border-green-200">
-                <div class="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center text-white text-sm">📅</div>
-                <div class="flex-1">
-                  <div class="text-sm font-semibold text-base-900">Citas programadas</div>
-                  <div class="text-xs text-base-700">12 citas agendadas automáticamente</div>
+              <!-- Atención de Llamadas -->
+              <details class="group">
+                <summary class="flex items-center gap-3 p-3 bg-green-600 rounded-lg border border-green-500 cursor-pointer hover:bg-green-700 transition-colors">
+                  <div class="w-8 h-8 bg-green-800 rounded-full flex items-center justify-center text-white text-sm">📞</div>
+                  <div class="flex-1">
+                    <div class="text-sm font-semibold text-white">Atención de Llamadas</div>
+                    <div class="text-xs text-green-100">48 llamadas atendidas hoy</div>
+                  </div>
+                  <div class="w-3 h-3 bg-green-200 rounded-full animate-pulse"></div>
+                  <svg class="w-4 h-4 text-white transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                  </svg>
+                </summary>
+                <div class="mt-2 ml-11 p-3 bg-green-500 rounded-lg border-l-4 border-green-700">
+                  <div class="text-sm font-bold text-white">Ahorro mensual: €797</div>
+                  <div class="text-xs text-green-50 mt-1">Cobertura 24/7 sin costos de personal adicional</div>
                 </div>
-                <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-              </div>
+              </details>
+
+              <!-- Creación Web y Contenido -->
+              <details class="group">
+                <summary class="flex items-center gap-3 p-3 bg-purple-600 rounded-lg border border-purple-500 cursor-pointer hover:bg-purple-700 transition-colors">
+                  <div class="w-8 h-8 bg-purple-800 rounded-full flex items-center justify-center text-white text-sm">🌐</div>
+                  <div class="flex-1">
+                    <div class="text-sm font-semibold text-white">Creación Web y Contenido</div>
+                    <div class="text-xs text-purple-100">3 landing pages y 15 artículos este mes</div>
+                  </div>
+                  <div class="w-3 h-3 bg-purple-200 rounded-full animate-pulse"></div>
+                  <svg class="w-4 h-4 text-white transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                  </svg>
+                </summary>
+                <div class="mt-2 ml-11 p-3 bg-purple-500 rounded-lg border-l-4 border-purple-700">
+                  <div class="text-sm font-bold text-white">Ahorro mensual: €1,450</div>
+                  <div class="text-xs text-purple-50 mt-1">Landing pages, webs corporativas y artículos SEO optimizados</div>
+                </div>
+              </details>
             </div>
 
             <div class="mt-6 p-4 bg-gradient-to-r from-accent-500 to-blue-600 rounded-lg text-white">
               <div class="text-center">
-                <div class="text-2xl font-bold">€2,847</div>
+                <div class="text-2xl font-bold">€4,297</div>
                 <div class="text-sm opacity-90">Ahorros este mes</div>
               </div>
             </div>
