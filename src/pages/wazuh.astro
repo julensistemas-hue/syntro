@@ -1,0 +1,895 @@
+---
+import WazuhLayout from "../layouts/WazuhLayout.astro";
+---
+
+<WazuhLayout>
+  <!-- Hero Section -->
+  <section class="py-20 bg-gradient-to-br from-base-50 via-blue-50 to-accent-50">
+    <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <div class="inline-flex items-center gap-2 px-4 py-2 bg-red-100 border border-red-300 text-red-700 rounded-full text-sm font-medium mb-6">
+            <span class="text-2xl">🔒</span>
+            Wazuh + Cumplimiento ENS
+          </div>
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-[#111827]">
+            Seguridad Empresarial de Nivel Enterprise
+          </h1>
+          <p class="text-xl text-[#374151] mb-8 leading-relaxed">
+            Implementación profesional de Wazuh para PyMEs.<br>
+            Monitoreo 24/7, cumplimiento ENS certificado y formación incluida.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4">
+            <a
+              href="#demo"
+              class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold bg-[#0052cc] hover:bg-[#003d99] text-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-200"
+            >
+              Ver Demo Interactiva
+            </a>
+            <a
+              href="/reunion"
+              class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold bg-white hover:bg-base-50 text-[#0052cc] border-2 border-[#0052cc] rounded-xl transition-all duration-200"
+            >
+              Solicitar Consulta Gratuita
+            </a>
+          </div>
+
+          <!-- Key Stats -->
+          <div class="grid grid-cols-3 gap-6 mt-12 pt-8 border-t border-base-300">
+            <div>
+              <div class="text-3xl font-bold text-[#0052cc] mb-1">24/7</div>
+              <div class="text-sm text-[#4b5563] font-medium">Monitoreo continuo</div>
+            </div>
+            <div>
+              <div class="text-3xl font-bold text-[#0052cc] mb-1">ENS</div>
+              <div class="text-sm text-[#4b5563] font-medium">Cumplimiento certificado</div>
+            </div>
+            <div>
+              <div class="text-3xl font-bold text-[#0052cc] mb-1">100%</div>
+              <div class="text-sm text-[#4b5563] font-medium">Open Source</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dashboard Preview -->
+        <div class="relative">
+          <div class="bg-white rounded-2xl shadow-2xl overflow-hidden border border-base-300">
+            <div class="bg-base-100 px-4 py-3 flex items-center gap-2 border-b border-base-300">
+              <div class="w-3 h-3 rounded-full bg-red-500"></div>
+              <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+              <div class="w-3 h-3 rounded-full bg-green-500"></div>
+              <span class="ml-4 text-[#374151] text-sm font-medium">Wazuh Dashboard</span>
+            </div>
+            <img
+              src="/wazuh/lovable-uploads/c1588de3-28b2-492f-b17a-92b64b456050.png"
+              alt="Wazuh Dashboard Preview"
+              class="w-full"
+              loading="eager"
+            />
+          </div>
+          <div class="absolute -bottom-4 -right-4 bg-green-600 text-white px-4 py-2 rounded-lg shadow-lg font-semibold">
+            ✓ En tiempo real
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Wazuh Section -->
+  <section class="py-20 bg-base-25">
+    <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-[#111827] mb-4">
+          ¿Por qué Wazuh?
+        </h2>
+        <p class="text-xl text-[#4b5563] max-w-3xl mx-auto">
+          La alternativa open source a soluciones comerciales que cuesta 10 veces más
+        </p>
+      </div>
+
+      <!-- Comparison Table -->
+      <div class="bg-white rounded-2xl shadow-xl overflow-hidden mb-12">
+        <table class="w-full">
+          <thead class="bg-gradient-to-r from-[#0052cc] to-[#1e40af] text-white">
+            <tr>
+              <th class="px-6 py-4 text-left font-semibold">Característica</th>
+              <th class="px-6 py-4 text-center font-semibold">Wazuh</th>
+              <th class="px-6 py-4 text-center font-semibold">SIEM Comercial</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-base-200">
+            <tr>
+              <td class="px-6 py-4 font-medium text-[#111827]">Coste de licencia</td>
+              <td class="px-6 py-4 text-center text-green-600 font-semibold">€0</td>
+              <td class="px-6 py-4 text-center text-red-600 font-semibold">€15,000-50,000/año</td>
+            </tr>
+            <tr class="bg-base-25">
+              <td class="px-6 py-4 font-medium text-[#111827]">Implementación</td>
+              <td class="px-6 py-4 text-center text-[#4b5563]">€2,500-8,000</td>
+              <td class="px-6 py-4 text-center text-[#4b5563]">€10,000-30,000</td>
+            </tr>
+            <tr>
+              <td class="px-6 py-4 font-medium text-[#111827]">Soporte 24/7</td>
+              <td class="px-6 py-4 text-center text-green-600">✓</td>
+              <td class="px-6 py-4 text-center text-green-600">✓</td>
+            </tr>
+            <tr class="bg-base-25">
+              <td class="px-6 py-4 font-medium text-[#111827]">Cumplimiento ENS</td>
+              <td class="px-6 py-4 text-center text-green-600">✓</td>
+              <td class="px-6 py-4 text-center text-green-600">✓</td>
+            </tr>
+            <tr>
+              <td class="px-6 py-4 font-medium text-[#111827]">Código abierto</td>
+              <td class="px-6 py-4 text-center text-green-600">✓</td>
+              <td class="px-6 py-4 text-center text-red-600">✗</td>
+            </tr>
+            <tr class="bg-base-25">
+              <td class="px-6 py-4 font-medium text-[#111827]">Sin vendor lock-in</td>
+              <td class="px-6 py-4 text-center text-green-600">✓</td>
+              <td class="px-6 py-4 text-center text-red-600">✗</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Use Cases -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-white rounded-xl p-6 shadow-lg">
+          <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 text-2xl mb-4">
+            🏢
+          </div>
+          <h3 class="text-lg font-semibold text-[#111827] mb-3">Retail y Comercio</h3>
+          <p class="text-[#4b5563]">
+            Monitoreo de TPVs, cumplimiento PCI-DSS, detección de fraudes en pagos.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-xl p-6 shadow-lg">
+          <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center text-green-600 text-2xl mb-4">
+            🏥
+          </div>
+          <h3 class="text-lg font-semibold text-[#111827] mb-3">Servicios Profesionales</h3>
+          <p class="text-[#4b5563]">
+            Auditoría de accesos, cumplimiento RGPD, protección de datos sensibles.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-xl p-6 shadow-lg">
+          <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center text-purple-600 text-2xl mb-4">
+            🏛️
+          </div>
+          <h3 class="text-lg font-semibold text-[#111827] mb-3">Sector Público</h3>
+          <p class="text-[#4b5563]">
+            Cumplimiento ENS obligatorio, auditorías CCN-CERT, trazabilidad completa.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Demo Interactive Section -->
+  <section id="demo" class="py-20 bg-base-50">
+    <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-[#111827] mb-4">
+          Demo Interactiva
+        </h2>
+        <p class="text-xl text-[#4b5563]">
+          Explora las capacidades de Wazuh en tiempo real
+        </p>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-2xl overflow-hidden border border-base-300">
+        <!-- Demo Tabs -->
+        <div class="bg-base-100 px-6 py-4 border-b border-base-300 flex gap-4 overflow-x-auto">
+          <button
+            class="demo-tab active px-4 py-2 rounded-lg font-medium transition-colors whitespace-nowrap"
+            data-tab="alerts"
+          >
+            🚨 Alertas en Tiempo Real
+          </button>
+          <button
+            class="demo-tab px-4 py-2 rounded-lg font-medium transition-colors whitespace-nowrap"
+            data-tab="compliance"
+          >
+            📋 Cumplimiento ENS
+          </button>
+          <button
+            class="demo-tab px-4 py-2 rounded-lg font-medium transition-colors whitespace-nowrap"
+            data-tab="dashboard"
+          >
+            📊 Dashboard Ejecutivo
+          </button>
+        </div>
+
+        <!-- Tab Content -->
+        <div class="p-8">
+          <!-- Alerts Tab -->
+          <div id="tab-alerts" class="demo-content">
+            <div class="space-y-4">
+              <div class="bg-red-50 border-2 border-red-300 rounded-lg p-4">
+                <div class="flex items-start justify-between mb-2">
+                  <div class="flex items-center gap-3">
+                    <span class="w-3 h-3 bg-red-500 rounded-full animate-pulse"></span>
+                    <span class="font-semibold text-red-700">Nivel 12 - Crítico</span>
+                  </div>
+                  <span class="text-sm text-[#6b7280]">Hace 2 min</span>
+                </div>
+                <h4 class="text-[#111827] font-semibold mb-2">Intento de acceso no autorizado detectado</h4>
+                <p class="text-[#374151] text-sm mb-3">
+                  Se han detectado 15 intentos fallidos de SSH desde IP 45.142.212.61 (Rusia) al servidor web-prod-01
+                </p>
+                <div class="flex gap-2 flex-wrap">
+                  <span class="px-2 py-1 bg-red-100 text-red-700 rounded text-xs font-medium">auth_failed</span>
+                  <span class="px-2 py-1 bg-red-100 text-red-700 rounded text-xs font-medium">brute_force</span>
+                  <span class="px-2 py-1 bg-red-100 text-red-700 rounded text-xs font-medium">ssh</span>
+                </div>
+              </div>
+
+              <div class="bg-yellow-50 border-2 border-yellow-300 rounded-lg p-4">
+                <div class="flex items-start justify-between mb-2">
+                  <div class="flex items-center gap-3">
+                    <span class="w-3 h-3 bg-yellow-500 rounded-full"></span>
+                    <span class="font-semibold text-yellow-700">Nivel 7 - Advertencia</span>
+                  </div>
+                  <span class="text-sm text-[#6b7280]">Hace 8 min</span>
+                </div>
+                <h4 class="text-[#111827] font-semibold mb-2">Cambio de configuración en firewall</h4>
+                <p class="text-[#374151] text-sm mb-3">
+                  Usuario 'admin' ha modificado reglas del firewall en fw-01. Se ha abierto puerto 3306 (MySQL).
+                </p>
+                <div class="flex gap-2 flex-wrap">
+                  <span class="px-2 py-1 bg-yellow-100 text-yellow-700 rounded text-xs font-medium">config_change</span>
+                  <span class="px-2 py-1 bg-yellow-100 text-yellow-700 rounded text-xs font-medium">firewall</span>
+                </div>
+              </div>
+
+              <div class="bg-blue-50 border-2 border-blue-300 rounded-lg p-4">
+                <div class="flex items-start justify-between mb-2">
+                  <div class="flex items-center gap-3">
+                    <span class="w-3 h-3 bg-blue-500 rounded-full"></span>
+                    <span class="font-semibold text-blue-700">Nivel 3 - Informativo</span>
+                  </div>
+                  <span class="text-sm text-[#6b7280]">Hace 15 min</span>
+                </div>
+                <h4 class="text-[#111827] font-semibold mb-2">Actualización de sistema completada</h4>
+                <p class="text-[#374151] text-sm mb-3">
+                  Servidor db-prod-02 ha completado actualización de seguridad. 23 paquetes actualizados.
+                </p>
+                <div class="flex gap-2 flex-wrap">
+                  <span class="px-2 py-1 bg-blue-100 text-blue-700 rounded text-xs font-medium">system_update</span>
+                  <span class="px-2 py-1 bg-blue-100 text-blue-700 rounded text-xs font-medium">success</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Compliance Tab -->
+          <div id="tab-compliance" class="demo-content hidden">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="bg-base-50 rounded-lg p-6 border-2 border-base-300">
+                <h4 class="text-[#111827] font-semibold mb-4 flex items-center gap-2">
+                  <span class="text-2xl">📋</span>
+                  Cumplimiento ENS
+                </h4>
+                <div class="space-y-4">
+                  <div>
+                    <div class="flex justify-between mb-2">
+                      <span class="text-[#4b5563] text-sm font-medium">Marco Operacional</span>
+                      <span class="text-green-700 font-semibold">98%</span>
+                    </div>
+                    <div class="w-full bg-base-200 rounded-full h-3">
+                      <div class="bg-green-600 h-3 rounded-full" style="width: 98%"></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="flex justify-between mb-2">
+                      <span class="text-[#4b5563] text-sm font-medium">Protección</span>
+                      <span class="text-green-700 font-semibold">95%</span>
+                    </div>
+                    <div class="w-full bg-base-200 rounded-full h-3">
+                      <div class="bg-green-600 h-3 rounded-full" style="width: 95%"></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="flex justify-between mb-2">
+                      <span class="text-[#4b5563] text-sm font-medium">Defensa</span>
+                      <span class="text-yellow-700 font-semibold">87%</span>
+                    </div>
+                    <div class="w-full bg-base-200 rounded-full h-3">
+                      <div class="bg-yellow-500 h-3 rounded-full" style="width: 87%"></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="flex justify-between mb-2">
+                      <span class="text-[#4b5563] text-sm font-medium">Detección</span>
+                      <span class="text-green-700 font-semibold">100%</span>
+                    </div>
+                    <div class="w-full bg-base-200 rounded-full h-3">
+                      <div class="bg-green-600 h-3 rounded-full" style="width: 100%"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-base-50 rounded-lg p-6 border-2 border-base-300">
+                <h4 class="text-[#111827] font-semibold mb-4 flex items-center gap-2">
+                  <span class="text-2xl">✓</span>
+                  Controles Implementados
+                </h4>
+                <div class="space-y-3 text-sm">
+                  <div class="flex items-center gap-2">
+                    <svg class="w-5 h-5 flex-shrink-0 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                    </svg>
+                    <span class="text-[#374151]">op.acc.5 - Registro de actividad</span>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <svg class="w-5 h-5 flex-shrink-0 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                    </svg>
+                    <span class="text-[#374151]">op.exp.8 - Registro de gestión de incidentes</span>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <svg class="w-5 h-5 flex-shrink-0 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                    </svg>
+                    <span class="text-[#374151]">mp.info.3 - Copias de seguridad</span>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <svg class="w-5 h-5 flex-shrink-0 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                    </svg>
+                    <span class="text-[#374151]">mp.si.2 - Protección de las comunicaciones</span>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <svg class="w-5 h-5 flex-shrink-0 text-yellow-600" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                    </svg>
+                    <span class="text-[#374151]">mp.com.2 - Cifrado (en progreso)</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dashboard Tab -->
+          <div id="tab-dashboard" class="demo-content hidden">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+              <div class="bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg p-6 text-white">
+                <div class="text-4xl font-bold mb-2">1,247</div>
+                <div class="text-blue-100 text-sm font-medium">Eventos analizados (últimas 24h)</div>
+              </div>
+              <div class="bg-gradient-to-br from-green-600 to-green-700 rounded-lg p-6 text-white">
+                <div class="text-4xl font-bold mb-2">18</div>
+                <div class="text-green-100 text-sm font-medium">Servidores monitorizados</div>
+              </div>
+              <div class="bg-gradient-to-br from-red-600 to-red-700 rounded-lg p-6 text-white">
+                <div class="text-4xl font-bold mb-2">3</div>
+                <div class="text-red-100 text-sm font-medium">Alertas críticas pendientes</div>
+              </div>
+            </div>
+
+            <div class="bg-base-50 rounded-lg p-6 border-2 border-base-300">
+              <h4 class="text-[#111827] font-semibold mb-4">Distribución de Alertas (Última Semana)</h4>
+              <div class="space-y-3">
+                <div>
+                  <div class="flex justify-between mb-1">
+                    <span class="text-[#4b5563] text-sm font-medium">Autenticación</span>
+                    <span class="text-[#111827] font-semibold">342</span>
+                  </div>
+                  <div class="w-full bg-base-200 rounded-full h-3">
+                    <div class="bg-blue-600 h-3 rounded-full" style="width: 68%"></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between mb-1">
+                    <span class="text-[#4b5563] text-sm font-medium">Integridad de archivos</span>
+                    <span class="text-[#111827] font-semibold">89</span>
+                  </div>
+                  <div class="w-full bg-base-200 rounded-full h-3">
+                    <div class="bg-green-600 h-3 rounded-full" style="width: 18%"></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between mb-1">
+                    <span class="text-[#4b5563] text-sm font-medium">Vulnerabilidades</span>
+                    <span class="text-[#111827] font-semibold">45</span>
+                  </div>
+                  <div class="w-full bg-base-200 rounded-full h-3">
+                    <div class="bg-yellow-500 h-3 rounded-full" style="width: 9%"></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between mb-1">
+                    <span class="text-[#4b5563] text-sm font-medium">Ataques detectados</span>
+                    <span class="text-[#111827] font-semibold">12</span>
+                  </div>
+                  <div class="w-full bg-base-200 rounded-full h-3">
+                    <div class="bg-red-600 h-3 rounded-full" style="width: 2%"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Implementation Process -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-[#111827] mb-4">
+          Proceso de Implementación
+        </h2>
+        <p class="text-xl text-[#4b5563]">
+          De la auditoría inicial al monitoreo continuo en 4-6 semanas
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- Step 1 -->
+        <div class="relative">
+          <div class="bg-accent-100 rounded-xl p-6">
+            <div class="w-12 h-12 bg-[#0052cc] text-white rounded-lg flex items-center justify-center font-bold text-xl mb-4">
+              1
+            </div>
+            <h3 class="text-lg font-semibold text-[#111827] mb-3">Análisis</h3>
+            <p class="text-[#4b5563] text-sm mb-4">
+              Auditoría de infraestructura actual, requisitos ENS y plan personalizado.
+            </p>
+            <div class="text-xs text-[#0052cc] font-medium">📅 1 semana</div>
+          </div>
+          <div class="hidden lg:block absolute top-1/2 -right-4 w-8 h-0.5 bg-accent-300"></div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="relative">
+          <div class="bg-blue-100 rounded-xl p-6">
+            <div class="w-12 h-12 bg-blue-600 text-white rounded-lg flex items-center justify-center font-bold text-xl mb-4">
+              2
+            </div>
+            <h3 class="text-lg font-semibold text-[#111827] mb-3">Despliegue</h3>
+            <p class="text-[#4b5563] text-sm mb-4">
+              Instalación de servidores Wazuh, configuración de agentes e integración con sistemas.
+            </p>
+            <div class="text-xs text-blue-600 font-medium">📅 2-3 semanas</div>
+          </div>
+          <div class="hidden lg:block absolute top-1/2 -right-4 w-8 h-0.5 bg-blue-300"></div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="relative">
+          <div class="bg-green-100 rounded-xl p-6">
+            <div class="w-12 h-12 bg-green-600 text-white rounded-lg flex items-center justify-center font-bold text-xl mb-4">
+              3
+            </div>
+            <h3 class="text-lg font-semibold text-[#111827] mb-3">Formación</h3>
+            <p class="text-[#4b5563] text-sm mb-4">
+              Capacitación del equipo IT, documentación personalizada y procedimientos.
+            </p>
+            <div class="text-xs text-green-600 font-medium">📅 1 semana</div>
+          </div>
+          <div class="hidden lg:block absolute top-1/2 -right-4 w-8 h-0.5 bg-green-300"></div>
+        </div>
+
+        <!-- Step 4 -->
+        <div>
+          <div class="bg-purple-100 rounded-xl p-6">
+            <div class="w-12 h-12 bg-purple-600 text-white rounded-lg flex items-center justify-center font-bold text-xl mb-4">
+              4
+            </div>
+            <h3 class="text-lg font-semibold text-[#111827] mb-3">Soporte Continuo</h3>
+            <p class="text-[#4b5563] text-sm mb-4">
+              Monitoreo remoto 24/7, actualizaciones y ajustes de optimización.
+            </p>
+            <div class="text-xs text-purple-600 font-medium">🔄 Continuo</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section class="py-20 bg-base-50">
+    <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-[#111827] mb-4">
+          Precios Transparentes
+        </h2>
+        <p class="text-xl text-[#4b5563]">
+          Sin sorpresas, sin costes ocultos
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Basic Package -->
+        <div class="bg-white rounded-2xl shadow-lg p-8 border-2 border-base-200">
+          <h3 class="text-2xl font-bold text-[#111827] mb-2">Básico</h3>
+          <div class="text-4xl font-bold text-[#0052cc] mb-2">
+            €2,500-4,000
+          </div>
+          <p class="text-[#4b5563] text-sm mb-6">Pago único de implementación</p>
+
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-start gap-2">
+              <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+              </svg>
+              <span class="text-[#4b5563]">Hasta 20 servidores monitorizados</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+              </svg>
+              <span class="text-[#4b5563]">Configuración ENS básica</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+              </svg>
+              <span class="text-[#4b5563]">2 días de formación presencial</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+              </svg>
+              <span class="text-[#4b5563]">30 días de soporte post-implementación</span>
+            </li>
+          </ul>
+
+          <a
+            href="/reunion"
+            class="block w-full px-6 py-3 bg-base-200 hover:bg-base-300 text-center text-[#111827] font-semibold rounded-xl transition-colors"
+          >
+            Solicitar Presupuesto
+          </a>
+        </div>
+
+        <!-- Complete Package -->
+        <div class="bg-white rounded-2xl shadow-2xl p-8 border-2 border-accent-600 relative">
+          <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-[#0052cc] text-white px-4 py-1 rounded-full text-sm font-semibold">
+            Recomendado
+          </div>
+          <h3 class="text-2xl font-bold text-[#111827] mb-2">Completo</h3>
+          <div class="text-4xl font-bold text-[#0052cc] mb-2">
+            €5,000-8,000
+          </div>
+          <p class="text-[#4b5563] text-sm mb-6">Pago único de implementación</p>
+
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-start gap-2">
+              <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+              </svg>
+              <span class="text-[#4b5563]">Hasta 50 servidores monitorizados</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+              </svg>
+              <span class="text-[#4b5563]">Configuración ENS avanzada + auditoría</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+              </svg>
+              <span class="text-[#4b5563]">Dashboards ejecutivos personalizados</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+              </svg>
+              <span class="text-[#4b5563]">5 días de formación presencial</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+              </svg>
+              <span class="text-[#4b5563]">90 días de soporte post-implementación</span>
+            </li>
+          </ul>
+
+          <a
+            href="/reunion"
+            class="block w-full px-6 py-3 bg-[#0052cc] hover:bg-[#003d99] text-center text-white font-semibold rounded-xl transition-colors"
+          >
+            Solicitar Presupuesto
+          </a>
+        </div>
+
+        <!-- Support Package -->
+        <div class="bg-white rounded-2xl shadow-lg p-8 border-2 border-base-200">
+          <h3 class="text-2xl font-bold text-[#111827] mb-2">Soporte Continuo</h3>
+          <div class="text-4xl font-bold text-[#0052cc] mb-2">
+            €300/mes
+          </div>
+          <p class="text-[#4b5563] text-sm mb-6">Suscripción mensual</p>
+
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-start gap-2">
+              <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+              </svg>
+              <span class="text-[#4b5563]">Monitoreo remoto 24/7</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+              </svg>
+              <span class="text-[#4b5563]">Actualizaciones y parches de seguridad</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+              </svg>
+              <span class="text-[#4b5563]">Soporte técnico prioritario</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+              </svg>
+              <span class="text-[#4b5563]">Informes mensuales ejecutivos</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+              </svg>
+              <span class="text-[#4b5563]">Ajustes y optimización continua</span>
+            </li>
+          </ul>
+
+          <a
+            href="/reunion"
+            class="block w-full px-6 py-3 bg-base-200 hover:bg-base-300 text-center text-[#111827] font-semibold rounded-xl transition-colors"
+          >
+            Contratar Soporte
+          </a>
+        </div>
+      </div>
+
+      <div class="mt-8 text-center">
+        <p class="text-[#4b5563]">
+          💡 <strong>Nota:</strong> Los precios varían según la complejidad de tu infraestructura. Solicita un presupuesto personalizado sin compromiso.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- YouTube Tutorials Section -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-[#111827] mb-4">
+          📺 Aprende Wazuh Gratis
+        </h2>
+        <p class="text-xl text-[#4b5563]">
+          Tutoriales paso a paso en nuestro canal de YouTube
+        </p>
+      </div>
+
+      <div class="bg-gradient-to-br from-red-50 to-base-50 rounded-2xl p-8 border border-base-200">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          <div>
+            <h3 class="text-2xl font-bold text-[#111827] mb-4">
+              🎬 Contenido semanal sobre Wazuh
+            </h3>
+            <p class="text-[#4b5563] mb-6">
+              Desde instalación básica hasta casos de uso avanzados y cumplimiento ENS.
+              Todo explicado en español con ejemplos reales.
+            </p>
+            <ul class="space-y-3 mb-6">
+              <li class="flex items-start gap-2">
+                <span class="text-[#0052cc] font-bold">✓</span>
+                <span class="text-[#4b5563]">Instalación y configuración paso a paso</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-[#0052cc] font-bold">✓</span>
+                <span class="text-[#4b5563]">Detección de amenazas y respuesta a incidentes</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-[#0052cc] font-bold">✓</span>
+                <span class="text-[#4b5563]">Configuración para cumplimiento ENS</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-[#0052cc] font-bold">✓</span>
+                <span class="text-[#4b5563]">Casos de uso reales en empresas españolas</span>
+              </li>
+            </ul>
+            <a
+              href="https://youtube.com/@aisecurityes"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-xl transition-colors"
+            >
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+              </svg>
+              Visitar Canal de YouTube
+            </a>
+          </div>
+
+          <div class="bg-white rounded-xl p-6 shadow-lg">
+            <h4 class="font-semibold text-[#111827] mb-4">🎥 Próximos videos:</h4>
+            <ul class="space-y-3 text-sm">
+              <li class="flex items-start gap-3">
+                <span class="flex-shrink-0 w-6 h-6 bg-red-100 text-red-600 rounded-full flex items-center justify-center font-bold">1</span>
+                <span class="text-[#4b5563]">Qué es Wazuh y por qué lo necesitas en 2025</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="flex-shrink-0 w-6 h-6 bg-red-100 text-red-600 rounded-full flex items-center justify-center font-bold">2</span>
+                <span class="text-[#4b5563]">Instalación de Wazuh paso a paso</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="flex-shrink-0 w-6 h-6 bg-red-100 text-red-600 rounded-full flex items-center justify-center font-bold">3</span>
+                <span class="text-[#4b5563]">Configurar Wazuh para cumplimiento ENS</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="flex-shrink-0 w-6 h-6 bg-red-100 text-red-600 rounded-full flex items-center justify-center font-bold">4</span>
+                <span class="text-[#4b5563]">Primeras alertas: detección de amenazas</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="py-20 bg-base-25">
+    <div class="max-w-4xl mx-auto px-8 md:px-12">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-[#111827] mb-4">
+          Preguntas Frecuentes
+        </h2>
+      </div>
+
+      <div class="space-y-4">
+        <details class="bg-white rounded-xl shadow-md overflow-hidden">
+          <summary class="px-6 py-4 font-semibold text-[#111827] cursor-pointer hover:bg-base-25 transition-colors">
+            ¿Wazuh realmente cumple con el Esquema Nacional de Seguridad (ENS)?
+          </summary>
+          <div class="px-6 py-4 text-[#4b5563] border-t border-base-200">
+            Sí. Wazuh proporciona las capacidades técnicas necesarias para cumplir múltiples controles ENS: registro de eventos (op.acc.5), gestión de incidentes (op.exp.8), copias de seguridad (mp.info.3), y más. Nuestra implementación incluye la configuración específica y documentación para auditorías ENS.
+          </div>
+        </details>
+
+        <details class="bg-white rounded-xl shadow-md overflow-hidden">
+          <summary class="px-6 py-4 font-semibold text-[#111827] cursor-pointer hover:bg-base-25 transition-colors">
+            ¿Cuánto tiempo tarda la implementación completa?
+          </summary>
+          <div class="px-6 py-4 text-[#4b5563] border-t border-base-200">
+            Entre 4 y 6 semanas desde la auditoría inicial hasta el monitoreo completo. El tiempo exacto depende del número de servidores, complejidad de la infraestructura y requisitos específicos de cumplimiento.
+          </div>
+        </details>
+
+        <details class="bg-white rounded-xl shadow-md overflow-hidden">
+          <summary class="px-6 py-4 font-semibold text-[#111827] cursor-pointer hover:bg-base-25 transition-colors">
+            ¿Qué diferencia hay con soluciones como Splunk o QRadar?
+          </summary>
+          <div class="px-6 py-4 text-[#4b5563] border-t border-base-200">
+            Wazuh ofrece capacidades similares (SIEM, detección de amenazas, cumplimiento) pero es 100% open source y sin costes de licencia. Esto significa ahorro de €15,000-50,000/año en licencias. Las soluciones comerciales pueden tener interfaces más pulidas, pero la funcionalidad core es comparable.
+          </div>
+        </details>
+
+        <details class="bg-white rounded-xl shadow-md overflow-hidden">
+          <summary class="px-6 py-4 font-semibold text-[#111827] cursor-pointer hover:bg-base-25 transition-colors">
+            ¿Incluye formación para nuestro equipo IT?
+          </summary>
+          <div class="px-6 py-4 text-[#4b5563] border-t border-base-200">
+            Sí. Todos nuestros paquetes incluyen formación presencial: 2 días en el paquete Básico y 5 días en el Completo. Cubrimos desde el uso diario hasta respuesta a incidentes y generación de informes de cumplimiento.
+          </div>
+        </details>
+
+        <details class="bg-white rounded-xl shadow-md overflow-hidden">
+          <summary class="px-6 py-4 font-semibold text-[#111827] cursor-pointer hover:bg-base-25 transition-colors">
+            ¿Puedo implementar Wazuh yo mismo siguiendo vuestros tutoriales de YouTube?
+          </summary>
+          <div class="px-6 py-4 text-[#4b5563] border-t border-base-200">
+            Absolutamente. Nuestros tutoriales están diseñados para que puedas hacerlo tú mismo. Contratarías nuestros servicios si: (1) No tienes tiempo para hacerlo, (2) Necesitas configuración ENS certificada para auditorías, (3) Quieres soporte profesional continuo, o (4) Tienes una infraestructura compleja que requiere experiencia especializada.
+          </div>
+        </details>
+
+        <details class="bg-white rounded-xl shadow-md overflow-hidden">
+          <summary class="px-6 py-4 font-semibold text-[#111827] cursor-pointer hover:bg-base-25 transition-colors">
+            ¿Qué pasa si ya tengo Wazuh instalado pero necesito ayuda?
+          </summary>
+          <div class="px-6 py-4 text-[#4b5563] border-t border-base-200">
+            Podemos realizar una auditoría de tu instalación actual, identificar mejoras y optimizaciones, configurar cumplimiento ENS, o simplemente ofrecer soporte continuo. Contáctanos para evaluar tu caso específico.
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="py-20 bg-gradient-to-br from-blue-600 via-accent-600 to-blue-700">
+    <div class="max-w-4xl mx-auto px-8 md:px-12 text-center text-white">
+      <h2 class="text-3xl md:text-4xl font-bold mb-6">
+        ¿Listo para implementar Wazuh?
+      </h2>
+      <p class="text-xl mb-8 text-blue-50">
+        Agenda una consulta gratuita de 30 minutos para evaluar tu infraestructura
+        y recibir un presupuesto sin compromiso.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href="/reunion"
+          class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold bg-white text-[#0052cc] hover:bg-blue-50 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200"
+        >
+          Agendar Consulta Gratuita
+        </a>
+        <a
+          href="https://youtube.com/@aisecurityes"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold bg-white text-[#0052cc] hover:bg-blue-50 border-2 border-white rounded-xl transition-all duration-200"
+        >
+          Ver Tutoriales en YouTube
+        </a>
+      </div>
+
+      <div class="mt-12 pt-8 border-t border-white/30">
+        <p class="text-blue-50 text-sm font-medium">
+          💡 También ofrecemos soluciones de automatización con IA para mejorar la eficiencia de tu empresa
+        </p>
+        <a href="/" class="text-white hover:text-blue-100 underline text-sm mt-2 inline-block font-medium">
+          Ver servicios de automatización →
+        </a>
+      </div>
+    </div>
+  </section>
+</WazuhLayout>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const tabs = document.querySelectorAll('.demo-tab');
+    const contents = document.querySelectorAll('.demo-content');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const targetTab = tab.getAttribute('data-tab');
+
+        // Remove active class from all tabs
+        tabs.forEach(t => {
+          t.classList.remove('active', 'bg-[#0052cc]', 'text-white');
+          t.classList.add('text-[#4b5563]', 'hover:bg-base-200');
+        });
+
+        // Add active class to clicked tab
+        tab.classList.add('active', 'bg-[#0052cc]', 'text-white');
+        tab.classList.remove('text-[#4b5563]', 'hover:bg-base-200');
+
+        // Hide all content
+        contents.forEach(content => {
+          content.classList.add('hidden');
+        });
+
+        // Show target content
+        const targetContent = document.getElementById(`tab-${targetTab}`);
+        if (targetContent) {
+          targetContent.classList.remove('hidden');
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  details summary::-webkit-details-marker {
+    display: none;
+  }
+
+  details summary::after {
+    content: '+';
+    float: right;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  details[open] summary::after {
+    content: '−';
+  }
+</style>

@@ -14,10 +14,138 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         <h1 class="text-4xl md:text-5xl font-bold text-base-900 mb-6">
           Atención al cliente <span class="text-accent-600">24/7 automatizada</span>
         </h1>
-        <p class="text-xl text-base-600 max-w-3xl mx-auto">
+        <p class="text-xl text-base-600 max-w-3xl mx-auto mb-6">
           Transforma la experiencia de tus clientes con un chatbot inteligente que entiende,
           responde y resuelve consultas de manera natural, las 24 horas del día.
         </p>
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 max-w-2xl mx-auto mb-6">
+          <p class="text-sm text-blue-800">
+            <strong>📋 Contexto de la demo:</strong> Esta es una simulación de un chatbot de atención al cliente para una tienda online de electrónica.
+            El bot puede consultar facturas, responder sobre productos y resolver incidencias. Conectado a la base de datos de clientes y pedidos en tiempo real.
+          </p>
+        </div>
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-green-50 text-green-700 rounded-lg text-sm font-medium">
+          <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+          Prueba haciendo click en las preguntas de ejemplo
+        </div>
+      </div>
+
+      <!-- Interactive Demo Section -->
+      <div class="mb-16">
+        <div class="max-w-4xl mx-auto bg-gradient-to-br from-base-900 to-base-800 rounded-2xl shadow-2xl overflow-hidden">
+          <!-- Demo Header -->
+          <div class="bg-base-800 px-6 py-4 border-b border-base-700">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                <span class="ml-4 text-base-300 text-sm font-medium">Chat de Soporte - Demo</span>
+              </div>
+              <div class="flex items-center gap-2 text-base-400 text-sm">
+                <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                Online
+              </div>
+            </div>
+          </div>
+
+          <!-- Chat Container -->
+          <div class="bg-base-50 p-6 min-h-[500px] max-h-[600px] overflow-y-auto" id="chat-container">
+            <!-- Welcome Message -->
+            <div class="flex items-start gap-3 mb-4">
+              <div class="w-10 h-10 rounded-full bg-gradient-to-br from-accent-500 to-blue-600 flex items-center justify-center text-white font-bold flex-shrink-0">
+                AI
+              </div>
+              <div class="bg-white rounded-2xl rounded-tl-none px-4 py-3 shadow-sm max-w-[80%]">
+                <p class="text-[#1f2937] text-sm">¡Hola! 👋 Soy el asistente virtual de TechStore. ¿En qué puedo ayudarte hoy?</p>
+                <p class="text-[#374151] text-sm mt-3 font-medium">Puedes preguntarme sobre:</p>
+              </div>
+            </div>
+
+            <!-- Quick Question Buttons -->
+            <div class="space-y-2 mb-4 ml-14">
+              <button class="quick-question w-full text-left px-4 py-3 bg-white border-2 border-accent-200 rounded-xl text-sm text-[#1f2937] hover:bg-accent-50 hover:border-accent-400 transition-all duration-200 shadow-sm">
+                Necesito mi factura, mi DNI es 12345678A
+              </button>
+              <button class="quick-question w-full text-left px-4 py-3 bg-white border-2 border-accent-200 rounded-xl text-sm text-[#1f2937] hover:bg-accent-50 hover:border-accent-400 transition-all duration-200 shadow-sm">
+                ¿El portátil HP 15-dy tiene SSD?
+              </button>
+              <button class="quick-question w-full text-left px-4 py-3 bg-white border-2 border-accent-200 rounded-xl text-sm text-[#1f2937] hover:bg-accent-50 hover:border-accent-400 transition-all duration-200 shadow-sm">
+                ¿Dónde está mi pedido #TS-2845?
+              </button>
+            </div>
+          </div>
+
+          <!-- Input Area -->
+          <div class="bg-base-100 px-6 py-4 border-t border-base-200">
+            <form id="demo-chat-form" class="flex gap-3">
+              <input
+                type="text"
+                id="demo-chat-input"
+                placeholder="Escribe tu mensaje..."
+                class="flex-1 px-4 py-3 border border-base-300 rounded-xl focus:ring-2 focus:ring-accent-500 focus:border-accent-500 bg-white"
+              />
+              <button
+                type="submit"
+                class="px-6 py-3 bg-gradient-to-r from-accent-600 to-blue-600 text-white rounded-xl font-semibold hover:from-accent-700 hover:to-blue-700 transition-all duration-200 shadow-lg hover:shadow-xl"
+              >
+                Enviar
+              </button>
+            </form>
+            <p class="text-xs text-base-500 mt-2 text-center">
+              Esta es una demo interactiva. En producción, el chatbot se entrena con tu base de conocimientos.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Integration Section -->
+      <div class="bg-gradient-to-br from-blue-600 to-purple-600 rounded-2xl p-8 md:p-12 text-white mb-16">
+        <h2 class="text-3xl font-bold mb-6 text-center">Integraciones y Conectividad</h2>
+        <p class="text-center text-lg opacity-90 mb-8 max-w-3xl mx-auto">
+          El chatbot se conecta en tiempo real con tus sistemas existentes para ofrecer respuestas precisas y actualizadas
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6">
+            <div class="text-4xl mb-3">🗄️</div>
+            <h3 class="text-xl font-semibold mb-3">Base de Datos de Clientes</h3>
+            <ul class="space-y-2 text-sm opacity-90">
+              <li>• Consulta de información del cliente</li>
+              <li>• Histórico de compras y pedidos</li>
+              <li>• Preferencias y configuración</li>
+              <li>• Datos de contacto actualizados</li>
+            </ul>
+          </div>
+
+          <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6">
+            <div class="text-4xl mb-3">🔌</div>
+            <h3 class="text-xl font-semibold mb-3">APIs de Sistemas Externos</h3>
+            <ul class="space-y-2 text-sm opacity-90">
+              <li>• ERP (SAP, Odoo, Microsoft Dynamics)</li>
+              <li>• CRM (Salesforce, HubSpot, Zoho)</li>
+              <li>• Plataformas de envío y logística</li>
+              <li>• Pasarelas de pago</li>
+            </ul>
+          </div>
+
+          <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6">
+            <div class="text-4xl mb-3">📚</div>
+            <h3 class="text-xl font-semibold mb-3">Múltiples Formatos de Datos</h3>
+            <ul class="space-y-2 text-sm opacity-90">
+              <li>• Documentos PDF, Word, Excel</li>
+              <li>• Bases de datos SQL y NoSQL</li>
+              <li>• APIs REST y GraphQL</li>
+              <li>• Archivos CSV, JSON, XML</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mt-8 text-center">
+          <p class="text-sm opacity-75">
+            ⚡ Sincronización en tiempo real • 🔒 Conexiones seguras y encriptadas • 🔄 Actualizaciones automáticas
+          </p>
+        </div>
       </div>
 
       <!-- Features Grid -->
@@ -152,3 +280,137 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
     </div>
   </section>
 </BaseLayout>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const chatForm = document.getElementById('demo-chat-form') as HTMLFormElement;
+    const chatInput = document.getElementById('demo-chat-input') as HTMLInputElement;
+    const chatContainer = document.getElementById('chat-container') as HTMLDivElement;
+
+    if (!chatForm || !chatInput || !chatContainer) return;
+
+    // Respuestas predefinidas del bot para tienda de electrónica
+    const responses: Record<string, string> = {
+      'factura': '🔍 He encontrado tu información en nuestra base de datos:\n\n👤 Cliente: María García López\n📧 Email: maria.garcia@email.com\n📱 Teléfono: +34 612 345 678\n\n📄 Última factura:\n• Número: FAC-2024-03456\n• Fecha: 15/01/2025\n• Importe: 899,99€\n• Producto: Portátil HP Pavilion 15\n\n✅ Te he enviado la factura por email.\n¿Necesitas la factura de otro pedido?',
+      'producto': '💻 Portátil HP 15-dy - Especificaciones:\n\n✅ Procesador: Intel Core i5-1235U (12ª Gen)\n✅ RAM: 16GB DDR4\n✅ Almacenamiento: SSD 512GB NVMe\n✅ Pantalla: 15.6" Full HD (1920x1080)\n✅ Gráficos: Intel Iris Xe\n✅ Batería: hasta 8 horas\n\n💰 Precio: 699,99€\n📦 Stock: Disponible (envío 24-48h)\n⭐ Valoración: 4.5/5 (127 opiniones)\n\n¿Quieres que te ayude con la compra?',
+      'pedido': '📦 Estado de tu pedido #TS-2845:\n\n✅ Confirmado: 20/01/2025 10:23h\n✅ Preparado: 20/01/2025 16:45h\n✅ Enviado: 21/01/2025 09:12h\n🚚 En reparto: Llegará mañana 22/01 antes de las 14:00h\n\n📍 Dirección de entrega:\nCalle Mayor 123, 2ºB\n28013 Madrid\n\n🔗 Seguimiento: ES1234567890YZ\n👤 Transportista: SEUR\n\n¿Necesitas cambiar algo del envío?',
+      'default': 'Entiendo tu consulta. Puedo ayudarte con:\n\n📄 Consultar facturas (dime tu DNI)\n💻 Información de productos\n📦 Estado de pedidos\n🔄 Devoluciones y garantías\n💳 Métodos de pago\n\n¿En qué más puedo ayudarte?'
+    };
+
+    function addMessage(text: string, isUser: boolean) {
+      const messageDiv = document.createElement('div');
+      messageDiv.className = `flex items-start gap-3 mb-4 ${isUser ? 'flex-row-reverse' : ''}`;
+
+      const avatar = document.createElement('div');
+      if (isUser) {
+        avatar.className = 'w-10 h-10 rounded-full bg-base-300 flex items-center justify-center text-base-700 font-bold flex-shrink-0';
+        avatar.textContent = 'TÚ';
+      } else {
+        avatar.className = 'w-10 h-10 rounded-full bg-gradient-to-br from-accent-500 to-blue-600 flex items-center justify-center text-white font-bold flex-shrink-0';
+        avatar.textContent = 'AI';
+      }
+
+      const bubble = document.createElement('div');
+      bubble.className = `rounded-2xl px-4 py-3 shadow-sm max-w-[80%] ${
+        isUser
+          ? 'bg-gradient-to-r from-accent-600 to-blue-600 text-white rounded-tr-none'
+          : 'bg-white rounded-tl-none'
+      }`;
+      bubble.style.whiteSpace = 'pre-wrap';
+      bubble.style.color = isUser ? '' : '#1f2937'; // Force dark text for bot messages
+      bubble.innerHTML = text.replace(/\n/g, '<br>');
+
+      messageDiv.appendChild(avatar);
+      messageDiv.appendChild(bubble);
+      chatContainer.appendChild(messageDiv);
+
+      // Scroll to bottom
+      chatContainer.scrollTop = chatContainer.scrollHeight;
+    }
+
+    function getBotResponse(userMessage: string): string {
+      const message = userMessage.toLowerCase();
+
+      if (message.includes('factura') || message.includes('dni') || message.includes('12345678')) {
+        return responses['factura'];
+      }
+      if (message.includes('portátil') || message.includes('portatil') || message.includes('hp') || message.includes('ssd') || message.includes('especificaciones')) {
+        return responses['producto'];
+      }
+      if (message.includes('pedido') || message.includes('ts-2845') || message.includes('envío') || message.includes('envio') || message.includes('dónde está') || message.includes('donde esta')) {
+        return responses['pedido'];
+      }
+
+      return responses['default'];
+    }
+
+    function simulateTyping() {
+      const typingDiv = document.createElement('div');
+      typingDiv.className = 'flex items-start gap-3 mb-4';
+      typingDiv.id = 'typing-indicator';
+
+      const avatar = document.createElement('div');
+      avatar.className = 'w-10 h-10 rounded-full bg-gradient-to-br from-accent-500 to-blue-600 flex items-center justify-center text-white font-bold flex-shrink-0';
+      avatar.textContent = 'AI';
+
+      const bubble = document.createElement('div');
+      bubble.className = 'bg-white rounded-2xl rounded-tl-none px-4 py-3 shadow-sm';
+      bubble.innerHTML = '<span class="inline-flex gap-1"><span class="w-2 h-2 bg-base-400 rounded-full animate-bounce"></span><span class="w-2 h-2 bg-base-400 rounded-full animate-bounce" style="animation-delay: 0.1s"></span><span class="w-2 h-2 bg-base-400 rounded-full animate-bounce" style="animation-delay: 0.2s"></span></span>';
+
+      typingDiv.appendChild(avatar);
+      typingDiv.appendChild(bubble);
+      chatContainer.appendChild(typingDiv);
+      chatContainer.scrollTop = chatContainer.scrollHeight;
+    }
+
+    function removeTyping() {
+      const typingIndicator = document.getElementById('typing-indicator');
+      if (typingIndicator) {
+        typingIndicator.remove();
+      }
+    }
+
+    function sendMessage(message: string) {
+      // Add user message
+      addMessage(message, true);
+      chatInput.value = '';
+
+      // Hide quick question buttons after first use
+      const quickButtons = document.querySelector('.space-y-2.mb-4.ml-14');
+      if (quickButtons) {
+        quickButtons.classList.add('hidden');
+      }
+
+      // Show typing indicator
+      simulateTyping();
+
+      // Simulate bot response delay
+      setTimeout(() => {
+        removeTyping();
+        const botResponse = getBotResponse(message);
+        addMessage(botResponse, false);
+      }, 1000 + Math.random() * 1000);
+    }
+
+    chatForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const userMessage = chatInput.value.trim();
+      if (!userMessage) return;
+
+      sendMessage(userMessage);
+    });
+
+    // Quick question buttons
+    const quickQuestionButtons = document.querySelectorAll('.quick-question');
+    quickQuestionButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const question = button.textContent?.trim();
+        if (question) {
+          chatInput.value = question;
+          sendMessage(question);
+        }
+      });
+    });
+  });
+</script>

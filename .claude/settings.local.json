@@ -3,7 +3,18 @@
     "allow": [
       "Bash(git add:*)",
       "Bash(git commit:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(pnpm dev)",
+      "Bash(npm run dev)",
+      "Bash(timeout:*)",
+      "Bash(where npx)",
+      "Bash(powershell:*)",
+      "Bash(dir:*)",
+      "Bash(findstr:*)",
+      "Bash(where pnpm)",
+      "Bash(where npm)",
+      "Bash(sed:*)",
+      "Bash(rm:*)"
     ],
     "deny": [],
     "ask": []

@@ -4,7 +4,8 @@ import ThemeToggle from "../theme/ThemeToggle.astro";
 ---
 
 <header
-  class="border-b border-base-200 sticky top-0 z-50 bg-transparent backdrop-blur-2xl">
+  id="main-header"
+  class="border-b border-base-200 sticky top-0 z-50 bg-base-50 shadow-sm transition-all duration-300">
   <div class="w-full mx-auto px-8 max-w-7xl lg:px-16">
     <div
       x-data="{ open: false }"
@@ -46,51 +47,59 @@ import ThemeToggle from "../theme/ThemeToggle.astro";
       <nav
         :class="{'h-auto': open, 'h-0': !open}"
         id="main-navigation"
-        class="flex-col items-center flex-grow gap-4 lg:gap-8 flex overflow-hidden lg:pb-0 lg:flex lg:justify-end lg:h-auto lg:flex-row">
-        <a
-          class="text-sm text-base-800 transition duration-300 hover:text-accent-600 lg:ml-auto"
-          href="/#servicios">
-          Servicios IA
-        </a>
+        class="flex-col items-center flex-grow gap-6 lg:gap-8 flex overflow-hidden lg:pb-0 lg:flex lg:justify-end lg:h-auto lg:flex-row lg:ml-auto">
         <a
           href="/servicios/chatbot"
-          class="text-sm text-base-800 transition duration-300 hover:text-accent-600">
+          class="text-sm font-medium text-base-800 transition duration-300 hover:text-[#0052cc]">
           Chatbot
         </a>
         <a
           href="/servicios/gestor-documental"
-          class="text-sm text-base-800 transition duration-300 hover:text-accent-600">
-          Gestión Documental
+          class="text-sm font-medium text-base-800 transition duration-300 hover:text-[#0052cc]">
+          Gestor Documental
         </a>
         <a
           href="/servicios/automatizacion"
-          class="text-sm text-base-800 transition duration-300 hover:text-accent-600">
-          Automatización
+          class="text-sm font-medium text-base-800 transition duration-300 hover:text-[#0052cc]">
+          Automatizaciones IA
+        </a>
+        <a
+          href="/wazuh"
+          class="text-sm font-medium text-base-800 transition duration-300 hover:text-red-600 flex items-center gap-1">
+          <span class="text-red-600">🔒</span>
+          Wazuh & Seguridad
+        </a>
+        <a
+          href="/soporte-tecnico"
+          class="text-sm font-medium text-base-800 transition duration-300 hover:text-[#0052cc]">
+          Soporte IT
         </a>
         <a
           href="/reunion"
-          class="text-sm text-base-800 transition duration-300 hover:text-accent-600 relative">
+          class="inline-flex items-center gap-2 px-4 py-2 bg-[#0052cc] hover:bg-[#003d99] text-white text-sm font-semibold rounded-lg transition duration-300 relative">
           Solicitar Reunión
           <span
-            class="bg-accent-600 ms-1 text-white text-[10px] px-2 py-1 rounded-full">
+            class="bg-[#10b981] text-white text-[10px] px-2 py-0.5 rounded-full font-bold shadow-sm">
             GRATIS
           </span>
         </a>
-
-        <div class="inline-flex items-center gap-2 list-none py-px lg:ml-auto">
-          <ThemeToggle />
-          <a
-            href="/signup"
-            class="flex items-center justify-center transition-all duration-200 focus:ring-2 focus:outline-none text-base-500 bg-base-25 hover:text-accent-600 ring-1 ring-base-200 focus:bg-accent-100 h-8 px-4 py-2 text-xs font-medium rounded-md hover:bg-accent-100">
-            Registrarse
-          </a>
-          <a
-            href="/reunion"
-            class="flex items-center justify-center transition-all duration-200 ring-1 focus:ring-2 ring-accent-700 focus:outline-none text-base-50 bg-accent-600 hover:bg-accent-700 focus:ring-base-500/50 h-8 px-4 py-2 text-xs font-medium rounded-md">
-            Solicitar Reunión
-          </a>
-        </div>
       </nav>
     </div>
   </div>
 </header>
+
+<script>
+  const header = document.getElementById('main-header');
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) {
+      // Al hacer scroll: transparente con blur
+      header?.classList.remove('bg-base-50', 'shadow-sm');
+      header?.classList.add('bg-transparent', 'backdrop-blur-2xl');
+    } else {
+      // Arriba del todo: sólido
+      header?.classList.remove('bg-transparent', 'backdrop-blur-2xl');
+      header?.classList.add('bg-base-50', 'shadow-sm');
+    }
+  });
+</script>

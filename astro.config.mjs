@@ -1,8 +1,11 @@
 import { defineConfig, fontProviders } from "astro/config";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
+import vercel from "@astrojs/vercel";
+
 export default defineConfig({
-  output: "static",
+  output: "server",
+  adapter: vercel(),
   site: "https://yoursite.com",
   experimental: {
     fonts: [

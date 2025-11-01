@@ -1,0 +1,313 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout>
+  <section class="py-20 bg-base-25">
+    <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
+      <!-- Hero Section -->
+      <div class="text-center mb-16">
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-accent-100 text-accent-700 rounded-full text-sm font-medium mb-6">
+          <span class="text-2xl">☎️</span>
+          Atención de Llamadas IA
+        </div>
+        <h1 class="text-4xl md:text-5xl font-bold text-base-900 mb-6">
+          Recepcionista virtual <span class="text-accent-600">que nunca descansa</span>
+        </h1>
+        <p class="text-xl text-base-600 max-w-3xl mx-auto mb-8">
+          Atención telefónica automatizada con voz natural. Gestiona llamadas, reserva citas,
+          responde preguntas frecuentes y deriva casos complejos a tu equipo.
+        </p>
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-green-50 text-green-700 rounded-lg text-sm font-medium">
+          <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+          Demo interactiva disponible abajo
+        </div>
+      </div>
+
+      <!-- Interactive Demo Section -->
+      <div class="mb-16">
+        <div class="max-w-4xl mx-auto bg-gradient-to-br from-base-900 to-base-800 rounded-2xl shadow-2xl overflow-hidden">
+          <!-- Demo Header -->
+          <div class="bg-base-800 px-6 py-4 border-b border-base-700">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                <span class="ml-4 text-base-300 text-sm font-medium">Atención Telefónica - Demo</span>
+              </div>
+              <div class="flex items-center gap-2 text-base-400 text-sm">
+                <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                Disponible 24/7
+              </div>
+            </div>
+          </div>
+
+          <!-- Phone Interface -->
+          <div class="bg-gradient-to-br from-blue-600 to-purple-600 p-8">
+            <div class="max-w-md mx-auto">
+              <!-- Phone Screen -->
+              <div class="bg-base-900 rounded-3xl p-8 shadow-2xl">
+                <!-- Status Bar -->
+                <div class="flex justify-between items-center mb-8 text-white text-xs">
+                  <span>9:41 AM</span>
+                  <div class="flex gap-1">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"></path>
+                    </svg>
+                  </div>
+                </div>
+
+                <!-- Call Info -->
+                <div class="text-center mb-8">
+                  <div id="call-status" class="text-base-400 text-sm mb-2">Toca para llamar</div>
+                  <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-gradient-to-br from-accent-500 to-blue-600 flex items-center justify-center">
+                    <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
+                    </svg>
+                  </div>
+                  <h3 class="text-white text-xl font-semibold mb-1">Clínica Dental Dr. García</h3>
+                  <p class="text-base-400 text-sm">+34 900 123 456</p>
+                </div>
+
+                <!-- Call Duration -->
+                <div id="call-duration" class="text-center text-base-400 text-sm mb-6 hidden">
+                  <span id="duration-text">00:00</span>
+                </div>
+
+                <!-- Conversation Log -->
+                <div id="conversation-log" class="bg-base-800 rounded-xl p-4 mb-6 max-h-48 overflow-y-auto hidden">
+                  <!-- Conversation will be added here -->
+                </div>
+
+                <!-- Call Button -->
+                <button
+                  id="call-button"
+                  class="w-20 h-20 mx-auto flex items-center justify-center rounded-full bg-green-500 hover:bg-green-600 transition-all duration-200 shadow-lg hover:shadow-xl"
+                >
+                  <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
+                  </svg>
+                </button>
+
+                <!-- Hang Up Button (Hidden initially) -->
+                <button
+                  id="hangup-button"
+                  class="w-20 h-20 mx-auto hidden items-center justify-center rounded-full bg-red-500 hover:bg-red-600 transition-all duration-200 shadow-lg hover:shadow-xl"
+                >
+                  <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
+                  </svg>
+                </button>
+              </div>
+
+              <!-- Call Menu Options (shown during call) -->
+              <div id="call-options" class="mt-6 hidden">
+                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4">
+                  <h4 class="text-white text-sm font-semibold mb-3">Opciones disponibles:</h4>
+                  <div class="space-y-2 text-white/80 text-sm">
+                    <div class="flex items-center gap-2">
+                      <span class="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center text-xs">1</span>
+                      <span>Reservar una cita</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                      <span class="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center text-xs">2</span>
+                      <span>Consultar horarios</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                      <span class="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center text-xs">3</span>
+                      <span>Hablar con un agente</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Info Panel -->
+          <div class="bg-base-100 px-6 py-4">
+            <p class="text-xs text-base-500 text-center">
+              Esta es una demo simulada. El sistema real utiliza síntesis de voz natural y procesamiento de lenguaje avanzado.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Features Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+        <div class="bg-base-50 rounded-xl p-6">
+          <div class="w-12 h-12 bg-accent-100 rounded-lg flex items-center justify-center text-accent-600 text-xl mb-4">
+            🗣️
+          </div>
+          <h3 class="text-lg font-semibold text-base-900 mb-3">Voz Natural</h3>
+          <p class="text-base-600">
+            Síntesis de voz con entonación natural y pronunciación perfecta en español.
+          </p>
+        </div>
+
+        <div class="bg-base-50 rounded-xl p-6">
+          <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 text-xl mb-4">
+            🎯
+          </div>
+          <h3 class="text-lg font-semibold text-base-900 mb-3">Comprensión Contextual</h3>
+          <p class="text-base-600">
+            Entiende el contexto de la conversación y adapta las respuestas.
+          </p>
+        </div>
+
+        <div class="bg-base-50 rounded-xl p-6">
+          <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center text-green-600 text-xl mb-4">
+            🔀
+          </div>
+          <h3 class="text-lg font-semibold text-base-900 mb-3">Derivación Inteligente</h3>
+          <p class="text-base-600">
+            Transfiere llamadas complejas a agentes humanos cuando es necesario.
+          </p>
+        </div>
+      </div>
+
+      <!-- Stats Section -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-16">
+        <div class="bg-gradient-to-br from-accent-600 to-blue-600 rounded-xl p-6 text-white text-center">
+          <div class="text-4xl font-bold mb-2">24/7</div>
+          <div class="text-sm opacity-90">Disponibilidad</div>
+        </div>
+        <div class="bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl p-6 text-white text-center">
+          <div class="text-4xl font-bold mb-2">90%</div>
+          <div class="text-sm opacity-90">Llamadas resueltas</div>
+        </div>
+        <div class="bg-gradient-to-br from-purple-600 to-pink-600 rounded-xl p-6 text-white text-center">
+          <div class="text-4xl font-bold mb-2">70%</div>
+          <div class="text-sm opacity-90">Reducción de costos</div>
+        </div>
+        <div class="bg-gradient-to-br from-green-600 to-teal-600 rounded-xl p-6 text-white text-center">
+          <div class="text-4xl font-bold mb-2">0s</div>
+          <div class="text-sm opacity-90">Tiempo de espera</div>
+        </div>
+      </div>
+
+      <!-- CTA Section -->
+      <div class="text-center bg-gradient-to-br from-accent-600 to-blue-600 rounded-2xl p-12 text-white">
+        <h2 class="text-3xl font-bold mb-4">
+          Nunca pierdas una llamada importante
+        </h2>
+        <p class="text-xl mb-8 max-w-2xl mx-auto opacity-90">
+          Descubre cómo nuestra IA puede transformar tu atención telefónica
+        </p>
+        <a
+          href="/reunion"
+          class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-accent-600 bg-white hover:bg-base-50 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200"
+        >
+          Solicitar Demo Gratuita
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const callButton = document.getElementById('call-button');
+    const hangupButton = document.getElementById('hangup-button');
+    const callStatus = document.getElementById('call-status');
+    const callDuration = document.getElementById('call-duration');
+    const durationText = document.getElementById('duration-text');
+    const conversationLog = document.getElementById('conversation-log');
+    const callOptions = document.getElementById('call-options');
+
+    let isInCall = false;
+    let callStartTime = 0;
+    let durationInterval: number;
+
+    const conversation = [
+      { delay: 1000, speaker: 'AI', text: '¡Hola! Bienvenido a Clínica Dental Dr. García. ¿En qué puedo ayudarte?' },
+      { delay: 3000, speaker: 'User', text: 'Hola, quisiera reservar una cita' },
+      { delay: 4500, speaker: 'AI', text: 'Por supuesto. ¿Qué día te vendría mejor?' },
+      { delay: 6000, speaker: 'User', text: 'El próximo martes por la mañana' },
+      { delay: 7500, speaker: 'AI', text: 'Perfecto. Tengo disponibilidad a las 10:00 y a las 11:30. ¿Cuál prefieres?' },
+      { delay: 9000, speaker: 'User', text: 'A las 10:00 está bien' },
+      { delay: 10500, speaker: 'AI', text: '¡Excelente! He reservado tu cita para el martes a las 10:00. Te enviaré un SMS de confirmación. ¿Necesitas algo más?' },
+    ];
+
+    function addConversationLine(speaker: string, text: string) {
+      if (!conversationLog) return;
+
+      const line = document.createElement('div');
+      line.className = `mb-2 ${speaker === 'AI' ? 'text-accent-400' : 'text-white'}`;
+      line.innerHTML = `<span class="font-semibold">${speaker === 'AI' ? '🤖 Asistente:' : '👤 Tú:'}</span> ${text}`;
+      conversationLog.appendChild(line);
+      conversationLog.scrollTop = conversationLog.scrollHeight;
+    }
+
+    function updateDuration() {
+      const elapsed = Math.floor((Date.now() - callStartTime) / 1000);
+      const minutes = Math.floor(elapsed / 60).toString().padStart(2, '0');
+      const seconds = (elapsed % 60).toString().padStart(2, '0');
+      if (durationText) {
+        durationText.textContent = `${minutes}:${seconds}`;
+      }
+    }
+
+    function startCall() {
+      isInCall = true;
+      callStartTime = Date.now();
+
+      // UI Updates
+      if (callButton) callButton.classList.add('hidden');
+      if (hangupButton) hangupButton.classList.remove('hidden');
+      if (hangupButton) hangupButton.classList.add('flex');
+      if (callStatus) callStatus.textContent = 'Conectando...';
+      if (callDuration) callDuration.classList.remove('hidden');
+      if (conversationLog) conversationLog.classList.remove('hidden');
+      if (callOptions) callOptions.classList.remove('hidden');
+
+      // Start duration counter
+      durationInterval = setInterval(updateDuration, 1000) as unknown as number;
+
+      // Simulate ringing
+      setTimeout(() => {
+        if (callStatus) callStatus.textContent = 'En llamada';
+      }, 1500);
+
+      // Play conversation
+      conversation.forEach(line => {
+        setTimeout(() => {
+          if (isInCall) {
+            addConversationLine(line.speaker, line.text);
+          }
+        }, line.delay);
+      });
+    }
+
+    function endCall() {
+      isInCall = false;
+      clearInterval(durationInterval);
+
+      // UI Updates
+      if (callButton) callButton.classList.remove('hidden');
+      if (hangupButton) hangupButton.classList.add('hidden');
+      if (hangupButton) hangupButton.classList.remove('flex');
+      if (callStatus) callStatus.textContent = 'Llamada finalizada';
+      if (callOptions) callOptions.classList.add('hidden');
+
+      // Reset after 2 seconds
+      setTimeout(() => {
+        if (callStatus) callStatus.textContent = 'Toca para llamar';
+        if (callDuration) callDuration.classList.add('hidden');
+        if (conversationLog) {
+          conversationLog.classList.add('hidden');
+          conversationLog.innerHTML = '';
+        }
+        if (durationText) durationText.textContent = '00:00';
+      }, 2000);
+    }
+
+    if (callButton) {
+      callButton.addEventListener('click', startCall);
+    }
+
+    if (hangupButton) {
+      hangupButton.addEventListener('click', endCall);
+    }
+  });
+</script>

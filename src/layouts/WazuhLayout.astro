@@ -1,0 +1,89 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Footer from "../components/global/Footer.astro";
+import { Font } from "astro:assets";
+---
+
+<html
+  lang="es"
+  class="scroll-smooth selection:bg-accent-500 selection:text-white no-touchevents hydrated">
+  <head>
+    <BaseHead />
+    <Font cssVariable="--font-sans" preload />
+  </head>
+  <body class="bg-white flex flex-col min-h-svh">
+    <!-- Wazuh Header Oscuro -->
+    <header class="bg-[#1a1d29] border-b border-gray-700 sticky top-0 z-50">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="flex items-center justify-between h-16">
+          <!-- Logo -->
+          <a href="/wazuh" class="flex items-center gap-2 text-white hover:text-gray-100 transition">
+            <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="3" width="7" height="7" rx="1" fill="#0ea5e9"/>
+              <rect x="3" y="14" width="7" height="7" rx="1" fill="#0ea5e9"/>
+              <rect x="14" y="3" width="7" height="7" rx="1" fill="#0ea5e9"/>
+              <rect x="14" y="14" width="7" height="7" rx="1" fill="#0ea5e9"/>
+            </svg>
+            <span class="font-bold text-lg">WazuhSec</span>
+          </a>
+
+          <!-- Desktop Navigation -->
+          <nav class="hidden md:flex items-center gap-8">
+            <a href="#demo" class="text-gray-200 hover:text-white transition text-sm font-medium">
+              Soluciones
+            </a>
+            <a href="#faq" class="text-gray-200 hover:text-white transition text-sm font-medium">
+              Opiniones
+            </a>
+            <a href="/reunion" class="text-gray-200 hover:text-white transition text-sm font-medium">
+              Precios
+            </a>
+            <a href="/reunion" class="px-6 py-2 bg-[#0ea5e9] hover:bg-[#0284c7] text-white text-sm font-semibold rounded-lg transition shadow-lg">
+              Solicita información
+            </a>
+          </nav>
+
+          <!-- Mobile Menu Button -->
+          <button
+            id="mobile-menu-btn"
+            class="md:hidden text-gray-200 hover:text-white transition"
+            aria-label="Toggle menu">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Mobile Navigation -->
+        <nav id="mobile-menu" class="hidden md:hidden pb-4 flex-col gap-4">
+          <a href="#demo" class="text-gray-200 hover:text-white transition text-sm font-medium block py-2">
+            Soluciones
+          </a>
+          <a href="#faq" class="text-gray-200 hover:text-white transition text-sm font-medium block py-2">
+            Opiniones
+          </a>
+          <a href="/reunion" class="text-gray-200 hover:text-white transition text-sm font-medium block py-2">
+            Precios
+          </a>
+          <a href="/reunion" class="px-6 py-2 bg-[#0ea5e9] hover:bg-[#0284c7] text-white text-sm font-semibold rounded-lg transition inline-block text-center shadow-lg">
+            Solicita información
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="grow"><slot /></main>
+    <Footer />
+
+    <!-- Mobile Menu Toggle Script -->
+    <script>
+      const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+
+      mobileMenuBtn?.addEventListener('click', () => {
+        mobileMenu?.classList.toggle('hidden');
+        mobileMenu?.classList.toggle('flex');
+      });
+    </script>
+  </body>
+</html>

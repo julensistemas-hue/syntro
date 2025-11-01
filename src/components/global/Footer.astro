@@ -3,44 +3,37 @@ import OptimizedImage from "../../layouts/utilities/OptimizedImage.astro";
 
 const sections = [
   {
-    title: "Todas las páginas",
+    title: "Servicios",
     links: [
-      { name: "Inicio", href: "/" },
-      { name: "Acerca de", href: "/about" },
-      { name: "Características", href: "/features" },
-      { name: "Precios", href: "/pricing" },
-      { name: "FAQ", href: "/faq" },
-      { name: "Contacto", href: "/contact" },
+      { name: "Chatbot Inteligente", href: "/servicios/chatbot" },
+      { name: "Gestor Documental IA", href: "/servicios/gestor-documental" },
+      { name: "Gestor de Citas IA", href: "/servicios/gestor-citas" },
+      { name: "Atención de Llamadas", href: "/servicios/atencion-llamadas" },
+      { name: "Automatización", href: "/servicios/automatizacion" },
     ],
   },
   {
     title: "Empresa",
     links: [
-      { name: "Empleos", href: "/careers" },
-      { name: "Prensa", href: "/press" },
-      { name: "Blog", href: "/blog" },
-      { name: "Socios", href: "/partners" },
-      { name: "Términos", href: "/terms" },
-      { name: "Privacidad", href: "/privacy" },
+      { name: "Solicitar Reunión", href: "/reunion" },
+      { name: "FAQ", href: "/faq" },
+      { name: "Términos de Servicio", href: "/terms" },
+      { name: "Política de Privacidad", href: "/privacy" },
     ],
   },
   {
-    title: "Desarrolladores",
+    title: "Seguridad",
     links: [
-      { name: "Documentación", href: "/docs" },
-      { name: "Referencia API", href: "/api" },
-      { name: "Estado", href: "/status" },
-      { name: "Github", href: "https://github.com/bekturaslan/syntro-astro" },
-      { name: "Registro de cambios", href: "/changelog" },
+      { name: "Wazuh & ENS", href: "/wazuh" },
+      { name: "Ciberseguridad", href: "/reunion" },
+      { name: "Consultoría", href: "/reunion" },
     ],
   },
   {
-    title: "Soporte",
+    title: "Contacto",
     links: [
-      { name: "Centro de ayuda", href: "/help" },
-      { name: "Comunidad", href: "/community" },
-      { name: "Contactar soporte", href: "/support" },
-      { name: "Chat en vivo", href: "/chat" },
+      { name: "Email", href: "mailto:julen.sistemas@gmail.com" },
+      { name: "Agendar Consulta", href: "/reunion" },
     ],
   },
 ];
@@ -56,8 +49,8 @@ const sections = [
           <span class="text-lg font-semibold text-black">AI SECURITY</span>
         </a>
         <p class="mt-4 text-sm text-gray-500">
-          Plantilla SaaS de código abierto construida con Astro y Tailwind CSS. Personaliza
-          libremente y despliega con facilidad.
+          Soluciones de inteligencia artificial para empresas. Automatiza procesos,
+          mejora la atención al cliente y optimiza tu operativa con tecnología de vanguardia.
         </p>
       </div>
 
@@ -66,19 +59,24 @@ const sections = [
           Suscríbete a nuestro boletín
         </h3>
         <p class="text-sm text-gray-500 mb-4">
-          Únete a más de 1,000 desarrolladores y recibe actualizaciones, consejos e información
-          en tu bandeja de entrada.
+          Recibe casos de éxito, tendencias en IA y consejos prácticos para automatizar tu negocio.
         </p>
-        <form class="flex flex-col sm:flex-row items-center gap-3 w-full">
+        <div id="newsletter-alert" class="mb-4 hidden"></div>
+        <form id="newsletter-form" class="flex flex-col sm:flex-row items-center gap-3 w-full">
           <input
             type="email"
-            placeholder="Tu dirección de correo"
+            id="newsletter-email"
+            name="email"
+            required
+            placeholder="tu@empresa.com"
             class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
           />
           <button
             type="submit"
-            class="px-6 py-2 w-full md:w-auto rounded-md bg-blue-600 text-white hover:bg-blue-700 transition">
-            Suscribirse
+            id="newsletter-button"
+            class="px-6 py-2 w-full md:w-auto rounded-md bg-blue-600 text-white hover:bg-blue-700 transition disabled:opacity-50 disabled:cursor-not-allowed">
+            <span id="newsletter-button-text">Suscribirse</span>
+            <span id="newsletter-button-loading" class="hidden">Enviando...</span>
           </button>
         </form>
       </div>
@@ -108,15 +106,87 @@ const sections = [
     <div
       class="pt-12 mt-12 border-t border-base-200 flex flex-col md:flex-row justify-between items-center text-xs text-gray-400">
       <p>
-        &copy; {new Date().getFullYear()} Your Company Name. Crafted by Michael Andreuzza
-        &
-        <a
-          href="https://getastrothemes.com/free-astro-themes-templates/"
-          class="underline text-blue-600 hover:text-blue-800">
-          Getastrothemes
-        </a>
+        &copy; {new Date().getFullYear()} AI SECURITY. Todos los derechos reservados.
       </p>
-      <p>Additionally Development by Bektur Aslan</p>
+      <p>Soluciones de inteligencia artificial para empresas</p>
     </div>
   </div>
 </footer>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('newsletter-form') as HTMLFormElement;
+    const alertContainer = document.getElementById('newsletter-alert') as HTMLDivElement;
+    const submitButton = document.getElementById('newsletter-button') as HTMLButtonElement;
+    const buttonText = document.getElementById('newsletter-button-text') as HTMLSpanElement;
+    const buttonLoading = document.getElementById('newsletter-button-loading') as HTMLSpanElement;
+    const emailInput = document.getElementById('newsletter-email') as HTMLInputElement;
+
+    if (!form) return;
+
+    function showAlert(message: string, type: 'success' | 'error') {
+      alertContainer.className = `mb-4 p-3 rounded-md text-sm ${
+        type === 'success'
+          ? 'bg-green-50 border border-green-200 text-green-800'
+          : 'bg-red-50 border border-red-200 text-red-800'
+      }`;
+      alertContainer.textContent = message;
+      alertContainer.classList.remove('hidden');
+
+      if (type === 'success') {
+        setTimeout(() => {
+          alertContainer.classList.add('hidden');
+        }, 5000);
+      }
+    }
+
+    function setLoading(loading: boolean) {
+      submitButton.disabled = loading;
+      if (loading) {
+        buttonText.classList.add('hidden');
+        buttonLoading.classList.remove('hidden');
+      } else {
+        buttonText.classList.remove('hidden');
+        buttonLoading.classList.add('hidden');
+      }
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const email = emailInput.value.trim();
+
+      if (!email) {
+        showAlert('Por favor, ingresa un email válido', 'error');
+        return;
+      }
+
+      setLoading(true);
+      alertContainer.classList.add('hidden');
+
+      try {
+        const formData = new FormData();
+        formData.append('email', email);
+
+        const response = await fetch('/api/subscribe-newsletter', {
+          method: 'POST',
+          body: formData,
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          showAlert('¡Gracias por suscribirte! Revisa tu email para confirmar.', 'success');
+          form.reset();
+        } else {
+          showAlert(data.error || 'Error al suscribirse. Inténtalo de nuevo.', 'error');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        showAlert('Error de conexión. Verifica tu internet e inténtalo de nuevo.', 'error');
+      } finally {
+        setLoading(false);
+      }
+    });
+  });
+</script>
