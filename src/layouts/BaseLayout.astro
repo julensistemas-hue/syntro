@@ -4,6 +4,7 @@ import Navigation from "../components/global/Navigation.astro";
 import Footer from "../components/global/Footer.astro";
 import { Font } from "astro:assets";
 import { Analytics } from "@vercel/analytics/astro";
+import { SpeedInsights } from "@vercel/speed-insights/astro";
 ---
 
 <html
@@ -18,5 +19,6 @@ import { Analytics } from "@vercel/analytics/astro";
     <main class="grow"><slot /></main>
     <Footer />
     <Analytics />
+    <SpeedInsights />
   </body>
 </html>
