@@ -1,48 +1,60 @@
-<section class="bg-blue-600 py-20 text-white">
-  <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
-    <div class="text-center mb-14">
-      <p class="text-sm leading-normal font-bold uppercase text-white">
+<section class="relative bg-gradient-to-br from-accent-600 via-blue-600 to-accent-700 py-24 lg:py-32 text-white overflow-hidden">
+  <!-- Background Pattern -->
+  <div class="absolute inset-0 opacity-10" aria-hidden="true">
+    <svg class="w-full h-full" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="tech-grid" width="20" height="20" patternUnits="userSpaceOnUse">
+          <circle cx="10" cy="10" r="1" fill="white"/>
+        </pattern>
+      </defs>
+      <rect width="100" height="100" fill="url(#tech-grid)" />
+    </svg>
+  </div>
+
+  <div class="relative max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
+    <div class="text-center mb-16">
+      <div class="inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm text-white rounded-full text-sm font-semibold mb-6 border border-white/30">
+        <span aria-hidden="true">⚡</span>
         Tecnología de Vanguardia
-      </p>
-      <h2
-        class="text-xl leading-tight tracking-tight sm:text-2xl md:text-3xl capitalize lg:text-4xl mt-4 font-medium text-white">
+      </div>
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-6 tracking-tight">
         Potenciado por las Mejores Tecnologías de IA
       </h2>
-      <p class="mt-4 text-lg text-white max-w-xl mx-auto">
-        Utilizamos las herramientas más avanzadas del mercado para ofrecer soluciones inteligentes.
+      <p class="text-lg md:text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
+        Utilizamos las herramientas más avanzadas del mercado para ofrecer soluciones inteligentes y escalables.
       </p>
     </div>
 
-    <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       <div
-        class="bg-white/90 text-gray-800 p-8 rounded-2xl hover:scale-[1.025] transition ease-linear">
-        <div class="mb-4 text-accent-700 text-3xl">
+        class="bg-white/95 backdrop-blur-sm text-base-900 p-8 rounded-2xl hover:bg-white transition-all duration-300 hover:-translate-y-2 shadow-lg hover:shadow-2xl group">
+        <div class="mb-5 text-4xl transition-transform duration-300 group-hover:scale-110" aria-hidden="true">
           🤖
         </div>
-        <h3 class="text-xl font-semibold mb-2">GPT-4 & Claude</h3>
-        <p class="text-base font-medium">
+        <h3 class="text-xl font-bold mb-3 text-base-900">GPT-4 & Claude</h3>
+        <p class="text-base text-base-600 leading-relaxed">
           Modelos de lenguaje de última generación para conversaciones naturales y comprensión avanzada.
         </p>
       </div>
 
       <div
-        class="bg-white/90 text-gray-800 p-8 rounded-2xl hover:scale-[1.025] transition ease-linear">
-        <div class="mb-4 text-accent-700 text-3xl">
+        class="bg-white/95 backdrop-blur-sm text-base-900 p-8 rounded-2xl hover:bg-white transition-all duration-300 hover:-translate-y-2 shadow-lg hover:shadow-2xl group">
+        <div class="mb-5 text-4xl transition-transform duration-300 group-hover:scale-110" aria-hidden="true">
           🔗
         </div>
-        <h3 class="text-xl font-semibold mb-2">MCP Personalizado</h3>
-        <p class="text-base font-medium">
+        <h3 class="text-xl font-bold mb-3 text-base-900">MCP Personalizado</h3>
+        <p class="text-base text-base-600 leading-relaxed">
           Integración directa con tu ERP, CRM o cualquier sistema empresarial mediante Model Context Protocol.
         </p>
       </div>
 
       <div
-        class="bg-white/90 text-gray-800 p-8 rounded-2xl hover:scale-[1.025] transition ease-linear">
-        <div class="mb-4 text-accent-700 text-3xl">
+        class="bg-white/95 backdrop-blur-sm text-base-900 p-8 rounded-2xl hover:bg-white transition-all duration-300 hover:-translate-y-2 shadow-lg hover:shadow-2xl group">
+        <div class="mb-5 text-4xl transition-transform duration-300 group-hover:scale-110" aria-hidden="true">
           ⚡
         </div>
-        <h3 class="text-xl font-semibold mb-2">Automatización RAG</h3>
-        <p class="text-base font-medium">
+        <h3 class="text-xl font-bold mb-3 text-base-900">Automatización RAG</h3>
+        <p class="text-base text-base-600 leading-relaxed">
           Retrieval Augmented Generation para respuestas precisas basadas en tu documentación empresarial.
         </p>
       </div>

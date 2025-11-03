@@ -14,7 +14,9 @@
       "Bash(where pnpm)",
       "Bash(where npm)",
       "Bash(sed:*)",
-      "Bash(rm:*)"
+      "Bash(rm:*)",
+      "Bash(git config:*)",
+      "Bash(pnpm add:*)"
     ],
     "deny": [],
     "ask": []

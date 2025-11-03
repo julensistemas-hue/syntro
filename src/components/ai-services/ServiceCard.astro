@@ -13,40 +13,42 @@ const { title, description, icon, features, href, featured = false } = Astro.pro
 
 <div
   class={`
-    relative p-6 rounded-xl border transition-all duration-300 hover:shadow-lg
+    relative p-8 rounded-2xl border-2 transition-all duration-300 bg-white group
     ${featured
-      ? 'border-accent-200 bg-gradient-to-br from-accent-50 to-accent-100 hover:shadow-accent-200/50'
-      : 'border-base-200 bg-base-25 hover:shadow-base-200/50 hover:border-accent-200'
+      ? 'border-accent-300 shadow-lg hover:shadow-2xl hover:border-accent-400 hover:-translate-y-2'
+      : 'border-base-200 hover:border-accent-300 hover:shadow-xl hover:-translate-y-1'
     }
   `}
 >
   {featured && (
-    <div class="absolute -top-3 left-6">
-      <span class="bg-accent-600 text-white text-xs font-semibold px-3 py-1 rounded-full">
+    <div class="absolute -top-4 left-8">
+      <span class="bg-gradient-to-r from-accent-600 to-blue-600 text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-md">
         Más Popular
       </span>
     </div>
   )}
 
-  <div class="flex items-center gap-4 mb-4">
+  <div class="flex items-start gap-4 mb-6">
     <div class={`
-      w-12 h-12 rounded-lg flex items-center justify-center text-2xl
-      ${featured ? 'bg-accent-600 text-white' : 'bg-accent-100 text-accent-600'}
+      w-14 h-14 rounded-xl flex items-center justify-center text-3xl flex-shrink-0 shadow-md transition-transform duration-300 group-hover:scale-110
+      ${featured ? 'bg-gradient-to-br from-accent-600 to-blue-600' : 'bg-accent-100'}
     `}>
-      {icon}
+      {featured ? <span class="filter drop-shadow-sm">{icon}</span> : icon}
     </div>
-    <h3 class="text-xl font-semibold text-base-900">{title}</h3>
+    <div class="flex-1 min-w-0">
+      <h3 class="text-xl font-bold text-base-900 mb-2">{title}</h3>
+    </div>
   </div>
 
-  <p class="text-base-600 mb-6">{description}</p>
+  <p class="text-base-600 mb-6 leading-relaxed">{description}</p>
 
-  <ul class="space-y-3 mb-6">
+  <ul class="space-y-3 mb-8">
     {features.map((feature) => (
       <li class="flex items-start gap-3">
-        <svg class="w-5 h-5 text-accent-600 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+        <svg class="w-5 h-5 text-accent-600 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
           <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
         </svg>
-        <span class="text-base-700">{feature}</span>
+        <span class="text-base-700 text-sm leading-relaxed">{feature}</span>
       </li>
     ))}
   </ul>
@@ -54,15 +56,15 @@ const { title, description, icon, features, href, featured = false } = Astro.pro
   <a
     href={href}
     class={`
-      inline-flex items-center justify-center w-full px-4 py-3 rounded-lg font-medium transition-all duration-200
+      inline-flex items-center justify-center w-full px-6 py-3.5 rounded-xl font-semibold text-sm transition-all duration-200
       ${featured
-        ? 'bg-accent-600 text-white hover:bg-accent-700 shadow-lg hover:shadow-xl'
-        : 'bg-base-100 text-base-800 hover:bg-accent-50 border border-base-200 hover:border-accent-300'
+        ? 'bg-gradient-to-r from-accent-600 to-blue-600 text-white shadow-lg hover:shadow-xl hover:-translate-y-0.5'
+        : 'bg-base-100 text-base-800 hover:bg-accent-600 hover:text-white border-2 border-base-200 hover:border-accent-600 shadow-sm hover:shadow-md'
       }
     `}
   >
-    Ver Demo
-    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    Ver Demo Interactiva
+    <svg class="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
     </svg>

@@ -78,19 +78,23 @@ const services = [
 ];
 ---
 
-<section id="servicios" class="py-20 bg-base-25">
-  <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
-    <div class="text-center mb-16">
-      <h2 class="text-4xl md:text-5xl font-bold text-base-900 mb-6">
-        Servicios de <span class="text-accent-600">Inteligencia Artificial</span>
+<section id="servicios" class="py-24 lg:py-32 bg-gradient-to-b from-base-50 to-base-100">
+  <div class="max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
+    <div class="text-center mb-20">
+      <div class="inline-flex items-center gap-2 px-4 py-2 bg-accent-100/80 text-accent-700 rounded-full text-sm font-semibold mb-6 border border-accent-200/50">
+        <span aria-hidden="true">✨</span>
+        Nuestros Servicios
+      </div>
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-base-900 mb-6 tracking-tight">
+        Servicios de <span class="gradient-text">Inteligencia Artificial</span>
       </h2>
-      <p class="text-xl text-base-600 max-w-3xl mx-auto">
+      <p class="text-lg md:text-xl text-base-600 max-w-3xl mx-auto leading-relaxed">
         Transformamos tu negocio con soluciones de IA diseñadas específicamente para empresas que buscan
         automatizar procesos, mejorar la eficiencia y ofrecer experiencias excepcionales a sus clientes.
       </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
       {services.map((service) => (
         <ServiceCard
           title={service.title}
@@ -103,17 +107,17 @@ const services = [
       ))}
     </div>
 
-    <div class="text-center mt-16">
+    <div class="text-center mt-20">
       <a
         href="/reunion"
-        class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-accent-600 hover:bg-accent-700 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200"
+        class="group inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-accent-600 hover:bg-accent-700 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-1"
       >
         Solicitar Consulta Gratuita
-        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-3.582 8-8 8a8.955 8.955 0 01-4.126-.98L3 20l1.98-5.874A8.955 8.955 0 013 12c0-4.418 3.582-8 8-8s8 3.582 8 8z"></path>
         </svg>
       </a>
-      <p class="text-base-500 mt-4">
+      <p class="text-base-600 mt-5 font-medium">
         Hablemos sobre cómo la IA puede transformar tu negocio
       </p>
     </div>

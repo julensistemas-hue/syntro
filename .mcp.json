@@ -3,6 +3,18 @@
     "playwright": {
       "command": "npx",
       "args": ["-y", "@playwright/mcp@latest"]
+    },
+    "shadcn": {
+      "command": "npx",
+      "args": ["-y", "@upintheairsheep/mcp-shadcn-ui"]
+    },
+    "sigma-dev-mode": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-sigma-dev-mode"]
+    },
+    "chrome-devtools": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-chrome-devtools"]
     }
   }
 }

@@ -5,28 +5,29 @@ import ThemeToggle from "../theme/ThemeToggle.astro";
 
 <header
   id="main-header"
-  class="border-b border-base-200 sticky top-0 z-50 bg-base-50 shadow-sm transition-all duration-300">
-  <div class="w-full mx-auto px-8 max-w-7xl lg:px-16">
+  class="border-b border-base-200 sticky top-0 z-50 bg-base-50/95 backdrop-blur-sm shadow-soft transition-all duration-300">
+  <div class="w-full mx-auto px-4 max-w-7xl lg:px-12">
     <div
       x-data="{ open: false }"
-      class="relative flex flex-col w-full py-5 mx-auto lg:items-center lg:justify-between lg:flex-row lg:px-6">
+      class="relative flex flex-col w-full py-3 mx-auto lg:items-center lg:justify-between lg:flex-row">
       <div class="flex flex-row items-center justify-between lg:justify-start">
-        <a href="/" class="text-base-900 inline-flex items-center gap-3">
-          <OptimizedImage width={40} src="/logo.svg" alt="logo" />
-          <span class="font-bold">AI SECURITY</span>
+        <a href="/" class="text-base-900 inline-flex items-center gap-3 hover:opacity-80 transition-opacity">
+          <OptimizedImage width={40} src="/logo.svg" alt="AI SECURITY logo" />
+          <span class="font-bold text-lg tracking-tight">AI SECURITY</span>
         </a>
         <button
           @click="open = !open"
           :aria-expanded="open.toString()"
           aria-controls="main-navigation"
           aria-label="Alternar menú de navegación"
-          class="inline-flex items-center justify-center p-2 text-base-400 hover:text-base-900 focus:outline-none focus:text-base-900 lg:hidden">
+          class="inline-flex items-center justify-center p-2 text-base-500 hover:text-base-900 hover:bg-base-100 rounded-lg focus:outline-none focus:text-base-900 lg:hidden transition-colors">
           <svg
             :class="{'rotate-90': open}"
             class="w-6 h-6 transition-transform duration-300 ease-in-out"
             fill="none"
             stroke="currentColor"
-            viewBox="0 0 24 24">
+            viewBox="0 0 24 24"
+            aria-hidden="true">
             <path
               x-show="!open"
               stroke-linecap="round"
@@ -45,41 +46,44 @@ import ThemeToggle from "../theme/ThemeToggle.astro";
         </button>
       </div>
       <nav
-        :class="{'h-auto': open, 'h-0': !open}"
+        :class="{'h-auto py-4': open, 'h-0': !open}"
         id="main-navigation"
-        class="flex-col items-center flex-grow gap-6 lg:gap-8 flex overflow-hidden lg:pb-0 lg:flex lg:justify-end lg:h-auto lg:flex-row lg:ml-auto">
+        class="flex-col items-center flex-grow gap-4 lg:gap-4 flex overflow-hidden lg:pb-0 lg:py-0 lg:flex lg:justify-end lg:h-auto lg:flex-row lg:ml-auto"
+        role="navigation"
+        aria-label="Navegación principal">
         <a
           href="/servicios/chatbot"
-          class="text-sm font-medium text-base-800 transition duration-300 hover:text-[#0052cc]">
+          class="text-sm font-medium text-base-800 transition-colors duration-200 hover:text-accent-600 px-2 py-1.5 rounded-md hover:bg-accent-50">
           Chatbot
         </a>
         <a
           href="/servicios/gestor-documental"
-          class="text-sm font-medium text-base-800 transition duration-300 hover:text-[#0052cc]">
+          class="text-sm font-medium text-base-800 transition-colors duration-200 hover:text-accent-600 px-2 py-1.5 rounded-md hover:bg-accent-50 whitespace-nowrap">
           Gestor Documental
         </a>
         <a
           href="/servicios/automatizacion"
-          class="text-sm font-medium text-base-800 transition duration-300 hover:text-[#0052cc]">
+          class="text-sm font-medium text-base-800 transition-colors duration-200 hover:text-accent-600 px-2 py-1.5 rounded-md hover:bg-accent-50 whitespace-nowrap">
           Automatizaciones IA
         </a>
         <a
           href="/wazuh"
-          class="text-sm font-medium text-base-800 transition duration-300 hover:text-red-600 flex items-center gap-1">
-          <span class="text-red-600">🔒</span>
+          class="text-sm font-medium text-base-800 transition-colors duration-200 hover:text-red-600 flex items-center gap-1.5 px-2 py-1.5 rounded-md hover:bg-red-50 whitespace-nowrap">
+          <span class="text-red-600" aria-hidden="true">🔒</span>
           Wazuh & Seguridad
         </a>
         <a
           href="/soporte-tecnico"
-          class="text-sm font-medium text-base-800 transition duration-300 hover:text-[#0052cc]">
+          class="text-sm font-medium text-base-800 transition-colors duration-200 hover:text-accent-600 px-2 py-1.5 rounded-md hover:bg-accent-50 whitespace-nowrap">
           Soporte IT
         </a>
         <a
           href="/reunion"
-          class="inline-flex items-center gap-2 px-4 py-2 bg-[#0052cc] hover:bg-[#003d99] text-white text-sm font-semibold rounded-lg transition duration-300 relative">
+          class="inline-flex items-center gap-2 px-5 py-2.5 bg-accent-600 hover:bg-accent-700 text-white text-sm font-semibold rounded-lg transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5 relative">
           Solicitar Reunión
           <span
-            class="bg-[#10b981] text-white text-[10px] px-2 py-0.5 rounded-full font-bold shadow-sm">
+            class="bg-green-500 text-white text-[10px] px-2 py-0.5 rounded-full font-bold"
+            aria-label="Consulta gratuita">
             GRATIS
           </span>
         </a>
@@ -93,13 +97,9 @@ import ThemeToggle from "../theme/ThemeToggle.astro";
 
   window.addEventListener('scroll', () => {
     if (window.scrollY > 20) {
-      // Al hacer scroll: transparente con blur
-      header?.classList.remove('bg-base-50', 'shadow-sm');
-      header?.classList.add('bg-transparent', 'backdrop-blur-2xl');
+      header?.classList.add('shadow-medium');
     } else {
-      // Arriba del todo: sólido
-      header?.classList.remove('bg-transparent', 'backdrop-blur-2xl');
-      header?.classList.add('bg-base-50', 'shadow-sm');
+      header?.classList.remove('shadow-medium');
     }
   });
 </script>
