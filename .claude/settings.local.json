@@ -16,9 +16,19 @@
       "Bash(sed:*)",
       "Bash(rm:*)",
       "Bash(git config:*)",
-      "Bash(pnpm add:*)"
+      "Bash(pnpm add:*)",
+      "Bash(.mcp.json)"
     ],
     "deny": [],
     "ask": []
-  }
+  },
+  "enabledMcpjsonServers": [
+    "postgresql",
+    "supabase",
+    "github",
+    "fetch",
+    "youtube-transcript",
+    "shadcn"
+  ],
+  "enableAllProjectMcpServers": true
 }

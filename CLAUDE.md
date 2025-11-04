@@ -274,3 +274,173 @@ By default uses `onboarding@resend.dev` as sender. To use custom domain:
 1. Add domain in Resend dashboard
 2. Configure DNS records (SPF, DKIM, DMARC)
 3. Update `from:` field in API route to `'AI Security <noreply@yourdomain.com>'`
+## Specialized Agents
+
+This project includes specialized AI agents for specific tasks. Use the Task tool with the appropriate `subagent_type` to invoke them.
+
+### Available Agents
+
+#### 1. Frontend Developer Agent
+**Type**: `frontend-developer`  
+**Use When**:
+- Implementing UI components with React, Vue, or other frameworks
+- State management and performance optimization
+- Accessibility implementation (WCAG compliance)
+- Modern frontend architecture decisions
+- Responsive design across devices
+
+**Examples**:
+```javascript
+// Invoke for UI component work
+Task({
+  subagent_type: "frontend-developer",
+  prompt: "Create an accessible modal component with focus trapping"
+});
+
+// Invoke for performance optimization
+Task({
+  subagent_type: "frontend-developer",
+  prompt: "Optimize bundle size and implement code splitting"
+});
+```
+
+#### 2. UI Designer Agent
+**Type**: `ui-designer`  
+**File**: `.claude/agents/ui-designer.md`  
+**Use When**:
+- Improving visual design and aesthetics
+- Creating color schemes and design systems
+- Enhancing text readability and contrast (WCAG AA)
+- Layout spacing and visual hierarchy
+- Component styling and design consistency
+- Prototyping and design iterations
+
+**Examples**:
+```javascript
+// Invoke for design improvements
+Task({
+  subagent_type: "ui-designer",
+  prompt: "Analyze and improve the visual design of the homepage with better contrast and spacing"
+});
+
+// Invoke for design system work
+Task({
+  subagent_type: "ui-designer",
+  prompt: "Create a cohesive design system with color tokens and typography scale"
+});
+```
+
+**Note**: This agent was used to implement the current visual improvements including:
+- Responsive typography with `clamp()`
+- WCAG AA compliant color contrast
+- Professional shadow system
+- Smooth animations and micro-interactions
+
+#### 3. SEO Specialist Agent
+**Type**: `seo-specialist`  
+**File**: `.claude/agents/seo-specialist.md`  
+**Use When**:
+- Optimizing meta tags and structured data
+- Improving site architecture and technical SEO
+- Keyword research and content optimization
+- Implementing schema.org markup
+- Analyzing Core Web Vitals
+- Local SEO optimization (Google Business Profile)
+- Link building strategies
+- SEO audits and reporting
+
+**Examples**:
+```javascript
+// Invoke for technical SEO
+Task({
+  subagent_type: "seo-specialist",
+  prompt: "Audit the site for technical SEO issues and implement fixes for Core Web Vitals"
+});
+
+// Invoke for content optimization
+Task({
+  subagent_type: "seo-specialist",
+  prompt: "Optimize meta tags and add structured data for all service pages"
+});
+
+// Invoke for keyword research
+Task({
+  subagent_type: "seo-specialist",
+  prompt: "Research keywords for 'automatización empresarial con IA' and create content strategy"
+});
+```
+
+### When to Use Specialized Agents
+
+**Use specialized agents when:**
+- ✅ The task requires domain-specific expertise (design, SEO, frontend)
+- ✅ You need to follow industry best practices and standards
+- ✅ The work involves complex technical decisions in that domain
+- ✅ You want consistent patterns across the codebase
+
+**Use general assistance when:**
+- ❌ Simple file operations (use Read, Write, Edit tools directly)
+- ❌ Quick bug fixes or minor text changes
+- ❌ Tasks that don't require specialized knowledge
+
+### Agent Priority System
+
+Agents are configured with priority levels that affect when they should be invoked:
+
+- **High Priority**: UI Designer, SEO Specialist, Frontend Developer
+  - Invoke proactively for relevant tasks
+  - Essential for maintaining quality standards
+
+- **Medium Priority**: General purpose agents
+  - Invoke when specifically requested
+
+- **Low Priority**: Experimental or specialized use cases
+  - Invoke only for specific scenarios
+
+### Best Practices
+
+1. **Be Specific**: Provide clear, detailed prompts to agents
+2. **Context Matters**: Include relevant information about the project and current state
+3. **One Agent at a Time**: Don't mix multiple specialized domains in one task
+4. **Review Output**: Always review agent recommendations before applying changes
+5. **Iterative Approach**: Use agents for complex tasks that benefit from specialized knowledge
+
+### Examples by Scenario
+
+**Scenario: Improve Homepage Aesthetics**
+```javascript
+// ✅ Correct: Use UI Designer
+Task({
+  subagent_type: "ui-designer",
+  prompt: "Analyze homepage design and improve visual hierarchy, contrast, and spacing"
+});
+```
+
+**Scenario: Optimize for Google Search**
+```javascript
+// ✅ Correct: Use SEO Specialist
+Task({
+  subagent_type: "seo-specialist",
+  prompt: "Perform SEO audit and optimize all pages for target keywords: 'IA para empresas', 'automatización inteligente'"
+});
+```
+
+**Scenario: Build Interactive Component**
+```javascript
+// ✅ Correct: Use Frontend Developer
+Task({
+  subagent_type: "frontend-developer",
+  prompt: "Create an accessible tabs component with keyboard navigation and ARIA labels"
+});
+```
+
+**Scenario: Fix Typo in Text**
+```javascript
+// ❌ Incorrect: Don't use agent for simple edits
+// ✅ Correct: Use Edit tool directly
+Edit({
+  file_path: "src/pages/index.astro",
+  old_string: "Contáctenos",
+  new_string: "Contáctanos"
+});
+```
