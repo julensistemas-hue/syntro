@@ -17,11 +17,16 @@
       "Bash(rm:*)",
       "Bash(git config:*)",
       "Bash(pnpm add:*)",
-      "Bash(.mcp.json)"
+      "Bash(.mcp.json)",
+      "Bash(npm run setup:*)",
+      "Skill(playwright-skill:playwright-skill)",
+      "Bash(node -e:*)",
+      "Bash(node run.js:*)"
     ],
     "deny": [],
     "ask": []
   },
+  "enableAllProjectMcpServers": true,
   "enabledMcpjsonServers": [
     "postgresql",
     "supabase",
@@ -29,6 +34,5 @@
     "fetch",
     "youtube-transcript",
     "shadcn"
-  ],
-  "enableAllProjectMcpServers": true
+  ]
 }

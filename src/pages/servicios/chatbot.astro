@@ -56,7 +56,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
               <div class="w-10 h-10 rounded-full bg-gradient-to-br from-accent-500 to-blue-600 flex items-center justify-center text-white font-bold flex-shrink-0">
                 AI
               </div>
-              <div class="bg-white rounded-2xl rounded-tl-none px-4 py-3 shadow-sm max-w-[80%]">
+              <div class="bg-base-50 rounded-2xl rounded-tl-none px-4 py-3 shadow-sm max-w-[80%]">
                 <p class="text-[#1f2937] text-sm">¡Hola! 👋 Soy el asistente virtual de TechStore. ¿En qué puedo ayudarte hoy?</p>
                 <p class="text-[#374151] text-sm mt-3 font-medium">Puedes preguntarme sobre:</p>
               </div>
@@ -64,13 +64,13 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 
             <!-- Quick Question Buttons -->
             <div class="space-y-2 mb-4 ml-14">
-              <button class="quick-question w-full text-left px-4 py-3 bg-white border-2 border-accent-200 rounded-xl text-sm text-[#1f2937] hover:bg-accent-50 hover:border-accent-400 transition-all duration-200 shadow-sm">
+              <button class="quick-question w-full text-left px-4 py-3 bg-base-50 border-2 border-accent-200 rounded-xl text-sm text-[#1f2937] hover:bg-accent-50 hover:border-accent-400 transition-all duration-200 shadow-sm">
                 Necesito mi factura, mi DNI es 12345678A
               </button>
-              <button class="quick-question w-full text-left px-4 py-3 bg-white border-2 border-accent-200 rounded-xl text-sm text-[#1f2937] hover:bg-accent-50 hover:border-accent-400 transition-all duration-200 shadow-sm">
+              <button class="quick-question w-full text-left px-4 py-3 bg-base-50 border-2 border-accent-200 rounded-xl text-sm text-[#1f2937] hover:bg-accent-50 hover:border-accent-400 transition-all duration-200 shadow-sm">
                 ¿El portátil HP 15-dy tiene SSD?
               </button>
-              <button class="quick-question w-full text-left px-4 py-3 bg-white border-2 border-accent-200 rounded-xl text-sm text-[#1f2937] hover:bg-accent-50 hover:border-accent-400 transition-all duration-200 shadow-sm">
+              <button class="quick-question w-full text-left px-4 py-3 bg-base-50 border-2 border-accent-200 rounded-xl text-sm text-[#1f2937] hover:bg-accent-50 hover:border-accent-400 transition-all duration-200 shadow-sm">
                 ¿Dónde está mi pedido #TS-2845?
               </button>
             </div>
@@ -83,7 +83,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
                 type="text"
                 id="demo-chat-input"
                 placeholder="Escribe tu mensaje..."
-                class="flex-1 px-4 py-3 border border-base-300 rounded-xl focus:ring-2 focus:ring-accent-500 focus:border-accent-500 bg-white"
+                class="flex-1 px-4 py-3 border border-base-300 rounded-xl focus:ring-2 focus:ring-accent-500 focus:border-accent-500 bg-base-50"
               />
               <button
                 type="submit"
@@ -107,7 +107,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         </p>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6">
+          <div class="bg-base-50/10 backdrop-blur-sm rounded-xl p-6">
             <div class="text-4xl mb-3">🗄️</div>
             <h3 class="text-xl font-semibold mb-3">Base de Datos de Clientes</h3>
             <ul class="space-y-2 text-sm opacity-90">
@@ -118,7 +118,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
             </ul>
           </div>
 
-          <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6">
+          <div class="bg-base-50/10 backdrop-blur-sm rounded-xl p-6">
             <div class="text-4xl mb-3">🔌</div>
             <h3 class="text-xl font-semibold mb-3">APIs de Sistemas Externos</h3>
             <ul class="space-y-2 text-sm opacity-90">
@@ -129,7 +129,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
             </ul>
           </div>
 
-          <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6">
+          <div class="bg-base-50/10 backdrop-blur-sm rounded-xl p-6">
             <div class="text-4xl mb-3">📚</div>
             <h3 class="text-xl font-semibold mb-3">Múltiples Formatos de Datos</h3>
             <ul class="space-y-2 text-sm opacity-90">
@@ -314,7 +314,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
       bubble.className = `rounded-2xl px-4 py-3 shadow-sm max-w-[80%] ${
         isUser
           ? 'bg-gradient-to-r from-accent-600 to-blue-600 text-white rounded-tr-none'
-          : 'bg-white rounded-tl-none'
+          : 'bg-base-50 rounded-tl-none'
       }`;
       bubble.style.whiteSpace = 'pre-wrap';
       bubble.style.color = isUser ? '' : '#1f2937'; // Force dark text for bot messages
@@ -354,7 +354,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
       avatar.textContent = 'AI';
 
       const bubble = document.createElement('div');
-      bubble.className = 'bg-white rounded-2xl rounded-tl-none px-4 py-3 shadow-sm';
+      bubble.className = 'bg-base-50 rounded-2xl rounded-tl-none px-4 py-3 shadow-sm';
       bubble.innerHTML = '<span class="inline-flex gap-1"><span class="w-2 h-2 bg-base-400 rounded-full animate-bounce"></span><span class="w-2 h-2 bg-base-400 rounded-full animate-bounce" style="animation-delay: 0.1s"></span><span class="w-2 h-2 bg-base-400 rounded-full animate-bounce" style="animation-delay: 0.2s"></span></span>';
 
       typingDiv.appendChild(avatar);

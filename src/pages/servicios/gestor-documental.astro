@@ -68,7 +68,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
                   type="text"
                   id="doc-search-input"
                   placeholder="Pregunta algo... ej: ¿Cuál es la política de vacaciones?"
-                  class="w-full px-6 py-4 pr-24 border-2 border-base-300 rounded-xl focus:ring-2 focus:ring-accent-500 focus:border-accent-500 bg-white text-lg"
+                  class="w-full px-6 py-4 pr-24 border-2 border-base-300 rounded-xl focus:ring-2 focus:ring-accent-500 focus:border-accent-500 bg-base-50 text-lg"
                 />
                 <button
                   type="submit"
@@ -139,7 +139,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         </p>
         <a
           href="/reunion"
-          class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-accent-600 bg-white hover:bg-base-50 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200"
+          class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-accent-600 bg-base-50 hover:bg-base-50 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200"
         >
           Solicitar Demo Gratuita
         </a>
@@ -228,7 +228,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 
         relevantDocs.forEach(doc => {
           const docCard = `
-            <div class="bg-white border border-base-200 rounded-xl p-6 hover:border-accent-300 hover:shadow-lg transition-all duration-200 cursor-pointer">
+            <div class="bg-base-50 border border-base-200 rounded-xl p-6 hover:border-accent-300 hover:shadow-lg transition-all duration-200 cursor-pointer">
               <div class="flex items-start justify-between mb-3">
                 <div>
                   <h3 class="text-lg font-semibold text-base-900 mb-1">${doc.title}</h3>
