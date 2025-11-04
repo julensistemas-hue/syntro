@@ -30,3 +30,6 @@ package-lock.json
 # Local Netlify folder
 .netlify
 .vercel
+
+# Chrome browser for Playwright
+chrome/
