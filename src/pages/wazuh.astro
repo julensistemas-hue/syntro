@@ -5,79 +5,166 @@ import WazuhLayout from "../layouts/WazuhLayout.astro";
 
 <WazuhLayout>
   <!-- Hero Section -->
-  <section class="py-20 bg-gradient-to-br from-base-50 via-blue-50 to-accent-50">
+  <section class="relative py-20 bg-gradient-to-bl from-accent-600 via-blue-600 overflow-hidden">
     <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <div>
-          <div class="inline-flex items-center gap-2 px-4 py-2 bg-red-100 border border-red-300 text-red-700 rounded-full text-sm font-medium mb-6">
+          <div class="inline-flex items-center gap-2 px-4 py-2.5 bg-white/20 backdrop-blur-sm text-white rounded-full text-sm font-semibold border border-white/30 shadow-sm mb-6">
             <span class="text-2xl">🔒</span>
             Wazuh + Cumplimiento ENS
           </div>
-          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-base-900">
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white">
             Seguridad Empresarial de Nivel Enterprise
           </h1>
-          <p class="text-xl text-base-800 mb-8 leading-relaxed">
+          <p class="text-xl text-white/90 mb-8 leading-relaxed">
             Implementación profesional de Wazuh para PyMEs.<br>
             Monitoreo 24/7, cumplimiento ENS certificado y formación incluida.
           </p>
           <div class="flex flex-col sm:flex-row gap-4">
             <a
               href="#demo"
-              class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold bg-[#0052cc] hover:bg-[#003d99] text-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-200"
+              class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold bg-accent-600 hover:bg-accent-700 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5"
+              style="color: #000000;"
             >
               Ver Demo Interactiva
             </a>
             <a
               href="/reunion"
-              class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold bg-white hover:bg-base-50 text-[#0052cc] border-2 border-[#0052cc] rounded-xl transition-all duration-200"
+              class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-base-800 bg-base-50 hover:bg-accent-50 rounded-xl border-2 border-base-200 hover:border-accent-300 transition-all duration-200 shadow-sm hover:shadow-md"
             >
               Solicitar Consulta Gratuita
             </a>
           </div>
 
           <!-- Key Stats -->
-          <div class="grid grid-cols-3 gap-6 mt-12 pt-8 border-t border-base-300">
+          <div class="grid grid-cols-3 gap-6 mt-12 pt-8 border-t border-white/30">
             <div>
-              <div class="text-3xl font-bold text-[#0052cc] mb-1">24/7</div>
-              <div class="text-sm text-base-800 font-medium">Monitoreo continuo</div>
+              <div class="text-3xl font-bold text-white mb-1">24/7</div>
+              <div class="text-sm text-white/80 font-medium">Monitoreo continuo</div>
             </div>
             <div>
-              <div class="text-3xl font-bold text-[#0052cc] mb-1">ENS</div>
-              <div class="text-sm text-base-800 font-medium">Cumplimiento certificado</div>
+              <div class="text-3xl font-bold text-white mb-1">ENS</div>
+              <div class="text-sm text-white/80 font-medium">Cumplimiento certificado</div>
             </div>
             <div>
-              <div class="text-3xl font-bold text-[#0052cc] mb-1">100%</div>
-              <div class="text-sm text-base-800 font-medium">Open Source</div>
+              <div class="text-3xl font-bold text-white mb-1">100%</div>
+              <div class="text-sm text-white/80 font-medium">Open Source</div>
             </div>
           </div>
         </div>
 
-        <!-- Dashboard Preview -->
+        <!-- Dashboard Preview - Interactive -->
         <div class="relative">
-          <div class="bg-white rounded-2xl shadow-2xl overflow-hidden border border-base-300">
-            <div class="bg-base-100 px-4 py-3 flex items-center gap-2 border-b border-base-300">
-              <div class="w-3 h-3 rounded-full bg-red-500"></div>
-              <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
-              <div class="w-3 h-3 rounded-full bg-green-500"></div>
-              <span class="ml-4 text-base-800 text-sm font-medium">Wazuh Dashboard</span>
+          <div class="relative z-10 bg-base-50 rounded-2xl shadow-2xl border border-base-200 p-6 md:p-7">
+            <!-- Simulated Wazuh Dashboard -->
+            <div class="space-y-5">
+              <div class="flex items-center gap-3 pb-4 border-b border-base-200">
+                <div class="flex gap-2">
+                  <div class="w-3 h-3 bg-red-400 rounded-full" aria-hidden="true"></div>
+                  <div class="w-3 h-3 bg-yellow-400 rounded-full" aria-hidden="true"></div>
+                  <div class="w-3 h-3 bg-green-400 rounded-full" aria-hidden="true"></div>
+                </div>
+                <span class="text-sm font-semibold text-base-700 ml-2">Dashboard Wazuh - Monitoreo Activo</span>
+              </div>
+
+              <div class="space-y-3">
+                <!-- Alert 1: Critical -->
+                <details class="group">
+                  <summary class="flex items-center gap-3 p-4 rounded-xl border-2 cursor-pointer transition-all hover:shadow-lg" style="background-color: #1F2937; border-color: #EF4444;">
+                    <div class="w-10 h-10 rounded-xl flex items-center justify-center text-white text-lg shadow-sm" style="background-color: #EF4444;">🚨</div>
+                    <div class="flex-1 min-w-0">
+                      <div class="text-sm font-bold text-white">Intento acceso no autorizado</div>
+                      <div class="text-xs text-gray-300 mt-0.5">15 intentos SSH desde IP sospechosa</div>
+                    </div>
+                    <div class="w-2.5 h-2.5 bg-red-400 rounded-full animate-pulse" aria-label="Crítico"></div>
+                    <svg class="w-4 h-4 text-gray-300 transition-transform group-open:rotate-180 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                  </summary>
+                  <div class="mt-2 ml-12 p-4 rounded-lg border-l-4" style="background-color: #374151; border-color: #EF4444;">
+                    <div class="text-sm font-bold text-white">Nivel 12 - Crítico</div>
+                    <div class="text-xs text-gray-300 mt-1">IP: 45.142.212.61 → Servidor: web-prod-01</div>
+                    <div class="text-xs text-gray-300">Acción: Bloqueado automáticamente por firewall</div>
+                  </div>
+                </details>
+
+                <!-- Alert 2: Warning -->
+                <details class="group">
+                  <summary class="flex items-center gap-3 p-4 rounded-xl border-2 cursor-pointer transition-all hover:shadow-lg" style="background-color: #1F2937; border-color: #F59E0B;">
+                    <div class="w-10 h-10 rounded-xl flex items-center justify-center text-white text-lg shadow-sm" style="background-color: #F59E0B;">⚠️</div>
+                    <div class="flex-1 min-w-0">
+                      <div class="text-sm font-bold text-white">Cambio configuración firewall</div>
+                      <div class="text-xs text-gray-300 mt-0.5">Puerto 3306 abierto en fw-01</div>
+                    </div>
+                    <div class="w-2.5 h-2.5 rounded-full animate-pulse" aria-label="Advertencia" style="background-color: #F59E0B;"></div>
+                    <svg class="w-4 h-4 text-gray-300 transition-transform group-open:rotate-180 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                  </summary>
+                  <div class="mt-2 ml-12 p-4 rounded-lg border-l-4" style="background-color: #374151; border-color: #F59E0B;">
+                    <div class="text-sm font-bold text-white">Nivel 7 - Advertencia</div>
+                    <div class="text-xs text-gray-300 mt-1">Usuario: admin | Requiere revisión ENS</div>
+                  </div>
+                </details>
+
+                <!-- Alert 3: Info -->
+                <details class="group">
+                  <summary class="flex items-center gap-3 p-4 rounded-xl border-2 cursor-pointer transition-all hover:shadow-lg" style="background-color: #1F2937; border-color: #3B82F6;">
+                    <div class="w-10 h-10 rounded-xl flex items-center justify-center text-white text-lg shadow-sm" style="background-color: #3B82F6;">✅</div>
+                    <div class="flex-1 min-w-0">
+                      <div class="text-sm font-bold text-white">Actualización completada</div>
+                      <div class="text-xs text-gray-300 mt-0.5">23 paquetes actualizados en db-prod-02</div>
+                    </div>
+                    <div class="w-2.5 h-2.5 bg-green-400 rounded-full animate-pulse" aria-label="Activo"></div>
+                    <svg class="w-4 h-4 text-gray-300 transition-transform group-open:rotate-180 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                  </summary>
+                  <div class="mt-2 ml-12 p-4 rounded-lg border-l-4" style="background-color: #374151; border-color: #3B82F6;">
+                    <div class="text-sm font-bold text-white">Nivel 3 - Informativo</div>
+                    <div class="text-xs text-gray-300 mt-1">Parches de seguridad aplicados correctamente</div>
+                  </div>
+                </details>
+
+                <!-- Alert 4: Compliance -->
+                <details class="group">
+                  <summary class="flex items-center gap-3 p-4 rounded-xl border-2 cursor-pointer transition-all hover:shadow-lg" style="background-color: #1F2937; border-color: #8B5CF6;">
+                    <div class="w-10 h-10 rounded-xl flex items-center justify-center text-white text-lg shadow-sm" style="background-color: #8B5CF6;">📋</div>
+                    <div class="flex-1 min-w-0">
+                      <div class="text-sm font-bold text-white">Cumplimiento ENS</div>
+                      <div class="text-xs text-gray-300 mt-0.5">Auditoría semanal completada</div>
+                    </div>
+                    <div class="w-2.5 h-2.5 rounded-full animate-pulse" aria-label="Activo" style="background-color: #8B5CF6;"></div>
+                    <svg class="w-4 h-4 text-gray-300 transition-transform group-open:rotate-180 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                  </summary>
+                  <div class="mt-2 ml-12 p-4 rounded-lg border-l-4" style="background-color: #374151; border-color: #8B5CF6;">
+                    <div class="text-sm font-bold text-white">Estado: 96% Conforme</div>
+                    <div class="text-xs text-gray-300 mt-1">Marco Operacional: 98% | Protección: 95%</div>
+                  </div>
+                </details>
+              </div>
+
+              <div class="mt-6 p-5 bg-gradient-to-br from-accent-600 to-blue-600 rounded-xl text-white shadow-lg">
+                <div class="text-center">
+                  <div class="text-3xl md:text-4xl font-extrabold">24/7</div>
+                  <div class="text-sm font-medium opacity-90 mt-1">Monitoreo continuo de seguridad</div>
+                </div>
+              </div>
             </div>
-            <img
-              src="/wazuh/lovable-uploads/c1588de3-28b2-492f-b17a-92b64b456050.png"
-              alt="Wazuh Dashboard Preview"
-              class="w-full"
-              loading="eager"
-            />
           </div>
-          <div class="absolute -bottom-4 -right-4 bg-green-600 text-white px-4 py-2 rounded-lg shadow-lg font-semibold">
-            ✓ En tiempo real
-          </div>
+
+          <!-- Decorative elements -->
+          <div class="absolute -top-6 -right-6 w-32 h-32 bg-accent-600/10 rounded-full blur-2xl" aria-hidden="true"></div>
+          <div class="absolute -bottom-8 -left-8 w-24 h-24 bg-blue-600/10 rounded-full blur-2xl" aria-hidden="true"></div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Why Wazuh Section -->
-  <section class="py-20 bg-white">
+  <section class="py-20 bg-base-50">
     <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
       <div class="text-center mb-16">
         <h2 class="text-3xl md:text-4xl font-bold text-base-900 mb-4">
@@ -91,7 +178,7 @@ import WazuhLayout from "../layouts/WazuhLayout.astro";
       <!-- Comparison Table -->
       <div class="bg-white rounded-2xl shadow-xl overflow-hidden mb-12 border border-base-200">
         <table class="w-full">
-          <thead class="bg-gradient-to-r from-[#0052cc] to-[#1e40af] text-white">
+          <thead class="bg-gradient-to-r from-accent-600 to-blue-600 text-white">
             <tr>
               <th class="px-6 py-4 text-left font-semibold">Característica</th>
               <th class="px-6 py-4 text-center font-semibold">Wazuh</th>
@@ -99,32 +186,32 @@ import WazuhLayout from "../layouts/WazuhLayout.astro";
             </tr>
           </thead>
           <tbody class="divide-y divide-base-200">
-            <tr class="bg-white">
+            <tr class="bg-base-50">
               <td class="px-6 py-4 font-medium text-base-900">Coste de licencia</td>
               <td class="px-6 py-4 text-center text-green-600 font-semibold">€0</td>
               <td class="px-6 py-4 text-center text-red-600 font-semibold">€15,000-50,000/año</td>
             </tr>
-            <tr class="bg-base-50">
+            <tr class="bg-white">
               <td class="px-6 py-4 font-medium text-base-900">Implementación</td>
               <td class="px-6 py-4 text-center text-base-900 font-medium">€2,500-8,000</td>
               <td class="px-6 py-4 text-center text-base-900 font-medium">€10,000-30,000</td>
             </tr>
-            <tr class="bg-white">
+            <tr class="bg-base-50">
               <td class="px-6 py-4 font-medium text-base-900">Soporte 24/7</td>
               <td class="px-6 py-4 text-center text-green-600 font-bold text-xl">✓</td>
               <td class="px-6 py-4 text-center text-green-600 font-bold text-xl">✓</td>
             </tr>
-            <tr class="bg-base-50">
+            <tr class="bg-white">
               <td class="px-6 py-4 font-medium text-base-900">Cumplimiento ENS</td>
               <td class="px-6 py-4 text-center text-green-600 font-bold text-xl">✓</td>
               <td class="px-6 py-4 text-center text-green-600 font-bold text-xl">✓</td>
             </tr>
-            <tr class="bg-white">
+            <tr class="bg-base-50">
               <td class="px-6 py-4 font-medium text-base-900">Código abierto</td>
               <td class="px-6 py-4 text-center text-green-600 font-bold text-xl">✓</td>
               <td class="px-6 py-4 text-center text-red-600 font-bold text-xl">✗</td>
             </tr>
-            <tr class="bg-base-50">
+            <tr class="bg-white">
               <td class="px-6 py-4 font-medium text-base-900">Sin vendor lock-in</td>
               <td class="px-6 py-4 text-center text-green-600 font-bold text-xl">✓</td>
               <td class="px-6 py-4 text-center text-red-600 font-bold text-xl">✗</td>
@@ -135,32 +222,32 @@ import WazuhLayout from "../layouts/WazuhLayout.astro";
 
       <!-- Use Cases -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="bg-white rounded-xl p-6 shadow-lg border border-base-200">
-          <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 text-2xl mb-4">
+        <div class="bg-gradient-to-br from-blue-600 to-blue-800 rounded-xl p-6 shadow-lg border border-blue-500">
+          <div class="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center text-white text-2xl mb-4">
             🏢
           </div>
-          <h3 class="text-lg font-semibold text-base-900 mb-3">Retail y Comercio</h3>
-          <p class="text-base-700">
+          <h3 class="text-lg font-semibold text-white mb-3">Retail y Comercio</h3>
+          <p class="text-blue-50">
             Monitoreo de TPVs, cumplimiento PCI-DSS, detección de fraudes en pagos.
           </p>
         </div>
 
-        <div class="bg-white rounded-xl p-6 shadow-lg border border-base-200">
-          <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center text-green-600 text-2xl mb-4">
+        <div class="bg-gradient-to-br from-green-600 to-green-800 rounded-xl p-6 shadow-lg border border-green-500">
+          <div class="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center text-white text-2xl mb-4">
             🏥
           </div>
-          <h3 class="text-lg font-semibold text-base-900 mb-3">Servicios Profesionales</h3>
-          <p class="text-base-700">
+          <h3 class="text-lg font-semibold text-white mb-3">Servicios Profesionales</h3>
+          <p class="text-green-50">
             Auditoría de accesos, cumplimiento RGPD, protección de datos sensibles.
           </p>
         </div>
 
-        <div class="bg-white rounded-xl p-6 shadow-lg border border-base-200">
-          <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center text-purple-600 text-2xl mb-4">
+        <div class="bg-gradient-to-br from-purple-600 to-purple-800 rounded-xl p-6 shadow-lg border border-purple-500">
+          <div class="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center text-white text-2xl mb-4">
             🏛️
           </div>
-          <h3 class="text-lg font-semibold text-base-900 mb-3">Sector Público</h3>
-          <p class="text-base-700">
+          <h3 class="text-lg font-semibold text-white mb-3">Sector Público</h3>
+          <p class="text-purple-50">
             Cumplimiento ENS obligatorio, auditorías CCN-CERT, trazabilidad completa.
           </p>
         </div>
@@ -169,18 +256,18 @@ import WazuhLayout from "../layouts/WazuhLayout.astro";
   </section>
 
   <!-- Demo Interactive Section -->
-  <section id="demo" class="py-20 bg-base-50">
+  <section id="demo" class="py-20 bg-gradient-to-bl from-accent-600 via-blue-600 overflow-hidden">
     <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
       <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-bold text-base-900 mb-4">
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
           Demo Interactiva
         </h2>
-        <p class="text-xl text-base-700">
+        <p class="text-xl text-white/90">
           Explora las capacidades de Wazuh en tiempo real
         </p>
       </div>
 
-      <div class="bg-white rounded-2xl shadow-2xl overflow-hidden border border-base-200">
+      <div class="bg-gradient-to-br from-base-100 to-blue-100 rounded-2xl shadow-2xl overflow-hidden border border-base-200">
         <!-- Demo Tabs -->
         <div class="bg-base-100 px-6 py-4 border-b border-base-300 flex gap-4 overflow-x-auto">
           <button
@@ -200,6 +287,18 @@ import WazuhLayout from "../layouts/WazuhLayout.astro";
             data-tab="dashboard"
           >
             📊 Dashboard Ejecutivo
+          </button>
+          <button
+            class="demo-tab px-4 py-2 rounded-lg font-medium transition-colors whitespace-nowrap"
+            data-tab="software"
+          >
+            💻 Software Windows
+          </button>
+          <button
+            class="demo-tab px-4 py-2 rounded-lg font-medium transition-colors whitespace-nowrap"
+            data-tab="nas"
+          >
+            🗄️ Acceso a NAS
           </button>
         </div>
 
@@ -413,13 +512,177 @@ import WazuhLayout from "../layouts/WazuhLayout.astro";
               </div>
             </div>
           </div>
+
+          <!-- Software Windows Tab -->
+          <div id="tab-software" class="demo-content hidden">
+            <div class="space-y-4">
+              <div class="bg-green-50 border-2 border-green-300 rounded-lg p-4">
+                <div class="flex items-start justify-between mb-2">
+                  <div class="flex items-center gap-3">
+                    <span class="w-3 h-3 bg-green-500 rounded-full"></span>
+                    <span class="font-semibold text-green-700">Nivel 3 - Informativo</span>
+                  </div>
+                  <span class="text-sm text-base-700">Hace 1 min</span>
+                </div>
+                <h4 class="text-base-900 font-semibold mb-2">Instalación de software detectada</h4>
+                <p class="text-base-800 text-sm mb-3">
+                  Usuario 'mrodriguez' ha instalado Microsoft Office 2021 Professional en DESKTOP-CONTABILIDAD
+                </p>
+                <div class="bg-base-50 rounded p-3 mb-3 text-xs font-mono">
+                  <div class="text-base-700">Software: Microsoft Office Professional Plus 2021</div>
+                  <div class="text-base-700">Versión: 16.0.14326.20384</div>
+                  <div class="text-base-700">Equipo: DESKTOP-CONTABILIDAD (192.168.1.45)</div>
+                  <div class="text-base-700">Hora: 2024-11-06 14:23:17</div>
+                </div>
+                <div class="flex gap-2 flex-wrap">
+                  <span class="px-2 py-1 bg-green-100 text-green-700 rounded text-xs font-medium">software_install</span>
+                  <span class="px-2 py-1 bg-green-100 text-green-700 rounded text-xs font-medium">windows</span>
+                  <span class="px-2 py-1 bg-green-100 text-green-700 rounded text-xs font-medium">autorizado</span>
+                </div>
+              </div>
+
+              <div class="bg-red-50 border-2 border-red-300 rounded-lg p-4">
+                <div class="flex items-start justify-between mb-2">
+                  <div class="flex items-center gap-3">
+                    <span class="w-3 h-3 bg-red-500 rounded-full animate-pulse"></span>
+                    <span class="font-semibold text-red-700">Nivel 9 - Alerta</span>
+                  </div>
+                  <span class="text-sm text-base-700">Hace 5 min</span>
+                </div>
+                <h4 class="text-base-900 font-semibold mb-2">Desinstalación de software antivirus</h4>
+                <p class="text-base-800 text-sm mb-3">
+                  Se ha detectado la desinstalación de Windows Defender en PC-MARKETING-02. Acción potencialmente peligrosa.
+                </p>
+                <div class="bg-base-50 rounded p-3 mb-3 text-xs font-mono">
+                  <div class="text-base-700">Software eliminado: Windows Defender</div>
+                  <div class="text-base-700">Usuario: jgarcia</div>
+                  <div class="text-base-700">Equipo: PC-MARKETING-02 (192.168.1.78)</div>
+                  <div class="text-base-700">Hora: 2024-11-06 14:18:42</div>
+                </div>
+                <div class="flex gap-2 flex-wrap">
+                  <span class="px-2 py-1 bg-red-100 text-red-700 rounded text-xs font-medium">software_uninstall</span>
+                  <span class="px-2 py-1 bg-red-100 text-red-700 rounded text-xs font-medium">antivirus</span>
+                  <span class="px-2 py-1 bg-red-100 text-red-700 rounded text-xs font-medium">security_risk</span>
+                </div>
+              </div>
+
+              <div class="bg-yellow-50 border-2 border-yellow-300 rounded-lg p-4">
+                <div class="flex items-start justify-between mb-2">
+                  <div class="flex items-center gap-3">
+                    <span class="w-3 h-3 bg-yellow-500 rounded-full"></span>
+                    <span class="font-semibold text-yellow-700">Nivel 5 - Advertencia</span>
+                  </div>
+                  <span class="text-sm text-base-700">Hace 12 min</span>
+                </div>
+                <h4 class="text-base-900 font-semibold mb-2">Instalación de software no autorizado</h4>
+                <p class="text-base-800 text-sm mb-3">
+                  Detectada instalación de TeamViewer (software de acceso remoto) sin aprobación previa del departamento IT.
+                </p>
+                <div class="bg-base-50 rounded p-3 mb-3 text-xs font-mono">
+                  <div class="text-base-700">Software: TeamViewer 15</div>
+                  <div class="text-base-700">Usuario: aperez</div>
+                  <div class="text-base-700">Equipo: LAPTOP-VENTAS-05 (192.168.1.92)</div>
+                  <div class="text-base-700">Hora: 2024-11-06 14:11:03</div>
+                </div>
+                <div class="flex gap-2 flex-wrap">
+                  <span class="px-2 py-1 bg-yellow-100 text-yellow-700 rounded text-xs font-medium">unauthorized_software</span>
+                  <span class="px-2 py-1 bg-yellow-100 text-yellow-700 rounded text-xs font-medium">remote_access</span>
+                  <span class="px-2 py-1 bg-yellow-100 text-yellow-700 rounded text-xs font-medium">policy_violation</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- NAS Access Tab -->
+          <div id="tab-nas" class="demo-content hidden">
+            <div class="space-y-4">
+              <div class="bg-red-50 border-2 border-red-300 rounded-lg p-4">
+                <div class="flex items-start justify-between mb-2">
+                  <div class="flex items-center gap-3">
+                    <span class="w-3 h-3 bg-red-500 rounded-full animate-pulse"></span>
+                    <span class="font-semibold text-red-700">Nivel 12 - Crítico</span>
+                  </div>
+                  <span class="text-sm text-base-700">Hace 30 seg</span>
+                </div>
+                <h4 class="text-base-900 font-semibold mb-2">Acceso no autorizado a documentos protegidos</h4>
+                <p class="text-base-800 text-sm mb-3">
+                  Usuario 'lmartinez' intentó acceder a carpeta '/NAS/Contabilidad/Confidencial/Nominas_2024/' sin permisos. Alerta de seguridad activada.
+                </p>
+                <div class="bg-base-50 rounded p-3 mb-3 text-xs font-mono">
+                  <div class="text-base-700">Usuario: lmartinez (Dpto. Marketing)</div>
+                  <div class="text-base-700">Recurso: \\NAS-PRINCIPAL\Contabilidad\Confidencial\Nominas_2024\</div>
+                  <div class="text-base-700">Acción: Lectura denegada</div>
+                  <div class="text-base-700">IP Origen: 192.168.1.67</div>
+                  <div class="text-base-700">Hora: 2024-11-06 14:29:42</div>
+                </div>
+                <div class="flex gap-2 flex-wrap">
+                  <span class="px-2 py-1 bg-red-100 text-red-700 rounded text-xs font-medium">unauthorized_access</span>
+                  <span class="px-2 py-1 bg-red-100 text-red-700 rounded text-xs font-medium">file_access</span>
+                  <span class="px-2 py-1 bg-red-100 text-red-700 rounded text-xs font-medium">confidential_data</span>
+                  <span class="px-2 py-1 bg-red-100 text-red-700 rounded text-xs font-medium">ENS_violation</span>
+                </div>
+              </div>
+
+              <div class="bg-yellow-50 border-2 border-yellow-300 rounded-lg p-4">
+                <div class="flex items-start justify-between mb-2">
+                  <div class="flex items-center gap-3">
+                    <span class="w-3 h-3 bg-yellow-500 rounded-full"></span>
+                    <span class="font-semibold text-yellow-700">Nivel 7 - Advertencia</span>
+                  </div>
+                  <span class="text-sm text-base-700">Hace 3 min</span>
+                </div>
+                <h4 class="text-base-900 font-semibold mb-2">Múltiples accesos a archivos sensibles</h4>
+                <p class="text-base-800 text-sm mb-3">
+                  Usuario 'clopez' ha accedido a 47 documentos en carpeta de RR.HH. en los últimos 10 minutos. Comportamiento inusual detectado.
+                </p>
+                <div class="bg-base-50 rounded p-3 mb-3 text-xs font-mono">
+                  <div class="text-base-700">Usuario: clopez (Dpto. RR.HH.)</div>
+                  <div class="text-base-700">Carpeta: \\NAS-PRINCIPAL\RRHH\Expedientes_Personal\</div>
+                  <div class="text-base-700">Archivos accedidos: 47 documentos PDF</div>
+                  <div class="text-base-700">Periodo: 10 minutos</div>
+                  <div class="text-base-700">Promedio normal: 5-8 archivos/hora</div>
+                </div>
+                <div class="flex gap-2 flex-wrap">
+                  <span class="px-2 py-1 bg-yellow-100 text-yellow-700 rounded text-xs font-medium">unusual_activity</span>
+                  <span class="px-2 py-1 bg-yellow-100 text-yellow-700 rounded text-xs font-medium">mass_access</span>
+                  <span class="px-2 py-1 bg-yellow-100 text-yellow-700 rounded text-xs font-medium">RGPD_monitoring</span>
+                </div>
+              </div>
+
+              <div class="bg-green-50 border-2 border-green-300 rounded-lg p-4">
+                <div class="flex items-start justify-between mb-2">
+                  <div class="flex items-center gap-3">
+                    <span class="w-3 h-3 bg-green-500 rounded-full"></span>
+                    <span class="font-semibold text-green-700">Nivel 3 - Informativo</span>
+                  </div>
+                  <span class="text-sm text-base-700">Hace 8 min</span>
+                </div>
+                <h4 class="text-base-900 font-semibold mb-2">Acceso autorizado a documentos auditados</h4>
+                <p class="text-base-800 text-sm mb-3">
+                  Usuario 'agarcia' (Director Financiero) accedió a documentos de auditoría anual. Acceso registrado para trazabilidad ENS.
+                </p>
+                <div class="bg-base-50 rounded p-3 mb-3 text-xs font-mono">
+                  <div class="text-base-700">Usuario: agarcia (Director Financiero)</div>
+                  <div class="text-base-700">Archivo: Auditoria_Anual_2024.xlsx</div>
+                  <div class="text-base-700">Permisos: Lectura/Escritura (Autorizado)</div>
+                  <div class="text-base-700">Clasificación: Nivel Alto - ENS</div>
+                  <div class="text-base-700">Registro guardado para auditoría</div>
+                </div>
+                <div class="flex gap-2 flex-wrap">
+                  <span class="px-2 py-1 bg-green-100 text-green-700 rounded text-xs font-medium">authorized_access</span>
+                  <span class="px-2 py-1 bg-green-100 text-green-700 rounded text-xs font-medium">ENS_compliant</span>
+                  <span class="px-2 py-1 bg-green-100 text-green-700 rounded text-xs font-medium">audit_trail</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Implementation Process -->
-  <section class="py-20 bg-white">
+  <section class="py-20 bg-base-50">
     <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
       <div class="text-center mb-16">
         <h2 class="text-3xl md:text-4xl font-bold text-base-900 mb-4">
@@ -432,13 +695,13 @@ import WazuhLayout from "../layouts/WazuhLayout.astro";
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         <!-- Step 1 -->
-        <div class="relative">
-          <div class="bg-accent-100 rounded-xl p-6 border border-accent-200">
+        <div class="relative flex">
+          <div class="bg-accent-100 rounded-xl p-6 border border-accent-200 flex flex-col h-full w-full">
             <div class="w-12 h-12 bg-[#0052cc] text-white rounded-lg flex items-center justify-center font-bold text-xl mb-4">
               1
             </div>
             <h3 class="text-lg font-semibold text-base-900 mb-3">Análisis</h3>
-            <p class="text-base-700 text-sm mb-4">
+            <p class="text-base-700 text-sm mb-4 flex-grow">
               Auditoría de infraestructura actual, requisitos ENS y plan personalizado.
             </p>
             <div class="text-xs text-[#0052cc] font-medium">📅 1 semana</div>
@@ -447,46 +710,46 @@ import WazuhLayout from "../layouts/WazuhLayout.astro";
         </div>
 
         <!-- Step 2 -->
-        <div class="relative">
-          <div class="bg-blue-100 rounded-xl p-6 border border-blue-200">
-            <div class="w-12 h-12 bg-blue-600 text-white rounded-lg flex items-center justify-center font-bold text-xl mb-4">
+        <div class="relative flex">
+          <div class="bg-gradient-to-br from-blue-600 to-blue-800 rounded-xl p-6 border border-blue-500 shadow-lg flex flex-col h-full w-full">
+            <div class="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center font-bold text-xl mb-4 text-white">
               2
             </div>
-            <h3 class="text-lg font-semibold text-base-900 mb-3">Despliegue</h3>
-            <p class="text-base-700 text-sm mb-4">
+            <h3 class="text-lg font-semibold text-white mb-3">Despliegue</h3>
+            <p class="text-blue-50 text-sm mb-4 flex-grow">
               Instalación de servidores Wazuh, configuración de agentes e integración con sistemas.
             </p>
-            <div class="text-xs text-blue-600 font-medium">📅 2-3 semanas</div>
+            <div class="text-xs text-blue-100 font-medium">📅 2-3 semanas</div>
           </div>
-          <div class="hidden lg:block absolute top-1/2 -right-4 w-8 h-0.5 bg-blue-300"></div>
+          <div class="hidden lg:block absolute top-1/2 -right-4 w-8 h-0.5 bg-blue-400"></div>
         </div>
 
         <!-- Step 3 -->
-        <div class="relative">
-          <div class="bg-green-100 rounded-xl p-6 border border-green-200">
-            <div class="w-12 h-12 bg-green-600 text-white rounded-lg flex items-center justify-center font-bold text-xl mb-4">
+        <div class="relative flex">
+          <div class="bg-gradient-to-br from-green-600 to-green-800 rounded-xl p-6 border border-green-500 shadow-lg flex flex-col h-full w-full">
+            <div class="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center font-bold text-xl mb-4 text-white">
               3
             </div>
-            <h3 class="text-lg font-semibold text-base-900 mb-3">Formación</h3>
-            <p class="text-base-700 text-sm mb-4">
+            <h3 class="text-lg font-semibold text-white mb-3">Formación</h3>
+            <p class="text-green-50 text-sm mb-4 flex-grow">
               Capacitación del equipo IT, documentación personalizada y procedimientos.
             </p>
-            <div class="text-xs text-green-600 font-medium">📅 1 semana</div>
+            <div class="text-xs text-green-100 font-medium">📅 1 semana</div>
           </div>
-          <div class="hidden lg:block absolute top-1/2 -right-4 w-8 h-0.5 bg-green-300"></div>
+          <div class="hidden lg:block absolute top-1/2 -right-4 w-8 h-0.5 bg-green-400"></div>
         </div>
 
         <!-- Step 4 -->
-        <div>
-          <div class="bg-purple-100 rounded-xl p-6 border border-purple-200">
-            <div class="w-12 h-12 bg-purple-600 text-white rounded-lg flex items-center justify-center font-bold text-xl mb-4">
+        <div class="flex">
+          <div class="bg-gradient-to-br from-purple-600 to-purple-800 rounded-xl p-6 border border-purple-500 shadow-lg flex flex-col h-full w-full">
+            <div class="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center font-bold text-xl mb-4 text-white">
               4
             </div>
-            <h3 class="text-lg font-semibold text-base-900 mb-3">Soporte Continuo</h3>
-            <p class="text-base-700 text-sm mb-4">
+            <h3 class="text-lg font-semibold text-white mb-3">Soporte Continuo</h3>
+            <p class="text-purple-50 text-sm mb-4 flex-grow">
               Monitoreo remoto 24/7, actualizaciones y ajustes de optimización.
             </p>
-            <div class="text-xs text-purple-600 font-medium">🔄 Continuo</div>
+            <div class="text-xs text-purple-100 font-medium">🔄 Continuo</div>
           </div>
         </div>
       </div>
@@ -494,7 +757,7 @@ import WazuhLayout from "../layouts/WazuhLayout.astro";
   </section>
 
   <!-- Pricing Section -->
-  <section class="py-20 bg-base-50">
+  <section class="py-20 bg-white">
     <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
       <div class="text-center mb-16">
         <h2 class="text-3xl md:text-4xl font-bold text-base-900 mb-4">
@@ -507,7 +770,7 @@ import WazuhLayout from "../layouts/WazuhLayout.astro";
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <!-- Basic Package -->
-        <div class="bg-white rounded-2xl shadow-lg p-8 border-2 border-base-200">
+        <div class="bg-gradient-to-br from-base-100 to-accent-100 rounded-2xl shadow-lg p-8 border-2 border-accent-200">
           <h3 class="text-2xl font-bold text-base-900 mb-2">Básico</h3>
           <div class="text-4xl font-bold text-[#0052cc] mb-2">
             €2,500-4,000
@@ -550,7 +813,7 @@ import WazuhLayout from "../layouts/WazuhLayout.astro";
         </div>
 
         <!-- Complete Package -->
-        <div class="bg-white rounded-2xl shadow-2xl p-8 border-2 border-accent-600 relative">
+        <div class="bg-gradient-to-br from-accent-200 to-blue-200 rounded-2xl shadow-2xl p-8 border-2 border-accent-600 relative">
           <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-[#0052cc] text-white px-4 py-1 rounded-full text-sm font-semibold">
             Recomendado
           </div>
@@ -602,7 +865,7 @@ import WazuhLayout from "../layouts/WazuhLayout.astro";
         </div>
 
         <!-- Support Package -->
-        <div class="bg-white rounded-2xl shadow-lg p-8 border-2 border-base-200">
+        <div class="bg-gradient-to-br from-base-100 to-accent-100 rounded-2xl shadow-lg p-8 border-2 border-accent-200">
           <h3 class="text-2xl font-bold text-base-900 mb-2">Soporte Continuo</h3>
           <div class="text-4xl font-bold text-[#0052cc] mb-2">
             €300/mes
@@ -659,8 +922,46 @@ import WazuhLayout from "../layouts/WazuhLayout.astro";
     </div>
   </section>
 
+  <!-- Final CTA -->
+  <section class="py-20 bg-gradient-to-br from-blue-600 via-accent-600 to-blue-700">
+    <div class="max-w-4xl mx-auto px-8 md:px-12 text-center text-white">
+      <h2 class="text-3xl md:text-4xl font-bold mb-6">
+        ¿Listo para implementar Wazuh?
+      </h2>
+      <p class="text-xl mb-8 text-blue-50">
+        Agenda una consulta gratuita de 30 minutos para evaluar tu infraestructura
+        y recibir un presupuesto sin compromiso.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href="/reunion"
+          class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold bg-white text-[#0052cc] hover:bg-blue-50 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200"
+        >
+          Agendar Consulta Gratuita
+        </a>
+        <a
+          href="https://youtube.com/@aisecurityes"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 border-2 border-white rounded-xl transition-all duration-200"
+        >
+          Ver Tutoriales en YouTube
+        </a>
+      </div>
+
+      <div class="mt-12 pt-8 border-t border-white/30">
+        <p class="text-blue-50 text-sm font-medium">
+          💡 También ofrecemos soluciones de automatización con IA para mejorar la eficiencia de tu empresa
+        </p>
+        <a href="/" class="text-white hover:text-blue-100 underline text-sm mt-2 inline-block font-medium">
+          Ver servicios de automatización →
+        </a>
+      </div>
+    </div>
+  </section>
+
   <!-- YouTube Tutorials Section -->
-  <section class="py-20 bg-white">
+  <section class="py-20 bg-base-50">
     <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
       <div class="text-center mb-12">
         <h2 class="text-3xl md:text-4xl font-bold text-base-900 mb-4">
@@ -671,7 +972,7 @@ import WazuhLayout from "../layouts/WazuhLayout.astro";
         </p>
       </div>
 
-      <div class="bg-gradient-to-br from-red-50 to-white rounded-2xl p-8 border border-base-200">
+      <div class="bg-gradient-to-br from-red-100 to-accent-100 rounded-2xl p-8 border border-red-200">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           <div>
             <h3 class="text-2xl font-bold text-base-900 mb-4">
@@ -712,7 +1013,7 @@ import WazuhLayout from "../layouts/WazuhLayout.astro";
             </a>
           </div>
 
-          <div class="bg-white rounded-xl p-6 shadow-lg border border-base-200">
+          <div class="bg-gradient-to-br from-base-100 to-accent-100 rounded-xl p-6 shadow-lg border border-accent-200">
             <h4 class="font-semibold text-base-900 mb-4">🎥 Próximos videos:</h4>
             <ul class="space-y-3 text-sm">
               <li class="flex items-start gap-3">
@@ -739,7 +1040,7 @@ import WazuhLayout from "../layouts/WazuhLayout.astro";
   </section>
 
   <!-- FAQ Section -->
-  <section class="py-20 bg-base-50">
+  <section class="py-20 bg-white">
     <div class="max-w-4xl mx-auto px-8 md:px-12">
       <div class="text-center mb-12">
         <h2 class="text-3xl md:text-4xl font-bold text-base-900 mb-4">
@@ -748,7 +1049,7 @@ import WazuhLayout from "../layouts/WazuhLayout.astro";
       </div>
 
       <div class="space-y-4">
-        <details class="bg-white rounded-xl shadow-md overflow-hidden border border-base-200">
+        <details class="bg-gradient-to-br from-base-100 to-accent-100 rounded-xl shadow-md overflow-hidden border border-accent-200">
           <summary class="px-6 py-4 font-semibold text-base-900 cursor-pointer hover:bg-base-50 transition-colors">
             ¿Wazuh realmente cumple con el Esquema Nacional de Seguridad (ENS)?
           </summary>
@@ -757,7 +1058,7 @@ import WazuhLayout from "../layouts/WazuhLayout.astro";
           </div>
         </details>
 
-        <details class="bg-white rounded-xl shadow-md overflow-hidden border border-base-200">
+        <details class="bg-gradient-to-br from-base-100 to-accent-100 rounded-xl shadow-md overflow-hidden border border-accent-200">
           <summary class="px-6 py-4 font-semibold text-base-900 cursor-pointer hover:bg-base-50 transition-colors">
             ¿Cuánto tiempo tarda la implementación completa?
           </summary>
@@ -766,7 +1067,7 @@ import WazuhLayout from "../layouts/WazuhLayout.astro";
           </div>
         </details>
 
-        <details class="bg-white rounded-xl shadow-md overflow-hidden border border-base-200">
+        <details class="bg-gradient-to-br from-base-100 to-accent-100 rounded-xl shadow-md overflow-hidden border border-accent-200">
           <summary class="px-6 py-4 font-semibold text-base-900 cursor-pointer hover:bg-base-50 transition-colors">
             ¿Qué diferencia hay con soluciones como Splunk o QRadar?
           </summary>
@@ -775,7 +1076,7 @@ import WazuhLayout from "../layouts/WazuhLayout.astro";
           </div>
         </details>
 
-        <details class="bg-white rounded-xl shadow-md overflow-hidden border border-base-200">
+        <details class="bg-gradient-to-br from-base-100 to-accent-100 rounded-xl shadow-md overflow-hidden border border-accent-200">
           <summary class="px-6 py-4 font-semibold text-base-900 cursor-pointer hover:bg-base-50 transition-colors">
             ¿Incluye formación para nuestro equipo IT?
           </summary>
@@ -784,7 +1085,7 @@ import WazuhLayout from "../layouts/WazuhLayout.astro";
           </div>
         </details>
 
-        <details class="bg-white rounded-xl shadow-md overflow-hidden border border-base-200">
+        <details class="bg-gradient-to-br from-base-100 to-accent-100 rounded-xl shadow-md overflow-hidden border border-accent-200">
           <summary class="px-6 py-4 font-semibold text-base-900 cursor-pointer hover:bg-base-50 transition-colors">
             ¿Puedo implementar Wazuh yo mismo siguiendo vuestros tutoriales de YouTube?
           </summary>
@@ -793,7 +1094,7 @@ import WazuhLayout from "../layouts/WazuhLayout.astro";
           </div>
         </details>
 
-        <details class="bg-white rounded-xl shadow-md overflow-hidden border border-base-200">
+        <details class="bg-gradient-to-br from-base-100 to-accent-100 rounded-xl shadow-md overflow-hidden border border-accent-200">
           <summary class="px-6 py-4 font-semibold text-base-900 cursor-pointer hover:bg-base-50 transition-colors">
             ¿Qué pasa si ya tengo Wazuh instalado pero necesito ayuda?
           </summary>
@@ -801,44 +1102,6 @@ import WazuhLayout from "../layouts/WazuhLayout.astro";
             Podemos realizar una auditoría de tu instalación actual, identificar mejoras y optimizaciones, configurar cumplimiento ENS, o simplemente ofrecer soporte continuo. Contáctanos para evaluar tu caso específico.
           </div>
         </details>
-      </div>
-    </div>
-  </section>
-
-  <!-- Final CTA -->
-  <section class="py-20 bg-gradient-to-br from-blue-600 via-accent-600 to-blue-700">
-    <div class="max-w-4xl mx-auto px-8 md:px-12 text-center text-white">
-      <h2 class="text-3xl md:text-4xl font-bold mb-6">
-        ¿Listo para implementar Wazuh?
-      </h2>
-      <p class="text-xl mb-8 text-blue-50">
-        Agenda una consulta gratuita de 30 minutos para evaluar tu infraestructura
-        y recibir un presupuesto sin compromiso.
-      </p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a
-          href="/reunion"
-          class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold bg-white text-[#0052cc] hover:bg-blue-50 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200"
-        >
-          Agendar Consulta Gratuita
-        </a>
-        <a
-          href="https://youtube.com/@aisecurityes"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 border-2 border-white rounded-xl transition-all duration-200"
-        >
-          Ver Tutoriales en YouTube
-        </a>
-      </div>
-
-      <div class="mt-12 pt-8 border-t border-white/30">
-        <p class="text-blue-50 text-sm font-medium">
-          💡 También ofrecemos soluciones de automatización con IA para mejorar la eficiencia de tu empresa
-        </p>
-        <a href="/" class="text-white hover:text-blue-100 underline text-sm mt-2 inline-block font-medium">
-          Ver servicios de automatización →
-        </a>
       </div>
     </div>
   </section>

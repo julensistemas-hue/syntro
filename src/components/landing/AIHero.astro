@@ -2,34 +2,30 @@
 import OptimizedImage from "../../layouts/utilities/OptimizedImage.astro";
 ---
 
-<section class="relative bg-gradient-to-br from-base-25 via-accent-25 to-base-50 py-24 lg:py-36 overflow-hidden">
-  <!-- Background pattern -->
-  <div class="absolute inset-0 opacity-[0.07]" aria-hidden="true">
-    <svg class="w-full h-full" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
-          <path d="M 10 0 L 0 0 0 10" fill="none" stroke="currentColor" stroke-width="1"/>
-        </pattern>
-      </defs>
-      <rect width="100" height="100" fill="url(#grid)" />
-    </svg>
+<section class="relative bg-gradient-to-bl from-accent-600 via-blue-600 py-24 lg:py-36 overflow-hidden">
+  <!-- Modern gradient orbs background -->
+  <div class="absolute inset-0 overflow-hidden" aria-hidden="true">
+    <!-- Gradient orbs with blur -->
+    <div class="absolute top-0 -left-4 w-96 h-96 bg-accent-300/20 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob"></div>
+    <div class="absolute top-0 -right-4 w-96 h-96 bg-blue-300/20 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000"></div>
+    <div class="absolute -bottom-8 left-20 w-96 h-96 bg-accent-200/20 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-4000"></div>
   </div>
 
   <div class="relative max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
       <!-- Content -->
       <div class="space-y-8 lg:pr-8">
-        <div class="inline-flex items-center gap-2 px-4 py-2.5 bg-accent-100 text-accent-800 rounded-full text-sm font-semibold border border-accent-300 shadow-sm">
-          <span class="w-2 h-2 bg-accent-600 rounded-full animate-pulse" aria-hidden="true"></span>
+        <div class="inline-flex items-center gap-2 px-4 py-2.5 bg-white/20 backdrop-blur-sm text-white rounded-full text-sm font-semibold border border-white/30 shadow-sm">
+          <span class="w-2 h-2 bg-white rounded-full animate-pulse" aria-hidden="true"></span>
           Potenciado por Inteligencia Artificial
         </div>
 
-        <h1 class="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-base-900 leading-[1.1] tracking-tight">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-white leading-[1.1] tracking-tight">
           Automatiza tu negocio con
-          <span class="gradient-text block mt-2">Inteligencia Artificial</span>
+          <span class="text-white block mt-2">Inteligencia Artificial</span>
         </h1>
 
-        <p class="text-lg md:text-xl text-base-600 leading-relaxed max-w-2xl">
+        <p class="text-lg md:text-xl text-white/90 leading-relaxed max-w-2xl">
           Transformamos empresas con soluciones de IA personalizadas: chatbots inteligentes,
           gestión documental automatizada, atención telefónica 24/7 y automatización de procesos.
         </p>
@@ -37,7 +33,8 @@ import OptimizedImage from "../../layouts/utilities/OptimizedImage.astro";
         <div class="flex flex-col sm:flex-row gap-4 pt-2">
           <a
             href="/reunion"
-            class="group inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-accent-600 hover:bg-accent-700 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5"
+            class="group inline-flex items-center justify-center px-8 py-4 text-lg font-semibold bg-accent-600 hover:bg-accent-700 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5"
+            style="color: #000000;"
           >
             Consulta Gratuita
             <svg class="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -58,23 +55,23 @@ import OptimizedImage from "../../layouts/utilities/OptimizedImage.astro";
         <!-- Stats -->
         <div class="grid grid-cols-3 gap-6 pt-10 mt-2">
           <div class="text-center lg:text-left">
-            <div class="text-4xl md:text-5xl font-extrabold gradient-text">24/7</div>
-            <div class="text-sm font-medium text-base-600 mt-1">Disponibilidad</div>
+            <div class="text-4xl md:text-5xl font-extrabold text-white">24/7</div>
+            <div class="text-sm font-medium text-white/80 mt-1">Disponibilidad</div>
           </div>
           <div class="text-center lg:text-left">
-            <div class="text-4xl md:text-5xl font-extrabold gradient-text">85%</div>
-            <div class="text-sm font-medium text-base-600 mt-1">Ahorro de costos</div>
+            <div class="text-4xl md:text-5xl font-extrabold text-white">85%</div>
+            <div class="text-sm font-medium text-white/80 mt-1">Ahorro de costos</div>
           </div>
           <div class="text-center lg:text-left">
-            <div class="text-4xl md:text-5xl font-extrabold gradient-text">98%</div>
-            <div class="text-sm font-medium text-base-600 mt-1">Precisión IA</div>
+            <div class="text-4xl md:text-5xl font-extrabold text-white">98%</div>
+            <div class="text-sm font-medium text-white/80 mt-1">Precisión IA</div>
           </div>
         </div>
       </div>
 
       <!-- Visual -->
       <div class="relative lg:pl-8">
-        <div class="relative z-10 bg-base-50 rounded-2xl shadow-large border border-base-200 p-6 md:p-8">
+        <div class="relative z-10 bg-base-50 rounded-2xl shadow-large border border-base-200 p-7 md:p-9">
           <!-- Simulated AI Interface -->
           <div class="space-y-6">
             <div class="flex items-center gap-3 pb-4 border-b border-base-200">
@@ -89,77 +86,77 @@ import OptimizedImage from "../../layouts/utilities/OptimizedImage.astro";
             <div class="space-y-3">
               <!-- Chatbot -->
               <details class="group">
-                <summary class="flex items-center gap-3 p-4 bg-accent-50 rounded-xl border border-accent-200 cursor-pointer hover:bg-accent-100 transition-all hover:shadow-md">
-                  <div class="w-10 h-10 bg-accent-600 rounded-xl flex items-center justify-center text-white text-lg shadow-sm">🤖</div>
+                <summary class="flex items-center gap-3 p-4 rounded-xl border-2 cursor-pointer transition-all hover:shadow-lg" style="background-color: #1F2937; border-color: #6366F1;">
+                  <div class="w-10 h-10 rounded-xl flex items-center justify-center text-white text-lg shadow-sm" style="background-color: #6366F1;">🤖</div>
                   <div class="flex-1 min-w-0">
-                    <div class="text-sm font-bold text-base-900">Chatbot activo</div>
-                    <div class="text-xs text-base-600 mt-0.5">Respondiendo 24 consultas/hora</div>
+                    <div class="text-sm font-bold text-white">Chatbot activo</div>
+                    <div class="text-xs text-gray-300 mt-0.5">Respondiendo 24 consultas/hora</div>
                   </div>
-                  <div class="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse" aria-label="Activo"></div>
-                  <svg class="w-4 h-4 text-base-600 transition-transform group-open:rotate-180 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <div class="w-2.5 h-2.5 bg-green-400 rounded-full animate-pulse" aria-label="Activo"></div>
+                  <svg class="w-4 h-4 text-gray-300 transition-transform group-open:rotate-180 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                   </svg>
                 </summary>
-                <div class="mt-2 ml-12 p-4 bg-accent-100 rounded-lg border-l-4 border-accent-600">
-                  <div class="text-sm font-bold text-accent-900">Ahorro mensual: €850</div>
-                  <div class="text-xs text-base-700 mt-1">Equivalente a 1.5 empleados de atención al cliente</div>
+                <div class="mt-2 ml-12 p-4 rounded-lg border-l-4" style="background-color: #374151; border-color: #6366F1;">
+                  <div class="text-sm font-bold text-white">Ahorro mensual: €850</div>
+                  <div class="text-xs text-gray-300 mt-1">Equivalente a 1.5 empleados de atención al cliente</div>
                 </div>
               </details>
 
               <!-- Gestor Documental -->
               <details class="group">
-                <summary class="flex items-center gap-3 p-4 bg-blue-50 rounded-xl border border-blue-200 cursor-pointer hover:bg-blue-100 transition-all hover:shadow-md">
-                  <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center text-white text-lg shadow-sm">📄</div>
+                <summary class="flex items-center gap-3 p-4 rounded-xl border-2 cursor-pointer transition-all hover:shadow-lg" style="background-color: #1F2937; border-color: #8B5CF6;">
+                  <div class="w-10 h-10 rounded-xl flex items-center justify-center text-white text-lg shadow-sm" style="background-color: #8B5CF6;">📄</div>
                   <div class="flex-1 min-w-0">
-                    <div class="text-sm font-bold text-base-900">Gestor Documental</div>
-                    <div class="text-xs text-base-600 mt-0.5">156 documentos analizados hoy</div>
+                    <div class="text-sm font-bold text-white">Gestor Documental</div>
+                    <div class="text-xs text-gray-300 mt-0.5">156 documentos analizados hoy</div>
                   </div>
-                  <div class="w-2.5 h-2.5 bg-blue-500 rounded-full animate-pulse" aria-label="Activo"></div>
-                  <svg class="w-4 h-4 text-base-600 transition-transform group-open:rotate-180 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <div class="w-2.5 h-2.5 rounded-full animate-pulse" aria-label="Activo" style="background-color: #8B5CF6;"></div>
+                  <svg class="w-4 h-4 text-gray-300 transition-transform group-open:rotate-180 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                   </svg>
                 </summary>
-                <div class="mt-2 ml-12 p-4 bg-blue-100 rounded-lg border-l-4 border-blue-600">
-                  <div class="text-sm font-bold text-blue-900">Ahorro mensual: €1,200</div>
-                  <div class="text-xs text-base-700 mt-1">Reducción del 75% en tiempo de procesamiento manual</div>
+                <div class="mt-2 ml-12 p-4 rounded-lg border-l-4" style="background-color: #374151; border-color: #8B5CF6;">
+                  <div class="text-sm font-bold text-white">Ahorro mensual: €1,200</div>
+                  <div class="text-xs text-gray-300 mt-1">Reducción del 75% en tiempo de procesamiento manual</div>
                 </div>
               </details>
 
               <!-- Atención de Llamadas -->
               <details class="group">
-                <summary class="flex items-center gap-3 p-4 bg-green-50 rounded-xl border border-green-200 cursor-pointer hover:bg-green-100 transition-all hover:shadow-md">
-                  <div class="w-10 h-10 bg-green-600 rounded-xl flex items-center justify-center text-white text-lg shadow-sm">📞</div>
+                <summary class="flex items-center gap-3 p-4 rounded-xl border-2 cursor-pointer transition-all hover:shadow-lg" style="background-color: #1F2937; border-color: #6366F1;">
+                  <div class="w-10 h-10 rounded-xl flex items-center justify-center text-white text-lg shadow-sm" style="background-color: #6366F1;">📞</div>
                   <div class="flex-1 min-w-0">
-                    <div class="text-sm font-bold text-base-900">Atención de Llamadas</div>
-                    <div class="text-xs text-base-600 mt-0.5">48 llamadas atendidas hoy</div>
+                    <div class="text-sm font-bold text-white">Atención de Llamadas</div>
+                    <div class="text-xs text-gray-300 mt-0.5">48 llamadas atendidas hoy</div>
                   </div>
-                  <div class="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse" aria-label="Activo"></div>
-                  <svg class="w-4 h-4 text-base-600 transition-transform group-open:rotate-180 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <div class="w-2.5 h-2.5 bg-green-400 rounded-full animate-pulse" aria-label="Activo"></div>
+                  <svg class="w-4 h-4 text-gray-300 transition-transform group-open:rotate-180 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                   </svg>
                 </summary>
-                <div class="mt-2 ml-12 p-4 bg-green-100 rounded-lg border-l-4 border-green-600">
-                  <div class="text-sm font-bold text-green-900">Ahorro mensual: €797</div>
-                  <div class="text-xs text-base-700 mt-1">Cobertura 24/7 sin costos de personal adicional</div>
+                <div class="mt-2 ml-12 p-4 rounded-lg border-l-4" style="background-color: #374151; border-color: #6366F1;">
+                  <div class="text-sm font-bold text-white">Ahorro mensual: €797</div>
+                  <div class="text-xs text-gray-300 mt-1">Cobertura 24/7 sin costos de personal adicional</div>
                 </div>
               </details>
 
               <!-- Creación Web y Contenido -->
               <details class="group">
-                <summary class="flex items-center gap-3 p-4 bg-purple-50 rounded-xl border border-purple-200 cursor-pointer hover:bg-purple-100 transition-all hover:shadow-md">
-                  <div class="w-10 h-10 bg-purple-600 rounded-xl flex items-center justify-center text-white text-lg shadow-sm">🌐</div>
+                <summary class="flex items-center gap-3 p-4 rounded-xl border-2 cursor-pointer transition-all hover:shadow-lg" style="background-color: #1F2937; border-color: #8B5CF6;">
+                  <div class="w-10 h-10 rounded-xl flex items-center justify-center text-white text-lg shadow-sm" style="background-color: #8B5CF6;">🌐</div>
                   <div class="flex-1 min-w-0">
-                    <div class="text-sm font-bold text-base-900">Creación Web y Contenido</div>
-                    <div class="text-xs text-base-600 mt-0.5">3 landing pages y 15 artículos este mes</div>
+                    <div class="text-sm font-bold text-white">Creación Web y Contenido</div>
+                    <div class="text-xs text-gray-300 mt-0.5">3 landing pages y 15 artículos este mes</div>
                   </div>
-                  <div class="w-2.5 h-2.5 bg-purple-500 rounded-full animate-pulse" aria-label="Activo"></div>
-                  <svg class="w-4 h-4 text-base-600 transition-transform group-open:rotate-180 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <div class="w-2.5 h-2.5 rounded-full animate-pulse" aria-label="Activo" style="background-color: #8B5CF6;"></div>
+                  <svg class="w-4 h-4 text-gray-300 transition-transform group-open:rotate-180 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                   </svg>
                 </summary>
-                <div class="mt-2 ml-12 p-4 bg-purple-100 rounded-lg border-l-4 border-purple-600">
-                  <div class="text-sm font-bold text-purple-900">Ahorro mensual: €1,450</div>
-                  <div class="text-xs text-base-700 mt-1">Landing pages, webs corporativas y artículos SEO optimizados</div>
+                <div class="mt-2 ml-12 p-4 rounded-lg border-l-4" style="background-color: #374151; border-color: #8B5CF6;">
+                  <div class="text-sm font-bold text-white">Ahorro mensual: €1,450</div>
+                  <div class="text-xs text-gray-300 mt-1">Landing pages, webs corporativas y artículos SEO optimizados</div>
                 </div>
               </details>
             </div>

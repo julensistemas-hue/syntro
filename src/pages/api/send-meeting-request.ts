@@ -1,5 +1,6 @@
 import type { APIRoute } from 'astro';
 import { Resend } from 'resend';
+import { createCalendarEvent, isValidTimeSlot, formatDate } from '../../lib/google-calendar';
 
 const resend = new Resend(import.meta.env.RESEND_API_KEY);
 
@@ -15,6 +16,8 @@ export const POST: APIRoute = async ({ request }) => {
     const empleados = data.get('empleados')?.toString();
     const mensaje = data.get('mensaje')?.toString();
     const presupuesto = data.get('presupuesto')?.toString();
+    const selectedDate = data.get('selectedDate')?.toString();
+    const selectedTime = data.get('selectedTime')?.toString();
 
     // Validación básica: nombre es obligatorio, y al menos email o teléfono
     if (!nombre) {
@@ -29,6 +32,16 @@ export const POST: APIRoute = async ({ request }) => {
         JSON.stringify({ error: 'Debes proporcionar al menos un email o teléfono' }),
         { status: 400, headers: { 'Content-Type': 'application/json' } }
       );
+    }
+
+    // Validate date and time if provided
+    if (selectedDate && selectedTime) {
+      if (!isValidTimeSlot(selectedTime)) {
+        return new Response(
+          JSON.stringify({ error: 'Horario seleccionado no válido' }),
+          { status: 400, headers: { 'Content-Type': 'application/json' } }
+        );
+      }
     }
 
     // Mapeo de servicios para mejor presentación
@@ -63,6 +76,28 @@ export const POST: APIRoute = async ({ request }) => {
     const empleadosTexto = empleados ? empleadosMap[empleados] || empleados : 'No especificado';
     const presupuestoTexto = presupuesto ? presupuestoMap[presupuesto] || presupuesto : 'No especificado';
 
+    // Create Google Calendar event if date and time are selected
+    let calendarEvent: { eventId: string; meetLink?: string } | null = null;
+    let meetingDate: Date | null = null;
+
+    if (selectedDate && selectedTime) {
+      try {
+        meetingDate = new Date(selectedDate);
+        calendarEvent = await createCalendarEvent({
+          name: nombre,
+          email: email,
+          phone: telefono,
+          company: empresa,
+          date: meetingDate,
+          timeSlot: selectedTime,
+          message: mensaje,
+        });
+      } catch (calendarError) {
+        console.error('Error creating calendar event:', calendarError);
+        // Continue without calendar event - don't fail the whole request
+      }
+    }
+
     const emailHtml = `
       <!DOCTYPE html>
       <html>
@@ -89,9 +124,16 @@ export const POST: APIRoute = async ({ request }) => {
             </div>
 
             <div class="content">
-              <div class="priority">
-                <strong>⚡ Acción requerida:</strong> Responder en menos de 24 horas
+              ${calendarEvent ? `
+              <div class="priority" style="background: #d1fae5; border-left-color: #10b981;">
+                <strong>✅ Reunión agendada:</strong> ${formatDate(meetingDate!)} a las ${selectedTime}h
+                ${calendarEvent.meetLink ? `<br><a href="${calendarEvent.meetLink}" style="color: #059669; text-decoration: none;">🔗 Enlace de Google Meet</a>` : ''}
               </div>
+              ` : `
+              <div class="priority">
+                <strong>⚡ Acción requerida:</strong> Contactar para agendar reunión
+              </div>
+              `}
 
               <div class="field">
                 <div class="field-label">👤 Nombre</div>
@@ -161,6 +203,14 @@ Servicio de interés: ${servicioTexto}
 Tamaño de empresa: ${empleadosTexto}
 Presupuesto estimado: ${presupuestoTexto}
 
+${calendarEvent ? `
+Reunión agendada:
+----------------
+Fecha: ${formatDate(meetingDate!)} a las ${selectedTime}h
+${calendarEvent.meetLink ? `Enlace Google Meet: ${calendarEvent.meetLink}` : ''}
+ID del evento: ${calendarEvent.eventId}
+` : ''}
+
 ${mensaje ? `Mensaje:\n${mensaje}` : ''}
 
 ---
@@ -188,8 +238,10 @@ Fecha: ${new Date().toLocaleString('es-ES', { timeZone: 'Europe/Madrid' })}
     return new Response(
       JSON.stringify({
         success: true,
-        message: 'Solicitud enviada correctamente',
-        id: result.data?.id
+        message: calendarEvent ? 'Reunión agendada correctamente' : 'Solicitud enviada correctamente',
+        id: result.data?.id,
+        calendarEventId: calendarEvent?.eventId,
+        meetLink: calendarEvent?.meetLink
       }),
       { status: 200, headers: { 'Content-Type': 'application/json' } }
     );

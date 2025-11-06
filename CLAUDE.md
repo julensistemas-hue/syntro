@@ -274,6 +274,124 @@ By default uses `onboarding@resend.dev` as sender. To use custom domain:
 1. Add domain in Resend dashboard
 2. Configure DNS records (SPF, DKIM, DMARC)
 3. Update `from:` field in API route to `'AI Security <noreply@yourdomain.com>'`
+
+## UI/UX Design Rules - CRITICAL
+
+### SYSTEMATIC PROBLEM: Color Contrast Violations
+
+**This is a recurring issue that MUST be prevented.** The developer has repeatedly created components with illegible text by using light text on light backgrounds or similar low-contrast combinations.
+
+### WCAG AA Compliance Requirements (MANDATORY)
+
+**All text must meet these minimum contrast ratios:**
+- **Normal text** (< 18pt): **4.5:1** contrast ratio minimum
+- **Large text** (≥ 18pt or 14pt bold): **3:1** contrast ratio minimum
+- **UI components and icons**: **3:1** contrast ratio minimum
+
+### Color Combination Rules
+
+**LIGHT BACKGROUNDS** (base-25, base-50, base-100, accent-50, blue-50, green-50, purple-50, amber-50, etc.):
+- ✅ **USE DARK TEXT**: base-700, base-800, base-900
+- ❌ **NEVER USE**: Light text colors (base-300, base-400, base-500, accent-300, blue-300, etc.)
+
+**DARK BACKGROUNDS** (base-700, base-800, base-900, accent-600, blue-600, etc.):
+- ✅ **USE LIGHT TEXT**: base-25, base-50, base-100, base-200
+- ❌ **NEVER USE**: Dark text colors on dark backgrounds
+
+### Common Violations to Avoid
+
+**BAD Examples (DO NOT USE):**
+```html
+<!-- ❌ WRONG: Light text on light background -->
+<div class="bg-blue-50">
+  <p class="text-blue-300">This is illegible!</p>
+</div>
+
+<!-- ❌ WRONG: Light text on light background -->
+<div class="bg-purple-50">
+  <h5 class="text-purple-700">Hard to read</h5>
+</div>
+
+<!-- ❌ WRONG: Medium color on light background -->
+<div class="bg-accent-50">
+  <p class="text-accent-500">Low contrast</p>
+</div>
+```
+
+**GOOD Examples (USE THESE):**
+```html
+<!-- ✅ CORRECT: Dark text on light background -->
+<div class="bg-blue-50">
+  <p class="text-base-800">This is legible!</p>
+</div>
+
+<!-- ✅ CORRECT: Dark heading, dark body text on light background -->
+<div class="bg-purple-50">
+  <h5 class="text-base-900">Clear heading</h5>
+  <p class="text-base-700">Clear body text</p>
+</div>
+
+<!-- ✅ CORRECT: White text on dark background -->
+<div class="bg-accent-600">
+  <p class="text-white">High contrast</p>
+</div>
+
+<!-- ✅ CORRECT: Light text on dark background -->
+<div class="bg-base-800">
+  <p class="text-base-50">Easy to read</p>
+</div>
+```
+
+### Specific Color Combinations Reference
+
+| Background | Acceptable Text Colors | ❌ NEVER USE |
+|------------|----------------------|--------------|
+| `bg-blue-50` | `text-base-700`, `text-base-800`, `text-base-900` | `text-blue-300`, `text-blue-400`, `text-blue-500` |
+| `bg-purple-50` | `text-base-700`, `text-base-800`, `text-base-900` | `text-purple-300`, `text-purple-400`, `text-purple-500` |
+| `bg-green-50` | `text-base-700`, `text-base-800`, `text-base-900` | `text-green-300`, `text-green-400`, `text-green-500` |
+| `bg-amber-50` | `text-base-700`, `text-base-800`, `text-base-900` | `text-amber-300`, `text-amber-400`, `text-amber-500` |
+| `bg-accent-50` | `text-base-700`, `text-base-800`, `text-base-900` | `text-accent-300`, `text-accent-400`, `text-accent-500` |
+| `bg-accent-600` | `text-white`, `text-base-50`, `text-base-100` | `text-base-600`, `text-base-700`, `text-base-800` |
+| `bg-base-800` | `text-white`, `text-base-50`, `text-base-100` | `text-base-600`, `text-base-700` |
+
+### Verification Checklist
+
+**Before committing any component with colored backgrounds:**
+1. ✅ Is the background color light (50-200 range)? → Use dark text (700-900)
+2. ✅ Is the background color dark (600-900 range)? → Use light text (25-200)
+3. ✅ Does the text have sufficient contrast for its size?
+4. ✅ Are all interactive elements (buttons, links) also properly contrasted?
+
+### Design System Color Usage
+
+**From `src/styles/global.css`:**
+- **Accent colors** (`accent-*`): Professional blue scale (25-950)
+- **Base colors** (`base-*`): Gray scale for text and backgrounds (25-950)
+
+**Safe combinations:**
+- Light backgrounds: `bg-base-50`, `bg-base-100` → Dark text: `text-base-700`, `text-base-800`, `text-base-900`
+- Medium backgrounds: `bg-base-500`, `bg-base-600` → Light text: `text-base-50`, `text-base-100`
+- Dark backgrounds: `bg-base-800`, `bg-base-900` → Light text: `text-base-50`, `text-white`
+
+### Visual Design Principles
+
+1. **Never use harsh white backgrounds** - prefer `base-50`, `base-100`, or subtle gradients
+2. **Maintain visual hierarchy** with proper heading sizes and weights
+3. **Use consistent spacing** with Tailwind's spacing scale
+4. **Add subtle animations** for improved user experience (hover effects, transitions)
+5. **Implement proper focus states** for accessibility
+
+### Files Recently Fixed for Contrast Issues
+
+The following files had contrast violations that were corrected:
+- `src/components/meeting/MeetingRequestCalendar.astro` (lines 184-224)
+- `src/components/landing/AIHero.astro` (dashboard stats sections)
+- `src/pages/servicios/chatbot.astro` (demo context badges)
+- `src/pages/servicios/gestor-documental.astro` (context boxes)
+- `src/pages/servicios/automatizacion.astro` (dashboard header)
+
+**These serve as reference examples of proper contrast implementation.**
+
 ## Specialized Agents
 
 This project includes specialized AI agents for specific tasks. Use the Task tool with the appropriate `subagent_type` to invoke them.

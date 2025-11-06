@@ -23,20 +23,20 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 
           <!-- Context Box -->
           <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6">
-            <h3 class="text-sm font-semibold text-blue-900 mb-3">📋 Contexto de la demo:</h3>
-            <p class="text-sm text-blue-800 mb-4">
+            <h3 class="text-sm font-semibold text-base-900 mb-3">📋 Contexto de la demo:</h3>
+            <p class="text-sm text-base-800 mb-4">
               Esta es una simulación para una empresa de consultoría con 50 empleados.
               El sistema tiene indexados más de 1,200 documentos internos: políticas, procedimientos,
               manuales y normativas.
             </p>
-            <p class="text-sm text-blue-800">
+            <p class="text-sm text-base-800">
               <strong>Antes:</strong> Buscar información llevaba 10-15 minutos navegando carpetas.<br>
               <strong>Ahora:</strong> Respuesta en segundos con el extracto exacto del documento.
             </p>
           </div>
 
           <div class="bg-green-50 border border-green-200 rounded-lg p-4">
-            <p class="text-sm text-green-800">
+            <p class="text-sm text-base-800">
               <span class="font-semibold">💡 Prueba buscando:</span> "política de teletrabajo", "requisitos para vacaciones" o "procedimiento de compras"
             </p>
           </div>
@@ -77,7 +77,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
                   Buscar
                 </button>
               </form>
-              <p class="text-xs text-base-500 mt-2">
+              <p class="text-xs text-base-700 mt-2">
                 Prueba: "política de teletrabajo", "requisitos para solicitar vacaciones", "procedimiento de compras"
               </p>
             </div>
@@ -85,7 +85,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
             <!-- Results Container -->
             <div id="doc-results" class="space-y-4 min-h-[400px]">
               <!-- Initial State -->
-              <div class="text-center py-16 text-base-500">
+              <div class="text-center py-16 text-base-700">
                 <div class="text-6xl mb-4">🔍</div>
                 <p class="text-lg">Haz una pregunta para ver cómo funciona la búsqueda inteligente</p>
                 <p class="text-sm mt-2">El sistema buscará en toda tu documentación y extraerá la información relevante</p>
@@ -139,7 +139,8 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         </p>
         <a
           href="/reunion"
-          class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-accent-600 bg-base-50 hover:bg-base-50 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200"
+          class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold bg-accent-600 hover:bg-accent-700 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200"
+          style="color: #000000;"
         >
           Solicitar Demo Gratuita
         </a>
@@ -241,7 +242,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
                 </div>
               </div>
               <p class="text-base-600 mb-4">${doc.excerpt}</p>
-              <div class="flex items-center gap-4 text-sm text-base-500">
+              <div class="flex items-center gap-4 text-sm text-base-700">
                 <button class="flex items-center gap-1 hover:text-accent-600 transition-colors">
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>

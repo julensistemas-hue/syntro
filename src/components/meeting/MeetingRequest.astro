@@ -99,6 +99,53 @@
             ></textarea>
           </div>
 
+          <!-- Agendar Reunión Section -->
+          <div class="border-t border-base-200 pt-6">
+            <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+              <h3 class="text-sm font-semibold text-blue-900 mb-2">📅 ¿Quieres agendar una reunión ahora?</h3>
+              <p class="text-sm text-blue-800">
+                Selecciona fecha y hora para reservar tu reunión directamente. Te enviaremos un enlace de Google Meet.
+              </p>
+            </div>
+
+            <!-- Date Selector -->
+            <div class="mb-6">
+              <label for="selectedDate" class="block text-sm font-semibold text-base-900 mb-2">
+                Fecha de la reunión (opcional)
+              </label>
+              <input
+                type="date"
+                id="selectedDate"
+                name="selectedDate"
+                class="w-full px-4 py-3 border border-base-300 rounded-lg focus:ring-2 focus:ring-[#0052cc] focus:border-[#0052cc] bg-base-25 text-base"
+              />
+              <p class="text-xs text-base-600 mt-2">Todos los días disponibles (incluye fines de semana). Las reuniones duran 2 horas. Si no seleccionas fecha, nos pondremos en contacto contigo para coordinar.</p>
+            </div>
+
+            <!-- Time Slots Container -->
+            <div id="time-slots-container" class="hidden">
+              <label class="block text-sm font-semibold text-base-900 mb-3">
+                Hora de la reunión
+              </label>
+              <div id="time-slots-loading" class="text-center py-4">
+                <div class="inline-flex items-center gap-2 text-accent-600">
+                  <svg class="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                  <span class="text-sm">Verificando disponibilidad...</span>
+                </div>
+              </div>
+              <div id="time-slots-grid" class="hidden grid grid-cols-2 md:grid-cols-4 gap-3">
+                <!-- Time slots will be populated here -->
+              </div>
+              <div id="time-slots-error" class="hidden text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg p-3">
+                <!-- Error message will be shown here -->
+              </div>
+              <input type="hidden" id="selectedTime" name="selectedTime" value="" />
+            </div>
+          </div>
+
           <button
             type="submit"
             id="submit-button"
@@ -158,6 +205,24 @@
     const buttonText = document.getElementById('button-text') as HTMLSpanElement;
     const buttonLoading = document.getElementById('button-loading') as HTMLSpanElement;
 
+    // Calendar elements
+    const dateInput = document.getElementById('selectedDate') as HTMLInputElement;
+    const timeSlotsContainer = document.getElementById('time-slots-container') as HTMLDivElement;
+    const timeSlotsLoading = document.getElementById('time-slots-loading') as HTMLDivElement;
+    const timeSlotsGrid = document.getElementById('time-slots-grid') as HTMLDivElement;
+    const timeSlotsError = document.getElementById('time-slots-error') as HTMLDivElement;
+    const selectedTimeInput = document.getElementById('selectedTime') as HTMLInputElement;
+
+    // Set min date to tomorrow
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    dateInput.min = tomorrow.toISOString().split('T')[0];
+
+    // Set max date to 30 days from now
+    const maxDate = new Date();
+    maxDate.setDate(maxDate.getDate() + 30);
+    dateInput.max = maxDate.toISOString().split('T')[0];
+
     function showAlert(message: string, type: 'success' | 'error') {
       alertContainer.className = `mb-6 p-4 rounded-lg ${
         type === 'success'
@@ -194,6 +259,78 @@
       }
     }
 
+    // Fetch available time slots for selected date
+    async function fetchAvailableSlots(date: string) {
+      timeSlotsContainer.classList.remove('hidden');
+      timeSlotsLoading.classList.remove('hidden');
+      timeSlotsGrid.classList.add('hidden');
+      timeSlotsError.classList.add('hidden');
+      selectedTimeInput.value = '';
+
+      try {
+        const response = await fetch('/api/check-availability', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ date }),
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.error || 'Error al verificar disponibilidad');
+        }
+
+        timeSlotsLoading.classList.add('hidden');
+
+        if (data.availableSlots.length === 0) {
+          timeSlotsError.classList.remove('hidden');
+          timeSlotsError.textContent = data.message || 'No hay horarios disponibles para este día. Por favor, selecciona otra fecha.';
+          return;
+        }
+
+        // Populate time slots
+        timeSlotsGrid.innerHTML = '';
+        data.availableSlots.forEach((slot: string) => {
+          const button = document.createElement('button');
+          button.type = 'button';
+          button.className = 'px-4 py-3 border-2 border-base-300 rounded-lg hover:border-[#0052cc] hover:bg-blue-50 transition-all duration-200 text-base font-medium text-base-900';
+          button.dataset.time = slot;
+          button.textContent = `${slot}`;
+
+          button.addEventListener('click', () => {
+            // Remove selection from all buttons
+            timeSlotsGrid.querySelectorAll('button').forEach(btn => {
+              btn.className = 'px-4 py-3 border-2 border-base-300 rounded-lg hover:border-[#0052cc] hover:bg-blue-50 transition-all duration-200 text-base font-medium text-base-900';
+            });
+
+            // Add selection to clicked button
+            button.className = 'px-4 py-3 border-2 border-[#0052cc] bg-blue-50 rounded-lg text-[#0052cc] font-semibold';
+            selectedTimeInput.value = slot;
+          });
+
+          timeSlotsGrid.appendChild(button);
+        });
+
+        timeSlotsGrid.classList.remove('hidden');
+      } catch (error) {
+        timeSlotsLoading.classList.add('hidden');
+        timeSlotsError.classList.remove('hidden');
+        timeSlotsError.textContent = 'Error al verificar disponibilidad. Por favor, inténtalo de nuevo.';
+        console.error('Error fetching slots:', error);
+      }
+    }
+
+    // Handle date selection
+    dateInput.addEventListener('change', (e) => {
+      const selectedDate = (e.target as HTMLInputElement).value;
+      if (selectedDate) {
+        fetchAvailableSlots(selectedDate);
+      } else {
+        timeSlotsContainer.classList.add('hidden');
+        selectedTimeInput.value = '';
+      }
+    });
+
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
 
@@ -211,11 +348,13 @@
         const data = await response.json();
 
         if (response.ok) {
-          showAlert(
-            '¡Solicitud enviada! Nos pondremos en contacto contigo en menos de 24 horas.',
-            'success'
-          );
+          let successMessage = data.meetLink
+            ? `¡Reunión agendada! Te hemos enviado un email con el enlace de Google Meet. <br><a href="${data.meetLink}" target="_blank" class="underline font-semibold">Abrir Google Meet</a>`
+            : '¡Solicitud enviada! Nos pondremos en contacto contigo en menos de 24 horas.';
+
+          showAlert(successMessage, 'success');
           form.reset();
+          timeSlotsContainer.classList.add('hidden');
         } else {
           showAlert(
             data.error || 'Ha ocurrido un error. Por favor, inténtalo de nuevo.',

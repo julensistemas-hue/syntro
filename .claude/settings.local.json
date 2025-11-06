@@ -21,7 +21,11 @@
       "Bash(npm run setup:*)",
       "Skill(playwright-skill:playwright-skill)",
       "Bash(node -e:*)",
-      "Bash(node run.js:*)"
+      "Bash(node run.js:*)",
+      "Bash(npx:*)",
+      "Bash(pnpm build:*)",
+      "Bash(git reset:*)",
+      "Bash(curl:*)"
     ],
     "deny": [],
     "ask": []
