@@ -281,6 +281,29 @@ By default uses `onboarding@resend.dev` as sender. To use custom domain:
 
 **This is a recurring issue that MUST be prevented.** The developer has repeatedly created components with illegible text by using light text on light backgrounds or similar low-contrast combinations.
 
+### TAILWIND CSS V4 COLOR CONFIGURATION - IMPORTANT
+
+**This project uses Tailwind CSS v4 (Alpha)** which works differently from previous versions:
+
+1. **Colors MUST be defined in `@theme` block** in `src/styles/global.css` to work with Tailwind classes
+2. **`text-black` class is NOW AVAILABLE** - `--color-black: #000000` has been added to the theme
+3. **Available color classes**:
+   - `text-black` → Pure black (#000000) - **USE THIS for maximum contrast**
+   - `text-base-900` → Almost black (#121416)
+   - `text-base-800` → Dark gray (#212529)
+   - `text-base-700` → Medium dark gray (#343a40)
+
+**Why `text-black` didn't work before:**
+- Tailwind v4 uses CSS variables defined in `@theme`
+- The color `black` wasn't properly defined in the theme (was `#121212`, now `#000000`)
+- Global CSS rule `p { color: var(--color-base-600); }` was overriding Tailwind classes
+- **Solution**: Use `style="color: #000000;"` for inline styles OR use `text-black` class (now fixed)
+
+**Best Practice:**
+- For components that need **true black text**, use `text-black` class or `style="color: #000000;"`
+- For general text, use `text-base-700`, `text-base-800`, or `text-base-900`
+- When Tailwind classes don't work due to CSS specificity, use inline styles with `style=""`
+
 ### WCAG AA Compliance Requirements (MANDATORY)
 
 **All text must meet these minimum contrast ratios:**

@@ -5,45 +5,20 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 <BaseLayout>
   <section class="py-20 bg-base-25">
     <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
-      <!-- Hero Section with Two Columns -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start mb-16">
-        <!-- Left Column: Info -->
-        <div>
-          <div class="inline-flex items-center gap-2 px-4 py-2 bg-accent-100 text-accent-700 rounded-full text-sm font-medium mb-6">
-            <span class="text-2xl">📄</span>
-            Gestor Documental IA
-          </div>
-          <h1 class="text-4xl md:text-5xl font-bold text-base-900 mb-6">
-            Encuentra cualquier documento <span class="text-accent-600">en segundos</span>
-          </h1>
-          <p class="text-xl text-base-600 mb-6">
-            Busca información en miles de documentos usando lenguaje natural.
-            El sistema entiende tu pregunta y encuentra la respuesta exacta.
-          </p>
-
-          <!-- Context Box -->
-          <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6">
-            <h3 class="text-sm font-semibold text-base-900 mb-3">📋 Contexto de la demo:</h3>
-            <p class="text-sm text-base-800 mb-4">
-              Esta es una simulación para una empresa de consultoría con 50 empleados.
-              El sistema tiene indexados más de 1,200 documentos internos: políticas, procedimientos,
-              manuales y normativas.
-            </p>
-            <p class="text-sm text-base-800">
-              <strong>Antes:</strong> Buscar información llevaba 10-15 minutos navegando carpetas.<br>
-              <strong>Ahora:</strong> Respuesta en segundos con el extracto exacto del documento.
-            </p>
-          </div>
-
-          <div class="bg-green-50 border border-green-200 rounded-lg p-4">
-            <p class="text-sm text-base-800">
-              <span class="font-semibold">💡 Prueba buscando:</span> "política de teletrabajo", "requisitos para vacaciones" o "procedimiento de compras"
-            </p>
-          </div>
+      <!-- Hero Section -->
+      <div class="text-center mb-16">
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-accent-100 text-accent-700 rounded-full text-sm font-medium mb-6">
+          <span class="text-2xl">📄</span>
+          Gestor Documental IA
         </div>
+        <h1 class="text-4xl md:text-5xl font-bold text-base-900 mb-6">
+          Encuentra cualquier documento <span class="text-accent-600">en segundos</span>
+        </h1>
+      </div>
 
-        <!-- Right Column: Demo -->
-        <div class="max-w-5xl mx-auto bg-gradient-to-br from-base-900 to-base-800 rounded-2xl shadow-2xl overflow-hidden">
+      <!-- Interactive Demo Section -->
+      <div class="mb-16">
+        <div class="max-w-4xl mx-auto bg-gradient-to-br from-base-900 to-base-800 rounded-2xl shadow-2xl overflow-hidden">
           <!-- Demo Header -->
           <div class="bg-base-800 px-6 py-4 border-b border-base-700">
             <div class="flex items-center justify-between">
@@ -59,7 +34,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
             </div>
           </div>
 
-          <!-- Search Container -->
+          <!-- Demo Content -->
           <div class="bg-base-50 p-8">
             <!-- Search Bar -->
             <div class="mb-6">
@@ -67,8 +42,8 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
                 <input
                   type="text"
                   id="doc-search-input"
-                  placeholder="Pregunta algo... ej: ¿Cuál es la política de vacaciones?"
-                  class="w-full px-6 py-4 pr-24 border-2 border-base-300 rounded-xl focus:ring-2 focus:ring-accent-500 focus:border-accent-500 bg-base-50 text-lg"
+                  placeholder="Escribe tu pregunta..."
+                  class="w-full px-6 py-4 pr-24 border-2 border-base-300 rounded-xl focus:ring-2 focus:ring-accent-500 focus:border-accent-500 bg-white text-base"
                 />
                 <button
                   type="submit"
@@ -77,24 +52,94 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
                   Buscar
                 </button>
               </form>
-              <p class="text-xs text-base-700 mt-2">
-                Prueba: "política de teletrabajo", "requisitos para solicitar vacaciones", "procedimiento de compras"
-              </p>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="mb-6">
+              <p class="text-sm text-base-700 mb-3 font-medium">Prueba estas búsquedas:</p>
+              <div class="flex flex-wrap gap-2">
+                <button
+                  class="quick-search-btn px-4 py-2 bg-base-100 hover:bg-accent-600 hover:text-white border-2 border-base-200 hover:border-accent-600 rounded-lg text-sm font-medium transition-all duration-200"
+                  data-query="¿Cuál es la política de teletrabajo?">
+                  📱 Política de teletrabajo
+                </button>
+                <button
+                  class="quick-search-btn px-4 py-2 bg-base-100 hover:bg-accent-600 hover:text-white border-2 border-base-200 hover:border-accent-600 rounded-lg text-sm font-medium transition-all duration-200"
+                  data-query="¿Cuáles son los requisitos para solicitar vacaciones?">
+                  🏖️ Requisitos para vacaciones
+                </button>
+                <button
+                  class="quick-search-btn px-4 py-2 bg-base-100 hover:bg-accent-600 hover:text-white border-2 border-base-200 hover:border-accent-600 rounded-lg text-sm font-medium transition-all duration-200"
+                  data-query="¿Cómo funciona el procedimiento de compras?">
+                  🛒 Procedimiento de compras
+                </button>
+              </div>
             </div>
 
             <!-- Results Container -->
             <div id="doc-results" class="space-y-4 min-h-[400px]">
               <!-- Initial State -->
-              <div class="text-center py-16 text-base-700">
+              <div class="text-center py-16 text-base-500">
                 <div class="text-6xl mb-4">🔍</div>
-                <p class="text-lg">Haz una pregunta para ver cómo funciona la búsqueda inteligente</p>
-                <p class="text-sm mt-2">El sistema buscará en toda tu documentación y extraerá la información relevante</p>
+                <p class="text-lg font-medium mx-auto max-w-md">Haz clic en una búsqueda rápida o escribe tu pregunta</p>
+                <p class="text-sm mt-2 mx-auto max-w-md">El sistema buscará en toda la documentación y extraerá la información relevante</p>
               </div>
             </div>
           </div>
-        </div>
+
+          <!-- Info Panel -->
+          <div class="bg-base-100 px-6 py-5">
+            <p class="text-sm text-base-600 text-center font-medium max-w-2xl mx-auto">
+            </p>
+          </div>
         </div>
       </div>
+
+      <!-- Context Box - Moved outside demo -->
+      <div class="max-w-4xl mx-auto mb-16">
+        <div class="bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl p-6 text-white">
+          <h3 class="text-sm font-semibold mb-4">📋 Contexto de la demo:</h3>
+          <b class="text-sm mb-6 opacity-90">
+            Esta es una simulación para una empresa de consultoría con 50 empleados.
+            El sistema tiene indexados más de 1,200 documentos internos: políticas, procedimientos,
+            manuales y normativas.
+          </b>
+
+          <!-- Before/After Comparison Cards -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+            <!-- Before Card -->
+            <div class="bg-white/10 backdrop-blur-sm rounded-lg p-5 border-2 border-white/20 hover:border-white/40 transition-all duration-300">
+              <div class="flex items-center gap-2 mb-3">
+                <div class="w-8 h-8 bg-red-500/20 rounded-lg flex items-center justify-center">
+                  <span class="text-xl">😓</span>
+                </div>
+                <h4 class="font-bold text-white">Antes</h4>
+              </div>
+              <p class="text-sm text-white/90 leading-relaxed">
+                Buscar información llevaba <strong class="text-white">10-15 minutos</strong> navegando entre carpetas, archivos y versiones obsoletas.
+              </p>
+            </div>
+
+            <!-- After Card -->
+            <div class="bg-white/10 backdrop-blur-sm rounded-lg p-5 border-2 border-green-400/40 hover:border-green-400/60 transition-all duration-300 shadow-lg shadow-green-500/20">
+              <div class="flex items-center gap-2 mb-3">
+                <div class="w-8 h-8 bg-green-500/20 rounded-lg flex items-center justify-center">
+                  <span class="text-xl">⚡</span>
+                </div>
+                <h4 class="font-bold text-white">Ahora</h4>
+              </div>
+              <p class="text-sm text-white/90 leading-relaxed">
+                Respuesta en <strong class="text-green-300">&lt;1-5 segundos</strong> con el extracto exacto del documento y su ubicación.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="text-xl text-base-600 max-w-3xl mx-auto mb-8 text-center">
+        Busca información en miles de documentos usando lenguaje natural.
+        El sistema entiende tu pregunta y encuentra la respuesta exacta.
+      </p>
 
       <!-- Features Grid -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
@@ -129,6 +174,26 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         </div>
       </div>
 
+      <!-- Stats Section -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-16">
+        <div class="bg-gradient-to-br from-accent-600 to-blue-600 rounded-xl p-6 text-white text-center">
+          <div class="text-4xl font-bold mb-2">90%</div>
+          <div class="text-sm opacity-90">Reducción de tiempo</div>
+        </div>
+        <div class="bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl p-6 text-white text-center">
+          <div class="text-4xl font-bold mb-2">&lt;2s</div>
+          <div class="text-sm opacity-90">Tiempo de búsqueda</div>
+        </div>
+        <div class="bg-gradient-to-br from-purple-600 to-pink-600 rounded-xl p-6 text-white text-center">
+          <div class="text-4xl font-bold mb-2">1000+</div>
+          <div class="text-sm opacity-90">Documentos indexables</div>
+        </div>
+        <div class="bg-gradient-to-br from-green-600 to-teal-600 rounded-xl p-6 text-white text-center">
+          <div class="text-4xl font-bold mb-2">24/7</div>
+          <div class="text-sm opacity-90">Disponibilidad</div>
+        </div>
+      </div>
+
       <!-- CTA Section -->
       <div class="text-center bg-gradient-to-br from-accent-600 to-blue-600 rounded-2xl p-12 text-white">
         <h2 class="text-3xl font-bold mb-4">
@@ -154,6 +219,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
     const searchForm = document.getElementById('doc-search-form') as HTMLFormElement;
     const searchInput = document.getElementById('doc-search-input') as HTMLInputElement;
     const resultsContainer = document.getElementById('doc-results') as HTMLDivElement;
+    const quickSearchButtons = document.querySelectorAll('.quick-search-btn');
 
     if (!searchForm || !searchInput || !resultsContainer) return;
 
@@ -178,14 +244,6 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         relevance: 92
       }
     ];
-
-    const queries: Record<string, string[]> = {
-      'teletrabajo': ['Política de Teletrabajo 2024'],
-      'remoto': ['Política de Teletrabajo 2024'],
-      'vacaciones': ['Política de Vacaciones'],
-      'compra': ['Manual de Procedimientos - Compras'],
-      'default': ['Política de Teletrabajo 2024', 'Política de Vacaciones']
-    };
 
     function showResults(query: string) {
       resultsContainer.innerHTML = '';
@@ -217,8 +275,8 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         }
 
         resultsContainer.innerHTML = `
-          <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
-            <div class="flex items-center gap-2 text-blue-800 text-sm font-medium">
+          <div class="bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl p-4 mb-4">
+            <div class="flex items-center gap-2 text-white text-sm font-medium">
               <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
               </svg>
@@ -229,28 +287,30 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 
         relevantDocs.forEach(doc => {
           const docCard = `
-            <div class="bg-base-50 border border-base-200 rounded-xl p-6 hover:border-accent-300 hover:shadow-lg transition-all duration-200 cursor-pointer">
+            <div class="bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl p-6 text-white hover:shadow-lg transition-all duration-200">
               <div class="flex items-start justify-between mb-3">
                 <div>
-                  <h3 class="text-lg font-semibold text-base-900 mb-1">${doc.title}</h3>
-                  <span class="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-accent-100 text-accent-700">
+                  <h3 class="text-lg font-semibold text-white mb-1">${doc.title}</h3>
+                  <span class="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-white/20 text-white">
                     ${doc.category}
                   </span>
                 </div>
                 <div class="flex flex-col items-end">
-                  <span class="text-sm font-medium text-green-600">${doc.relevance}% relevante</span>
+                  <span class="inline-flex items-center px-3 py-1 rounded-lg text-sm font-semibold bg-green-500 text-white shadow-sm">
+                    ${doc.relevance}% relevante
+                  </span>
                 </div>
               </div>
-              <p class="text-base-600 mb-4">${doc.excerpt}</p>
-              <div class="flex items-center gap-4 text-sm text-base-700">
-                <button class="flex items-center gap-1 hover:text-accent-600 transition-colors">
+              <p class="text-white/90 mb-4">${doc.excerpt}</p>
+              <div class="flex items-center gap-4 text-sm text-white/90">
+                <button class="flex items-center gap-1 hover:text-white transition-colors">
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
                   </svg>
                   Ver documento
                 </button>
-                <button class="flex items-center gap-1 hover:text-accent-600 transition-colors">
+                <button class="flex items-center gap-1 hover:text-white transition-colors">
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
                   </svg>
@@ -264,12 +324,24 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
       }, 800);
     }
 
+    // Handle form submission
     searchForm.addEventListener('submit', (e) => {
       e.preventDefault();
       const query = searchInput.value.trim();
       if (!query) return;
 
       showResults(query);
+    });
+
+    // Handle quick search buttons
+    quickSearchButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const query = button.getAttribute('data-query');
+        if (query) {
+          searchInput.value = query;
+          showResults(query);
+        }
+      });
     });
   });
 </script>

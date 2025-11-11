@@ -164,13 +164,13 @@ import WazuhLayout from "../layouts/WazuhLayout.astro";
   </section>
 
   <!-- Pricing Section -->
-  <section class="py-20 bg-white">
+  <section class="py-20 bg-gradient-to-br from-base-900 to-base-800">
     <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
       <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold text-base-900 mb-4">
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
           Precios Transparentes
         </h2>
-        <p class="text-xl text-base-700">
+        <p class="text-xl text-white/90">
           Sin sorpresas, sin costes ocultos
         </p>
       </div>
@@ -322,8 +322,8 @@ import WazuhLayout from "../layouts/WazuhLayout.astro";
       </div>
 
       <div class="mt-8 text-center">
-        <p class="text-base-700">
-          💡 <strong class="text-base-900">Nota:</strong> Los precios varían según la complejidad de tu infraestructura. Solicita un presupuesto personalizado sin compromiso.
+        <p class="text-white/90">
+          💡 <strong class="text-white">Nota:</strong> Los precios varían según la complejidad de tu infraestructura. Solicita un presupuesto personalizado sin compromiso.
         </p>
       </div>
     </div>
@@ -756,13 +756,13 @@ import WazuhLayout from "../layouts/WazuhLayout.astro";
   </section>
 
   <!-- Implementation Process -->
-  <section class="py-20 bg-base-50">
+  <section class="py-20 bg-gradient-to-br from-base-900 to-base-800">
     <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
       <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold text-base-900 mb-4">
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
           Proceso de Implementación
         </h2>
-        <p class="text-xl text-base-700">
+        <p class="text-xl text-white/90">
           De la auditoría inicial al monitoreo continuo en 4-6 semanas
         </p>
       </div>
@@ -830,179 +830,105 @@ import WazuhLayout from "../layouts/WazuhLayout.astro";
     </div>
   </section>
 
-  <!-- Pricing Section -->
-  <section class="py-20 bg-white">
+  <!-- Why Wazuh Section -->
+  <section class="py-20 bg-gradient-to-bl from-accent-600 via-blue-600">
     <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
       <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold text-base-900 mb-4">
-          Precios Transparentes
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
+          ¿Por qué Wazuh?
         </h2>
-        <p class="text-xl text-base-700">
-          Sin sorpresas, sin costes ocultos
+        <p class="text-xl text-white/90 max-w-3xl mx-auto">
+          La alternativa open source a soluciones comerciales que cuesta 10 veces más
         </p>
       </div>
 
+      <!-- Comparison Table -->
+      <div class="bg-white rounded-2xl shadow-xl overflow-hidden mb-12 border border-base-200">
+        <table class="w-full">
+          <thead class="bg-gradient-to-r from-accent-600 to-blue-600 text-white">
+            <tr>
+              <th class="px-6 py-4 text-left font-semibold">Característica</th>
+              <th class="px-6 py-4 text-center font-semibold">Wazuh</th>
+              <th class="px-6 py-4 text-center font-semibold">SIEM Comercial</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-base-200">
+            <tr class="bg-base-50">
+              <td class="px-6 py-4 font-medium text-base-900">Coste de licencia</td>
+              <td class="px-6 py-4 text-center text-green-600 font-semibold">€0</td>
+              <td class="px-6 py-4 text-center text-red-600 font-semibold">€15,000-50,000/año</td>
+            </tr>
+            <tr class="bg-white">
+              <td class="px-6 py-4 font-medium text-base-900">Implementación</td>
+              <td class="px-6 py-4 text-center text-base-900 font-medium">€2,500-8,000</td>
+              <td class="px-6 py-4 text-center text-base-900 font-medium">€10,000-30,000</td>
+            </tr>
+            <tr class="bg-base-50">
+              <td class="px-6 py-4 font-medium text-base-900">Soporte 24/7</td>
+              <td class="px-6 py-4 text-center text-green-600 font-bold text-xl">✓</td>
+              <td class="px-6 py-4 text-center text-green-600 font-bold text-xl">✓</td>
+            </tr>
+            <tr class="bg-white">
+              <td class="px-6 py-4 font-medium text-base-900">Cumplimiento ENS</td>
+              <td class="px-6 py-4 text-center text-green-600 font-bold text-xl">✓</td>
+              <td class="px-6 py-4 text-center text-green-600 font-bold text-xl">✓</td>
+            </tr>
+            <tr class="bg-base-50">
+              <td class="px-6 py-4 font-medium text-base-900">Código abierto</td>
+              <td class="px-6 py-4 text-center text-green-600 font-bold text-xl">✓</td>
+              <td class="px-6 py-4 text-center text-red-600 font-bold text-xl">✗</td>
+            </tr>
+            <tr class="bg-white">
+              <td class="px-6 py-4 font-medium text-base-900">Sin vendor lock-in</td>
+              <td class="px-6 py-4 text-center text-green-600 font-bold text-xl">✓</td>
+              <td class="px-6 py-4 text-center text-red-600 font-bold text-xl">✗</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Use Cases -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <!-- Basic Package -->
-        <div class="bg-gradient-to-br from-base-100 to-accent-100 rounded-2xl shadow-lg p-8 border-2 border-accent-200">
-          <h3 class="text-2xl font-bold text-base-900 mb-2">Básico</h3>
-          <div class="text-4xl font-bold text-[#0052cc] mb-2">
-            €2,500-4,000
+        <div class="bg-gradient-to-br from-blue-600 to-blue-800 rounded-xl p-6 shadow-lg border border-blue-500">
+          <div class="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center text-white text-2xl mb-4">
+            🏢
           </div>
-          <p class="text-base-700 text-sm mb-6">Pago único de implementación</p>
-
-          <ul class="space-y-3 mb-8">
-            <li class="flex items-start gap-2">
-              <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-              </svg>
-              <span class="text-base-700">Hasta 20 servidores monitorizados</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-              </svg>
-              <span class="text-base-700">Configuración ENS básica</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-              </svg>
-              <span class="text-base-700">2 días de formación presencial</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-              </svg>
-              <span class="text-base-700">30 días de soporte post-implementación</span>
-            </li>
-          </ul>
-
-          <a
-            href="/reunion"
-            class="block w-full px-6 py-3 bg-base-200 hover:bg-base-300 text-center text-base-900 font-semibold rounded-xl transition-colors"
-          >
-            Solicitar Presupuesto
-          </a>
+          <h3 class="text-lg font-semibold text-white mb-3">Retail y Comercio</h3>
+          <p class="text-blue-50">
+            Monitoreo de TPVs, cumplimiento PCI-DSS, detección de fraudes en pagos.
+          </p>
         </div>
 
-        <!-- Complete Package -->
-        <div class="bg-gradient-to-br from-accent-200 to-blue-200 rounded-2xl shadow-2xl p-8 border-2 border-accent-600 relative">
-          <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-[#0052cc] text-white px-4 py-1 rounded-full text-sm font-semibold">
-            Recomendado
+        <div class="bg-gradient-to-br from-green-600 to-green-800 rounded-xl p-6 shadow-lg border border-green-500">
+          <div class="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center text-white text-2xl mb-4">
+            🏥
           </div>
-          <h3 class="text-2xl font-bold text-base-900 mb-2">Completo</h3>
-          <div class="text-4xl font-bold text-[#0052cc] mb-2">
-            €5,000-8,000
-          </div>
-          <p class="text-base-700 text-sm mb-6">Pago único de implementación</p>
-
-          <ul class="space-y-3 mb-8">
-            <li class="flex items-start gap-2">
-              <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-              </svg>
-              <span class="text-base-700">Hasta 50 servidores monitorizados</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-              </svg>
-              <span class="text-base-700">Configuración ENS avanzada + auditoría</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-              </svg>
-              <span class="text-base-700">Dashboards ejecutivos personalizados</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-              </svg>
-              <span class="text-base-700">5 días de formación presencial</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-              </svg>
-              <span class="text-base-700">90 días de soporte post-implementación</span>
-            </li>
-          </ul>
-
-          <a
-            href="/reunion"
-            class="block w-full px-6 py-3 bg-[#0052cc] hover:bg-[#003d99] text-center text-white font-semibold rounded-xl transition-colors"
-          >
-            Solicitar Presupuesto
-          </a>
+          <h3 class="text-lg font-semibold text-white mb-3">Servicios Profesionales</h3>
+          <p class="text-green-50">
+            Auditoría de accesos, cumplimiento RGPD, protección de datos sensibles.
+          </p>
         </div>
 
-        <!-- Support Package -->
-        <div class="bg-gradient-to-br from-base-100 to-accent-100 rounded-2xl shadow-lg p-8 border-2 border-accent-200">
-          <h3 class="text-2xl font-bold text-base-900 mb-2">Soporte Continuo</h3>
-          <div class="text-4xl font-bold text-[#0052cc] mb-2">
-            €300/mes
+        <div class="bg-gradient-to-br from-purple-600 to-purple-800 rounded-xl p-6 shadow-lg border border-purple-500">
+          <div class="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center text-white text-2xl mb-4">
+            🏛️
           </div>
-          <p class="text-base-700 text-sm mb-6">Suscripción mensual</p>
-
-          <ul class="space-y-3 mb-8">
-            <li class="flex items-start gap-2">
-              <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-              </svg>
-              <span class="text-base-700">Monitoreo remoto 24/7</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-              </svg>
-              <span class="text-base-700">Actualizaciones y parches de seguridad</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-              </svg>
-              <span class="text-base-700">Soporte técnico prioritario</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-              </svg>
-              <span class="text-base-700">Informes mensuales ejecutivos</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-              </svg>
-              <span class="text-base-700">Ajustes y optimización continua</span>
-            </li>
-          </ul>
-
-          <a
-            href="/reunion"
-            class="block w-full px-6 py-3 bg-base-200 hover:bg-base-300 text-center text-base-900 font-semibold rounded-xl transition-colors"
-          >
-            Contratar Soporte
-          </a>
+          <h3 class="text-lg font-semibold text-white mb-3">Sector Público</h3>
+          <p class="text-purple-50">
+            Cumplimiento ENS obligatorio, auditorías CCN-CERT, trazabilidad completa.
+          </p>
         </div>
-      </div>
-
-      <div class="mt-8 text-center">
-        <p class="text-base-700">
-          💡 <strong class="text-base-900">Nota:</strong> Los precios varían según la complejidad de tu infraestructura. Solicita un presupuesto personalizado sin compromiso.
-        </p>
       </div>
     </div>
   </section>
 
   <!-- Final CTA -->
-  <section class="py-20 bg-gradient-to-br from-blue-600 via-accent-600 to-blue-700">
+  <section class="py-20 bg-gradient-to-br from-base-900 to-base-800">
     <div class="max-w-4xl mx-auto px-8 md:px-12 text-center text-white">
       <h2 class="text-3xl md:text-4xl font-bold mb-6">
         ¿Listo para implementar Wazuh?
       </h2>
-      <p class="text-xl mb-8 text-blue-50">
+      <p class="text-xl mb-8 text-white/90">
         Agenda una consulta gratuita de 30 minutos para evaluar tu infraestructura
         y recibir un presupuesto sin compromiso.
       </p>
@@ -1024,10 +950,10 @@ import WazuhLayout from "../layouts/WazuhLayout.astro";
       </div>
 
       <div class="mt-12 pt-8 border-t border-white/30">
-        <p class="text-blue-50 text-sm font-medium">
+        <p class="text-white/90 text-sm font-medium">
           💡 También ofrecemos soluciones de automatización con IA para mejorar la eficiencia de tu empresa
         </p>
-        <a href="/" class="text-white hover:text-blue-100 underline text-sm mt-2 inline-block font-medium">
+        <a href="/" class="text-white hover:text-white/80 underline text-sm mt-2 inline-block font-medium">
           Ver servicios de automatización →
         </a>
       </div>
@@ -1035,13 +961,13 @@ import WazuhLayout from "../layouts/WazuhLayout.astro";
   </section>
 
   <!-- YouTube Tutorials Section -->
-  <section class="py-20 bg-base-50">
+  <section class="py-20 bg-gradient-to-bl from-accent-600 via-blue-600">
     <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
       <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-bold text-base-900 mb-4">
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
           📺 Aprende Wazuh Gratis
         </h2>
-        <p class="text-xl text-base-700">
+        <p class="text-xl text-white/90">
           Tutoriales paso a paso en nuestro canal de YouTube
         </p>
       </div>
@@ -1114,10 +1040,10 @@ import WazuhLayout from "../layouts/WazuhLayout.astro";
   </section>
 
   <!-- FAQ Section -->
-  <section class="py-20 bg-white">
+  <section class="py-20 bg-gradient-to-br from-base-900 to-base-800">
     <div class="max-w-4xl mx-auto px-8 md:px-12">
       <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-bold text-base-900 mb-4">
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
           Preguntas Frecuentes
         </h2>
       </div>

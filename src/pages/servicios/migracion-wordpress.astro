@@ -1,0 +1,579 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout>
+  <section class="py-20 bg-base-25">
+    <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
+      <!-- Hero Section -->
+      <div class="text-center mb-16">
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-accent-100 text-accent-700 rounded-full text-sm font-medium mb-6">
+          <span class="text-2xl">🚀</span>
+          Migración de WordPress
+        </div>
+        <h1 class="text-4xl md:text-5xl font-bold text-base-900 mb-6">
+          Clonamos tu web de WordPress a <span class="text-accent-600">código puro con IA</span>
+        </h1>
+        <p class="text-xl text-base-600 max-w-3xl mx-auto mb-6">
+          Convertimos tu sitio WordPress en una web moderna, rápida y segura desarrollada
+          en código limpio. Misma apariencia, mejor rendimiento, sin vulnerabilidades.
+        </p>
+        <div class="bg-black border-2 border-green-500 rounded-lg p-4 max-w-2xl mx-auto mb-6">
+          <p class="text-sm text-white">
+            <strong class="text-green-400">⚡ Transformación real:</strong> Migramos tu diseño actual pixel a pixel,
+            pero con tecnología moderna. Mejora tu PageSpeed de 40-60 a 95-100, elimina riesgos
+            de seguridad y reduce costes de mantenimiento.
+          </p>
+        </div>
+      </div>
+
+      <!-- Comparison Section -->
+      <div class="mb-16">
+        <h2 class="text-3xl font-bold text-base-900 text-center mb-10">
+          WordPress vs. Código Puro: La Diferencia
+        </h2>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <!-- WordPress Column -->
+          <div class="bg-black rounded-2xl p-8 border-2 border-red-500">
+            <div class="flex items-center gap-3 mb-6">
+              <div class="w-12 h-12 bg-red-500/20 rounded-lg flex items-center justify-center text-red-400 text-2xl">
+                🐌
+              </div>
+              <h3 class="text-2xl font-bold text-white">WordPress Actual</h3>
+            </div>
+
+            <div class="space-y-4">
+              <div class="flex items-start gap-3">
+                <span class="text-red-400 text-xl flex-shrink-0">❌</span>
+                <div>
+                  <p class="font-semibold text-white">PageSpeed 40-60</p>
+                  <p class="text-sm text-gray-300">Carga lenta por plugins y temas pesados</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <span class="text-red-400 text-xl flex-shrink-0">❌</span>
+                <div>
+                  <p class="font-semibold text-white">Vulnerabilidades constantes</p>
+                  <p class="text-sm text-gray-300">Plugins desactualizados son puertas traseras</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <span class="text-red-400 text-xl flex-shrink-0">❌</span>
+                <div>
+                  <p class="font-semibold text-white">Mantenimiento mensual obligatorio</p>
+                  <p class="text-sm text-gray-300">Actualizaciones que pueden romper la web</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <span class="text-red-400 text-xl flex-shrink-0">❌</span>
+                <div>
+                  <p class="font-semibold text-white">Costes ocultos</p>
+                  <p class="text-sm text-gray-300">Plugins premium, hosting caro, desarrolladores</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <span class="text-red-400 text-xl flex-shrink-0">❌</span>
+                <div>
+                  <p class="font-semibold text-white">Cambios lentos y costosos</p>
+                  <p class="text-sm text-gray-300">Editar contenido requiere conocimientos técnicos</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Código Puro Column -->
+          <div class="bg-black rounded-2xl p-8 border-2 border-green-500">
+            <div class="flex items-center gap-3 mb-6">
+              <div class="w-12 h-12 bg-green-500/20 rounded-lg flex items-center justify-center text-green-400 text-2xl">
+                ⚡
+              </div>
+              <h3 class="text-2xl font-bold text-white">Código Puro + IA</h3>
+            </div>
+
+            <div class="space-y-4">
+              <div class="flex items-start gap-3">
+                <span class="text-green-400 text-xl flex-shrink-0">✅</span>
+                <div>
+                  <p class="font-semibold text-white">PageSpeed 95-100</p>
+                  <p class="text-sm text-gray-300">Carga ultra-rápida, mejor SEO y conversión</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <span class="text-green-400 text-xl flex-shrink-0">✅</span>
+                <div>
+                  <p class="font-semibold text-white">Seguridad máxima</p>
+                  <p class="text-sm text-gray-300">Sin plugins vulnerables, código limpio auditado</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <span class="text-green-400 text-xl flex-shrink-0">✅</span>
+                <div>
+                  <p class="font-semibold text-white">Sin mantenimiento crítico</p>
+                  <p class="text-sm text-gray-300">Sin actualizaciones que rompan funcionalidades</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <span class="text-green-400 text-xl flex-shrink-0">✅</span>
+                <div>
+                  <p class="font-semibold text-white">Costes transparentes y reducidos</p>
+                  <p class="text-sm text-gray-300">Hosting económico (desde 5€/mes), sin licencias</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <span class="text-green-400 text-xl flex-shrink-0">✅</span>
+                <div>
+                  <p class="font-semibold text-white">Actualizaciones instantáneas con IA</p>
+                  <p class="text-sm text-gray-300">Pídele cambios a tu chatbot de IA en segundos</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PageSpeed Comparison Visual -->
+      <div class="mb-16">
+        <div class="bg-black rounded-2xl p-8 md:p-12">
+          <h3 class="text-2xl font-bold mb-8 text-center text-white">Mejora Real de Rendimiento</h3>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Before -->
+            <div class="bg-black rounded-xl p-6 border-2 border-red-500">
+              <p class="text-sm text-gray-400 mb-2">ANTES - WordPress</p>
+              <div class="flex items-end gap-4 mb-4">
+                <div class="text-5xl font-bold text-red-400">52</div>
+                <div class="text-lg pb-2 text-gray-400">/100</div>
+              </div>
+              <div class="space-y-2 text-sm">
+                <div class="flex justify-between text-white">
+                  <span>Tiempo de carga</span>
+                  <span class="font-semibold">3.8s</span>
+                </div>
+                <div class="flex justify-between text-white">
+                  <span>Tamaño página</span>
+                  <span class="font-semibold">4.2 MB</span>
+                </div>
+                <div class="flex justify-between text-white">
+                  <span>Peticiones HTTP</span>
+                  <span class="font-semibold">87</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- After -->
+            <div class="bg-black rounded-xl p-6 border-2 border-green-500">
+              <p class="text-sm text-gray-400 mb-2">DESPUÉS - Código Puro</p>
+              <div class="flex items-end gap-4 mb-4">
+                <div class="text-5xl font-bold text-green-400">98</div>
+                <div class="text-lg pb-2 text-gray-400">/100</div>
+              </div>
+              <div class="space-y-2 text-sm">
+                <div class="flex justify-between text-white">
+                  <span>Tiempo de carga</span>
+                  <span class="font-semibold text-green-400">0.9s ↓ 76%</span>
+                </div>
+                <div class="flex justify-between text-white">
+                  <span>Tamaño página</span>
+                  <span class="font-semibold text-green-400">380 KB ↓ 91%</span>
+                </div>
+                <div class="flex justify-between text-white">
+                  <span>Peticiones HTTP</span>
+                  <span class="font-semibold text-green-400">12 ↓ 86%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-6 text-center text-sm text-gray-400">
+            📊 Datos basados en migraciones reales de sitios WordPress corporativos
+          </div>
+        </div>
+      </div>
+
+      <!-- Proceso de Migración -->
+      <div class="mb-16">
+        <h2 class="text-3xl font-bold text-base-900 text-center mb-10">
+          Proceso de Migración en 1 Semana
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+          <div class="bg-base-50 rounded-xl p-6 border border-base-200">
+            <div class="w-12 h-12 bg-accent-100 rounded-lg flex items-center justify-center text-accent-600 font-bold text-xl mb-4">
+              1
+            </div>
+            <h3 class="text-lg font-semibold text-base-900 mb-3">Análisis y Clonación</h3>
+            <p class="text-base-600 text-sm">
+              Analizamos tu WordPress actual, extraemos el diseño y contenido. La IA replica el diseño pixel a pixel.
+            </p>
+            <p class="text-xs text-base-500 mt-2">⏱️ Días 1-2</p>
+          </div>
+
+          <div class="bg-base-50 rounded-xl p-6 border border-base-200">
+            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 font-bold text-xl mb-4">
+              2
+            </div>
+            <h3 class="text-lg font-semibold text-base-900 mb-3">Desarrollo y Optimización</h3>
+            <p class="text-base-600 text-sm">
+              Convertimos el diseño a código limpio (Astro, React, etc.), optimizamos imágenes y rendimiento.
+            </p>
+            <p class="text-xs text-base-500 mt-2">⏱️ Días 3-5</p>
+          </div>
+
+          <div class="bg-base-50 rounded-xl p-6 border border-base-200">
+            <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center text-green-600 font-bold text-xl mb-4">
+              3
+            </div>
+            <h3 class="text-lg font-semibold text-base-900 mb-3">Integración IA de Contenidos</h3>
+            <p class="text-base-600 text-sm">
+              Configuramos chatbot de IA para que puedas editar textos, imágenes y contenido por chat.
+            </p>
+            <p class="text-xs text-base-500 mt-2">⏱️ Día 6</p>
+          </div>
+
+          <div class="bg-base-50 rounded-xl p-6 border border-base-200">
+            <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center text-purple-600 font-bold text-xl mb-4">
+              4
+            </div>
+            <h3 class="text-lg font-semibold text-base-900 mb-3">Lanzamiento y Formación</h3>
+            <p class="text-base-600 text-sm">
+              Desplegamos la nueva web, redirigimos el dominio y te formamos para usar el sistema de IA.
+            </p>
+            <p class="text-xs text-base-500 mt-2">⏱️ Día 7</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chatbot IA Integration -->
+      <div class="mb-16">
+        <div class="bg-gradient-to-bl from-accent-600 via-blue-600 rounded-2xl p-8 md:p-12 text-white">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+            <div>
+              <div class="inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-medium mb-4">
+                <span>🤖</span>
+                Exclusivo de nuestro servicio
+              </div>
+              <h3 class="text-3xl font-bold mb-6">Actualiza tu web desde WhatsApp</h3>
+              <p class="text-lg opacity-90 mb-6">
+                Incluimos un chatbot de IA conectado a tu web para que puedas hacer cambios sin tocar código:
+              </p>
+              <ul class="space-y-3">
+                <li class="flex items-center gap-3">
+                  <svg class="w-6 h-6 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span>"Cambia el texto del banner principal"</span>
+                </li>
+                <li class="flex items-center gap-3">
+                  <svg class="w-6 h-6 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span>"Actualiza los precios de la sección servicios"</span>
+                </li>
+                <li class="flex items-center gap-3">
+                  <svg class="w-6 h-6 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span>"Añade esta imagen a la galería de productos"</span>
+                </li>
+                <li class="flex items-center gap-3">
+                  <svg class="w-6 h-6 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span>"Crea una nueva página de contacto"</span>
+                </li>
+              </ul>
+            </div>
+            <!-- WhatsApp Mockup -->
+            <div class="bg-white/10 backdrop-blur-sm rounded-xl overflow-hidden border border-white/20 max-w-md mx-auto">
+              <!-- WhatsApp Header -->
+              <div class="bg-[#008069] px-4 py-3 flex items-center gap-3">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                <div class="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center text-xl">
+                  🤖
+                </div>
+                <div class="flex-1">
+                  <h4 class="text-white font-semibold text-sm">Asistente IA Web</h4>
+                  <p class="text-white/80 text-xs">en línea</p>
+                </div>
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"></path>
+                </svg>
+              </div>
+
+              <!-- WhatsApp Chat Background -->
+              <div class="bg-[#efeae2] p-4 min-h-[400px] relative" style="background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iYSIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIj48cGF0aCBmaWxsPSIjZjBmMGYwIiBkPSJNMCAwaDQwdjQwSDB6Ii8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2EpIi8+PC9zdmc+'); background-size: 200px;">
+                <div class="space-y-3">
+                  <!-- User Message 1 -->
+                  <div class="flex justify-end">
+                    <div class="bg-[#d9fdd3] rounded-lg px-3 py-2 max-w-[75%] shadow-sm">
+                      <p class="text-sm" style="color: #000000;">Cambia el título del banner por:
+                         La mejor calidad al mejor servicio</p>
+                      <span class="text-[10px] text-gray-600 float-right mt-1">17:56</span>
+                    </div>
+                  </div>
+
+                  <!-- Bot Response 1 -->
+                  <div class="flex justify-start">
+                    <div class="bg-white rounded-lg px-3 py-2 max-w-[75%] shadow-sm">
+                      <p class="text-sm" style="color: #000000;">✅ Título actualizado en 3 segundos</p>
+                      <span class="text-[10px] text-gray-600 float-right mt-1">17:56 ✓✓</span>
+                    </div>
+                  </div>
+
+                  <!-- User Message 2 -->
+                  <div class="flex justify-end">
+                    <div class="bg-[#d9fdd3] rounded-lg px-3 py-2 max-w-[75%] shadow-sm">
+                      <p class="text-sm" style="color: #000000;">Actualiza los precios un 20% más</p>
+                      <span class="text-[10px] text-gray-600 float-right mt-1">17:57</span>
+                    </div>
+                  </div>
+
+                  <!-- Bot Response 2 -->
+                  <div class="flex justify-start">
+                    <div class="bg-white rounded-lg px-3 py-2 max-w-[75%] shadow-sm">
+                      <p class="text-sm" style="color: #000000;">✅ Precios actualizados y desplegados</p>
+                      <span class="text-[10px] text-gray-600 float-right mt-1">17:57 ✓✓</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- WhatsApp Input Bar -->
+              <div class="bg-[#f0f2f5] px-3 py-2 flex items-center gap-2">
+                <button class="text-gray-600 hover:text-gray-800">
+                  <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-5-9h10v2H7z"></path>
+                  </svg>
+                </button>
+                <input
+                  type="text"
+                  placeholder="Mensaje"
+                  style="background-color: rgb(240, 248, 247);"
+                  class="flex-1 bg-[#e5e7eb] rounded-full px-4 py-2 text-sm text-black placeholder-gray-600 focus:outline-none"
+                  readonly
+                />
+                <button class="text-gray-600 hover:text-gray-800">
+                  <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path>
+                  </svg>
+                </button>
+                <button class="bg-[#008069] text-white rounded-full p-2 hover:bg-[#006d5a] transition-colors">
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"></path>
+                    <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"></path>
+                  </svg>
+                </button>
+              </div>
+
+              <p class="text-xs text-center py-3 text-white/75">
+                Sin Elementor, sin Gutenberg, sin complicaciones
+              </p>
+            </div>
+
+            <!-- CÓDIGO ANTERIOR COMENTADO
+            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+              <div class="bg-base-900 rounded-lg p-4 font-mono text-sm">
+                <div class="flex items-center gap-2 mb-3">
+                  <div class="w-2 h-2 bg-green-400 rounded-full"></div>
+                  <span class="text-base-300">Chatbot Web Activo</span>
+                </div>
+                <div class="space-y-3">
+                  <div class="flex gap-2">
+                    <span class="text-blue-400">Usuario:</span>
+                    <span class="text-base-100">"Cambia el título del banner"</span>
+                  </div>
+                  <div class="flex gap-2">
+                    <span class="text-green-400">IA:</span>
+                    <span class="text-base-100">"✅ Título actualizado en 3 segundos"</span>
+                  </div>
+                  <div class="flex gap-2">
+                    <span class="text-blue-400">Usuario:</span>
+                    <span class="text-base-100">"Actualiza los precios"</span>
+                  </div>
+                  <div class="flex gap-2">
+                    <span class="text-green-400">IA:</span>
+                    <span class="text-base-100">"✅ Precios actualizados y desplegados"</span>
+                  </div>
+                </div>
+              </div>
+              <p class="text-xs text-center mt-4 opacity-75">
+                Sin Elementor, sin Gutenberg, sin complicaciones
+              </p>
+            </div>
+            -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Beneficios Adicionales -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+        <div class="bg-base-50 rounded-xl p-6">
+          <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center text-green-600 text-xl mb-4">
+            💰
+          </div>
+          <h3 class="text-lg font-semibold text-base-900 mb-3">Ahorro de Costes</h3>
+          <p class="text-base-600 mb-3">
+            Elimina gastos recurrentes de plugins premium, temas y hosting caro.
+          </p>
+          <div class="text-sm space-y-1">
+            <p class="text-base-700"><span class="font-semibold">❌ WordPress:</span> 80-150€/mes</p>
+            <p class="text-green-600"><span class="font-semibold">✅ Código puro:</span> 5-20€/mes</p>
+          </div>
+        </div>
+
+        <div class="bg-base-50 rounded-xl p-6">
+          <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 text-xl mb-4">
+            🔒
+          </div>
+          <h3 class="text-lg font-semibold text-base-900 mb-3">Seguridad Total</h3>
+          <p class="text-base-600 mb-3">
+            Sin plugins de terceros vulnerables. Código auditado y limpio.
+          </p>
+          <div class="text-sm text-base-700">
+            <p>• Sin ataques por plugins desactualizados</p>
+            <p>• Sin inyecciones SQL</p>
+            <p>• Sin backdoors ocultos</p>
+          </div>
+        </div>
+
+        <div class="bg-base-50 rounded-xl p-6">
+          <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center text-purple-600 text-xl mb-4">
+            📈
+          </div>
+          <h3 class="text-lg font-semibold text-base-900 mb-3">Mejor SEO y Conversión</h3>
+          <p class="text-base-600 mb-3">
+            Google premia las webs rápidas con mejor posicionamiento.
+          </p>
+          <div class="text-sm text-base-700">
+            <p>• PageSpeed 95-100 = mejor ranking</p>
+            <p>• Carga rápida = menos rebote</p>
+            <p>• Mejor UX = más conversiones</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pricing Section -->
+      <div class="bg-black rounded-2xl p-8 md:p-12 text-white mb-16">
+        <h2 class="text-3xl font-bold mb-8 text-center">Precios</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          <!-- Landing Page -->
+          <div class="bg-black rounded-xl p-6 border-2 border-green-500">
+            <h4 class="text-xl font-bold mb-2 text-white">Landing Page</h4>
+            <p class="text-sm text-gray-300 mb-4">1-3 páginas</p>
+            <div class="text-3xl font-bold mb-4 text-white">350€</div>
+            <ul class="space-y-2 text-sm text-gray-300 mb-6">
+              <li><span class="text-green-400">✅</span> Clonación pixel-perfect</li>
+              <li><span class="text-green-400">✅</span> Optimización PageSpeed</li>
+              <li><span class="text-green-400">✅</span> Hosting 1 año incluido</li>
+              <li><span class="text-green-400">✅</span> SSL gratuito</li>
+              <li><span class="text-green-400">✅</span> Parches de seguridad</li>
+              <li><span class="text-green-400">✅</span> Entrega en 5-7 días</li>
+            </ul>
+            <a
+              href="/reunion"
+                            style="color: white"
+
+              class="block w-full px-4 py-3 text-center bg-green-500 hover:bg-green-600 text-white font-semibold rounded-lg transition-colors"
+            >
+              Solicitar Información
+            </a>
+          </div>
+
+          <!-- Web Corporativa -->
+          <div class="bg-black rounded-xl p-6 border-2 border-green-500 relative">
+            <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-green-500 px-4 py-1 rounded-full text-xs font-bold text-black">
+              MÁS POPULAR
+            </div>
+            <h4 class="text-xl font-bold mb-2 text-white">Web Corporativa</h4>
+            <p class="text-sm text-gray-300 mb-4">5-10 páginas</p>
+            <div class="text-3xl font-bold mb-4 text-white">800€</div>
+            <ul class="space-y-2 text-sm text-gray-300 mb-6">
+              <li><span class="text-green-400">✅</span> Todo lo anterior +</li>
+              <li><span class="text-green-400">✅</span> Formularios de contacto</li>
+              <li><span class="text-green-400">✅</span> Integración Google Analytics</li>
+              <li><span class="text-green-400">✅</span> Blog integrado</li>
+              <li><span class="text-green-400">✅</span> Chatbot IA de contenidos</li>
+              <li><span class="text-green-400">✅</span> Entrega en 7-10 días</li>
+            </ul>
+            <a
+              href="/reunion"
+                            style="color: white"
+
+              class="block w-full px-4 py-3 text-center bg-green-500 hover:bg-green-600 text-white font-semibold rounded-lg transition-colors"
+            >
+              Solicitar Información
+            </a>
+          </div>
+
+          <!-- Página Personalizada -->
+          <div class="bg-black rounded-xl p-6 border-2 border-green-500">
+            <h4 class="text-xl font-bold mb-2 text-white">Página Personalizada</h4>
+            <p class="text-sm text-gray-300 mb-4">Proyecto a medida</p>
+            <div class="text-3xl font-bold mb-4 text-white">1,000€ - 2,000€</div>
+            <ul class="space-y-2 text-sm text-gray-300 mb-6">
+              <li><span class="text-green-400">✅</span> Todo lo anterior +</li>
+              <li><span class="text-green-400">✅</span> Catálogo de productos</li>
+              <li><span class="text-green-400">✅</span> Carrito y checkout</li>
+              <li><span class="text-green-400">✅</span> Pasarela de pago</li>
+              <li><span class="text-green-400">✅</span> Panel administración</li>
+              <li><span class="text-green-400">✅</span> Entrega en 10-14 días</li>
+            </ul>
+            <a  
+              href="/reunion"
+              style="color: white"
+              class="block w-full px-4 py-3 text-center bg-green-500 hover:bg-green-600 text-white font-semibold rounded-lg transition-colors"
+            >
+              Solicitar Información
+            </a>
+          </div>
+        </div>
+
+        <div class="flex justify-center mt-6">
+          <p class="text-center text-sm opacity-75 max-w-2xl">
+            💡 Precios orientativos. El coste final depende de la complejidad de tu WordPress actual.
+          </p>
+        </div>
+      </div>
+
+      <!-- CTA Section
+      <div class="text-center">
+        <h2 class="text-3xl font-bold text-base-900 mb-6">
+          ¿Listo para una web más rápida y segura?
+        </h2>
+        <p class="text-xl text-base-600 mb-8 max-w-2xl mx-auto">
+          Agenda una consulta gratuita y analizaremos tu WordPress actual.
+          Te mostraremos el ahorro exacto en velocidad, seguridad y costes.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="/reunion"
+            class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-accent-600 hover:bg-accent-700 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200"
+          >
+            Solicitar Análisis Gratuito
+            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+            </svg>
+          </a>
+          <a
+            href="/#servicios"
+            class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-base-700 bg-base-100 hover:bg-base-200 rounded-xl border border-base-200 hover:border-accent-300 transition-all duration-200"
+          >
+            Ver Otros Servicios
+          </a>
+        </div>
+      </div> -->
+    </div>
+  </section>
+</BaseLayout>

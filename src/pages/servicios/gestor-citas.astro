@@ -14,9 +14,15 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         <h1 class="text-4xl md:text-5xl font-bold text-base-900 mb-6">
           Reservas automáticas <span class="text-accent-600">24/7</span>
         </h1>
+
+
         <p class="text-xl text-base-600 max-w-3xl mx-auto mb-8">
           Tu asistente virtual gestiona citas, confirmaciones y recordatorios automáticamente.
           Sin llamadas, sin esperas, sin complicaciones.
+        </p>
+
+        <p class="text-xl text-base-600 max-w-3xl mx-auto mb-8">
+          Disponible para <span class="font-bold text-green-700 bg-green-50 px-2 py-0.5 rounded">WhatsApp</span>, ChatBot en tu web y por <a href="/servicios/atencion-llamadas" class="text-accent-600 hover:text-accent-700 font-semibold underline decoration-2 underline-offset-2 transition-colors">agente IA en llamada</a>.
         </p>
         <div class="inline-flex items-center gap-2 px-4 py-2 bg-green-50 text-green-700 rounded-lg text-sm font-medium">
           <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
@@ -30,7 +36,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <!-- Calendar View -->
             <div class="bg-base-50 rounded-2xl shadow-xl overflow-hidden">
-              <div class="bg-gradient-to-r from-accent-600 to-blue-600 px-6 py-4 text-white">
+              <div class="bg-gradient-to-r from-blue-600 to-purple-600 px-6 py-4 text-white">
                 <h3 class="text-lg font-semibold">Calendario de Disponibilidad</h3>
                 <p class="text-sm opacity-90">Clínica Dental - Dr. García</p>
               </div>
@@ -175,36 +181,27 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         </div>
       </div>
 
-      <!-- Features Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-        <div class="bg-base-50 rounded-xl p-6">
-          <div class="w-12 h-12 bg-accent-100 rounded-lg flex items-center justify-center text-accent-600 text-xl mb-4">
-            🔄
-          </div>
-          <h3 class="text-lg font-semibold text-base-900 mb-3">Sincronización Automática</h3>
-          <p class="text-base-600">
-            Integración con Google Calendar, Outlook y otros calendarios populares.
-          </p>
+      <!-- Stats Section -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-16">
+        <div class="bg-gradient-to-br from-accent-600 to-blue-600 rounded-xl p-6 text-white text-center">
+          <div class="text-4xl font-bold mb-2">24/7</div>
+          <div class="text-sm opacity-90">Disponibilidad</div>
+          <div class="text-xs opacity-75 mt-2">🌐 Web siempre activa</div>
         </div>
-
-        <div class="bg-base-50 rounded-xl p-6">
-          <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 text-xl mb-4">
-            📧
-          </div>
-          <h3 class="text-lg font-semibold text-base-900 mb-3">Recordatorios Inteligentes</h3>
-          <p class="text-base-600">
-            Email y SMS automáticos de confirmación, recordatorio y seguimiento.
-          </p>
+        <div class="bg-gradient-to-br from-green-500 to-green-600 rounded-xl p-6 text-white text-center">
+          <div class="text-4xl font-bold mb-2">85%</div>
+          <div class="text-sm opacity-90">Reservas desde WhatsApp</div>
+          <div class="text-xs opacity-75 mt-2">💬 Canal preferido</div>
         </div>
-
-        <div class="bg-base-50 rounded-xl p-6">
-          <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center text-green-600 text-xl mb-4">
-            ⏰
-          </div>
-          <h3 class="text-lg font-semibold text-base-900 mb-3">Disponibilidad 24/7</h3>
-          <p class="text-base-600">
-            Tus clientes pueden reservar a cualquier hora, sin necesidad de llamar.
-          </p>
+        <div class="bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl p-6 text-white text-center">
+          <div class="text-4xl font-bold mb-2">60%</div>
+          <div class="text-sm opacity-90">Reducción de llamadas</div>
+          <div class="text-xs opacity-75 mt-2">📞 Menos interrupciones</div>
+        </div>
+        <div class="bg-gradient-to-br from-purple-600 to-pink-600 rounded-xl p-6 text-white text-center">
+          <div class="text-4xl font-bold mb-2">0</div>
+          <div class="text-sm opacity-90">No-shows con recordatorios</div>
+          <div class="text-xs opacity-75 mt-2">🔔 Confirmación automática</div>
         </div>
       </div>
 

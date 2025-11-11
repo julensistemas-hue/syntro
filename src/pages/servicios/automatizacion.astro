@@ -14,14 +14,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         <h1 class="text-4xl md:text-5xl font-bold text-base-900 mb-6">
           Optimiza tu operativa y <span class="text-accent-600">multiplica resultados</span>
         </h1>
-        <p class="text-xl text-base-600 max-w-3xl mx-auto mb-8">
-          Identifica procesos repetitivos en tu empresa y automatízalos con IA.
-          Reduce errores, ahorra tiempo y libera a tu equipo para tareas estratégicas.
-        </p>
-        <div class="inline-flex items-center gap-2 px-4 py-2 bg-green-50 text-green-700 rounded-lg text-sm font-medium">
-          <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-          Dashboard interactivo disponible abajo
-        </div>
+       
       </div>
 
       <!-- Interactive Dashboard -->
@@ -30,15 +23,17 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
           <!-- Dashboard Header -->
           <div class="bg-base-800 px-6 py-4 border-b border-base-700">
             <div class="flex items-center justify-between">
-              <div>
-                <h3 class="text-base-50 text-lg font-semibold">Dashboard de Automatización</h3>
-                <p class="text-base-200 text-sm">Empresa de ejemplo - 50 empleados</p>
+              <div class="flex items-center gap-3">
+                <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                <span class="ml-4 text-base-300 text-sm font-medium">Dashboard de Automatización</span>
               </div>
               <div class="flex items-center gap-2">
-                <select class="bg-base-700 text-base-50 px-3 py-2 rounded-lg text-sm border border-base-600">
-                  <option>Último mes</option>
-                  <option>Último trimestre</option>
-                  <option>Último año</option>
+                <select id="period-selector" class="bg-base-700 text-white px-4 py-2 rounded-lg text-sm border border-base-600 hover:border-accent-500 focus:outline-none focus:border-accent-500 transition-colors font-medium cursor-pointer [&>option]:text-white [&>option]:bg-black">
+                  <option value="month">Último mes</option>
+                  <option value="quarter">Último trimestre</option>
+                  <option value="year">Último año</option>
                 </select>
               </div>
             </div>
@@ -48,27 +43,27 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
             <!-- Key Metrics -->
             <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
               <div class="bg-gradient-to-br from-green-500 to-green-600 rounded-xl p-6 text-white">
-                <div class="text-sm opacity-90 mb-2">Ahorro Mensual</div>
-                <div class="text-3xl font-bold">€3,240</div>
-                <div class="text-xs opacity-75 mt-2">↑ 15% vs mes anterior</div>
+                <div class="text-sm opacity-90 mb-2" id="savings-label">Ahorro Mensual</div>
+                <div class="text-3xl font-bold" id="savings-value">€3,240</div>
+                <div class="text-xs opacity-75 mt-2" id="savings-trend">↑ 15% vs mes anterior</div>
               </div>
 
               <div class="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-6 text-white">
-                <div class="text-sm opacity-90 mb-2">Horas Ahorradas</div>
-                <div class="text-3xl font-bold">187h</div>
-                <div class="text-xs opacity-75 mt-2">Por mes</div>
+                <div class="text-sm opacity-90 mb-2" id="hours-label">Horas Ahorradas</div>
+                <div class="text-3xl font-bold" id="hours-value">187h</div>
+                <div class="text-xs opacity-75 mt-2" id="hours-period">Por mes</div>
               </div>
 
               <div class="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl p-6 text-white">
-                <div class="text-sm opacity-90 mb-2">Tareas Automatizadas</div>
-                <div class="text-3xl font-bold">1,243</div>
-                <div class="text-xs opacity-75 mt-2">Este mes</div>
+                <div class="text-sm opacity-90 mb-2" id="tasks-label">Tareas Automatizadas</div>
+                <div class="text-3xl font-bold" id="tasks-value">1,243</div>
+                <div class="text-xs opacity-75 mt-2" id="tasks-period">Este mes</div>
               </div>
 
               <div class="bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl p-6 text-white">
-                <div class="text-sm opacity-90 mb-2">Reducción Errores</div>
-                <div class="text-3xl font-bold">89%</div>
-                <div class="text-xs opacity-75 mt-2">En procesos automatizados</div>
+                <div class="text-sm opacity-90 mb-2" id="errors-label">Reducción Errores</div>
+                <div class="text-3xl font-bold" id="errors-value">89%</div>
+                <div class="text-xs opacity-75 mt-2" id="errors-period">En procesos automatizados</div>
               </div>
             </div>
 
@@ -230,7 +225,14 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
           </div>
         </div>
       </div>
-
+ <br>
+    </br>  <br>
+    </br>
+       <p class="text-xl text-base-600 max-w-3xl mx-auto mb-8">
+          Identifica procesos repetitivos en tu empresa y automatízalos con IA.
+          Reduce errores, ahorra tiempo y libera a tu equipo para tareas estratégicas.
+        </p>
+       
       <!-- Benefits Section -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
         <div class="bg-base-50 rounded-xl p-6">
@@ -283,3 +285,108 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
     </div>
   </section>
 </BaseLayout>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const periodSelector = document.getElementById('period-selector') as HTMLSelectElement;
+
+    // Datos por período
+    const periodData = {
+      month: {
+        savingsLabel: 'Ahorro Mensual',
+        savingsValue: '€3,240',
+        savingsTrend: '↑ 15% vs mes anterior',
+        hoursLabel: 'Horas Ahorradas',
+        hoursValue: '187h',
+        hoursPeriod: 'Por mes',
+        tasksLabel: 'Tareas Automatizadas',
+        tasksValue: '1,243',
+        tasksPeriod: 'Este mes',
+        errorsLabel: 'Reducción Errores',
+        errorsValue: '89%',
+        errorsPeriod: 'En procesos automatizados'
+      },
+      quarter: {
+        savingsLabel: 'Ahorro Trimestral',
+        savingsValue: '€9,720',
+        savingsTrend: '↑ 12% vs trimestre anterior',
+        hoursLabel: 'Horas Ahorradas',
+        hoursValue: '561h',
+        hoursPeriod: 'Por trimestre',
+        tasksLabel: 'Tareas Automatizadas',
+        tasksValue: '3,729',
+        tasksPeriod: 'Este trimestre',
+        errorsLabel: 'Reducción Errores',
+        errorsValue: '91%',
+        errorsPeriod: 'En procesos automatizados'
+      },
+      year: {
+        savingsLabel: 'Ahorro Anual',
+        savingsValue: '€38,880',
+        savingsTrend: '↑ 18% vs año anterior',
+        hoursLabel: 'Horas Ahorradas',
+        hoursValue: '2,244h',
+        hoursPeriod: 'Por año',
+        tasksLabel: 'Tareas Automatizadas',
+        tasksValue: '14,916',
+        tasksPeriod: 'Este año',
+        errorsLabel: 'Reducción Errores',
+        errorsValue: '93%',
+        errorsPeriod: 'Mejora continua anual'
+      }
+    };
+
+    function updateMetrics(period: 'month' | 'quarter' | 'year') {
+      const data = periodData[period];
+
+      // Actualizar elementos con animación
+      const elements = {
+        'savings-label': data.savingsLabel,
+        'savings-value': data.savingsValue,
+        'savings-trend': data.savingsTrend,
+        'hours-label': data.hoursLabel,
+        'hours-value': data.hoursValue,
+        'hours-period': data.hoursPeriod,
+        'tasks-label': data.tasksLabel,
+        'tasks-value': data.tasksValue,
+        'tasks-period': data.tasksPeriod,
+        'errors-label': data.errorsLabel,
+        'errors-value': data.errorsValue,
+        'errors-period': data.errorsPeriod
+      };
+
+      Object.entries(elements).forEach(([id, value]) => {
+        const element = document.getElementById(id);
+        if (element) {
+          // Forzar la animación siempre (incluso si el valor es igual)
+          // Fade out
+          element.style.opacity = '0';
+          element.style.transform = 'translateY(10px)';
+          element.style.transition = 'all 0.3s ease';
+
+          setTimeout(() => {
+            // Siempre actualizar el contenido para forzar el re-render
+            const currentValue = element.textContent;
+            element.textContent = '';
+            // Usar requestAnimationFrame para asegurar el re-render
+            requestAnimationFrame(() => {
+              element.textContent = value;
+              // Fade in
+              element.style.opacity = '1';
+              element.style.transform = 'translateY(0)';
+            });
+          }, 300);
+        }
+      });
+    }
+
+    // Event listener para el selector
+    if (periodSelector) {
+      periodSelector.addEventListener('change', (e) => {
+        const target = e.target as HTMLSelectElement;
+        const period = target.value as 'month' | 'quarter' | 'year';
+        updateMetrics(period);
+      });
+    }
+  });
+</script>

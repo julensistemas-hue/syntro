@@ -14,14 +14,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         <h1 class="text-4xl md:text-5xl font-bold text-base-900 mb-6">
           Recepcionista virtual <span class="text-accent-600">que nunca descansa</span>
         </h1>
-        <p class="text-xl text-base-600 max-w-3xl mx-auto mb-8">
-          Atención telefónica automatizada con voz natural. Gestiona llamadas, reserva citas,
-          responde preguntas frecuentes y deriva casos complejos a tu equipo.
-        </p>
-        <div class="inline-flex items-center gap-2 px-4 py-2 bg-green-50 text-green-700 rounded-lg text-sm font-medium">
-          <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-          Demo interactiva disponible abajo
-        </div>
+      
       </div>
 
       <!-- Interactive Demo Section -->
@@ -59,16 +52,16 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
                 </div>
 
                 <!-- Call Info -->
-                <div class="text-center mb-8">
+                <button id="call-info-button" class="text-center mb-8 w-full cursor-pointer hover:opacity-90 transition-opacity">
                   <div id="call-status" class="text-base-400 text-sm mb-2">Toca para llamar</div>
-                  <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-gradient-to-br from-accent-500 to-blue-600 flex items-center justify-center">
+                  <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-gradient-to-br from-accent-500 to-blue-600 flex items-center justify-center hover:scale-105 transition-transform">
                     <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 20 20">
                       <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
                     </svg>
                   </div>
                   <h3 class="text-white text-xl font-semibold mb-1">Clínica Dental Dr. García</h3>
                   <p class="text-base-400 text-sm">+34 900 123 456</p>
-                </div>
+                </button>
 
                 <!-- Call Duration -->
                 <div id="call-duration" class="text-center text-base-400 text-sm mb-6 hidden">
@@ -80,15 +73,14 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
                   <!-- Conversation will be added here -->
                 </div>
 
-                <!-- Call Button -->
-                <button
-                  id="call-button"
-                  class="w-20 h-20 mx-auto flex items-center justify-center rounded-full bg-green-500 hover:bg-green-600 transition-all duration-200 shadow-lg hover:shadow-xl"
-                >
-                  <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
-                  </svg>
-                </button>
+                <!-- Scenario Selector (replaces call button) -->
+                <div id="scenario-selector-container" class="mb-4 flex justify-center">
+                  <select id="scenario-selector" class="px-4 py-2.5 bg-base-800 text-white rounded-lg border-2 border-base-600 focus:outline-none focus:border-accent-500 transition-colors text-center font-medium cursor-pointer hover:border-accent-400 text-sm">
+                    <option value="reservar">📅 Reservar una cita</option>
+                    <option value="modificar">✏️ Modificar/Eliminar cita</option>
+                    <option value="pago">💳 Consulta sobre pago</option>
+                  </select>
+                </div>
 
                 <!-- Hang Up Button (Hidden initially) -->
                 <button
@@ -125,14 +117,23 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
           </div>
 
           <!-- Info Panel -->
-          <div class="bg-base-100 px-6 py-4">
-            <p class="text-xs text-base-500 text-center">
+          <div class="bg-base-100 px-6 py-5">
+            <p class="text-sm text-base-600 text-center font-medium max-w-2xl mx-auto">
               Esta es una demo simulada. El sistema real utiliza síntesis de voz natural y procesamiento de lenguaje avanzado.
             </p>
           </div>
         </div>
       </div>
-
+ 
+        <p class="text-xl text-base-600 max-w-3xl mx-auto mb-8">
+          Atención telefónica automatizada con voz natural. Gestiona llamadas, reserva citas,
+          responde preguntas frecuentes y deriva casos complejos a tu equipo.
+        </p>
+          <!-- Features Grid
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-green-50 text-green-700 rounded-lg text-sm font-medium">
+          <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+          Demo interactiva disponible abajo
+        </div>-->
       <!-- Features Grid -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
         <div class="bg-base-50 rounded-xl p-6">
@@ -208,29 +209,56 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    const callButton = document.getElementById('call-button');
+    const callInfoButton = document.getElementById('call-info-button');
     const hangupButton = document.getElementById('hangup-button');
     const callStatus = document.getElementById('call-status');
     const callDuration = document.getElementById('call-duration');
     const durationText = document.getElementById('duration-text');
     const conversationLog = document.getElementById('conversation-log');
     const callOptions = document.getElementById('call-options');
+    const scenarioSelector = document.getElementById('scenario-selector') as HTMLSelectElement;
+    const scenarioSelectorContainer = document.getElementById('scenario-selector-container');
 
     let isInCall = false;
     let callStartTime = 0;
     let durationInterval: number;
+    let currentAudio: HTMLAudioElement | null = null;
+    let audioTimeouts: number[] = [];
 
-    const conversation = [
-      { delay: 1000, speaker: 'AI', text: '¡Hola! Bienvenido a Clínica Dental Dr. García. ¿En qué puedo ayudarte?' },
-      { delay: 3000, speaker: 'User', text: 'Hola, quisiera reservar una cita' },
-      { delay: 4500, speaker: 'AI', text: 'Por supuesto. ¿Qué día te vendría mejor?' },
-      { delay: 6000, speaker: 'User', text: 'El próximo martes por la mañana' },
-      { delay: 7500, speaker: 'AI', text: 'Perfecto. Tengo disponibilidad a las 10:00 y a las 11:30. ¿Cuál prefieres?' },
-      { delay: 9000, speaker: 'User', text: 'A las 10:00 está bien' },
-      { delay: 10500, speaker: 'AI', text: '¡Excelente! He reservado tu cita para el martes a las 10:00. Te enviaré un SMS de confirmación. ¿Necesitas algo más?' },
-    ];
+    // Escenarios con sus conversaciones y archivos de audio
+    const scenarios = {
+      reservar: [
+        { delay: 1000, speaker: 'AI', text: '¡Hola! Bienvenido a Clínica Dental Dr. García. ¿En qué puedo ayudarte?', audio: '/audio/reservar/ai_1.mp3' },
+        { delay: 3000, speaker: 'User', text: 'Hola, quisiera reservar una cita', audio: '/audio/reservar/user_1.mp3' },
+        { delay: 4500, speaker: 'AI', text: 'Por supuesto. ¿Qué día te vendría mejor?', audio: '/audio/reservar/ai_2.mp3' },
+        { delay: 6000, speaker: 'User', text: 'El próximo martes por la mañana', audio: '/audio/reservar/user_2.mp3' },
+        { delay: 7500, speaker: 'AI', text: 'Perfecto. Tengo disponibilidad a las 10:00 y a las 11:30. ¿Cuál prefieres?', audio: '/audio/reservar/ai_3.mp3' },
+        { delay: 9000, speaker: 'User', text: 'A las 10:00 está bien', audio: '/audio/reservar/user_3.mp3' },
+        { delay: 10500, speaker: 'AI', text: '¡Excelente! He reservado tu cita para el martes a las 10:00. Te enviaré un SMS de confirmación. ¿Necesitas algo más?', audio: '/audio/reservar/ai_4.mp3' },
+      ],
+      modificar: [
+        { delay: 1000, speaker: 'AI', text: 'Buenos días, Clínica Dental Dr. García. ¿En qué puedo ayudarle?', audio: '/audio/modificar/ai_1.mp3' },
+        { delay: 3000, speaker: 'User', text: 'Necesito modificar mi cita del jueves', audio: '/audio/modificar/user_1.mp3' },
+        { delay: 4500, speaker: 'AI', text: 'Claro, déjame verificar. ¿Podría darme su nombre completo?', audio: '/audio/modificar/ai_2.mp3' },
+        { delay: 6000, speaker: 'User', text: 'Soy María González', audio: '/audio/modificar/user_2.mp3' },
+        { delay: 7500, speaker: 'AI', text: 'Perfecto, María. Veo que tiene una cita el jueves a las 16:00. ¿Qué día le vendría mejor?', audio: '/audio/modificar/ai_3.mp3' },
+        { delay: 9500, speaker: 'User', text: 'El viernes por la tarde', audio: '/audio/modificar/user_3.mp3' },
+        { delay: 11000, speaker: 'AI', text: 'Tengo disponibilidad el viernes a las 17:30. ¿Le viene bien?', audio: '/audio/modificar/ai_4.mp3' },
+        { delay: 12500, speaker: 'User', text: 'Sí, perfecto', audio: '/audio/modificar/user_4.mp3' },
+        { delay: 13500, speaker: 'AI', text: 'Listo, he modificado su cita al viernes 17:30. Le enviaré una confirmación por SMS.', audio: '/audio/modificar/ai_5.mp3' },
+      ],
+      pago: [
+        { delay: 1000, speaker: 'AI', text: 'Clínica Dental Dr. García, ¿en qué puedo ayudarle?', audio: '/audio/pago/ai_1.mp3' },
+        { delay: 3000, speaker: 'User', text: 'Quisiera saber cuánto dura un tratamiento de ortodoncia', audio: '/audio/pago/user_1.mp3' },
+        { delay: 5000, speaker: 'AI', text: 'El tratamiento de ortodoncia suele durar entre 12 y 24 meses, dependiendo del caso. ¿Le gustaría información sobre las formas de pago?', audio: '/audio/pago/ai_2.mp3' },
+        { delay: 7500, speaker: 'User', text: 'Sí, ¿tienen opciones de financiación?', audio: '/audio/pago/user_2.mp3' },
+        { delay: 9000, speaker: 'AI', text: 'Sí, ofrecemos financiación sin intereses hasta 12 meses, y también aceptamos tarjetas de crédito y transferencias. ¿Le gustaría agendar una consulta gratuita para valoración?', audio: '/audio/pago/ai_3.mp3' },
+        { delay: 11500, speaker: 'User', text: 'Sí, me interesa', audio: '/audio/pago/user_3.mp3' },
+        { delay: 12500, speaker: 'AI', text: 'Perfecto. ¿Qué día le vendría mejor para la consulta?', audio: '/audio/pago/ai_4.mp3' },
+      ]
+    };
 
-    function addConversationLine(speaker: string, text: string) {
+    function addConversationLine(speaker: string, text: string, audioSrc?: string) {
       if (!conversationLog) return;
 
       const line = document.createElement('div');
@@ -238,6 +266,38 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
       line.innerHTML = `<span class="font-semibold">${speaker === 'AI' ? '🤖 Asistente:' : '👤 Tú:'}</span> ${text}`;
       conversationLog.appendChild(line);
       conversationLog.scrollTop = conversationLog.scrollHeight;
+
+      // Reproducir audio si está disponible
+      if (audioSrc) {
+        playAudio(audioSrc);
+      }
+    }
+
+    function playAudio(src: string) {
+      // Detener audio actual si existe
+      if (currentAudio) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+      }
+
+      // Crear y reproducir nuevo audio
+      currentAudio = new Audio(src);
+      currentAudio.play().catch(error => {
+        console.log('Audio playback failed:', error);
+        // Silenciosamente fallar si el audio no está disponible
+      });
+    }
+
+    function stopAllAudio() {
+      if (currentAudio) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+        currentAudio = null;
+      }
+
+      // Limpiar todos los timeouts de audio
+      audioTimeouts.forEach(timeout => clearTimeout(timeout));
+      audioTimeouts = [];
     }
 
     function updateDuration() {
@@ -253,8 +313,13 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
       isInCall = true;
       callStartTime = Date.now();
 
+      // Obtener escenario seleccionado
+      const selectedScenario = scenarioSelector ? scenarioSelector.value as keyof typeof scenarios : 'cita';
+      const conversation = scenarios[selectedScenario];
+
       // UI Updates
-      if (callButton) callButton.classList.add('hidden');
+      if (scenarioSelectorContainer) scenarioSelectorContainer.classList.add('hidden');
+      if (callInfoButton) callInfoButton.classList.add('hidden');
       if (hangupButton) hangupButton.classList.remove('hidden');
       if (hangupButton) hangupButton.classList.add('flex');
       if (callStatus) callStatus.textContent = 'Conectando...';
@@ -270,22 +335,25 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         if (callStatus) callStatus.textContent = 'En llamada';
       }, 1500);
 
-      // Play conversation
+      // Play conversation with audio
       conversation.forEach(line => {
-        setTimeout(() => {
+        const timeout = setTimeout(() => {
           if (isInCall) {
-            addConversationLine(line.speaker, line.text);
+            addConversationLine(line.speaker, line.text, line.audio);
           }
-        }, line.delay);
+        }, line.delay) as unknown as number;
+        audioTimeouts.push(timeout);
       });
     }
 
     function endCall() {
       isInCall = false;
       clearInterval(durationInterval);
+      stopAllAudio(); // Detener todos los audios y timeouts
 
       // UI Updates
-      if (callButton) callButton.classList.remove('hidden');
+      if (scenarioSelectorContainer) scenarioSelectorContainer.classList.remove('hidden');
+      if (callInfoButton) callInfoButton.classList.remove('hidden');
       if (hangupButton) hangupButton.classList.add('hidden');
       if (hangupButton) hangupButton.classList.remove('flex');
       if (callStatus) callStatus.textContent = 'Llamada finalizada';
@@ -303,8 +371,13 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
       }, 2000);
     }
 
-    if (callButton) {
-      callButton.addEventListener('click', startCall);
+    // Event listeners
+    if (callInfoButton) {
+      callInfoButton.addEventListener('click', startCall);
+    }
+
+    if (scenarioSelector) {
+      scenarioSelector.addEventListener('change', startCall);
     }
 
     if (hangupButton) {

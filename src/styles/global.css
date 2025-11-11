@@ -4,7 +4,8 @@
 
 @theme {
   --font-sans: "Inter", sans-serif;
-  --color-black: #121212;
+  /* Black - True black for text */
+  --color-black: #000000;
   /* Accent - Professional Blue */
   --color-accent-25: #f5fbff;
   --color-accent-50: #ebf7ff;
