@@ -1,5 +1,8 @@
 ---
 import OptimizedImage from "../../layouts/utilities/OptimizedImage.astro";
+
+// Get current page path for active state
+const currentPath = Astro.url.pathname;
 ---
 
 <header
@@ -8,13 +11,13 @@ import OptimizedImage from "../../layouts/utilities/OptimizedImage.astro";
   <div class="w-full mx-auto px-6 max-w-7xl">
     <div
       x-data="{ open: false, dropdownOpen: false }"
-      class="relative flex flex-col w-full py-4 mx-auto lg:items-center lg:justify-between lg:flex-row">
+      class="relative flex flex-col w-full py-2.5 mx-auto lg:items-center lg:justify-between lg:flex-row">
 
       <!-- Logo -->
       <div class="flex flex-row items-center justify-between lg:justify-start">
-        <a href="/" class="text-base-900 inline-flex items-center gap-3 hover:opacity-80 transition-opacity">
-          <OptimizedImage width={44} src="/logo.svg" alt="AI SECURITY logo" />
-          <span class="font-bold text-xl tracking-tight">AI SECURITY</span>
+        <a href="/" class="text-base-900 inline-flex items-center gap-2.5 hover:opacity-80 transition-opacity">
+          <OptimizedImage width={36} src="/logo.svg" alt="AI SECURITY logo" />
+          <span class="font-bold text-lg tracking-tight">AI SECURITY</span>
         </a>
 
         <!-- Mobile Menu Button -->
@@ -60,28 +63,28 @@ import OptimizedImage from "../../layouts/utilities/OptimizedImage.astro";
         <!-- Llamadas IA -->
         <a
           href="/servicios/atencion-llamadas"
-          class="w-full lg:w-auto text-base font-medium text-base-800 transition-colors duration-200 hover:text-accent-600 hover:bg-accent-50 px-4 py-2.5 rounded-lg">
+          class={`w-full lg:w-auto text-sm font-medium transition-colors duration-200 px-3 py-2 rounded-lg ${currentPath === '/servicios/atencion-llamadas' ? 'bg-accent-100 text-accent-700' : 'text-base-800 hover:text-accent-600 hover:bg-accent-50'}`}>
           Llamadas IA
         </a>
 
         <!-- Gestor Documental -->
         <a
           href="/servicios/gestor-documental"
-          class="w-full lg:w-auto text-base font-medium text-base-800 transition-colors duration-200 hover:text-accent-600 hover:bg-accent-50 px-4 py-2.5 rounded-lg">
+          class={`w-full lg:w-auto text-sm font-medium transition-colors duration-200 px-3 py-2 rounded-lg ${currentPath === '/servicios/gestor-documental' ? 'bg-accent-100 text-accent-700' : 'text-base-800 hover:text-accent-600 hover:bg-accent-50'}`}>
           Documental
         </a>
 
         <!-- Automatizaciones -->
         <a
           href="/servicios/automatizacion"
-          class="w-full lg:w-auto text-base font-medium text-base-800 transition-colors duration-200 hover:text-accent-600 hover:bg-accent-50 px-4 py-2.5 rounded-lg">
+          class={`w-full lg:w-auto text-sm font-medium transition-colors duration-200 px-3 py-2 rounded-lg ${currentPath === '/servicios/automatizacion' ? 'bg-accent-100 text-accent-700' : 'text-base-800 hover:text-accent-600 hover:bg-accent-50'}`}>
           Automatizaciones
         </a>
 
         <!-- Wazuh -->
         <a
           href="/wazuh"
-          class="w-full lg:w-auto text-base font-medium text-base-800 transition-colors duration-200 hover:text-red-600 hover:bg-red-50 px-4 py-2.5 rounded-lg">
+          class={`w-full lg:w-auto text-sm font-medium transition-colors duration-200 px-3 py-2 rounded-lg ${currentPath === '/wazuh' ? 'bg-red-100 text-red-700' : 'text-base-800 hover:text-red-600 hover:bg-red-50'}`}>
           Wazuh
         </a>
 
@@ -89,7 +92,7 @@ import OptimizedImage from "../../layouts/utilities/OptimizedImage.astro";
         <div class="relative w-full lg:w-auto" @click.away="dropdownOpen = false">
           <button
             @click="dropdownOpen = !dropdownOpen"
-            class="w-full lg:w-auto text-base font-medium text-base-800 transition-colors duration-200 hover:text-accent-600 hover:bg-accent-50 px-4 py-2.5 rounded-lg inline-flex items-center justify-between lg:justify-center gap-2"
+            class="w-full lg:w-auto text-sm font-medium text-base-800 transition-colors duration-200 hover:text-accent-600 hover:bg-accent-50 px-3 py-2 rounded-lg inline-flex items-center justify-between lg:justify-center gap-2"
             :aria-expanded="dropdownOpen.toString()">
             <span>Más Servicios</span>
             <svg class="w-4 h-4 transition-transform" :class="{'rotate-180': dropdownOpen}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -115,17 +118,22 @@ import OptimizedImage from "../../layouts/utilities/OptimizedImage.astro";
             </div>
             <a
               href="/servicios/chatbot"
-              class="block px-4 py-2.5 text-base font-medium text-base-900 hover:bg-accent-50 hover:text-accent-600 transition-colors">
+              class={`block px-4 py-2.5 text-sm font-medium transition-colors ${currentPath === '/servicios/chatbot' ? 'bg-accent-100 text-accent-700' : 'text-base-900 hover:bg-accent-50 hover:text-accent-600'}`}>
               Chatbot Inteligente
             </a>
             <a
               href="/servicios/gestor-citas"
-              class="block px-4 py-2.5 text-base font-medium text-base-900 hover:bg-accent-50 hover:text-accent-600 transition-colors">
+              class={`block px-4 py-2.5 text-sm font-medium transition-colors ${currentPath === '/servicios/gestor-citas' ? 'bg-accent-100 text-accent-700' : 'text-base-900 hover:bg-accent-50 hover:text-accent-600'}`}>
               Gestor de Citas IA
             </a>
             <a
+              href="/servicios/migracion-wordpress"
+              class={`block px-4 py-2.5 text-sm font-medium transition-colors ${currentPath === '/servicios/migracion-wordpress' ? 'bg-accent-100 text-accent-700' : 'text-base-900 hover:bg-accent-50 hover:text-accent-600'}`}>
+              Migración WordPress
+            </a>
+            <a
               href="/reunion"
-              class="block px-4 py-2.5 text-base font-medium text-base-900 hover:bg-accent-50 hover:text-accent-600 transition-colors">
+              class={`block px-4 py-2.5 text-sm font-medium transition-colors ${currentPath === '/reunion' ? 'bg-accent-100 text-accent-700' : 'text-base-900 hover:bg-accent-50 hover:text-accent-600'}`}>
               Consultoría Personalizada
             </a>
 
@@ -138,17 +146,17 @@ import OptimizedImage from "../../layouts/utilities/OptimizedImage.astro";
             </div>
             <a
               href="/soporte-tecnico"
-              class="block px-4 py-2.5 text-base font-medium text-base-900 hover:bg-accent-50 hover:text-accent-600 transition-colors">
+              class={`block px-4 py-2.5 text-sm font-medium transition-colors ${currentPath === '/soporte-tecnico' ? 'bg-accent-100 text-accent-700' : 'text-base-900 hover:bg-accent-50 hover:text-accent-600'}`}>
               Soporte IT
             </a>
             <a
               href="/soporte-tecnico"
-              class="block px-4 py-2.5 text-base font-medium text-base-900 hover:bg-accent-50 hover:text-accent-600 transition-colors">
+              class={`block px-4 py-2.5 text-sm font-medium transition-colors ${currentPath === '/soporte-tecnico' ? 'bg-accent-100 text-accent-700' : 'text-base-900 hover:bg-accent-50 hover:text-accent-600'}`}>
               Ciberseguridad
             </a>
             <a
               href="/soporte-tecnico"
-              class="block px-4 py-2.5 text-base font-medium text-base-900 hover:bg-accent-50 hover:text-accent-600 transition-colors">
+              class={`block px-4 py-2.5 text-sm font-medium transition-colors ${currentPath === '/soporte-tecnico' ? 'bg-accent-100 text-accent-700' : 'text-base-900 hover:bg-accent-50 hover:text-accent-600'}`}>
               Copias de Seguridad
             </a>
           </div>
