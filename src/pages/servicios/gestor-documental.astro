@@ -108,10 +108,9 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         El sistema entiende tu pregunta y encuentra la respuesta exacta.
       </p>
  <div class="max-w-4xl mx-auto mb-16">
-        <div class="rounded-2xl shadow-2xl overflow-hidden border-2 border-base-500 bg-black">
-          <div class="p-6 text-white">
-            <h3 class="text-sm font-semibold mb-4">📋 Contexto de la demo:</h3>
-            <p class="text-sm mb-6 opacity-90">
+          <div class="p-6">
+            <h3 class="text-sm font-semibold mb-4 text-center text-base-700">📋 Contexto de la demo:</h3>
+            <p class="text-sm mb-6 text-center text-base-600">
               Esta es una simulación para una empresa de consultoría con 50 empleados.
               El sistema tiene indexados más de 1,200 documentos internos: políticas, procedimientos,
               manuales y normativas.
@@ -120,37 +119,36 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
             <!-- Before/After Comparison Cards -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
               <!-- Before Card -->
-              <div class="bg-white/5 backdrop-blur-sm rounded-lg p-5 border-2 border-red-500 hover:border-red-400 transition-all duration-300 shadow-lg shadow-red-500/20">
+              <div class="bg-red-50 rounded-lg p-5 border-2 border-red-500 hover:border-red-400 transition-all duration-300 shadow-lg">
                 <div class="flex items-center gap-2 mb-3">
-                  <div class="w-8 h-8 bg-red-500/40 rounded-lg flex items-center justify-center">
+                  <div class="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center">
                     <span class="text-xl">😓</span>
                   </div>
-                  <h4 class="font-bold text-white">Antes</h4>
+                  <h4 class="font-bold text-base-900">Antes</h4>
                 </div>
-                <p class="text-sm text-white/90 leading-relaxed">
-                  Buscar información llevaba <strong class="text-red-400">10-15 minutos</strong> navegando entre carpetas, archivos y versiones obsoletas.
+                <p class="text-sm text-base-700 leading-relaxed">
+                  Buscar información llevaba <strong class="text-red-600">10-15 minutos</strong> navegando entre carpetas, archivos y versiones obsoletas.
                 </p>
               </div>
 
               <!-- After Card -->
-              <div class="bg-white/5 backdrop-blur-sm rounded-lg p-5 border-2 border-green-500 hover:border-green-400 transition-all duration-300 shadow-lg shadow-green-500/20">
+              <div class="bg-green-50 rounded-lg p-5 border-2 border-green-500 hover:border-green-400 transition-all duration-300 shadow-lg">
                 <div class="flex items-center gap-2 mb-3">
-                  <div class="w-8 h-8 bg-green-500/40 rounded-lg flex items-center justify-center">
+                  <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
                     <span class="text-xl">⚡</span>
                   </div>
-                  <h4 class="font-bold text-white">Ahora</h4>
+                  <h4 class="font-bold text-base-900">Ahora</h4>
                 </div>
-                <p class="text-sm text-white/90 leading-relaxed">
-                  Respuesta en <strong class="text-green-300">&lt;1-5 segundos</strong> con el extracto exacto del documento y su ubicación.
+                <p class="text-sm text-base-700 leading-relaxed">
+                  Respuesta en <strong class="text-green-600">&lt;1-5 segundos</strong> con el extracto exacto del documento y su ubicación.
                 </p>
               </div>
             </div>
           </div>
-        </div>
       </div>
    <!-- Features Grid -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-        <div class="bg-black border-2 border-base-500 rounded-xl p-6">
+        <div class="bg-black border-2 border-base-300 rounded-xl p-6">
           <div class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center text-white text-xl mb-4">
             🔎
           </div>
@@ -160,7 +158,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
           </p>
         </div>
 
-        <div class="bg-black border-2 border-base-500 rounded-xl p-6">
+        <div class="bg-black border-2 border-base-300 rounded-xl p-6">
           <div class="w-12 h-12 bg-purple-600 rounded-lg flex items-center justify-center text-white text-xl mb-4">
             📑
           </div>
@@ -170,7 +168,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
           </p>
         </div>
 
-        <div class="bg-black border-2 border-base-500 rounded-xl p-6">
+        <div class="bg-black border-2 border-base-300 rounded-xl p-6">
           <div class="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center text-white text-xl mb-4">
             ⚡
           </div>
