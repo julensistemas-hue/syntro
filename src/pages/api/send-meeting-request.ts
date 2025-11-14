@@ -220,7 +220,7 @@ Fecha: ${new Date().toLocaleString('es-ES', { timeZone: 'Europe/Madrid' })}
     // Enviar email
     const result = await resend.emails.send({
       from: 'AI Security <onboarding@resend.dev>', // Cambiarás esto cuando configures tu dominio
-      to: ['info@aisecurity.es'],
+      to: ['julen.sistemas@gmail.com'], // Cambiado a email verificado en Resend (en desarrollo)
       subject: `🎯 Nueva solicitud de consulta - ${nombre} (${empresa || 'Empresa no especificada'})`,
       html: emailHtml,
       text: emailText,

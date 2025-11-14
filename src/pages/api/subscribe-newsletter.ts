@@ -93,7 +93,7 @@ Próximos pasos:
     // Enviar notificación al administrador
     const result = await resend.emails.send({
       from: 'AI Security Newsletter <onboarding@resend.dev>',
-      to: ['info@aisecurity.es'],
+      to: ['julen.sistemas@gmail.com'], // Cambiado a email verificado en Resend (en desarrollo)
       subject: `📧 Nueva suscripción: ${email}`,
       html: emailHtml,
       text: emailText,

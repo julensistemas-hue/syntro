@@ -7,10 +7,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
     <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
       <!-- Hero Section -->
       <div class="text-center mb-16">
-        <div class="inline-flex items-center gap-2 px-4 py-2 bg-accent-100 text-accent-700 rounded-full text-sm font-medium mb-6">
-          <span class="text-2xl">📄</span>
-          Gestor Documental IA
-        </div>
+       
         <h1 class="text-4xl md:text-5xl font-bold text-base-900 mb-6">
           Encuentra cualquier documento <span class="text-accent-600">en segundos</span>
         </h1>
@@ -35,54 +32,64 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
           </div>
 
           <!-- Demo Content -->
-          <div class="bg-base-50 p-8">
-            <!-- Search Bar -->
-            <div class="mb-6">
-              <form id="doc-search-form" class="relative">
-                <input
-                  type="text"
-                  id="doc-search-input"
-                  placeholder="Escribe tu pregunta..."
-                  class="w-full px-6 py-4 pr-24 border-2 border-base-300 rounded-xl focus:ring-2 focus:ring-accent-500 focus:border-accent-500 bg-white text-base"
-                />
-                <button
-                  type="submit"
-                  class="absolute right-2 top-2 px-6 py-2 bg-gradient-to-r from-accent-600 to-blue-600 text-white rounded-lg font-semibold hover:from-accent-700 hover:to-blue-700 transition-all duration-200"
-                >
-                  Buscar
-                </button>
-              </form>
-            </div>
+          <div class="bg-gradient-to-br from-blue-500 to-blue-700 p-8">
+            <div class="max-w-3xl mx-auto">
+              <!-- Search Screen -->
+              <div class="rounded-3xl p-6 shadow-2xl" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);">
+                <!-- Search Bar -->
+                <div class="mb-6">
+                  <form id="doc-search-form" class="relative">
+                    <input
+                      type="text"
+                      id="doc-search-input"
+                      placeholder="Escribe tu pregunta..."
+                      class="w-full px-6 py-4 pr-24 border-2 border-blue-400/40 rounded-xl focus:outline-none focus:border-blue-400 placeholder-base-400"
+                      style="background: rgba(255, 255, 255, 1); color: #000000;"
+                    />
+                    <button
+                      type="submit"
+                      style="height: 100%"
+                      class="absolute right-0 px-6 py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-all duration-200"
+                    >
+                      Buscar
+                    </button>
+                  </form>
+                </div>
 
-            <!-- Quick Actions -->
-            <div class="mb-6">
-              <p class="text-sm text-base-700 mb-3 font-medium">Prueba estas búsquedas:</p>
-              <div class="flex flex-wrap gap-2">
-                <button
-                  class="quick-search-btn px-4 py-2 bg-base-100 hover:bg-accent-600 hover:text-white border-2 border-base-200 hover:border-accent-600 rounded-lg text-sm font-medium transition-all duration-200"
-                  data-query="¿Cuál es la política de teletrabajo?">
-                  📱 Política de teletrabajo
-                </button>
-                <button
-                  class="quick-search-btn px-4 py-2 bg-base-100 hover:bg-accent-600 hover:text-white border-2 border-base-200 hover:border-accent-600 rounded-lg text-sm font-medium transition-all duration-200"
-                  data-query="¿Cuáles son los requisitos para solicitar vacaciones?">
-                  🏖️ Requisitos para vacaciones
-                </button>
-                <button
-                  class="quick-search-btn px-4 py-2 bg-base-100 hover:bg-accent-600 hover:text-white border-2 border-base-200 hover:border-accent-600 rounded-lg text-sm font-medium transition-all duration-200"
-                  data-query="¿Cómo funciona el procedimiento de compras?">
-                  🛒 Procedimiento de compras
-                </button>
-              </div>
-            </div>
+                <!-- Quick Actions -->
+                <div class="mb-6">
+                  <p class="text-sm text-white mb-3 font-medium">Prueba estas búsquedas:</p>
+                  <div class="flex flex-wrap gap-2">
+                    <button
+                      class="quick-search-btn px-4 py-2 bg-white hover:bg-blue-50 border-2 border-blue-300 hover:border-blue-400 rounded-lg text-sm font-medium transition-all duration-200 shadow-md"
+                      data-query="¿Cuál es la política de teletrabajo?"
+                      style="color: #000000;">
+                      📱 Política de teletrabajo
+                    </button>
+                    <button
+                      class="quick-search-btn px-4 py-2 bg-white hover:bg-blue-50 border-2 border-blue-300 hover:border-blue-400 rounded-lg text-sm font-medium transition-all duration-200 shadow-md"
+                      data-query="¿Cuáles son los requisitos para solicitar vacaciones?"
+                      style="color: #000000;">
+                      🏖️ Requisitos para vacaciones
+                    </button>
+                    <button
+                      class="quick-search-btn px-4 py-2 bg-white hover:bg-blue-50 border-2 border-blue-300 hover:border-blue-400 rounded-lg text-sm font-medium transition-all duration-200 shadow-md"
+                      data-query="¿Cómo funciona el procedimiento de compras?"
+                      style="color: #000000;">
+                      🛒 Procedimiento de compras
+                    </button>
+                  </div>
+                </div>
 
-            <!-- Results Container -->
-            <div id="doc-results" class="space-y-4 min-h-[400px]">
-              <!-- Initial State -->
-              <div class="text-center py-16 text-base-500">
-                <div class="text-6xl mb-4">🔍</div>
-                <p class="text-lg font-medium mx-auto max-w-md">Haz clic en una búsqueda rápida o escribe tu pregunta</p>
-                <p class="text-sm mt-2 mx-auto max-w-md">El sistema buscará en toda la documentación y extraerá la información relevante</p>
+                <!-- Results Container -->
+                <div id="doc-results" class="space-y-4 min-h-[400px]">
+                  <!-- Initial State -->
+                  <div class="text-center py-16 text-white/70">
+                    <div class="text-6xl mb-4">🔍</div>
+                    <p class="text-lg font-medium mx-auto max-w-md">Haz clic en una búsqueda rápida o escribe tu pregunta</p>
+                    <p class="text-sm mt-2 mx-auto max-w-md">El sistema buscará en toda la documentación y extraerá la información relevante</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -95,121 +102,94 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         </div>
       </div>
 
-      <!-- Context Box - Moved outside demo -->
-      <div class="max-w-4xl mx-auto mb-16">
-        <div class="bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl p-6 text-white">
-          <h3 class="text-sm font-semibold mb-4">📋 Contexto de la demo:</h3>
-          <b class="text-sm mb-6 opacity-90">
-            Esta es una simulación para una empresa de consultoría con 50 empleados.
-            El sistema tiene indexados más de 1,200 documentos internos: políticas, procedimientos,
-            manuales y normativas.
-          </b>
+       <p class="text-xl text-base-600 max-w-3xl mx-auto mb-8 text-center">
+        Busca información en miles de documentos usando lenguaje natural.
+        El sistema entiende tu pregunta y encuentra la respuesta exacta.
+      </p>
+ <div class="max-w-4xl mx-auto mb-16">
+        <div class="rounded-2xl shadow-2xl overflow-hidden border-2 border-white bg-black">
+          <div class="p-6 text-white">
+            <h3 class="text-sm font-semibold mb-4">📋 Contexto de la demo:</h3>
+            <p class="text-sm mb-6 opacity-90">
+              Esta es una simulación para una empresa de consultoría con 50 empleados.
+              El sistema tiene indexados más de 1,200 documentos internos: políticas, procedimientos,
+              manuales y normativas.
+            </p>
 
-          <!-- Before/After Comparison Cards -->
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-            <!-- Before Card -->
-            <div class="bg-white/10 backdrop-blur-sm rounded-lg p-5 border-2 border-white/20 hover:border-white/40 transition-all duration-300">
-              <div class="flex items-center gap-2 mb-3">
-                <div class="w-8 h-8 bg-red-500/20 rounded-lg flex items-center justify-center">
-                  <span class="text-xl">😓</span>
+            <!-- Before/After Comparison Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+              <!-- Before Card -->
+              <div class="bg-white/5 backdrop-blur-sm rounded-lg p-5 border-2 border-red-500 hover:border-red-400 transition-all duration-300 shadow-lg shadow-red-500/20">
+                <div class="flex items-center gap-2 mb-3">
+                  <div class="w-8 h-8 bg-red-500/40 rounded-lg flex items-center justify-center">
+                    <span class="text-xl">😓</span>
+                  </div>
+                  <h4 class="font-bold text-white">Antes</h4>
                 </div>
-                <h4 class="font-bold text-white">Antes</h4>
+                <p class="text-sm text-white/90 leading-relaxed">
+                  Buscar información llevaba <strong class="text-red-400">10-15 minutos</strong> navegando entre carpetas, archivos y versiones obsoletas.
+                </p>
               </div>
-              <p class="text-sm text-white/90 leading-relaxed">
-                Buscar información llevaba <strong class="text-white">10-15 minutos</strong> navegando entre carpetas, archivos y versiones obsoletas.
-              </p>
-            </div>
 
-            <!-- After Card -->
-            <div class="bg-white/10 backdrop-blur-sm rounded-lg p-5 border-2 border-green-400/40 hover:border-green-400/60 transition-all duration-300 shadow-lg shadow-green-500/20">
-              <div class="flex items-center gap-2 mb-3">
-                <div class="w-8 h-8 bg-green-500/20 rounded-lg flex items-center justify-center">
-                  <span class="text-xl">⚡</span>
+              <!-- After Card -->
+              <div class="bg-white/5 backdrop-blur-sm rounded-lg p-5 border-2 border-green-500 hover:border-green-400 transition-all duration-300 shadow-lg shadow-green-500/20">
+                <div class="flex items-center gap-2 mb-3">
+                  <div class="w-8 h-8 bg-green-500/40 rounded-lg flex items-center justify-center">
+                    <span class="text-xl">⚡</span>
+                  </div>
+                  <h4 class="font-bold text-white">Ahora</h4>
                 </div>
-                <h4 class="font-bold text-white">Ahora</h4>
+                <p class="text-sm text-white/90 leading-relaxed">
+                  Respuesta en <strong class="text-green-300">&lt;1-5 segundos</strong> con el extracto exacto del documento y su ubicación.
+                </p>
               </div>
-              <p class="text-sm text-white/90 leading-relaxed">
-                Respuesta en <strong class="text-green-300">&lt;1-5 segundos</strong> con el extracto exacto del documento y su ubicación.
-              </p>
             </div>
           </div>
         </div>
       </div>
-
-      <p class="text-xl text-base-600 max-w-3xl mx-auto mb-8 text-center">
-        Busca información en miles de documentos usando lenguaje natural.
-        El sistema entiende tu pregunta y encuentra la respuesta exacta.
-      </p>
-
-      <!-- Features Grid -->
+   <!-- Features Grid -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-        <div class="bg-base-50 rounded-xl p-6">
-          <div class="w-12 h-12 bg-accent-100 rounded-lg flex items-center justify-center text-accent-600 text-xl mb-4">
+        <div class="bg-black border-2 border-white rounded-xl p-6">
+          <div class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center text-white text-xl mb-4">
             🔎
           </div>
-          <h3 class="text-lg font-semibold text-base-900 mb-3">Búsqueda Semántica</h3>
-          <p class="text-base-600">
+          <h3 class="text-lg font-semibold text-white mb-3">Búsqueda Semántica</h3>
+          <p class="text-white/80">
             Busca por significado, no solo por palabras clave. La IA entiende el contexto.
           </p>
         </div>
 
-        <div class="bg-base-50 rounded-xl p-6">
-          <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 text-xl mb-4">
+        <div class="bg-black border-2 border-white rounded-xl p-6">
+          <div class="w-12 h-12 bg-purple-600 rounded-lg flex items-center justify-center text-white text-xl mb-4">
             📑
           </div>
-          <h3 class="text-lg font-semibold text-base-900 mb-3">Múltiples Formatos</h3>
-          <p class="text-base-600">
+          <h3 class="text-lg font-semibold text-white mb-3">Múltiples Formatos</h3>
+          <p class="text-white/80">
             PDF, Word, Excel, PowerPoint, imágenes escaneadas y más.
           </p>
         </div>
 
-        <div class="bg-base-50 rounded-xl p-6">
-          <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center text-green-600 text-xl mb-4">
+        <div class="bg-black border-2 border-white rounded-xl p-6">
+          <div class="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center text-white text-xl mb-4">
             ⚡
           </div>
-          <h3 class="text-lg font-semibold text-base-900 mb-3">Resultados Instantáneos</h3>
-          <p class="text-base-600">
+          <h3 class="text-lg font-semibold text-white mb-3">Resultados Instantáneos</h3>
+          <p class="text-white/80">
             Respuestas en milisegundos, incluso con miles de documentos.
           </p>
         </div>
       </div>
+      <!-- Context Box - Moved outside demo -->
+     
+
+     
+   
 
       <!-- Stats Section -->
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-16">
-        <div class="bg-gradient-to-br from-accent-600 to-blue-600 rounded-xl p-6 text-white text-center">
-          <div class="text-4xl font-bold mb-2">90%</div>
-          <div class="text-sm opacity-90">Reducción de tiempo</div>
-        </div>
-        <div class="bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl p-6 text-white text-center">
-          <div class="text-4xl font-bold mb-2">&lt;2s</div>
-          <div class="text-sm opacity-90">Tiempo de búsqueda</div>
-        </div>
-        <div class="bg-gradient-to-br from-purple-600 to-pink-600 rounded-xl p-6 text-white text-center">
-          <div class="text-4xl font-bold mb-2">1000+</div>
-          <div class="text-sm opacity-90">Documentos indexables</div>
-        </div>
-        <div class="bg-gradient-to-br from-green-600 to-teal-600 rounded-xl p-6 text-white text-center">
-          <div class="text-4xl font-bold mb-2">24/7</div>
-          <div class="text-sm opacity-90">Disponibilidad</div>
-        </div>
-      </div>
+    
 
       <!-- CTA Section -->
-      <div class="text-center bg-gradient-to-br from-accent-600 to-blue-600 rounded-2xl p-12 text-white">
-        <h2 class="text-3xl font-bold mb-4">
-          ¿Cansado de buscar información en carpetas infinitas?
-        </h2>
-        <p class="text-xl mb-8 max-w-2xl mx-auto opacity-90">
-          Solicita una demo personalizada con tus propios documentos
-        </p>
-        <a
-          href="/reunion"
-          class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold bg-accent-600 hover:bg-accent-700 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200"
-          style="color: #000000;"
-        >
-          Solicitar Demo Gratuita
-        </a>
-      </div>
+   
     </div>
   </section>
 </BaseLayout>
@@ -251,7 +231,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
       // Loading state
       resultsContainer.innerHTML = `
         <div class="text-center py-8">
-          <div class="inline-flex items-center gap-2 text-accent-600">
+          <div class="inline-flex items-center gap-2 text-white">
             <svg class="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
               <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
               <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
@@ -275,8 +255,8 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         }
 
         resultsContainer.innerHTML = `
-          <div class="bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl p-4 mb-4">
-            <div class="flex items-center gap-2 text-white text-sm font-medium">
+          <div class="bg-white border-2 border-blue-300 rounded-xl p-4 mb-4">
+            <div class="flex items-center gap-2 text-sm font-medium" style="color: #000000;">
               <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
               </svg>
@@ -287,7 +267,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 
         relevantDocs.forEach(doc => {
           const docCard = `
-            <div class="bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl p-6 text-white hover:shadow-lg transition-all duration-200">
+            <div class="bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl p-6 text-white hover:shadow-lg transition-all duration-200">
               <div class="flex items-start justify-between mb-3">
                 <div>
                   <h3 class="text-lg font-semibold text-white mb-1">${doc.title}</h3>
