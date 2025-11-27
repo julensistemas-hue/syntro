@@ -25,7 +25,11 @@
       "Bash(npx:*)",
       "Bash(pnpm build:*)",
       "Bash(git reset:*)",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "Bash(nul)",
+      "Bash(ren:*)",
+      "Bash(git checkout:*)",
+      "Bash(netstat:*)"
     ],
     "deny": [],
     "ask": []

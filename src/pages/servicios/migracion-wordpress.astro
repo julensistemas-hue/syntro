@@ -3,39 +3,383 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout>
-  <section class="py-20 bg-base-25">
+  <!-- Hero Section - Blue Background with Image -->
+  <section class="pt-12 pb-20 relative overflow-hidden">
+    <!-- Background Image -->
+    <div class="absolute inset-0">
+      <img src="/images/3409297.jpg" alt="Background" class="w-full h-full object-cover" />
+    </div>
+    <!-- Overlay Gradient (light) -->
+    <div class="absolute inset-0 bg-gradient-to-bl from-accent-500/10 via-blue-600/50 to-accent-500/10"></div>
+
+    <!-- Content -->
+    <div class="relative z-10">
     <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
       <!-- Hero Section -->
       <div class="text-center mb-16">
-        <div class="inline-flex items-center gap-2 px-4 py-2 bg-accent-100 text-accent-700 rounded-full text-sm font-medium mb-6">
-          <span class="text-2xl">🚀</span>
-          Migración de WordPress
-        </div>
-        <h1 class="text-4xl md:text-5xl font-bold text-base-900 mb-6">
-          Clonamos tu web de WordPress a <span class="text-accent-600">código puro con IA</span>
-        </h1>
-        <p class="text-xl text-base-600 max-w-3xl mx-auto mb-6">
-          Convertimos tu sitio WordPress en una web moderna, rápida y segura desarrollada
-          en código limpio. Misma apariencia, mejor rendimiento, sin vulnerabilidades.
-        </p>
-        <div class="bg-black border-2 border-blue-500 rounded-lg p-4 max-w-2xl mx-auto mb-6">
-          <p class="text-sm text-white">
-            <strong class="text-blue-400">⚡ Transformación real:</strong> Migramos tu diseño actual pixel a pixel,
-            pero con tecnología moderna. Mejora tu PageSpeed de 40-60 a 95-100, elimina riesgos
-            de seguridad y reduce costes de mantenimiento.
-          </p>
+        
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
+          Clonamos tu web de WordPress a<br>
+          <span class="text-blue-200">código puro con IA</span>
+        </h2>
+
+
+
+        <!-- Before/After Comparison Slider -->
+        <div class="max-w-3xl mx-auto mt-12">
+
+          <!-- Image Container with Labels -->
+          <div class="relative">
+            <!-- Left Label: WordPress - Positioned absolutely -->
+            <div class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-full pr-4 hidden lg:flex items-center">
+              <div id="wordpress-label" class="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm text-white rounded-full text-sm font-semibold border border-base-400 transition-all duration-500">
+                <h4 aria-hidden="true">Wordpress</h4>
+
+              </div>
+            </div>
+
+            <!-- Right Label: Código con IA - Positioned absolutely -->
+            <div class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-full pl-4 hidden lg:flex items-center">
+              <div id="codigo-ia-label" class="inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm text-white rounded-full text-sm font-semibold border border-base-400 transition-all duration-500">
+               <h4 aria-hidden="true">Código con IA</h4>
+
+              </div>
+            </div>
+
+            <!-- Comparison Slider Container -->
+            <div class="relative overflow-hidden rounded-2xl shadow-2xl border-4 border-blue-500 max-h-[500px]" id="comparison-container">
+            <!-- After Image (Background) -->
+            <img
+              src="/images/antess.png"
+              alt="Después - Código Puro"
+              class="w-full h-full object-cover object-top"
+            />
+
+            <!-- Before Image (Overlay with clip) -->
+            <div class="absolute top-0 left-0 w-full h-full overflow-hidden" id="before-image-container" style="clip-path: inset(0 50% 0 0);">
+              <img
+                src="/images/despuess.png"
+                alt="Antes - WordPress"
+                class="w-full h-full object-cover object-top"
+              />
+            </div>
+
+            <!-- Slider Handle -->
+            <div class="absolute top-0 bottom-0 w-1 bg-white cursor-ew-resize" id="slider-handle" style="left: 50%;">
+              <!-- Handle Circle -->
+              <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-white rounded-full shadow-xl flex items-center justify-center">
+                <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4"></path>
+                </svg>
+              </div>
+            </div>
+          </div>
+          </div>
+
+          <!-- Labels for mobile (below the image) -->
+          <div class="flex justify-between mt-4 px-4 lg:hidden">
+            <div class="inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm text-white rounded-full text-sm font-semibold border border-base-400">
+              <span aria-hidden="true"></span>
+              WordPress
+            </div>
+            <div class="inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm text-white rounded-full text-sm font-semibold border border-base-400">
+              <span aria-hidden="true"></span>
+              Código con IA
+            </div>
+          </div>
+
+          <!-- Progress Bar (below the image) -->
+          <div class="mt-6">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-sm font-semibold text-white/70">Transformación</span>
+              <span id="progress-percentage" class="text-sm font-bold text-white">0%</span>
+            </div>
+            <div class="w-full h-3 bg-white/10 rounded-full overflow-hidden backdrop-blur-sm border border-white/20">
+              <div id="progress-bar" class="h-full bg-gradient-to-r from-blue-500 via-purple-500 to-green-500 transition-all duration-300 ease-out" style="width: 0%"></div>
+            </div>
+            <div class="flex items-center justify-between mt-2">
+              <span class="text-xs text-blue-300 font-medium">WordPress</span>
+              <span class="text-xs text-green-300 font-medium">Código IA</span>
+            </div>
+          </div>
+
+          <!-- Labels for mobile (below the image)
+          <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 max-w-3xl mx-auto mt-6 mb-6">
+            <p class="text-xl text-white text-center">
+              Convertimos tu sitio WordPress en una web moderna, rápida y segura desarrollada
+              en código limpio. Misma apariencia, mejor rendimiento, sin vulnerabilidades.
+            </p>
+          </div> -->
         </div>
       </div>
+    </div>
+    </div>
+  </section>
 
+  <script>
+    // Before/After Comparison Slider
+    const container = document.getElementById('comparison-container');
+    const beforeImageContainer = document.getElementById('before-image-container');
+    const sliderHandle = document.getElementById('slider-handle');
+    const wordpressLabel = document.getElementById('wordpress-label');
+    const codigoIaLabel = document.getElementById('codigo-ia-label');
+    const progressBar = document.getElementById('progress-bar');
+    const progressPercentage = document.getElementById('progress-percentage');
+
+    if (container && beforeImageContainer && sliderHandle) {
+      let isDragging = false;
+      let isAutoPlaying = false; // Start paused
+      let animationId: number | null = null;
+      let direction = 1; // 1 for right, -1 for left
+      let currentPercentage = 0; // Start at WordPress (0%)
+      let isPaused = false;
+      let pauseTimeout: number | null = null;
+
+      function updateLabelHighlight(percentage: number) {
+        if (!wordpressLabel || !codigoIaLabel) return;
+
+        if (percentage <= 10) {
+          // At WordPress side - illuminate WordPress label
+          wordpressLabel.style.background = 'rgba(59, 130, 246, 0.3)';
+          wordpressLabel.style.borderColor = 'rgb(59, 130, 246)';
+          wordpressLabel.style.boxShadow = '0 0 20px rgba(59, 130, 246, 0.6)';
+          wordpressLabel.style.transform = 'scale(1.05)';
+
+          codigoIaLabel.style.background = 'rgba(255, 255, 255, 0.1)';
+          codigoIaLabel.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+          codigoIaLabel.style.boxShadow = 'none';
+          codigoIaLabel.style.transform = 'scale(1)';
+        } else if (percentage >= 90) {
+          // At Código IA side - illuminate Código IA label
+          codigoIaLabel.style.background = 'rgba(34, 197, 94, 0.3)';
+          codigoIaLabel.style.borderColor = 'rgb(34, 197, 94)';
+          codigoIaLabel.style.boxShadow = '0 0 20px rgba(34, 197, 94, 0.6)';
+          codigoIaLabel.style.transform = 'scale(1.05)';
+
+          wordpressLabel.style.background = 'rgba(255, 255, 255, 0.1)';
+          wordpressLabel.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+          wordpressLabel.style.boxShadow = 'none';
+          wordpressLabel.style.transform = 'scale(1)';
+        } else {
+          // In the middle - reset both
+          wordpressLabel.style.background = 'rgba(255, 255, 255, 0.1)';
+          wordpressLabel.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+          wordpressLabel.style.boxShadow = 'none';
+          wordpressLabel.style.transform = 'scale(1)';
+
+          codigoIaLabel.style.background = 'rgba(255, 255, 255, 0.2)';
+          codigoIaLabel.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+          codigoIaLabel.style.boxShadow = 'none';
+          codigoIaLabel.style.transform = 'scale(1)';
+        }
+      }
+
+      function updateSliderByPercentage(percentage: number) {
+        // Clamp between 0 and 100
+        percentage = Math.max(0, Math.min(100, percentage));
+
+        // Update slider position
+        sliderHandle.style.left = `${percentage}%`;
+
+        // Update clip-path for before image (show from left edge to slider)
+        beforeImageContainer.style.clipPath = `inset(0 ${100 - percentage}% 0 0)`;
+
+        currentPercentage = percentage;
+
+        // Update progress bar
+        if (progressBar) {
+          progressBar.style.width = `${percentage}%`;
+        }
+
+        // Update progress percentage text
+        if (progressPercentage) {
+          progressPercentage.textContent = `${Math.round(percentage)}%`;
+        }
+
+        // Update label highlights based on position
+        updateLabelHighlight(percentage);
+      }
+
+      function updateSlider(clientX: number) {
+        const containerRect = container.getBoundingClientRect();
+        const containerWidth = containerRect.width;
+        const offsetX = clientX - containerRect.left;
+
+        // Calculate percentage (0-100)
+        let percentage = (offsetX / containerWidth) * 100;
+
+        updateSliderByPercentage(percentage);
+      }
+
+      function animate() {
+        if (!isAutoPlaying || isPaused) return;
+
+        // Move slider
+        currentPercentage += direction * 0.15; // Speed of animation
+
+        // Reverse direction at boundaries with pause
+        if (currentPercentage >= 100) {
+          currentPercentage = 100;
+          isPaused = true;
+          updateSliderByPercentage(currentPercentage);
+
+          // Pause for 2 seconds at Código IA side
+          pauseTimeout = window.setTimeout(() => {
+            isPaused = false;
+            direction = -1;
+            if (isAutoPlaying) {
+              animate();
+            }
+          }, 2000);
+          return;
+        } else if (currentPercentage <= 0) {
+          currentPercentage = 0;
+          isPaused = true;
+          updateSliderByPercentage(currentPercentage);
+
+          // Pause for 2 seconds at WordPress side
+          pauseTimeout = window.setTimeout(() => {
+            isPaused = false;
+            direction = 1;
+            if (isAutoPlaying) {
+              animate();
+            }
+          }, 2000);
+          return;
+        }
+
+        updateSliderByPercentage(currentPercentage);
+
+        animationId = requestAnimationFrame(animate);
+      }
+
+      function stopAutoPlay() {
+        isAutoPlaying = false;
+        isPaused = false;
+        if (animationId !== null) {
+          cancelAnimationFrame(animationId);
+          animationId = null;
+        }
+        if (pauseTimeout !== null) {
+          clearTimeout(pauseTimeout);
+          pauseTimeout = null;
+        }
+      }
+
+      function startAutoPlay() {
+        if (!isAutoPlaying) {
+          isAutoPlaying = true;
+          isPaused = false;
+          animate();
+        }
+      }
+
+      // Initialize at WordPress side (0%) with highlight
+      updateSliderByPercentage(0);
+
+      // Start animation after 1.4 seconds delay
+      setTimeout(() => {
+        isAutoPlaying = true;
+        animate();
+      }, 1400);
+
+      // Mouse events
+      sliderHandle.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        stopAutoPlay();
+        e.preventDefault();
+      });
+
+      document.addEventListener('mousemove', (e) => {
+        if (isDragging) {
+          updateSlider(e.clientX);
+        }
+      });
+
+      document.addEventListener('mouseup', () => {
+        if (isDragging) {
+          isDragging = false;
+          // Resume auto-play after 2 seconds of inactivity
+          setTimeout(() => {
+            if (!isDragging) {
+              startAutoPlay();
+            }
+          }, 2000);
+        }
+      });
+
+      // Touch events for mobile
+      sliderHandle.addEventListener('touchstart', (e) => {
+        isDragging = true;
+        stopAutoPlay();
+        e.preventDefault();
+      });
+
+      document.addEventListener('touchmove', (e) => {
+        if (isDragging && e.touches[0]) {
+          updateSlider(e.touches[0].clientX);
+        }
+      });
+
+      document.addEventListener('touchend', () => {
+        if (isDragging) {
+          isDragging = false;
+          // Resume auto-play after 2 seconds of inactivity
+          setTimeout(() => {
+            if (!isDragging) {
+              startAutoPlay();
+            }
+          }, 2000);
+        }
+      });
+
+      // Click anywhere on container to move slider
+      container.addEventListener('click', (e) => {
+        stopAutoPlay();
+        updateSlider(e.clientX);
+        // Resume auto-play after 2 seconds
+        setTimeout(() => {
+          if (!isDragging) {
+            startAutoPlay();
+          }
+        }, 2000);
+      });
+
+      // Pause animation when mouse enters, resume when leaves
+      container.addEventListener('mouseenter', () => {
+        if (!isDragging) {
+          stopAutoPlay();
+        }
+      });
+
+      container.addEventListener('mouseleave', () => {
+        if (!isDragging) {
+          startAutoPlay();
+        }
+      });
+    }
+  </script>
+
+  <!-- Comparison Section - Black Background with Image -->
+  <section class="py-20 bg-base-50 relative overflow-hidden">
+    <!-- Background Image (subtle) -->
+    <div class="absolute inset-0 opacity-40">
+      <img src="/images/3409297.jpg" alt="Background" class="w-full h-full object-cover" />
+    </div>
+    <!-- Dark overlay to maintain visibility -->
+    <div class="absolute inset-0 bg-base-50/70"></div>
+
+    <!-- Content -->
+    <div class="relative z-10">
+    <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
       <!-- Comparison Section -->
-      <div class="mb-16">
-        <h2 class="text-3xl font-bold text-base-900 text-center mb-10">
+        <h2 class="text-3xl font-bold text-white text-center mb-10">
           WordPress vs. Código Puro: La Diferencia
         </h2>
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <!-- WordPress Column -->
-          <div class="bg-black rounded-lg p-5 border-2 border-base-400 hover:border-red-400 transition-all duration-300 shadow-lg shadow-red-500/40">
+          <div class="bg-base-50 rounded-lg p-5 border-2 border-base-400 hover:border-red-400 transition-all duration-300 shadow-lg shadow-red-500/40">
             <div class="flex items-center gap-3 mb-6">
               <div class="w-12 h-12 bg-red-500/20 rounded-lg flex items-center justify-center text-red-400 text-2xl">
                 🐌
@@ -87,7 +431,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
           </div>
 
           <!-- Código Puro Column -->
-          <div class="bg-black rounded-lg p-5 border-2 border-base-400 hover:border-green-400 transition-all duration-300 shadow-lg shadow-green-500/40">
+          <div class="bg-base-50 rounded-lg p-5 border-2 border-base-400 hover:border-green-400 transition-all duration-300 shadow-lg shadow-green-500/40">
             <div class="flex items-center gap-3 mb-6">
               <div class="w-12 h-12 bg-green-500/20 rounded-lg flex items-center justify-center text-green-400 text-2xl">
                 ⚡
@@ -138,16 +482,14 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
             </div>
           </div>
         </div>
-      </div>
 
       <!-- PageSpeed Comparison Visual -->
-      <div class="mb-16">
-        <div class="bg-black rounded-2xl p-8 md:p-12">
+        <div class="bg-base-50 rounded-2xl p-8 md:p-12">
           <h3 class="text-2xl font-bold mb-8 text-center text-white">Mejora Real de Rendimiento</h3>
 
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             <!-- Before -->
-            <div class="bg-black rounded-lg p-5 border-2 border-base-400 hover:border-red-400 transition-all duration-300 shadow-lg shadow-red-500/40">
+            <div class="bg-base-50 rounded-lg p-5 border-2 border-base-400 hover:border-red-400 transition-all duration-300 shadow-lg shadow-red-500/40">
               <p class="text-sm text-gray-400 mb-2">ANTES - WordPress</p>
               <div class="flex items-end gap-4 mb-4">
                 <div class="text-5xl font-bold text-red-400">52</div>
@@ -170,7 +512,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
             </div>
 
             <!-- After -->
-            <div class="bg-black rounded-lg p-5 border-2 border-base-400 hover:border-green-400 transition-all duration-300 shadow-lg shadow-green-500/40">
+            <div class="bg-base-50 rounded-lg p-5 border-2 border-base-400 hover:border-green-400 transition-all duration-300 shadow-lg shadow-green-500/40">
               <p class="text-sm text-gray-400 mb-2">DESPUÉS - Código Puro</p>
               <div class="flex items-end gap-4 mb-4">
                 <div class="text-5xl font-bold text-green-400">98</div>
@@ -197,341 +539,614 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
             📊 Datos basados en migraciones reales de sitios WordPress corporativos
           </div>
         </div>
-      </div>
+    </div>
+    </div>
+  </section>
 
-      <!-- Proceso de Migración -->
-      <div class="mb-16">
-        <h2 class="text-3xl font-bold text-base-900 text-center mb-10">
-          Proceso de Migración en 1 Semana
-        </h2>
+  <!-- Interactive WhatsApp Demo Section - Blue Background with Image -->
+  <section id="whatsapp-demo-section" class="py-20 relative overflow-hidden">
+    <!-- Background Image -->
+    <div class="absolute inset-0">
+      <img src="/images/3409297.jpg" alt="Background" class="w-full h-full object-cover" />
+    </div>
+    <!-- Overlay Gradient (light) -->
+    <div class="absolute inset-0 bg-gradient-to-bl from-accent-500/10 via-blue-600/50 to-accent-500/10"></div>
 
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-          <div class="bg-base-50 rounded-xl p-6 border border-base-200">
-            <div class="w-12 h-12 bg-accent-100 rounded-lg flex items-center justify-center text-accent-600 font-bold text-xl mb-4">
-              1
+    <!-- Content -->
+    <div class="relative z-10">
+    <div class="max-w-full mx-auto px-24 md:px-40 lg:px-64">
+      <!-- Interactive WhatsApp Demo -->
+      <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-6">
+        Edita tu web desde WhatsApp
+      </h2>
+      <p class="text-lg text-white/90 text-center mb-8 max-w-3xl mx-auto">
+        Mira cómo funciona la edición en tiempo real mediante IA
+      </p>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start relative">
+        <!-- Animated Cable Connection -->
+        <svg id="connection-cable" class="hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none z-10" width="400" height="100" style="opacity: 0;">
+          <defs>
+            <linearGradient id="cableGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" style="stop-color:#25D366;stop-opacity:1" />
+              <stop offset="50%" style="stop-color:#00a8ff;stop-opacity:1" />
+              <stop offset="100%" style="stop-color:#6366f1;stop-opacity:1" />
+            </linearGradient>
+          </defs>
+          <path id="cablePath" d="M 50 50 Q 200 20, 350 50" stroke="url(#cableGradient)" stroke-width="4" fill="none" stroke-dasharray="10 5" stroke-linecap="round"/>
+          <!-- Animated particles -->
+          <circle id="particle1" r="6" fill="#25D366" opacity="0">
+            <animateMotion dur="1.5s" repeatCount="indefinite">
+              <mpath href="#cablePath"/>
+            </animateMotion>
+          </circle>
+          <circle id="particle2" r="6" fill="#00a8ff" opacity="0">
+            <animateMotion dur="1.5s" begin="0.3s" repeatCount="indefinite">
+              <mpath href="#cablePath"/>
+            </animateMotion>
+          </circle>
+          <circle id="particle3" r="6" fill="#6366f1" opacity="0">
+            <animateMotion dur="1.5s" begin="0.6s" repeatCount="indefinite">
+              <mpath href="#cablePath"/>
+            </animateMotion>
+          </circle>
+        </svg>
+
+        <!-- WhatsApp Mockup - Left (1 column - same size as website) -->
+        <div class="bg-white/10 backdrop-blur-sm rounded-xl overflow-hidden border border-white/20 w-full h-full flex flex-col">
+          <!-- WhatsApp Header -->
+          <div class="bg-[#008069] px-4 py-4 flex items-center gap-3">
+            <div class="w-12 h-12 bg-gray-300 rounded-full flex items-center justify-center text-2xl">
+              🤖
             </div>
-            <h3 class="text-lg font-semibold text-base-900 mb-3">Análisis y Clonación</h3>
-            <p class="text-base-600 text-sm">
-              Analizamos tu WordPress actual, extraemos el diseño y contenido. La IA replica el diseño pixel a pixel.
-            </p>
-            <p class="text-xs text-base-500 mt-2">⏱️ Días 1-2</p>
+            <div class="flex-1">
+              <h3 class="text-white font-semibold text-base">Asistente IA Web</h3>
+              <p class="text-white/80 text-sm">en línea</p>
+            </div>
           </div>
 
-          <div class="bg-base-50 rounded-xl p-6 border border-base-200">
-            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 font-bold text-xl mb-4">
-              2
+          <!-- WhatsApp Chat -->
+          <div class="bg-[#efeae2] p-4 flex-1 overflow-y-auto" id="chat-container" style="background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iYSIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIj48cGF0aCBmaWxsPSIjZjBmMGYwIiBkPSJNMCAwaDQwdjQwSDB6Ci8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2EpIi8+PC9zdmc+'); background-size: 200px;">
+            <!-- Initial Bot Message -->
+            <div class="flex justify-start mb-4">
+              <div class="bg-white rounded-lg px-4 py-3 max-w-[85%] shadow-sm">
+                <p class="text-lg" style="color: #000000;">¡Hola! Soy tu asistente de IA. Escribe lo que quieres cambiar en tu web:</p>
+                <span class="text-sm text-gray-600 float-right mt-1">14:30 ✓✓</span>
+              </div>
             </div>
-            <h3 class="text-lg font-semibold text-base-900 mb-3">Desarrollo y Optimización</h3>
-            <p class="text-base-600 text-sm">
-              Convertimos el diseño a código limpio (Astro, React, etc.), optimizamos imágenes y rendimiento.
-            </p>
-            <p class="text-xs text-base-500 mt-2">⏱️ Días 3-5</p>
+
+          
+
+            <!-- Response Messages Container -->
+            <div id="chat-messages" class="space-y-3"></div>
           </div>
 
-          <div class="bg-base-50 rounded-xl p-6 border border-base-200">
-            <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center text-green-600 font-bold text-xl mb-4">
-              3
-            </div>
-            <h3 class="text-lg font-semibold text-base-900 mb-3">Integración IA de Contenidos</h3>
-            <p class="text-base-600 text-sm">
-              Configuramos chatbot de IA para que puedas editar textos, imágenes y contenido por chat.
-            </p>
-            <p class="text-xs text-base-500 mt-2">⏱️ Día 6</p>
-          </div>
-
-          <div class="bg-base-50 rounded-xl p-6 border border-base-200">
-            <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center text-purple-600 font-bold text-xl mb-4">
-              4
-            </div>
-            <h3 class="text-lg font-semibold text-base-900 mb-3">Lanzamiento y Formación</h3>
-            <p class="text-base-600 text-sm">
-              Desplegamos la nueva web, redirigimos el dominio y te formamos para usar el sistema de IA.
-            </p>
-            <p class="text-xs text-base-500 mt-2">⏱️ Día 7</p>
+          <!-- WhatsApp Input Bar -->
+          <div class="bg-[#f0f2f5] px-3 py-2 flex items-center gap-2">
+            <button class="text-gray-600 hover:text-gray-800">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-5-9h10v2H7z"></path>
+              </svg>
+            </button>
+            <input
+              type="text"
+              id="chat-input"
+              placeholder="Escribe un mensaje..."
+              class="flex-1 bg-white rounded-full px-4 py-2 text-base placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-[#25D366]"
+              style="color: #000000; background-color: #ffffff"
+            />
+            <button id="send-button" class="bg-[#008069] text-white rounded-full p-2 hover:bg-[#006d5a] transition-colors">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path>
+              </svg>
+            </button>
           </div>
         </div>
-      </div>
 
-      <!-- Chatbot IA Integration -->
-      <div class="mb-16">
-        <div class="bg-gradient-to-bl from-accent-600 via-blue-600 rounded-2xl p-8 md:p-12 text-white">
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-            <div>
-              <div class="inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-medium mb-4">
-                <span>🤖</span>
-                Exclusivo de nuestro servicio
-              </div>
-              <h3 class="text-3xl font-bold mb-6">Actualiza tu web desde WhatsApp</h3>
-              <p class="text-lg opacity-90 mb-6">
-                Incluimos un chatbot de IA conectado a tu web para que puedas hacer cambios sin tocar código:
-              </p>
-              <ul class="space-y-3">
-                <li class="flex items-center gap-3">
-                  <svg class="w-6 h-6 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                  </svg>
-                  <span>"Cambia el texto del banner principal"</span>
-                </li>
-                <li class="flex items-center gap-3">
-                  <svg class="w-6 h-6 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                  </svg>
-                  <span>"Actualiza los precios de la sección servicios"</span>
-                </li>
-                <li class="flex items-center gap-3">
-                  <svg class="w-6 h-6 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                  </svg>
-                  <span>"Añade esta imagen a la galería de productos"</span>
-                </li>
-                <li class="flex items-center gap-3">
-                  <svg class="w-6 h-6 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                  </svg>
-                  <span>"Crea una nueva página de contacto"</span>
-                </li>
-              </ul>
+        <!-- Simple Website Preview - Right (1 column - same size as WhatsApp) -->
+        <div class="bg-white rounded-xl shadow-2xl overflow-hidden border-4 border-white/20 w-full">
+          <!-- Browser Chrome -->
+          <div class="bg-gray-200 px-4 py-3 flex items-center gap-2">
+            <div class="flex gap-1.5">
+              <div class="w-3 h-3 bg-red-400 rounded-full"></div>
+              <div class="w-3 h-3 bg-yellow-400 rounded-full"></div>
+              <div class="w-3 h-3 bg-green-400 rounded-full"></div>
             </div>
-            <!-- WhatsApp Mockup -->
-            <div class="bg-white/10 backdrop-blur-sm rounded-xl overflow-hidden border border-white/20 max-w-md mx-auto">
-              <!-- WhatsApp Header -->
-              <div class="bg-[#008069] px-4 py-3 flex items-center gap-3">
-                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            <div class="flex-1 bg-white rounded px-3 py-1 text-xs text-gray-600 ml-2">
+              www.miempresa.com
+            </div>
+          </div>
+
+          <!-- Website Content -->
+          <div style="background-color: #efeae2;" class="p-6 text-center min-h-[350px] flex flex-col">
+            <!-- Navigation Header -->
+            <div class="w-full mb-4 pb-3 border-b-2" style="border-color: #d0d0d0;">
+              <nav class="flex items-center justify-between px-4">
+                <div class="flex items-center gap-2">
+                  <div class="w-8 h-8 bg-gradient-to-br from-blue-600 to-blue-800 rounded-lg flex items-center justify-center">
+                    <span class="text-lg">🏢</span>
+                  </div>
+                  <span class="font-bold text-base" style="color: #000000;">MiEmpresa</span>
+                </div>
+                <div class="flex gap-6 text-xs font-medium" style="color: #333333;">
+                  <a href="#" style="color: #3b82f6;" class="hover:opacity-70 transition-opacity">Inicio</a>
+                  <a href="#" style="color: #3b82f6;" class="hover:opacity-70 transition-opacity">Soluciones</a>
+                  <a href="#" style="color: #3b82f6;" class="hover:opacity-70 transition-opacity">Precios</a>
+                  <a href="#" style="color: #3b82f6;" class="hover:opacity-70 transition-opacity">Contacto</a>
+                </div>
+              </nav>
+            </div>
+
+            <!-- Content Container -->
+            <div class="flex-1 flex flex-col items-center justify-center">
+
+            <h1 id="demo-title" class="text-3xl md:text-4xl font-extrabold mb-3 transition-all duration-500" style="color: #000000;">
+              Bienvenido a Mi Empresa
+            </h1>
+
+            <p class="text-sm md:text-base mb-4 max-w-xl leading-relaxed" style="color: #1a1a1a;">
+              Soluciones profesionales de alta calidad diseñadas específicamente para impulsar el crecimiento de tu negocio
+            </p>
+
+            <!-- Precio destacado -->
+            <div class="bg-white rounded-xl p-4 mb-4 shadow-xl border-2 border-blue-200 max-w-sm mx-auto">
+              <div class="flex items-center justify-center gap-2 mb-3">
+                <svg class="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z"/>
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z" clip-rule="evenodd"/>
                 </svg>
-                <div class="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center text-xl">
-                  🤖
-                </div>
-                <div class="flex-1">
-                  <h4 class="text-white font-semibold text-sm">Asistente IA Web</h4>
-                  <p class="text-white/80 text-xs">en línea</p>
-                </div>
-                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"></path>
+                <p class="text-sm font-semibold uppercase tracking-wide" style="color: #3b82f6;">Oferta Especial</p>
+              </div>
+              <div class="flex items-baseline justify-center gap-1 mb-1">
+                <span id="demo-price" class="text-4xl md:text-5xl font-extrabold transition-all duration-500" style="color: #000000;">€99</span>
+                <span class="text-lg font-semibold" style="color: #666;">/mes</span>
+              </div>
+              <p class="text-xs" style="color: #666;">Incluye soporte prioritario 24/7</p>
+            </div>
+
+            <!-- CTA Button -->
+            <button
+              id="demo-button"
+              class="px-8 py-3 rounded-lg font-bold text-base shadow-xl transition-all duration-500 transform hover:scale-105 hover:shadow-2xl"
+              style="background-color: #3b82f6; color: #000000;"
+            >
+              Solicitar Demo Gratuita →
+            </button>
+
+            <!-- Trust badges -->
+            <div class="flex items-center justify-center gap-4 mt-4 text-xs" style="color: #666;">
+              <div class="flex items-center gap-1.5">
+                <svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
                 </svg>
+                <span>Sin permanencia</span>
               </div>
-
-              <!-- WhatsApp Chat Background -->
-              <div class="bg-[#efeae2] p-4 min-h-[400px] relative" style="background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iYSIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIj48cGF0aCBmaWxsPSIjZjBmMGYwIiBkPSJNMCAwaDQwdjQwSDB6Ii8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2EpIi8+PC9zdmc+'); background-size: 200px;">
-                <div class="space-y-3">
-                  <!-- User Message 1 -->
-                  <div class="flex justify-end">
-                    <div class="bg-[#d9fdd3] rounded-lg px-3 py-2 max-w-[75%] shadow-sm">
-                      <p class="text-sm" style="color: #000000;">Cambia el título del banner por:
-                         La mejor calidad al mejor servicio</p>
-                      <span class="text-[10px] text-gray-600 float-right mt-1">17:56</span>
-                    </div>
-                  </div>
-
-                  <!-- Bot Response 1 -->
-                  <div class="flex justify-start">
-                    <div class="bg-white rounded-lg px-3 py-2 max-w-[75%] shadow-sm">
-                      <p class="text-sm" style="color: #000000;">✅ Título actualizado en 3 segundos</p>
-                      <span class="text-[10px] text-gray-600 float-right mt-1">17:56 ✓✓</span>
-                    </div>
-                  </div>
-
-                  <!-- User Message 2 -->
-                  <div class="flex justify-end">
-                    <div class="bg-[#d9fdd3] rounded-lg px-3 py-2 max-w-[75%] shadow-sm">
-                      <p class="text-sm" style="color: #000000;">Actualiza los precios un 20% más</p>
-                      <span class="text-[10px] text-gray-600 float-right mt-1">17:57</span>
-                    </div>
-                  </div>
-
-                  <!-- Bot Response 2 -->
-                  <div class="flex justify-start">
-                    <div class="bg-white rounded-lg px-3 py-2 max-w-[75%] shadow-sm">
-                      <p class="text-sm" style="color: #000000;">✅ Precios actualizados y desplegados</p>
-                      <span class="text-[10px] text-gray-600 float-right mt-1">17:57 ✓✓</span>
-                    </div>
-                  </div>
-                </div>
+              <div class="flex items-center gap-1.5">
+                <svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                <span>14 días de prueba</span>
               </div>
-
-              <!-- WhatsApp Input Bar -->
-              <div class="bg-[#f0f2f5] px-3 py-2 flex items-center gap-2">
-                <button class="text-gray-600 hover:text-gray-800">
-                  <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-5-9h10v2H7z"></path>
-                  </svg>
-                </button>
-                <input
-                  type="text"
-                  placeholder="Mensaje"
-                  style="background-color: rgb(240, 248, 247);"
-                  class="flex-1 bg-[#e5e7eb] rounded-full px-4 py-2 text-sm text-black placeholder-gray-600 focus:outline-none"
-                  readonly
-                />
-                <button class="text-gray-600 hover:text-gray-800">
-                  <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path>
-                  </svg>
-                </button>
-                <button class="bg-[#008069] text-white rounded-full p-2 hover:bg-[#006d5a] transition-colors">
-                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"></path>
-                    <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"></path>
-                  </svg>
-                </button>
+              <div class="flex items-center gap-1.5">
+                <svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                <span>Garantía de satisfacción</span>
               </div>
-
-              <p class="text-xs text-center py-3 text-white/75">
-                Sin Elementor, sin Gutenberg, sin complicaciones
-              </p>
             </div>
-
-            <!-- CÓDIGO ANTERIOR COMENTADO
-            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-              <div class="bg-base-900 rounded-lg p-4 font-mono text-sm">
-                <div class="flex items-center gap-2 mb-3">
-                  <div class="w-2 h-2 bg-green-400 rounded-full"></div>
-                  <span class="text-base-300">Chatbot Web Activo</span>
-                </div>
-                <div class="space-y-3">
-                  <div class="flex gap-2">
-                    <span class="text-blue-400">Usuario:</span>
-                    <span class="text-base-100">"Cambia el título del banner"</span>
-                  </div>
-                  <div class="flex gap-2">
-                    <span class="text-green-400">IA:</span>
-                    <span class="text-base-100">"✅ Título actualizado en 3 segundos"</span>
-                  </div>
-                  <div class="flex gap-2">
-                    <span class="text-blue-400">Usuario:</span>
-                    <span class="text-base-100">"Actualiza los precios"</span>
-                  </div>
-                  <div class="flex gap-2">
-                    <span class="text-green-400">IA:</span>
-                    <span class="text-base-100">"✅ Precios actualizados y desplegados"</span>
-                  </div>
-                </div>
-              </div>
-              <p class="text-xs text-center mt-4 opacity-75">
-                Sin Elementor, sin Gutenberg, sin complicaciones
-              </p>
             </div>
-            -->
           </div>
         </div>
       </div>
 
-      <!-- Beneficios Adicionales -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-        <div class="bg-base-50 rounded-xl p-6">
-          <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center text-green-600 text-xl mb-4">
-            💰
-          </div>
-          <h3 class="text-lg font-semibold text-base-900 mb-3">Ahorro de Costes</h3>
-          <p class="text-base-600 mb-3">
-            Elimina gastos recurrentes de plugins premium, temas y hosting caro.
-          </p>
-          <div class="text-sm space-y-1">
-            <p class="text-base-700"><span class="font-semibold">❌ WordPress:</span> 80-150€/mes</p>
-            <p class="text-green-600"><span class="font-semibold">✅ Código puro:</span> 5-20€/mes</p>
-          </div>
-        </div>
+      <!-- Info Note -->
+      <div class="mt-8 text-center">
+        <p class="text-base text-white/85 max-w-2xl mx-auto leading-relaxed">
+          💡 Esta es una demostración simplificada. En tu web real, podrás editar cualquier texto, imagen, precio o elemento mediante WhatsApp.
+        </p>
 
-        <div class="bg-base-50 rounded-xl p-6">
-          <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 text-xl mb-4">
-            🔒
-          </div>
-          <h3 class="text-lg font-semibold text-base-900 mb-3">Seguridad Total</h3>
-          <p class="text-base-600 mb-3">
-            Sin plugins de terceros vulnerables. Código auditado y limpio.
-          </p>
-          <div class="text-sm text-base-700">
-            <p>• Sin ataques por plugins desactualizados</p>
-            <p>• Sin inyecciones SQL</p>
-            <p>• Sin backdoors ocultos</p>
-          </div>
-        </div>
-
-        <div class="bg-base-50 rounded-xl p-6">
-          <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center text-purple-600 text-xl mb-4">
-            📈
-          </div>
-          <h3 class="text-lg font-semibold text-base-900 mb-3">Mejor SEO y Conversión</h3>
-          <p class="text-base-600 mb-3">
-            Google premia las webs rápidas con mejor posicionamiento.
-          </p>
-          <div class="text-sm text-base-700">
-            <p>• PageSpeed 95-100 = mejor ranking</p>
-            <p>• Carga rápida = menos rebote</p>
-            <p>• Mejor UX = más conversiones</p>
-          </div>
-        </div>
+        <!-- Reset Demo Button (hidden initially) -->
+        <button
+          id="reset-demo-button"
+          class="mt-6 px-8 py-3 bg-white/20 hover:bg-white/30 text-white font-semibold rounded-lg transition-all duration-300 backdrop-blur-sm border border-white/30 hidden"
+        >
+          🔄 Reiniciar Demo
+        </button>
       </div>
+    </div>
+    </div>
+  </section>
 
+  <script>
+    // Automated WhatsApp Demo
+    const chatMessages = document.getElementById('chat-messages');
+    const chatContainer = document.getElementById('chat-container');
+    const chatInput = document.getElementById('chat-input');
+    const sendButton = document.getElementById('send-button');
+    const demoTitle = document.getElementById('demo-title');
+    const demoPrice = document.getElementById('demo-price');
+    const demoButton = document.getElementById('demo-button');
+    const connectionCable = document.getElementById('connection-cable');
+    const resetDemoButton = document.getElementById('reset-demo-button');
+    const particles = [
+      document.getElementById('particle1'),
+      document.getElementById('particle2'),
+      document.getElementById('particle3')
+    ];
+
+    let isPlaying = false;
+    const INITIAL_TITLE = 'Bienvenido a Mi Empresa';
+    const INITIAL_PRICE = '€99';
+    const INITIAL_BUTTON_COLOR = '#3b82f6';
+
+    function addMessage(text, isUser = true) {
+      if (!chatMessages) return;
+
+      const msgDiv = document.createElement('div');
+      msgDiv.className = isUser ? 'flex justify-end mb-3' : 'flex justify-start mb-3';
+
+      const time = new Date().toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
+
+      msgDiv.innerHTML = `
+        <div class="${isUser ? 'bg-[#d9fdd3]' : 'bg-white'} rounded-lg px-3 py-2 max-w-[85%] shadow-sm">
+          <p class="text-base" style="color: #000000;">${text}</p>
+          <span class="text-xs text-gray-600 float-right mt-1">${time}${isUser ? '' : ' ✓✓'}</span>
+        </div>
+      `;
+
+      chatMessages.appendChild(msgDiv);
+
+      // Scroll to bottom
+      if (chatContainer) {
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+      }
+    }
+
+    function typeMessage(text, callback) {
+      if (!chatInput) return;
+
+      let i = 0;
+      chatInput.value = '';
+      chatInput.focus();
+
+      const typingInterval = setInterval(() => {
+        if (i < text.length) {
+          chatInput.value += text[i];
+          i++;
+        } else {
+          clearInterval(typingInterval);
+          if (callback) callback();
+        }
+      }, 80);
+    }
+
+    function showCableAnimation() {
+      if (!connectionCable) return;
+
+      connectionCable.classList.remove('hidden');
+
+      // Fade in cable
+      let opacity = 0;
+      const fadeIn = setInterval(() => {
+        if (opacity < 1) {
+          opacity += 0.05;
+          connectionCable.style.opacity = opacity;
+        } else {
+          clearInterval(fadeIn);
+        }
+      }, 30);
+
+      // Show particles
+      particles.forEach(p => {
+        if (p) p.setAttribute('opacity', '1');
+      });
+    }
+
+    function hideCableAnimation() {
+      if (!connectionCable) return;
+
+      // Hide particles
+      particles.forEach(p => {
+        if (p) p.setAttribute('opacity', '0');
+      });
+
+      // Fade out cable
+      let opacity = 1;
+      const fadeOut = setInterval(() => {
+        if (opacity > 0) {
+          opacity -= 0.05;
+          connectionCable.style.opacity = opacity;
+        } else {
+          clearInterval(fadeOut);
+          connectionCable.classList.add('hidden');
+        }
+      }, 30);
+    }
+
+    function updateWebsite(type, value) {
+      if (type === 'title' && demoTitle) {
+        demoTitle.style.transform = 'scale(0.9)';
+        demoTitle.style.opacity = '0.3';
+        setTimeout(() => {
+          demoTitle.textContent = value;
+          demoTitle.style.transform = 'scale(1)';
+          demoTitle.style.opacity = '1';
+        }, 300);
+      } else if (type === 'price' && demoPrice) {
+        demoPrice.style.transform = 'scale(0.9) rotate(-5deg)';
+        demoPrice.style.opacity = '0.3';
+        setTimeout(() => {
+          demoPrice.textContent = value;
+          demoPrice.style.transform = 'scale(1) rotate(0deg)';
+          demoPrice.style.opacity = '1';
+        }, 300);
+      } else if (type === 'button' && demoButton) {
+        demoButton.style.transform = 'scale(0.9)';
+        demoButton.style.opacity = '0.5';
+        setTimeout(() => {
+          demoButton.style.backgroundColor = value;
+          demoButton.style.transform = 'scale(1)';
+          demoButton.style.opacity = '1';
+        }, 300);
+      }
+    }
+
+    async function runDemo() {
+      if (isPlaying) return;
+      isPlaying = true;
+
+      // Disable input and send button during demo
+      if (chatInput) chatInput.disabled = true;
+      if (sendButton) sendButton.disabled = true;
+
+      // Clear previous messages
+      if (chatMessages) chatMessages.innerHTML = '';
+
+      // Demo Sequence - Part 1: Change Title
+      const demoMessage1 = 'Cambia el título a "Soluciones Empresariales"';
+
+      // Step 1: Type the first message
+      await new Promise(resolve => {
+        typeMessage(demoMessage1, resolve);
+      });
+
+      await new Promise(resolve => setTimeout(resolve, 500));
+
+      // Step 2: Send message
+      if (chatInput) chatInput.value = '';
+      addMessage(demoMessage1, true);
+
+      await new Promise(resolve => setTimeout(resolve, 800));
+
+      // Step 3: Show cable animation
+      showCableAnimation();
+
+      await new Promise(resolve => setTimeout(resolve, 1200));
+
+      // Step 5: Update website title
+      updateWebsite('title', 'Soluciones Empresariales');
+
+      await new Promise(resolve => setTimeout(resolve, 1500));
+
+      // Step 6: Hide cable animation
+      hideCableAnimation();
+
+      await new Promise(resolve => setTimeout(resolve, 600));
+
+      // Step 7: IA completion message
+      addMessage('✅ Cambio finalizado. El título ha sido actualizado correctamente.', false);
+
+      await new Promise(resolve => setTimeout(resolve, 1500));
+
+      // Demo Sequence - Part 2: Change Button Color
+      const demoMessage2 = 'Cambia el botón a color verde';
+
+      // Step 8: Type the second message
+      await new Promise(resolve => {
+        typeMessage(demoMessage2, resolve);
+      });
+
+      await new Promise(resolve => setTimeout(resolve, 500));
+
+      // Step 9: Send message
+      if (chatInput) chatInput.value = '';
+      addMessage(demoMessage2, true);
+
+      await new Promise(resolve => setTimeout(resolve, 800));
+
+      // Step 10: Show cable animation again
+      showCableAnimation();
+
+      await new Promise(resolve => setTimeout(resolve, 1200));
+
+      // Step 12: Update button color to green
+      updateWebsite('button', '#10b981');
+
+      await new Promise(resolve => setTimeout(resolve, 1500));
+
+      // Step 13: Hide cable animation
+      hideCableAnimation();
+
+      await new Promise(resolve => setTimeout(resolve, 600));
+
+      // Step 14: IA completion message
+      addMessage('✅ Listo. El botón ahora es verde.', false);
+
+      // Keep inputs disabled and show reset button
+      // if (chatInput) chatInput.disabled = false;
+      // if (sendButton) sendButton.disabled = false;
+
+      // Show reset button
+      if (resetDemoButton) {
+        resetDemoButton.classList.remove('hidden');
+      }
+
+      isPlaying = false;
+    }
+
+    function resetDemo() {
+      // Reset website to initial state
+      if (demoTitle) {
+        demoTitle.textContent = INITIAL_TITLE;
+        demoTitle.style.transform = 'scale(1)';
+        demoTitle.style.opacity = '1';
+      }
+
+      if (demoPrice) {
+        demoPrice.textContent = INITIAL_PRICE;
+        demoPrice.style.transform = 'scale(1) rotate(0deg)';
+        demoPrice.style.opacity = '1';
+      }
+
+      if (demoButton) {
+        demoButton.style.backgroundColor = INITIAL_BUTTON_COLOR;
+        demoButton.style.transform = 'scale(1)';
+        demoButton.style.opacity = '1';
+      }
+
+      // Clear chat messages
+      if (chatMessages) chatMessages.innerHTML = '';
+      if (chatInput) {
+        chatInput.value = '';
+        chatInput.disabled = false;
+      }
+      if (sendButton) sendButton.disabled = false;
+
+      // Hide reset button
+      if (resetDemoButton) {
+        resetDemoButton.classList.add('hidden');
+      }
+
+      // Run demo again
+      setTimeout(() => {
+        runDemo();
+      }, 300);
+    }
+
+    // Auto-start demo when section comes into view
+    const demoSection = document.querySelector('#whatsapp-demo-section');
+    let hasAutoPlayed = false;
+
+    if (demoSection) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !hasAutoPlayed && !isPlaying) {
+            hasAutoPlayed = true;
+            // Wait 1 second before starting the demo
+            setTimeout(() => {
+              runDemo();
+            }, 1000);
+          }
+        });
+      }, {
+        threshold: 0.3 // Trigger when 30% of the section is visible
+      });
+
+      observer.observe(demoSection);
+    }
+
+    // Reset button event listener
+    if (resetDemoButton) {
+      resetDemoButton.addEventListener('click', resetDemo);
+    }
+  </script>
+
+  <!-- Chatbot IA Integration Section - Black Background -->
+  <section class="py-20 bg-base-50 relative overflow-hidden">
+    <!-- Background Image -->
+    <div class="absolute inset-0 opacity-40">
+      <img src="/images/3409297.jpg" alt="Background" class="w-full h-full object-cover" />
+    </div>
+    <!-- Dark overlay to maintain visibility -->
+    <div class="absolute inset-0 bg-base-50/60"></div>
+
+    <!-- Content -->
+    <div class="relative z-10 max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
       <!-- Pricing Section -->
-      <div class="bg-black rounded-2xl p-8 md:p-12 text-white mb-16">
         <h2 class="text-3xl font-bold mb-8 text-center">Precios</h2>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
           <!-- Landing Page -->
-          <div class="bg-black rounded-xl p-6 border-2 border-blue-500">
+          <div class="bg-base-50 rounded-xl p-6 border-1 flex flex-col">
             <h4 class="text-xl font-bold mb-2 text-white">Landing Page</h4>
             <p class="text-sm text-gray-300 mb-4">1-3 páginas</p>
-            <div class="text-3xl font-bold mb-4 text-white">350€</div>
-            <ul class="space-y-2 text-sm text-gray-300 mb-6">
+            <p class="text-sm text-gray-300 mb-4">Perfecta para presentar tu negocio, captar leads y mostrar servicios básicos con formulario de contacto</p>
+
+            <div class="text-3xl font-bold mb-4 text-white">450€</div>
+                         <p class="text-sm text-gray-300 mb-4">Ofrece lo siguiente:</p>
+
+            <ul class="space-y-2 text-sm text-gray-300 mb-6 flex-grow">
               <li><span class="text-blue-400">✅</span> Clonación pixel-perfect</li>
               <li><span class="text-blue-400">✅</span> Optimización PageSpeed</li>
               <li><span class="text-blue-400">✅</span> Hosting 1 año incluido</li>
               <li><span class="text-blue-400">✅</span> SSL gratuito</li>
               <li><span class="text-blue-400">✅</span> Parches de seguridad</li>
-              <li><span class="text-blue-400">✅</span> Entrega en 5-7 días</li>
+              <li><span class="text-blue-400">✅</span> Entrega en 7-10 días</li>
             </ul>
             <a
-              href="/reunion"
+              href="/contacto-migracion?plan=landing"
               style="color: white"
-              class="block w-full px-4 py-3 text-center bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors"
+              class="block w-full px-4 py-3 text-center bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors mt-auto"
             >
               Solicitar Información
             </a>
           </div>
 
           <!-- Web Corporativa -->
-          <div class="bg-black rounded-xl p-6 border-2 border-blue-500 relative">
+          <div class="bg-base-50 rounded-xl p-6 border-2 border-blue-500 relative flex flex-col">
             <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-blue-600 px-4 py-1 rounded-full text-xs font-bold text-white">
               MÁS POPULAR
             </div>
             <h4 class="text-xl font-bold mb-2 text-white">Web Corporativa</h4>
             <p class="text-sm text-gray-300 mb-4">5-10 páginas</p>
+            <p class="text-sm text-gray-300 mb-4">Ideal para empresas que necesitan presencia profesional completa con blog, área de clientes y análisis de tráfico</p>
+
             <div class="text-3xl font-bold mb-4 text-white">800€</div>
-            <ul class="space-y-2 text-sm text-gray-300 mb-6">
+                         <p class="text-sm text-gray-300 mb-4">Ofrece lo siguiente:</p>
+
+            <ul class="space-y-2 text-sm text-gray-300 mb-6 flex-grow">
               <li><span class="text-blue-400">✅</span> Todo lo anterior +</li>
               <li><span class="text-blue-400">✅</span> Formularios de contacto</li>
               <li><span class="text-blue-400">✅</span> Integración Google Analytics</li>
               <li><span class="text-blue-400">✅</span> Blog integrado</li>
               <li><span class="text-blue-400">✅</span> Chatbot IA de contenidos</li>
-              <li><span class="text-blue-400">✅</span> Entrega en 7-10 días</li>
+              <li><span class="text-blue-400">✅</span> Área de clientes básica</li>
+              <li><span class="text-blue-400">✅</span> Integración con CRM</li>
+              <li><span class="text-blue-400">✅</span> Entrega en 10-15 días</li>
             </ul>
             <a
-              href="/reunion"
+              href="/contacto-migracion?plan=corporativa"
               style="color: white"
-              class="block w-full px-4 py-3 text-center bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors"
+              class="block w-full px-4 py-3 text-center bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors mt-auto"
             >
               Solicitar Información
             </a>
           </div>
 
           <!-- Página Personalizada -->
-          <div class="bg-black rounded-xl p-6 border-2 border-blue-500">
+          <div class="bg-base-50 rounded-xl p-6 border-1 flex flex-col">
             <h4 class="text-xl font-bold mb-2 text-white">Página Personalizada</h4>
             <p class="text-sm text-gray-300 mb-4">Proyecto a medida</p>
+            <p class="text-sm text-gray-300 mb-4">Para e-commerce, portales complejos, plataformas multi-usuario o funcionalidades avanzadas personalizadas</p>
+
             <div class="text-3xl font-bold mb-4 text-white">1,000€ - 2,000€</div>
-            <ul class="space-y-2 text-sm text-gray-300 mb-6">
+             <p class="text-sm text-gray-300 mb-4">Ofrece lo siguiente:</p>
+
+            <ul class="space-y-2 text-sm text-gray-300 mb-6 flex-grow">
               <li><span class="text-blue-400">✅</span> Todo lo anterior +</li>
               <li><span class="text-blue-400">✅</span> Catálogo de productos</li>
               <li><span class="text-blue-400">✅</span> Carrito y checkout</li>
               <li><span class="text-blue-400">✅</span> Pasarela de pago</li>
               <li><span class="text-blue-400">✅</span> Panel administración</li>
-              <li><span class="text-blue-400">✅</span> Entrega en 10-14 días</li>
+              <li><span class="text-blue-400">✅</span> Gestión de usuarios avanzada</li>
+              <li><span class="text-blue-400">✅</span> API REST personalizada</li>
+              <li><span class="text-blue-400">✅</span> Integración con sistemas externos</li>
+              <li><span class="text-blue-400">✅</span> Entrega en 20-30 días</li>
             </ul>
             <a
-              href="/reunion"
+              href="/contacto-migracion?plan=personalizada"
               style="color: white"
-              class="block w-full px-4 py-3 text-center bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors"
+              class="block w-full px-4 py-3 text-center bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors mt-auto"
             >
               Solicitar Información
             </a>
@@ -539,39 +1154,65 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         </div>
 
         <div class="flex justify-center mt-6">
-          <p class="text-center text-sm opacity-75 max-w-2xl">
+          <p class="text-center text-sm text-white opacity-75 max-w-2xl">
             💡 Precios orientativos. El coste final depende de la complejidad de tu WordPress actual.
           </p>
         </div>
-      </div>
-
-      <!-- CTA Section
-      <div class="text-center">
-        <h2 class="text-3xl font-bold text-base-900 mb-6">
-          ¿Listo para una web más rápida y segura?
-        </h2>
-        <p class="text-xl text-base-600 mb-8 max-w-2xl mx-auto">
-          Agenda una consulta gratuita y analizaremos tu WordPress actual.
-          Te mostraremos el ahorro exacto en velocidad, seguridad y costes.
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a
-            href="/reunion"
-            class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-accent-600 hover:bg-accent-700 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200"
-          >
-            Solicitar Análisis Gratuito
-            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
-            </svg>
-          </a>
-          <a
-            href="/#servicios"
-            class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-base-700 bg-base-100 hover:bg-base-200 rounded-xl border border-base-200 hover:border-accent-300 transition-all duration-200"
-          >
-            Ver Otros Servicios
-          </a>
-        </div>
-      </div> -->
     </div>
   </section>
+
+  <!-- Beneficios Adicionales Section - Blue Background -->
+ 
+
+  <!-- Pricing Section - Black Background 
+  <section class="py-20 bg-base-50">
+   
+     <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+          <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center text-green-600 text-xl mb-4">
+            💰
+          </div>
+          <h3 class="text-lg font-semibold text-white mb-3">Ahorro de Costes</h3>
+          <p class="text-blue-50 mb-3">
+            Elimina gastos recurrentes de plugins premium, temas y hosting caro.
+          </p>
+          <div class="text-sm space-y-1">
+            <p class="text-white"><span class="font-semibold">❌ WordPress:</span> 80-150€/mes</p>
+            <p class="text-green-300"><span class="font-semibold">✅ Código puro:</span> 5-20€/mes</p>
+          </div>
+        </div>
+
+        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+          <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 text-xl mb-4">
+            🔒
+          </div>
+          <h3 class="text-lg font-semibold text-white mb-3">Seguridad Total</h3>
+          <p class="text-blue-50 mb-3">
+            Sin plugins de terceros vulnerables. Código auditado y limpio.
+          </p>
+          <div class="text-sm text-white">
+            <p>• Sin ataques por plugins desactualizados</p>
+            <p>• Sin inyecciones SQL</p>
+            <p>• Sin backdoors ocultos</p>
+          </div>
+        </div>
+
+        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+          <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center text-purple-600 text-xl mb-4">
+            📈
+          </div>
+          <h3 class="text-lg font-semibold text-white mb-3">Mejor SEO y Conversión</h3>
+          <p class="text-blue-50 mb-3">
+            Google premia las webs rápidas con mejor posicionamiento.
+          </p>
+          <div class="text-sm text-white">
+            <p>• PageSpeed 95-100 = mejor ranking</p>
+            <p>• Carga rápida = menos rebote</p>
+            <p>• Mejor UX = más conversiones</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>-->
 </BaseLayout>

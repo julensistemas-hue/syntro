@@ -1,0 +1,2929 @@
+/*===============================================
+Template Name: dreamhub - Consulting & Finance HTML5 Template
+Author:  https://themeforest.net/user/dreamit-solution
+Description: Description
+Version: 1.0.0
+Text Domain: dreamhub
+Tags: consulting, finance, corporate, business, consultant, multipurpose, technology, it-solution, software, agency, company, portfolio, bangking, insurance, digital-agency, digital-marketing.
+================================================*/
+
+/*TABLE OF CONTENTS*/
+/*=====================
+01. dreamhub Header Top Menu Area Css
+02. dreamhub Nav Menu Area Css 
+03. dreamhub Slider Area Css
+04. dreamhub Section Title Css
+05. dreamhub Service Area css
+06. dreamhub About Area Css
+07. dreamhub Counter Area Css
+08. dreamhub Case Study Area Css
+09. dreamhub Testimonial Area Css
+10. dreamhub Process Area Css
+11. dreamhub Team Area Css
+12. dreamhub Faq Area Css
+13. dreamhub Brand Section Css
+14. dreamhub Call Do Section Css
+15. dreamhub Form Box Css
+16. dreamhub Skill Area Css
+17. dreamhub Blog Area Css
+18. dreamhub footer Area Css
+19. dreamhub Subscribe Area Css
+20. dreamhub Lines CSS
+21. dreamhub Prossess Ber Css
+22. dreamhub Scrollup Section
+23. dreamhub Bounce Animation Css 
+24. dreamhub Animation Dance
+25. dreamhub Breadcumb Area Css
+26. dreamhub abouts_areas Css
+27. dreamhub Feture-Area Css
+28. dreamhub Pricing Section Css
+29. dreamhub Web Development Section CSS
+30. dreamhub Contact  US Css
+31. dreamhub Blog Sidber Widget CSS
+32. dreamhub Case Study Details Css
+33. dreamhub Search Box Css
+34. dreamhub Loader Css
+=======================*/
+
+
+/*================================
+<--  dreamhub Nav Menu Area Css -->
+==================================*/
+.dreamhub_nav_manu {
+    transition: .5s;
+    z-index: 2;
+    position: relative;
+    background: transparent;
+    margin-bottom: -99px;
+}
+
+.sticky-nav {
+    left: 0;
+    margin: auto;
+    top: 0;
+    width: 100%;
+    position: fixed !important;
+    box-shadow: 0 0 60px 0 rgba(0, 0, 0, 0.07);
+    -webkit-animation: 300ms running fadeInDown;
+    animation: 500ms running fadeInUp;
+    -webkit-box-shadow: 0 10px 15px rgba(25, 25, 25, 0.1);
+    transition: 0.5s !important;
+    background: #062E61!important;
+    z-index: 9999 !important;
+    animation-name: slideInDown;
+    padding: 0 40px 0px;
+}
+.style-two .dreamhub_menu > ul > li > a {
+    color: #fff;
+}
+
+/* dreamhub Menu Css*/
+
+nav.dreamhub_menu {
+    text-align: right;
+}
+
+.dreamhub_menu ul {
+    list-style: none;
+    display: inline-block;
+}
+
+.dreamhub_menu>ul>li {
+   display: inline-block;
+   position: relative;
+   z-index: 1;
+}
+
+.dreamhub_menu > ul > li > a {
+    font-size: 17px;
+    display: inline-block;
+    margin: 35px 16px;
+    -webkit-transition: .5s;
+    color: #fff;
+    position: relative;
+}
+
+.dreamhub_menu > ul > li > a:before {
+    position: absolute;
+    content: "";
+    left: 0;
+    right: 0;
+    margin: auto;
+    bottom: 0;
+    width: 0;
+    height: 1px;
+    background: #3abba7;
+    transition: .5s;
+}
+
+nav.dreamhub_menu span {
+    font-size: 13px;
+    padding-left: 6px;
+    font-family: FontAwesome;
+    opacity: .5;
+}
+
+.dreamhub_menu > ul > li > a:hover {
+    color: #3abba7;
+}
+
+/*menu button*/
+
+.header-button {
+    display: inline-block;
+    padding-left: 80px;
+}
+
+.header-button a {
+    padding: 13px 35px;
+    font-size: 17px;
+    color: #fff;
+    font-weight: 500;
+    background: #3abba7;
+    border-radius: 20px 0px 20px 0px;
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+    transition: .5s;
+    border: 1px solid #3abba7;
+}
+
+.header-button a:before {
+    position: absolute;
+    content: "";
+    z-index: -1;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 20px 0px 20px 0px;
+    background: #140d36;
+    transform: scale(0);
+    transition: .5s;
+}
+
+.header-button a:hover:before {
+    transform: scale(1);
+}
+
+/*** Sub Menu Style ==================================*/
+
+.dreamhub_menu ul .sub-menu {
+    position: absolute;
+    left: 0;
+    top: 130%;
+    width: 217px;
+    text-align: left;
+    background: #fff;
+    margin: 0;
+    z-index: 1;
+    -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3);
+    transition: .5s;
+    visibility: hidden;
+    border-top: 2px solid #3abba7;
+    opacity: 0;
+}
+.dreamhub_menu ul li:hover>.sub-menu {
+     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+     visibility: visible;
+     top: 100%;
+     opacity: 1;
+ }
+.dreamhub_menu ul .sub-menu li {
+     position: relative;
+}
+.dreamhub_menu ul .sub-menu li a {
+    display: block;
+    padding: 12px 20px;
+    margin: 0;
+    line-height: 1.3;
+    letter-spacing: normal;
+    font-size: 16px;
+    font-weight: 500;
+    text-transform: capitalize;
+    -webkit-transition: .1s;
+    visibility: inherit !important;
+    color: #211e3b !important;
+}
+.dreamhub_menu ul .sub-menu li:hover>a,
+.dreamhub_menu ul .sub-menu .sub-menu li:hover>a,
+.dreamhub_menu ul .sub-menu .sub-menu .sub-menu li:hover>a,
+.dreamhub_menu ul .sub-menu .sub-menu .sub-menu .sub-menu li:hover>a {
+     background:#3abba7;
+     color: #fff !important;
+}
+
+/* sub menu 2 */
+.dreamhub_menu ul .sub-menu .sub-menu {
+     left: 100%;
+     top: 130%;
+     opacity: 0;
+     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+     visibility: hidden;
+}
+.dreamhub_menu ul .sub-menu li:hover>.sub-menu {
+     opacity: 1;
+     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+     visibility: visible;
+     top: 0%;
+}
+
+/* sub menu 3 */
+.dreamhub_menu ul .sub-menu .sub-menu li {
+    position: relative;
+}
+.dreamhub_menu ul .sub-menu .sub-menu .sub-menu {
+     right: 100%;
+     left: auto;
+     top: 130%;
+     opacity: 0;
+     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+     visibility: hidden;
+}
+.dreamhub_menu ul .sub-menu .sub-menu li:hover>.sub-menu {
+     opacity: 1;
+     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+     visibility: visible;
+     top: 0%;
+}
+
+/* sub menu 4 */
+.dreamhub_menu ul .sub-menu .sub-menu .sub-menu li {
+    position: relative;
+}
+.dreamhub_menu ul .sub-menu .sub-menu .sub-menu .sub-menu {
+}
+.dreamhub_menu ul .sub-menu .sub-menu .sub-menu li:hover>.sub-menu {
+     opacity: 1;
+     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+     visibility: visible;
+     top: 0%;
+}
+
+.dreamhub_menu li a:hover:before{
+    width:101%;
+}
+.dreamhub_nav_manu.sticky-nav .logo_img {
+    display: none;
+}
+.main_sticky {
+    display: none;
+}
+.dreamhub_nav_manu.sticky-nav .main_sticky {
+    display: inherit;
+}
+.sticky-nav .dreamhub_menu li a {
+    color: #fff;
+}
+.mobile-menu.mean-container {
+    overflow: hidden;
+}
+
+
+
+
+/*=============================================
+<--  Dreamhub Hero section Css -->
+===============================================*/
+
+.hero-section {
+    background: #140d36;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    padding: 190px 0 150px;
+}
+
+.hero-thumb {
+    animation-name: moveleftbounce;
+    animation-duration: 6s;
+    animation-iteration-count: infinite;
+}
+
+/*hero content*/
+
+.hero-content h1 {
+    font-size: 60px;
+    line-height: 60px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.hero-content h1 {
+    font-size: 60px;
+    line-height: 60px;
+    font-weight: 600;
+}
+
+.hero-content h1 span {
+    position: relative;
+}
+
+.hero-content h1 span:before {
+    position: absolute;
+    content: "";
+    right: -62px;
+    bottom: 20px;
+    width: 50px;
+    height: 3px;
+    background-color: #3abba7;
+}
+
+.widget_search input {
+    border-radius: 4px;
+    padding-left: 20px;
+    height: 54px;
+    width: 41%;
+    color: #fff;
+    border: 1px solid #fff;
+    background: transparent;
+    display: inline-block;
+}
+
+.widget_search input::placeholder {
+    color: #fff;
+}
+
+/*description*/
+
+.hero-description p {
+    padding: 30px 0 28px;
+    color: #fff;
+    font-size: 17px;
+    width: 76%;
+}
+
+/*hero button*/
+
+.hero-button {
+    display: inline-block;
+}
+
+.hero-button {
+    padding-left: 10px;
+}
+
+.hero-button a {
+    padding: 12px 34px;
+    font-weight: 500;
+    color: #fff;
+    background: #3abba7;
+    border: 1px solid #3abba7;
+    display: inline-block;
+    border-radius: 5px;
+    position: relative;
+    z-index: 1;
+}
+
+.hero-button a:before {
+    position: absolute;
+    content: "";
+    z-index: -1;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 20px 4px 20px 4px;
+    background: #140d36;
+    transform: scale(0.0,0);
+    transition: .5s;
+}
+
+.hero-button a:hover:before {
+    transform: scale(1);
+}
+
+/*=============================================
+<--  Dreamhub section title Css -->
+===============================================*/
+
+.dreamhub-section-title h1 {
+    font-size: 46px;
+    font-weight: 700;
+    line-height: 48px;
+}
+
+.dreamhub-section-title p {
+    padding: 29px 0 7px;
+    font-size: 16px;
+}
+
+.text-center.dreamhub-section-title p {
+    padding: 30px 0 70px;
+    width: 62%;
+    margin: auto;
+}
+
+.dreamhub-section-title.padding-lg {
+    padding-bottom: 43px;
+}
+
+/*button*/
+
+.cloud-button {
+    display: inline-block;
+}
+
+.cloud-button a {
+    padding: 12px 34px;
+    font-weight: 500;
+    color: #fff;
+    background: #3abba7;
+    border: 1px solid #3abba7;
+    display: inline-block;
+    border-radius: 5px;
+    position: relative;
+    z-index: 1;
+}
+
+.cloud-button a:before {
+    position: absolute;
+    content: "";
+    z-index: -1;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 4px;
+    background: #140d36;
+    transform: scale(0.0,0);
+    transition: .5s;
+}
+
+.cloud-button a:hover:before {
+   transform: scale(1); 
+}
+
+/*=============================================
+<--  Dreamhub Brand section Css -->
+===============================================*/
+
+.brand-section {
+    background: #140d36;
+}
+
+.brand-thumb img {
+    transition: .5s;
+}
+
+.brand-thumb {
+    padding: 16px 30px;
+    border-radius: 4px;
+    transition: .5s;
+}
+
+.brand-thumb:hover {
+    background-color: #002248;
+}
+
+.active.center .brand-thumb {
+    background-color: #002248;
+}
+
+/*owl carousel*/
+
+.owl-nav {
+    opacity: 0;
+    transition: .5s;
+}
+
+.owl-next {
+    position: absolute;
+    right: -125px;
+    top: 0;
+    transition: .5s;
+}
+
+.owl-prev {
+    position: absolute;
+    left: -125px;
+    top: 0;
+    transition: .5s;
+}
+
+.owl-prev i, .owl-next i {
+    font-size: 20px;
+    display: inline-block;
+    color: #fff;
+    background: #3abba7;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    border-radius: 30px;
+}
+
+.row.brand-bg:hover .owl-nav {
+    opacity: 1;
+}
+
+.row.brand-bg:hover .owl-next {
+    right: -65px;
+}
+
+.row.brand-bg:hover .owl-prev {
+    left: -65px;
+}
+
+/*Brand Style Two
+==========================*/
+
+.style-two.brand-section {
+    background: #ffff;
+    padding: 0 0 110px;
+}
+
+
+
+/*=============================================
+<--  Dreamhub Service section Css -->
+===============================================*/
+
+.service-section {
+    padding: 125px 0 120px;
+    background: #140d36;
+}
+
+.service-section .cloud-button {
+    display: block;
+}
+
+.dreamit-service-box {
+    background: #002248;
+    padding: 35px 35px 30px;
+    border-radius: 3px;
+    transition: .5s;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+
+.dreamit-service-box:before {
+    position: absolute;
+    content: "";
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 0;
+    background: #002f65;
+    transition: .5s;
+    z-index: -1;
+}
+
+.dreamit-service-box:after {
+    position: absolute;
+    content: "";
+    top: 0;
+    bottom: 0;
+    right: -268px;
+    margin: auto;
+    width: 96%;
+    height: 110%;
+    background: #002248;
+    transition: .9s;
+    z-index: -1;
+    border-radius: 100%;
+    transform: perspective(500px)rotateY(-90deg);
+}
+
+.service-icon img {
+    filter: brightness(0) invert(1);
+    transition: .5s;
+}
+
+h2.service-title {
+    font-size: 22px;
+    font-weight: 600;
+    color: #fff;
+    padding-top: 17px;
+    transition: .5s;
+}
+
+p.service-desctiption {
+    opacity: .5;
+    color: #fff;
+    padding: 18px 0 5px;
+    display: inline-block;
+}
+
+a.service-button {
+    font-weight: 500;
+    color: #fff;
+    transition: .5s;
+}
+
+a.service-button i {
+    font-size: 18px;
+    position: relative;
+    top: 2px;
+    padding-left: 5px;
+    transition: .5s;
+}
+
+a.service-button:hover i{
+    padding-left: 14px; 
+}
+
+
+.dreamit-service-box:hover:before {
+    left: 0;
+    width: 100%;
+}
+
+.dreamit-service-box:hover .service-icon img {
+    filter: brightness(1);
+}
+
+.dreamit-service-box:hover p.service-desctiption {
+    opacity: 1;
+}
+
+.dreamit-service-box:hover:after {
+    transform: perspective(500px)rotateY(0deg);
+}
+
+.dreamit-service-box:hover h2.service-title, .dreamit-service-box:hover a.service-button {
+    color: #3abba7;
+}
+
+
+/*Style Two
+===============*/
+
+.style-two.service-section {
+    padding: 150px 0 0px;
+    background: #140d36;
+}
+
+/*=============================================
+<--  Dreamhub About section Css -->
+===============================================*/
+
+.about-section {
+    padding: 150px 0 150px;
+}
+
+.left.dreamit-about-thumb {
+    margin: 0 0 0 -80px;
+    animation: movebounce;
+    animation-duration: 6s;
+    animation-iteration-count: infinite;
+}
+
+/*about item*/
+
+.about-item-list {
+    padding: 9px 0 0;
+}
+
+.about-item-list ul li {
+    display: block;
+    list-style: none;
+    color: #00295a;
+    padding: 0 0 14px;
+    font-weight: 500;
+    font-size: 18px;
+    position: relative;
+    z-index: 1;
+}
+
+.about-item-list ul li i {
+    padding-right: 9px;
+}
+
+.about-item-list ul li:nth-child(1) i {
+    color: #612ef3;
+}
+
+.about-item-list ul li:nth-child(2) i {
+    color: #ff3b34;
+}
+
+li.icn-clr3 i {
+    color: #26c485 !important;
+}
+
+li.icn-clr4 i {
+    color: #007ed6 !important;
+}
+
+/*style Video
+================*/
+
+.cloud-button-play {
+    padding-top: 30px;
+}
+
+.rs-video {
+    position: relative;
+}
+
+.rs-video .animate-border {
+    position: absolute;
+    left: 185px;
+    top: -54px;
+}
+
+.rs-video .animate-border a {
+    color: #fff;
+    background: #3abba7;
+    font-size: 30px;
+    width: 54px;
+    height: 54px;
+    line-height: 54px;
+    text-align: center;
+    display: inline-block;
+    border-radius: 50%;
+    text-transform: uppercase;
+}
+
+span.video-title {
+    font-weight: 500;
+    color: #00295a;
+    display: inline-block;
+    padding-left: 8px;
+    position: relative;
+    top: -6px;
+}
+
+/*About Style two
+======================*/
+
+.about-section.upper {
+    padding: 0;
+}
+
+.row.about-bg {
+    border-top: 1px solid #3abba7;
+    padding: 150px 0 0;
+}
+
+.about-section.upper .dreamhub-section-title p {
+    width: 90%;
+}
+
+p.disc2 {
+    padding: 0;
+    margin-bottom: 10px;
+}
+
+.dreamit-about-thumb.right {
+    margin: 0 0 0 70px;
+    animation: movebounce;
+    animation-duration: 6s;
+    animation-iteration-count: infinite;
+}
+
+/*About Style Three
+===============================================*/
+
+.counter-title h2 {
+    font-size: 35px;
+    color: #00295a;
+    display: inline-block;
+}
+.counter-text span {
+    font-size: 18px;
+    color: #00295a;
+    padding: 8px 0 0;
+    display: inline-block;
+}
+
+/*dreamhub button*/
+
+.dreamhub-button {
+    margin-top: 40px;
+}
+
+.dreamhub-button a {
+    padding: 13px 39px;
+    font-size: 17px;
+    font-weight: 500;
+    background: #3abba7;
+    color: #fff;
+    display: inline-block;
+    border-radius: 5px;
+    position: relative;
+    z-index: 1;
+}
+
+.dreamhub-button a:before {
+    position: absolute;
+    content: "";
+    z-index: -1;
+    right: 0;
+    bottom: 0;
+    left: inherit;
+    top: inherit;
+    width: 0;
+    height: 0;
+    background: #140d36;
+    border-radius: 5px;
+    transition: .5s;
+    opacity: 0;
+}
+
+.dreamhub-button a:hover:before {
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+}
+
+
+/*=============================================
+<--  Dreamhub Testimonial section Css -->
+===============================================*/
+
+.testimonial-section {
+    background: #140d36;
+    padding: 150px 0 150px;
+}
+
+.testimonial-single-box {
+    background: #002248;
+    padding: 40px 35px 32px;
+    text-align: center;
+    border-radius: 5px;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.testi-thumb img {
+    display: inline-block !important;
+}
+
+.testi-rating ul li {
+    list-style: none;
+    display: inline-block;
+    font-size: 14px;
+    letter-spacing: 3px;
+    padding: 33px 0 22px;
+    color: #FFC107;
+}
+
+.testimonial-desc p {
+    font-size: 16px;
+    color: #fff;
+    opacity: .6;
+}
+
+.testi-title h4 {
+    font-size: 20px;
+    font-weight: 500;
+    color: #fff;
+    padding: 12px 0 7px;
+    transition: .5s;
+}
+
+.testi-title span {
+    font-size: 15px;
+    color: #fff;
+    opacity: .6;
+}
+
+.testimonial-single-box:hover .testi-title h4 {
+    color: #3abba7;
+}
+
+.testimonial-single-box:hover {
+    background-color: #002248 !important;
+    background: linear-gradient(90deg, #3abba7 50%, transparent 0) repeat-x, linear-gradient(90deg, #3abba7 50%, transparent 0) repeat-x, linear-gradient(0deg, #3abba7 50%, transparent 0) repeat-y, linear-gradient(0deg, #3abba7 50%, transparent 0) repeat-y;
+    background-size: 8px 2px, 8px 2px, 2px 8px, 2px 8px;
+    background-position: 0 0, 0 100%, 0 0, 100% 0;
+    -webkit-animation: linearGradientMove 0.5s infinite linear;
+    animation: linearGradientMove 0.5s infinite linear;
+}
+
+.active.center .testimonial-single-box .testi-title h4 {
+    color: #3abba7;
+}
+
+.active.center .testimonial-single-box {
+    background-color: #002248 !important;
+    background: linear-gradient(90deg, #3abba7 50%, transparent 0) repeat-x, linear-gradient(90deg, #3abba7 50%, transparent 0) repeat-x, linear-gradient(0deg, #3abba7 50%, transparent 0) repeat-y, linear-gradient(0deg, #3abba7 50%, transparent 0) repeat-y;
+    background-size: 8px 2px, 8px 2px, 2px 8px, 2px 8px;
+    background-position: 0 0, 0 100%, 0 0, 100% 0;
+    -webkit-animation: linearGradientMove 0.5s infinite linear;
+    animation: linearGradientMove 0.5s infinite linear;
+}
+
+
+/*Key Freames border*/
+
+@-webkit-keyframes linearGradientMove {
+  100% {
+    background-position: 4px 0, -4px 100%, 0 -4px, 100% 4px;
+  }
+}
+
+@keyframes linearGradientMove {
+  100% {
+    background-position: 4px 0, -4px 100%, 0 -4px, 100% 4px;
+  }
+}
+
+
+/*=============================================
+<--  Dreamhub Subscribe section Css -->
+===============================================*/
+
+.subscribe-section {
+    background: #140d36;
+}
+
+.row.subscribe-bg {
+    background: #002248;
+    text-align: center;
+    padding: 50px 0 50px;
+    border-radius: 5px;
+}
+
+.subscribe-title h6 {
+    font-size: 20px;
+    color: #fff;
+}
+
+.subscribe-title h1 {
+    font-size: 46px;
+    color: #fff;
+    padding: 14px 0 41px;
+}
+
+span.subs-btn a {
+    padding: 12px 34px;
+    font-weight: 500;
+    color: #fff;
+    background: #3abba7;
+    border: 1px solid #3abba7;
+    display: inline-block;
+    border-radius: 5px;
+    position: relative;
+    z-index: 1;
+    margin-left: 7px;
+}
+
+.subs-mail-item {
+    padding: 28px 0 0;
+}
+
+.subs-mail-item ul li {
+    display: inline-block;
+    margin-right: 25px;
+    color: #feffff;
+    font-size: 16px;
+}
+
+.subs-mail-item ul li i {
+    color: #3abba7;
+    font-size: 18px;
+    padding-right: 8px;
+}
+
+/*Style Two
+=============*/
+
+.style-two.subscribe-section {
+    background: #140d36;
+    padding: 150px 0 0;
+}
+
+
+/*=============================================
+<--  Dreamhub Footer section Css -->
+===============================================*/
+
+.footer-section {
+    background: url(assets/images/resource/footer-bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    padding: 150px 0 0px;
+}
+
+
+/*widget title
+==================*/
+
+h4.widget-title {
+    font-size: 20px;
+    color: #fff;
+    font-weight: 700;
+    margin-top: 0;
+    padding: 0 0 45px;
+}
+
+.company-info-desc p {
+    color: #fff;
+    padding: 55px 0 15px;
+    font-size: 16px;
+    width: 94%;
+}
+
+/*social icon
+======================*/
+
+.follow-company-icon a {
+    font-size: 15px;
+    width: 30px;
+    height: 30px;
+    line-height: 31px;
+    text-align: center;
+    background: #fff;
+    border-radius: 50px;
+    display: inline-block;
+    color: #3abba7;
+    margin-right: 8px;
+    position: relative;
+    z-index: 1;
+}
+
+.follow-company-icon a:before {
+    position: absolute;
+    content: "";
+    z-index: -1;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: #3abba7;
+    border-radius: 50px;
+    transform: scale(0);
+    transition: .5s;
+}
+
+/*footer menu
+==================*/
+
+.menu-quick-link-content {
+    padding: 10px 0 0;
+}
+
+ul.footer-menu li {
+    display: block;
+    list-style: none;
+    padding: 14px 0 0;
+}
+
+ul.footer-menu li a {
+    color: #fff;
+    transition: .5s;
+    font-size: 16px;
+}
+
+ul.footer-menu li a i {
+    padding-right: 8px;
+}
+
+/*company contact info
+===========================*/
+
+.company-contact-info {
+    overflow: hidden;
+    padding: 15px 0 0;
+} 
+
+.company-contact-info p {
+    padding: 14px 0 0px;
+    color: #fff;
+    font-size: 16px;
+    display: -webkit-box;
+}
+
+.company-contact-info p i {
+    font-size: 12px;
+    width: 28px;
+    height: 28px;
+    line-height: 30px;
+    text-align: center;
+    background: #002248;
+    display: inline-block;
+    border-radius: 30px;
+    color: #fff;
+    margin-right: 14px;
+    transition: .5s;
+    float: left;
+}
+
+/*footer all hover
+=======================*/
+
+ul.footer-menu li a:hover {
+    color: #3abba7;
+}
+
+.follow-company-icon a:hover:before {
+    transform: scale(1);
+}
+
+.follow-company-icon a:hover {
+    color: #fff;
+}
+
+/**footer bottom area
+==========================**/
+
+.row.footer-bottom {
+    padding: 23px 0 26px;
+    border-top: 1px solid #E5E5E5;
+    margin-top: 58px;
+}
+
+.footer-bottom-content {
+    text-align: center;
+    padding: 10px 0 0;
+}
+
+.footer-bottom-content-copy p {
+    color: #FFf;
+    margin: 0 0 5px;
+    font-size: 16px;
+}
+
+.footer-bottom-content-copy span {
+    color: #3abba7;
+}
+
+/*=============================================
+<--  Dreamhub Breatcam section Css -->
+===============================================*/
+
+.breatcam-section {
+    background: url(assets/images/resource/btr-bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 450px;
+}
+
+/*breatcam title*/
+
+.breatcam-title h1 {
+    font-size: 50px;
+    color: #fff;
+}
+
+/*breatcam menu*/
+
+.breatcam-menu ul li {
+    display: inline-block;
+    list-style: none;
+    padding: 17px 0px 0 0px;
+    color: #fff;
+}
+
+.breatcam-menu ul li a {
+    color: #fff;
+    transition: .5s;
+    position: relative;
+    padding: 0 50px 0 0;
+    font-size: 18px;
+}
+
+.breatcam-menu ul li a:before {
+    position: absolute;
+    content: "";
+    right: 14px;
+    bottom: 9px;
+    height: 1px;
+    width: 20px;
+    background: #fff;
+}
+
+.breatcam-menu ul li a:hover {
+    color: #3abba7;
+}
+
+/*=============================================
+<--  Dreamhub Faq section Css -->
+===============================================*/
+
+.faq-section {
+    padding: 140px 0 120px;
+}
+
+.single-faq-box {
+    padding: 25px 35px 20px;
+    background: #f2f4fc;
+    border-radius: 5px;
+    margin-bottom: 30px;
+}
+
+.faq-content h4 {
+    font-size: 22px;
+    font-weight: 600;
+    padding: 0 0 22px;
+}
+
+.faq-thumb {
+    padding-left: 50px;
+}
+
+.faq-thumb img {
+    width: 100%;
+}
+
+
+/*Accordion
+=====================*/
+
+.tab_container {
+    overflow: hidden;
+    padding: 20px 0 0;
+}
+
+.accordion li {
+    list-style: none;
+    padding: 2px 0px 15px;
+    position: relative;
+    z-index: 1;
+}
+
+.accordion li:before {
+    position: absolute;
+    content: "";
+    z-index: -1;
+    right: 20px;
+    top: 16px;
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    border-radius: 50%;
+    background-color: #3abba7;
+}
+
+.accordion li a {
+    position: relative;
+    width: 100%;
+    display: block;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 18px;
+    color: #232353!important;
+    background-color: transparent;
+    border: 1px solid #3abba7;
+    padding: 14px 20px 14px 30px;
+    border-radius: 5px;
+    z-index: 1;
+}
+
+.accordion li p {
+    display: none;
+    font-size: 16px;
+    padding: 25px 20px 25px 30px;
+    margin: 0;
+    background: rgba(58, 187, 167, .1);
+    backdrop-filter: blur(1.9px);
+    overflow: hidden;
+    border-radius: 0 0 5px 5px;
+}
+
+.accordion a:before {
+    width: 2px;
+    height: 10px;
+    background: #fff;
+    position: absolute;
+    right: 32px;
+    content: " ";
+    top: 22px;
+    transform: rotate(0deg);
+    transition: all 0.2s ease-in-out;
+}
+
+.accordion a:after {
+    width: 10px;
+    height: 2px;
+    background: #fff;
+    position: absolute;
+    right: 28px;
+    content: " ";
+    top: 26px;
+    transition: all 0.2s ease-in-out;
+}
+
+.accordion a.active:after {
+  transform: rotate(0deg);
+  -webkit-transition: all 0.2s ease-in-out;
+  background: #fff;
+}
+
+.accordion a.active:before{
+  display: none;
+}
+
+.accordion a.active {
+    color: #fff!important;
+    border: 1px solid #3abba7!important;
+    background: #3abba7!important;
+    border-radius: 5px 5px 0 0;
+}
+
+/*=============================================
+<--  Dreamhub Pricing section Css -->
+===============================================*/
+
+.pricing-section {
+    padding: 130px 0 100px;
+}
+
+.pricing-section .dreamhub-section-title p {
+    width: 70%;
+}
+
+.pricing-single-items {
+    padding: 0px 0 50px;
+    text-align: center;
+    margin-bottom: 30px;
+    border-radius: 5px;
+    background: #f2f4fc;
+}
+
+/*pricing head*/
+
+.pricing-head {
+    padding: 40px 0 42px;
+    transition: .5s;
+    border-radius: 5px 5px 0 0;
+}
+
+.pricing-title h3 {
+    font-size: 20px;
+    font-weight: 600;
+    padding: 0 0 35px;
+    transition: .5s;
+}
+
+.pricing-item-text span {
+    display: inline-block;
+    font-size: 50px;
+    font-weight: 700;
+    text-align: center;
+    color: #062e5f;
+    font-family: 'Playfair Display';
+    transition: .5s;
+}
+
+/*pricing boody*/
+
+.pricing-body {
+    padding: 30px 90px 0;
+    text-align: left;
+}
+
+.pricing-item-list ul li {
+    display: block;
+    font-size: 16px;
+    padding: 9px 0;
+}
+
+.pricing-item-list ul li i {
+    color: #3abba7;
+    padding-right: 6px;
+    font-size: 18px;
+}
+
+/*button*/
+
+.btn-common.pc-btn a {
+    color: #fff;
+    background: #3abba7;
+    font-size: 17px;
+    font-weight: 500;
+    padding: 11px 38px;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    margin-top: 32px;
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+}
+
+.btn-common.pc-btn a:before {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    left: 0;
+    bottom: 0;
+    background: #fff;
+    z-index: -1;
+    transition: 0.5s;
+    transform: scale(0.0, 1);
+    opacity: 0;
+}
+.pricing-single-items:hover .btn-common.pc-btn a{
+  color: #3abba7;
+}
+.pricing-single-items:hover .btn-common.pc-btn a:before {
+    transform: scale(1);
+    opacity: 1;
+}
+.pricing-single-items:hover .pricing-head {
+    background: #3abba7;
+}
+.pricing-single-items:hover .pricing-item-text span, .pricing-single-items:hover .pricing-title h3 {
+    color: #fff;
+}
+
+/*active box*/
+.active .pricing-head {
+    background: #3abba7;
+}
+.active .pricing-item-text span, .active .pricing-title h3 {
+    color: #fff;
+}
+.active .btn-common.pc-btn a:before {
+    opacity: 1;
+}
+.active .btn-common.pc-btn a {
+    color: #3abba7;
+    background: #fff;
+    border: 2px solid #3abba7;
+}
+
+
+/* Team Section
+===============================================*/
+
+.team-section {
+    padding: 0px 0 120px;
+}
+
+.style-two.team-section {
+    padding: 130px 0 120px;
+}
+
+.single_team_box {
+    margin-bottom: 30px;
+}
+
+.single_team_thumb {
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.single_team_thumb img {
+    width: 100%;
+    transition: .5s;
+}
+
+/*team content*/
+
+.single_team_content {
+    padding: 20px 0 25px;
+    background: #fff;
+    text-align: center;
+    border-bottom: 1px solid #fff;
+    filter: drop-shadow(0 0 23px rgba(0,0,0,0.1));
+    border-radius: 0 0 5px 5px;
+    transition: .5s;
+}
+
+.team-title h4 {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.team-title span {
+    font-size: 16px;
+    padding: 10px 0 0;
+    display: inline-block;
+}
+
+.single_team_icon2 {
+    position: absolute;
+    left: 0;
+    bottom: -56px;
+    opacity: 0;
+    transition: .5s;
+    background: #140d36;
+    padding: 38px 0 30px;
+    width: 100%;
+    border-radius: 5px 5px 0px 0;
+    transition: .5s;
+}
+.single_team_icon2 a {
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+    line-height: 32px;
+    border-radius: 30px;
+    background: #fff;
+    text-align: center;
+    color: #3abba7;
+    font-size: 14px;
+    margin-right: 5px;
+    transition: .5s;
+    transition-delay: .5s;
+    overflow: hidden;
+    transform: translateX(0px);
+}
+
+.single_team_icon2 a:nth-child(1) {
+    transition-delay: .2s;
+}
+
+.single_team_icon2 a:nth-child(2) {
+    transition-delay: .3s;
+}
+
+.single_team_icon2 a:nth-child(3) {
+    transition-delay: 0.4s;
+}
+
+.single_team_icon2 a:nth-child(4) {
+    transition-delay: 0.5s;
+}
+
+.single_team_icon2 a:hover {
+    background: #3abba7;
+    color: #fff;
+}
+
+.single_team_box:hover .single_team_icon2 a {
+    transform: translateX(73px);
+    overflow: hidden;
+    visibility: visible;
+}
+
+.single_team_box:hover .single_team_icon2 {
+    opacity: 1;
+    bottom: 0px;
+}
+
+.single_team_box:hover .single_team_content {
+    border-bottom: 1px solid #3abba7;
+}
+
+
+/*=============================================
+<--  Dreamhub Blog details section Css -->
+===============================================*/
+
+.blogs-section {
+    padding: 140px 0 140px;
+}
+
+.blog-single-box2.upp {
+    padding: 0 30px 0 0;
+}
+
+/*blog single box*/
+
+.blog-single-box2 {
+    padding: 30px 30px 0 0;
+}
+
+/*blog thumb*/
+
+.blog-thumb2 a img {
+    width: 100%;
+}
+
+/*blog title*/
+
+.blog-title2 h3 a {
+    font-size: 35px;
+    color: #00295a;
+    font-weight: 600;
+    display: inline-block;
+    padding: 0 0 18px;
+}
+
+.blog-title2 h3 a:hover {
+    color: #3abba7;
+}
+
+/*blog text*/
+
+.blog-text2 {
+    padding: 0 0 20px;
+}
+
+span.blog-rt {
+    padding-left: 18px;
+}
+
+.blog-text2 p i {
+    color: #3abba7;
+    padding-right: 10px;
+}
+
+/*blog description*/
+
+.blog-description p {
+    padding: 35px 0 0;
+}
+
+.blog-description {
+    background: #f7f7fe;
+    padding: 0 35px 20px;
+}
+
+/*blog right*/
+
+.blogs-section .sidebar-widget {
+    padding: 30px 30px 30px;
+    border-radius: 4px;
+    margin-bottom: 30px;
+    background: #f7f7fe;
+}
+
+.widget-items {
+    margin-bottom: 40px;
+    padding: 21px 28px 22px;
+    border-radius: 0;
+    background: #f7f7fe;
+}
+
+/*categories title*/
+
+.categories-title2 h4 {
+    font-size: 22px;
+    font-weight: 600;
+    background: #3abba7;
+    margin: -21px -29px 30px -29px;
+    padding: 15px 29px;
+    color: #fff;
+    border-radius: 5px 5px 0 0;
+}
+
+/*wedget recent post*/
+
+.widget-recent-post {
+    border-bottom: 1px solid #E8E8E8;
+    padding: 0 0 12px;
+    margin-bottom: 20px;
+}
+
+.widget-recent-post.upper {
+    border-bottom: 0;
+    margin-bottom: 0;
+}
+
+/*rpost thumb*/
+
+.rpost-thumb {
+    margin-right: 20px;
+}
+
+.rpost-thumb a img {
+    border-radius: 4px;
+}
+
+/*rpost content*/
+
+.rpost-content h4 {
+    margin-top: 0;
+}
+
+.rpost-content h4 a {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 22px;
+    color: #00295a;
+    display: inline-block;
+    transition: .5s;
+}
+
+.rpost-title span {
+    display: inline-block;
+    color: #00295a;
+    font-size: 15px;
+    padding: 2px 0 0;
+}
+
+.rpost-content h4 a:hover {
+    color: #3abba7;
+}
+
+/*tag item*/
+
+.tag-item ul li {
+    display: block;
+    list-style: none;
+    padding: 15px 0;
+    margin-top: 0;
+    border-top: 1px solid #e6e6e6;
+}
+
+li.item1 {
+    padding: 15px 0 0 !important;
+}
+
+.tag-item ul li a {
+    color: #00295a;
+    transition: .5s;
+    font-size: 18px;
+}
+
+.tag-item ul li a span {
+    float: right;
+}
+
+.tag-item ul li a:hover {
+    color: #3abba7;
+}
+
+/*tag 2*/
+
+.tag-item2 a {
+    background: #fff;
+    padding: 7px 22px;
+    display: inline-block;
+    margin: 0px 6px 15px 0;
+    border: 1px solid #e6e6e6;
+    font-weight: 500;
+    color: #00295a;
+    transition: .5s;
+    border-radius: 4px;
+    position: relative;
+    z-index: 1;
+}
+
+.tag-item2 a:before {
+    position: absolute;
+    content: "";
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: #3abba7;
+    border-radius: 4px;
+    z-index: -1;
+    transform: scale(0);
+    transition: .5s;
+}
+
+.tag-item2 a:hover:before {
+    transform: scale(1);
+}
+
+.tag-item2 a:hover {
+    color: #fff;
+}
+
+
+/*blog quote*/
+
+.blogs-content2 {
+    padding: 32px 0 0;
+}
+
+.blog-quotes {
+    border-left: 5px solid #3abba7;
+    font-style: italic;
+    position: relative;
+    z-index: -1;
+    line-height: 1.5;
+    background-color: #140d36;
+    padding: 50px 39px 55px 37px;
+    text-align: center;
+    margin: 25px 0 25px;
+    border-radius: 5px;
+}
+
+.blog-quotes p {
+    font-size: 20px;
+    margin: 0 0 9px;
+    color: #fff;
+    font-weight: 500;
+}
+
+.blog-quotes span {
+    color: #fff;
+    position: relative;
+    z-index: 1;
+}
+
+.blog-quotes span:before {
+    position: absolute;
+    content: "";
+    left: -42px;
+    bottom: 9px;
+    width: 30px;
+    height: 2px;
+    background: #3abba7;
+}
+
+.blog-quotes i {
+    display: inline-block;
+    position: absolute;
+    font-size: 170px;
+    top: -18px;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    opacity: .5;
+}
+
+.meta-blog-title2 h5 {
+    padding: 5px 0 15px;
+}
+
+.blog-list2 ol {
+    padding: 15px 16px 0;
+}
+
+.blog-list2 ol li {
+    padding: 0 0 5px;
+}
+
+/*solial tag*/
+
+.row.bld-bg {
+    border-top: 1px solid rgba(27,43,43,0.10196078431372549);
+    padding-top: 26px;
+    margin-top: 30px;
+    padding-bottom: 22px;
+}
+
+.tag-list ul li {
+    display: inline-block;
+    list-style: none;
+}
+
+.tag-list ul li span {
+    font-size: 18px;
+    font-weight: 500;
+    color: #3abba7;
+    padding-right: 6px;
+}
+
+.tag-list ul li a {
+    padding: 3px 20px;
+    background: #f7f7fe;
+    display: inline-block;
+    border-radius: 30px;
+    margin-right: 8px;
+   transition: .5s;
+}
+
+.tag-list ul li a:hover {
+    background: #3abba7;
+    color: #fff;
+}
+
+.social-icon-list ul li {
+    display: inline-block;
+    list-style: none;
+}
+
+.social-icon-list ul li span {
+    font-size: 18px;
+    font-weight: 500;
+    color: #3abba7;
+    padding-right: 6px;
+}
+
+.social-icon-list ul li a {
+    height: 34px;
+    width: 34px;
+    line-height: 34px;
+    background: #fff;
+    text-align: center;
+    border: 1px solid rgba(13,14,20,0.1);
+    display: inline-block;
+    border-radius: 30px;
+    font-size: 14px;
+    color: #5F6A6A;
+    margin-right: 7px;
+    position: relative;
+    z-index: 1;
+}
+
+.social-icon-list ul li a:before {
+    position: absolute;
+    content: "";
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: #3abba7;
+    border-radius: 30px;
+    z-index: -1;
+    transform: scale(0);
+    transition: .5s;
+}
+
+.social-icon-list ul li a:hover:before {
+    transform: scale(1);
+}
+
+.social-icon-list ul li a:hover {
+    color: #fff;
+}
+
+/*post comment*/
+
+.blog-details-comments-box {
+    padding: 65px 22px 50px 0;
+}
+
+.widget-comments-title h2 {
+    font-size: 30px;
+    padding: 0 0 40px;
+}
+
+.post-comment2 {
+    border-bottom: 1px solid rgba(27,43,43,0.10196078431372549);
+    margin: 0 0 30px;
+    padding: 0 0 11px;
+}
+
+.post-comment-thumb {
+    float: left;
+    margin-right: 20px;
+}
+
+.blog-content2 {
+    overflow: hidden;
+}
+
+.post-title span {
+    padding-left: 31px;
+    font-size: 16px;
+    color: #232353;
+    font-weight: 500;
+    position: relative;
+}
+
+.post-title span:before {
+    position: absolute;
+    content: "";
+    left: 6px;
+    top: 9px;
+    height: 1px;
+    width: 15px;
+    background: #0D0E14;
+}
+
+span.rights-reply {
+    float: right;
+    font-weight: 500;
+    color: #0D0E14;
+    position: relative;
+    top: -109px;
+    cursor: pointer;
+    left: 0;
+}
+
+.posts-reply p {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.post-title h4 {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 26px;
+    margin-top: 0;
+    padding: 0px 0 9px;
+}
+
+.comment-icon-list ul li {
+    list-style: none;
+    display: inline-block;
+    color: #3abba7;
+    letter-spacing: .4em;
+    font-size: 15px;
+}
+
+
+/*pagination*/
+
+.pagination-menu {
+    text-align: center;
+    padding: 50px 0 0;
+}
+
+.pagination-menu ul {
+    display: inline-block;
+}
+
+.pagination-menu ul li {
+    display: inline-block;
+    list-style: none;
+    padding-right: 10px;
+}
+
+.pagination-menu ul li a {
+    width: 40px;
+    height: 40px;
+    line-height: 36px;
+    text-align: center;
+    border-radius: 20px;
+    display: inline-block;
+    border: 1px solid #3abba7;
+    font-size: 20px;
+    position: relative;
+    z-index: 1;
+    transition: .5s;
+}
+
+.pagination-menu ul li a:before {
+    position: absolute;
+    content: "";
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: #3abba7;
+    border-radius: 40px;
+    transform: scale(0);
+    transition: .5s;
+    z-index: -1;
+}
+
+.pagination-menu ul li a:hover:before {
+    transform: scale(1);
+}
+.pagination-menu ul li a:hover {
+    color: #fff;
+}
+
+/*contact form
+==================================================-->*/
+
+.contact-section {
+    padding: 0 0 130px;
+}
+
+.contact-section .contact-form-box {
+    padding: 0 20px 0 0;
+}
+
+/*form box*/
+
+.form-box input {
+    height: 54px;
+    background-color: #fff;
+    border: 1px solid #3abba7;
+    transition: .5s;
+    padding: 0px 25px;
+    display: block;
+    width: 100%;
+    color: #0D0E14;
+    margin-bottom: 30px;
+    border-radius: 4px;
+}
+
+.form-box textarea {
+    height: 170px;
+    background-color: #fff;
+    border: 1px solid #3abba7;
+    transition: .5s;
+    padding: 15px 25px;
+    display: block;
+    width: 100%;
+    border-radius: 4px;
+}
+
+.contact-form button {
+    width: 100%;
+    height: 54px;
+    background: #3abba7;
+    border: 1px solid #3abba7;
+    font-weight: 500;
+    color: #fff;
+    display: inline-block;
+    margin-top: 40px;
+    border-radius: 5px;
+    position: relative;
+    z-index: 1;
+    transition: .5s;
+}
+
+.contact-form button:before {
+    position: absolute;
+    content: "";
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background: #fff;
+    transform: scale(0.0, 1);
+    transition: .5s;
+    z-index: -1;
+}
+
+.contact-form button:hover:before {
+    transform: scale(1);
+}
+
+.contact-form:hover button {
+    color: #232353;
+}
+
+/*contact info section
+==========================*/
+
+.contact-info-section {
+    padding: 110px 0 120px;
+}
+
+.contact-information2 {
+    margin-bottom: 30px;
+}
+
+.contact-info-section .contacts-icon {
+    float: left;
+    margin-right: 20px;
+}
+
+.contact-info-section .contacts-icon i {
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    background: #3abba7;
+    text-align: center;
+    color: #fff;
+    font-size: 20px;
+    border-radius: 50%;
+    display: inline-block;
+    transition: .5s;
+}
+
+.contact-info-section .contacts-title h5 {
+    font-weight: 500;
+    font-size: 18px;
+    color: #232353;
+}
+
+.contact-info-section .contacts-title h6 {
+    font-size: 20px;
+    font-weight: 600;
+    padding: 4px 0 0;
+}
+
+.contact-information2:hover .contacts-icon i {
+    transform: rotateY(180deg);
+}
+
+/*case study three
+======================================================*/
+.portfolio-section {
+    padding: 130px 0 110px;
+}
+/* Portfolio Nav */
+.portfolio_nav {
+    margin: 40px 5px 45px;
+}
+.portfolio_menu ul {
+    text-align: center;
+    list-style: none;
+}
+.portfolio_nav ul li {
+    background: #fff;
+    border: 1px dashed #ff5a3c;
+    font-size: 16px;
+    transition: all 0.5s ease 0s;
+    cursor: pointer;
+    padding: 6px 30px;
+    margin-right: 10px;
+    font-weight: 500;
+    position: relative;
+    display: inline-block;
+    border-radius: 30px;
+}
+.portfolio_menu ul li a{
+    display: block;
+    color:#fff;
+    text-transform:uppercase;
+    position:relative;
+    transition:.5s;
+}
+.portfolio_menu ul li a:before {
+    position: absolute;
+    content: "";
+    left: 0;
+    top: 24px;
+    height: 2px;
+    width: 0%;
+    background: #fff;
+    transition:.5s;
+}
+
+.portfolio_nav ul li:hover, .portfolio_nav ul li.current_menu_item {
+    color: #fff;
+    background: #ff5a3c;
+}
+
+/*nav menu end*/
+
+.case-study-single-box:hover .study-text p:after {
+    width: 89%;
+}
+.case-study-single-box:hover .case-study-thumb:before {
+    height: 100%;
+    top: 0;
+}
+.case-study-single-box:hover .case-study-icon a i {
+    opacity: 1;
+    top: 30px;
+}
+.case-study-single-box:hover .case-study-content {
+    bottom: 30px;
+    opacity: 1;
+}
+/*active*/
+.active.center .case-study-thumb:before {
+    height: 100%;
+    top: 0;
+}
+.active.center .case-study-icon a i {
+    opacity: 1;
+    top: 30px;
+}
+.active.center .case-study-content {
+    bottom: 30px;
+    opacity: 1;
+}
+
+/*======================================
+<-- Consen Case Study Details Css -->
+========================================*/
+.case-study-details {
+    padding: 130px 0 110px;
+}
+.case-study-intro {
+    box-shadow: 0 0 15px rgb(0,0,0,0.2);
+    padding: 60px;
+    margin-bottom: 50px;
+}
+.csd-thumb img{
+  width:100%;
+}
+.csd-info {
+    padding: 0 50px;
+}
+.csd-info ul li {
+  list-style: none;
+  margin-bottom: 10px;
+  font-size: 20px;
+  font-weight: 300;
+  text-transform: capitalize;
+}
+.csd-info ul  {
+  padding: 13px 0;
+
+}
+.csd-social-icon li{
+  display: inline-block;
+  margin: 0px 8px 0 0;
+}
+.csd-social-icon li i {
+  color: #fff;
+  height: 35px;
+  width: 35px;
+  line-height: 35px;
+  text-align: center;
+  background: #ff5a3c;
+  border-radius: 5px;
+  transition: .5s;
+}
+.csd-social-icon li i:hover{
+    background: #11102F;
+    color: #fff;
+}
+.csd-title  h3 {
+    font-size: 28px;
+    font-weight: 600;
+}
+.csd-info ul li {
+    list-style: none;
+    margin-bottom: 15px;
+    font-size: 19px;
+    font-weight: 300;
+    text-transform: capitalize;
+}
+.csd-info strong {
+    font-size: 19px;
+    font-weight: 600;
+    margin-right: 5px;
+    color: #232323;
+}
+.share-text {
+    float: left;
+    margin-right: 20px;
+}
+.share-text h4 {
+    font-size: 20px;
+    color: #666;
+    font-weight: 600;
+    margin-top: 6px;
+}
+.csd-social-icon ul {
+    padding: 0;
+}
+
+/*=====================================
+<-- Dream hub Service Details Css -->
+=======================================*/
+
+.service-details {
+    padding: 140px 0 140px;
+}
+
+.sidebar-widget {
+    margin-bottom: 30px;
+}
+
+.sidebar-widget input {
+    height: 54px;
+    width: 100%;
+    background: #ffffff;
+    border: 2px solid #3abba7;
+    border-radius: 4px;
+    padding: 0 20px 0;
+}
+
+.sidebar-widget form {
+    position: relative;
+}
+
+.sidebar-widget button.subscribe-btn {
+    height: 54px;
+    width: 60px;
+    border: 0;
+    border-radius: 0 4px 4px 0;
+    background: #3abba7;
+    color: #fff;
+    position: absolute;
+    right: 0;
+}
+
+/*widget sidebar*/
+
+.widget-sidebar-box {
+    padding: 30px 30px 30px;
+    background: #f2f4fc;
+    margin-bottom: 30px;
+    border-radius: 4px;
+}
+
+h4.sidebar-title {
+    font-size: 22px;
+    padding: 0 0 25px;
+    position: relative;
+    z-index: 1;
+}
+
+h4.sidebar-title:before {
+    position: absolute;
+    content: "";
+    left: -29px;
+    top: 0;
+    width: 3px;
+    height: 30px;
+    background: #3abba7;
+    border-radius: 5px;
+}
+
+ul.sidebar-menu {
+    border-top: 2px solid rgba(6,36,97,0.10196078431372549);
+    padding: 30px 0 0;
+}
+
+ul.sidebar-menu li {
+    padding: 13px 15px 13px;
+    display: block;
+    border: 1px solid rgba(19,17,37,0.1);
+    margin-bottom: 10px;
+    border-radius: 4px;
+    transition: .5s;
+    list-style: none;
+}
+
+li.sidbr-mb {
+    margin: 0 !important;
+}
+
+ul.sidebar-menu li a {
+    font-size: 16px;
+    color: #062461;
+    font-weight: 400;
+    transition: .5s;
+}
+
+ul.sidebar-menu li a i {
+    background: #E5E8EF;
+    border-radius: 20px;
+    font-size: 16px;
+    padding: 0px 3px;
+    margin-right: 5px;
+    transition: .5s;
+}
+
+ul.sidebar-menu li:hover {
+    background: #fff;
+    border: 1px solid #fff;
+}
+
+ul.sidebar-menu li:hover a i {
+    background: #3abba7;
+    color: #fff;
+}
+
+/*sidebar 2*/
+
+ul.sidebar-menu2 li {
+    display: block;
+    list-style: none;
+    background: #fff;
+    font-weight: 400;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+img.sidbr-icn {
+    padding-right: 15px;
+}
+
+/*Quick Contact*/
+
+.widget-sidebar-quick-contact {
+    background: url(assets/images/resource/sidebar-bg.jpg);
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    padding: 50px 0 50px;
+    margin-bottom: 30px;
+    border-radius: 5px;
+}
+
+h3.widget-title2 {
+    padding: 25px 0 20px;
+    font-size: 26px;
+    color: #fff;
+    display: inline-block;
+    font-weight: 600;
+}
+
+h5.sidebar-title {
+    font-size: 16px;
+    color: #3abba7;
+    font-weight: 500;
+    position: relative;
+    z-index: 1;
+    font-weight: 600;
+}
+
+h5.sidebar-title:before {
+    position: absolute;
+    content: "";
+    left: 0;
+    right: 168px;
+    top: 8px;
+    margin: auto;
+    width: 96px;
+    height: 2px;
+    background: rgba(255,255,255,0.2);
+}
+
+h5.sidebar-title:after {
+    position: absolute;
+    content: "";
+    left: 168px;
+    right: 0;
+    top: 8px;
+    margin: auto;
+    width: 96px;
+    height: 2px;
+    background: rgba(255,255,255,0.2);
+}
+
+h5.sidebar-title2 {
+    font-size: 24px;
+    color: #fff;
+    padding: 12px 0 48px;
+    font-weight: 600;
+}
+
+.widget-button a {
+    padding: 12px 35px;
+    background: #3abba7;
+    color: #fff;
+    border-radius: 4px;
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+}
+
+.widget-button a:before {
+    position: absolute;
+    content: "";
+    z-index: -1;
+    right: 0;
+    top: 0;
+    width: 0;
+    height: 100%;
+    background-image: linear-gradient(10deg, #140d36 0%, #140d36 100%);
+    transition: .5s;
+    border-radius: 4px;
+}
+
+.widget-button a:hover:before {
+    width: 100%; 
+    left: 0;
+}
+
+/*Service Details*/
+
+.service-dtls-all-items {
+    padding-left: 50px;
+}
+
+.service-dtls-all-items h2.service-title2 {
+    font-size: 22px;
+    font-weight: 600;
+    padding: 25px 0 17px;
+    transition: .5s;
+    color: #00295a;
+}
+
+.service-dtls-box {
+    display: flex;
+    align-items: center;
+    background: #f2f4fc;
+    border-radius: 5px;
+}
+
+p.service-dtls-desc2 {
+    padding: 0 0 20px;
+}
+
+.sevice-dtls-content h4 {
+    font-size: 20px;
+    padding: 0 0 11px;
+    font-weight: 600;
+}
+
+.sevice-dtls-content {
+    padding-left: 25px;
+}
+
+
+/*service dtls pannel*/
+
+.service-dtls-itm-pannel {
+    border-top: 1px solid rgba(6,36,98,0.10196078431372549);
+    border-bottom: 1px solid rgba(6,36,98,0.10196078431372549);
+    padding: 25px 0 37px;
+    margin: 40px 0 20px 0;
+}
+
+.service-dtls-items ul li {
+    display: block;
+    list-style: none;
+    padding: 12px 0 0;
+    color: #00295a;
+    font-weight: 400;
+}
+
+.service-dtls-items ul li i {
+    background: #E5E8EF;
+    border-radius: 20px;
+    color: #00295a;
+    font-size: 15px;
+    padding: 0px 3px;
+    line-height: 20px;
+    margin-right: 5px;
+    transition: .5s;
+    display: inline-block;
+}
+
+.service-dtls-items ul li:hover i {
+    background: #3abba7;
+    color: #fff;
+}
+
+.service-dtls-cont h5 {
+    font-size: 16px;
+    color: #3abba7;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.service-dtls-cont h3 {
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 40px;
+    padding: 6px 0 0;
+}
+
+h2.accordion-title {
+    font-size: 30px;
+    padding: 0 0 37px;
+}
+
+/*=====================================
+<-- Dream hub Error Area Css -->
+=======================================*/
+.error-area {
+    padding: 100px 0 100px;
+}
+
+.error-thumb {
+    text-align: center;
+}
+
+.error-content {
+    text-align: center;
+}
+
+.error-content h2 {
+    font-size: 36px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+}
+
+.error-content h2 span {
+    color: #3abba7;
+}
+
+.error-content p {
+    font-size: 18px;
+    padding-top: 15px;
+    padding-bottom: 20px;
+}
+
+.error-search {
+    text-align: center;
+}
+
+.error-button {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.error-search input {
+    width: 50%;
+    height: 58px;
+    border: 1px solid rgba(35,35,35,0.12);
+    border-radius: 30px;
+    padding-left: 30px;
+    outline: 0;
+}
+
+.error-search button {
+    outline: 0;
+    border: 0;
+    background: transparent;
+    position: relative;
+    margin-left: -55px;
+    color: #686868;
+}
+
+.error-search ::placeholder{
+    color:#686868;
+}
+
+.error-button a {
+    padding: 14px 40px 14px 40px;
+    font-weight: 500;
+    color: #fff;
+    background: #3abba7;
+    display: inline-block;
+    border-radius: 30px;
+    border: 1px solid #3abba7;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.error-button a i {
+    margin-right: 5px;
+}
+
+.error-button a:before {
+    position: absolute;
+    content: "";
+    z-index: -1;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 0;
+    background: #140d36;
+    border-radius: 30px;
+    transition: .5s;
+}
+
+.error-button a:hover{
+    border-color: #140d36;
+}
+
+.error-button a:hover:before {
+    width: 100%;
+    left: 0;
+}
+
+
+/*
+<!-- ============================================================== -->
+<!-- print_shop Scrollup Section -->
+<!-- ============================================================== -->*/ 
+
+.scroll-area{
+  position: relative;
+  z-index: 999;
+ } 
+
+.scroll-area .go-top {
+    position: fixed;
+    cursor: pointer;
+    top: 0;
+    right: 30px;
+    color: #ffffff;
+    background-image: -moz-linear-gradient(0deg, #3abba7 0%, #3abba7 100%);
+    background-image: -webkit-linear-gradient(0deg, #3abba7 0%, #3abba7 100%);
+    z-index: 9999;
+    width: 45px;
+    text-align: center;
+    height: 45px;
+    line-height: 42px;
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: all 0.9s ease-out 0s;
+    -moz-transition: all 0.9s ease-out 0s;
+    border-radius: 10px; 
+}
+
+.scroll-area .go-top i {
+      position: absolute;
+      top: 50%;
+      left: -4px;
+      right: 0;
+      margin: 0 auto;
+      font-size: 15px;
+      -o-transform: translateY(-50%);
+      transform: translateY(-50%);
+      -webkit-transition: all 0.5s ease-out 0s;
+      -moz-transition: all 0.5s ease-out 0s;
+  }
+
+.scroll-area .go-top i:last-child {
+    opacity: 0;
+    visibility: hidden;
+    top: 60%; 
+}
+
+.scroll-area .go-top::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-image: linear-gradient(to right, #232353 0%, #232353 100%);
+    background-image: -ms-linear-gradient(0deg, #232353 0%, #232353 100%);
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: all 0.5s ease-out 0s;
+    -moz-transition: all 0.5s ease-out 0s;
+    border-radius: 100%;
+}
+
+.scroll-area .go-top:focus, .scroll-area .go-top:hover {
+      color: #fff; 
+  }
+
+.scroll-area .go-top:focus::before, .scroll-area .go-top:hover::before {
+        opacity: 1;
+        visibility: visible; 
+}
+
+.scroll-area .go-top:focus i:first-child, .scroll-area .go-top:hover i:first-child {
+        opacity: 0;
+        top: 0;
+        visibility: hidden;
+ }
+
+.scroll-area .go-top:focus i:last-child, .scroll-area .go-top:hover i:last-child {
+        opacity: 1;
+        visibility: visible;
+        top: 50%; 
+}
+
+.scroll-area .go-top.active {
+    top: 95%;
+    -webkit-transform: translateY(-98%);
+    -moz-transform: translateY(-98%);
+    opacity: 1;
+    visibility: visible;
+    border-radius: 0;
+    right: 30px;
+    border-radius:100%;
+}
+
+.top-wrap {
+  position: relative; 
+}
+
+.top-wrap .go-top-button {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    line-height: 40px;
+    text-align: center;
+    color: #fff;
+    top: 3px;
+    z-index: 1;
+    background: #3abba7;
+}
+
+ .top-wrap .go-top-button i {
+      font-size: 20px;
+      font-weight: 700;
+      padding-left: 4px;
+      color: #fff;
+ }
+
+.top-wrap .go-top-button::after {
+    z-index: -1;
+    content: "";
+    position: absolute;
+    left: 3px;
+    top: 3px;
+    width: 45px;
+    height: 45px;
+    -webkit-animation: ripple 1.6s ease-out infinite;
+    -moz-animation: ripple 1.6s ease-out infinite;
+    opacity: 0;
+    background-image: -moz-linear-gradient(0deg, #3abba7 0%, #3abba7 100%);
+    background-image: -webkit-linear-gradient(0deg, #3abba7 0%, #3abba7 100%);
+    border-radius: 100%;
+}
+
+.top-wrap .go-top-button:hover {
+      background-color: #222;
+      color: #fff; 
+  }
+
+@keyframes ripple {
+  0%, 35% {
+    -webkit-transform: scale(0);
+    -moz-transform: scale(0);
+    -ms-transform: scale(0);
+    -o-transform: scale(0);
+    transform: scale(0);
+    opacity: 1; }
+  50% {
+    -webkit-transform: scale(1.5);
+    -moz-transform: scale(1.5);
+    -ms-transform: scale(1.5);
+    -o-transform: scale(1.5);
+    transform: scale(1.5);
+    opacity: 0.8; }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale(2);
+    -moz-transform: scale(2);
+    -ms-transform: scale(2);
+    -o-transform: scale(2);
+    transform: scale(2); } }
+
+
+/*Animation
+==================*/
+
+@keyframes movebounce {
+    0% {
+        -webkit-transform: translateY(0px);
+        transform: translateY(0px);
+    }
+
+    50% {
+        -webkit-transform: translateY(20px);
+        transform: translateY(20px);
+    }
+
+    100% {
+        -webkit-transform: translateY(0px);
+        transform: translateY(0px);
+    }
+}
+
+
+@keyframes moveleftbounce {
+    0% {
+        -webkit-transform: translateX(0px);
+        transform: translateX(0px);
+    }
+
+    50% {
+        -webkit-transform: translateX(20px);
+        transform: translateX(20px);
+    }
+
+    100% {
+        -webkit-transform: translateX(0px);
+        transform: translateX(0px);
+    }
+}
+

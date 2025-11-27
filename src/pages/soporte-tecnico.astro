@@ -4,8 +4,16 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 <BaseLayout>
   <!-- Hero Section -->
-  <section class="py-20 bg-gradient-to-bl from-accent-600 via-blue-600">
-    <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
+  <section class="py-20 relative overflow-hidden">
+    <!-- Background Image -->
+    <div class="absolute inset-0">
+      <img src="/images/3409297.jpg" alt="Background" class="w-full h-full object-cover" />
+    </div>
+    <!-- Overlay Gradient -->
+    <div class="absolute inset-0 bg-gradient-to-bl from-accent-500/40 via-blue-600/50 to-accent-500/40"></div>
+
+    <!-- Content -->
+    <div class="relative z-10 max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <div>
           <div class="inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm border border-white/40 text-white rounded-full text-sm font-semibold mb-6">
@@ -41,7 +49,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           <!-- Stats -->
           <div class="grid grid-cols-3 gap-6 mt-12 pt-8 border-t border-white/30">
             <div>
-              <div class="text-3xl font-bold text-white mb-1">< 2h</div>
+              <div class="text-3xl font-bold text-white mb-1">&lt; 2h</div>
               <div class="text-sm text-white/80">Tiempo respuesta</div>
             </div>
             <div>
@@ -85,6 +93,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           </div>
         </div>
       </div>
+    </div>
     </div>
   </section>
 
@@ -196,8 +205,16 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   </section>
 
   <!-- Pricing Section -->
-  <section class="py-20 bg-gradient-to-bl from-accent-600 via-blue-600">
-    <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
+  <section class="py-20 bg-base-50 relative overflow-hidden">
+    <!-- Background Image -->
+    <div class="absolute inset-0 opacity-40">
+      <img src="/images/3409297.jpg" alt="Background" class="w-full h-full object-cover" />
+    </div>
+    <!-- Dark overlay to maintain visibility -->
+    <div class="absolute inset-0 bg-base-50/60"></div>
+
+    <!-- Content -->
+    <div class="relative z-10 max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
       <div class="text-center mb-16">
         <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
           Precios Transparentes
@@ -207,151 +224,77 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <!-- Pay per hour -->
-        <div class="bg-white/95 backdrop-blur-sm rounded-2xl p-6 border-2 border-white/40 shadow-xl">
-          <h3 class="text-xl font-bold text-base-900 mb-2">Por Hora</h3>
-          <div class="text-5xl font-bold text-base-900 mb-2">
-            €40
-          </div>
-          <p class="text-base-600 text-sm mb-6">por hora trabajada</p>
-          <ul class="space-y-3 mb-6">
-            <li class="flex items-start gap-2 text-sm">
-              <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-              </svg>
-              <span class="text-base-700">Sin compromiso</span>
-            </li>
-            <li class="flex items-start gap-2 text-sm">
-              <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-              </svg>
-              <span class="text-base-700">Facturación mensual</span>
-            </li>
-            <li class="flex items-start gap-2 text-sm">
-              <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-              </svg>
-              <span class="text-base-700">Ideal para uso esporádico</span>
-            </li>
-          </ul>
-          <a
-            href="/reunion"
-            class="block w-full px-4 py-3 bg-accent-600 hover:bg-accent-700 text-center text-white font-semibold rounded-xl transition-colors"
-          >
-            Contratar
-          </a>
-        </div>
-
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
         <!-- 5 hours pack -->
-        <div class="bg-white/95 backdrop-blur-sm rounded-2xl p-6 border-2 border-white/40 shadow-xl">
-          <h3 class="text-xl font-bold text-base-900 mb-2">Bolsa 5h</h3>
-          <div class="text-5xl font-bold text-base-900 mb-2">
-            €37
-          </div>
-          <p class="text-base-600 text-sm mb-1">por hora</p>
-          <p class="text-sm font-semibold text-green-600 mb-4">Ahorra €15 (€185 total)</p>
-          <ul class="space-y-3 mb-6">
-            <li class="flex items-start gap-2 text-sm">
-              <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-              </svg>
-              <span class="text-base-700">5 horas prepagadas</span>
-            </li>
-            <li class="flex items-start gap-2 text-sm">
-              <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-              </svg>
-              <span class="text-base-700">Válido 3 meses</span>
-            </li>
-            <li class="flex items-start gap-2 text-sm">
-              <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-              </svg>
-              <span class="text-base-700">Descuento 7.5%</span>
-            </li>
+        <div class="bg-base-50 rounded-xl p-6 border-1 flex flex-col">
+          <h4 class="text-xl font-bold mb-2 text-white">Bolsa 5h</h4>
+          <p class="text-sm text-gray-300 mb-4">€37/hora</p>
+
+          <div class="text-3xl font-bold mb-4 text-white">€185</div>
+          <p class="text-sm text-gray-300 mb-4">Ahorra €15 - Ideal para uso ocasional</p>
+
+          <ul class="space-y-2 text-sm text-gray-300 mb-6 flex-grow">
+            <li><span class="text-blue-400">✅</span> 5 horas prepagadas</li>
+            <li><span class="text-blue-400">✅</span> Válido 3 meses</li>
+            <li><span class="text-blue-400">✅</span> Soporte remoto o presencial</li>
+            <li><span class="text-blue-400">✅</span> Descuento 7.5%</li>
+            <li><span class="text-blue-400">✅</span> Sin compromiso</li>
+            <li><span class="text-blue-400">✅</span> Primera incidencia gratis</li>
           </ul>
           <a
             href="/reunion"
-            class="block w-full px-4 py-3 bg-accent-600 hover:bg-accent-700 text-center text-white font-semibold rounded-xl transition-colors"
+            class="block w-full px-4 py-3 text-center bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors mt-auto"
           >
             Contratar
           </a>
         </div>
 
-        <!-- 10 hours pack -->
-        <div class="bg-white/95 backdrop-blur-sm rounded-2xl p-6 border-2 border-yellow-400 shadow-xl relative">
-          <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-yellow-500 text-white px-4 py-1 rounded-full text-sm font-semibold">
-            Popular
+        <!-- 10 hours pack - POPULAR -->
+        <div class="bg-base-50 rounded-xl p-6 border-2 border-blue-500 relative flex flex-col">
+          <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-blue-600 px-4 py-1 rounded-full text-xs font-bold text-white">
+            MÁS POPULAR
           </div>
-          <h3 class="text-xl font-bold text-base-900 mb-2">Bolsa 10h</h3>
-          <div class="text-5xl font-bold text-accent-600 mb-2">
-            €35
-          </div>
-          <p class="text-base-600 text-sm mb-1">por hora</p>
-          <p class="text-sm font-semibold text-green-600 mb-4">Ahorra €50 (€350 total)</p>
-          <ul class="space-y-3 mb-6">
-            <li class="flex items-start gap-2 text-sm">
-              <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-              </svg>
-              <span class="text-base-700">10 horas prepagadas</span>
-            </li>
-            <li class="flex items-start gap-2 text-sm">
-              <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-              </svg>
-              <span class="text-base-700">Válido 6 meses</span>
-            </li>
-            <li class="flex items-start gap-2 text-sm">
-              <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-              </svg>
-              <span class="text-base-700">Descuento 12.5%</span>
-            </li>
+          <h4 class="text-xl font-bold mb-2 text-white">Bolsa 10h</h4>
+          <p class="text-sm text-gray-300 mb-4">€35/hora</p>
+
+          <div class="text-3xl font-bold mb-4 text-white">€350</div>
+          <p class="text-sm text-gray-300 mb-4">Ahorra €50 - Perfecto para pequeñas empresas</p>
+
+          <ul class="space-y-2 text-sm text-gray-300 mb-6 flex-grow">
+            <li><span class="text-blue-400">✅</span> Todo lo anterior +</li>
+            <li><span class="text-blue-400">✅</span> 10 horas prepagadas</li>
+            <li><span class="text-blue-400">✅</span> Válido 6 meses</li>
+            <li><span class="text-blue-400">✅</span> Descuento 12.5%</li>
+            <li><span class="text-blue-400">✅</span> Atención prioritaria</li>
+            <li><span class="text-blue-400">✅</span> Respuesta &lt; 2h</li>
           </ul>
           <a
             href="/reunion"
-            class="block w-full px-4 py-3 bg-accent-600 hover:bg-accent-700 text-center text-white font-semibold rounded-xl transition-colors"
+            class="block w-full px-4 py-3 text-center bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors mt-auto"
           >
             Contratar
           </a>
         </div>
 
         <!-- 20 hours pack - BEST DEAL -->
-        <div class="bg-white/95 backdrop-blur-sm rounded-2xl p-6 border-2 border-green-400 shadow-xl relative">
-          <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-4 py-1 rounded-full text-sm font-semibold">
-            Mejor Precio
-          </div>
-          <h3 class="text-xl font-bold text-base-900 mb-2">Bolsa 20h</h3>
-          <div class="text-5xl font-bold text-green-600 mb-2">
-            €30
-          </div>
-          <p class="text-base-600 text-sm mb-1">por hora</p>
-          <p class="text-sm font-semibold text-green-600 mb-4">Ahorra €200 (€600 total)</p>
-          <ul class="space-y-3 mb-6">
-            <li class="flex items-start gap-2 text-sm">
-              <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-              </svg>
-              <span class="text-base-700">20 horas prepagadas</span>
-            </li>
-            <li class="flex items-start gap-2 text-sm">
-              <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-              </svg>
-              <span class="text-base-700">Válido 12 meses</span>
-            </li>
-            <li class="flex items-start gap-2 text-sm">
-              <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-              </svg>
-              <span class="text-base-700">Descuento 25%</span>
-            </li>
+        <div class="bg-base-50 rounded-xl p-6 border-1 flex flex-col">
+          <h4 class="text-xl font-bold mb-2 text-white">Bolsa 20h</h4>
+          <p class="text-sm text-gray-300 mb-4">€30/hora</p>
+
+          <div class="text-3xl font-bold mb-4 text-white">€600</div>
+          <p class="text-sm text-gray-300 mb-4">Ahorra €200 - Máximo ahorro para empresas</p>
+
+          <ul class="space-y-2 text-sm text-gray-300 mb-6 flex-grow">
+            <li><span class="text-blue-400">✅</span> Todo lo anterior +</li>
+            <li><span class="text-blue-400">✅</span> 20 horas prepagadas</li>
+            <li><span class="text-blue-400">✅</span> Válido 12 meses</li>
+            <li><span class="text-blue-400">✅</span> Descuento 25%</li>
+            <li><span class="text-blue-400">✅</span> Atención VIP</li>
+            <li><span class="text-blue-400">✅</span> Informes mensuales</li>
           </ul>
           <a
             href="/reunion"
-            class="block w-full px-4 py-3 bg-green-600 hover:bg-green-700 text-center text-white font-semibold rounded-xl transition-colors"
+            class="block w-full px-4 py-3 text-center bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors mt-auto"
           >
             Contratar
           </a>
@@ -425,8 +368,16 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   </section>
 
   <!-- FAQ -->
-  <section class="py-20 bg-gradient-to-bl from-accent-600 via-blue-600">
-    <div class="max-w-4xl mx-auto px-8 md:px-12">
+  <section class="py-20 relative overflow-hidden">
+    <!-- Background Image -->
+    <div class="absolute inset-0">
+      <img src="/images/3409297.jpg" alt="Background" class="w-full h-full object-cover" />
+    </div>
+    <!-- Overlay Gradient -->
+    <div class="absolute inset-0 bg-gradient-to-bl from-accent-500/40 via-blue-600/50 to-accent-500/40"></div>
+
+    <!-- Content -->
+    <div class="relative z-10 max-w-4xl mx-auto px-8 md:px-12">
       <div class="text-center mb-12">
         <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
           Preguntas Frecuentes
@@ -489,11 +440,20 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         </details>
       </div>
     </div>
+    </div>
   </section>
 
   <!-- Final CTA -->
-  <section class="py-20 bg-gradient-to-bl from-accent-600 via-blue-600">
-    <div class="max-w-4xl mx-auto px-8 md:px-12 text-center text-white">
+  <section class="py-20 relative overflow-hidden">
+    <!-- Background Image -->
+    <div class="absolute inset-0">
+      <img src="/images/3409297.jpg" alt="Background" class="w-full h-full object-cover" />
+    </div>
+    <!-- Overlay Gradient -->
+    <div class="absolute inset-0 bg-gradient-to-bl from-accent-500/40 via-blue-600/50 to-accent-500/40"></div>
+
+    <!-- Content -->
+    <div class="relative z-10 max-w-4xl mx-auto px-8 md:px-12 text-center text-white">
       <h2 class="text-3xl md:text-4xl font-bold mb-6">
         ¿Tienes un Problema Técnico?
       </h2>
@@ -518,6 +478,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           +34 600 000 000
         </a>
       </div>
+    </div>
     </div>
   </section>
 </BaseLayout>

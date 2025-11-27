@@ -16,10 +16,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
           responde y resuelve consultas de manera natural, las 24 horas del día.
         </p>
        
-        <div class="inline-flex items-center gap-2 px-4 py-2 bg-green-50 text-green-800 rounded-lg text-sm font-medium">
-          <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-          Prueba haciendo click en las preguntas de ejemplo
-        </div>
+       
       </div>
 
       <!-- Interactive Demo Section -->
@@ -42,18 +39,18 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
           </div>
 
           <!-- Chat Interface -->
-          <div class="bg-gradient-to-br from-blue-600 to-purple-600 p-8">
+          <div class="bg-gradient-to-br from-blue-500 to-blue-700 p-8">
             <div class="max-w-3xl mx-auto">
               <!-- Chat Screen -->
-              <div class="rounded-3xl p-6 shadow-2xl" style="background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);">
+              <div class="rounded-3xl p-6 shadow-2xl" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);">
                 <!-- Chat Container -->
                 <div class="min-h-[450px] max-h-[450px] overflow-y-auto mb-4" id="chat-container">
                   <!-- Welcome Message -->
                   <div class="flex items-start gap-3 mb-4">
-                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold flex-shrink-0">
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-white font-bold flex-shrink-0">
                       AI
                     </div>
-                    <div class="bg-gradient-to-br from-blue-600 to-purple-600 rounded-2xl rounded-tl-none px-4 py-3 shadow-sm max-w-[80%]">
+                    <div class="bg-gradient-to-br from-blue-500 to-blue-700 rounded-2xl rounded-tl-none px-4 py-3 shadow-sm max-w-[80%]">
                       <p class="text-white text-sm">¡Hola! 👋 Soy el asistente virtual de TechStore. ¿En qué puedo ayudarte hoy?</p>
                       <p class="text-blue-100 text-sm mt-3 font-medium">Puedes preguntarme sobre:</p>
                     </div>
@@ -61,31 +58,31 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 
                   <!-- Quick Question Buttons -->
                   <div class="space-y-2 mb-4 ml-14">
-                    <button class="quick-question w-full text-left px-4 py-3 bg-white border-2 border-purple-300 rounded-xl text-sm text-purple-600 font-medium hover:bg-purple-50 hover:border-purple-400 transition-all duration-200 shadow-md">
+                    <button class="quick-question w-full text-left px-4 py-3 bg-white border-2 border-blue-300 rounded-xl text-sm font-medium hover:bg-blue-50 hover:border-blue-400 transition-all duration-200 shadow-md" style="color: #000000;">
                       Necesito mi factura, mi DNI es 12345678A
                     </button>
-                    <button class="quick-question w-full text-left px-4 py-3 bg-white border-2 border-purple-300 rounded-xl text-sm text-purple-600 font-medium hover:bg-purple-50 hover:border-purple-400 transition-all duration-200 shadow-md">
+                    <button class="quick-question w-full text-left px-4 py-3 bg-white border-2 border-blue-300 rounded-xl text-sm font-medium hover:bg-blue-50 hover:border-blue-400 transition-all duration-200 shadow-md" style="color: #000000;">
                       ¿El portátil HP 15-dy tiene SSD?
                     </button>
-                    <button class="quick-question w-full text-left px-4 py-3 bg-white border-2 border-purple-300 rounded-xl text-sm text-purple-600 font-medium hover:bg-purple-50 hover:border-purple-400 transition-all duration-200 shadow-md">
+                    <button class="quick-question w-full text-left px-4 py-3 bg-white border-2 border-blue-300 rounded-xl text-sm font-medium hover:bg-blue-50 hover:border-blue-400 transition-all duration-200 shadow-md" style="color: #000000;">
                       ¿Dónde está mi pedido #TS-2845?
                     </button>
                   </div>
                 </div>
 
                 <!-- Input Area -->
-                <div class="pt-4 border-t border-purple-500/30">
+                <div class="pt-4 border-t border-blue-400/30">
                   <form id="demo-chat-form" class="flex gap-3">
                     <input
                       type="text"
                       id="demo-chat-input"
                       placeholder="Escribe tu mensaje..."
-                      class="flex-1 px-4 py-3 border-2 border-purple-500/40 rounded-xl focus:outline-none focus:border-purple-500 text-white placeholder-base-400 transition-colors"
+                      class="flex-1 px-4 py-3 border-2 border-blue-400/40 rounded-xl focus:outline-none focus:border-blue-400 text-white placeholder-base-400 transition-colors"
                       style="background: rgba(15, 23, 42, 0.5);"
                     />
                     <button
                       type="submit"
-                      class="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-200 shadow-lg hover:shadow-xl"
+                      class="px-6 py-3 bg-blue-600 text-white rounded-xl font-semibold hover:bg-blue-700 transition-all duration-200 shadow-lg hover:shadow-xl"
                     >
                       Enviar
                     </button>
@@ -106,79 +103,79 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 
       <!-- Features Grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-        <div class="bg-base-50 border-2 border-purple-300 rounded-xl p-6">
-          <div class="w-12 h-12 bg-accent-100 rounded-lg flex items-center justify-center text-accent-600 text-xl mb-4">
+        <div class="bg-black border-2 border-base-300 rounded-xl p-6">
+          <div class="w-12 h-12 bg-accent-600 rounded-lg flex items-center justify-center text-white text-xl mb-4">
             💬
           </div>
-          <h3 class="text-lg font-semibold text-base-900 mb-3">Conversaciones Naturales</h3>
-          <p class="text-base-600">
+          <h3 class="text-lg font-semibold text-white mb-3">Conversaciones Naturales</h3>
+          <p class="text-white/80">
             Procesamiento de lenguaje natural avanzado que entiende el contexto y responde de manera humana.
           </p>
         </div>
 
-        <div class="bg-base-50 border-2 border-purple-300 rounded-xl p-6">
-          <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 text-xl mb-4">
+        <div class="bg-black border-2 border-base-300 rounded-xl p-6">
+          <div class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center text-white text-xl mb-4">
             🔗
           </div>
-          <h3 class="text-lg font-semibold text-base-900 mb-3">Múltiples Canales</h3>
-          <p class="text-base-600">
+          <h3 class="text-lg font-semibold text-white mb-3">Múltiples Canales</h3>
+          <p class="text-white/80">
             Integración con WhatsApp, Telegram, Facebook Messenger, web y más plataformas.
           </p>
         </div>
 
-        <div class="bg-base-50 border-2 border-purple-300 rounded-xl p-6">
-          <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center text-green-600 text-xl mb-4">
+        <div class="bg-black border-2 border-base-300 rounded-xl p-6">
+          <div class="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center text-white text-xl mb-4">
             🧠
           </div>
-          <h3 class="text-lg font-semibold text-base-900 mb-3">Aprendizaje Continuo</h3>
-          <p class="text-base-600">
+          <h3 class="text-lg font-semibold text-white mb-3">Aprendizaje Continuo</h3>
+          <p class="text-white/80">
             El chatbot mejora constantemente aprendiendo de cada conversación y feedback.
           </p>
         </div>
 
-        <div class="bg-base-50 border-2 border-purple-300 rounded-xl p-6">
-          <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center text-purple-600 text-xl mb-4">
+        <div class="bg-black border-2 border-base-300 rounded-xl p-6">
+          <div class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center text-white text-xl mb-4">
             👤
           </div>
-          <h3 class="text-lg font-semibold text-base-900 mb-3">Escalado Inteligente</h3>
-          <p class="text-base-600">
+          <h3 class="text-lg font-semibold text-white mb-3">Escalado Inteligente</h3>
+          <p class="text-white/80">
             Deriva automáticamente consultas complejas a agentes humanos cuando es necesario.
           </p>
         </div>
 
-        <div class="bg-base-50 border-2 border-purple-300 rounded-xl p-6">
-          <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center text-orange-600 text-xl mb-4">
+        <div class="bg-black border-2 border-base-300 rounded-xl p-6">
+          <div class="w-12 h-12 bg-orange-600 rounded-lg flex items-center justify-center text-white text-xl mb-4">
             📊
           </div>
-          <h3 class="text-lg font-semibold text-base-900 mb-3">Analytics Avanzados</h3>
-          <p class="text-base-600">
+          <h3 class="text-lg font-semibold text-white mb-3">Analytics Avanzados</h3>
+          <p class="text-white/80">
             Dashboard completo con métricas de satisfacción, resolución y rendimiento.
           </p>
         </div>
 
-        <div class="bg-base-50 border-2 border-purple-300 rounded-xl p-6">
-          <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center text-red-600 text-xl mb-4">
+        <div class="bg-black border-2 border-base-300 rounded-xl p-6">
+          <div class="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center text-white text-xl mb-4">
             🔒
           </div>
-          <h3 class="text-lg font-semibold text-base-900 mb-3">Seguridad Total</h3>
-          <p class="text-base-600">
+          <h3 class="text-lg font-semibold text-white mb-3">Seguridad Total</h3>
+          <p class="text-white/80">
             Cumplimiento GDPR, encriptación end-to-end y protección de datos sensibles.
           </p>
         </div>
       </div>
 
       <!-- Integration Section -->
-      <div class="bg-gradient-to-br from-blue-600 to-purple-600 rounded-2xl p-8 md:p-12 text-white mb-16">
+      <div class=" rounded-2xl p-8 md:p-12 text-white mb-16">
         <h2 class="text-3xl font-bold mb-6 text-center">Integraciones y Conectividad</h2>
         <p class="text-center text-lg opacity-90 mb-8 max-w-3xl mx-auto">
           El chatbot se conecta en tiempo real con tus sistemas existentes para ofrecer respuestas precisas y actualizadas
         </p>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div class="bg-base-50/10 backdrop-blur-sm rounded-xl p-6">
+          <div class="bg-gradient-to-br from-blue-500 to-blue-700 bg-black border-2 border-base-300 rounded-xl p-6">
             <div class="text-4xl mb-3">🗄️</div>
             <h3 class="text-xl font-semibold mb-3">Base de Datos de Clientes</h3>
-            <ul class="space-y-2 text-sm opacity-90">
+            <ul class="space-y-2 text-sm text-white/80">
               <li>• Consulta de información del cliente</li>
               <li>• Histórico de compras y pedidos</li>
               <li>• Preferencias y configuración</li>
@@ -186,10 +183,10 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
             </ul>
           </div>
 
-          <div class="bg-base-50/10 backdrop-blur-sm rounded-xl p-6">
+          <div class="bg-gradient-to-br from-blue-500 to-blue-700 bg-black border-2 border-base-300 rounded-xl p-6">
             <div class="text-4xl mb-3">🔌</div>
             <h3 class="text-xl font-semibold mb-3">APIs de Sistemas Externos</h3>
-            <ul class="space-y-2 text-sm opacity-90">
+            <ul class="space-y-2 text-sm text-white/80">
               <li>• ERP (SAP, Odoo, Microsoft Dynamics)</li>
               <li>• CRM (Salesforce, HubSpot, Zoho)</li>
               <li>• Plataformas de envío y logística</li>
@@ -197,10 +194,10 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
             </ul>
           </div>
 
-          <div class="bg-base-50/10 backdrop-blur-sm rounded-xl p-6">
+          <div class="bg-gradient-to-br from-blue-500 to-blue-700 bg-black border-2 border-base-300 rounded-xl p-6">
             <div class="text-4xl mb-3">📚</div>
             <h3 class="text-xl font-semibold mb-3">Múltiples Formatos de Datos</h3>
-            <ul class="space-y-2 text-sm opacity-90">
+            <ul class="space-y-2 text-sm text-white/80">
               <li>• Documentos PDF, Word, Excel</li>
               <li>• Bases de datos SQL y NoSQL</li>
               <li>• APIs REST y GraphQL</li>
@@ -209,11 +206,9 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
           </div>
         </div>
 
-        <div class="mt-8 text-center">
-          <p class="text-sm opacity-75">
-            ⚡ Sincronización en tiempo real • 🔒 Conexiones seguras y encriptadas • 🔄 Actualizaciones automáticas
-          </p>
-        </div>
+        <p class="text-sm text-center text-white/75 mt-8 w-full mx-auto">
+          ⚡ Sincronización en tiempo real • 🔒 Conexiones seguras y encriptadas • 🔄 Actualizaciones automáticas
+        </p>
       </div>
 
       <!-- CTA Section -->
@@ -228,8 +223,8 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
           <a
             href="/reunion"
-            style="color: rgb(0, 0, 0);"
-            class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-accent-600 hover:bg-accent-700 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200"
+            style="color: #ffffff"
+            class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200"
           >
             Solicitar Demo Gratuita
             <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -238,7 +233,8 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
           </a>
           <a
             href="/#servicios"
-            class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-base-700 bg-base-100 hover:bg-base-200 rounded-xl border border-base-200 hover:border-accent-300 transition-all duration-200"
+            class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold bg-base-100 hover:bg-base-200 rounded-xl  transition-all duration-200"
+            style="color: #ffffff;"
           >
             Ver Otros Servicios
           </a>
@@ -270,19 +266,23 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 
       const avatar = document.createElement('div');
       if (isUser) {
-        avatar.className = 'w-10 h-10 rounded-full bg-white flex items-center justify-center text-purple-600 font-bold flex-shrink-0 shadow-md';
+        avatar.className = 'w-10 h-10 rounded-full bg-white flex items-center justify-center font-bold flex-shrink-0 shadow-md';
+        avatar.style.color = '#000000';
         avatar.textContent = 'TÚ';
       } else {
-        avatar.className = 'w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold flex-shrink-0';
+        avatar.className = 'w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-white font-bold flex-shrink-0';
         avatar.textContent = 'AI';
       }
 
       const bubble = document.createElement('div');
       bubble.className = `rounded-2xl px-4 py-3 shadow-md max-w-[80%] ${
         isUser
-          ? 'bg-white text-purple-600 rounded-tr-none font-medium'
-          : 'bg-gradient-to-br from-blue-600 to-purple-600 text-white rounded-tl-none'
+          ? 'bg-white rounded-tr-none font-medium'
+          : 'bg-gradient-to-br from-blue-500 to-blue-700 text-white rounded-tl-none'
       }`;
+      if (isUser) {
+        bubble.style.color = '#000000';
+      }
       bubble.style.whiteSpace = 'pre-wrap';
       bubble.innerHTML = text.replace(/\n/g, '<br>');
 
@@ -316,11 +316,11 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
       typingDiv.id = 'typing-indicator';
 
       const avatar = document.createElement('div');
-      avatar.className = 'w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold flex-shrink-0';
+      avatar.className = 'w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-white font-bold flex-shrink-0';
       avatar.textContent = 'AI';
 
       const bubble = document.createElement('div');
-      bubble.className = 'bg-gradient-to-br from-blue-600 to-purple-600 rounded-2xl rounded-tl-none px-4 py-3 shadow-sm';
+      bubble.className = 'bg-gradient-to-br from-blue-500 to-blue-700 rounded-2xl rounded-tl-none px-4 py-3 shadow-sm';
       bubble.innerHTML = '<span class="inline-flex gap-1"><span class="w-2 h-2 bg-white rounded-full animate-bounce"></span><span class="w-2 h-2 bg-white rounded-full animate-bounce" style="animation-delay: 0.1s"></span><span class="w-2 h-2 bg-white rounded-full animate-bounce" style="animation-delay: 0.2s"></span></span>';
 
       typingDiv.appendChild(avatar);
