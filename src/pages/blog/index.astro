@@ -1,0 +1,206 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+// Array de artículos del blog (luego podríamos usar Content Collections)
+const articles = [
+  {
+    slug: "ia-threat-hunting-wazuh",
+    title: "IA para Threat Hunting en Wazuh: Instalación Práctica",
+    description: "Guía simplificada para integrar inteligencia artificial en Wazuh y potenciar la detección de amenazas con modelos LLM locales.",
+    publishDate: "2025-12-02",
+    readTime: "8 min",
+    tags: ["Wazuh", "Inteligencia Artificial", "Ciberseguridad", "Threat Hunting"],
+    category: "Wazuh & Seguridad"
+  }
+  // Más artículos se añadirán aquí
+];
+
+// Categorías disponibles
+const categories = ["Todos", "Wazuh & Seguridad", "IA para Sistemas"];
+---
+
+<BaseLayout>
+  <!-- Hero Section -->
+  <section class="py-16 md:py-20 bg-gradient-to-br from-accent-50 to-blue-50 border-b border-base-200">
+    <div class="max-w-7xl mx-auto px-6 md:px-12">
+      <div class="max-w-3xl">
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-accent-100 text-accent-700 rounded-full text-sm font-semibold mb-6">
+          <span class="text-xl">📰</span>
+          Blog técnico
+        </div>
+
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-base-900 mb-6">
+          Noticias y Tutoriales
+        </h1>
+
+        <p class="text-xl text-base-700 leading-relaxed">
+          Artículos técnicos sobre <strong>inteligencia artificial aplicada a sistemas</strong> y <strong>ciberseguridad con Wazuh</strong>.
+          Guías prácticas, configuraciones reales y casos de uso sin teoría innecesaria.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories Filter -->
+  <section class="py-8 bg-base-50 border-b border-base-200 sticky top-[73px] z-40 backdrop-blur-md bg-base-50/95">
+    <div class="max-w-7xl mx-auto px-6 md:px-12">
+      <div class="flex flex-wrap gap-3">
+        {categories.map((category, index) => (
+          <button
+            data-category={category}
+            class={`px-4 py-2 rounded-lg font-medium text-sm transition-all duration-200 ${
+              index === 0
+                ? 'bg-accent-600 text-white shadow-md'
+                : 'bg-white text-base-700 border border-base-200 hover:border-accent-300 hover:bg-accent-50'
+            }`}>
+            {category}
+          </button>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Articles Grid -->
+  <section class="py-16 md:py-20 bg-base-50">
+    <div class="max-w-7xl mx-auto px-6 md:px-12">
+      <!-- Stats -->
+      <div class="mb-12 flex items-center justify-between">
+        <p class="text-base-600">
+          <span class="font-semibold text-base-900">{articles.length}</span> {articles.length === 1 ? 'artículo publicado' : 'artículos publicados'}
+        </p>
+      </div>
+
+      <!-- Articles List -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {articles.map(article => (
+          <article
+            class="bg-white rounded-xl border border-base-200 overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1 flex flex-col"
+            data-article-category={article.category}>
+            <!-- Category Badge -->
+            <div class="p-6 pb-4">
+              <span class="inline-block px-3 py-1 bg-accent-100 text-accent-700 text-xs font-semibold rounded-full mb-4">
+                {article.category}
+              </span>
+
+              <!-- Title -->
+              <h2 class="text-xl font-bold text-base-900 mb-3 leading-tight hover:text-accent-600 transition-colors">
+                <a href={`/blog/${article.slug}`} class="hover:underline">
+                  {article.title}
+                </a>
+              </h2>
+
+              <!-- Description -->
+              <p class="text-base-700 leading-relaxed mb-4">
+                {article.description}
+              </p>
+
+              <!-- Tags -->
+              <div class="flex flex-wrap gap-2 mb-4">
+                {article.tags.slice(0, 3).map(tag => (
+                  <span class="text-xs text-base-600 bg-base-100 px-2 py-1 rounded">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="px-6 py-4 border-t border-base-200 mt-auto bg-base-50">
+              <div class="flex items-center justify-between text-sm text-base-600">
+                <time datetime={article.publishDate}>
+                  {new Date(article.publishDate).toLocaleDateString('es-ES', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric'
+                  })}
+                </time>
+                <span class="flex items-center gap-1">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                  {article.readTime}
+                </span>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <!-- Empty State (cuando no hay artículos filtrados) -->
+      <div id="empty-state" class="hidden text-center py-16">
+        <div class="text-6xl mb-4">📭</div>
+        <h3 class="text-xl font-semibold text-base-900 mb-2">No hay artículos en esta categoría</h3>
+        <p class="text-base-600">Prueba con otra categoría o vuelve más tarde</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-16 bg-gradient-to-br from-accent-600 to-blue-600 text-white">
+    <div class="max-w-4xl mx-auto px-6 md:px-12 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">
+        ¿Necesitas implementar estas soluciones en tu empresa?
+      </h2>
+      <p class="text-xl text-white/90 mb-8">
+        Implementación profesional de Wazuh, integración de IA en sistemas y automatización empresarial
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href="/reunion"
+          class="inline-flex items-center justify-center px-8 py-4 bg-white text-accent-600 font-semibold rounded-xl hover:bg-base-50 transition-colors shadow-lg">
+          Solicitar Consulta Gratuita
+        </a>
+        <a
+          href="/wazuh"
+          class="inline-flex items-center justify-center px-8 py-4 bg-white/10 backdrop-blur-sm text-white font-semibold rounded-xl hover:bg-white/20 border-2 border-white transition-colors">
+          Ver Servicios Wazuh
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  // Filtro de categorías
+  document.addEventListener('DOMContentLoaded', () => {
+    const categoryButtons = document.querySelectorAll('[data-category]');
+    const articles = document.querySelectorAll('[data-article-category]');
+    const emptyState = document.getElementById('empty-state');
+
+    categoryButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const selectedCategory = button.getAttribute('data-category');
+
+        // Update button styles
+        categoryButtons.forEach(btn => {
+          if (btn === button) {
+            btn.classList.remove('bg-white', 'text-base-700', 'border', 'border-base-200', 'hover:border-accent-300', 'hover:bg-accent-50');
+            btn.classList.add('bg-accent-600', 'text-white', 'shadow-md');
+          } else {
+            btn.classList.remove('bg-accent-600', 'text-white', 'shadow-md');
+            btn.classList.add('bg-white', 'text-base-700', 'border', 'border-base-200', 'hover:border-accent-300', 'hover:bg-accent-50');
+          }
+        });
+
+        // Filter articles
+        let visibleCount = 0;
+        articles.forEach(article => {
+          const articleCategory = article.getAttribute('data-article-category');
+          if (selectedCategory === 'Todos' || articleCategory === selectedCategory) {
+            article.classList.remove('hidden');
+            visibleCount++;
+          } else {
+            article.classList.add('hidden');
+          }
+        });
+
+        // Show/hide empty state
+        if (visibleCount === 0) {
+          emptyState?.classList.remove('hidden');
+        } else {
+          emptyState?.classList.add('hidden');
+        }
+      });
+    });
+  });
+</script>
