@@ -17,7 +17,24 @@ export default defineConfig({
       }
     ],
   },
-  integrations: [sitemap()],
+  integrations: [
+    sitemap({
+      filter: (page) =>
+        !page.includes('/login') &&
+        !page.includes('/signup') &&
+        !page.includes('/akiwifi_old'),
+      customPages: [
+        'https://aisecurity.es/',
+        'https://aisecurity.es/wazuh',
+        'https://aisecurity.es/blog',
+        'https://aisecurity.es/blog/ia-threat-hunting-wazuh',
+        'https://aisecurity.es/reunion',
+      ],
+      changefreq: 'weekly',
+      priority: 0.7,
+      lastmod: new Date(),
+    })
+  ],
   vite: {
     plugins: [tailwindcss()],
   },
