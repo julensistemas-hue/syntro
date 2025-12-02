@@ -1,0 +1,17 @@
+# robots.txt para aisecurity.es
+# Permitir acceso a todos los bots de búsqueda
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://aisecurity.es/sitemap-index.xml
+Sitemap: https://aisecurity.es/sitemap-0.xml
+
+# Bloquear acceso a carpetas internas (si las hubiera)
+Disallow: /api/
+Disallow: /.well-known/
+
+# Crawl-delay para bots agresivos (opcional)
+User-agent: *
+Crawl-delay: 1

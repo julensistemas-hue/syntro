@@ -6,7 +6,7 @@ import vercel from "@astrojs/vercel";
 export default defineConfig({
   output: "server",
   adapter: vercel(),
-  site: "https://yoursite.com",
+  site: "https://aisecurity.es",
   experimental: {
     fonts: [
       {
