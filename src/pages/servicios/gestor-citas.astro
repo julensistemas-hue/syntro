@@ -3,14 +3,10 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout>
-  <section class="py-20 bg-base-25">
+  <section class="pt-8 pb-20 bg-base-25">
     <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
       <!-- Hero Section -->
       <div class="text-center mb-16">
-        <div class="inline-flex items-center gap-2 px-4 py-2 bg-accent-100 text-accent-700 rounded-full text-sm font-medium mb-6">
-          <span class="text-2xl">📅</span>
-          Gestor de Citas IA
-        </div>
         <h1 class="text-4xl md:text-5xl font-bold text-base-900 mb-6">
           Reservas automáticas <span class="text-accent-600">24/7</span>
         </h1>
@@ -21,13 +17,8 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
           Sin llamadas, sin esperas, sin complicaciones.
         </p>
 
-        <p class="text-xl text-base-600 max-w-3xl mx-auto mb-8">
-          Disponible para <span class="font-bold text-green-700 bg-green-50 px-2 py-0.5 rounded">WhatsApp</span>, ChatBot en tu web y por <a href="/servicios/atencion-llamadas" class="text-accent-600 hover:text-accent-700 font-semibold underline decoration-2 underline-offset-2 transition-colors">agente IA en llamada</a>.
-        </p>
-        <div class="inline-flex items-center gap-2 px-4 py-2 bg-green-50 text-green-700 rounded-lg text-sm font-medium">
-          <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-          Demo interactiva disponible abajo
-        </div>
+        
+       
       </div>
 
       <!-- Interactive Demo Section -->
@@ -180,28 +171,26 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
           </div>
         </div>
       </div>
-
+<p class="text-xl text-base-600 max-w-3xl mx-auto mb-8">
+          Disponible para <span class="font-bold text-green-700 bg-green-50 px-2 py-0.5 rounded">WhatsApp</span>, ChatBot en tu web y por <a href="/servicios/atencion-llamadas" class="text-accent-600 hover:text-accent-700 font-semibold underline decoration-2 underline-offset-2 transition-colors">agente IA en llamada</a>.
+        </p>
       <!-- Stats Section -->
       <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-16">
-        <div class="bg-gradient-to-br from-accent-600 to-blue-600 rounded-xl p-6 text-white text-center">
-          <div class="text-4xl font-bold mb-2">24/7</div>
-          <div class="text-sm opacity-90">Disponibilidad</div>
-          <div class="text-xs opacity-75 mt-2">🌐 Web siempre activa</div>
+        <div class="bg-base-100 border border-base-200 rounded-xl p-6 text-center shadow-sm">
+          <div class="text-4xl font-bold mb-2 text-base-900">24/7</div>
+          <div class="text-sm text-base-600">Disponibilidad</div>
         </div>
-        <div class="bg-gradient-to-br from-green-500 to-green-600 rounded-xl p-6 text-white text-center">
-          <div class="text-4xl font-bold mb-2">85%</div>
-          <div class="text-sm opacity-90">Reservas desde WhatsApp</div>
-          <div class="text-xs opacity-75 mt-2">💬 Canal preferido</div>
+        <div class="bg-base-100 border border-base-200 rounded-xl p-6 text-center shadow-sm">
+          <div class="text-4xl font-bold mb-2 text-base-900">85%</div>
+          <div class="text-sm text-base-600">Reservas desde WhatsApp</div>
         </div>
-        <div class="bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl p-6 text-white text-center">
-          <div class="text-4xl font-bold mb-2">60%</div>
-          <div class="text-sm opacity-90">Reducción de llamadas</div>
-          <div class="text-xs opacity-75 mt-2">📞 Menos interrupciones</div>
+        <div class="bg-base-100 border border-base-200 rounded-xl p-6 text-center shadow-sm">
+          <div class="text-4xl font-bold mb-2 text-base-900">60%</div>
+          <div class="text-sm text-base-600">Reducción de llamadas</div>
         </div>
-        <div class="bg-gradient-to-br from-purple-600 to-pink-600 rounded-xl p-6 text-white text-center">
-          <div class="text-4xl font-bold mb-2">0</div>
-          <div class="text-sm opacity-90">No-shows con recordatorios</div>
-          <div class="text-xs opacity-75 mt-2">🔔 Confirmación automática</div>
+        <div class="bg-base-100 border border-base-200 rounded-xl p-6 text-center shadow-sm">
+          <div class="text-4xl font-bold mb-2 text-base-900">0</div>
+          <div class="text-sm text-base-600">No-shows con recordatorios</div>
         </div>
       </div>
 

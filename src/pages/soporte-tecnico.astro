@@ -21,7 +21,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
             Primera Incidencia GRATIS
           </div>
           <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-            Soporte Técnico IT<br>
+            Soporte Técnico <br>
             <span class="text-white/90">Cuando lo Necesites</span>
           </h1>
           <p class="text-xl text-white/90 mb-8 leading-relaxed">
@@ -31,9 +31,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           <div class="flex flex-col sm:flex-row gap-4">
             <a
               href="/reunion"
+              style="color: white;"
               class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold bg-white/10 hover:bg-white/20 text-white border-2 border-white/30 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 backdrop-blur-sm"
             >
-              Solicitar Primera Incidencia Gratis
+              Contacta con nosotros
             </a>
             <a
               href="tel:+34600000000"
@@ -63,32 +64,67 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           </div>
         </div>
 
-        <!-- Image/Illustration -->
+        <!-- Dashboard Preview -->
         <div class="relative">
           <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 shadow-2xl border border-white/20">
+            <h3 class="text-2xl font-bold text-white mb-6">Casos Resueltos Recientemente</h3>
+
+            <!-- Success Case 1 -->
             <div class="bg-white/20 backdrop-blur-sm rounded-xl p-6 shadow-lg mb-4 border border-white/30">
-              <div class="flex items-center gap-3 mb-4">
-                <div class="w-12 h-12 bg-green-400/30 backdrop-blur-sm rounded-full flex items-center justify-center text-white text-2xl border border-white/30">
+              <div class="flex items-center gap-3 mb-3">
+                <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white text-2xl border-2 border-white/30 shadow-lg">
                   ✓
                 </div>
-                <div>
-                  <div class="font-semibold text-white">Incidencia #1247</div>
-                  <div class="text-sm text-white/80">Resuelta en 45 minutos</div>
+                <div class="flex-1">
+                  <div class="font-semibold text-white text-lg">💾 Configuración de Backups</div>
+                  <div class="text-sm text-white/80">Plan de contingencia empresarial</div>
                 </div>
               </div>
-              <p class="text-sm text-white/90">Configuración correo corporativo en 3 equipos nuevos + migración de datos</p>
+              <div class="flex items-center gap-2 text-xs mt-3">
+                <span class="px-3 py-1 bg-green-500/30 text-green-100 rounded-full font-medium">Resuelta en 2h</span>
+                <span class="px-3 py-1 bg-blue-500/30 text-blue-100 rounded-full font-medium">Presencial</span>
+              </div>
             </div>
-            <div class="bg-white/20 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-white/30">
-              <div class="flex items-center gap-3 mb-4">
-                <div class="w-12 h-12 bg-blue-400/30 backdrop-blur-sm rounded-full flex items-center justify-center text-white text-2xl border border-white/30">
+
+            <!-- Success Case 2 -->
+            <div class="bg-white/20 backdrop-blur-sm rounded-xl p-6 shadow-lg mb-4 border border-white/30">
+              <div class="flex items-center gap-3 mb-3">
+                <div class="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center text-white text-2xl border-2 border-white/30 shadow-lg">
+                  🔥
+                </div>
+                <div class="flex-1">
+                  <div class="font-semibold text-white text-lg">🛡️ Configuración Firewall</div>
+                  <div class="text-sm text-white/80">Seguridad perimetral empresarial</div>
+                </div>
+              </div>
+              <div class="flex items-center gap-2 text-xs mt-3">
+                <span class="px-3 py-1 bg-red-500/30 text-red-100 rounded-full font-medium">Resuelta en 3h</span>
+                <span class="px-3 py-1 bg-purple-500/30 text-purple-100 rounded-full font-medium">Remoto</span>
+              </div>
+            </div>
+
+            <!-- Success Case 3 -->
+            <div class="bg-white/20 backdrop-blur-sm rounded-xl p-6 shadow-lg mb-4 border border-white/30">
+              <div class="flex items-center gap-3 mb-3">
+                <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white text-2xl border-2 border-white/30 shadow-lg">
                   ⚡
                 </div>
-                <div>
-                  <div class="font-semibold text-white">Respuesta inmediata</div>
-                  <div class="text-sm text-white/80">Atención en menos de 2 horas</div>
+                <div class="flex-1">
+                  <div class="font-semibold text-white text-lg">📧 Migración Office 365</div>
+                  <div class="text-sm text-white/80">15 cuentas + sincronización completa</div>
                 </div>
               </div>
-              <p class="text-sm text-white/90">Soporte remoto o presencial según tus necesidades</p>
+              <div class="flex items-center gap-2 text-xs mt-3">
+                <span class="px-3 py-1 bg-blue-500/30 text-blue-100 rounded-full font-medium">Resuelta en 1.5h</span>
+                <span class="px-3 py-1 bg-green-500/30 text-green-100 rounded-full font-medium">Presencial</span>
+              </div>
+            </div>
+
+            <!-- Info Banner -->
+            <div class="bg-gradient-to-r from-green-500/20 to-blue-500/20 backdrop-blur-sm rounded-xl p-4 border border-white/30">
+              <p class="text-white font-semibold text-center">
+                ⏱️ Tiempo medio de resolución: <span class="text-green-300">2.5 horas</span>
+              </p>
             </div>
           </div>
         </div>
@@ -219,7 +255,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
           Precios Transparentes
         </h2>
-        <p class="text-xl text-white/90">
+        <p class="text-xl text-white/90 mx-auto">
           Paga solo por las horas que necesites o ahorra con bolsas de horas
         </p>
       </div>
@@ -235,14 +271,15 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
           <ul class="space-y-2 text-sm text-gray-300 mb-6 flex-grow">
             <li><span class="text-blue-400">✅</span> 5 horas prepagadas</li>
-            <li><span class="text-blue-400">✅</span> Válido 3 meses</li>
+            <li><span class="text-blue-400">✅</span> Válido 6 meses</li>
             <li><span class="text-blue-400">✅</span> Soporte remoto o presencial</li>
             <li><span class="text-blue-400">✅</span> Descuento 7.5%</li>
-            <li><span class="text-blue-400">✅</span> Sin compromiso</li>
             <li><span class="text-blue-400">✅</span> Primera incidencia gratis</li>
           </ul>
           <a
             href="/reunion"
+                        style="color: white;"
+
             class="block w-full px-4 py-3 text-center bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors mt-auto"
           >
             Contratar
@@ -270,6 +307,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           </ul>
           <a
             href="/reunion"
+                        style="color: white;"
+
             class="block w-full px-4 py-3 text-center bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors mt-auto"
           >
             Contratar
@@ -294,6 +333,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           </ul>
           <a
             href="/reunion"
+            style="color: white;"
             class="block w-full px-4 py-3 text-center bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors mt-auto"
           >
             Contratar
@@ -301,147 +341,11 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         </div>
       </div>
 
-      <div class="mt-12 bg-white/20 backdrop-blur-sm border-2 border-white/40 rounded-xl p-6 text-center shadow-xl">
-        <p class="text-lg font-semibold text-white mb-2">
-          🎁 Primera Incidencia GRATIS
-        </p>
-        <p class="text-white/90">
-          Prueba nuestro servicio sin coste. Si tienes cualquier problema técnico, llámanos y lo resolvemos gratis.
-          Solo pagarás si decides continuar con el servicio.
-        </p>
-      </div>
+   
     </div>
   </section>
 
-  <!-- How it Works -->
-  <section class="py-20 bg-gradient-to-b from-base-50 to-base-100">
-    <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold text-base-900 mb-4">
-          ¿Cómo Funciona?
-        </h2>
 
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-        <div class="text-center">
-          <div class="w-16 h-16 bg-accent-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
-            1
-          </div>
-          <h3 class="text-lg font-semibold text-base-900 mb-2">Contacta</h3>
-          <p class="text-base-600 text-sm leading-relaxed">
-            Llámanos o envía un mensaje describiendo tu problema técnico
-          </p>
-        </div>
-
-        <div class="text-center">
-          <div class="w-16 h-16 bg-accent-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
-            2
-          </div>
-          <h3 class="text-lg font-semibold text-base-900 mb-2">Evaluación</h3>
-          <p class="text-base-600 text-sm leading-relaxed">
-            Evaluamos el problema y te indicamos si es remoto o presencial
-          </p>
-        </div>
-
-        <div class="text-center">
-          <div class="w-16 h-16 bg-accent-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
-            3
-          </div>
-          <h3 class="text-lg font-semibold text-base-900 mb-2">Resolución</h3>
-          <p class="text-base-600 text-sm leading-relaxed">
-            Resolvemos tu incidencia en el menor tiempo posible
-          </p>
-        </div>
-
-        <div class="text-center">
-          <div class="w-16 h-16 bg-accent-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
-            4
-          </div>
-          <h3 class="text-lg font-semibold text-base-900 mb-2">Facturación</h3>
-          <p class="text-base-600 text-sm leading-relaxed">
-            Solo pagas las horas trabajadas o usas tu bolsa de horas
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section class="py-20 relative overflow-hidden">
-    <!-- Background Image -->
-    <div class="absolute inset-0">
-      <img src="/images/3409297.jpg" alt="Background" class="w-full h-full object-cover" />
-    </div>
-    <!-- Overlay Gradient -->
-    <div class="absolute inset-0 bg-gradient-to-bl from-accent-500/40 via-blue-600/50 to-accent-500/40"></div>
-
-    <!-- Content -->
-    <div class="relative z-10 max-w-4xl mx-auto px-8 md:px-12">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
-          Preguntas Frecuentes
-        </h2>
-      </div>
-
-      <div class="space-y-4">
-        <details class="bg-white/95 backdrop-blur-sm rounded-xl shadow-xl overflow-hidden">
-          <summary class="px-6 py-4 font-semibold text-base-900 cursor-pointer hover:bg-white/80 transition-colors">
-            ¿La primera incidencia es realmente gratis?
-          </summary>
-          <div class="px-6 py-4 text-base-700 border-t border-base-200">
-            Sí, completamente gratis sin compromiso. Queremos que pruebes nuestro servicio y veas la calidad antes de contratar. Solo pagarás si decides continuar con el soporte.
-          </div>
-        </details>
-
-        <details class="bg-white/95 backdrop-blur-sm rounded-xl shadow-xl overflow-hidden">
-          <summary class="px-6 py-4 font-semibold text-base-900 cursor-pointer hover:bg-white/80 transition-colors">
-            ¿Cuánto tardáis en responder?
-          </summary>
-          <div class="px-6 py-4 text-base-700 border-t border-base-200">
-            Nuestro tiempo de respuesta es inferior a 2 horas laborables. Para incidencias urgentes, priorizamos la atención inmediata.
-          </div>
-        </details>
-
-        <details class="bg-white/95 backdrop-blur-sm rounded-xl shadow-xl overflow-hidden">
-          <summary class="px-6 py-4 font-semibold text-base-900 cursor-pointer hover:bg-white/80 transition-colors">
-            ¿Trabajáis de forma remota o presencial?
-          </summary>
-          <div class="px-6 py-4 text-base-700 border-t border-base-200">
-            Ambas. El 80% de las incidencias se resuelven de forma remota (más rápido y económico), pero si es necesario, nos desplazamos a tu oficina.
-          </div>
-        </details>
-
-        <details class="bg-white/95 backdrop-blur-sm rounded-xl shadow-xl overflow-hidden">
-          <summary class="px-6 py-4 font-semibold text-base-900 cursor-pointer hover:bg-white/80 transition-colors">
-            ¿Qué pasa si no uso todas las horas de mi bolsa?
-          </summary>
-          <div class="px-6 py-4 text-base-700 border-t border-base-200">
-            Las horas prepagadas tienen validez de 3, 6 o 12 meses según el paquete. Si no las usas en ese tiempo, caducan. Por eso recomendamos elegir el paquete que mejor se adapte a tus necesidades reales.
-          </div>
-        </details>
-
-        <details class="bg-white/95 backdrop-blur-sm rounded-xl shadow-xl overflow-hidden">
-          <summary class="px-6 py-4 font-semibold text-base-900 cursor-pointer hover:bg-white/80 transition-colors">
-            ¿Cómo se factura el tiempo?
-          </summary>
-          <div class="px-6 py-4 text-base-700 border-t border-base-200">
-            Facturamos en fracciones de 15 minutos. Si tu incidencia dura 1 hora y 20 minutos, pagarás 1.5 horas. Siempre te informamos del tiempo estimado antes de empezar.
-          </div>
-        </details>
-
-        <details class="bg-white/95 backdrop-blur-sm rounded-xl shadow-xl overflow-hidden">
-          <summary class="px-6 py-4 font-semibold text-base-900 cursor-pointer hover:bg-white/80 transition-colors">
-            ¿Ofrecéis contratos de mantenimiento mensual?
-          </summary>
-          <div class="px-6 py-4 text-base-700 border-t border-base-200">
-            Sí, para empresas que necesitan soporte continuo ofrecemos contratos personalizados con horas incluidas y tarifa reducida. Contáctanos para más información.
-          </div>
-        </details>
-      </div>
-    </div>
-    </div>
-  </section>
 
   <!-- Final CTA -->
   <section class="py-20 relative overflow-hidden">
@@ -464,18 +368,25 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
         <a
           href="/reunion"
-          class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold bg-white hover:bg-white/90 text-accent-600 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200"
+          class="relative inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 overflow-hidden group"
         >
-          Solicitar Soporte Gratis
+          <!-- Background Image -->
+          <div class="absolute inset-0">
+            <img src="/images/3409297.jpg" alt="Background" class="w-full h-full object-cover" />
+          </div>
+          <!-- Overlay Gradient -->
+          <div class="absolute inset-0 bg-gradient-to-br from-accent-600/80 to-blue-600/80 group-hover:from-accent-700/80 group-hover:to-blue-700/80 transition-all duration-200"></div>
+          <!-- Text -->
+          <span style="color: white;" class="relative z-10">Solicitar Soporte Gratis</span>
         </a>
         <a
-          href="tel:+34600000000"
+          href="mailto:info@aisecurity.es"
           class="inline-flex items-center justify-center gap-2 px-8 py-4 text-lg font-semibold bg-base-50/10 hover:bg-base-50/20 text-white border border-white/30 rounded-xl backdrop-blur-sm transition-all duration-200"
         >
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
           </svg>
-          +34 600 000 000
+          info@aisecurity.es
         </a>
       </div>
     </div>

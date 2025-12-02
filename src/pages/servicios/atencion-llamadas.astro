@@ -35,13 +35,13 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 
           <!-- Phone Interface -->
           <div class="bg-gradient-to-br from-blue-500 to-blue-700 p-8">
-            <div class="max-w-md mx-auto">
+            <div class="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto items-start">
               <!-- Phone Mockup -->
-              <div class="relative bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 rounded-[3rem] p-3 shadow-2xl border-8 border-gray-800">
+              <div class="relative bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 rounded-[3rem] p-3 shadow-2xl border-8 border-gray-800 w-full max-w-md mx-auto lg:mx-0 h-[750px]">
                 <!-- Phone screen -->
-                <div class="bg-black rounded-[2.5rem] overflow-hidden">
+                <div class="bg-black rounded-[2.5rem] overflow-hidden h-full flex flex-col">
                   <!-- Status bar -->
-                  <div class="flex items-center justify-between text-white text-xs px-6 py-3 bg-black">
+                  <div class="flex items-center justify-between text-white text-xs px-6 py-3 bg-black flex-shrink-0">
                     <span class="font-semibold">9:41</span>
                     <div class="flex gap-1.5 items-center">
                       <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
@@ -55,95 +55,113 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
                   </div>
 
                   <!-- Main content area -->
-                  <div class="bg-gradient-to-b from-gray-900 to-black min-h-[600px] px-6 py-8 flex flex-col">
-                    <!-- Contact photo and info -->
-                    <div class="text-center mb-8">
-                      <div class="w-32 h-32 mx-auto mb-4 rounded-full bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-white text-5xl font-bold shadow-2xl">
-                        DG
+                  <div class="bg-gradient-to-b from-gray-900 to-black flex-1 px-6 py-8 flex flex-col overflow-hidden relative">
+                    <!-- Pre-Call Screen (shown before call) -->
+                    <div id="pre-call-screen" class="absolute inset-0 px-6 py-8 flex flex-col">
+                      <!-- Contact photo and info -->
+                      <div class="text-center mb-8">
+                        <div class="w-32 h-32 mx-auto mb-4 rounded-full bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-white text-5xl font-bold shadow-2xl">
+                          DG
+                        </div>
+                        <h3 class="text-white text-2xl font-semibold mb-2">Clínica Dental<br/>Dr. García</h3>
+                        <p class="text-gray-400 text-base">+34 900 123 456</p>
+                        <p id="call-status" class="text-gray-500 text-sm mt-2"></p>
                       </div>
-                      <h3 class="text-white text-2xl font-semibold mb-2">Clínica Dental<br/>Dr. García</h3>
-                      <p class="text-gray-400 text-base">+34 900 123 456</p>
-                      <p id="call-status" class="text-gray-500 text-sm mt-2">móvil</p>
-                    </div>
 
-                    <!-- Scenario Selector -->
-                    <div id="scenario-selector-container" class="mb-auto">
-                      <p class="text-gray-400 text-xs font-semibold mb-3 text-center uppercase tracking-wide">Motivo de la llamada</p>
-                      <div class="space-y-2">
-                        <button data-scenario="reservar" class="scenario-button w-full text-left px-4 py-3 bg-gray-800/50 backdrop-blur rounded-xl border border-blue-500/50 hover:bg-gray-700/50 transition-all duration-200 text-sm text-white shadow-lg shadow-blue-500/20">
-                          <div class="flex items-center gap-3">
-                            <span class="text-xl">📅</span>
-                            <span>Reservar una cita</span>
-                          </div>
-                        </button>
-                        <button data-scenario="modificar" class="scenario-button w-full text-left px-4 py-3 bg-gray-800/30 backdrop-blur rounded-xl border border-gray-700 hover:bg-gray-700/50 transition-all duration-200 text-sm text-white">
-                          <div class="flex items-center gap-3">
-                            <span class="text-xl">✏️</span>
-                            <span>Modificar/Eliminar cita</span>
-                          </div>
-                        </button>
-                        <button data-scenario="pago" class="scenario-button w-full text-left px-4 py-3 bg-gray-800/30 backdrop-blur rounded-xl border border-gray-700 hover:bg-gray-700/50 transition-all duration-200 text-sm text-white">
-                          <div class="flex items-center gap-3">
-                            <span class="text-xl">💳</span>
-                            <span>Consulta sobre pago</span>
-                          </div>
-                        </button>
+                      <!-- Scenario Selector -->
+                      <div class="mb-auto">
+                        <p class="text-gray-400 text-xs font-semibold mb-3 text-center uppercase tracking-wide">Motivo de la llamada</p>
+                        <div class="space-y-2">
+                          <button data-scenario="reservar" class="scenario-button w-full text-left px-4 py-3 bg-gray-800/50 backdrop-blur rounded-xl border border-blue-500/50 hover:bg-gray-700/50 transition-all duration-200 text-sm text-white shadow-lg shadow-blue-500/20">
+                            <div class="flex items-center gap-3">
+                              <span class="text-xl">📅</span>
+                              <span>Reservar una cita</span>
+                            </div>
+                          </button>
+                          <button data-scenario="modificar" class="scenario-button w-full text-left px-4 py-3 bg-gray-800/30 backdrop-blur rounded-xl border border-gray-700 hover:bg-gray-700/50 transition-all duration-200 text-sm text-white">
+                            <div class="flex items-center gap-3">
+                              <span class="text-xl">✏️</span>
+                              <span>Modificar/Eliminar cita</span>
+                            </div>
+                          </button>
+                          <button data-scenario="pago" class="scenario-button w-full text-left px-4 py-3 bg-gray-800/30 backdrop-blur rounded-xl border border-gray-700 hover:bg-gray-700/50 transition-all duration-200 text-sm text-white">
+                            <div class="flex items-center gap-3">
+                              <span class="text-xl">💳</span>
+                              <span>Consulta sobre pago</span>
+                            </div>
+                          </button>
+                        </div>
                       </div>
-                    </div>
 
-                    <!-- Call Duration -->
-                    <div id="call-duration" class="text-center text-gray-400 text-lg mb-6 hidden">
-                      <span id="duration-text">00:00</span>
-                    </div>
-
-                    <!-- Conversation Log -->
-                    <div id="conversation-log" class="bg-gray-800/50 backdrop-blur rounded-2xl p-4 mb-6 max-h-64 overflow-y-auto hidden border border-gray-700">
-                      <!-- Conversation will be added here -->
-                    </div>
-
-                    <!-- Call Buttons -->
-                    <div class="flex justify-center gap-16 mt-auto pt-8">
                       <!-- Call Button -->
-                      <button id="call-button" class="flex flex-col items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity">
-                        <div class="w-20 h-20 rounded-full bg-green-500 hover:bg-green-600 flex items-center justify-center shadow-2xl shadow-green-500/50 hover:scale-105 transition-transform">
-                          <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
-                          </svg>
-                        </div>
-                        <span class="text-white text-xs">Llamar</span>
-                      </button>
+                      <div class="flex justify-center mt-auto pt-8">
+                        <button id="call-button" class="flex flex-col items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity">
+                          <div class="w-20 h-20 rounded-full bg-green-500 hover:bg-green-600 flex items-center justify-center shadow-2xl shadow-green-500/50 hover:scale-105 transition-transform">
+                            <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 20 20">
+                              <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
+                            </svg>
+                          </div>
+                          <span class="text-white text-xs"></span>
+                        </button>
+                      </div>
+                    </div>
 
-                      <!-- Hang Up Button (Hidden initially) -->
-                      <button id="hangup-button" class="hidden flex-col items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity">
-                        <div class="w-20 h-20 rounded-full bg-red-500 hover:bg-red-600 flex items-center justify-center shadow-2xl shadow-red-500/50 hover:scale-105 transition-transform">
-                          <svg class="w-10 h-10 text-white transform rotate-135" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
-                          </svg>
+                    <!-- In-Call Screen (shown during call) -->
+                    <div id="in-call-screen" class="hidden absolute inset-0 px-6 py-8 flex-col justify-between">
+                      <!-- Contact photo and info (smaller) -->
+                      <div class="text-center pt-8">
+                        <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-white text-4xl font-bold shadow-2xl">
+                          DG
                         </div>
-                        <span class="text-white text-xs">Colgar</span>
-                      </button>
+                        <h3 class="text-white text-xl font-semibold mb-1">Clínica Dental Dr. García</h3>
+                        <p class="text-green-400 text-sm font-medium">En llamada</p>
+                      </div>
+
+                      <!-- Call Duration -->
+                      <div class="text-center flex-1 flex flex-col justify-center">
+                        <div class="text-white text-5xl font-light mb-2" id="duration-text">00:00</div>
+                        <p class="text-gray-400 text-sm">Duración de la llamada</p>
+                      </div>
+
+                      <!-- Hang Up Button -->
+                      <div class="flex justify-center pb-8">
+                        <button id="hangup-button-in-phone" class="flex flex-col items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity">
+                          <div class="w-20 h-20 rounded-full bg-red-500 hover:bg-red-600 flex items-center justify-center shadow-2xl shadow-red-500/50 hover:scale-105 transition-transform">
+                            <svg class="w-10 h-10 text-white transform rotate-135" fill="currentColor" viewBox="0 0 20 20">
+                              <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
+                            </svg>
+                          </div>
+                          <span class="text-white text-xs">Colgar</span>
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <!-- Call Menu Options (shown during call) -->
-              <div id="call-options" class="mt-6 hidden">
-                <div class="bg-base-50/10 backdrop-blur-sm rounded-xl p-4">
-                  <h4 class="text-white text-sm font-semibold mb-3">Opciones disponibles:</h4>
-                  <div class="space-y-2 text-white/80 text-sm">
-                    <div class="flex items-center gap-2">
-                      <span class="w-6 h-6 rounded-full bg-base-50/20 flex items-center justify-center text-xs">1</span>
-                      <span>Reservar una cita</span>
-                    </div>
-                    <div class="flex items-center gap-2">
-                      <span class="w-6 h-6 rounded-full bg-base-50/20 flex items-center justify-center text-xs">2</span>
-                      <span>Consultar horarios</span>
-                    </div>
-                    <div class="flex items-center gap-2">
-                      <span class="w-6 h-6 rounded-full bg-base-50/20 flex items-center justify-center text-xs">3</span>
-                      <span>Hablar con un agente</span>
-                    </div>
+              <!-- Transcription Panel (always visible) -->
+              <div id="transcription-panel" class="bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl p-6 w-full max-w-md mx-auto lg:mx-0 h-[750px] flex flex-col">
+                <div class="flex items-center justify-between mb-4 pb-4 border-b border-gray-200 flex-shrink-0">
+                  <h4 style="color: #4f46e5;" class="text-lg font-semibold text-gray-900 flex items-center gap-2">
+                    <svg class="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clip-rule="evenodd"></path>
+                    </svg>
+                    Transcripción en vivo
+                  </h4>
+                  <div id="recording-indicator" class="hidden items-center gap-2">
+                    <span class="w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
+                    <span class="text-xs text-gray-500 font-medium">Grabando</span>
+                  </div>
+                </div>
+
+                <div id="conversation-log" class="space-y-3 flex-1 overflow-y-auto pr-2">
+                  <!-- Empty state -->
+                  <div id="empty-state" class="flex flex-col items-center justify-center h-full text-center py-12">
+                    <svg class="w-16 h-16 text-gray-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                    </svg>
+                    <p style="color: black;" class="text-gray-400 text-sm font-medium">La transcripción aparecerá aquí</p>
+                    <p style="color: black;" class="text-gray-300 text-xs mt-2">Selecciona un motivo y pulsa "Llamar"</p>
                   </div>
                 </div>
               </div>
@@ -244,14 +262,17 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     const callButton = document.getElementById('call-button');
-    const hangupButton = document.getElementById('hangup-button');
-    const callStatus = document.getElementById('call-status');
-    const callDuration = document.getElementById('call-duration');
+    const callButtonContainer = document.getElementById('call-button-container');
+    const hangupButtonInPhone = document.getElementById('hangup-button-in-phone');
     const durationText = document.getElementById('duration-text');
     const conversationLog = document.getElementById('conversation-log');
-    const callOptions = document.getElementById('call-options');
     const scenarioButtons = document.querySelectorAll('.scenario-button');
     const scenarioSelectorContainer = document.getElementById('scenario-selector-container');
+    const preCallScreen = document.getElementById('pre-call-screen');
+    const inCallScreen = document.getElementById('in-call-screen');
+    const transcriptionPanel = document.getElementById('transcription-panel');
+    const recordingIndicator = document.getElementById('recording-indicator');
+    const emptyState = document.getElementById('empty-state');
 
     let isInCall = false;
     let callStartTime = 0;
@@ -296,12 +317,35 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
     function addConversationLine(speaker: string, text: string, audioSrc?: string) {
       if (!conversationLog) return;
 
-      const line = document.createElement('div');
-      line.className = `mb-2 ${speaker === 'AI' ? 'text-accent-400' : ''}`;
-      line.innerHTML = `<span class="font-semibold">${speaker === 'AI' ? '🤖 Asistente:' : '👤 Tú:'}</span> ${text}`;
-      if (speaker !== 'AI') {
-        line.style.color = '#000000';
+      // Ocultar estado vacío en el primer mensaje
+      if (emptyState && !emptyState.classList.contains('hidden')) {
+        emptyState.classList.add('hidden');
       }
+
+      const line = document.createElement('div');
+      line.className = speaker === 'AI'
+        ? 'flex gap-2 items-start'
+        : 'flex gap-2 items-start justify-end';
+
+      const bubble = document.createElement('div');
+      bubble.className = speaker === 'AI'
+        ? 'bg-blue-50 text-gray-800 px-4 py-2 rounded-2xl rounded-tl-sm max-w-[85%]'
+        : 'bg-blue-600 text-white px-4 py-2 rounded-2xl rounded-tr-sm max-w-[85%]';
+
+      const content = document.createElement('div');
+      const label = document.createElement('div');
+      label.className = 'text-xs font-semibold mb-1 opacity-70';
+      label.textContent = speaker === 'AI' ? '🤖 Asistente' : '👤 Tú';
+
+      const message = document.createElement('div');
+      message.className = 'text-sm leading-relaxed';
+      message.textContent = text;
+
+      content.appendChild(label);
+      content.appendChild(message);
+      bubble.appendChild(content);
+      line.appendChild(bubble);
+
       conversationLog.appendChild(line);
       conversationLog.scrollTop = conversationLog.scrollHeight;
 
@@ -354,22 +398,23 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
       // Usar escenario seleccionado
       const conversation = scenarios[selectedScenario];
 
-      // UI Updates
-      if (callButton) callButton.classList.add('hidden');
-      if (hangupButton) hangupButton.classList.remove('hidden');
-      if (hangupButton) hangupButton.classList.add('flex');
-      if (callStatus) callStatus.textContent = 'Conectando...';
-      if (callDuration) callDuration.classList.remove('hidden');
-      if (conversationLog) conversationLog.classList.remove('hidden');
-      if (callOptions) callOptions.classList.remove('hidden');
+      // Ocultar pantalla pre-llamada
+      if (preCallScreen) preCallScreen.classList.add('hidden');
+
+      // Mostrar pantalla en llamada
+      if (inCallScreen) {
+        inCallScreen.classList.remove('hidden');
+        inCallScreen.classList.add('flex');
+      }
+
+      // Mostrar indicador de grabación
+      if (recordingIndicator) {
+        recordingIndicator.classList.remove('hidden');
+        recordingIndicator.classList.add('flex');
+      }
 
       // Start duration counter
       durationInterval = setInterval(updateDuration, 1000) as unknown as number;
-
-      // Simulate ringing
-      setTimeout(() => {
-        if (callStatus) callStatus.textContent = 'En llamada';
-      }, 1500);
 
       // Play conversation with audio
       conversation.forEach(line => {
@@ -385,25 +430,38 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
     function endCall() {
       isInCall = false;
       clearInterval(durationInterval);
-      stopAllAudio(); // Detener todos los audios y timeouts
+      stopAllAudio();
 
-      // UI Updates
-      if (callButton) callButton.classList.remove('hidden');
-      if (hangupButton) hangupButton.classList.add('hidden');
-      if (hangupButton) hangupButton.classList.remove('flex');
-      if (callStatus) callStatus.textContent = 'Llamada finalizada';
-      if (callOptions) callOptions.classList.add('hidden');
+      // Ocultar pantalla en llamada
+      if (inCallScreen) {
+        inCallScreen.classList.add('hidden');
+        inCallScreen.classList.remove('flex');
+      }
 
-      // Reset after 2 seconds
-      setTimeout(() => {
-        if (callStatus) callStatus.textContent = 'Toca para llamar';
-        if (callDuration) callDuration.classList.add('hidden');
-        if (conversationLog) {
-          conversationLog.classList.add('hidden');
-          conversationLog.innerHTML = '';
-        }
-        if (durationText) durationText.textContent = '00:00';
-      }, 2000);
+      // Ocultar indicador de grabación
+      if (recordingIndicator) {
+        recordingIndicator.classList.add('hidden');
+        recordingIndicator.classList.remove('flex');
+      }
+
+      // Limpiar transcripción y mostrar estado vacío
+      if (conversationLog) {
+        conversationLog.innerHTML = `
+          <div id="empty-state" class="flex flex-col items-center justify-center h-full text-center py-12">
+            <svg class="w-16 h-16 text-gray-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+            </svg>
+            <p class="text-gray-400 text-sm font-medium">La transcripción aparecerá aquí</p>
+            <p class="text-gray-300 text-xs mt-2">Selecciona un motivo y pulsa "Llamar"</p>
+          </div>
+        `;
+      }
+
+      // Reset temporizador
+      if (durationText) durationText.textContent = '00:00';
+
+      // Mostrar pantalla pre-llamada
+      if (preCallScreen) preCallScreen.classList.remove('hidden');
     }
 
     // Función para actualizar el escenario seleccionado
@@ -428,7 +486,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
       callButton.addEventListener('click', startCall);
     }
 
-    // Event listeners para los botones de escenario (solo cambian la selección)
+    // Event listeners para los botones de escenario
     scenarioButtons.forEach(button => {
       button.addEventListener('click', () => {
         const scenario = button.getAttribute('data-scenario') as keyof typeof scenarios;
@@ -438,8 +496,9 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
       });
     });
 
-    if (hangupButton) {
-      hangupButton.addEventListener('click', endCall);
+    // Event listener para colgar (botón dentro del teléfono)
+    if (hangupButtonInPhone) {
+      hangupButtonInPhone.addEventListener('click', endCall);
     }
   });
 </script>

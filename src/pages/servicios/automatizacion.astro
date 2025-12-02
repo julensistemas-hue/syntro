@@ -3,34 +3,30 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout>
-  <section class="py-20 bg-base-25">
+  <section class="pt-8 pb-20 bg-base-25">
     <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
       <!-- Hero Section -->
       <div class="text-center mb-16">
-        <div class="inline-flex items-center gap-2 px-4 py-2 bg-accent-100 text-accent-700 rounded-full text-sm font-medium mb-6">
-          <span class="text-2xl">⚙️</span>
-          Automatización de Procesos
-        </div>
         <h1 class="text-4xl md:text-5xl font-bold text-base-900 mb-6">
           Optimiza tu operativa y <span class="text-accent-600">multiplica resultados</span>
         </h1>
-       
+
       </div>
 
       <!-- Interactive Dashboard -->
       <div class="mb-16">
-        <div class="max-w-4xl mx-auto bg-gradient-to-br from-base-900 to-base-800 rounded-2xl shadow-2xl overflow-hidden">
+        <div class="max-w-4xl mx-auto rounded-2xl shadow-2xl overflow-hidden" style="background-color: #10181f;">
           <!-- Dashboard Header -->
-          <div class="bg-base-800 px-6 py-4 border-b border-base-700">
+          <div class="px-6 py-4 border-b" style="background-color: #1F2937; border-color: #374151;">
             <div class="flex items-center justify-between">
               <div class="flex items-center gap-3">
                 <div class="w-3 h-3 rounded-full bg-red-500"></div>
                 <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
                 <div class="w-3 h-3 rounded-full bg-green-500"></div>
-                <span class="ml-4 text-base-300 text-sm font-medium">Dashboard de Automatización</span>
+                <span class="ml-4 text-sm font-medium" style="color: #D1D5DB;">Dashboard de Automatización</span>
               </div>
               <div class="flex items-center gap-2">
-                <select id="period-selector" class="bg-base-700 text-white px-4 py-2 rounded-lg text-sm border border-base-600 hover:border-accent-500 focus:outline-none focus:border-accent-500 transition-colors font-medium cursor-pointer [&>option]:text-white [&>option]:bg-black">
+                <select id="period-selector" class="px-4 py-2 rounded-lg text-sm text-white font-medium cursor-pointer [&>option]:text-white" style="background-color: #374151; border: 1px solid #4B5563;">
                   <option value="month">Último mes</option>
                   <option value="quarter">Último trimestre</option>
                   <option value="year">Último año</option>
@@ -39,9 +35,9 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
             </div>
           </div>
 
-          <div class="p-8">
+          <div class="p-8" style="background-color: #10181f;">
             <div class="max-w-full mx-auto">
-              <div class="rounded-3xl p-8 shadow-2xl" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);">
+              <div class="rounded-3xl p-8 shadow-2xl" style="background-color: #10181f;">
             <!-- Key Metrics -->
             <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
               <div class="bg-gradient-to-br from-green-500 to-green-600 rounded-xl p-6 text-white">
@@ -75,152 +71,123 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 
               <div class="space-y-4">
                 <!-- Process 1 -->
-                <div class="border border-base-600 rounded-lg p-4 hover:border-accent-400 transition-colors bg-base-800/50">
+                <div class="border-2 rounded-lg p-4 hover:shadow-lg transition-all" style="background-color: #1F2937; border-color: #10B981;">
                   <div class="flex items-start justify-between mb-3">
                     <div class="flex items-start gap-3">
-                      <div class="w-10 h-10 rounded-lg bg-green-500/30 flex items-center justify-center flex-shrink-0">
-                        <span class="text-xl">📧</span>
+                      <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0" style="background-color: #10B981;">
+                        <span class="text-xl text-white">📧</span>
                       </div>
                       <div>
                         <h5 class="font-semibold text-white">Clasificación de Emails</h5>
-                        <p class="text-sm text-base-300">Organiza y prioriza correos automáticamente</p>
+                        <p class="text-sm" style="color: #D1D5DB;">Organiza y prioriza correos automáticamente</p>
                       </div>
                     </div>
-                    <span class="px-3 py-1 bg-green-500/30 text-green-300 rounded-full text-xs font-medium">Activo</span>
+                    <span class="px-3 py-1 rounded-full text-xs font-medium" style="background-color: rgba(16, 185, 129, 0.3); color: #6EE7B7;">Activo</span>
                   </div>
                   <div class="grid grid-cols-3 gap-4 text-sm">
                     <div>
-                      <div class="text-base-400 text-xs">Ahorro/mes</div>
+                      <div class="text-xs" style="color: #9CA3AF;">Ahorro/mes</div>
                       <div class="font-semibold text-white">€890</div>
                     </div>
                     <div>
-                      <div class="text-base-400 text-xs">Tiempo ahorrado</div>
+                      <div class="text-xs" style="color: #9CA3AF;">Tiempo ahorrado</div>
                       <div class="font-semibold text-white">52h/mes</div>
                     </div>
                     <div>
-                      <div class="text-base-400 text-xs">Emails procesados</div>
+                      <div class="text-xs" style="color: #9CA3AF;">Emails procesados</div>
                       <div class="font-semibold text-white">3,420</div>
                     </div>
                   </div>
                 </div>
 
                 <!-- Process 2 -->
-                <div class="border border-base-600 rounded-lg p-4 hover:border-accent-400 transition-colors bg-base-800/50">
+                <div class="border-2 rounded-lg p-4 hover:shadow-lg transition-all" style="background-color: #1F2937; border-color: #3B82F6;">
                   <div class="flex items-start justify-between mb-3">
                     <div class="flex items-start gap-3">
-                      <div class="w-10 h-10 rounded-lg bg-blue-500/30 flex items-center justify-center flex-shrink-0">
-                        <span class="text-xl">📊</span>
+                      <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0" style="background-color: #3B82F6;">
+                        <span class="text-xl text-white">📊</span>
                       </div>
                       <div>
                         <h5 class="font-semibold text-white">Generación de Informes</h5>
-                        <p class="text-sm text-base-300">Reportes automáticos semanales y mensuales</p>
+                        <p class="text-sm" style="color: #D1D5DB;">Reportes automáticos semanales y mensuales</p>
                       </div>
                     </div>
-                    <span class="px-3 py-1 bg-green-500/30 text-green-300 rounded-full text-xs font-medium">Activo</span>
+                    <span class="px-3 py-1 rounded-full text-xs font-medium" style="background-color: rgba(16, 185, 129, 0.3); color: #6EE7B7;">Activo</span>
                   </div>
                   <div class="grid grid-cols-3 gap-4 text-sm">
                     <div>
-                      <div class="text-base-400 text-xs">Ahorro/mes</div>
+                      <div class="text-xs" style="color: #9CA3AF;">Ahorro/mes</div>
                       <div class="font-semibold text-white">€1,200</div>
                     </div>
                     <div>
-                      <div class="text-base-400 text-xs">Tiempo ahorrado</div>
+                      <div class="text-xs" style="color: #9CA3AF;">Tiempo ahorrado</div>
                       <div class="font-semibold text-white">68h/mes</div>
                     </div>
                     <div>
-                      <div class="text-base-400 text-xs">Informes creados</div>
+                      <div class="text-xs" style="color: #9CA3AF;">Informes creados</div>
                       <div class="font-semibold text-white">84</div>
                     </div>
                   </div>
                 </div>
 
                 <!-- Process 3 -->
-                <div class="border border-base-600 rounded-lg p-4 hover:border-accent-400 transition-colors bg-base-800/50">
+                <div class="border-2 rounded-lg p-4 hover:shadow-lg transition-all" style="background-color: #1F2937; border-color: #8B5CF6;">
                   <div class="flex items-start justify-between mb-3">
                     <div class="flex items-start gap-3">
-                      <div class="w-10 h-10 rounded-lg bg-purple-500/30 flex items-center justify-center flex-shrink-0">
-                        <span class="text-xl">💼</span>
+                      <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0" style="background-color: #8B5CF6;">
+                        <span class="text-xl text-white">💼</span>
                       </div>
                       <div>
                         <h5 class="font-semibold text-white">Gestión de Facturas</h5>
-                        <p class="text-sm text-base-300">Extracción de datos y validación automática</p>
+                        <p class="text-sm" style="color: #D1D5DB;">Extracción de datos y validación automática</p>
                       </div>
                     </div>
-                    <span class="px-3 py-1 bg-green-500/30 text-green-300 rounded-full text-xs font-medium">Activo</span>
+                    <span class="px-3 py-1 rounded-full text-xs font-medium" style="background-color: rgba(16, 185, 129, 0.3); color: #6EE7B7;">Activo</span>
                   </div>
                   <div class="grid grid-cols-3 gap-4 text-sm">
                     <div>
-                      <div class="text-base-400 text-xs">Ahorro/mes</div>
+                      <div class="text-xs" style="color: #9CA3AF;">Ahorro/mes</div>
                       <div class="font-semibold text-white">€750</div>
                     </div>
                     <div>
-                      <div class="text-base-400 text-xs">Tiempo ahorrado</div>
+                      <div class="text-xs" style="color: #9CA3AF;">Tiempo ahorrado</div>
                       <div class="font-semibold text-white">42h/mes</div>
                     </div>
                     <div>
-                      <div class="text-base-400 text-xs">Facturas procesadas</div>
+                      <div class="text-xs" style="color: #9CA3AF;">Facturas procesadas</div>
                       <div class="font-semibold text-white">267</div>
                     </div>
                   </div>
                 </div>
 
                 <!-- Process 4 -->
-                <div class="border border-base-600 rounded-lg p-4 hover:border-accent-400 transition-colors bg-base-800/50">
+                <div class="border-2 rounded-lg p-4 hover:shadow-lg transition-all" style="background-color: #1F2937; border-color: #F59E0B;">
                   <div class="flex items-start justify-between mb-3">
                     <div class="flex items-start gap-3">
-                      <div class="w-10 h-10 rounded-lg bg-orange-500/30 flex items-center justify-center flex-shrink-0">
-                        <span class="text-xl">🔔</span>
+                      <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0" style="background-color: #F59E0B;">
+                        <span class="text-xl text-white">🔔</span>
                       </div>
                       <div>
                         <h5 class="font-semibold text-white">Recordatorios de Seguimiento</h5>
-                        <p class="text-sm text-base-300">Notificaciones automáticas a clientes y equipo</p>
+                        <p class="text-sm" style="color: #D1D5DB;">Notificaciones automáticas a clientes y equipo</p>
                       </div>
                     </div>
-                    <span class="px-3 py-1 bg-green-500/30 text-green-300 rounded-full text-xs font-medium">Activo</span>
+                    <span class="px-3 py-1 rounded-full text-xs font-medium" style="background-color: rgba(16, 185, 129, 0.3); color: #6EE7B7;">Activo</span>
                   </div>
                   <div class="grid grid-cols-3 gap-4 text-sm">
                     <div>
-                      <div class="text-base-400 text-xs">Ahorro/mes</div>
+                      <div class="text-xs" style="color: #9CA3AF;">Ahorro/mes</div>
                       <div class="font-semibold text-white">€400</div>
                     </div>
                     <div>
-                      <div class="text-base-400 text-xs">Tiempo ahorrado</div>
+                      <div class="text-xs" style="color: #9CA3AF;">Tiempo ahorrado</div>
                       <div class="font-semibold text-white">25h/mes</div>
                     </div>
                     <div>
-                      <div class="text-base-400 text-xs">Recordatorios enviados</div>
+                      <div class="text-xs" style="color: #9CA3AF;">Recordatorios enviados</div>
                       <div class="font-semibold text-white">892</div>
                     </div>
                   </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- ROI Calculator -->
-            <div class="bg-gradient-to-br from-accent-600 to-blue-600 rounded-xl p-6 text-white">
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                <div>
-                  <h4 class="text-2xl font-bold mb-4">Retorno de Inversión</h4>
-                  <div class="space-y-3">
-                    <div class="flex justify-between items-center">
-                      <span class="opacity-90">Ahorro anual proyectado</span>
-                      <span class="text-2xl font-bold">€38,880</span>
-                    </div>
-                    <div class="flex justify-between items-center">
-                      <span class="opacity-90">Inversión inicial</span>
-                      <span class="text-xl">€12,000</span>
-                    </div>
-                    <div class="border-t border-white/20 pt-3 mt-3">
-                      <div class="flex justify-between items-center">
-                        <span class="opacity-90">ROI en el primer año</span>
-                        <span class="text-3xl font-bold">+224%</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="text-center">
-                  <div class="text-7xl font-bold mb-2">4.5</div>
-                  <div class="text-xl opacity-90">meses para recuperar la inversión</div>
                 </div>
               </div>
             </div>
@@ -229,8 +196,8 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
           </div>
 
           <!-- Info Panel -->
-          <div class="bg-base-100 px-6 py-5">
-            <p class="text-sm text-base-600 text-center font-medium max-w-2xl mx-auto">
+          <div class="px-6 py-5" style="background-color: #1F2937;">
+            <p class="text-sm text-center font-medium max-w-2xl mx-auto" style="color: #D1D5DB;">
               Esta es una demo simulada. Los datos representan ahorros reales de una empresa mediana después de 6 meses de automatización.
             </p>
           </div>
@@ -276,6 +243,48 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
           </div>
         </div>
       </div>
+
+      <!-- ROI Section -->
+      <div class="max-w-4xl mx-auto mb-16">
+        <div class="relative overflow-hidden rounded-2xl">
+          <!-- Background Image -->
+          <div class="absolute inset-0">
+            <img src="/images/3409297.jpg" alt="Background" class="w-full h-full object-cover" />
+          </div>
+          <!-- Overlay Gradient -->
+          <div class="absolute inset-0 bg-gradient-to-bl from-accent-500/40 via-blue-600/50 to-accent-500/40"></div>
+
+          <!-- Content -->
+          <div class="relative z-10 p-8 md:p-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center text-white">
+              <div>
+                <h3 class="text-3xl font-bold mb-6">Retorno de Inversión</h3>
+                <div class="space-y-4">
+                  <div class="flex justify-between items-center">
+                    <span class="text-lg text-white/90">Ahorro anual proyectado</span>
+                    <span class="text-3xl font-bold">€38,880</span>
+                  </div>
+                  <div class="flex justify-between items-center">
+                    <span class="text-lg text-white/90">Inversión inicial</span>
+                    <span class="text-2xl font-semibold">€12,000</span>
+                  </div>
+                  <div class="border-t border-white/30 pt-4 mt-4">
+                    <div class="flex justify-between items-center">
+                      <span class="text-lg text-white/90">ROI en el primer año</span>
+                      <span class="text-4xl font-bold">+224%</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="text-center">
+                <div class="text-8xl font-bold mb-3">4.5</div>
+                <div class="text-2xl text-white/90">meses para recuperar la inversión</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
        <p class="text-xl text-base-600 max-w-3xl mx-auto mb-8">
           Identifica procesos repetitivos en tu empresa y automatízalos con IA.
           Reduce errores, ahorra tiempo y libera a tu equipo para tareas estratégicas.
@@ -314,21 +323,39 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         </div>
       </div>
 
-      <!-- CTA Section -->
-      <div class="text-center bg-gradient-to-br from-accent-600 to-blue-600 rounded-2xl p-12 text-white">
-        <h2 class="text-3xl font-bold mb-4">
-          ¿Cuánto podrías ahorrar automatizando tus procesos?
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="py-20 relative overflow-hidden">
+    <!-- Background Image -->
+    <div class="absolute inset-0">
+      <img src="/images/3409297.jpg" alt="Background" class="w-full h-full object-cover" />
+    </div>
+    <!-- Overlay Gradient -->
+    <div class="absolute inset-0 bg-gradient-to-bl from-accent-500/40 via-blue-600/50 to-accent-500/40"></div>
+
+    <!-- Content -->
+    <div class="relative z-10">
+      <div class="max-w-4xl mx-auto px-8 md:px-12 text-center text-white">
+        <h2 class="text-3xl md:text-4xl font-bold mb-6">
+          Primera Reunión Gratuita
         </h2>
-        <p class="text-xl mb-8 max-w-2xl mx-auto opacity-90">
-          Agenda una consulta gratuita y te mostramos el potencial de tu empresa
+        <p class="text-xl mb-8 text-white/90 max-w-2xl mx-auto">
+          Analizaremos los procesos de tu empresa para identificar qué tareas son automatizables
+          y cuáles generarían mayor impacto. Evaluaremos juntos si la automatización es adecuada
+          para tu caso específico y te proporcionaremos una estimación realista de tiempo de
+          implementación y retorno de inversión.
         </p>
-        <a
-          href="/reunion"
-          class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold bg-accent-600 hover:bg-accent-700 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200"
-          style="color: #000000;"
-        >
-          Calcular Mi Ahorro Potencial
-        </a>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="/reunion"
+            style="color: black;"
+            class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold bg-white text-[#0052cc] hover:bg-blue-50 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200"
+          >
+            Solicitar Reunión Gratuita
+          </a>
+        </div>
       </div>
     </div>
   </section>
