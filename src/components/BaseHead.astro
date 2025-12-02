@@ -15,10 +15,9 @@ import "../styles/global.css";
 <meta name="author" content="AI Security - aisecurity.es" />
 
 <!-- Favicons -->
-<link rel="icon" href="/favicon.ico" sizes="any" />
-
-<!-- Favicon for IE -->
-<link rel="shortcut icon" href="/logo.svg" type="image/x-icon" />
+<link rel="icon" href="/logo.svg" type="image/svg+xml" />
+<link rel="icon" href="/favicon.ico" sizes="32x32" />
+<link rel="shortcut icon" href="/logo.svg" />
 
 <!-- Open Graph / Facebook -->
 <meta property="og:image" content="/og-image.png" />
@@ -59,6 +58,49 @@ import "../styles/global.css";
 
 <!-- Theme Color for Mobile Browsers -->
 <meta name="theme-color" content="#ffffff" />
+
+<!-- JSON-LD Schema.org markup for better SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "AI Security",
+  "url": "https://aisecurity.es",
+  "logo": "https://aisecurity.es/logo.svg",
+  "description": "Soluciones de inteligencia artificial y ciberseguridad para empresas. Automatización con IA, implementación de Wazuh y cumplimiento ENS.",
+  "sameAs": [
+    "https://www.youtube.com/@aisecurityes"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "Customer Service",
+    "areaServed": "ES",
+    "availableLanguage": "Spanish"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "ES"
+  },
+  "offers": [
+    {
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Service",
+        "name": "Implementación de Wazuh",
+        "description": "Instalación y configuración profesional de Wazuh para cumplimiento ENS"
+      }
+    },
+    {
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Service",
+        "name": "Automatización con IA",
+        "description": "Chatbots inteligentes, gestión documental IA y automatización de procesos"
+      }
+    }
+  ]
+}
+</script>
 
 <!---- Alpine  -->
 <script is:inline defer src="https://unpkg.com/alpinejs@3.10.5/dist/cdn.min.js">
