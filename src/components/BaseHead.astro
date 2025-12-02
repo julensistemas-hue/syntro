@@ -1,16 +1,27 @@
 ---
 import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  ogImage?: string;
+}
+
+const {
+  title = "AI Security - Soluciones de IA y Ciberseguridad para Empresas",
+  description = "Automatiza tu negocio con IA: chatbots inteligentes, gestión documental, atención telefónica 24/7 y ciberseguridad Wazuh/ENS para PyMEs.",
+  canonical = "https://aisecurity.es/",
+  ogImage = "https://aisecurity.es/og-image.png"
+} = Astro.props;
 ---
 
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <!-- Basic Meta Tags -->
-<title>AI Security - Soluciones de IA y Ciberseguridad para Empresas</title>
-<meta
-  name="description"
-  content="Automatiza tu negocio con IA: chatbots inteligentes, gestión documental, atención telefónica 24/7 y ciberseguridad Wazuh/ENS para PyMEs."
-/>
+<title>{title}</title>
+<meta name="description" content={description} />
 <meta name="keywords" content="inteligencia artificial empresas, automatización IA, chatbot empresarial, Wazuh, ENS, ciberseguridad, migración WordPress, gestor documental IA" />
 <meta name="author" content="AI Security - aisecurity.es" />
 
@@ -20,34 +31,21 @@ import "../styles/global.css";
 <link rel="shortcut icon" href="/logo.svg" />
 
 <!-- Open Graph / Facebook -->
-<meta property="og:image" content="/og-image.png" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://aisecurity.es/" />
-<meta property="og:title" content="AI Security - Soluciones de IA y Ciberseguridad para Empresas" />
-<meta
-  property="og:description"
-  content="Automatiza tu negocio con IA: chatbots inteligentes, gestión documental, atención telefónica 24/7 y ciberseguridad Wazuh/ENS para PyMEs."
-/>
-<meta
-  property="og:image"
-  content="https://aisecurity.es/og-image.png"
-/>
+<meta property="og:url" content={canonical} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={ogImage} />
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:url" content="https://aisecurity.es/" />
-<meta property="twitter:title" content="AI Security - Soluciones de IA y Ciberseguridad para Empresas" />
-<meta
-  property="twitter:description"
-  content="Automatiza tu negocio con IA: chatbots inteligentes, gestión documental, atención telefónica 24/7 y ciberseguridad Wazuh/ENS para PyMEs."
-/>
-<meta
-  property="twitter:image"
-  content="https://aisecurity.es/og-image.png"
-/>
+<meta property="twitter:url" content={canonical} />
+<meta property="twitter:title" content={title} />
+<meta property="twitter:description" content={description} />
+<meta property="twitter:image" content={ogImage} />
 
 <!-- Canonical URL -->
-<link rel="canonical" href="https://aisecurity.es/" />
+<link rel="canonical" href={canonical} />
 
 <!-- Additional SEO -->
 <meta name="robots" content="index, follow" />

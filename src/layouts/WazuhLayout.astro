@@ -4,13 +4,32 @@ import Footer from "../components/global/Footer.astro";
 import { Font } from "astro:assets";
 import Analytics from "@vercel/analytics/astro";
 import SpeedInsights from "@vercel/speed-insights/astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  ogImage?: string;
+}
+
+const {
+  title,
+  description,
+  canonical,
+  ogImage = "https://aisecurity.es/og-image.png"
+} = Astro.props;
 ---
 
 <html
   lang="es"
   class="scroll-smooth selection:bg-accent-500 selection:text-white no-touchevents hydrated">
   <head>
-    <BaseHead />
+    <BaseHead
+      title={title}
+      description={description}
+      canonical={canonical}
+      ogImage={ogImage}
+    />
     <Font cssVariable="--font-sans" preload />
   </head>
   <body class="bg-base-50 flex flex-col min-h-svh">

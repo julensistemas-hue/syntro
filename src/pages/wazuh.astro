@@ -3,9 +3,13 @@ import WazuhLayout from "../layouts/WazuhLayout.astro";
 // Force rebuild - 2025-12-02 - Fix 404 assets v2
 export const prerender = false; // Force SSR to bypass cache
 const buildTimestamp = new Date().toISOString();
+
+const title = "Wazuh - Implementación Profesional y Cumplimiento ENS | AI Security";
+const description = "Instalación y configuración de Wazuh para empresas españolas. SIEM open-source, detección de amenazas y cumplimiento ENS. Formación incluida.";
+const canonical = "https://aisecurity.es/wazuh";
 ---
 
-<WazuhLayout>
+<WazuhLayout title={title} description={description} canonical={canonical}>
   <!-- Hero Section -->
   <section class="relative py-20 overflow-hidden" data-page="wazuh">
     <!-- Background Image -->

@@ -1,8 +1,12 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import MeetingRequestCalendar from "../components/meeting/MeetingRequestCalendar.astro";
+
+const title = "Solicita Consulta Gratuita - Automatización IA y Wazuh | AI Security";
+const description = "Agenda una reunión sin compromiso. Analizamos tu caso, evaluamos viabilidad y te proponemos soluciones de IA o ciberseguridad personalizadas.";
+const canonical = "https://aisecurity.es/reunion";
 ---
 
-<BaseLayout>
+<BaseLayout title={title} description={description} canonical={canonical}>
   <MeetingRequestCalendar />
 </BaseLayout>

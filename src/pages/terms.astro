@@ -1,7 +1,12 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Terms from "../components/infopages/Terms.astro";
+
+const title = "Términos y Condiciones de Servicio - AI Security";
+const description = "Términos de uso, condiciones de contratación y garantías de los servicios de automatización con IA y ciberseguridad de AI Security.";
+const canonical = "https://aisecurity.es/terms";
 ---
-<BaseLayout>
+
+<BaseLayout title={title} description={description} canonical={canonical}>
   <Terms />
 </BaseLayout>

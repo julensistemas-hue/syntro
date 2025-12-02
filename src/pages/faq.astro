@@ -1,8 +1,12 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import FaqLayout from "../components/infopages/Faq.astro";
+
+const title = "Preguntas Frecuentes - Automatización IA y Wazuh | AI Security";
+const description = "Respuestas a dudas comunes sobre implementación de IA, Wazuh, precios, tiempos de desarrollo y cumplimiento ENS. Transparencia total.";
+const canonical = "https://aisecurity.es/faq";
 ---
 
-<BaseLayout>
+<BaseLayout title={title} description={description} canonical={canonical}>
   <FaqLayout />
 </BaseLayout>

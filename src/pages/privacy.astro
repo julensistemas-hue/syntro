@@ -2,10 +2,11 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Privacy from "../components/infopages/Privacy.astro";
 
-
-
+const title = "Política de Privacidad - AI Security | aisecurity.es";
+const description = "Política de privacidad y protección de datos de AI Security. Información sobre cookies, RGPD y uso de datos personales en aisecurity.es.";
+const canonical = "https://aisecurity.es/privacy";
 ---
 
-<BaseLayout>
+<BaseLayout title={title} description={description} canonical={canonical}>
   <Privacy />
 </BaseLayout>

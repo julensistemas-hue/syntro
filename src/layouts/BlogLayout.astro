@@ -13,19 +13,35 @@ interface Props {
   author?: string;
   readTime?: string;
   tags?: string[];
+  canonical?: string;
+  ogImage?: string;
 }
 
-const { title, description, publishDate, author = "AI Security", readTime = "5 min", tags = [] } = Astro.props;
+const {
+  title,
+  description,
+  publishDate,
+  author = "AI Security",
+  readTime = "5 min",
+  tags = [],
+  canonical,
+  ogImage = "https://aisecurity.es/og-image.png"
+} = Astro.props;
+
+const fullTitle = `${title} | Blog AI Security`;
 ---
 
 <html
   lang="es"
   class="scroll-smooth selection:bg-accent-500 selection:text-white no-touchevents hydrated">
   <head>
-    <BaseHead />
+    <BaseHead
+      title={fullTitle}
+      description={description}
+      canonical={canonical}
+      ogImage={ogImage}
+    />
     <Font cssVariable="--font-sans" preload />
-    <title>{title} | Blog AI Security</title>
-    <meta name="description" content={description} />
   </head>
   <body class="bg-base-50 flex flex-col min-h-svh">
     <Navigation />

@@ -1,8 +1,12 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ContactMigrationForm from "../components/meeting/ContactMigrationForm.astro";
+
+const title = "Contacto Migración WordPress - Solicita Presupuesto | AI Security";
+const description = "Solicita presupuesto para migrar tu WordPress a código desarrollado con IA. Análisis gratuito, estimación de tiempo y coste. Web moderna y rápida.";
+const canonical = "https://aisecurity.es/contacto-migracion";
 ---
 
-<BaseLayout>
+<BaseLayout title={title} description={description} canonical={canonical}>
   <ContactMigrationForm />
 </BaseLayout>

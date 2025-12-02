@@ -1,6 +1,10 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
+const title = "Blog Técnico - IA para Sistemas y Wazuh | AI Security";
+const description = "Tutoriales prácticos sobre inteligencia artificial aplicada a sistemas y ciberseguridad con Wazuh. Guías sin teoría innecesaria, solo configuración real.";
+const canonical = "https://aisecurity.es/blog";
+
 // Array de artículos del blog (luego podríamos usar Content Collections)
 const articles = [
   {
@@ -19,7 +23,7 @@ const articles = [
 const categories = ["Todos", "Wazuh & Seguridad", "IA para Sistemas"];
 ---
 
-<BaseLayout>
+<BaseLayout title={title} description={description} canonical={canonical}>
   <!-- Hero Section -->
   <section class="py-16 md:py-20 bg-gradient-to-br from-accent-50 to-blue-50 border-b border-base-200">
     <div class="max-w-7xl mx-auto px-6 md:px-12">
