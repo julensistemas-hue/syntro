@@ -88,13 +88,6 @@ const currentPath = Astro.url.pathname;
           Wazuh
         </a>
 
-        <!-- Blog -->
-        <a
-          href="/blog"
-          class={`w-full lg:w-auto text-sm font-medium transition-colors duration-200 px-3 py-2 rounded-lg ${currentPath.startsWith('/blog') ? 'bg-accent-100 text-accent-700' : 'text-base-800 hover:text-accent-600 hover:bg-accent-50'}`}>
-          Blog
-        </a>
-
         <!-- Dropdown: Más Servicios -->
         <div class="relative w-full lg:w-auto" @click.away="dropdownOpen = false">
           <button
