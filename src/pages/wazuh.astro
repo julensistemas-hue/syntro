@@ -1,11 +1,13 @@
 ---
 import WazuhLayout from "../layouts/WazuhLayout.astro";
-// Force rebuild - 2025-12-02 - Fix 404 assets
+// Force rebuild - 2025-12-02 - Fix 404 assets v2
+export const prerender = false; // Force SSR to bypass cache
+const buildTimestamp = new Date().toISOString();
 ---
 
 <WazuhLayout>
   <!-- Hero Section -->
-  <section class="relative py-20 overflow-hidden">
+  <section class="relative py-20 overflow-hidden" data-page="wazuh">
     <!-- Background Image -->
     <div class="absolute inset-0">
       <img src="/images/3409297.jpg" alt="Background" class="w-full h-full object-cover" />
