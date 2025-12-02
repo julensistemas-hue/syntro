@@ -29,7 +29,9 @@
       "Bash(nul)",
       "Bash(ren:*)",
       "Bash(git checkout:*)",
-      "Bash(netstat:*)"
+      "Bash(netstat:*)",
+      "Bash(Start-Process powershell -ArgumentList \"-NoExit\", \"-Command\", \"cd ''c:\\Users\\Jul\\Documents\\Project\\aisecurity.es\\web\\syntro''; pnpm dev\" -WindowStyle Hidden)",
+      "Bash(gh repo view:*)"
     ],
     "deny": [],
     "ask": []
@@ -41,6 +43,7 @@
     "github",
     "fetch",
     "youtube-transcript",
-    "shadcn"
+    "shadcn",
+    "browsermcp"
   ]
 }
