@@ -1,0 +1,246 @@
+---
+import BlogLayout from "../../layouts/BlogLayout.astro";
+---
+
+<BlogLayout
+  title="Monitorización de contenedores Docker con Wazuh"
+  description="Monitorización de contenedores Docker con Wazuh: Guía práctica para implementación empresarial en Wazuh"
+  publishDate="2025-12-03"
+  author="AI Security"
+  readTime="8 min"
+  tags={["Docker", "contenedores", "logs", "monitoring", "security", "Wazuh", "Ciberseguridad"]}
+  canonical="https://aisecurity.es/blog/monitorizacion-de-contenedores-docker-con-wazuh">
+
+<p>Monitorear la seguridad y el rendimiento de contenedores <strong>Docker</strong> es una tarea crítica que, a menudo, presenta puntos ciegos. La implementación de <strong>Wazuh</strong> ofrece una solución robusta y unificada para la monitorización de logs, detección de intrusiones, gestión de vulnerabilidades y cumplimiento normativo en sus entornos Docker, garantizando visibilidad y control.</p>
+
+<h2>Caso de uso empresarial: Seguridad de microservicios SaaS</h2>
+<p>Una compañía de SaaS con una arquitectura de microservicios compleja, desplegada en cientos de contenedores Docker y orquestada con Kubernetes, enfrenta desafíos constantes para mantener la seguridad y el cumplimiento. La necesidad de monitorizar en tiempo real incluye:</p>
+<ul>
+    <li>Detección de actividades sospechosas en los logs de los contenedores (ej. accesos fallidos, comandos privilegiados).</li>
+    <li>Identificación proactiva de <strong>vulnerabilidades</strong> en las imágenes <strong>Docker</strong> utilizadas.</li>
+    <li>Auditoría de cambios no autorizados en la configuración de los contenedores o del host Docker.</li>
+    <li>Recopilación de eventos para auditorías de cumplimiento (HIPAA, PCI DSS, GDPR).</li>
+</ul>
+<p><strong>Wazuh</strong> centraliza la monitorización de seguridad de todo este entorno, desde el host subyacente hasta las aplicaciones dentro de cada contenedor, proporcionando una vista integral.</p>
+
+<h2>Requisitos previos</h2>
+<ul>
+    <li>Un servidor <strong>Wazuh Manager</strong> operativo (versión 4.3 o superior para la función de escaneo de vulnerabilidades en contenedores).</li>
+    <li>Hosts <strong>Docker</strong> con el servicio Docker instalado y en ejecución.</li>
+    <li><strong>Docker Compose</strong> instalado para facilitar el despliegue del agente y las aplicaciones.</li>
+    <li>Acceso con privilegios de administrador a los hosts Docker.</li>
+</ul>
+
+<h2>Instalación y Configuración del Agente Wazuh para Docker</h2>
+<p>Desplegaremos el agente Wazuh como un contenedor para monitorizar tanto el host Docker como los demás contenedores en ejecución.</p>
+
+<h3>Paso 1: Configurar el Agente Wazuh en Docker Compose</h3>
+<p>Cree o modifique su archivo <code>docker-compose.yml</code> para incluir el servicio del agente Wazuh. Este agente necesita acceso al socket de Docker y, idealmente, a los logs del sistema del host para una monitorización completa.</p>
+<pre><code class="language-bash">
+# docker-compose.yml
+version: '3.8'
+services:
+  nginx-app:
+    image: nginx:latest
+    container_name: my-nginx-app
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    logging:
+      driver: "json-file" # Driver de logging de Docker. Por defecto, 'json-file'.
+      options:
+        max-size: "10m"
+        max-file: "3"
+  
+  wazuh-agent:
+    image: wazuh/wazuh-agent:latest
+    container_name: wazuh-agent-docker-host
+    environment:
+      - WAZUH_MANAGER_IP=YOUR_WAZUH_MANAGER_IP # Reemplace con la IP de su Manager
+      - WAZUH_AGENT_NAME=docker-host-01 # Nombre único para el agente Wazuh
+    hostname: docker-host-01
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro # Acceso al socket Docker
+      - /var/log:/var/log:ro # Acceso a logs del sistema del host
+      - /etc/ossec:/var/ossec/etc # Persistencia de la configuración del agente
+      - /opt/wazuh-agent-data:/var/ossec/logs # Persistencia de logs internos del agente
+    privileged: true # Habilita funcionalidades avanzadas de FIM/Rootcheck en el host
+    network_mode: "host" # Permite al agente monitorizar el tráfico de red del host
+    restart: unless-stopped
+</code></pre>
+<p><strong>Explicación de la configuración:</strong></p>
+<ul>
+    <li><code>nginx-app</code>: Un servicio de ejemplo para generar logs HTTP y demostrar la monitorización.</li>
+    <li><code>wazuh-agent</code>: El contenedor del agente Wazuh.</li>
+    <li><code>WAZUH_MANAGER_IP</code>: Esencial para que el agente se registre y comunique con el servidor Wazuh Manager.</li>
+    <li><code>/var/run/docker.sock:/var/run/docker.sock:ro</code>: Permite al agente interactuar con el demonio Docker para obtener información de los <strong>contenedores</strong>, sus logs y realizar el inventario de software para la detección de <strong>vulnerabilidades</strong>.</li>
+    <li><code>/var/log:/var/log:ro</code>: Concede al agente la capacidad de leer los logs del sistema operativo del host Docker.</li>
+    <li><code>privileged: true</code>: Necesario para que el agente pueda realizar una monitorización profunda del host, como File Integrity Monitoring (FIM) en directorios críticos.</li>
+    <li><code>network_mode: "host"</code>: Otorga al agente acceso a la interfaz de red del host, facilitando la monitorización de red.</li>
+</ul>
+
+<h3>Paso 2: Configurar el Agente para la Monitorización de Contenedores y Logs</h3>
+<p>Modifique el archivo <code>/var/ossec/etc/ossec.conf</code> del agente Wazuh para activar la monitorización de <strong>Docker</strong>. Esto puede hacerse montando un archivo <code>ossec.conf</code> personalizado o editándolo directamente en el contenedor.</p>
+<p><strong>Habilitar monitorización del motor de contenedores:</strong></p>
+<pre><code class="language-bash">
+# Añada esta sección dentro de la etiqueta &lt;ossec_config&gt;
+&lt;container_engine&gt;
+  &lt;enabled>yes&lt;/enabled&gt;
+  &lt;socket_path>unix:///var/run/docker.sock&lt;/socket_path&gt;
+  &lt;dbsync_interval>10m&lt;/dbsync_interval&gt; # Intervalo de sincronización para el inventario de software
+  &lt;log_output>yes&lt;/log_output&gt; # Captura los logs de todos los contenedores Docker
+  &lt;pull_images>no&lt;/pull_images&gt; # No descargar imágenes, solo escanear las existentes
+&lt;/container_engine&gt;
+</code></pre>
+<p><strong>Monitorización de logs de aplicación específicos de contenedores (ej. Nginx):</strong></p>
+<p>Para logs generados directamente por una aplicación dentro de un contenedor y no a través del driver de logging de Docker, utilice la funcionalidad <code>localfile</code>. Esto requiere montar el volumen del log del contenedor en el agente Wazuh.</p>
+<pre><code class="language-bash">
+# Ejemplo de entrada en ossec.conf para logs de Nginx
+&lt;localfile&gt;
+  &lt;log_all>yes&lt;/log_all&gt;
+  &lt;location>/var/lib/docker/containers/*/*-json.log&lt;/location&gt; # Ruta común de logs de Docker
+  &lt;log_format>json&lt;/log_format&gt; # O 'syslog', 'apache', etc., según el formato del log
+&lt;/localfile&gt;
+</code></pre>
+<p><strong>Nota:</strong> Cuando <code>log_output</code> está habilitado en <code>&lt;container_engine&gt;</code>, Wazuh ya procesa los logs JSON estándar de <strong>Docker</strong>. La configuración <code>localfile</code> es más útil para logs personalizados o directorios específicos montados en los contenedores.</p>
+
+<h3>Paso 3: Desplegar los servicios y verificar el registro del agente</h3>
+<pre><code class="language-bash">
+docker-compose up -d
+docker logs wazuh-agent-docker-host
+</code></pre>
+<p>Asegúrese de que el agente se ha registrado correctamente con el Wazuh Manager. En el interfaz web de Wazuh, el agente "docker-host-01" debería aparecer como activo.</p>
+
+<h2>Ejemplo práctico: Detección de vulnerabilidades y monitorización de logs</h2>
+<p>Demostraremos cómo Wazuh detecta vulnerabilidades en una imagen y monitoriza los logs de una aplicación dentro de un contenedor.</p>
+
+<h3>Paso 1: Desplegar una aplicación con una imagen vulnerable</h3>
+<p>Modificaremos nuestro <code>docker-compose.yml</code> para incluir una imagen conocida con vulnerabilidades.</p>
+<pre><code class="language-bash">
+# docker-compose.yml (modificado)
+version: '3.8'
+services:
+  old-app:
+    image: php:5.6-apache # Versión antigua y vulnerable de PHP con Apache
+    container_name: old-vulnerable-php-app
+    ports:
+      - "8080:80"
+    volumes:
+      - ./html:/var/www/html # Un simple archivo index.php
+    restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  wazuh-agent:
+    image: wazuh/wazuh-agent:latest
+    container_name: wazuh-agent-docker-host
+    environment:
+      - WAZUH_MANAGER_IP=YOUR_WAZUH_MANAGER_IP
+      - WAZUH_AGENT_NAME=docker-host-01
+    hostname: docker-host-01
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /var/log:/var/log:ro
+      - /etc/ossec:/var/ossec/etc
+      - /opt/wazuh-agent-data:/var/ossec/logs
+    privileged: true
+    network_mode: "host"
+    restart: unless-stopped
+</code></pre>
+<p>Cree un directorio <code>html</code> y dentro, un archivo <code>index.php</code> con el siguiente contenido:</p>
+<pre><code class="language-php">
+&lt;?php phpinfo(); ?&gt;
+</code></pre>
+<p>Despliegue los servicios:</p>
+<pre><code class="language-bash">
+docker-compose up -d
+</code></pre>
+
+<h3>Paso 2: Observar la detección de vulnerabilidades en Wazuh</h3>
+<p>Después de unos minutos (el tiempo del <code>dbsync_interval</code> configurado), el agente Wazuh escaneará los paquetes del contenedor <code>old-vulnerable-php-app</code> y enviará la información al Manager.</p>
+<p>En el interfaz web de Wazuh, navegue a <code>Modules &gt; Vulnerabilities</code>. Debería ver alertas de alta severidad relacionadas con la imagen <code>php:5.6-apache</code>, indicando múltiples CVEs (Common Vulnerabilities and Exposures) en componentes como Apache o PHP.</p>
+<pre><code class="language-json">
+# Ejemplo de alerta de vulnerabilidad en Wazuh Manager
+{"{"{"}"}{"}"}
+  "timestamp": "2023-10-27T10:30:00.000Z",
+  "rule": {"{"{"}"}{"}"}
+    "level": 7,
+    "description": "Vulnerability detected",
+    "id": "23001"
+  {"}"},
+  "agent": {"{"{"}"}{"}"}
+    "id": "001",
+    "name": "docker-host-01"
+  {"}"},
+  "data": {"{"{"}"}{"}"}
+    "vulnerability": {"{"{"}"}{"}"}
+      "package": {"{"{"}"}{"}"}
+        "name": "apache2",
+        "version": "2.4.10",
+        "vendor": "Debian"
+      {"}"},
+      "cve": "CVE-2017-7679",
+      "severity": "High",
+      "description": "Apache HTTP Server 2.2.x before 2.2.34 and 2.4.x before 2.4.27 allows a Content-Length header..."
+    {"}"},
+    "container_id": "a1b2c3d4e5f6...",
+    "container_name": "old-vulnerable-php-app",
+    "docker": {"{"{"}"}{"}"}
+      "image": "php:5.6-apache",
+      "image_id": "sha256:..."
+    {"}"}
+  {"}"},
+  "location": "container_engine"
+{"}"}
+</code></pre>
+<p><strong>Qué significa el resultado:</strong> <strong>Wazuh</strong> ha identificado que la imagen Docker <code>php:5.6-apache</code> contiene versiones de software con <strong>vulnerabilidades</strong> de seguridad conocidas. Esto le permite priorizar la remediación, ya sea actualizando la imagen o aplicando parches.</p>
+
+<h3>Paso 3: Generar y monitorizar logs de aplicación</h3>
+<p>Acceda a la aplicación PHP vulnerable para generar tráfico y logs de Apache:</p>
+<pre><code class="language-bash">
+curl http://localhost:8080/
+</code></pre>
+<p>Ahora, intente acceder a un recurso inexistente para generar un error 404, que Wazuh puede detectar y alertar:</p>
+<pre><code class="language-bash">
+curl http://localhost:8080/nonexistent.html
+</code></pre>
+<p>En el panel de Wazuh, en la sección <code>Security events</code>, filtre por eventos del agente <code>docker-host-01</code>. Observará los logs HTTP de Apache y, específicamente, una alerta si el error 404 es detectado por una regla predefinida.</p>
+<pre><code class="language-json">
+# Ejemplo de alerta de log 404 en Wazuh Manager
+{"{"{"}"}{"}"}
+  "timestamp": "2023-10-27T10:35:00.000Z",
+  "rule": {"{"{"}"}{"}"}
+    "level": 5,
+    "description": "Web server 400 error code",
+    "id": "31102"
+  {"}"},
+  "agent": {"{"{"}"}{"}"}
+    "id": "001",
+    "name": "docker-host-01"
+  {"}"},
+  "data": {"{"{"}"}{"}"}
+    "srcip": "172.17.0.1",
+    "url": "/nonexistent.html",
+    "id": "access",
+    "status_code": "404",
+    "full_log": "172.17.0.1 - - [27/Oct/2023:10:35:00 +0000] \"GET /nonexistent.html HTTP/1.1\" 404 442 \"-\" \"curl/7.81.0\""
+  {"}"},
+  "location": "/var/lib/docker/containers/..."
+{"}"}
+</code></pre>
+<p><strong>Qué significa el resultado:</strong> <strong>Wazuh</strong> está procesando en tiempo real los <strong>logs</strong> de Apache del <strong>contenedor</strong>, detectando códigos de estado HTTP y alertando sobre eventos relevantes como errores 404, lo que indica peticiones a recursos no encontrados o intentos de acceso no válidos.</p>
+
+<h2>Conclusión</h2>
+<p>La integración de <strong>Wazuh</strong> para la monitorización de <strong>contenedores Docker</strong> es fundamental para una postura de seguridad robusta en entornos de microservicios. Desde la detección de <strong>vulnerabilidades</strong> en las imágenes hasta el análisis en tiempo real de los <strong>logs</strong> de las aplicaciones, Wazuh proporciona una plataforma unificada para la seguridad y el cumplimiento normativo, permitiendo una respuesta proactiva ante las amenazas.</p>
+<p>No comprometa la seguridad de sus contenedores <strong>Docker</strong>. Implemente <strong>Wazuh</strong> para una defensa integral y continua. ¿Necesita asistencia para desplegar <strong>Wazuh</strong> en su infraestructura <strong>Docker</strong> o Kubernetes? <strong><a href="/reunion">Agende una reunión con nuestros expertos hoy mismo</a></strong> para diseñar una estrategia de monitorización de seguridad adaptada a sus requisitos específicos.</p>
+
+  <hr />
+
+  <p class="text-sm text-base-600">
+    <strong>¿Necesitas implementar esta solución?</strong> <a href="/reunion">Solicita una consulta gratuita aquí</a>.
+  </p>
+</BlogLayout>
