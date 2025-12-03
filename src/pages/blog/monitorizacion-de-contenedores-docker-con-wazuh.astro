@@ -1,0 +1,152 @@
+---
+import BlogLayout from "../../layouts/BlogLayout.astro";
+---
+
+<BlogLayout
+  title="Monitorización de contenedores Docker con Wazuh"
+  description="Monitorización de contenedores Docker con Wazuh: Guía práctica para implementación empresarial en Wazuh"
+  publishDate="2025-12-03"
+  author="AI Security"
+  readTime="8 min"
+  tags={["Docker", "contenedores", "logs", "monitoring", "security", "Wazuh", "Ciberseguridad"]}
+  canonical="https://aisecurity.es/blog/monitorizacion-de-contenedores-docker-con-wazuh">
+
+<p>La monitorización de contenedores Docker es crítica para la seguridad operativa. La falta de visibilidad en logs, eventos y vulnerabilidades dentro de estos entornos efímeros representa un riesgo significativo. Wazuh ofrece una solución robusta y centralizada para abordar estos desafíos, integrando la recolección de logs, análisis de integridad y detección de vulnerabilidades en imágenes Docker.</p>
+
+<h2>Caso de uso empresarial</h2>
+<p>Una empresa de desarrollo de software utiliza Docker y Docker Compose para desplegar microservicios en su infraestructura. Enfrentan el desafío de centralizar los logs de cientos de contenedores, identificar actividades anómalas, monitorizar la integridad de los archivos críticos dentro de los contenedores y, fundamentalmente, escanear sus imágenes Docker en busca de vulnerabilidades conocidas (CVEs) antes o durante su ejecución. Necesitan una solución que les permita cumplir con las normativas de seguridad y responder rápidamente a posibles amenazas.</p>
+
+<h2>Requisitos previos</h2>
+<ul>
+    <li><strong>Wazuh Manager:</strong> Una instancia de Wazuh Manager (v4.x o superior) operativa y accesible.</li>
+    <li><strong>Wazuh Agent:</strong> Un agente de Wazuh instalado en el host Linux donde se ejecutan los contenedores Docker.</li>
+    <li><strong>Docker y Docker Compose:</strong> Instalados en el host Linux.</li>
+    <li><strong>Acceso Root/Sudo:</strong> Permisos para instalar y configurar software en el host Linux.</li>
+</ul>
+
+<h2>Instalación/Configuración</h2>
+
+<ol>
+    <li>
+        <h3>Instalar y registrar el Agente Wazuh</h3>
+        <p>Asegúrese de que el agente de Wazuh esté instalado y registrado en su Wazuh Manager. Adapte los comandos a su sistema operativo.</p>
+        <pre><code class="language-bash"># Sustituya &lt;WAZUH_MANAGER_IP&gt; por la IP de su Manager
+WAZUH_MANAGER_IP="192.168.1.100" # Ejemplo
+
+# Descargar clave GPG (si no se ha hecho previamente)
+curl -sO https://packages.wazuh.com/key/GPG-KEY-WAZUH
+sudo apt-key add GPG-KEY-WAZUH
+
+# Añadir repositorio (ejemplo para Debian/Ubuntu)
+echo "deb https://packages.wazuh.com/4.x/apt/ stable main" | sudo tee -a /etc/apt/sources.list.d/wazuh.list
+sudo apt update
+
+# Instalar el agente Wazuh
+sudo apt install wazuh-agent
+
+# Configurar el Manager y reiniciar el agente
+sudo sed -i "s/^#.*<address>MANAGER_IP<\/address>.*$/  <address>${"{"{"}"}WAZUH_MANAGER_IP{"}"}<\/address>/" /var/ossec/etc/ossec.conf
+sudo systemctl restart wazuh-agent
+sudo systemctl enable wazuh-agent</code></pre>
+        <p>Verifique el estado del agente: <code>sudo systemctl status wazuh-agent</code></p>
+    </li>
+    <li>
+        <h3>Configurar el Agente para monitorizar logs de Docker</h3>
+        <p>Edite el archivo de configuración del agente <code>/var/ossec/etc/ossec.conf</code> para incluir la monitorización de logs de contenedores.</p>
+        <pre><code class="language-bash">sudo nano /var/ossec/etc/ossec.conf</code></pre>
+        <p>Añada las siguientes líneas dentro de la sección <code>&lt;ossec_config&gt;</code>, preferiblemente antes del cierre <code>&lt;/ossec_config&gt;</code>:</p>
+        <pre><code class="language-xml">&lt;!-- Monitorización de logs de contenedores Docker --&gt;
+&lt;localfile&gt;
+  &lt;log_format&gt;json&lt;/log_format&gt;
+  &lt;location&gt;/var/lib/docker/containers/*/*.log&lt;/location&gt;
+&lt;/localfile&gt;</code></pre>
+        <p>Esta configuración indica a Wazuh que recoja todos los archivos <code>.log</code> generados por Docker en la ruta estándar, interpretándolos como JSON.</p>
+    </li>
+    <li>
+        <h3>Habilitar el escaneo de vulnerabilidades de imágenes Docker</h3>
+        <p>Dentro del mismo archivo <code>/var/ossec/etc/ossec.conf</code>, localice la sección del módulo <code>syscollector</code> y asegúrese de que la opción <code>docker_vulnerabilities</code> esté habilitada.</p>
+        <pre><code class="language-xml">&lt;wodle name="syscollector"&gt;
+  &lt;disabled&gt;no&lt;/disabled&gt;
+  &lt;interval&gt;1h&lt;/interval&gt;
+  &lt;scan_on_start&gt;yes&lt;/scan_on_start&gt;
+  &lt;hardware&gt;yes&lt;/hardware&gt;
+  &lt;network&gt;yes&lt;/network&gt;
+  &lt;packages&gt;yes&lt;/packages&gt;
+  &lt;os&gt;yes&lt;/os&gt;
+  &lt;processes&gt;yes&lt;/processes&gt;
+  &lt;ports&gt;yes&lt;/ports&gt;
+  &lt;hotfixes&gt;yes&lt;/hotfixes&gt;
+  &lt;docker_vulnerabilities&gt;yes&lt;/docker_vulnerabilities&gt; &lt;!-- Asegúrese de que esto esté en 'yes' --&gt;
+&lt;/wodle&gt;</code></pre>
+    </li>
+    <li>
+        <h3>Reiniciar el Agente Wazuh</h3>
+        <p>Para aplicar los cambios en la configuración, reinicie el agente:</p>
+        <pre><code class="language-bash">sudo systemctl restart wazuh-agent</code></pre>
+    </li>
+    <li>
+        <h3>Desplegar aplicación Docker vulnerable (Ejemplo docker-compose)</h3>
+        <p>Para demostrar la detección de vulnerabilidades, utilizaremos una imagen de WordPress ligeramente antigua, conocida por tener CVEs. Cree un archivo <code>docker-compose.yml</code>:</p>
+        <pre><code class="language-bash">nano docker-compose.yml</code></pre>
+        <p>Añada el siguiente contenido:</p>
+        <pre><code class="language-yaml">version: '3.8'
+services:
+  db:
+    image: mysql:5.7
+    container_name: wordpress-db
+    environment:
+      MYSQL_ROOT_PASSWORD: example_password
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress_password
+    volumes:
+      - db_data:/var/lib/mysql
+  wordpress:
+    image: wordpress:5.8.1-php7.4-apache # Imagen con CVEs conocidas
+    container_name: wordpress-app
+    ports:
+      - "8080:80"
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress_password
+      WORDPRESS_DB_NAME: wordpress
+    depends_on:
+      - db
+volumes:
+  db_data:</code></pre>
+        <p>Despliegue la aplicación:</p>
+        <pre><code class="language-bash">sudo docker-compose up -d</code></pre>
+        <p>Esto iniciará los contenedores de MySQL y WordPress, cuyos logs serán recogidos por Wazuh y cuyas imágenes serán escaneadas.</p>
+    </li>
+</ol>
+
+<h2>Ejemplo práctico</h2>
+
+<h3>1. Generación y Visualización de Logs</h3>
+<p>Una vez que la aplicación WordPress esté en ejecución, genere algo de actividad dentro del contenedor para ver cómo Wazuh ingesta los logs. Acceda al contenedor y ejecute un comando o realice una acción web en el puerto 8080.</p>
+<pre><code class="language-bash"># Acceda al contenedor de WordPress
+sudo docker exec -it wordpress-app bash
+
+# Dentro del contenedor, genere un log (ejemplo: listar un directorio no existente)
+ls /nonexistent_directory
+exit</code></pre>
+<p><strong>Salida esperada en Wazuh:</strong> Navegue a la interfaz de usuario de Wazuh (Wazuh Dashboard) &gt; <strong>Módulos</strong> &gt; <strong>Seguridad</strong> &gt; <strong>Eventos</strong>. Filtre por "agent.name: <su_nombre_de_agente>" y "data.docker.container_name: wordpress-app". Verá eventos de tipo "syslog" o "audit" relacionados con la actividad del contenedor, incluyendo la salida de <code>ls /nonexistent_directory</code>. Si el log del contenedor de Docker lo capturó, debería aparecer en Wazuh.</p>
+<p><strong>Qué significa el resultado:</strong> Wazuh está ingiriendo y procesando los logs generados por el contenedor Docker, permitiendo la correlación de eventos y la detección de anomalías en tiempo real.</p>
+
+<h3>2. Detección de Vulnerabilidades en Imágenes Docker</h3>
+<p>Después de unos minutos (el intervalo de escaneo predeterminado es 1 hora o al inicio del agente), Wazuh Syscollector escaneará las imágenes Docker en el host.</p>
+<p><strong>Salida esperada en Wazuh:</strong> En el Wazuh Dashboard, vaya a <strong>Módulos</strong> &gt; <strong>Syscollector</strong> &gt; <strong>Docker</strong> &gt; <strong>Imágenes</strong>. Seleccione el agente de su host Docker. Debería ver una lista de sus imágenes, incluyendo <code>wordpress:5.8.1-php7.4-apache</code> y <code>mysql:5.7</code>.</p>
+<p>Haga clic en la imagen <code>wordpress:5.8.1-php7.4-apache</code>. Verá una sección de <strong>Vulnerabilidades</strong> con una lista de CVEs detectadas para los paquetes dentro de esa imagen, como por ejemplo: <strong>CVE-2021-37576</strong> (para PHP), <strong>CVE-2022-0778</strong> (para OpenSSL) o <strong>CVE-2021-3712</strong> (para Nginx si fuera el caso). La antigüedad de la imagen asegura que habrá múltiples resultados.</p>
+<p><strong>Qué significa el resultado:</strong> Wazuh ha escaneado los componentes del sistema operativo y las librerías dentro de la imagen Docker desplegada, identificando automáticamente vulnerabilidades conocidas. Esto es crucial para la gestión de parches y la mitigación de riesgos de seguridad en sus contenedores.</p>
+
+<h2>Conclusión</h2>
+<p>Con esta configuración, ha establecido un sistema de monitorización robusto para sus contenedores Docker utilizando Wazuh. No solo centraliza y analiza los logs de sus aplicaciones en contenedores, sino que también obtiene una visibilidad crítica sobre las vulnerabilidades presentes en las imágenes que utiliza, lo que le permite mantener sus entornos más seguros y conformes. Esta capacidad es fundamental para cualquier infraestructura moderna basada en microservicios.</p>
+<p>¿Interesado en implementar una solución de seguridad similar o explorar capacidades avanzadas? Agende una reunión con nuestros expertos hoy mismo: <a href="/reunion">/reunion</a></p>
+
+  <hr />
+
+  <p class="text-sm text-base-600">
+    <strong>¿Necesitas implementar esta solución?</strong> <a href="/reunion">Solicita una consulta gratuita aquí</a>.
+  </p>
+</BlogLayout>
