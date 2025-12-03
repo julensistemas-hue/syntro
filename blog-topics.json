@@ -3,7 +3,7 @@
     {
       "id": 1,
       "tema": "Integración de Wazuh con MISP para Threat Intelligence",
-      "estado": "Procesado",
+      "estado": "Pendiente",
       "palabras_clave": "MISP, threat intelligence, IOC, indicators of compromise",
       "notas": "Enfocarse en configuración práctica. Incluir comandos para sincronizar IOCs automáticamente",
       "fecha_procesado": "2025-12-03"
