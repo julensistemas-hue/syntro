@@ -3,18 +3,18 @@
     {
       "id": 1,
       "tema": "Integración de Wazuh con MISP para Threat Intelligence",
-      "estado": "Procesado",
+      "estado": "Pendiente",
       "palabras_clave": "MISP, threat intelligence, IOC, indicators of compromise",
       "notas": "Enfocarse en configuración práctica. Incluir comandos para sincronizar IOCs automáticamente",
-      "fecha_procesado": "2025-12-03"
+      "fecha_procesado": null
     },
     {
       "id": 2,
       "tema": "Monitorización de contenedores Docker con Wazuh",
-      "estado": "Procesado",
+      "estado": "Pendiente",
       "palabras_clave": "Docker, contenedores, logs, monitoring, security",
       "notas": "Incluir ejemplos con docker-compose. Mostrar detección de vulnerabilidades en imágenes",
-      "fecha_procesado": "2025-12-03"
+      "fecha_procesado": null
     },
     {
       "id": 3,
