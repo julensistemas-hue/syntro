@@ -11,230 +11,189 @@ import BlogLayout from "../../layouts/BlogLayout.astro";
   tags={["MISP", "threat intelligence", "IOC", "indicators of compromise", "Wazuh", "Ciberseguridad"]}
   canonical="https://aisecurity.es/blog/integracion-de-wazuh-con-misp-para-threat-intelligence">
 
-<p>Muchas organizaciones luchan por detectar proactivamente las amenazas emergentes debido a defensas de seguridad estáticas. La integración de <strong>Wazuh</strong> con <strong>MISP</strong> automatiza la ingestión de <strong>Threat Intelligence</strong> e <strong>IOCs</strong> (Indicators of Compromise), transformando Wazuh en una plataforma dinámica de caza de amenazas.</p>
+<p>Los equipos de seguridad a menudo carecen de contexto para priorizar las miles de alertas que genera un SIEM. La integración de Wazuh con una plataforma de <strong>Threat Intelligence</strong> como MISP automatiza la ingesta de Indicadores de Compromiso (<strong>IOC</strong>), permitiendo detectar amenazas conocidas en tiempo real y enriquecer las alertas con inteligencia accionable.</p>
 
-<h2>Caso de uso empresarial</h2>
-<p>Un Centro de Operaciones de Seguridad (SOC) recibe diariamente feeds de inteligencia de amenazas. Actualizar manualmente las reglas de detección para cientos de nuevos hashes, IPs o dominios es insostenible. Integrar MISP con Wazuh permite al SOC alimentar automáticamente estos <strong>IOCs</strong> a Wazuh, habilitando la detección en tiempo real de activos comprometidos o actividades sospechosas en sus endpoints e infraestructura. Este enfoque proactivo reduce significativamente los tiempos de respuesta y fortalece la postura general de seguridad contra amenazas conocidas.</p>
+<h2>Caso de Uso Empresarial</h2>
+<p>Una institución financiera utiliza Wazuh para monitorizar su infraestructura. Reciben informes de inteligencia sobre nuevas campañas de malware dirigidas a su sector, incluyendo direcciones IP maliciosas y hashes de archivos. Sin automatización, sus analistas deben cruzar manualmente las alertas de Wazuh con estos <strong>IOCs</strong>, un proceso lento y propenso a errores. El objetivo es alimentar automáticamente estos <strong>IOCs</strong> desde su instancia de MISP a Wazuh para generar alertas de alta prioridad instantáneamente cuando ocurra una coincidencia.</p>
 
-<h2>Requisitos previos</h2>
+<h2>Requisitos Previos</h2>
 <ul>
-    <li>Wazuh Manager (v4.x o superior)</li>
-    <li>Instancia de MISP (accesible vía API)</li>
-    <li>Python 3.x</li>
-    <li>Librería Python: <code>pymisp</code></li>
-    <li>Acceso SSH al Wazuh Manager</li>
+    <li>Wazuh Manager (v4.3 o superior) con acceso <code>root</code> o <code>sudo</code>.</li>
+    <li>Una instancia de MISP accesible desde el Wazuh Manager.</li>
+    <li>Una API Key de MISP con permisos de autenticación (Auth Key).</li>
+    <li>Python 3.6+ y pip instalados en el entorno de Wazuh.</li>
 </ul>
 
-<h2>Instalación/Configuración</h2>
+<h2>Instalación y Configuración</h2>
 
-<h3>1. Obtener la clave API de MISP</h3>
-<p>Acceda a su instancia de MISP, inicie sesión y navegue a su perfil para obtener su clave de autenticación.</p>
-<ul>
-    <li>Inicie sesión en MISP.</li>
-    <li>Vaya a <strong>Automation</strong> &gt; <strong>My profile</strong> &gt; <strong>Authentication key</strong>.</li>
-    <li>Copie la clave.</li>
-</ul>
+<h3>1. Instalar la librería PyMISP</h3>
+<p>Utilizamos el intérprete de Python que viene con Wazuh para mantener las dependencias aisladas y asegurar la compatibilidad.</p>
+<pre><code class="language-bash">
+/var/ossec/framework/python/bin/pip3 install pymisp
+</code></pre>
 
 <h3>2. Crear el script de sincronización de IOCs</h3>
-<p>Este script de Python se conectará a MISP, extraerá los hashes (MD5, SHA1, SHA256) y los guardará en un archivo de lista que Wazuh puede leer.</p>
-<p>Cree el archivo <code>/var/ossec/integrations/misp_sync.py</code> en su Wazuh Manager:</p>
-<pre><code class="language-bash">sudo -u root bash -c 'cat &lt;&lt;EOF &gt; /var/ossec/integrations/misp_sync.py
-#!/usr/bin/env python3
+<p>Este script Python se conecta a la API de MISP, descarga los <strong>Indicators of Compromise</strong> (IPs, dominios, hashes) y los formatea para una lista CDB de Wazuh. Crea el archivo en <code>/var/ossec/integrations/misp_sync.py</code>.</p>
+<pre><code class="language-python">
+#!/var/ossec/framework/python/bin/python3
+
 import sys
-import os
-import json
-from datetime import datetime, timedelta
-from pymisp import PyMISP, MISPEvent, MISPAttribute
+from pymisp import PyMISP
 
-# Configuración de MISP
-MISP_URL = os.getenv("MISP_URL", "https://your-misp-instance.com")
-MISP_KEY = os.getenv("MISP_KEY", "YOUR_MISP_API_KEY")
-MISP_VERIFYCERT = os.getenv("MISP_VERIFYCERT", "True").lower() == "true"
+# --- Configuración de MISP ---
+# Reemplaza con la URL de tu instancia de MISP y tu API Key
+misp_url = 'https://TU_MISP_URL/'
+misp_key = 'TU_MISP_API_KEY'
+misp_verifycert = True  # Cambiar a False si usas un certificado autofirmado
 
-# Ruta del archivo de salida para Wazuh
-OUTPUT_FILE = "/var/ossec/etc/lists/misp_iocs_hashes"
+# --- Configuración de Wazuh ---
+output_file = '/var/ossec/etc/lists/misp-iocs'
 
-def main():
-    if not MISP_KEY or not MISP_URL:
-        print("ERROR: MISP_URL and MISP_KEY must be set in environment variables or hardcoded.")
-        sys.exit(1)
+# --- Tipos de IOC a extraer ---
+# Puedes añadir o quitar tipos de atributos de MISP
+ioc_types = ['ip-src', 'ip-dst', 'domain', 'md5', 'sha1', 'sha256']
 
-    print(f"Connecting to MISP instance at {MISP_URL}")
-    misp = PyMISP(MISP_URL, MISP_KEY, MISP_VERIFYCERT, 'json')
-
-    # Fetch attributes
-    # Fetching all hashes from the last 30 days for demonstration.
-    # For production, consider using 'last' or a more granular approach.
-    from_date = (datetime.now() - timedelta(days=30)).strftime('%Y-%m-%d')
-    print(f"Fetching attributes from MISP since {from_date}...")
-
+def fetch_misp_iocs():
+    """
+    Se conecta a MISP y obtiene los IOCs.
+    """
     try:
-        attributes = misp.search(controller='attributes',
-                                 type_attribute=['md5', 'sha1', 'sha256'],
-                                 date_from=from_date)
+        misp = PyMISP(misp_url, misp_key, misp_verifycert)
+        print("Conexión a MISP exitosa.")
+        
+        iocs = set()
+        for ioc_type in ioc_types:
+            print(f"Buscando IOCs del tipo: {ioc_type}...")
+            # 'last' define el periodo de tiempo a consultar. Ej: '1d', '90d', '1y'
+            result = misp.search(controller='attributes', type_attribute=ioc_type, last='90d')
+            for attribute in result:
+                ioc_value = attribute['Attribute']['value']
+                # Formato para lista CDB de Wazuh: 'valor:tipo_de_ioc'
+                iocs.add(f"{ioc_value}:{ioc_type}")
+
+        return iocs
+
     except Exception as e:
-        print(f"Error fetching attributes from MISP: {e}")
+        print(f"Error al conectar o buscar en MISP: {e}")
         sys.exit(1)
 
-    if not attributes or not attributes.get('Attribute'):
-        print("No new hash attributes found in MISP.")
-        with open(OUTPUT_FILE, 'w') as f:
-            f.write("") # Ensure file is empty or created
-        return
-
-    iocs = set()
-    for attr_data in attributes['Attribute']:
-        if 'value' in attr_data:
-            iocs.add(attr_data['value'])
-
-    print(f"Found {len(iocs)} unique hash IOCs.")
-
-    # Write IOCs to the Wazuh list file
+def write_cdb_list(iocs):
+    """
+    Escribe los IOCs en el archivo de lista CDB.
+    """
     try:
-        with open(OUTPUT_FILE, 'w') as f:
-            for ioc in sorted(list(iocs)):
+        with open(output_file, 'w') as f:
+            for ioc in sorted(iocs):
                 f.write(f"{ioc}\n")
-        print(f"Successfully updated {OUTPUT_FILE} with {len(iocs)} IOCs.")
+        print(f"Se escribieron {len(iocs)} IOCs en {output_file}")
     except Exception as e:
-        print(f"Error writing to output file {OUTPUT_FILE}: {e}")
+        print(f"Error al escribir el archivo CDB: {e}")
         sys.exit(1)
 
 if __name__ == "__main__":
-    # Ensure pymisp is installed
-    try:
-        from pymisp import PyMISP
-    except ImportError:
-        print("PyMISP library not found. Please install it: pip3 install pymisp")
-        sys.exit(1)
-    main()
-EOF'
+    iocs_from_misp = fetch_misp_iocs()
+    if iocs_from_misp:
+        write_cdb_list(iocs_from_misp)
+    else:
+        print("No se encontraron nuevos IOCs.")
 </code></pre>
-<p>Asigne permisos de ejecución al script:</p>
-<pre><code class="language-bash">chmod +x /var/ossec/integrations/misp_sync.py
-</code></pre>
-<p>Instale la librería <code>pymisp</code>:</p>
-<pre><code class="language-bash">pip3 install pymisp
+<p>Asegúrate de dar permisos de ejecución al script:</p>
+<pre><code class="language-bash">
+chmod +x /var/ossec/integrations/misp_sync.py
+chown wazuh:wazuh /var/ossec/integrations/misp_sync.py
 </code></pre>
 
-<h3>3. Configurar Wazuh para ingerir y detectar los IOCs</h3>
-<p>Edite el archivo de configuración de Wazuh Manager <code>/var/ossec/etc/ossec.conf</code> para incluir la lista de IOCs:</p>
-<pre><code class="language-bash">sudo nano /var/ossec/etc/ossec.conf
-</code></pre>
-<p>Añada las siguientes líneas dentro de la sección <code>&lt;ossec_config&gt;</code>:</p>
-<pre><code class="language-xml">&lt;ossec_config&gt;
+<h3>3. Configurar Wazuh para usar la lista CDB</h3>
+<p>Edita el archivo de configuración del Wazuh Manager <code>/var/ossec/etc/ossec.conf</code> y añade la siguiente línea dentro de la sección <code>&lt;ruleset&gt;</code> para que Wazuh cargue tu nueva lista de <strong>IOCs</strong>.</p>
+<pre><code class="language-xml">
+&lt;ruleset&gt;
   ...
-  &lt;lists&gt;
-    &lt;list&gt;etc/lists/misp_iocs_hashes&lt;/list&gt;
-  &lt;/lists&gt;
+  &lt;list&gt;etc/lists/misp-iocs&lt;/list&gt;
   ...
-&lt;/ossec_config&gt;
+&lt;/ruleset&gt;
 </code></pre>
-<p>Cree reglas personalizadas en <code>/var/ossec/etc/rules/local_rules.xml</code> para alertar cuando un agente de Wazuh detecte un hash que coincida con un IOC de MISP. Asegúrese de que <strong>Syscollector</strong> esté habilitado en sus agentes para recolectar hashes de archivos (esto se configura típicamente en <code>agent.conf</code> para escanear directorios específicos).</p>
-<pre><code class="language-bash">sudo nano /var/ossec/etc/rules/local_rules.xml
+<p>Reinicia el manager para aplicar los cambios:</p>
+<pre><code class="language-bash">
+systemctl restart wazuh-manager
 </code></pre>
-<p>Añada las siguientes reglas:</p>
-<pre><code class="language-xml">&lt;group name="syscollector,"&gt;
 
-  &lt;rule id="100001" level="12"&gt;
-    &lt;if_sid&gt;550&lt;/if_sid&gt; &lt;!-- Regla base de Syscollector para eventos de ficheros --&gt;
-    &lt;field name="syscollector.files.checksums.md5" type="pcre2"&gt;\b([a-f0-9]{32})\b&lt;/field&gt;
-    &lt;list field="syscollector.files.checksums.md5" lookup="match_key"&gt;etc/lists/misp_iocs_hashes&lt;/list&gt;
-    &lt;description&gt;$(agent.name) - Archivo con hash MD5 malicioso conocido detectado (MISP IOC).&lt;/description&gt;
-    &lt;group&gt;misp_ioc_detection,malicious_hash,threat_intelligence,&lt;/group&gt;
+<h3>4. Crear una regla personalizada de detección</h3>
+<p>Añade la siguiente regla al archivo <code>/var/ossec/etc/rules/local_rules.xml</code>. Esta regla se disparará cuando un campo del evento (como una IP de origen o un hash de fichero) coincida con una entrada en nuestra lista <code>misp-iocs</code>.</p>
+<pre><code class="language-xml">
+&lt;group name="misp,threat_intelligence,"&gt;
+  &lt;rule id="100100" level="12"&gt;
+    &lt;list field="srcip" lookup="address_match_key"&gt;etc/lists/misp-iocs&lt;/list&gt;
+    &lt;list field="dstip" lookup="address_match_key"&gt;etc/lists/misp-iocs&lt;/list&gt;
+    &lt;list field="file.md5" lookup="match_key"&gt;etc/lists/misp-iocs&lt;/list&gt;
+    &lt;list field="file.sha1" lookup="match_key"&gt;etc/lists/misp-iocs&lt;/list&gt;
+    &lt;list field="file.sha256" lookup="match_key"&gt;etc/lists/misp-iocs&lt;/list&gt;
+    &lt;list field="win.eventdata.destinationIp" lookup="address_match_key"&gt;etc/lists/misp-iocs&lt;/list&gt;
+    &lt;description&gt;MISP Threat Intelligence: Indicador de Compromiso (IOC) detectado.&lt;/description&gt;
+    &lt;options&gt;no_full_log&lt;/options&gt;
   &lt;/rule&gt;
-
-  &lt;rule id="100002" level="12"&gt;
-    &lt;if_sid&gt;550&lt;/if_sid&gt;
-    &lt;field name="syscollector.files.checksums.sha1" type="pcre2"&gt;\b([a-f0-9]{40})\b&lt;/field&gt;
-    &lt;list field="syscollector.files.checksums.sha1" lookup="match_key"&gt;etc/lists/misp_iocs_hashes&lt;/list&gt;
-    &lt;description&gt;$(agent.name) - Archivo con hash SHA1 malicioso conocido detectado (MISP IOC).&lt;/description&gt;
-    &lt;group&gt;misp_ioc_detection,malicious_hash,threat_intelligence,&lt;/group&gt;
-  &lt;/rule&gt;
-
-  &lt;rule id="100003" level="12"&gt;
-    &lt;if_sid&gt;550&lt;/if_sid&gt;
-    &lt;field name="syscollector.files.checksums.sha256" type="pcre2"&gt;\b([a-f0-9]{64})\b&lt;/field&gt;
-    &lt;list field="syscollector.files.checksums.sha256" lookup="match_key"&gt;etc/lists/misp_iocs_hashes&lt;/list&gt;
-    &lt;description&gt;$(agent.name) - Archivo con hash SHA256 malicioso conocido detectado (MISP IOC).&lt;/description&gt;
-    &lt;group&gt;misp_ioc_detection,malicious_hash,threat_intelligence,&lt;/group&gt;
-  &lt;/rule&gt;
-
 &lt;/group&gt;
 </code></pre>
-<p>Reinicie el Wazuh Manager para aplicar los cambios:</p>
-<pre><code class="language-bash">systemctl restart wazuh-manager
+<p>Reinicia el manager de nuevo para cargar la nueva regla.</p>
+<pre><code class="language-bash">
+systemctl restart wazuh-manager
 </code></pre>
 
-<h3>4. Programar la sincronización automática</h3>
-<p>Configure una tarea cron para ejecutar el script de sincronización periódicamente (ej. cada hora).</p>
-<pre><code class="language-bash">sudo crontab -e
-</code></pre>
-<p>Añada la siguiente línea (reemplace <code>YOUR_MISP_API_KEY</code> y <code>https://your-misp-instance.com</code>):</p>
-<pre><code class="language-bash">0 * * * * MISP_URL="https://your-misp-instance.com" MISP_KEY="YOUR_MISP_API_KEY" /var/ossec/integrations/misp_sync.py &gt;/dev/null 2&gt;&amp;1
-</code></pre>
-<p>Asegúrese de que el usuario bajo el que se ejecuta cron (normalmente root) tenga permisos para escribir en <code>/var/ossec/etc/lists/misp_iocs_hashes</code>.</p>
-
-<h2>Ejemplo práctico</h2>
-
-<h3>1. Añadir un IOC en MISP</h3>
-<p>En su instancia de MISP, cree un nuevo evento y añada un atributo de tipo <code>md5</code> con el valor <code>e10adc3949ba59abbe56e057f20f883e</code> (este es el MD5 de la cadena "123456"). Publique el evento.</p>
-
-<h3>2. Ejecutar el script de sincronización</h3>
-<p>Ejecute manualmente el script de sincronización en su Wazuh Manager:</p>
-<pre><code class="language-bash">MISP_URL="https://your-misp-instance.com" MISP_KEY="YOUR_MISP_API_KEY" /var/ossec/integrations/misp_sync.py
-</code></pre>
-<p>Verifique que el hash se haya añadido al archivo de lista de Wazuh:</p>
-<pre><code class="language-bash">cat /var/ossec/etc/lists/misp_iocs_hashes
-</code></pre>
-<p>Debería ver <code>e10adc3949ba59abbe56e057f20f883e</code> en la lista.</p>
-
-<h3>3. Simular una detección con Wazuh</h3>
-<p>En un agente de Wazuh, cree un archivo con el contenido "123456" para que su hash MD5 coincida con el IOC.</p>
-<pre><code class="language-bash">echo "123456" &gt; /tmp/malicious_file.txt
-</code></pre>
-<p>Asegúrese de que Syscollector esté configurado para escanear <code>/tmp</code> en el agente (ejemplo en <code>/var/ossec/etc/ossec.conf</code> del agente):</p>
-<pre><code class="language-xml">&lt;ossec_config&gt;
-  ...
-  &lt;syscollector&gt;
-    &lt;frequency&gt;3600&lt;/frequency&gt;
-    &lt;scan_on_start&gt;yes&lt;/scan_on_start&gt;
-    &lt;hardware&gt;yes&lt;/hardware&gt;
-    &lt;os&gt;yes&lt;/os&gt;
-    &lt;network&gt;yes&lt;/network&gt;
-    &lt;packages&gt;yes&lt;/packages&gt;
-    &lt;ports&gt;yes&lt;/ports&gt;
-    &lt;processes&gt;yes&lt;/processes&gt;
-    &lt;hotfixes&gt;yes&lt;/hotfixes&gt;
-    &lt;files&gt;/tmp&lt;/files&gt; &lt;!-- Asegúrese de escanear la ubicación del archivo --&gt;
-  &lt;/syscollector&gt;
-  ...
-&lt;/ossec_config&gt;
-</code></pre>
-<p>Reinicie el agente para forzar un nuevo escaneo de Syscollector:</p>
-<pre><code class="language-bash">systemctl restart wazuh-agent
-</code></pre>
-<p>Para verificar la detección, puede usar <code>ossec-logtest</code> en el Manager con un log de Syscollector simulado (o esperar la alerta real en el panel de Wazuh):</p>
-<pre><code class="language-bash">/var/ossec/bin/ossec-logtest
-</code></pre>
-<p>Pegue el siguiente JSON cuando se le solicite la entrada (simulando un evento de Syscollector con el hash):</p>
-<pre><code class="language-json">{"timestamp":"2023-10-27T10:00:00Z","agent":{"id":"001","name":"test-agent"},"manager":{"name":"wazuh-manager"},"id":"167890","decoder":{"name":"json"},"data":{"syscollector":{"files":[{"path":"/tmp/malicious_file.txt","checksum":{"md5":"e10adc3949ba59abbe56e057f20f883e","sha1":"a8b753a4731c305c4551174c8b73de1574d754ff","sha256":"3978a3a08d277717643594b2a8d3e9114d79713e514f5263a23a8e9185a0c007"},"size":6}]}},"location":"syscollector"}
+<h3>5. Automatizar la sincronización con Cron</h3>
+<p>Para mantener la lista de <strong>IOCs</strong> actualizada, configura un cronjob para ejecutar el script periódicamente (por ejemplo, cada hora).</p>
+<pre><code class="language-bash">
+crontab -e
+# Añade la siguiente línea al final del archivo:
+0 * * * * /var/ossec/framework/python/bin/python3 /var/ossec/integrations/misp_sync.py > /dev/null 2>&1
 </code></pre>
 
-<h3>Output esperado</h3>
-<p>El <code>ossec-logtest</code> debería mostrar una alerta similar a esta:</p>
-<pre><code>**Phase 1: Read events.
-**Phase 2: Evaluate events.
-**Alert to be generated.
-Rule id: '100001'
-Level: '12'
-Description: 'test-agent - Archivo con hash MD5 malicioso conocido detectado (MISP IOC).'
-Groups: 'syscollector,misp_ioc_detection,malicious_hash,threat_intelligence,'
+<h2>Ejemplo Práctico</h2>
+<p>Primero, ejecuta el script manualmente para poblar la lista de <strong>IOCs</strong> por primera vez.</p>
+<pre><code class="language-bash">
+/var/ossec/integrations/misp_sync.py
 </code></pre>
-<p>Esto confirma que Wazuh ha detectado un archivo con un hash MD5 presente en su lista de <strong>IOCs</strong> de MISP, generando una alerta de alta severidad.</p>
+<p>Supongamos que tu instancia de MISP contiene el <strong>IOC</strong> de tipo <code>ip-src</code> con el valor <code>198.51.100.50</code>. El script lo añadirá al archivo <code>/var/ossec/etc/lists/misp-iocs</code> como <code>198.51.100.50:ip-src</code>.</p>
+
+<p>Ahora, simula un evento de seguridad que involucre esa IP maliciosa. Podemos generar un log de sistema falso en un agente monitorizado por Wazuh.</p>
+
+<h3>Comando de Prueba</h3>
+<pre><code class="language-bash">
+# Ejecuta este comando en un agente Linux monitorizado
+logger "sshd: Failed password for invalid user admin from 198.51.100.50 port 22"
+</code></pre>
+
+<h3>Output Esperado</h3>
+<p>Revisa las alertas en el dashboard de Wazuh o directamente en <code>/var/ossec/logs/alerts/alerts.json</code> en el manager. Verás una alerta similar a esta:</p>
+<pre><code class="language-json">
+{
+  "timestamp": "2023-10-27T10:30:00.123+0000",
+  "rule": {
+    "level": 12,
+    "description": "MISP Threat Intelligence: Indicador de Compromiso (IOC) detectado.",
+    "id": "100100",
+    "groups": ["misp", "threat_intelligence"]
+  },
+  "agent": {
+    "id": "001",
+    "name": "agent-linux"
+  },
+  "manager": {
+    "name": "wazuh-server"
+  },
+  "data": {
+    "srcip": "198.51.100.50"
+  },
+  "location": "/var/log/syslog",
+  "full_log": "sshd: Failed password for invalid user admin from 198.51.100.50 port 22"
+}
+</code></pre>
+
+<h3>Qué significa el resultado</h3>
+<p>Wazuh ha procesado el log del agente, ha extraído la IP de origen <code>198.51.100.50</code> y la ha comparado con la lista <code>misp-iocs</code>. Al encontrar una coincidencia, disparó la regla personalizada <strong>100100</strong>, generando una alerta de alta severidad (nivel 12). Tu equipo de seguridad ahora sabe que una comunicación con un indicador de compromiso conocido ha ocurrido en la red.</p>
 
 <h2>Conclusión</h2>
-<p>La integración de <strong>Wazuh</strong> con <strong>MISP</strong> establece un ciclo de vida automatizado para la inteligencia de amenazas, permitiendo a las organizaciones pasar de una defensa reactiva a una proactiva. Al automatizar la ingestión de <strong>IOCs</strong> y su correlación con los datos de sus endpoints, se fortalece la capacidad de detección y respuesta ante las amenazas más recientes. Esta sinergia es clave para una postura de seguridad robusta en el panorama actual.</p>
-<p>Descubre cómo potenciar aún más tu estrategia de ciberseguridad con soluciones avanzadas. Agenda una reunión gratuita con nuestros expertos para explorar tus necesidades específicas en <a href="/reunion">/reunion</a>.</p>
+<p>Has implementado un pipeline automatizado para enriquecer Wazuh con <strong>Threat Intelligence</strong> de alta fidelidad desde MISP. Esto transforma tu SIEM de una herramienta reactiva a un sistema de detección proactiva, capaz de identificar amenazas conocidas basándose en <strong>Indicators of Compromise</strong> compartidos por la comunidad de seguridad.</p>
+
+<p>Este enfoque reduce el ruido, prioriza alertas críticas y permite a tu equipo responder más rápido a incidentes reales. Si necesitas ayuda para implementar esta u otras soluciones de ciberseguridad avanzada, agenda una reunión con nuestro equipo de expertos en /reunion.</p>
 
   <hr />
 
