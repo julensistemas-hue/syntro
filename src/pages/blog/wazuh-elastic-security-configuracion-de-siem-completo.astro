@@ -1,0 +1,192 @@
+---
+import BlogLayout from "../../layouts/BlogLayout.astro";
+---
+
+<BlogLayout
+  title="Wazuh + Elastic Security: Configuración de SIEM completo"
+  description="Wazuh + Elastic Security: Configuración de SIEM completo: Guía práctica para implementación empresarial en Wazuh"
+  publishDate="2025-12-03"
+  author="AI Security"
+  readTime="8 min"
+  tags={["Elasticsearch", "Kibana", "SIEM", "dashboards", "visualizaci\u00f3n", "Wazuh", "Ciberseguridad"]}
+  canonical="https://aisecurity.es/blog/wazuh-elastic-security-configuracion-de-siem-completo">
+
+<p>La fragmentación de logs y la detección tardía de incidentes son desafíos críticos en ciberseguridad. Este artículo detalla la implementación de un SIEM completo combinando <strong>Wazuh</strong> para la recolección y análisis de logs/eventos, y <strong>Elastic Security</strong> (Elasticsearch y Kibana) para la ingestión, almacenamiento, correlación y visualización, proporcionando visibilidad unificada.</p>
+
+<h2>Caso de uso empresarial</h2>
+<p>Una empresa de tamaño medio, con una infraestructura híbrida que incluye servidores on-premise y cargas de trabajo en la nube, carece de una visibilidad centralizada de los eventos de seguridad. Necesita monitorear la integridad de archivos, detectar intrusiones, gestionar vulnerabilidades y cumplir con normativas como PCI-DSS y GDPR. La solución debe permitir la búsqueda rápida de eventos, la creación de alertas personalizadas y la generación de informes detallados para auditorías, sin un alto coste de licenciamiento. La integración de Wazuh con Elastic Security aborda directamente estas necesidades.</p>
+
+<h2>Requisitos previos</h2>
+<ul>
+    <li>Sistema operativo Linux (Ubuntu 20.04+, CentOS/RHEL 8+) para todos los componentes.</li>
+    <li>Mínimo 8GB RAM, 4 vCPU, 100GB disco para la máquina del SIEM (Wazuh Manager + Elastic Stack).</li>
+    <li>Acceso a internet para descarga de paquetes.</li>
+    <li>Conocimientos básicos de administración de sistemas Linux.</li>
+</ul>
+
+<h2>Instalación y Configuración</h2>
+
+<p>Instalaremos Wazuh Manager y Elastic Stack (Elasticsearch, Kibana) en un único servidor para simplificar el ejemplo. Para entornos de producción, se recomienda una arquitectura distribuida y una configuración de seguridad más robusta.</p>
+
+<h3>Paso 1: Instalar Elastic Stack (Elasticsearch y Kibana)</h3>
+<p>Importar la clave GPG de Elastic y añadir el repositorio (ejemplo para Ubuntu):</p>
+<pre><code class="language-bash">wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo gpg --dearmor -o /usr/share/keyrings/elastic-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/elastic-keyring.gpg] https://artifacts.elastic.co/packages/8.x/apt stable main" | sudo tee /etc/apt/sources.list.d/elastic-8.x.list
+sudo apt update
+</code></pre>
+
+<p>Instalar Elasticsearch:</p>
+<pre><code class="language-bash">sudo apt install elasticsearch -y
+sudo systemctl enable --now elasticsearch
+sudo systemctl status elasticsearch
+</code></pre>
+<p>Generar y guardar las credenciales iniciales para Elastic Stack:</p>
+<pre><code class="language-bash">sudo /usr/share/elasticsearch/bin/elasticsearch-setup-passwords auto
+</code></pre>
+<p>Instalar Kibana:</p>
+<pre><code class="language-bash">sudo apt install kibana -y
+sudo systemctl enable --now kibana
+sudo systemctl status kibana
+</code></pre>
+<p>Configurar Kibana para conectarse a Elasticsearch (editar <code>/etc/kibana/kibana.yml</code>):</p>
+<pre><code class="language-yaml"># Descomentar y ajustar
+server.host: "0.0.0.0"
+elasticsearch.hosts: ["https://localhost:9200"]
+elasticsearch.username: "kibana_system"
+elasticsearch.password: "SU_CONTRASENA_KIBANA_SYSTEM" # Usar la contraseña generada previamente
+elasticsearch.ssl.verificationMode: none # ¡Solo para entornos de prueba! En producción, configurar certificados.
+</code></pre>
+<p>Reiniciar Kibana para aplicar cambios:</p>
+<pre><code class="language-bash">sudo systemctl restart kibana
+</code></pre>
+<p>Acceder a Kibana vía web en <code>https://DIRECCION_IP_DEL_SERVIDOR:5601</code>. Usar el usuario <code>elastic</code> y la contraseña generada.</p>
+
+<h3>Paso 2: Instalar Wazuh Manager</h3>
+<p>Importar la clave GPG de Wazuh y añadir el repositorio (ejemplo para Ubuntu):</p>
+<pre><code class="language-bash">curl -sO https://packages.wazuh.com/4.x/apt/pool/main/w/wazuh-keyring/wazuh-keyring_1.1_all.deb
+sudo apt install ./wazuh-keyring_1.1_all.deb
+echo "deb [signed-by=/usr/share/keyrings/wazuh-keyring.gpg] https://packages.wazuh.com/4.x/apt/ stable main" | sudo tee -a /etc/apt/sources.list.d/wazuh.list
+sudo apt update
+</code></pre>
+<p>Instalar Wazuh Manager:</p>
+<pre><code class="language-bash">sudo apt install wazuh-manager -y
+sudo systemctl enable --now wazuh-manager
+sudo systemctl status wazuh-manager
+</code></pre>
+
+<h3>Paso 3: Configurar Filebeat para enviar logs a Elasticsearch</h3>
+<p>Filebeat actuará como un "agente" que recolecta las alertas generadas por Wazuh y las envía a Elasticsearch.</p>
+<p>Instalar Filebeat:</p>
+<pre><code class="language-bash">sudo apt install filebeat -y
+</code></pre>
+<p>Descargar e instalar el módulo de Wazuh para Filebeat (incluye plantillas y dashboards específicos para Wazuh):</p>
+<pre><code class="language-bash">curl -sO https://packages.wazuh.com/4.x/filebeat/wazuh-filebeat-0.0.1.deb # Verificar la última versión en la documentación de Wazuh
+sudo apt install ./wazuh-filebeat-0.0.1.deb
+</code></pre>
+<p>Editar el archivo de configuración de Filebeat (<code>/etc/filebeat/filebeat.yml</code>) para apuntar a Elasticsearch. Comentar la sección de Logstash si no se usa y configurar la salida a Elasticsearch:</p>
+<pre><code class="language-yaml"># ...
+output.elasticsearch:
+  hosts: ["https://localhost:9200"]
+  username: "elastic"
+  password: "SU_CONTRASENA_ELASTIC" # Usar la contraseña generada previamente
+  ssl.verification_mode: none # ¡Solo para entornos de prueba! En producción, configurar certificados.
+# ...
+</code></pre>
+<p>Habilitar el módulo de Wazuh en Filebeat:</p>
+<pre><code class="language-bash">sudo filebeat modules enable wazuh
+</code></pre>
+<p>Cargar las plantillas de índice de Wazuh y los dashboards de Kibana (esto puede tardar unos minutos):</p>
+<pre><code class="language-bash">sudo filebeat setup --index-management -E output.elasticsearch.username=elastic -E output.elasticsearch.password="SU_CONTRASENA_ELASTIC"
+</code></pre>
+<p>Iniciar y habilitar Filebeat:</p>
+<pre><code class="language-bash">sudo systemctl enable --now filebeat
+sudo systemctl status filebeat
+</code></pre>
+
+<h3>Paso 4: Instalar la aplicación Wazuh en Kibana</h3>
+<p>Esta aplicación proporciona dashboards y herramientas específicas para la gestión y visualización de datos de Wazuh.</p>
+<p>Descargar e instalar la aplicación Wazuh para Kibana. <strong>Asegúrate de que la versión de la app coincida con tu versión de Kibana y Wazuh Manager.</strong> Consulta la <a href="https://documentation.wazuh.com/current/installation-guide/wazuh-dashboard/step-by-step.html#install-wazuh-dashboard">documentación oficial de Wazuh</a> para la URL de descarga correcta.</p>
+<pre><code class="language-bash">cd /usr/share/kibana
+sudo -u kibana bin/kibana-plugin install https://packages.wazuh.com/4.x/ui/kibana/wazuhapp-4.x.x_8.x.x.zip # Reemplazar con la versión correcta
+</code></pre>
+<p>Reiniciar Kibana:</p>
+<pre><code class="language-bash">sudo systemctl restart kibana
+</code></pre>
+<p>Ahora, al acceder a Kibana, verás el icono de <strong>Wazuh</strong> en el menú lateral de navegación.</p>
+
+<h3>Paso 5: Desplegar Agentes Wazuh (ejemplo en un cliente Linux)</h3>
+<p>En el equipo que deseas monitorear (ej. un servidor Linux), instala el agente Wazuh. Asegúrate de que tenga conectividad de red con el Wazuh Manager (puerto 1514/TCP).</p>
+<pre><code class="language-bash">curl -sO https://packages.wazuh.com/4.x/apt/pool/main/w/wazuh-keyring/wazuh-keyring_1.1_all.deb
+sudo apt install ./wazuh-keyring_1.1_all.deb
+echo "deb [signed-by=/usr/share/keyrings/wazuh-keyring.gpg] https://packages.wazuh.com/4.x/apt/ stable main" | sudo tee -a /etc/apt/sources.list.d/wazuh.list
+sudo apt update
+sudo apt install wazuh-agent -y
+</code></pre>
+<p>Configurar el agente para apuntar al Manager (editar <code>/var/ossec/etc/ossec.conf</code>, sección <code>&lt;client&gt;</code>):</p>
+<pre><code class="language-xml">&lt;client&gt;
+  &lt;server&gt;
+    &lt;address&gt;DIRECCION_IP_DEL_WAZUH_MANAGER&lt;/address&gt;
+    &lt;port&gt;1514&lt;/port&gt;
+    &lt;protocol&gt;tcp&lt;/protocol&gt;
+  &lt;/server&gt;
+  &lt;config-sync&gt;
+    &lt;enabled&gt;yes&lt;/enabled&gt;
+    &lt;interval&gt;10m&lt;/interval&gt;
+  &lt;/config-sync&gt;
+&lt;/client&gt;
+</code></pre>
+<p>Iniciar y habilitar el agente:</p>
+<pre><code class="language-bash">sudo systemctl enable --now wazuh-agent
+sudo systemctl status wazuh-agent
+</code></pre>
+
+<h2>Ejemplo práctico: Visualización y Alerta de Intrusiones</h2>
+<p>Una vez que los agentes están enviando logs al Manager, y Filebeat está ingiriendo las alertas del Manager a Elasticsearch, podemos visualizar y consultar los datos en Kibana.</p>
+<p><strong>Simular un evento:</strong> En un cliente con el agente Wazuh instalado, intenta iniciar sesión SSH varias veces con credenciales incorrectas.</p>
+<pre><code class="language-bash">ssh usuario_invalido@DIRECCION_IP_DEL_CLIENTE
+</code></pre>
+<p>Este evento generará alertas en Wazuh Manager, que Filebeat enviará a Elasticsearch.</p>
+
+<p><strong>Consulta útil en Kibana:</strong> Navega a <strong>Analytics &gt; Discover</strong> en Kibana. Selecciona el patrón de índice <code>wazuh-alerts-*</code>. Usa la barra de búsqueda para filtrar por intentos de autenticación fallidos de SSH:</p>
+<pre><code class="language-kql">rule.groups:authentication_failed AND rule.id:(5710 OR 5712)
+</code></pre>
+<p>Esto mostrará los eventos de intentos fallidos de autenticación SSH. Puedes añadir <code>agent.name: "nombre_de_tu_agente"</code> para filtrar por un host específico o <code>data.srcip: "IP_DE_ORIGEN"</code> para ver los ataques desde una dirección IP concreta.</p>
+<p><strong>Output esperado (parcial):</strong></p>
+<pre><code class="language-json">{
+  "_index": "wazuh-alerts-4.x-2023.10.27",
+  "_id": "...",
+  "_score": 1,
+  "_source": {
+    "timestamp": "2023-10-27T10:30:00.000Z",
+    "rule": {
+      "level": 5,
+      "description": "SSH authentication failed.",
+      "id": "5710",
+      "groups": [ "authentication_failed", "syslog", "sshd" ]
+    },
+    "agent": {
+      "id": "001",
+      "name": "cliente-linux-01"
+    },
+    "data": {
+      "srcip": "192.168.1.100",
+      "user": "usuario_invalido",
+      "full_log": "Oct 27 10:30:00 cliente-linux-01 sshd[12345]: Failed password for invalid user usuario_invalido from 192.168.1.100 port 54321 ssh2"
+    },
+    // ... otros campos relevantes
+  }
+}
+</code></pre>
+<p><strong>Qué significa el resultado:</strong> Este resultado indica que el agente <code>cliente-linux-01</code> detectó un intento fallido de inicio de sesión SSH desde la IP <code>192.168.1.100</code> para el usuario <code>usuario_invalido</code>. Esta información es crucial para identificar posibles ataques de fuerza bruta o escaneos de credenciales en tiempo real, permitiendo una respuesta rápida y efectiva.</p>
+<p>Desde aquí, puedes crear visualizaciones en <strong>Analytics &gt; Dashboard</strong>, como un gráfico de barras que muestre los IPs de origen con más intentos fallidos, o configurar alertas personalizadas en <strong>Stack Management &gt; Alerting</strong> para recibir notificaciones inmediatas ante patrones sospechosos.</p>
+
+<h2>Conclusión</h2>
+<p>La integración de <strong>Wazuh</strong> con <strong>Elastic Security</strong> establece un SIEM robusto y escalable, proporcionando una solución completa de seguridad que abarca desde la recolección de eventos a nivel de host hasta su análisis profundo y visualización centralizada. Hemos logrado una visibilidad unificada de los eventos de seguridad, lo que permite una detección proactiva de amenazas, una respuesta rápida a incidentes y el cumplimiento normativo.</p>
+<p>Esta configuración básica es el punto de partida para construir un entorno de seguridad más avanzado, añadiendo correlación de eventos, automatización de respuestas y monitorización de comportamientos anómalos. Si tu organización busca fortalecer su postura de ciberseguridad con una solución similar, <a href="/reunion">agenda una reunión con nuestros expertos</a>.</p>
+
+  <hr />
+
+  <p class="text-sm text-base-600">
+    <strong>¿Necesitas implementar esta solución?</strong> <a href="/reunion">Solicita una consulta gratuita aquí</a>.
+  </p>
+</BlogLayout>
