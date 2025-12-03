@@ -11,10 +11,10 @@
     {
       "id": 2,
       "tema": "Monitorización de contenedores Docker con Wazuh",
-      "estado": "Pendiente",
+      "estado": "Procesado",
       "palabras_clave": "Docker, contenedores, logs, monitoring, security",
       "notas": "Incluir ejemplos con docker-compose. Mostrar detección de vulnerabilidades en imágenes",
-      "fecha_procesado": null
+      "fecha_procesado": "2025-12-03"
     },
     {
       "id": 3,
