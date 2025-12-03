@@ -1,0 +1,122 @@
+---
+import BlogLayout from "../../layouts/BlogLayout.astro";
+---
+
+<BlogLayout
+  title="Integración de Wazuh con MISP para Threat Intelligence"
+  description="Integración de Wazuh con MISP para Threat Intelligence: Guía práctica para implementación empresarial en Wazuh"
+  publishDate="2025-12-03"
+  author="AI Security"
+  readTime="8 min"
+  tags={["MISP", "threat intelligence", "IOC", "indicators of compromise", "Wazuh", "Ciberseguridad"]}
+  canonical="https://aisecurity.es/blog/integracion-de-wazuh-con-misp-para-threat-intelligence">
+
+```html
+<p>En el dinámico panorama de la ciberseguridad, reaccionar a las alertas no es suficiente. Es crucial enriquecerlas con contexto para identificar amenazas reales rápidamente. La integración de Wazuh con una plataforma de Threat Intelligence como MISP (Malware Information Sharing Platform) transforma las alertas de seguridad en inteligencia procesable, permitiendo una defensa proactiva basada en Indicadores de Compromiso (IOC) actualizados.</p>
+
+<h2>Caso de Uso Empresarial</h2>
+<p>Una organización utiliza Wazuh para monitorizar su infraestructura. Diariamente, el equipo de seguridad recibe cientos de alertas, muchas de las cuales son falsos positivos. Al integrar MISP, cada alerta de Wazuh se contrasta automáticamente con una base de datos global y actualizada de <strong>IOCs</strong>, como IPs maliciosas, hashes de malware o dominios de phishing. Si una alerta de conexión de red en un servidor coincide con una IP listada en MISP como parte de una campaña de botnet, Wazuh puede elevar su severidad automáticamente, permitiendo al equipo priorizar la respuesta a incidentes sobre amenazas confirmadas y reducir el tiempo de detección y contención.</p>
+
+<h2>Requisitos Previos</h2>
+<p>Antes de comenzar, asegúrate de tener lo siguiente:</p>
+<ul>
+    <li>Un manager de Wazuh instalado y operativo.</li>
+    <li>Una instancia de MISP accesible desde el manager de Wazuh.</li>
+    <li>Una clave de API (Auth Key) de MISP con permisos de lectura.</li>
+    <li>Los paquetes <code>curl</code> y <code>jq</code> instalados en el servidor del manager de Wazuh.</li>
+</ul>
+
+<h2>Instalación y Configuración</h2>
+<p>El proceso se basa en un script que extrae <strong>IOCs</strong> de MISP y los almacena en una lista CDB de Wazuh. Luego, una regla personalizada utiliza esta lista para generar alertas de alta severidad.</p>
+
+<p><strong>1. Instalar herramientas necesarias</strong></p>
+<p>Si no las tienes, instala <code>curl</code> para realizar peticiones HTTP y <code>jq</code> para procesar las respuestas JSON.</p>
+<pre><code class="language-bash"># Para sistemas basados en Debian/Ubuntu
+sudo apt-get update
+sudo apt-get install -y curl jq
+
+# Para sistemas basados en Red Hat/CentOS
+sudo yum install -y curl jq</code></pre>
+
+<p><strong>2. Crear el script de sincronización</strong></p>
+<p>Este script se conectará a la API de MISP, descargará los IOCs (en este caso, direcciones IP) y los guardará en un formato compatible con las listas CDB de Wazuh.</p>
+<pre><code class="language-bash"># Crear el script
+sudo nano /usr/local/bin/sync_misp.sh</code></pre>
+
+<p>Añade el siguiente contenido al archivo. Reemplaza <code>https://tu-misp.com</code> y <code>TU_API_KEY_DE_MISP</code> con tus propios valores.</p>
+<pre><code class="language-bash">#!/bin/bash
+
+# --- Variables de configuración ---
+MISP_URL="https://tu-misp.com"
+MISP_KEY="TU_API_KEY_DE_MISP"
+OUTPUT_FILE="/var/ossec/etc/lists/misp-ip-iocs"
+
+# --- Lógica del script ---
+# Realiza la petición a la API de MISP para obtener IPs de los últimos 30 días
+# y las formatea como 'ip:' para la lista CDB de Wazuh.
+curl -s --header "Authorization: $MISP_KEY" \
+     --header "Accept: application/json" \
+     --header "Content-Type: application/json" \
+     "$MISP_URL/attributes/restSearch" \
+     -d '{"returnFormat":"json","type":"ip-src|ip-dst","last":"30d","to_ids":"1"}' \
+     | jq -r '.response.Attribute[].value' \
+     | sed 's/$/:/' &gt; "$OUTPUT_FILE.tmp"
+
+# Mueve el archivo temporal al final para asegurar una escritura atómica
+mv "$OUTPUT_FILE.tmp" "$OUTPUT_FILE"
+
+echo "Sincronización de IOCs desde MISP completada."</code></pre>
+
+<p>Haz que el script sea ejecutable:</p>
+<pre><code class="language-bash">sudo chmod +x /usr/local/bin/sync_misp.sh</code></pre>
+
+<p><strong>3. Configurar Wazuh para usar la lista de IOCs</strong></p>
+<p>Añade la siguiente configuración en tu archivo <code>/var/ossec/etc/ossec.conf</code> dentro de la sección <code>&lt;ruleset&gt;</code>. Esto le dice a Wazuh que cargue tu lista de IOCs.</p>
+<pre><code>&lt;!-- Listas de Threat Intelligence --&gt;
+&lt;list&gt;etc/lists/misp-ip-iocs&lt;/list&gt;</code></pre>
+
+<p><strong>4. Crear una regla personalizada</strong></p>
+<p>Ahora, crea una regla en <code>/var/ossec/etc/rules/local_rules.xml</code> que se dispare cuando un campo (por ejemplo, <code>srcip</code>) coincida con una entrada de tu lista de MISP.</p>
+<pre><code>&lt;group name="misp,threat_intelligence,"&gt;
+  &lt;rule id="100100" level="12"&gt;
+    &lt;if_group&gt;firewall|netflow|pci_dss_1.4|pci_dss_11.4&lt;/if_group&gt;
+    &lt;list field="srcip" lookup="address_match_key"&gt;etc/lists/misp-ip-iocs&lt;/list&gt;
+    &lt;description&gt;Threat Intelligence: Conexión desde una IP maliciosa conocida (MISP IOC).&lt;/description&gt;
+    &lt;options&gt;no_full_log&lt;/options&gt;
+  &lt;/rule&gt;
+&lt;/group&gt;</code></pre>
+
+<p><strong>5. Automatizar la sincronización con Cron</strong></p>
+<p>Para mantener la lista de <strong>IOCs</strong> actualizada, configura un cron job para que ejecute el script diariamente.</p>
+<pre><code class="language-bash"># Abrir el editor de cron
+sudo crontab -e
+
+# Añadir esta línea para ejecutar el script cada día a las 2 AM
+0 2 * * * /usr/local/bin/sync_misp.sh &gt;/dev/null 2&gt;&1</code></pre>
+
+<p>Finalmente, reinicia el manager de Wazuh para aplicar todos los cambios.</p>
+<pre><code class="language-bash">sudo systemctl restart wazuh-manager</code></pre>
+
+<h2>Ejemplo Práctico</h2>
+<p>Puedes ejecutar el script manualmente para realizar la primera sincronización y verificar que funciona correctamente.</p>
+<pre><code class="language-bash"># Ejecutar el script como root o con sudo
+sudo /usr/local/bin/sync_misp.sh</code></pre>
+
+<p><strong>Output esperado:</strong></p>
+<pre><code class="language-bash">Sincronización de IOCs desde MISP completada.</code></pre>
+
+<p>Para verificar el contenido de la lista generada, puedes usar el comando <code>cat</code>. Verás una lista de direcciones IP, cada una seguida de dos puntos, que es el formato que Wazuh requiere para las listas de tipo "address".</p>
+<pre><code class="language-bash">sudo cat /var/ossec/etc/lists/misp-ip-iocs</code></pre>
+<p>A partir de ahora, cualquier evento de log que Wazuh procese y que contenga una IP de origen de esta lista, disparará la regla 100100 con una severidad alta, notificando a tu equipo de una amenaza validada por tu plataforma de <strong>threat intelligence</strong>.</p>
+
+<h2>Conclusión</h2>
+<p>Integrar Wazuh con MISP es un paso fundamental para madurar tus operaciones de seguridad. Esta sinergia te permite pasar de un modelo reactivo a uno proactivo, enriqueciendo las alertas con <strong>threat intelligence</strong> de alta fidelidad y permitiendo a tu equipo enfocarse en las amenazas que realmente importan. Al automatizar la ingesta de <strong>indicators of compromise</strong>, reduces la carga de trabajo manual y mejoras drásticamente tu capacidad de detección y respuesta.</p>
+<p>¿Necesitas ayuda para implementar soluciones avanzadas de ciberseguridad? <a href="/reunion">Agenda una reunión con nuestros expertos</a> y lleva tu defensa al siguiente nivel.</p>
+```
+
+  <hr />
+
+  <p class="text-sm text-base-600">
+    <strong>¿Necesitas implementar esta solución?</strong> <a href="/reunion">Solicita una consulta gratuita aquí</a>.
+  </p>
+</BlogLayout>
