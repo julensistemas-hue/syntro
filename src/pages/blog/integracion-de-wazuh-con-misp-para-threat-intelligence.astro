@@ -11,7 +11,6 @@ import BlogLayout from "../../layouts/BlogLayout.astro";
   tags={["MISP", "threat intelligence", "IOC", "indicators of compromise", "Wazuh", "Ciberseguridad"]}
   canonical="https://aisecurity.es/blog/integracion-de-wazuh-con-misp-para-threat-intelligence">
 
-```html
 <p>En el dinámico panorama de la ciberseguridad, reaccionar a las alertas no es suficiente. Es crucial enriquecerlas con contexto para identificar amenazas reales rápidamente. La integración de Wazuh con una plataforma de Threat Intelligence como MISP (Malware Information Sharing Platform) transforma las alertas de seguridad en inteligencia procesable, permitiendo una defensa proactiva basada en Indicadores de Compromiso (IOC) actualizados.</p>
 
 <h2>Caso de Uso Empresarial</h2>
@@ -60,7 +59,7 @@ curl -s --header "Authorization: $MISP_KEY" \
      "$MISP_URL/attributes/restSearch" \
      -d '{"returnFormat":"json","type":"ip-src|ip-dst","last":"30d","to_ids":"1"}' \
      | jq -r '.response.Attribute[].value' \
-     | sed 's/$/:/' &gt; "$OUTPUT_FILE.tmp"
+     | sed 's/$/:/' > "$OUTPUT_FILE.tmp"
 
 # Mueve el archivo temporal al final para asegurar una escritura atómica
 mv "$OUTPUT_FILE.tmp" "$OUTPUT_FILE"
@@ -92,7 +91,7 @@ echo "Sincronización de IOCs desde MISP completada."</code></pre>
 sudo crontab -e
 
 # Añadir esta línea para ejecutar el script cada día a las 2 AM
-0 2 * * * /usr/local/bin/sync_misp.sh &gt;/dev/null 2&gt;&1</code></pre>
+0 2 * * * /usr/local/bin/sync_misp.sh >/dev/null 2>&1</code></pre>
 
 <p>Finalmente, reinicia el manager de Wazuh para aplicar todos los cambios.</p>
 <pre><code class="language-bash">sudo systemctl restart wazuh-manager</code></pre>
@@ -112,11 +111,11 @@ sudo /usr/local/bin/sync_misp.sh</code></pre>
 <h2>Conclusión</h2>
 <p>Integrar Wazuh con MISP es un paso fundamental para madurar tus operaciones de seguridad. Esta sinergia te permite pasar de un modelo reactivo a uno proactivo, enriqueciendo las alertas con <strong>threat intelligence</strong> de alta fidelidad y permitiendo a tu equipo enfocarse en las amenazas que realmente importan. Al automatizar la ingesta de <strong>indicators of compromise</strong>, reduces la carga de trabajo manual y mejoras drásticamente tu capacidad de detección y respuesta.</p>
 <p>¿Necesitas ayuda para implementar soluciones avanzadas de ciberseguridad? <a href="/reunion">Agenda una reunión con nuestros expertos</a> y lleva tu defensa al siguiente nivel.</p>
-```
 
-  <hr />
+<hr />
 
-  <p class="text-sm text-base-600">
-    <strong>¿Necesitas implementar esta solución?</strong> <a href="/reunion">Solicita una consulta gratuita aquí</a>.
-  </p>
+<p class="text-sm text-base-600">
+  <strong>¿Necesitas implementar esta solución?</strong> <a href="/reunion">Solicita una consulta gratuita aquí</a>.
+</p>
+
 </BlogLayout>
