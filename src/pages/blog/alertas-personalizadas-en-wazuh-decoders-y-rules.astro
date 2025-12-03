@@ -1,0 +1,153 @@
+---
+import BlogLayout from "../../layouts/BlogLayout.astro";
+---
+
+<BlogLayout
+  title="Alertas personalizadas en Wazuh: Decoders y Rules"
+  description="Alertas personalizadas en Wazuh: Decoders y Rules: Guía práctica para implementación empresarial en Wazuh"
+  publishDate="2025-12-03"
+  author="AI Security"
+  readTime="8 min"
+  tags={["custom rules", "decoders", "alertas", "logs parsing", "Wazuh", "Ciberseguridad"]}
+  canonical="https://aisecurity.es/blog/alertas-personalizadas-en-wazuh-decoders-y-rules">
+
+<p>Detectar accesos no autorizados es crítico. Wazuh permite fortalecer la seguridad de SSH identificando intentos de conexión desde ubicaciones geográficas no permitidas. Implementaremos reglas personalizadas, combinando el análisis de logs con listas dinámicas, para generar alertas precisas.</p>
+
+<h2>Caso de uso empresarial</h2>
+<p>Una empresa multinacional opera servidores SSH críticos. Por requisitos de cumplimiento y políticas de seguridad internas, el acceso SSH solo está permitido desde una lista de países aprobados (ej. España, Alemania). Cualquier intento de conexión desde otros países debe ser detectado y alertado inmediatamente para una respuesta rápida, mitigando riesgos de acceso no autorizado o ataques dirigidos.</p>
+
+<h2>Requisitos previos</h2>
+<ul>
+    <li>Wazuh Manager (versión 4.x o superior)</li>
+    <li>Wazuh Agent instalado y configurado en el servidor SSH (ej. Linux con <code>sshd</code>)</li>
+    <li>Acceso de administrador al Wazuh Manager para modificar la configuración</li>
+    <li>Base de datos GeoIP actualizada en el manager (Wazuh la descarga por defecto si está habilitado en <code>ossec.conf</code>)</li>
+</ul>
+
+<h2>Instalación/Configuración</h2>
+
+<h3>1. Verificar/Habilitar geolocalización en Wazuh Manager</h3>
+<p>Asegúrese de que la geolocalización esté habilitada en el archivo de configuración del manager. Esto es esencial para que Wazuh pueda determinar el país de la IP de origen.</p>
+<pre><code class="language-bash"># Edite el archivo de configuración del manager
+vim /var/ossec/etc/ossec.conf
+</code></pre>
+<p>Verifique que la siguiente sección esté presente y habilitada:</p>
+<pre><code class="language-xml">&lt;ossec_config&gt;
+  &lt;global&gt;
+    &lt;json_output&gt;yes&lt;/json_output&gt;
+    &lt;geoip_json&gt;yes&lt;/geoip_json&gt;
+  &lt;/global&gt;
+  ...
+&lt;/ossec_config&gt;
+</code></pre>
+<p>Si realizó cambios, necesitará reiniciar el manager, pero esperaremos a aplicar todas las configuraciones para un único reinicio.</p>
+
+<h3>2. Crear el archivo de lista de países permitidos/prohibidos</h3>
+<p>Crearemos una lista de países <strong>PROHIBIDOS</strong>. Si una IP se resuelve a uno de estos países, se generará una alerta. Usaremos los códigos de país ISO 3166-1 alpha-2.</p>
+<pre><code class="language-bash"># Crear el directorio si no existe
+mkdir -p /var/ossec/etc/lists/
+
+# Crear el archivo de lista (ejemplo: Bloquear Rusia, China, Irán)
+vim /var/ossec/etc/lists/custom-forbidden-countries.list
+</code></pre>
+<p>Añada los códigos de país a la lista, uno por línea:</p>
+<pre><code class="language-text">RU
+CN
+IR
+</code></pre>
+
+<h3>3. Crear el archivo de reglas personalizadas</h3>
+<p>Ahora, crearemos una regla que se activará cuando detecte un acceso SSH exitoso desde una IP cuyo país de origen esté en nuestra lista de países prohibidos. Utilizaremos el archivo <code>local_rules.xml</code> o un archivo personalizado dentro de <code>/var/ossec/etc/rules/</code>.</p>
+<pre><code class="language-bash">vim /var/ossec/etc/rules/custom_ssh_access_rules.xml
+</code></pre>
+<p>Añada el siguiente contenido:</p>
+<pre><code class="language-xml">&lt;group name="ssh,syslog,authentication_success,access_control,"&gt;
+
+  &lt;!-- La regla 5712 se activa para "sshd: Accepted" --&gt;
+  &lt;rule id="100001" level="10" frequency="2" timeframe="360"&gt;
+    &lt;if_sid&gt;5712&lt;/if_sid&gt; &lt;!-- Evento: sshd: Accepted password/publickey --&gt;
+    &lt;list field="location.country_code" lookup="match_key_value" check_value="custom-forbidden-countries.list"&gt;
+      &lt;!-- Si el código de país de la IP de origen está en la lista de prohibidos --&gt;
+    &lt;/list&gt;
+    &lt;options&gt;no_email_alert&lt;/options&gt; &lt;!-- Opcional: Si no quieres email para esta alerta específica --&gt;
+    &lt;group&gt;authentication_failed,&lt;/group&gt;
+    &lt;description&gt;SSH Accepted connection from forbidden country: $(location.country_name) ($(location.country_code)). User: $(user). Source IP: $(srcip).&lt;/description&gt;
+    &lt;mitre&gt;
+      &lt;id&gt;T1133&lt;/id&gt;
+      &lt;id&gt;T1078&lt;/id&gt;
+    &lt;/mitre&gt;
+  &lt;/rule&gt;
+
+&lt;/group&gt;
+</code></pre>
+<p><strong>Explicación de la regla:</strong></p>
+<ul>
+    <li><code>id="100001"</code>: ID único para nuestra regla personalizada.</li>
+    <li><code>level="10"</code>: Nivel de severidad alto para asegurar una alerta visible.</li>
+    <li><code>if_sid="5712"</code>: Esta regla se activará SOLAMENTE si la regla base 5712 (<code>sshd: Accepted</code>) ya se ha activado.</li>
+    <li><code>list field="location.country_code" lookup="match_key_value" check_value="custom-forbidden-countries.list"</code>: Esta es la clave. Verifica si el valor del campo <code>location.country_code</code> (obtenido de la geolocalización de la IP) coincide con cualquier entrada en nuestro archivo <code>custom-forbidden-countries.list</code>.</li>
+    <li><code>description</code>: Mensaje descriptivo de la alerta, utilizando campos extraídos por Wazuh para mayor contexto.</li>
+</ul>
+
+<h3>4. Incluir el archivo de reglas en <code>ossec.conf</code></h3>
+<p>Para que Wazuh cargue nuestras nuevas reglas, debemos incluirlas en el archivo de configuración principal.</p>
+<pre><code class="language-bash">vim /var/ossec/etc/ossec.conf
+</code></pre>
+<p>Añade la siguiente línea dentro de la sección <code>&lt;rules&gt;</code>:</p>
+<pre><code class="language-xml">&lt;ossec_config&gt;
+  ...
+  &lt;rules&gt;
+    &lt;include&gt;0020-ssh_rules.xml&lt;/include&gt; &lt;!-- Reglas SSH por defecto --&gt;
+    &lt;include&gt;custom_ssh_access_rules.xml&lt;/include&gt; &lt;!-- Nuestra nueva regla --&gt;
+  &lt;/rules&gt;
+  ...
+&lt;/ossec_config&gt;
+</code></pre>
+
+<h3>5. Reiniciar el servicio Wazuh Manager</h3>
+<p>Para que todos los cambios surtan efecto, reinicie el manager:</p>
+<pre><code class="language-bash">systemctl restart wazuh-manager
+</code></pre>
+
+<h2>Ejemplo práctico</h2>
+<p>Usaremos la herramienta <code>logtest</code> de Wazuh para simular un evento y verificar que nuestra regla se activa correctamente.</p>
+<pre><code class="language-bash">/var/ossec/bin/wazuh-logtest
+</code></pre>
+<p>Cuando se le pida que introduzca el log, pegue la siguiente línea. Usaremos una IP de Rusia (<code>5.188.216.0</code>) para el ejemplo, que está en nuestra lista de prohibidos.</p>
+<pre><code class="language-text">Mar 10 10:00:00 localhost sshd[1234]: Accepted publickey for user root from 5.188.216.0 port 54321 ssh2: RSA SHA256:examplehash
+</code></pre>
+<p>Después de pegar el log, presione <code>ENTER</code> y luego <code>CTRL+D</code>.</p>
+
+<h3>Output esperado</h3>
+<p>Verá un output similar a este, indicando que nuestra regla personalizada <code>100001</code> se ha activado:</p>
+<pre><code class="language-text">**Phase 1: Pre-decoding field extraction.
+...
+**Phase 2: Decoding.
+...
+--&gt;sshd&lt;--
+...
+location.country_code: RU
+location.country_name: Russian Federation
+...
+
+**Phase 3: Syslog rule.
+...
+INFO: Rule '5712' fired (level '5') -&gt; "SSHD authentication success."
+...
+INFO: Rule '100001' fired (level '10') -&gt; "SSH Accepted connection from forbidden country: Russian Federation (RU). User: root. Source IP: 5.188.216.0."
+</code></pre>
+
+<h3>Qué significa el resultado</h3>
+<p>El output muestra que el log de SSH fue correctamente decodificado, se extrajo la IP de origen (<code>srcip</code>), y se geolocalizó a la Federación Rusa (<code>location.country_code: RU</code>). La regla por defecto <code>5712</code> se activó (autenticación SSH exitosa), y luego, nuestra regla personalizada <code>100001</code> también se activó porque el código de país <code>RU</code> se encontró en nuestra lista <code>custom-forbidden-countries.list</code>, generando una alerta de nivel 10.</p>
+
+<h2>Conclusión</h2>
+<p>Hemos implementado con éxito un sistema de alertas personalizadas en Wazuh para detectar accesos SSH exitosos desde países no autorizados. Esta capacidad, basada en decodificadores (implícitos para extraer la IP) y reglas personalizadas que interactúan con listas dinámicas, permite a las organizaciones aplicar controles de seguridad geográficos específicos, mejorando significativamente su postura de seguridad y cumplimiento.
+</p>
+<p>Para discutir cómo Wazuh puede fortalecer la seguridad de su infraestructura con soluciones a medida, solicite una reunión con nuestros expertos hoy mismo.</p>
+
+  <hr />
+
+  <p class="text-sm text-base-600">
+    <strong>¿Necesitas implementar esta solución?</strong> <a href="/reunion">Solicita una consulta gratuita aquí</a>.
+  </p>
+</BlogLayout>
