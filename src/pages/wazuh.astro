@@ -1143,13 +1143,13 @@ const canonical = "https://aisecurity.es/wazuh";
 
         // Remove active class from all tabs
         tabs.forEach(t => {
-          t.classList.remove('active', 'bg-[#0052cc]');
+          t.classList.remove('active', 'bg-[#0052cc]', 'text-black');
           t.classList.add('text-white', 'hover:bg-[#0052cc]/70');
         });
 
         // Add active class to clicked tab
-        tab.classList.add('active', 'bg-[#0052cc]', 'text-white');
-        tab.classList.remove('hover:bg-[#0052cc]/70');
+        tab.classList.add('active', 'bg-[#0052cc]', 'text-black');
+        tab.classList.remove('text-white', 'hover:bg-[#0052cc]/70');
 
         // Hide all content
         contents.forEach(content => {
