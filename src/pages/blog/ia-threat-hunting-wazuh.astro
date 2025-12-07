@@ -4,16 +4,14 @@ import BlogLayout from "../../layouts/BlogLayout.astro";
 
 <BlogLayout
   title="IA para Threat Hunting en Wazuh: Guía de Instalación con Ollama"
-  description="Integra inteligencia artificial en Wazuh con Ollama y Llama3. Instalación paso a paso, chatbot de threat hunting y análisis de logs en lenguaje natural."
+  description="La integración de inteligencia artificial en Wazuh permite analizar eventos de seguridad de forma conversacional, identificar amenazas complejas y acelerar la respuesta a incidentes. En esta guía práctica veremos cómo instalar y configurar esta funcionalidad usando Ollama con modelos LLM locales."
   publishDate="2025-12-02"
   author="AI Security"
   readTime="8 min"
   tags={["Wazuh", "Inteligencia Artificial", "Ciberseguridad", "Threat Hunting"]}
   canonical="https://aisecurity.es/blog/ia-threat-hunting-wazuh">
 
-  <p>
-    La integración de <strong>inteligencia artificial</strong> en Wazuh permite analizar eventos de seguridad de forma conversacional, identificar amenazas complejas y acelerar la respuesta a incidentes. En esta guía práctica veremos cómo instalar y configurar esta funcionalidad usando <strong>Ollama</strong> con modelos LLM locales.
-  </p>
+  
 
   <h2>¿Qué conseguimos con esta integración?</h2>
 
@@ -24,16 +22,7 @@ import BlogLayout from "../../layouts/BlogLayout.astro";
     <li><strong>Privacidad total</strong>: Todo se ejecuta localmente, sin enviar datos a terceros</li>
   </ul>
 
-  <h2>Requisitos previos</h2>
-
-  <p>Antes de comenzar, asegúrate de tener:</p>
-
-  <ul>
-    <li><strong>Wazuh 4.12.0 o superior</strong> (servidor, indexador y dashboard instalados)</li>
-    <li><strong>Ubuntu 24.04 LTS</strong> (u otra distribución Linux compatible)</li>
-    <li><strong>Hardware mínimo</strong>: 16GB RAM y 4 CPUs (recomendado para LLMs locales)</li>
-    <li><strong>Agentes Wazuh</strong> instalados en los endpoints que quieras monitorizar</li>
-  </ul>
+  
 
   <h2>Paso 1: Habilitar archivo de eventos</h2>
 
