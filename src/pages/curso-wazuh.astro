@@ -65,14 +65,18 @@ const canonical = "https://aisecurity.es/curso-wazuh";
             💻 <strong class="text-white">100% Online</strong>
           </p>
 
-          <!-- CTA Button -->
-          <div class="flex flex-col sm:flex-row gap-4 mb-12">
-            <a
-              href="#inscripcion"
-              class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold bg-accent-600 hover:bg-accent-700 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5"
-              style="color: #000000;">
-              ¡Inscríbete Ahora! →
-            </a>
+          <!-- Availability Info (moved here) -->
+          <div style="background-color: #78ceff;" class="rounded-2xl p-6 border border-accent-200/50 mb-12">
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-base-900 text-sm font-semibold">Plazas disponibles</span>
+              <span class="text-base-900 text-2xl font-bold">11/25</span>
+            </div>
+            <div class="w-full bg-white rounded-full h-2.5 overflow-hidden shadow-inner">
+              <div class="bg-accent-600 h-full rounded-full transition-all duration-500" style="width: 44%;"></div>
+            </div>
+            <p class="text-xs text-base-900 text-center mt-4 font-medium">
+              Quedan 14 plazas
+            </p>
           </div>
 
           <!-- Key Stats -->
@@ -138,18 +142,14 @@ const canonical = "https://aisecurity.es/curso-wazuh";
               <!-- Divider -->
               <div class="w-16 h-0.5 bg-gradient-to-r from-transparent via-base-300 to-transparent mx-auto mb-8"></div>
 
-              <!-- Availability Info -->
-              <div style="background-color: #78ceff;" class="rounded-2xl p-6 border border-accent-200/50">
-                <div class="flex items-center justify-between mb-4">
-                  <span class="text-base-900 text-sm font-semibold">Plazas disponibles</span>
-                  <span class="text-base-900 text-2xl font-bold">11/25</span>
-                </div>
-                <div class="w-full bg-white rounded-full h-2.5 overflow-hidden shadow-inner">
-                  <div class="bg-accent-600 h-full rounded-full transition-all duration-500" style="width: 44%;"></div>
-                </div>
-                <p class="text-xs text-base-900 text-center mt-4 font-medium">
-                  Quedan 14 plazas
-                </p>
+              <!-- CTA Button (moved here) -->
+              <div class="flex flex-col gap-4">
+                <a
+                  href="#inscripcion"
+                  class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold bg-accent-600 hover:bg-accent-700 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5"
+                  style="color: #000000;">
+                  ¡Inscríbete Ahora! →
+                </a>
               </div>
             </div>
           </div>
