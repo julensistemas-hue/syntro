@@ -1,8 +1,8 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-const title = "Curso Intensivo de Wazuh - 7-9 Enero 2025 | AI Security";
-const description = "Aprende Wazuh desde cero en 3 días intensivos. Monitorización real de Linux, Windows, Firewalls y NAS. 100% práctico, 100% online. ¡Plazas limitadas!";
+const title = "Curso Intensivo de Wazuh - 20 Enero 2026 | AI Security";
+const description = "Aprende Wazuh desde cero en 1 día intensivo. Monitorización real de Linux, Windows, Firewalls y NAS. 100% práctico, 100% online. ¡Plazas limitadas!";
 const canonical = "https://aisecurity.es/curso-wazuh";
 ---
 
@@ -18,91 +18,112 @@ const canonical = "https://aisecurity.es/curso-wazuh";
 
     <!-- Content -->
     <div class="relative z-10 max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
-      <!-- Badge -->
-      <div class="inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm text-white rounded-full text-sm font-semibold border border-white/30 mb-6">
-        <span class="text-xl">🎓</span>
-        Curso Intensivo
-      </div>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <!-- Left Column: Course Info -->
+        <div>
+          <!-- Badge -->
+          <div class="inline-flex items-center gap-2 px-4 py-2.5 bg-white/20 backdrop-blur-sm text-white rounded-full text-sm font-semibold border border-white/30 shadow-sm mb-6">
+            <span class="text-2xl">🎓</span>
+            Curso Intensivo
+          </div>
 
-      <!-- Title -->
-      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-        Curso Práctico e Intensivo de Wazuh:<br>
-        <span class="text-blue-200">De Cero a la Monitorización Total</span>
-      </h1>
+          <!-- Title -->
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+            Curso Práctico e Intensivo de Wazuh:<br>
+            <span class="text-blue-200">De Cero a la Monitorización Total</span>
+          </h1>
 
-      <!-- Dates -->
-      <p class="text-2xl md:text-3xl font-bold text-white mb-8">
-        📅 20 de Enero 2025
-      </p>
+          <!-- Date & Details -->
+          <p class="text-xl text-white/90 mb-8 leading-relaxed">
+            📅 <strong class="text-white">20 de Enero 2026</strong><br>
+            ⏰ 09:00 - 18:00 (hora local)<br>
+            💻 <strong class="text-white">100% Online</strong>
+          </p>
 
-      <!-- Countdown -->
-      <div id="countdown" class="mb-8">
-        <p class="text-white/90 text-lg mb-4 font-semibold">El curso comienza en:</p>
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-2xl">
-          <!-- Days -->
-          <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/30">
-            <div id="days" class="text-4xl md:text-5xl font-bold text-white mb-1">00</div>
-            <div class="text-white/70 text-sm uppercase tracking-wider">Días</div>
+          <!-- CTA Button -->
+          <div class="flex flex-col sm:flex-row gap-4 mb-12">
+            <a
+              href="#inscripcion"
+              class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold bg-accent-600 hover:bg-accent-700 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5"
+              style="color: #000000;">
+              ¡Inscríbete Ahora! →
+            </a>
           </div>
-          <!-- Hours -->
-          <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/30">
-            <div id="hours" class="text-4xl md:text-5xl font-bold text-white mb-1">00</div>
-            <div class="text-white/70 text-sm uppercase tracking-wider">Horas</div>
-          </div>
-          <!-- Minutes -->
-          <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/30">
-            <div id="minutes" class="text-4xl md:text-5xl font-bold text-white mb-1">00</div>
-            <div class="text-white/70 text-sm uppercase tracking-wider">Minutos</div>
-          </div>
-          <!-- Seconds -->
-          <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/30">
-            <div id="seconds" class="text-4xl md:text-5xl font-bold text-white mb-1">00</div>
-            <div class="text-white/70 text-sm uppercase tracking-wider">Segundos</div>
-          </div>
-        </div>
-      </div>
 
-      <!-- Price -->
-      <div class="mb-8">
-        <div class="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/30">
-          <div>
-            <p class="text-white/70 text-sm uppercase tracking-wider mb-1">Precio del curso</p>
-            <p class="text-5xl md:text-6xl font-bold text-white">€100</p>
-          </div>
-          <div class="bg-green-600 text-white px-4 py-2 rounded-full text-sm font-bold border-2 border-green-400">
-            Oferta Limitada
+          <!-- Key Stats -->
+          <div class="grid grid-cols-3 gap-6 pt-8 border-t border-white/30">
+            <div>
+              <div class="text-3xl font-bold text-white mb-1">1 Día</div>
+              <div class="text-sm text-white/80 font-medium">Intensivo</div>
+            </div>
+            <div>
+              <div class="text-3xl font-bold text-white mb-1">100%</div>
+              <div class="text-sm text-white/80 font-medium">Práctico</div>
+            </div>
+            <div>
+              <div class="text-3xl font-bold text-white mb-1">✓</div>
+              <div class="text-sm text-white/80 font-medium">Certificado</div>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- CTA Button -->
-      <div class="mb-12">
-        <a
-          href="#inscripcion"
-          class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold bg-accent-600 hover:bg-accent-700 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5"
-          style="color: #000000;">
-          ¡Inscríbete Ahora! →
-        </a>
-      </div>
+        <!-- Right Column: Pricing Card -->
+        <div class="relative">
+          <div class="relative z-10 bg-base-50 rounded-2xl shadow-2xl border border-base-200 p-6 md:p-8">
+            <!-- Price Section -->
+            <div class="text-center mb-6 pb-6 border-b border-base-200">
+              <p class="text-base-600 text-sm uppercase tracking-wider mb-2 font-semibold">Precio del curso</p>
+              <div class="flex items-baseline justify-center gap-2 mb-3">
+                <p class="text-5xl md:text-6xl font-bold text-base-900">€100</p>
+              </div>
+              <div class="inline-flex items-center gap-2 bg-green-600 text-white px-4 py-2 rounded-full text-sm font-bold">
+                <span>🔥</span>
+                Oferta Limitada
+              </div>
+            </div>
 
-      <!-- Stats Row -->
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 border-t border-white/30 pt-8 mb-12">
-        <div class="text-center">
-          <div class="text-3xl md:text-4xl font-bold text-white mb-2">1 Día</div>
-          <div class="text-white/80">Intensivo</div>
-        </div>
-        <div class="text-center">
-          <div class="text-3xl md:text-4xl font-bold text-white mb-2">100%</div>
-          <div class="text-white/80">Práctico</div>
-        </div>
-        <div class="text-center">
-          <div class="text-3xl md:text-4xl font-bold text-white mb-2">✓</div>
-          <div class="text-white/80">Certificado Incluido</div>
+            <!-- Countdown -->
+            <div class="mb-6 pb-6 border-b border-base-200">
+              <p class="text-base-700 text-sm font-semibold mb-4 text-center">El curso comienza en:</p>
+              <div id="countdown" class="grid grid-cols-4 gap-3">
+                <div class="bg-gradient-to-br from-accent-600 to-blue-600 rounded-xl p-3 text-center">
+                  <div id="days" class="text-2xl md:text-3xl font-bold text-white mb-1">00</div>
+                  <div class="text-white/80 text-xs uppercase">Días</div>
+                </div>
+                <div class="bg-gradient-to-br from-accent-600 to-blue-600 rounded-xl p-3 text-center">
+                  <div id="hours" class="text-2xl md:text-3xl font-bold text-white mb-1">00</div>
+                  <div class="text-white/80 text-xs uppercase">Horas</div>
+                </div>
+                <div class="bg-gradient-to-br from-accent-600 to-blue-600 rounded-xl p-3 text-center">
+                  <div id="minutes" class="text-2xl md:text-3xl font-bold text-white mb-1">00</div>
+                  <div class="text-white/80 text-xs uppercase">Min</div>
+                </div>
+                <div class="bg-gradient-to-br from-accent-600 to-blue-600 rounded-xl p-3 text-center">
+                  <div id="seconds" class="text-2xl md:text-3xl font-bold text-white mb-1">00</div>
+                  <div class="text-white/80 text-xs uppercase">Seg</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Enrollment Counter -->
+            <div class="bg-gradient-to-br from-blue-50 to-accent-50 rounded-xl p-5 border-2 border-accent-200">
+              <div class="flex items-center justify-between mb-3">
+                <span class="text-base-700 text-sm font-semibold">Plazas ocupadas</span>
+                <span class="text-accent-600 text-2xl font-bold">11/25</span>
+              </div>
+              <div class="w-full bg-base-200 rounded-full h-3 overflow-hidden">
+                <div class="bg-gradient-to-r from-accent-600 to-blue-600 h-full rounded-full transition-all duration-500" style="width: 44%;"></div>
+              </div>
+              <p class="text-xs text-base-600 text-center mt-3 font-medium">
+                ⚡ Quedan <strong class="text-accent-600">14 plazas disponibles</strong>
+              </p>
+            </div>
+          </div>
         </div>
       </div>
 
       <!-- PC Mockup with Wazuh Screenshots -->
-      <div class="max-w-5xl mx-auto">
+      <div class="max-w-5xl mx-auto mt-16">
         <div class="relative bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 rounded-t-2xl p-3 shadow-2xl">
           <!-- Laptop Header -->
           <div class="bg-gray-800 rounded-t-xl py-2 px-4 flex items-center gap-2">
@@ -522,7 +543,7 @@ const canonical = "https://aisecurity.es/curso-wazuh";
   }
 
   // Countdown functionality
-  const targetDate = new Date('2025-01-20T09:00:00').getTime();
+  const targetDate = new Date('2026-01-20T09:00:00').getTime();
 
   function updateCountdown() {
     const now = new Date().getTime();
