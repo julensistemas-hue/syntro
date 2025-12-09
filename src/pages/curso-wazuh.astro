@@ -1,0 +1,659 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const title = "Curso Intensivo de Wazuh - 7-9 Enero 2025 | AI Security";
+const description = "Aprende Wazuh desde cero en 3 días intensivos. Monitorización real de Linux, Windows, Firewalls y NAS. 100% práctico, 100% online. ¡Plazas limitadas!";
+const canonical = "https://aisecurity.es/curso-wazuh";
+---
+
+<BaseLayout title={title} description={description} canonical={canonical}>
+  <!-- Hero Section -->
+  <section class="relative py-20 overflow-hidden">
+    <!-- Background Image -->
+    <div class="absolute inset-0">
+      <img src="/images/3409297.jpg" alt="Background" class="w-full h-full object-cover" />
+    </div>
+    <!-- Overlay Gradient -->
+    <div class="absolute inset-0 bg-gradient-to-bl from-accent-500/40 via-blue-600/50 to-accent-500/40"></div>
+
+    <!-- Content -->
+    <div class="relative z-10 max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
+      <!-- Badge -->
+      <div class="inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm text-white rounded-full text-sm font-semibold border border-white/30 mb-6">
+        <span class="text-xl">🎓</span>
+        Curso Intensivo
+      </div>
+
+      <!-- Title -->
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+        Curso Práctico e Intensivo de Wazuh:<br>
+        <span class="text-blue-200">De Cero a la Monitorización Total</span>
+      </h1>
+
+      <!-- Dates -->
+      <p class="text-2xl md:text-3xl font-bold text-white mb-8">
+        📅 20 de Enero 2025
+      </p>
+
+      <!-- Countdown -->
+      <div id="countdown" class="mb-8">
+        <p class="text-white/90 text-lg mb-4 font-semibold">El curso comienza en:</p>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-2xl">
+          <!-- Days -->
+          <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/30">
+            <div id="days" class="text-4xl md:text-5xl font-bold text-white mb-1">00</div>
+            <div class="text-white/70 text-sm uppercase tracking-wider">Días</div>
+          </div>
+          <!-- Hours -->
+          <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/30">
+            <div id="hours" class="text-4xl md:text-5xl font-bold text-white mb-1">00</div>
+            <div class="text-white/70 text-sm uppercase tracking-wider">Horas</div>
+          </div>
+          <!-- Minutes -->
+          <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/30">
+            <div id="minutes" class="text-4xl md:text-5xl font-bold text-white mb-1">00</div>
+            <div class="text-white/70 text-sm uppercase tracking-wider">Minutos</div>
+          </div>
+          <!-- Seconds -->
+          <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/30">
+            <div id="seconds" class="text-4xl md:text-5xl font-bold text-white mb-1">00</div>
+            <div class="text-white/70 text-sm uppercase tracking-wider">Segundos</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Price -->
+      <div class="mb-8">
+        <div class="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/30">
+          <div>
+            <p class="text-white/70 text-sm uppercase tracking-wider mb-1">Precio del curso</p>
+            <p class="text-5xl md:text-6xl font-bold text-white">€100</p>
+          </div>
+          <div class="bg-green-600 text-white px-4 py-2 rounded-full text-sm font-bold border-2 border-green-400">
+            Oferta Limitada
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA Button -->
+      <div class="mb-12">
+        <a
+          href="#inscripcion"
+          class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold bg-accent-600 hover:bg-accent-700 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5"
+          style="color: #000000;">
+          ¡Inscríbete Ahora! →
+        </a>
+      </div>
+
+      <!-- Stats Row -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 border-t border-white/30 pt-8 mb-12">
+        <div class="text-center">
+          <div class="text-3xl md:text-4xl font-bold text-white mb-2">1 Día</div>
+          <div class="text-white/80">Intensivo</div>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl md:text-4xl font-bold text-white mb-2">100%</div>
+          <div class="text-white/80">Práctico</div>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl md:text-4xl font-bold text-white mb-2">✓</div>
+          <div class="text-white/80">Certificado Incluido</div>
+        </div>
+      </div>
+
+      <!-- PC Mockup with Wazuh Screenshots -->
+      <div class="max-w-5xl mx-auto">
+        <div class="relative bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 rounded-t-2xl p-3 shadow-2xl">
+          <!-- Laptop Header -->
+          <div class="bg-gray-800 rounded-t-xl py-2 px-4 flex items-center gap-2">
+            <div class="flex gap-2">
+              <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+              <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+              <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+            </div>
+            <div class="flex-1 text-center text-white/60 text-sm font-medium">
+              Wazuh Dashboard - Vista previa del curso
+            </div>
+          </div>
+
+          <!-- Screenshot Carousel -->
+          <div class="bg-white rounded-b-xl overflow-hidden">
+            <!-- Tab Navigation -->
+            <div class="flex bg-gray-100 border-b border-gray-200">
+              <button
+                data-tab="tab1"
+                class="wazuh-tab active flex-1 px-4 py-3 text-sm font-medium text-blue-600 border-b-2 border-blue-600 transition-colors"
+                onclick="switchTab('tab1')">
+                Overview Dashboard
+              </button>
+              <button
+                data-tab="tab2"
+                class="wazuh-tab flex-1 px-4 py-3 text-sm font-medium text-gray-600 hover:text-blue-600 border-b-2 border-transparent transition-colors"
+                onclick="switchTab('tab2')">
+                Security Events
+              </button>
+              <button
+                data-tab="tab3"
+                class="wazuh-tab flex-1 px-4 py-3 text-sm font-medium text-gray-600 hover:text-blue-600 border-b-2 border-transparent transition-colors"
+                onclick="switchTab('tab3')">
+                Threat Detection
+              </button>
+            </div>
+
+            <!-- Tab Content -->
+            <div class="relative" style="min-height: 400px;">
+              <!-- Tab 1 -->
+              <div id="tab1" class="wazuh-content">
+                <img
+                  src="/images/wazuh-dashboard.png"
+                  alt="Wazuh Overview Dashboard"
+                  class="w-full h-auto"
+                  loading="lazy"
+                />
+              </div>
+
+              <!-- Tab 2 -->
+              <div id="tab2" class="wazuh-content hidden">
+                <img
+                  src="/images/wazuh-dashboard (1).png"
+                  alt="Wazuh Security Events"
+                  class="w-full h-auto"
+                  loading="lazy"
+                />
+              </div>
+
+              <!-- Tab 3 -->
+              <div id="tab3" class="wazuh-content hidden">
+                <img
+                  src="/images/save-the-results1.png"
+                  alt="Wazuh Threat Detection"
+                  class="w-full h-auto"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Laptop Base -->
+        <div class="h-4 bg-gray-800 rounded-b-2xl mx-auto" style="width: 80%;"></div>
+        <div class="h-2 bg-gray-700 rounded-b-3xl mx-auto" style="width: 95%;"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Practical Approach Section -->
+  <section class="py-20 bg-base-50 relative overflow-hidden">
+    <!-- Background Image -->
+    <div class="absolute inset-0 opacity-40">
+      <img src="/images/3409297.jpg" alt="Background" class="w-full h-full object-cover" />
+    </div>
+    <!-- Dark overlay -->
+    <div class="absolute inset-0 bg-base-50/70"></div>
+
+    <!-- Content -->
+    <div class="relative z-10 max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
+      <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-6">
+        Aprende Haciendo: Monitorización Real de Entornos Empresariales
+      </h2>
+
+      <p class="text-lg md:text-xl text-white/90 text-center max-w-3xl mx-auto mb-12">
+        Este no es un curso teórico. <strong class="text-white">Configurarás y monitorizarás sistemas reales</strong> desde el primer día.
+        Verás cómo detectar amenazas, analizar logs y generar alertas en entornos empresariales reales.
+      </p>
+
+      <!-- Environments Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Linux Server -->
+        <div class="bg-base-50 rounded-xl p-6 border-2 border-base-400 hover:border-accent-500 transition-all duration-300 transform hover:-translate-y-1">
+          <div class="text-6xl mb-4 text-center">🐧</div>
+          <h3 class="text-xl font-bold text-white mb-2 text-center">Servidor Linux</h3>
+          <p class="text-base-700 text-center text-sm">
+            Monitorización de logs del sistema, autenticación SSH, procesos y servicios críticos
+          </p>
+        </div>
+
+        <!-- Windows Server -->
+        <div class="bg-base-50 rounded-xl p-6 border-2 border-base-400 hover:border-accent-500 transition-all duration-300 transform hover:-translate-y-1">
+          <div class="text-6xl mb-4 text-center">🪟</div>
+          <h3 class="text-xl font-bold text-white mb-2 text-center">Servidor Windows</h3>
+          <p class="text-base-700 text-center text-sm">
+            Event Viewer, Active Directory, PowerShell, detección de amenazas en entorno Windows
+          </p>
+        </div>
+
+        <!-- Firewall -->
+        <div class="bg-base-50 rounded-xl p-6 border-2 border-base-400 hover:border-accent-500 transition-all duration-300 transform hover:-translate-y-1">
+          <div class="text-6xl mb-4 text-center">🔥</div>
+          <h3 class="text-xl font-bold text-white mb-2 text-center">Firewall / Dispositivo de Red</h3>
+          <p class="text-base-700 text-center text-sm">
+            Análisis de tráfico de red, detección de intrusiones, logs de dispositivos de seguridad
+          </p>
+        </div>
+
+        <!-- NAS -->
+        <div class="bg-base-50 rounded-xl p-6 border-2 border-base-400 hover:border-accent-500 transition-all duration-300 transform hover:-translate-y-1">
+          <div class="text-6xl mb-4 text-center">💾</div>
+          <h3 class="text-xl font-bold text-white mb-2 text-center">Dispositivo NAS</h3>
+          <p class="text-base-700 text-center text-sm">
+            Monitorización de almacenamiento, accesos a archivos, integridad de datos
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Course Content Section -->
+  <section class="py-20 relative overflow-hidden">
+    <!-- Background Image -->
+    <div class="absolute inset-0">
+      <img src="/images/3409297.jpg" alt="Background" class="w-full h-full object-cover" />
+    </div>
+    <!-- Overlay Gradient -->
+    <div class="absolute inset-0 bg-gradient-to-bl from-accent-500/10 via-blue-600/50 to-accent-500/10"></div>
+
+    <!-- Content -->
+    <div class="relative z-10 max-w-5xl mx-auto px-8 md:px-12 lg:px-24">
+      <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-12">
+        Contenido Detallado del Curso
+      </h2>
+
+      <div class="space-y-4">
+        <!-- Module 1 -->
+        <details class="group bg-base-50 rounded-xl border-2 border-base-400 hover:border-accent-500 transition-all duration-300">
+          <summary class="cursor-pointer px-6 py-5 flex items-center justify-between font-bold text-xl text-white hover:text-accent-300">
+            <span>📚 Módulo 1: Introducción y Arquitectura</span>
+            <svg class="w-6 h-6 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </summary>
+          <div class="px-6 pb-6 space-y-3 text-base-800">
+            <div class="flex items-start gap-2">
+              <span class="text-green-500 text-xl flex-shrink-0">✅</span>
+              <p><strong>¿Qué es Wazuh y por qué usarlo?</strong> - Ventajas sobre otras soluciones SIEM</p>
+            </div>
+            <div class="flex items-start gap-2">
+              <span class="text-green-500 text-xl flex-shrink-0">✅</span>
+              <p><strong>Arquitectura de componentes</strong> - Manager, Agents, Indexer y su interacción</p>
+            </div>
+            <div class="flex items-start gap-2">
+              <span class="text-green-500 text-xl flex-shrink-0">✅</span>
+              <p><strong>Casos de uso empresariales</strong> - Ejemplos reales de implementación</p>
+            </div>
+          </div>
+        </details>
+
+        <!-- Module 2 -->
+        <details class="group bg-base-50 rounded-xl border-2 border-base-400 hover:border-accent-500 transition-all duration-300">
+          <summary class="cursor-pointer px-6 py-5 flex items-center justify-between font-bold text-xl text-white hover:text-accent-300">
+            <span>⚙️ Módulo 2: Instalación y Configuración</span>
+            <svg class="w-6 h-6 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </summary>
+          <div class="px-6 pb-6 space-y-3 text-base-800">
+            <div class="flex items-start gap-2">
+              <span class="text-green-500 text-xl flex-shrink-0">✅</span>
+              <p><strong>Instalación del Wazuh Manager</strong> - Paso a paso en servidor Linux</p>
+            </div>
+            <div class="flex items-start gap-2">
+              <span class="text-green-500 text-xl flex-shrink-0">✅</span>
+              <p><strong>Despliegue de Agentes</strong> - Linux y Windows, configuración básica</p>
+            </div>
+            <div class="flex items-start gap-2">
+              <span class="text-green-500 text-xl flex-shrink-0">✅</span>
+              <p><strong>Configuración de comunicación segura</strong> - Certificados y encriptación</p>
+            </div>
+          </div>
+        </details>
+
+        <!-- Module 3 -->
+        <details class="group bg-base-50 rounded-xl border-2 border-base-400 hover:border-accent-500 transition-all duration-300">
+          <summary class="cursor-pointer px-6 py-5 flex items-center justify-between font-bold text-xl text-white hover:text-accent-300">
+            <span>🔍 Módulo 3: Monitorización de Sistemas</span>
+            <svg class="w-6 h-6 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </summary>
+          <div class="px-6 pb-6 space-y-3 text-base-800">
+            <div class="flex items-start gap-2">
+              <span class="text-green-500 text-xl flex-shrink-0">✅</span>
+              <p><strong>Monitorización de logs en tiempo real</strong> - Análisis de syslog, auth.log y más</p>
+            </div>
+            <div class="flex items-start gap-2">
+              <span class="text-green-500 text-xl flex-shrink-0">✅</span>
+              <p><strong>File Integrity Monitoring (FIM)</strong> - Detección de cambios no autorizados</p>
+            </div>
+            <div class="flex items-start gap-2">
+              <span class="text-green-500 text-xl flex-shrink-0">✅</span>
+              <p><strong>Detección de rootkits y malware</strong> - Análisis de sistema operativo</p>
+            </div>
+          </div>
+        </details>
+
+        <!-- Module 4 -->
+        <details class="group bg-base-50 rounded-xl border-2 border-base-400 hover:border-accent-500 transition-all duration-300">
+          <summary class="cursor-pointer px-6 py-5 flex items-center justify-between font-bold text-xl text-white hover:text-accent-300">
+            <span>📝 Módulo 4: Reglas, Decoders y Alertas</span>
+            <svg class="w-6 h-6 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </summary>
+          <div class="px-6 pb-6 space-y-3 text-base-800">
+            <div class="flex items-start gap-2">
+              <span class="text-green-500 text-xl flex-shrink-0">✅</span>
+              <p><strong>Estructura de reglas de Wazuh</strong> - Sintaxis, niveles de severidad, grupos</p>
+            </div>
+            <div class="flex items-start gap-2">
+              <span class="text-green-500 text-xl flex-shrink-0">✅</span>
+              <p><strong>Creación de decoders personalizados</strong> - Parseo de logs específicos</p>
+            </div>
+            <div class="flex items-start gap-2">
+              <span class="text-green-500 text-xl flex-shrink-0">✅</span>
+              <p><strong>Configuración de alertas y notificaciones</strong> - Email, Slack, webhooks</p>
+            </div>
+          </div>
+        </details>
+
+        <!-- Module 5 -->
+        <details class="group bg-base-50 rounded-xl border-2 border-base-400 hover:border-accent-500 transition-all duration-300">
+          <summary class="cursor-pointer px-6 py-5 flex items-center justify-between font-bold text-xl text-white hover:text-accent-300">
+            <span>📊 Módulo 5: Dashboard y Cumplimiento</span>
+            <svg class="w-6 h-6 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </summary>
+          <div class="px-6 pb-6 space-y-3 text-base-800">
+            <div class="flex items-start gap-2">
+              <span class="text-green-500 text-xl flex-shrink-0">✅</span>
+              <p><strong>Kibana/OpenSearch Dashboards</strong> - Navegación y personalización de interfaz</p>
+            </div>
+            <div class="flex items-start gap-2">
+              <span class="text-green-500 text-xl flex-shrink-0">✅</span>
+              <p><strong>Visualización de datos de seguridad</strong> - Gráficos, mapas, tablas dinámicas</p>
+            </div>
+            <div class="flex items-start gap-2">
+              <span class="text-green-500 text-xl flex-shrink-0">✅</span>
+              <p><strong>Cumplimiento normativo</strong> - PCI-DSS, GDPR, ENS básico y reportes</p>
+            </div>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Additional Information Section -->
+  <section class="py-20 bg-base-50 relative overflow-hidden">
+    <!-- Background Image -->
+    <div class="absolute inset-0 opacity-40">
+      <img src="/images/3409297.jpg" alt="Background" class="w-full h-full object-cover" />
+    </div>
+    <!-- Dark overlay -->
+    <div class="absolute inset-0 bg-base-50/60"></div>
+
+    <!-- Content -->
+    <div class="relative z-10 max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
+      <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-12">
+        Información del Curso
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Online Modality -->
+        <div class="bg-base-50 rounded-xl p-6 border border-base-200 hover:border-accent-400 transition-all duration-300">
+          <div class="text-5xl mb-4 text-center">💻</div>
+          <h3 class="text-xl font-bold text-white mb-3 text-center">100% Online</h3>
+          <p class="text-base-700 text-center">
+            Accede desde cualquier lugar con conexión a internet. Clases en vivo con interacción directa con el instructor.
+          </p>
+        </div>
+
+        <!-- Contact -->
+        <div class="bg-base-50 rounded-xl p-6 border border-base-200 hover:border-accent-400 transition-all duration-300">
+          <div class="text-5xl mb-4 text-center">📧</div>
+          <h3 class="text-xl font-bold text-white mb-3 text-center">¿Tienes Preguntas?</h3>
+          <p class="text-base-700 text-center mb-2">
+            Escríbenos a:
+          </p>
+          <p class="text-accent-600 font-semibold text-center">
+            info@aisecurity.es
+          </p>
+          <p class="text-base-700 text-center text-sm mt-2">
+            Responderemos en menos de 24 horas
+          </p>
+        </div>
+
+        <!-- Payment Process -->
+        <div class="bg-base-50 rounded-xl p-6 border border-base-200 hover:border-accent-400 transition-all duration-300">
+          <div class="text-5xl mb-4 text-center">💳</div>
+          <h3 class="text-xl font-bold text-white mb-3 text-center">Pago Seguro</h3>
+          <p class="text-base-700 text-center">
+            Al inscribirte recibirás por email las instrucciones detalladas para completar el pago de forma segura.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA Section -->
+  <section id="inscripcion" class="py-20 relative overflow-hidden">
+    <!-- Background Image -->
+    <div class="absolute inset-0">
+      <img src="/images/3409297.jpg" alt="Background" class="w-full h-full object-cover" />
+    </div>
+    <!-- Overlay Gradient -->
+    <div class="absolute inset-0 bg-gradient-to-bl from-accent-500/40 via-blue-600/50 to-accent-500/40"></div>
+
+    <!-- Content -->
+    <div class="relative z-10 max-w-4xl mx-auto px-8 md:px-12 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
+        ¡Empieza tu Transformación en Ciberseguridad!
+      </h2>
+      <p class="text-xl text-white/90 mb-8">
+        Plazas limitadas - Reserva tu lugar ahora
+      </p>
+
+      <!-- Inscription Form -->
+      <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/30 max-w-xl mx-auto">
+        <form id="inscription-form" class="space-y-6">
+          <div>
+            <label for="email" class="block text-white font-semibold mb-2 text-left">
+              Correo Electrónico
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              placeholder="tu@email.com"
+              class="w-full px-4 py-3 rounded-lg border-2 border-white/30 bg-white/20 text-white placeholder-white/60 focus:outline-none focus:border-accent-400 transition-colors"
+            />
+          </div>
+
+          <button
+            type="submit"
+            class="w-full px-8 py-4 text-lg font-semibold bg-accent-600 hover:bg-accent-700 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5"
+            style="color: #000000;">
+            ¡Inscríbete Ahora! →
+          </button>
+
+          <!-- Success/Error Messages -->
+          <div id="form-message" class="hidden">
+            <p id="message-text" class="text-white font-semibold"></p>
+          </div>
+        </form>
+      </div>
+
+      <!-- Small Countdown Repeat (Optional) -->
+      <div class="mt-8">
+        <p class="text-white/80 text-sm">
+          ⏰ El curso comienza en <span id="countdown-days-small" class="font-bold">--</span> días
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  // Tab switching functionality
+  function switchTab(tabId) {
+    // Hide all tabs
+    document.querySelectorAll('.wazuh-content').forEach(content => {
+      content.classList.add('hidden');
+    });
+
+    // Remove active state from all buttons
+    document.querySelectorAll('.wazuh-tab').forEach(button => {
+      button.classList.remove('text-blue-600', 'border-blue-600');
+      button.classList.add('text-gray-600', 'border-transparent');
+    });
+
+    // Show selected tab
+    const selectedTab = document.getElementById(tabId);
+    if (selectedTab) {
+      selectedTab.classList.remove('hidden');
+    }
+
+    // Add active state to clicked button
+    const activeButton = document.querySelector(`[data-tab="${tabId}"]`);
+    if (activeButton) {
+      activeButton.classList.add('text-blue-600', 'border-blue-600');
+      activeButton.classList.remove('text-gray-600', 'border-transparent');
+    }
+  }
+
+  // Countdown functionality
+  const targetDate = new Date('2025-01-20T09:00:00').getTime();
+
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const distance = targetDate - now;
+
+    if (distance < 0) {
+      // Course has started
+      const countdownElement = document.getElementById('countdown');
+      if (countdownElement) {
+        countdownElement.innerHTML = '<p class="text-2xl font-bold text-white">¡El curso ha comenzado!</p>';
+      }
+      return;
+    }
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    // Update main countdown
+    const daysEl = document.getElementById('days');
+    const hoursEl = document.getElementById('hours');
+    const minutesEl = document.getElementById('minutes');
+    const secondsEl = document.getElementById('seconds');
+
+    if (daysEl) daysEl.textContent = days.toString().padStart(2, '0');
+    if (hoursEl) hoursEl.textContent = hours.toString().padStart(2, '0');
+    if (minutesEl) minutesEl.textContent = minutes.toString().padStart(2, '0');
+    if (secondsEl) secondsEl.textContent = seconds.toString().padStart(2, '0');
+
+    // Update small countdown
+    const daysSmallEl = document.getElementById('countdown-days-small');
+    if (daysSmallEl) daysSmallEl.textContent = days.toString();
+  }
+
+  // Update countdown every second
+  setInterval(updateCountdown, 1000);
+  updateCountdown(); // Run immediately
+
+  // Form submission
+  const form = document.getElementById('inscription-form');
+  const messageDiv = document.getElementById('form-message');
+  const messageText = document.getElementById('message-text');
+
+  if (form && messageDiv && messageText) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const emailInput = document.getElementById('email') as HTMLInputElement;
+      const email = emailInput?.value;
+
+      if (!email) return;
+
+      // Show loading state
+      const submitButton = form.querySelector('button[type="submit"]');
+      if (submitButton) {
+        submitButton.textContent = 'Enviando...';
+        submitButton.setAttribute('disabled', 'true');
+      }
+
+      try {
+        const response = await fetch('/api/inscripcion-curso-wazuh', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          // Success
+          messageDiv.classList.remove('hidden');
+          messageText.textContent = '✅ ¡Inscripción confirmada! Revisa tu email para las instrucciones de pago.';
+          messageText.className = 'text-green-300 font-semibold';
+          form.reset();
+        } else {
+          // Error
+          messageDiv.classList.remove('hidden');
+          messageText.textContent = '❌ ' + (data.error || 'Error al procesar la inscripción. Inténtalo de nuevo.');
+          messageText.className = 'text-red-300 font-semibold';
+        }
+      } catch (error) {
+        // Network error
+        messageDiv.classList.remove('hidden');
+        messageText.textContent = '❌ Error de conexión. Por favor, inténtalo de nuevo.';
+        messageText.className = 'text-red-300 font-semibold';
+      } finally {
+        // Reset button
+        if (submitButton) {
+          submitButton.textContent = '¡Inscríbete Ahora! →';
+          submitButton.removeAttribute('disabled');
+        }
+      }
+    });
+  }
+
+  // Smooth scroll for CTA
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const href = this.getAttribute('href');
+      if (href) {
+        const target = document.querySelector(href);
+        target?.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+
+<style>
+  /* Custom styles for details/summary */
+  details summary::-webkit-details-marker {
+    display: none;
+  }
+
+  details summary {
+    list-style: none;
+  }
+
+  details[open] {
+    border-color: #0065ff;
+  }
+
+  /* Input field styling */
+  input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  input:focus {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+</style>
