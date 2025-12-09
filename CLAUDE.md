@@ -118,7 +118,9 @@ Cada servicio incluye: análisis previo → desarrollo personalizado → formaci
 - `/servicios/atencion-llamadas` - Demo llamadas IA
 - `/servicios/automatizacion` - Dashboard ahorros
 - `/wazuh` - **Página dedicada Wazuh** (alta prioridad para contenido YouTube)
+- `/curso-wazuh` - **Landing page curso intensivo Wazuh** (20 Enero 2025, €100)
 - `/reunion` - Formulario solicitud consulta gratuita
+- `/blog` - Blog técnico con artículos sobre IA, Wazuh y sistemas
 - `/faq`, `/terms`, `/privacy` - Páginas legales/info
 
 ## Development Commands
@@ -170,7 +172,8 @@ This is an Astro-based SaaS/Startup template using Tailwind CSS v4:
 - **Tailwind CSS v4** (Alpha) - Using new CSS-only approach without config file
 - **pnpm** - Package manager (required, see .npmrc shamefully-hoist setting)
 - **TypeScript** - Type checking enabled via tsconfig.json
-- **Resend** - Email service for form submissions (resend.com)
+- **Resend** - Email service for meeting request form (resend.com)
+- **Nodemailer** - SMTP email library for course inscriptions via EmailRelay
 
 ### Directory Structure
 ```
@@ -184,8 +187,10 @@ src/
 │   └── meeting/      - Meeting request form component (MeetingRequest.astro)
 ├── layouts/          - Page layout templates
 │   └── utilities/    - Layout helper components (OptimizedImage)
-├── pages/            - File-based routing (index, login, signup, etc.)
-│   └── api/          - API routes (send-meeting-request.ts)
+├── pages/            - File-based routing (index, curso-wazuh, blog, etc.)
+│   └── api/          - API routes
+│       ├── send-meeting-request.ts       - Meeting form (Resend)
+│       └── inscripcion-curso-wazuh.ts    - Course enrollment (EmailRelay SMTP)
 └── styles/global.css - Main stylesheet with Tailwind v4 configuration
 ```
 
@@ -226,54 +231,90 @@ This project is deployed on Vercel with automatic deployments from GitHub:
    - Configure in Vercel: Settings → Environment Variables
    - Must redeploy after adding environment variables
 
-## Email System (Meeting Request Form)
+## Email System
 
-This project includes a meeting request form that sends emails using Resend:
+This project has **two email systems** configured:
 
-### Configuration Files
+### 1. Meeting Request Form (Resend - Legacy)
+Used for: `/reunion` - Meeting request and consultation scheduling
+
+**Configuration Files:**
 - **Form Component**: `src/components/meeting/MeetingRequest.astro`
 - **API Route**: `src/pages/api/send-meeting-request.ts`
 - **Page**: `/reunion` - Meeting request page
 - **Documentation**: `SETUP_EMAIL.md` - Complete setup instructions
 
-### Environment Setup
-1. Create a `.env` file in the root (already exists):
-   ```env
-   RESEND_API_KEY=re_your_api_key_here
-   ```
-2. Get API key from [https://resend.com](https://resend.com) (free 100 emails/month)
-3. For production: Add `RESEND_API_KEY` to Vercel environment variables
-
-### Form Features
-- **Required Fields**: Name + (Email OR Phone)
-- **Optional Fields**: Company, service interest, company size, message, budget
-- **Validations**: Client-side validation, at least one contact method required
-- **Email Delivery**: Sends to `julen.sistemas@gmail.com`
-- **Email Format**: Professional HTML template with company branding
-- **User Feedback**: Success/error messages, loading states
-
-### Email Template
-- Styled HTML email with gradient header
-- All form fields included in structured format
-- Reply-to set to user's email if provided
-- Timestamp in Europe/Madrid timezone
-- Fallback plain text version
-
-### Testing
-- Local: Start dev server (`pnpm dev`) and visit http://localhost:4322/reunion
-- Production: Ensure `RESEND_API_KEY` is set in Vercel environment variables
-
-### Changing Recipients
-To change where emails are sent, edit `src/pages/api/send-meeting-request.ts`:
-```typescript
-to: ['julen.sistemas@gmail.com'], // Change this line
+**Environment Variables:**
+```env
+RESEND_API_KEY=re_your_api_key_here
 ```
 
-### Custom Domain (Optional)
-By default uses `onboarding@resend.dev` as sender. To use custom domain:
-1. Add domain in Resend dashboard
-2. Configure DNS records (SPF, DKIM, DMARC)
-3. Update `from:` field in API route to `'AI Security <noreply@yourdomain.com>'`
+**Features:**
+- Required Fields: Name + (Email OR Phone)
+- Optional Fields: Company, service interest, company size, message, budget
+- Email Delivery: Sends to `julen.sistemas@gmail.com`
+- Google Calendar integration for meeting scheduling
+- Professional HTML template with company branding
+
+### 2. Wazuh Course Inscription (EmailRelay SMTP - Production)
+Used for: `/curso-wazuh` - Wazuh intensive course enrollment
+
+**Configuration Files:**
+- **Form Component**: Inline form in `src/pages/curso-wazuh.astro`
+- **API Route**: `src/pages/api/inscripcion-curso-wazuh.ts`
+- **Email Service**: EmailRelay SMTP (info@aisecurity.es)
+
+**Environment Variables (Required in Vercel):**
+```env
+SMTP_HOST=smtp1.s.ipzmarketing.com
+SMTP_PORT=587
+SMTP_USER=rbaknxqyoxkj
+SMTP_PASSWORD=cpexfT8y5EjXw2ez
+SMTP_FROM_EMAIL=info@aisecurity.es
+SMTP_FROM_NAME=AI Security
+```
+
+**Features:**
+- Single required field: Email
+- Dual email system:
+  - **User confirmation email**: Payment instructions (Bank transfer + Bizum)
+  - **Admin notification**: New inscription alert to info@aisecurity.es
+- Payment details included in email:
+  - Bank transfer: IBAN ES52 0081 1389 1200 0114 0773 (Julian Vergara Díaz)
+  - Bizum: 722 67 48 74
+- Uses `nodemailer` library for SMTP transport
+- Professional HTML + plain text email templates
+
+**Implementation:**
+```typescript
+import nodemailer from 'nodemailer';
+
+const transporter = nodemailer.createTransport({
+  host: import.meta.env.SMTP_HOST,
+  port: parseInt(import.meta.env.SMTP_PORT),
+  secure: false,
+  auth: {
+    user: import.meta.env.SMTP_USER,
+    pass: import.meta.env.SMTP_PASSWORD,
+  },
+});
+```
+
+### Vercel Environment Variables Setup
+
+**CRITICAL**: Both email systems require environment variables configured in Vercel:
+
+1. Go to Vercel Dashboard → Project → Settings → Environment Variables
+2. Add the following variables:
+   - `RESEND_API_KEY` (for meeting requests)
+   - `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASSWORD` (for course inscriptions)
+   - `SMTP_FROM_EMAIL`, `SMTP_FROM_NAME`
+3. Redeploy after adding variables
+
+### Testing
+- **Meeting form**: `pnpm dev` → http://localhost:4321/reunion
+- **Course inscription**: `pnpm dev` → http://localhost:4321/curso-wazuh
+- Production: Ensure all environment variables are set in Vercel
 
 ## UI/UX Design Rules - CRITICAL
 
