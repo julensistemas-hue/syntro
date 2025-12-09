@@ -67,56 +67,65 @@ const canonical = "https://aisecurity.es/curso-wazuh";
           </div>
         </div>
 
-        <!-- Right Column: Pricing Card -->
+        <!-- Right Column: Course Details Card -->
         <div class="relative">
-          <div class="relative z-10 bg-base-50 rounded-2xl shadow-2xl border border-base-200 p-6 md:p-8">
-            <!-- Price Section -->
-            <div class="text-center mb-6 pb-6 border-b border-base-200">
-              <p class="text-base-600 text-sm uppercase tracking-wider mb-2 font-semibold">Precio del curso</p>
-              <div class="flex items-baseline justify-center gap-2 mb-3">
-                <p class="text-5xl md:text-6xl font-bold text-base-900">€100</p>
-              </div>
-              <div class="inline-flex items-center gap-2 bg-green-600 text-white px-4 py-2 rounded-full text-sm font-bold">
-                <span>🔥</span>
-                Oferta Limitada
-              </div>
-            </div>
+          <!-- Elegant Card with Subtle Gradient -->
+          <div class="relative bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl overflow-hidden border border-white/50">
+            <!-- Subtle Top Accent -->
+            <div class="h-1.5 bg-gradient-to-r from-accent-600 via-blue-600 to-accent-600"></div>
 
-            <!-- Countdown -->
-            <div class="mb-6 pb-6 border-b border-base-200">
-              <p class="text-base-700 text-sm font-semibold mb-4 text-center">El curso comienza en:</p>
-              <div id="countdown" class="grid grid-cols-4 gap-3">
-                <div class="bg-gradient-to-br from-accent-600 to-blue-600 rounded-xl p-3 text-center">
-                  <div id="days" class="text-2xl md:text-3xl font-bold text-white mb-1">00</div>
-                  <div class="text-white/80 text-xs uppercase">Días</div>
+            <div class="p-8 md:p-10">
+              <!-- Price Section -->
+              <div class="text-center mb-8">
+                <p class="text-base-600 text-sm uppercase tracking-widest mb-3 font-semibold">Inversión</p>
+                <div class="mb-4">
+                  <span class="text-6xl md:text-7xl font-bold text-base-900">€100</span>
                 </div>
-                <div class="bg-gradient-to-br from-accent-600 to-blue-600 rounded-xl p-3 text-center">
-                  <div id="hours" class="text-2xl md:text-3xl font-bold text-white mb-1">00</div>
-                  <div class="text-white/80 text-xs uppercase">Horas</div>
-                </div>
-                <div class="bg-gradient-to-br from-accent-600 to-blue-600 rounded-xl p-3 text-center">
-                  <div id="minutes" class="text-2xl md:text-3xl font-bold text-white mb-1">00</div>
-                  <div class="text-white/80 text-xs uppercase">Min</div>
-                </div>
-                <div class="bg-gradient-to-br from-accent-600 to-blue-600 rounded-xl p-3 text-center">
-                  <div id="seconds" class="text-2xl md:text-3xl font-bold text-white mb-1">00</div>
-                  <div class="text-white/80 text-xs uppercase">Seg</div>
-                </div>
+                <p class="text-base-600 text-sm">Incluye material, certificado y soporte</p>
               </div>
-            </div>
 
-            <!-- Enrollment Counter -->
-            <div class="bg-gradient-to-br from-blue-50 to-accent-50 rounded-xl p-5 border-2 border-accent-200">
-              <div class="flex items-center justify-between mb-3">
-                <span class="text-base-700 text-sm font-semibold">Plazas ocupadas</span>
-                <span class="text-accent-600 text-2xl font-bold">11/25</span>
+              <!-- Divider -->
+              <div class="w-16 h-0.5 bg-gradient-to-r from-transparent via-base-300 to-transparent mx-auto mb-8"></div>
+
+              <!-- Countdown Section -->
+              <div class="mb-8">
+                <p class="text-base-700 text-sm font-semibold mb-5 text-center uppercase tracking-wider">Comienza en</p>
+                <div id="countdown" class="grid grid-cols-4 gap-3">
+                  <div class="bg-gradient-to-br from-base-50 to-base-100 rounded-2xl p-4 text-center border border-base-200 shadow-sm">
+                    <div id="days" class="text-3xl md:text-4xl font-bold text-accent-600 mb-1">00</div>
+                    <div class="text-base-600 text-xs uppercase tracking-wider font-medium">Días</div>
+                  </div>
+                  <div class="bg-gradient-to-br from-base-50 to-base-100 rounded-2xl p-4 text-center border border-base-200 shadow-sm">
+                    <div id="hours" class="text-3xl md:text-4xl font-bold text-accent-600 mb-1">00</div>
+                    <div class="text-base-600 text-xs uppercase tracking-wider font-medium">Hrs</div>
+                  </div>
+                  <div class="bg-gradient-to-br from-base-50 to-base-100 rounded-2xl p-4 text-center border border-base-200 shadow-sm">
+                    <div id="minutes" class="text-3xl md:text-4xl font-bold text-accent-600 mb-1">00</div>
+                    <div class="text-base-600 text-xs uppercase tracking-wider font-medium">Min</div>
+                  </div>
+                  <div class="bg-gradient-to-br from-base-50 to-base-100 rounded-2xl p-4 text-center border border-base-200 shadow-sm">
+                    <div id="seconds" class="text-3xl md:text-4xl font-bold text-accent-600 mb-1">00</div>
+                    <div class="text-base-600 text-xs uppercase tracking-wider font-medium">Seg</div>
+                  </div>
+                </div>
               </div>
-              <div class="w-full bg-base-200 rounded-full h-3 overflow-hidden">
-                <div class="bg-gradient-to-r from-accent-600 to-blue-600 h-full rounded-full transition-all duration-500" style="width: 44%;"></div>
+
+              <!-- Divider -->
+              <div class="w-16 h-0.5 bg-gradient-to-r from-transparent via-base-300 to-transparent mx-auto mb-8"></div>
+
+              <!-- Availability Info -->
+              <div class="bg-gradient-to-br from-blue-50 via-accent-50 to-blue-50 rounded-2xl p-6 border border-accent-200/50">
+                <div class="flex items-center justify-between mb-4">
+                  <span class="text-base-700 text-sm font-semibold">Plazas disponibles</span>
+                  <span class="text-accent-600 text-2xl font-bold">11/25</span>
+                </div>
+                <div class="w-full bg-white rounded-full h-2.5 overflow-hidden shadow-inner">
+                  <div class="bg-gradient-to-r from-accent-600 via-blue-600 to-accent-600 h-full rounded-full transition-all duration-500" style="width: 44%;"></div>
+                </div>
+                <p class="text-xs text-base-600 text-center mt-4 font-medium">
+                  Quedan 14 plazas
+                </p>
               </div>
-              <p class="text-xs text-base-600 text-center mt-3 font-medium">
-                ⚡ Quedan <strong class="text-accent-600">14 plazas disponibles</strong>
-              </p>
             </div>
           </div>
         </div>
