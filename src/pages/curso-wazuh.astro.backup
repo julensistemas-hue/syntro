@@ -21,44 +21,36 @@ const canonical = "https://aisecurity.es/curso-wazuh";
       <!-- Title Section (Centered) -->
       <div class="text-center mb-12">
         <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white">
-          Curso Práctico de Wazuh:<br>
+          Curso Práctico de Wazuh<br>
           <span class="text-blue-200">Monitorización Total de todos tus equipos</span>
         </h2>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
         <!-- Left Column: Course Info -->
-        <div class="w-full">
+        <div>
           <!-- Course Description -->
-
+        
           <!-- What You'll Learn -->
           <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 mb-8 border border-white/20">
             <h3 class="text-xl font-bold text-white mb-4">📚 Qué aprenderás</h3>
             <ul class="space-y-3 text-white/90">
               <li class="flex items-start gap-3">
                 <span class="text-white mt-1">✓</span>
-                <span>1. Instalación y configuración de Wazuh Manager</span>
+                <span>Instalación y configuración de Wazuh Manager</span>
               </li>
 
               <li class="flex items-start gap-3">
                 <span class="text-white mt-1">✓</span>
-                <span>2. Monitorización de logs y detección de amenazas</span>
+                <span>Monitorización de logs y detección de amenazas</span>
               </li>
               <li class="flex items-start gap-3">
                 <span class="text-white mt-1">✓</span>
-                <span>3. Creación de reglas y alertas personalizadas</span>
+                <span>Creación de reglas y alertas personalizadas</span>
               </li>
               <li class="flex items-start gap-3">
                 <span class="text-white mt-1">✓</span>
-                <span>4. Dashboards de seguridad y cumplimiento normativo</span>
-              </li>
-                <li class="flex items-start gap-3">
-                <span class="text-white mt-1">✓</span>
-                <span>5. Integraciones con Office365</span>
-              </li>
-                <li class="flex items-start gap-3">
-                <span class="text-white mt-1">✓</span>
-                <span>6. Respuesta automática ante incidentes</span>
+                <span>Dashboards de seguridad y cumplimiento normativo</span>
               </li>
             </ul>
           </div>
@@ -70,128 +62,106 @@ const canonical = "https://aisecurity.es/curso-wazuh";
               <span class="text-white text-2xl font-bold">11/25</span>
             </div>
             <div class="w-full bg-white/30 rounded-full h-2.5 overflow-hidden shadow-inner">
-              <div class="h-full rounded-full transition-all duration-500" style="background-color: #fdfdfd; width: 44%;"></div>
+              <div class="bg-accent-600 h-full rounded-full transition-all duration-500" style="width: 44%;"></div>
             </div>
             <p class="text-sm text-white/90 text-center mt-3 font-medium">
               Quedan 14 plazas
             </p>
           </div>
 
-          <!-- Key Stats -->
-          <div class="grid grid-cols-3 gap-4">
-            <div class="text-center">
-              <div class="text-3xl font-bold text-white mb-1">3 Días</div>
-              <div class="text-sm text-white/80 font-medium">Intensivo</div>
-            </div>
-            <div class="text-center">
-              <div class="text-3xl font-bold text-white mb-1">12h</div>
-              <div class="text-sm text-white/80 font-medium">Formación</div>
-            </div>
-            <div class="text-center">
-              <div class="text-3xl font-bold text-white mb-1">✓</div>
-              <div class="text-sm text-white/80 font-medium">Online</div>
-            </div>
-          </div>
-
         </div>
 
-        <!-- Right Column: Price Box -->
-        <div class="w-full">
-          <!-- Dashboard Style Card -->
-          <div class="relative rounded-2xl shadow-large overflow-hidden border-2" style="background-color: #1F2937; border-color: #6366F1;">
-            <!-- Top Header Bar -->
-            <div class="flex items-center gap-2 p-4 border-b" style="border-color: #374151;">
-              <div class="flex gap-1.5">
-                <div class="w-3 h-3 bg-red-400 rounded-full"></div>
-                <div class="w-3 h-3 bg-yellow-400 rounded-full"></div>
-                <div class="w-3 h-3 bg-green-400 rounded-full"></div>
-              </div>
-              <span  class="text-sm font-semibold text-white ml-2">Curso Wazuh - Inscripción</span>
-            </div>
+        <!-- Centered Price Box -->
+        <div class="max-w-2xl mx-auto mb-12">
+          <!-- Elegant Card with Subtle Gradient -->
+          <div style="background-color: #1e2939;" class="relative bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl overflow-hidden border border-white/50">
+            <!-- Subtle Top Accent -->
+            <div style="background-color: white;" class="h-1.5 "></div>
 
-            <div class="p-6 md:p-8">
+            <div class="p-8 md:p-10">
               <!-- Price Section -->
-              <div class="text-center mb-6 p-4 rounded-xl border-2" style="background-color: #374151; border-color: #8B5CF6;">
-                <p class="text-gray-300 text-sm uppercase tracking-wider mb-2 font-semibold">PRECIO DEL CURSO</p>
-                <div class="mb-2">
-                  <span class="text-5xl md:text-6xl font-extrabold text-white">€100</span>
+              <div class="text-center mb-8">
+                <p style="bold" class="text-base-600 text-xl uppercase tracking-widest mb-3 font-bold max-w-none">PRECIO</p>
+                <div class="mb-4">
+                  <span style="color: #78ceff ;" class="text-6xl md:text-7xl font-bold text-base-900">€100</span>
                 </div>
-                <p class="text-gray-300 text-xs">Incluye material y soporte</p>
+                <p class="text-base-600 text-sm max-w-none">Incluye material, certificado y soporte</p>
               </div>
+
+              <!-- Divider -->
+              <div class="w-16 h-0.5 bg-gradient-to-r from-transparent via-base-300 to-transparent mx-auto mb-8"></div>
 
               <!-- Countdown Section -->
-              <div class="mb-6">
-                <p class="text-white text-base font-bold mb-4 text-center uppercase tracking-wider">El curso comienza en</p>
-                <div id="countdown" class="grid grid-cols-4 gap-2">
-                  <div class="rounded-lg p-3 text-center border-2 shadow-sm" style="background-color: #374151; border-color: #6366F1;">
-                    <div id="days" class="text-2xl md:text-3xl font-bold text-white mb-1">00</div>
-                    <div class="text-gray-300 text-xs uppercase tracking-wider font-medium">Días</div>
+              <div class="mb-8">
+                <p class="text-base-700 text-xl font-bold mb-5 text-center uppercase tracking-wider">Comienza en</p>
+                <div id="countdown" class="grid grid-cols-4 gap-3">
+                  <div class="bg-gradient-to-br from-base-50 to-base-100 rounded-2xl p-4 text-center border border-base-200 shadow-sm">
+                    <div id="days" class="text-3xl md:text-4xl font-bold text-accent-600 mb-1">00</div>
+                    <div class="text-base-600 text-xs uppercase tracking-wider font-medium">Días</div>
                   </div>
-                  <div class="rounded-lg p-3 text-center border-2 shadow-sm" style="background-color: #374151; border-color: #6366F1;">
-                    <div id="hours" class="text-2xl md:text-3xl font-bold text-white mb-1">00</div>
-                    <div class="text-gray-300 text-xs uppercase tracking-wider font-medium">Hrs</div>
+                  <div class="bg-gradient-to-br from-base-50 to-base-100 rounded-2xl p-4 text-center border border-base-200 shadow-sm">
+                    <div id="hours" class="text-3xl md:text-4xl font-bold text-accent-600 mb-1">00</div>
+                    <div class="text-base-600 text-xs uppercase tracking-wider font-medium">Hrs</div>
                   </div>
-                  <div class="rounded-lg p-3 text-center border-2 shadow-sm" style="background-color: #374151; border-color: #6366F1;">
-                    <div id="minutes" class="text-2xl md:text-3xl font-bold text-white mb-1">00</div>
-                    <div class="text-gray-300 text-xs uppercase tracking-wider font-medium">Min</div>
+                  <div class="bg-gradient-to-br from-base-50 to-base-100 rounded-2xl p-4 text-center border border-base-200 shadow-sm">
+                    <div id="minutes" class="text-3xl md:text-4xl font-bold text-accent-600 mb-1">00</div>
+                    <div class="text-base-600 text-xs uppercase tracking-wider font-medium">Min</div>
                   </div>
-                  <div class="rounded-lg p-3 text-center border-2 shadow-sm" style="background-color: #374151; border-color: #6366F1;">
-                    <div id="seconds" class="text-2xl md:text-3xl font-bold text-white mb-1">00</div>
-                    <div class="text-gray-300 text-xs uppercase tracking-wider font-medium">Seg</div>
+                  <div class="bg-gradient-to-br from-base-50 to-base-100 rounded-2xl p-4 text-center border border-base-200 shadow-sm">
+                    <div id="seconds" class="text-3xl md:text-4xl font-bold text-accent-600 mb-1">00</div>
+                    <div class="text-base-600 text-xs uppercase tracking-wider font-medium">Seg</div>
                   </div>
                 </div>
               </div>
 
+              <!-- Divider -->
+              <div class="w-16 h-0.5 bg-gradient-to-r from-transparent via-base-300 to-transparent mx-auto mb-8"></div>
+
               <!-- Date & Details -->
-              <div class="text-center mb-6 p-4 rounded-lg border-l-4" style="background-color: #374151; border-color: #8B5CF6;">
-                <p class="text-white text-sm font-bold mb-1">
-                  📅 20, 21 y 22 de Enero 2026
+              <div class="text-center mb-8 space-y-2">
+                <p class="text-white text-base">
+                  📅 <strong>20, 21 y 22 de Enero 2026</strong> (3 días)
                 </p>
-                <p class="text-gray-300 text-xs">
-                  ⏰ 12 horas totales de formación (3 días intensivos)
+                <p class="text-white/90 text-sm">
+                  ⏰ 12 horas totales de formación
                 </p>
               </div>
 
+              <!-- Divider -->
+              <div class="w-16 h-0.5 bg-gradient-to-r from-transparent via-base-300 to-transparent mx-auto mb-8"></div>
+
               <!-- CTA Button -->
-              <div class="flex flex-col gap-3">
+              <div class="flex flex-col gap-4">
                 <a
-                  style="color: white;"
                   href="#inscripcion"
-                  class="inline-flex items-center justify-center px-6 py-4 text-base font-bold bg-gradient-to-br from-accent-600 to-blue-600 hover:from-accent-700 hover:to-blue-700 rounded-xl text-white shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5">
+                  class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold bg-accent-600 hover:bg-accent-700 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5"
+                  style="color: #000000;">
                   ¡Inscríbete Ahora! →
                 </a>
               </div>
             </div>
           </div>
         </div>
+
+        <!-- Key Stats (Below Box) -->
+        <div class="grid grid-cols-3 gap-6 max-w-2xl mx-auto">
+          <div class="text-center">
+            <div class="text-3xl font-bold text-white mb-1">3 Días</div>
+            <div class="text-sm text-white/80 font-medium">Intensivo</div>
+          </div>
+          <div class="text-center">
+            <div class="text-3xl font-bold text-white mb-1">12h</div>
+            <div class="text-sm text-white/80 font-medium">Formación</div>
+          </div>
+          <div class="text-center">
+            <div class="text-3xl font-bold text-white mb-1">✓</div>
+            <div class="text-sm text-white/80 font-medium">Online</div>
+          </div>
+        </div>
       </div>
 
       <!-- PC Mockup with Wazuh Screenshots -->
-     
-    </div>
-  </section>
-
-  <!-- Practical Approach Section -->
-  <section class="py-20 bg-base-50 relative overflow-hidden">
-    <!-- Background Image -->
-    <div class="absolute inset-0 opacity-40">
-      <img src="/images/3409297.jpg" alt="Background" class="w-full h-full object-cover" />
-    </div>
-    <!-- Dark overlay -->
-    <div class="absolute inset-0 bg-base-50/70"></div>
-
-    <!-- Content -->
-    <div class="relative z-10 max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
-      <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-6">
-        Aprende Haciendo: Monitorización Real de Entornos Empresariales
-      </h2>
-
-      <p class="text-lg md:text-xl text-white/90 text-center max-w-3xl mx-auto mb-12">
-        Este no es un curso teórico. <strong class="text-white">Configurarás y monitorizarás sistemas reales</strong> desde el primer día.
-        Verás cómo detectar amenazas, analizar logs y generar alertas en entornos empresariales reales.
-      </p>
-
-       <div class="max-w-5xl mx-auto mt-16">
+      <div class="max-w-5xl mx-auto mt-16">
         <div class="relative bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 rounded-t-2xl p-3 shadow-2xl">
           <!-- Laptop Header -->
           <div class="bg-gray-800 rounded-t-xl py-2 px-4 flex items-center gap-2">
@@ -201,7 +171,7 @@ const canonical = "https://aisecurity.es/curso-wazuh";
               <div class="w-3 h-3 bg-green-500 rounded-full"></div>
             </div>
             <div class="flex-1 text-center text-white/60 text-sm font-medium">
-              Wazuh Dashboard - 
+              Wazuh Dashboard - Vista previa del curso
             </div>
           </div>
 
@@ -268,10 +238,31 @@ const canonical = "https://aisecurity.es/curso-wazuh";
         <div class="h-4 bg-gray-800 rounded-b-2xl mx-auto" style="width: 80%;"></div>
         <div class="h-2 bg-gray-700 rounded-b-3xl mx-auto" style="width: 95%;"></div>
       </div>
+    </div>
+  </section>
 
+  <!-- Practical Approach Section -->
+  <section class="py-20 bg-base-50 relative overflow-hidden">
+    <!-- Background Image -->
+    <div class="absolute inset-0 opacity-40">
+      <img src="/images/3409297.jpg" alt="Background" class="w-full h-full object-cover" />
+    </div>
+    <!-- Dark overlay -->
+    <div class="absolute inset-0 bg-base-50/70"></div>
+
+    <!-- Content -->
+    <div class="relative z-10 max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
+      <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-6">
+        Aprende Haciendo: Monitorización Real de Entornos Empresariales
+      </h2>
+
+      <p class="text-lg md:text-xl text-white/90 text-center max-w-3xl mx-auto mb-12">
+        Este no es un curso teórico. <strong class="text-white">Configurarás y monitorizarás sistemas reales</strong> desde el primer día.
+        Verás cómo detectar amenazas, analizar logs y generar alertas en entornos empresariales reales.
+      </p>
 
       <!-- Environments Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-16">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <!-- Linux Server -->
         <div class="bg-base-50 rounded-xl p-6 border-2 border-base-400 hover:border-accent-500 transition-all duration-300 transform hover:-translate-y-1">
           <div class="text-6xl mb-4 text-center">🐧</div>
@@ -337,15 +328,15 @@ const canonical = "https://aisecurity.es/curso-wazuh";
           </summary>
           <div class="px-6 pb-6 space-y-3 text-base-800">
             <div class="flex items-start gap-2">
-              <span class="text-white text-base font-bold flex-shrink-0 min-w-[2rem]">1.1</span>
+              <span class="text-green-500 text-xl flex-shrink-0">✅</span>
               <p><strong>¿Qué es Wazuh y por qué usarlo?</strong> - Ventajas sobre otras soluciones SIEM</p>
             </div>
             <div class="flex items-start gap-2">
-              <span class="text-white text-base font-bold flex-shrink-0 min-w-[2rem]">1.2</span>
+              <span class="text-green-500 text-xl flex-shrink-0">✅</span>
               <p><strong>Arquitectura de componentes</strong> - Manager, Agents, Indexer y su interacción</p>
             </div>
             <div class="flex items-start gap-2">
-              <span class="text-white text-base font-bold flex-shrink-0 min-w-[2rem]">1.3</span>
+              <span class="text-green-500 text-xl flex-shrink-0">✅</span>
               <p><strong>Casos de uso empresariales</strong> - Ejemplos reales de implementación</p>
             </div>
           </div>
@@ -361,15 +352,15 @@ const canonical = "https://aisecurity.es/curso-wazuh";
           </summary>
           <div class="px-6 pb-6 space-y-3 text-base-800">
             <div class="flex items-start gap-2">
-              <span class="text-white text-base font-bold flex-shrink-0 min-w-[2rem]">2.1</span>
+              <span class="text-green-500 text-xl flex-shrink-0">✅</span>
               <p><strong>Instalación del Wazuh Manager</strong> - Paso a paso en servidor Linux</p>
             </div>
             <div class="flex items-start gap-2">
-              <span class="text-white text-base font-bold flex-shrink-0 min-w-[2rem]">2.2</span>
+              <span class="text-green-500 text-xl flex-shrink-0">✅</span>
               <p><strong>Despliegue de Agentes</strong> - Linux y Windows, configuración básica</p>
             </div>
             <div class="flex items-start gap-2">
-              <span class="text-white text-base font-bold flex-shrink-0 min-w-[2rem]">2.3</span>
+              <span class="text-green-500 text-xl flex-shrink-0">✅</span>
               <p><strong>Configuración de comunicación segura</strong> - Certificados y encriptación</p>
             </div>
           </div>
@@ -385,15 +376,15 @@ const canonical = "https://aisecurity.es/curso-wazuh";
           </summary>
           <div class="px-6 pb-6 space-y-3 text-base-800">
             <div class="flex items-start gap-2">
-              <span class="text-white text-base font-bold flex-shrink-0 min-w-[2rem]">3.1</span>
+              <span class="text-green-500 text-xl flex-shrink-0">✅</span>
               <p><strong>Monitorización de logs en tiempo real</strong> - Análisis de syslog, auth.log y más</p>
             </div>
             <div class="flex items-start gap-2">
-              <span class="text-white text-base font-bold flex-shrink-0 min-w-[2rem]">3.2</span>
+              <span class="text-green-500 text-xl flex-shrink-0">✅</span>
               <p><strong>File Integrity Monitoring (FIM)</strong> - Detección de cambios no autorizados</p>
             </div>
             <div class="flex items-start gap-2">
-              <span class="text-white text-base font-bold flex-shrink-0 min-w-[2rem]">3.3</span>
+              <span class="text-green-500 text-xl flex-shrink-0">✅</span>
               <p><strong>Detección de rootkits y malware</strong> - Análisis de sistema operativo</p>
             </div>
           </div>
@@ -409,15 +400,15 @@ const canonical = "https://aisecurity.es/curso-wazuh";
           </summary>
           <div class="px-6 pb-6 space-y-3 text-base-800">
             <div class="flex items-start gap-2">
-              <span class="text-white text-base font-bold flex-shrink-0 min-w-[2rem]">4.1</span>
+              <span class="text-green-500 text-xl flex-shrink-0">✅</span>
               <p><strong>Estructura de reglas de Wazuh</strong> - Sintaxis, niveles de severidad, grupos</p>
             </div>
             <div class="flex items-start gap-2">
-              <span class="text-white text-base font-bold flex-shrink-0 min-w-[2rem]">4.2</span>
+              <span class="text-green-500 text-xl flex-shrink-0">✅</span>
               <p><strong>Creación de decoders personalizados</strong> - Parseo de logs específicos</p>
             </div>
             <div class="flex items-start gap-2">
-              <span class="text-white text-base font-bold flex-shrink-0 min-w-[2rem]">4.3</span>
+              <span class="text-green-500 text-xl flex-shrink-0">✅</span>
               <p><strong>Configuración de alertas y notificaciones</strong> - Email, Slack, webhooks</p>
             </div>
           </div>
@@ -433,15 +424,15 @@ const canonical = "https://aisecurity.es/curso-wazuh";
           </summary>
           <div class="px-6 pb-6 space-y-3 text-base-800">
             <div class="flex items-start gap-2">
-              <span class="text-white text-base font-bold flex-shrink-0 min-w-[2rem]">5.1</span>
+              <span class="text-green-500 text-xl flex-shrink-0">✅</span>
               <p><strong>Kibana/OpenSearch Dashboards</strong> - Navegación y personalización de interfaz</p>
             </div>
             <div class="flex items-start gap-2">
-              <span class="text-white text-base font-bold flex-shrink-0 min-w-[2rem]">5.2</span>
+              <span class="text-green-500 text-xl flex-shrink-0">✅</span>
               <p><strong>Visualización de datos de seguridad</strong> - Gráficos, mapas, tablas dinámicas</p>
             </div>
             <div class="flex items-start gap-2">
-              <span class="text-white text-base font-bold flex-shrink-0 min-w-[2rem]">5.3</span>
+              <span class="text-green-500 text-xl flex-shrink-0">✅</span>
               <p><strong>Cumplimiento normativo</strong> - PCI-DSS, GDPR, ENS básico y reportes</p>
             </div>
           </div>
@@ -552,17 +543,18 @@ const canonical = "https://aisecurity.es/curso-wazuh";
       </div>
 
       <!-- Small Countdown Repeat (Optional) -->
-      <div class="mt-8 text-center">
+      <div class="mt-8">
         <p class="text-white/80 text-sm">
+          ⏰ El curso comienza en <span id="countdown-days-small" class="font-bold">--</span> días
         </p>
       </div>
     </div>
   </section>
 </BaseLayout>
 
-<script is:inline>
-  // Tab switching functionality - Make it global
-  window.switchTab = function(tabId) {
+<script>
+  // Tab switching functionality
+  function switchTab(tabId) {
     // Hide all tabs
     document.querySelectorAll('.wazuh-content').forEach(content => {
       content.classList.add('hidden');
@@ -586,8 +578,7 @@ const canonical = "https://aisecurity.es/curso-wazuh";
       activeButton.classList.add('text-blue-600', 'border-blue-600');
       activeButton.classList.remove('text-gray-600', 'border-transparent');
     }
-  };
-
+  }
 
   // Countdown functionality
   const targetDate = new Date('2026-01-20T09:00:00').getTime();
@@ -639,8 +630,8 @@ const canonical = "https://aisecurity.es/curso-wazuh";
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
 
-      const emailInput = document.getElementById('email');
-      const email = emailInput ? emailInput.value : '';
+      const emailInput = document.getElementById('email') as HTMLInputElement;
+      const email = emailInput?.value;
 
       if (!email) return;
 
