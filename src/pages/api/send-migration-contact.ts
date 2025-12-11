@@ -1,7 +1,16 @@
 import type { APIRoute } from 'astro';
-import { Resend } from 'resend';
+import nodemailer from 'nodemailer';
 
-const resend = new Resend(import.meta.env.RESEND_API_KEY);
+// Configurar transporte SMTP con EmailRelay
+const transporter = nodemailer.createTransport({
+  host: import.meta.env.SMTP_HOST,
+  port: parseInt(import.meta.env.SMTP_PORT || '587'),
+  secure: false,
+  auth: {
+    user: import.meta.env.SMTP_USER,
+    pass: import.meta.env.SMTP_PASSWORD,
+  },
+});
 
 export const POST: APIRoute = async ({ request }) => {
   try {
@@ -22,7 +31,7 @@ export const POST: APIRoute = async ({ request }) => {
       );
     }
 
-    // Mapeo de planes para mejor presentación
+    // Mapeo de planes
     const planesMap: Record<string, string> = {
       'landing': 'Landing Page (450€)',
       'corporativa': 'Web Corporativa (800€)',
@@ -36,109 +45,52 @@ export const POST: APIRoute = async ({ request }) => {
       <html>
         <head>
           <meta charset="utf-8">
-          <style>
-            body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; color: #333; }
-            .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-            .header { background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%); color: white; padding: 30px; border-radius: 8px 8px 0 0; }
-            .header h1 { margin: 0; font-size: 24px; }
-            .content { background: #f9fafb; padding: 30px; border-radius: 0 0 8px 8px; }
-            .field { margin-bottom: 20px; }
-            .field-label { font-weight: 600; color: #3b82f6; margin-bottom: 5px; }
-            .field-value { color: #4b5563; }
-            .priority { background: #fef3c7; border-left: 4px solid #f59e0b; padding: 15px; margin: 20px 0; }
-            .footer { text-align: center; margin-top: 20px; color: #6b7280; font-size: 12px; }
-            .plan-badge { display: inline-block; background: #3b82f6; color: white; padding: 6px 12px; border-radius: 6px; font-size: 14px; font-weight: 600; }
-          </style>
         </head>
-        <body>
-          <div class="container">
-            <div class="header">
-              <h1>🚀 Nueva Solicitud de Migración WordPress</h1>
-              <p style="margin: 10px 0 0 0; opacity: 0.9;">Un cliente está interesado en migrar su WordPress a código puro</p>
-            </div>
+        <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+          <div style="max-width: 600px; margin: 0 auto; padding: 20px;">
+            <h2>Nueva Solicitud de Migracion WordPress</h2>
 
-            <div class="content">
-              <div class="priority">
-                <strong>⚡ Plan seleccionado:</strong> <span class="plan-badge">${planTexto}</span>
-              </div>
+            <p><strong>Plan seleccionado:</strong> ${planTexto}</p>
+            ${email ? `<p><strong>Email:</strong> ${email}</p>` : ''}
+            <p><strong>Telefono:</strong> ${telefono}</p>
+            <p><strong>URL WordPress:</strong> ${wordpress_url}</p>
+            ${mensaje ? `<p><strong>Mensaje:</strong> ${mensaje}</p>` : ''}
 
-              ${email ? `
-              <div class="field">
-                <div class="field-label">📧 Email</div>
-                <div class="field-value"><a href="mailto:${email}" style="color: #3b82f6;">${email}</a></div>
-              </div>
-              ` : ''}
-
-              <div class="field">
-                <div class="field-label">📱 Teléfono</div>
-                <div class="field-value"><a href="tel:${telefono}" style="color: #3b82f6;">${telefono}</a></div>
-              </div>
-
-              <div class="field">
-                <div class="field-label">🌐 URL WordPress Actual</div>
-                <div class="field-value"><a href="${wordpress_url}" target="_blank" style="color: #3b82f6;">${wordpress_url}</a></div>
-              </div>
-
-              ${mensaje ? `
-              <div class="field">
-                <div class="field-label">💬 Mensaje del cliente</div>
-                <div class="field-value" style="background: white; padding: 15px; border-radius: 6px; border: 1px solid #e5e7eb;">${mensaje.replace(/\n/g, '<br>')}</div>
-              </div>
-              ` : ''}
-
-              <div class="footer">
-                <p>Este email fue enviado automáticamente desde el formulario de migración WordPress de aisecurity.es</p>
-                <p>Fecha: ${new Date().toLocaleString('es-ES', { timeZone: 'Europe/Madrid' })}</p>
-              </div>
-            </div>
+            <hr>
+            <p style="font-size: 12px; color: #666;">
+              Fecha: ${new Date().toLocaleString('es-ES', { timeZone: 'Europe/Madrid' })}
+            </p>
           </div>
         </body>
       </html>
     `;
 
     const emailText = `
-Nueva Solicitud de Migración WordPress - AI Security
+Nueva Solicitud de Migracion WordPress
 
 Plan seleccionado: ${planTexto}
-
-Información de contacto:
-------------------------
 ${email ? `Email: ${email}` : ''}
-Teléfono: ${telefono}
+Telefono: ${telefono}
+URL WordPress: ${wordpress_url}
+${mensaje ? `Mensaje: ${mensaje}` : ''}
 
-WordPress actual:
------------------
-URL: ${wordpress_url}
-
-${mensaje ? `Mensaje del cliente:\n${mensaje}` : ''}
-
----
 Fecha: ${new Date().toLocaleString('es-ES', { timeZone: 'Europe/Madrid' })}
     `;
 
-    // Enviar email
-    const result = await resend.emails.send({
-      from: 'AI Security <onboarding@resend.dev>',
-      to: ['julen.sistemas@gmail.com'],
-      subject: `🚀 Migración WordPress: ${planTexto}`,
+    // Enviar email via EmailRelay SMTP
+    await transporter.sendMail({
+      from: `${import.meta.env.SMTP_FROM_NAME} <${import.meta.env.SMTP_FROM_EMAIL}>`,
+      to: 'info@aisecurity.es',
+      replyTo: email || undefined,
+      subject: `Migracion WordPress: ${planTexto}`,
       html: emailHtml,
       text: emailText,
-      replyTo: email || undefined,
     });
-
-    if (result.error) {
-      console.error('Error enviando email:', result.error);
-      return new Response(
-        JSON.stringify({ error: 'Error al enviar el email' }),
-        { status: 500, headers: { 'Content-Type': 'application/json' } }
-      );
-    }
 
     return new Response(
       JSON.stringify({
         success: true,
-        message: 'Solicitud enviada correctamente',
-        id: result.data?.id,
+        message: 'Solicitud enviada correctamente'
       }),
       { status: 200, headers: { 'Content-Type': 'application/json' } }
     );

@@ -1,8 +1,17 @@
 import type { APIRoute } from 'astro';
-import { Resend } from 'resend';
+import nodemailer from 'nodemailer';
 import { createCalendarEvent, isValidTimeSlot, formatDate } from '../../lib/google-calendar';
 
-const resend = new Resend(import.meta.env.RESEND_API_KEY);
+// Configurar transporte SMTP con EmailRelay
+const transporter = nodemailer.createTransport({
+  host: import.meta.env.SMTP_HOST,
+  port: parseInt(import.meta.env.SMTP_PORT || '587'),
+  secure: false,
+  auth: {
+    user: import.meta.env.SMTP_USER,
+    pass: import.meta.env.SMTP_PASSWORD,
+  },
+});
 
 export const POST: APIRoute = async ({ request }) => {
   try {
@@ -103,143 +112,70 @@ export const POST: APIRoute = async ({ request }) => {
       <html>
         <head>
           <meta charset="utf-8">
-          <style>
-            body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; color: #333; }
-            .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-            .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 8px 8px 0 0; }
-            .header h1 { margin: 0; font-size: 24px; }
-            .content { background: #f9fafb; padding: 30px; border-radius: 0 0 8px 8px; }
-            .field { margin-bottom: 20px; }
-            .field-label { font-weight: 600; color: #667eea; margin-bottom: 5px; }
-            .field-value { color: #4b5563; }
-            .priority { background: #fef3c7; border-left: 4px solid #f59e0b; padding: 15px; margin: 20px 0; }
-            .footer { text-align: center; margin-top: 20px; color: #6b7280; font-size: 12px; }
-          </style>
         </head>
-        <body>
-          <div class="container">
-            <div class="header">
-              <h1>🎯 Nueva Solicitud de Consulta</h1>
-              <p style="margin: 10px 0 0 0; opacity: 0.9;">Has recibido una nueva solicitud desde el formulario de contacto</p>
-            </div>
+        <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+          <div style="max-width: 600px; margin: 0 auto; padding: 20px;">
+            <h2>Nueva Solicitud de Consulta</h2>
 
-            <div class="content">
-              ${calendarEvent ? `
-              <div class="priority" style="background: #d1fae5; border-left-color: #10b981;">
-                <strong>✅ Reunión agendada:</strong> ${formatDate(meetingDate!)} a las ${selectedTime}h
-                ${calendarEvent.meetLink ? `<br><a href="${calendarEvent.meetLink}" style="color: #059669; text-decoration: none;">🔗 Enlace de Google Meet</a>` : ''}
-              </div>
-              ` : `
-              <div class="priority">
-                <strong>⚡ Acción requerida:</strong> Contactar para agendar reunión
-              </div>
-              `}
+            ${calendarEvent ? `
+            <p><strong>Reunion agendada:</strong> ${formatDate(meetingDate!)} a las ${selectedTime}h</p>
+            ${calendarEvent.meetLink ? `<p>Enlace: ${calendarEvent.meetLink}</p>` : ''}
+            ` : `
+            <p><strong>Accion requerida:</strong> Contactar para agendar reunion</p>
+            `}
 
-              <div class="field">
-                <div class="field-label">👤 Nombre</div>
-                <div class="field-value">${nombre}</div>
-              </div>
+            <p><strong>Nombre:</strong> ${nombre}</p>
+            <p><strong>Empresa:</strong> ${empresa || 'No especificada'}</p>
+            <p><strong>Email:</strong> ${email || 'No proporcionado'}</p>
+            <p><strong>Telefono:</strong> ${telefono || 'No proporcionado'}</p>
+            <p><strong>Servicio de interes:</strong> ${servicioTexto}</p>
+            <p><strong>Tamano de empresa:</strong> ${empleadosTexto}</p>
+            ${mensaje ? `<p><strong>Mensaje:</strong> ${mensaje}</p>` : ''}
+            <p><strong>Presupuesto estimado:</strong> ${presupuestoTexto}</p>
 
-              <div class="field">
-                <div class="field-label">🏢 Empresa</div>
-                <div class="field-value">${empresa || 'No especificada'}</div>
-              </div>
-
-              <div class="field">
-                <div class="field-label">📧 Email</div>
-                <div class="field-value">${email || 'No proporcionado'}</div>
-              </div>
-
-              <div class="field">
-                <div class="field-label">📱 Teléfono</div>
-                <div class="field-value">${telefono || 'No proporcionado'}</div>
-              </div>
-
-              <div class="field">
-                <div class="field-label">🤖 Servicio de interés</div>
-                <div class="field-value">${servicioTexto}</div>
-              </div>
-
-              <div class="field">
-                <div class="field-label">👥 Tamaño de empresa</div>
-                <div class="field-value">${empleadosTexto}</div>
-              </div>
-
-              ${mensaje ? `
-              <div class="field">
-                <div class="field-label">💬 Mensaje</div>
-                <div class="field-value">${mensaje}</div>
-              </div>
-              ` : ''}
-
-              <div class="field">
-                <div class="field-label">💰 Presupuesto estimado</div>
-                <div class="field-value">${presupuestoTexto}</div>
-              </div>
-
-              <div class="footer">
-                <p>Este email fue enviado automáticamente desde el formulario de solicitud de consulta de aisecurity.es</p>
-                <p>Fecha: ${new Date().toLocaleString('es-ES', { timeZone: 'Europe/Madrid' })}</p>
-              </div>
-            </div>
+            <hr>
+            <p style="font-size: 12px; color: #666;">
+              Enviado desde aisecurity.es - ${new Date().toLocaleString('es-ES', { timeZone: 'Europe/Madrid' })}
+            </p>
           </div>
         </body>
       </html>
     `;
 
     const emailText = `
-Nueva Solicitud de Consulta - AI Security
+Nueva Solicitud de Consulta
 
-Información de contacto:
-------------------------
 Nombre: ${nombre}
 Empresa: ${empresa || 'No especificada'}
 Email: ${email || 'No proporcionado'}
-Teléfono: ${telefono || 'No proporcionado'}
-
-Detalles del servicio:
----------------------
-Servicio de interés: ${servicioTexto}
-Tamaño de empresa: ${empleadosTexto}
+Telefono: ${telefono || 'No proporcionado'}
+Servicio de interes: ${servicioTexto}
+Tamano de empresa: ${empleadosTexto}
 Presupuesto estimado: ${presupuestoTexto}
 
-${calendarEvent ? `
-Reunión agendada:
-----------------
-Fecha: ${formatDate(meetingDate!)} a las ${selectedTime}h
-${calendarEvent.meetLink ? `Enlace Google Meet: ${calendarEvent.meetLink}` : ''}
-ID del evento: ${calendarEvent.eventId}
-` : ''}
+${calendarEvent ? `Reunion agendada: ${formatDate(meetingDate!)} a las ${selectedTime}h
+${calendarEvent.meetLink ? `Enlace: ${calendarEvent.meetLink}` : ''}` : ''}
 
-${mensaje ? `Mensaje:\n${mensaje}` : ''}
+${mensaje ? `Mensaje: ${mensaje}` : ''}
 
 ---
 Fecha: ${new Date().toLocaleString('es-ES', { timeZone: 'Europe/Madrid' })}
     `;
 
-    // Enviar email
-    const result = await resend.emails.send({
-      from: 'AI Security <onboarding@resend.dev>', // Cambiarás esto cuando configures tu dominio
-      to: ['julen.sistemas@gmail.com'], // Cambiado a email verificado en Resend (en desarrollo)
-      subject: `🎯 Nueva solicitud de consulta - ${nombre} (${empresa || 'Empresa no especificada'})`,
+    // Enviar email via EmailRelay SMTP
+    await transporter.sendMail({
+      from: `${import.meta.env.SMTP_FROM_NAME} <${import.meta.env.SMTP_FROM_EMAIL}>`,
+      to: 'info@aisecurity.es',
+      replyTo: email || undefined,
+      subject: `Nueva solicitud de consulta - ${nombre}${empresa ? ` (${empresa})` : ''}`,
       html: emailHtml,
       text: emailText,
-      replyTo: email || undefined,
     });
-
-    if (result.error) {
-      console.error('Error enviando email:', result.error);
-      return new Response(
-        JSON.stringify({ error: 'Error al enviar el email' }),
-        { status: 500, headers: { 'Content-Type': 'application/json' } }
-      );
-    }
 
     return new Response(
       JSON.stringify({
         success: true,
         message: calendarEvent ? 'Reunión agendada correctamente' : 'Solicitud enviada correctamente',
-        id: result.data?.id,
         calendarEventId: calendarEvent?.eventId,
         meetLink: calendarEvent?.meetLink
       }),
