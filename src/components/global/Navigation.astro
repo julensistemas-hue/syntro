@@ -146,6 +146,11 @@ const currentPath = Astro.url.pathname;
               <p class="text-xs font-bold text-base-500 uppercase tracking-wider">Ciberseguridad</p>
             </div>
             <a
+              href="/curso-wazuh"
+              class={`block px-4 py-2.5 text-sm font-medium transition-colors ${currentPath === '/curso-wazuh' ? 'bg-accent-100 text-accent-700' : 'text-base-900 hover:bg-accent-50 hover:text-accent-600'}`}>
+              Curso Wazuh
+            </a>
+            <a
               href="/soporte-tecnico"
               class={`block px-4 py-2.5 text-sm font-medium transition-colors ${currentPath === '/soporte-tecnico' ? 'bg-accent-100 text-accent-700' : 'text-base-900 hover:bg-accent-50 hover:text-accent-600'}`}>
               Soporte IT
