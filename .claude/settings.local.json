@@ -3,7 +3,11 @@
     "allow": [
       "Bash(Stop-Process -Force)",
       "Bash(ls:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(pnpm build:*)",
+      "Bash(rm:*)"
     ],
     "deny": [],
     "ask": []
