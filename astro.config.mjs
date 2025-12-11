@@ -1,4 +1,4 @@
-import { defineConfig, fontProviders } from "astro/config";
+import { defineConfig } from "astro/config";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 import vercel from "@astrojs/vercel";
@@ -7,16 +7,6 @@ export default defineConfig({
   output: "server",
   adapter: vercel(),
   site: "https://aisecurity.es",
-  experimental: {
-    fonts: [
-      {
-        provider: fontProviders.google(),
-        name: "Inter",
-        cssVariable: "--font-sans",
-        weights: [400, 500],
-      }
-    ],
-  },
   integrations: [
     sitemap({
       filter: (page) =>
@@ -26,6 +16,7 @@ export default defineConfig({
       customPages: [
         'https://aisecurity.es/',
         'https://aisecurity.es/wazuh',
+        'https://aisecurity.es/curso-wazuh',
         'https://aisecurity.es/blog',
         'https://aisecurity.es/blog/ia-threat-hunting-wazuh',
         'https://aisecurity.es/reunion',
