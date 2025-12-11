@@ -545,7 +545,7 @@ const canonical = "https://aisecurity.es/curso-wazuh";
           </button>
 
           <!-- Success/Error Messages -->
-          <div id="form-message" class="hidden">
+          <div id="form-message" class="hidden p-4 rounded-lg border-l-4" style="background-color: #374151; border-color: #8B5CF6;">
             <p id="message-text" class="text-white font-semibold"></p>
           </div>
         </form>
@@ -666,19 +666,19 @@ const canonical = "https://aisecurity.es/curso-wazuh";
           // Success
           messageDiv.classList.remove('hidden');
           messageText.textContent = '✅ ¡Inscripción confirmada! Revisa tu email para las instrucciones de pago.';
-          messageText.className = 'text-green-300 font-semibold';
+          messageText.className = 'text-white font-semibold';
           form.reset();
         } else {
           // Error
           messageDiv.classList.remove('hidden');
           messageText.textContent = '❌ ' + (data.error || 'Error al procesar la inscripción. Inténtalo de nuevo.');
-          messageText.className = 'text-red-300 font-semibold';
+          messageText.className = 'text-white font-semibold';
         }
       } catch (error) {
         // Network error
         messageDiv.classList.remove('hidden');
         messageText.textContent = '❌ Error de conexión. Por favor, inténtalo de nuevo.';
-        messageText.className = 'text-red-300 font-semibold';
+        messageText.className = 'text-white font-semibold';
       } finally {
         // Reset button
         if (submitButton) {
