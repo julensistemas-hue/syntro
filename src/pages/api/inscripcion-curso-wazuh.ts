@@ -47,13 +47,7 @@ Detalles:
 - Modalidad: Online
 - Precio: 100 euros
 
-Pago:
-Transferencia: ES52 0081 1389 1200 0114 0773
-Titular: Julian Vergara Diaz
-
-Bizum: 722674874
-
-Recibirás los detalles de acceso.
+Te enviaremos los detalles de pago.
 
 Contacto: info@aisecurity.es
 `;
