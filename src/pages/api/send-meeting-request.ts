@@ -103,32 +103,117 @@ export const POST: APIRoute = async ({ request }) => {
       <html>
         <head>
           <meta charset="utf-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
         </head>
-        <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
-          <div style="max-width: 600px; margin: 0 auto; padding: 20px;">
-            <h2>Nueva Solicitud de Consulta</h2>
+        <body style="margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f6f9;">
+          <table role="presentation" style="width: 100%; border-collapse: collapse; background-color: #f4f6f9;">
+            <tr>
+              <td align="center" style="padding: 40px 20px;">
+                <table role="presentation" style="max-width: 600px; width: 100%; border-collapse: collapse; background-color: #ffffff; border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.1);">
+                  <!-- Header -->
+                  <tr>
+                    <td style="padding: 40px 40px 30px; text-align: center; background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%); border-radius: 16px 16px 0 0;">
+                      <h1 style="margin: 0; color: #ffffff; font-size: 28px; font-weight: 700;">
+                        Nueva Solicitud de Consulta
+                      </h1>
+                      ${calendarEvent ? `
+                      <p style="margin: 12px 0 0; color: #e0f2fe; font-size: 15px;">
+                        Reunion agendada: ${formatDate(meetingDate!)} a las ${selectedTime}h
+                      </p>
+                      ${calendarEvent.meetLink ? `
+                      <a href="${calendarEvent.meetLink}" style="display: inline-block; margin-top: 12px; padding: 10px 20px; background-color: #ffffff; color: #0284c7; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 14px;">
+                        Unirse a la reunion
+                      </a>
+                      ` : ''}
+                      ` : `
+                      <p style="margin: 12px 0 0; padding: 12px; background-color: rgba(254, 243, 199, 0.3); border-left: 3px solid #fbbf24; border-radius: 4px; color: #fef3c7; font-size: 14px;">
+                        Accion requerida: Contactar para agendar reunion
+                      </p>
+                      `}
+                    </td>
+                  </tr>
 
-            ${calendarEvent ? `
-            <p><strong>Reunion agendada:</strong> ${formatDate(meetingDate!)} a las ${selectedTime}h</p>
-            ${calendarEvent.meetLink ? `<p>Enlace: ${calendarEvent.meetLink}</p>` : ''}
-            ` : `
-            <p><strong>Accion requerida:</strong> Contactar para agendar reunion</p>
-            `}
+                  <!-- Content -->
+                  <tr>
+                    <td style="padding: 40px;">
+                      <h2 style="margin: 0 0 20px; color: #0f172a; font-size: 18px; font-weight: 600; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px;">
+                        Informacion del Cliente
+                      </h2>
 
-            <p><strong>Nombre:</strong> ${nombre}</p>
-            <p><strong>Empresa:</strong> ${empresa || 'No especificada'}</p>
-            <p><strong>Email:</strong> ${email || 'No proporcionado'}</p>
-            <p><strong>Telefono:</strong> ${telefono || 'No proporcionado'}</p>
-            <p><strong>Servicio de interes:</strong> ${servicioTexto}</p>
-            <p><strong>Tamano de empresa:</strong> ${empleadosTexto}</p>
-            ${mensaje ? `<p><strong>Mensaje:</strong> ${mensaje}</p>` : ''}
-            <p><strong>Presupuesto estimado:</strong> ${presupuestoTexto}</p>
+                      <table role="presentation" style="width: 100%; border-collapse: collapse;">
+                        <tr>
+                          <td style="padding: 12px; background-color: #f8fafc; border-radius: 8px; margin-bottom: 8px;">
+                            <p style="margin: 0; color: #475569; font-size: 14px;">
+                              <strong style="color: #1e293b;">Nombre:</strong> ${nombre}
+                            </p>
+                          </td>
+                        </tr>
+                        ${empresa ? `
+                        <tr>
+                          <td style="padding: 12px 0;">
+                            <p style="margin: 0; color: #475569; font-size: 14px;">
+                              <strong style="color: #1e293b;">Empresa:</strong> ${empresa}
+                            </p>
+                          </td>
+                        </tr>
+                        ` : ''}
+                        <tr>
+                          <td style="padding: 12px 0;">
+                            <p style="margin: 0; color: #475569; font-size: 14px;">
+                              <strong style="color: #1e293b;">Email:</strong> ${email || 'No proporcionado'}
+                            </p>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td style="padding: 12px 0;">
+                            <p style="margin: 0; color: #475569; font-size: 14px;">
+                              <strong style="color: #1e293b;">Telefono:</strong> ${telefono || 'No proporcionado'}
+                            </p>
+                          </td>
+                        </tr>
+                      </table>
 
-            <hr>
-            <p style="font-size: 12px; color: #666;">
-              Enviado desde aisecurity.es - ${new Date().toLocaleString('es-ES', { timeZone: 'Europe/Madrid' })}
-            </p>
-          </div>
+                      <h2 style="margin: 24px 0 20px; color: #0f172a; font-size: 18px; font-weight: 600; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px;">
+                        Detalles del Proyecto
+                      </h2>
+
+                      <table role="presentation" style="width: 100%; border-collapse: collapse; background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); border-radius: 8px; border-left: 4px solid #0ea5e9; padding: 20px;">
+                        <tr>
+                          <td>
+                            <p style="margin: 0 0 12px; color: #475569; font-size: 14px;">
+                              <strong style="color: #1e293b;">Servicio de interes:</strong> ${servicioTexto}
+                            </p>
+                            <p style="margin: 0 0 12px; color: #475569; font-size: 14px;">
+                              <strong style="color: #1e293b;">Tamano de empresa:</strong> ${empleadosTexto}
+                            </p>
+                            <p style="margin: 0; color: #475569; font-size: 14px;">
+                              <strong style="color: #1e293b;">Presupuesto estimado:</strong> ${presupuestoTexto}
+                            </p>
+                          </td>
+                        </tr>
+                      </table>
+
+                      ${mensaje ? `
+                      <div style="margin-top: 24px; padding: 20px; background-color: #fefce8; border-left: 4px solid #eab308; border-radius: 8px;">
+                        <p style="margin: 0 0 8px; color: #713f12; font-weight: 600; font-size: 14px;">Mensaje adicional:</p>
+                        <p style="margin: 0; color: #854d0e; font-size: 14px; line-height: 1.6;">${mensaje}</p>
+                      </div>
+                      ` : ''}
+                    </td>
+                  </tr>
+
+                  <!-- Footer -->
+                  <tr>
+                    <td style="padding: 20px 40px; text-align: center; background-color: #f8fafc; border-radius: 0 0 16px 16px;">
+                      <p style="margin: 0; color: #64748b; font-size: 12px;">
+                        Enviado desde aisecurity.es - ${new Date().toLocaleString('es-ES', { timeZone: 'Europe/Madrid' })}
+                      </p>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
         </body>
       </html>
     `;

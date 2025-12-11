@@ -115,8 +115,8 @@ export const POST: APIRoute = async ({ request }) => {
                       <p style="margin: 0 0 8px; color: #ffffff; font-size: 14px;">
                         <strong>AI Security</strong>
                       </p>
-                      <p style="margin: 0; color: #e2e8f0; font-size: 13px;">
-                        info@aisecurity.es
+                      <p style="margin: 0; font-size: 13px;">
+                        <a href="mailto:info@aisecurity.es" style="color: #ffffff; text-decoration: none;">info@aisecurity.es</a>
                       </p>
                     </td>
                   </tr>
