@@ -1,17 +1,8 @@
 import type { APIRoute } from 'astro';
-import nodemailer from 'nodemailer';
+import { Resend } from 'resend';
 import { createCalendarEvent, isValidTimeSlot, formatDate } from '../../lib/google-calendar';
 
-// Configurar transporte SMTP con EmailRelay
-const transporter = nodemailer.createTransport({
-  host: import.meta.env.SMTP_HOST,
-  port: parseInt(import.meta.env.SMTP_PORT || '587'),
-  secure: false,
-  auth: {
-    user: import.meta.env.SMTP_USER,
-    pass: import.meta.env.SMTP_PASSWORD,
-  },
-});
+const resend = new Resend(import.meta.env.RESEND_API_KEY);
 
 export const POST: APIRoute = async ({ request }) => {
   try {
@@ -162,10 +153,10 @@ ${mensaje ? `Mensaje: ${mensaje}` : ''}
 Fecha: ${new Date().toLocaleString('es-ES', { timeZone: 'Europe/Madrid' })}
     `;
 
-    // Enviar email via EmailRelay SMTP
-    await transporter.sendMail({
-      from: `${import.meta.env.SMTP_FROM_NAME} <${import.meta.env.SMTP_FROM_EMAIL}>`,
-      to: 'info@aisecurity.es',
+    // Enviar email via Resend
+    await resend.emails.send({
+      from: 'AI Security <onboarding@resend.dev>',
+      to: 'julen.sistemas@gmail.com',
       replyTo: email || undefined,
       subject: `Nueva solicitud de consulta - ${nombre}${empresa ? ` (${empresa})` : ''}`,
       html: emailHtml,

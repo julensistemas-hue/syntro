@@ -1,16 +1,7 @@
 import type { APIRoute } from 'astro';
-import nodemailer from 'nodemailer';
+import { Resend } from 'resend';
 
-// Configure EmailRelay SMTP transporter
-const transporter = nodemailer.createTransport({
-  host: import.meta.env.SMTP_HOST,
-  port: parseInt(import.meta.env.SMTP_PORT || '587'),
-  secure: false,
-  auth: {
-    user: import.meta.env.SMTP_USER,
-    pass: import.meta.env.SMTP_PASSWORD,
-  },
-});
+const resend = new Resend(import.meta.env.RESEND_API_KEY);
 
 export const POST: APIRoute = async ({ request }) => {
   try {
@@ -33,10 +24,7 @@ export const POST: APIRoute = async ({ request }) => {
       );
     }
 
-    const fromEmail = import.meta.env.SMTP_FROM_EMAIL || 'info@aisecurity.es';
-    const fromName = import.meta.env.SMTP_FROM_NAME || 'AI Security';
-
-    // Email al usuario - SOLO TEXTO PLANO
+    // Email al usuario - TEXTO SIMPLE
     const userMessage = `Inscripcion Curso Wazuh
 
 Gracias por inscribirte.
@@ -52,23 +40,24 @@ Te enviaremos los detalles de pago.
 Contacto: info@aisecurity.es
 `;
 
-    await transporter.sendMail({
-      from: `${fromName} <${fromEmail}>`,
+    // Enviar confirmación al usuario
+    await resend.emails.send({
+      from: 'AI Security <onboarding@resend.dev>',
       to: email,
       subject: 'Inscripcion Curso Wazuh',
       text: userMessage,
     });
 
-    // Email al admin - SOLO TEXTO PLANO
+    // Notificación al admin
     const adminMessage = `Nueva inscripcion al curso
 
 Email: ${email}
 Fecha: ${new Date().toLocaleString('es-ES')}
 `;
 
-    await transporter.sendMail({
-      from: `${fromName} <${fromEmail}>`,
-      to: fromEmail,
+    await resend.emails.send({
+      from: 'AI Security <onboarding@resend.dev>',
+      to: 'julen.sistemas@gmail.com',
       replyTo: email,
       subject: 'Nueva inscripcion curso',
       text: adminMessage,
