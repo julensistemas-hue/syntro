@@ -207,7 +207,7 @@ Fecha: ${new Date().toLocaleString('es-ES')}
 
     await resend.emails.send({
       from: 'AI Security <info@aisecurity.es>',
-      to: 'julen.sistemas@gmail.com',
+      to: 'info@aisecurity.es',
       replyTo: email,
       subject: 'Nueva inscripcion curso Wazuh',
       html: adminEmailHtml,
