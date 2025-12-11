@@ -155,7 +155,7 @@ Fecha: ${new Date().toLocaleString('es-ES', { timeZone: 'Europe/Madrid' })}
 
     // Enviar email via Resend
     await resend.emails.send({
-      from: 'AI Security <onboarding@resend.dev>',
+      from: 'AI Security <info@aisecurity.es>',
       to: 'julen.sistemas@gmail.com',
       replyTo: email || undefined,
       subject: `Nueva solicitud de consulta - ${nombre}${empresa ? ` (${empresa})` : ''}`,

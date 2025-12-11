@@ -55,7 +55,7 @@ Fecha: ${new Date().toLocaleString('es-ES', { timeZone: 'Europe/Madrid' })}
 
     // Enviar notificación via Resend
     await resend.emails.send({
-      from: 'AI Security <onboarding@resend.dev>',
+      from: 'AI Security <info@aisecurity.es>',
       to: 'julen.sistemas@gmail.com',
       subject: `Nueva suscripcion: ${email}`,
       html: emailHtml,

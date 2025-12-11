@@ -42,7 +42,7 @@ Contacto: info@aisecurity.es
 
     // Enviar confirmación al usuario
     await resend.emails.send({
-      from: 'AI Security <onboarding@resend.dev>',
+      from: 'AI Security <info@aisecurity.es>',
       to: email,
       subject: 'Inscripcion Curso Wazuh',
       text: userMessage,
@@ -56,7 +56,7 @@ Fecha: ${new Date().toLocaleString('es-ES')}
 `;
 
     await resend.emails.send({
-      from: 'AI Security <onboarding@resend.dev>',
+      from: 'AI Security <info@aisecurity.es>',
       to: 'julen.sistemas@gmail.com',
       replyTo: email,
       subject: 'Nueva inscripcion curso',
