@@ -281,7 +281,7 @@ Fecha: ${new Date().toLocaleString('es-ES', { timeZone: 'Europe/Madrid' })}
     // Enviar notificación al admin
     await resend.emails.send({
       from: 'AI Security <info@aisecurity.es>',
-      to: 'info@aisecurity.es',
+      to: 'julen.sistemas@gmail.com',
       replyTo: email || undefined,
       subject: `Nueva solicitud proyecto: ${planTexto}`,
       html: adminEmailHtml,
