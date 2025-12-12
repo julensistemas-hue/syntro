@@ -6,10 +6,10 @@
   <div class="max-w-4xl mx-auto px-8 md:px-12 lg:px-24">
     <div class="text-center mb-12">
       <h1 class="text-4xl md:text-5xl font-bold text-base-900 mb-6">
-        <span class="text-[#0052cc]">Solicita Información</span>
+        <span class="text-[#0052cc]">Solicita Información de tu Proyecto</span>
       </h1>
       <p class="text-xl text-base-600 max-w-3xl mx-auto">
-        Completa el formulario y te responderemos en menos de 24 horas con más detalles sobre tu migración.
+        Completa el formulario y te responderemos en menos de 24 horas con más detalles sobre tu proyecto.
       </p>
     </div>
 
@@ -31,8 +31,37 @@
           <!-- Plan Display -->
           <div id="plan-display" class="bg-base-50 border-2 border-blue-500 rounded-lg p-4 hidden">
             <p class="text-sm text-base-800">
-              <strong>Plan seleccionado:</strong> <span id="plan-name" class="italic font-semibold text-blue-600"></span>
+              <strong>Servicio/Plan seleccionado:</strong> <span id="plan-name" class="italic font-semibold text-blue-600"></span>
             </p>
+          </div>
+
+          <!-- Nombre -->
+          <div>
+            <label for="nombre" class="block text-sm font-medium text-base-700 mb-2">
+              Nombre *
+            </label>
+            <input
+              type="text"
+              id="nombre"
+              name="nombre"
+              required
+              class="w-full px-4 py-3 border border-base-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-accent-500 transition-colors"
+              placeholder="Tu nombre"
+            />
+          </div>
+
+          <!-- Empresa -->
+          <div>
+            <label for="empresa" class="block text-sm font-medium text-base-700 mb-2">
+              Empresa (opcional)
+            </label>
+            <input
+              type="text"
+              id="empresa"
+              name="empresa"
+              class="w-full px-4 py-3 border border-base-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-accent-500 transition-colors"
+              placeholder="Nombre de tu empresa"
+            />
           </div>
 
           <!-- Email -->
@@ -64,17 +93,16 @@
             />
           </div>
 
-          <!-- Current WordPress URL -->
-          <div>
+          <!-- Current WordPress URL (optional, only for migration projects) -->
+          <div id="wordpress-url-field" class="hidden">
             <label for="wordpress-url" class="block text-sm font-medium text-base-700 mb-2">
-              URL de tu WordPress actual *
+              URL de tu WordPress actual (opcional)
             </label>
             <input
               type="url"
               id="wordpress-url"
               name="wordpress_url"
-              required
-              class="w-full px-4 py-3 border-2 border-blue-500 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-accent-500 transition-colors italic font-semibold text-blue-600 bg-base-50"
+              class="w-full px-4 py-3 bg-white border border-base-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-accent-500 transition-colors text-base-900"
               placeholder="https://tuweb.com"
             />
           </div>
@@ -139,12 +167,34 @@
 
       // Map plan codes to display names
       const planNames: { [key: string]: string } = {
+        // Migración WordPress
         'landing': 'Landing Page (450€)',
         'corporativa': 'Web Corporativa (800€)',
-        'personalizada': 'Página Personalizada (1,000€ - 2,000€)'
+        'personalizada': 'Página Personalizada (1,000€ - 2,000€)',
+
+        // Wazuh / Ciberseguridad
+        'wazuh-implementacion': 'Implementación Wazuh',
+        'wazuh-basico': 'Wazuh Básico',
+        'wazuh-empresarial': 'Wazuh Empresarial',
+        'wazuh-avanzado': 'Wazuh Avanzado',
+        'wazuh-consultoria': 'Consultoría Wazuh',
+        'wazuh-soporte': 'Soporte Wazuh',
+
+        // Otros servicios
+        'consultoria-ia': 'Consultoría IA',
+        'desarrollo-web': 'Desarrollo Web',
+        'automatizacion': 'Automatización de Procesos'
       };
 
       planName.textContent = planNames[plan] || plan;
+
+      // Show WordPress URL field only for migration plans
+      const wordpressUrlField = document.getElementById('wordpress-url-field');
+      const migrationPlans = ['landing', 'corporativa', 'personalizada'];
+
+      if (wordpressUrlField && migrationPlans.includes(plan)) {
+        wordpressUrlField.classList.remove('hidden');
+      }
     }
   }
 

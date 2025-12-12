@@ -7,6 +7,7 @@ export const POST: APIRoute = async ({ request }) => {
   try {
     const data = await request.json();
 
+    const nombre = data.nombre;
     const empresa = data.empresa;
     const email = data.email;
     const telefono = data.telefono;
@@ -15,18 +16,32 @@ export const POST: APIRoute = async ({ request }) => {
     const plan = data.plan;
 
     // Validación básica
-    if (!telefono || !wordpress_url) {
+    if (!nombre || !telefono) {
       return new Response(
-        JSON.stringify({ error: 'Teléfono y URL de WordPress son obligatorios' }),
+        JSON.stringify({ error: 'Nombre y teléfono son obligatorios' }),
         { status: 400, headers: { 'Content-Type': 'application/json' } }
       );
     }
 
-    // Mapeo de planes
+    // Mapeo de planes y servicios
     const planesMap: Record<string, string> = {
+      // Migración WordPress
       'landing': 'Landing Page (450€)',
       'corporativa': 'Web Corporativa (800€)',
       'personalizada': 'Página Personalizada (1,000€ - 2,000€)',
+
+      // Wazuh / Ciberseguridad
+      'wazuh-implementacion': 'Implementación Wazuh',
+      'wazuh-basico': 'Wazuh Básico',
+      'wazuh-empresarial': 'Wazuh Empresarial',
+      'wazuh-avanzado': 'Wazuh Avanzado',
+      'wazuh-consultoria': 'Consultoría Wazuh',
+      'wazuh-soporte': 'Soporte Wazuh',
+
+      // Otros servicios
+      'consultoria-ia': 'Consultoría IA',
+      'desarrollo-web': 'Desarrollo Web',
+      'automatizacion': 'Automatización de Procesos'
     };
 
     const planTexto = plan ? planesMap[plan] || plan : 'No especificado';
@@ -63,7 +78,7 @@ export const POST: APIRoute = async ({ request }) => {
                         <tr>
                           <td style="padding: 40px;">
                             <p style="margin: 0 0 24px; color: #2d3748; font-size: 16px; line-height: 1.6;">
-                              ${empresa ? `Hola ${empresa},` : 'Hola,'} gracias por tu interes en migrar tu sitio WordPress. Hemos recibido tu solicitud correctamente.
+                              Hola ${nombre}, gracias por tu interés en ${planTexto}. Hemos recibido tu solicitud correctamente.
                             </p>
 
                             <!-- Plan Box -->
@@ -117,11 +132,11 @@ export const POST: APIRoute = async ({ request }) => {
 
     const userTextFallback = `Solicitud Recibida - AI Security
 
-${empresa ? `Hola ${empresa},` : 'Hola,'} gracias por tu interes en migrar tu sitio WordPress.
+Hola ${nombre}, gracias por tu interés en ${planTexto}.
 
-Plan seleccionado: ${planTexto}
+Servicio/Plan: ${planTexto}
 
-Proximo paso: Nos pondremos en contacto contigo en las proximas 24-48 horas para analizar tu sitio y proporcionarte un presupuesto detallado.
+Proximo paso: Nos pondremos en contacto contigo en las proximas 24-48 horas para proporcionarte más información y un presupuesto detallado.
 
 Contacto: info@aisecurity.es
 `;
@@ -143,10 +158,10 @@ Contacto: info@aisecurity.es
                   <tr>
                     <td style="padding: 40px 40px 30px; text-align: center; background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); border-radius: 16px 16px 0 0;">
                       <h1 style="margin: 0; color: #ffffff; font-size: 28px; font-weight: 700;">
-                        Solicitud Migracion WordPress
+                        Nueva Solicitud de Proyecto
                       </h1>
                       <p style="margin: 12px 0 0; color: #ede9fe; font-size: 15px;">
-                        Nueva solicitud de migracion de sitio web
+                        Solicitud de información sobre ${planTexto}
                       </p>
                     </td>
                   </tr>
@@ -169,9 +184,25 @@ Contacto: info@aisecurity.es
                       </h2>
 
                       <table role="presentation" style="width: 100%; border-collapse: collapse;">
-                        ${email ? `
                         <tr>
                           <td style="padding: 12px; background-color: #f8fafc; border-radius: 8px; margin-bottom: 8px;">
+                            <p style="margin: 0; color: #475569; font-size: 14px;">
+                              <strong style="color: #1e293b;">Nombre:</strong> ${nombre}
+                            </p>
+                          </td>
+                        </tr>
+                        ${empresa ? `
+                        <tr>
+                          <td style="padding: 12px 0;">
+                            <p style="margin: 0; color: #475569; font-size: 14px;">
+                              <strong style="color: #1e293b;">Empresa:</strong> ${empresa}
+                            </p>
+                          </td>
+                        </tr>
+                        ` : ''}
+                        ${email ? `
+                        <tr>
+                          <td style="padding: 12px 0;">
                             <p style="margin: 0; color: #475569; font-size: 14px;">
                               <strong style="color: #1e293b;">Email:</strong> ${email}
                             </p>
@@ -185,6 +216,7 @@ Contacto: info@aisecurity.es
                             </p>
                           </td>
                         </tr>
+                        ${wordpress_url ? `
                         <tr>
                           <td style="padding: 12px 0;">
                             <p style="margin: 0; color: #475569; font-size: 14px;">
@@ -193,6 +225,7 @@ Contacto: info@aisecurity.es
                             </p>
                           </td>
                         </tr>
+                        ` : ''}
                       </table>
 
                       ${mensaje ? `
@@ -220,13 +253,15 @@ Contacto: info@aisecurity.es
       </html>
     `;
 
-    const emailText = `
-Nueva Solicitud de Migracion WordPress
+    const adminTextFallback = `Nueva Solicitud de Proyecto
 
-Plan seleccionado: ${planTexto}
+Servicio/Plan: ${planTexto}
+
+Nombre: ${nombre}
+${empresa ? `Empresa: ${empresa}` : ''}
 ${email ? `Email: ${email}` : ''}
 Telefono: ${telefono}
-URL WordPress: ${wordpress_url}
+${wordpress_url ? `URL WordPress: ${wordpress_url}` : ''}
 ${mensaje ? `Mensaje: ${mensaje}` : ''}
 
 Fecha: ${new Date().toLocaleString('es-ES', { timeZone: 'Europe/Madrid' })}
@@ -248,7 +283,7 @@ Fecha: ${new Date().toLocaleString('es-ES', { timeZone: 'Europe/Madrid' })}
       from: 'AI Security <info@aisecurity.es>',
       to: 'info@aisecurity.es',
       replyTo: email || undefined,
-      subject: `Migracion WordPress: ${planTexto}`,
+      subject: `Nueva solicitud proyecto: ${planTexto}`,
       html: adminEmailHtml,
       text: adminTextFallback,
     });
