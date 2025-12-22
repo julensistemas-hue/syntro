@@ -27,10 +27,10 @@
     {
       "id": 4,
       "tema": "Wazuh + Elastic Security: Configuración de SIEM completo",
-      "estado": "Pendiente",
+      "estado": "Procesado",
       "palabras_clave": "Elasticsearch, Kibana, SIEM, dashboards, visualización",
       "notas": "Desde instalación hasta dashboards funcionales. Incluir queries útiles",
-      "fecha_procesado": "2025-12-06"
+      "fecha_procesado": "2025-12-22"
     },
     {
       "id": 5,
