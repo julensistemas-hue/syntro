@@ -176,7 +176,7 @@
               <div class="bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-2xl p-6 text-center shadow-xl">
                 <div class="text-6xl mb-3">✅</div>
                 <h4 class="text-2xl font-bold mb-2">¡Reunión Confirmada!</h4>
-                <p id="confirmed-date-time" class="text-green-100 text-lg font-medium"></p>
+                <p style="color: white;" id="confirmed-date-time" class="text-green-100 text-lg font-medium"></p>
               </div>
             </div>
           </div>
@@ -442,7 +442,7 @@
           // Show confirmed date and time
           if (selectedDate && selectedTime) {
             const dateStr = `${selectedDate.getDate()} de ${monthNames[selectedDate.getMonth()]} de ${selectedDate.getFullYear()}`;
-            confirmedDateTime.textContent = `${dateStr} a las ${selectedTime}h (2 horas)`;
+            confirmedDateTime.textContent = `${dateStr} a las ${selectedTime}h (1 hora)`;
           }
 
           // Scroll to success message
