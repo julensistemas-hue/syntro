@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import TestIABanner from "../../components/global/TestIABanner.astro";
 
 const title = "Gestor de Citas con IA - Automatiza Reservas y Recordatorios";
 const description = "Automatización de citas con IA. Reservas 24/7, confirmaciones automáticas, recordatorios y reprogramación. Integración Google Calendar y Outlook.";
@@ -9,6 +10,11 @@ const canonical = "https://aisecurity.es/servicios/gestor-citas";
 <BaseLayout title={title} description={description} canonical={canonical}>
   <section class="pt-8 pb-20 bg-base-25">
     <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
+      <!-- Test IA Banner -->
+      <div class="mb-8">
+        <TestIABanner />
+      </div>
+
       <!-- Hero Section -->
       <div class="text-center mb-16">
         <h1 class="text-4xl md:text-5xl font-bold text-base-900 mb-6">

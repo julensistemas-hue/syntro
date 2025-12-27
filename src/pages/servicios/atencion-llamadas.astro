@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import TestIABanner from "../../components/global/TestIABanner.astro";
 
 const title = "Recepcionista Virtual IA - Atención Telefónica 24/7 | AI Security";
 const description = "Recepcionista con voz natural en español. Atiende llamadas 24/7, agenda citas, responde preguntas frecuentes y deriva casos complejos a humanos.";
@@ -9,6 +10,11 @@ const canonical = "https://aisecurity.es/servicios/atencion-llamadas";
 <BaseLayout title={title} description={description} canonical={canonical}>
   <section class="py-10 bg-base-25">
     <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
+      <!-- Test IA Banner -->
+      <div class="mb-8">
+        <TestIABanner />
+      </div>
+
       <!-- Hero Section -->
       <div class="text-center mb-16">
    
