@@ -4,10 +4,11 @@
       "tema": "ChatGPT conversations still lack timestamps after years of requests",
       "palabras_clave": "conversations, tecnología, lack, chatgpt, still",
       "notas": "Tema detectado automáticamente con score 42/100. Fuente: hackernews. Referencia: https://community.openai.com/t/timestamps-for-chats-in-chatgpt/440107?page=3",
-      "estado": "Pendiente",
+      "estado": "Procesado",
       "fecha_agregado": "2025-12-26",
       "score_tendencia": 42,
-      "fuente_tendencia": "hackernews"
+      "fuente_tendencia": "hackernews",
+      "fecha_procesado": "2025-12-28"
     },
     {
       "id": 1,
