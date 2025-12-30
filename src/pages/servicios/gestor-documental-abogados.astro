@@ -1,0 +1,502 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import TestIABanner from "../../components/global/TestIABanner.astro";
+
+const title = "Gestor Documental con IA para Despachos de Abogados | AI Security";
+const description = "Encuentra jurisprudencia, contratos y precedentes al instante. Búsqueda semántica en expedientes, escritos y documentación legal. Ahorra 80% del tiempo de investigación.";
+const canonical = "https://aisecurity.es/servicios/gestor-documental-abogados";
+---
+
+<BaseLayout title={title} description={description} canonical={canonical}>
+  <section class="py-10 bg-base-25">
+    <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
+      <!-- Test IA Banner -->
+      <div class="mb-8">
+        <TestIABanner />
+      </div>
+
+      <!-- Hero Section -->
+      <div class="text-center mb-16">
+        <div class="inline-block px-4 py-2 bg-blue-100 rounded-full text-blue-800 text-sm font-semibold mb-4">
+          ⚖️ Especializado para Despachos de Abogados
+        </div>
+        <h1 class="text-4xl md:text-5xl font-bold text-base-900 mb-6">
+          Encuentra jurisprudencia y precedentes <span class="text-accent-600">en segundos</span>
+        </h1>
+        <p class="text-xl text-base-600 max-w-3xl mx-auto mb-8">
+          Busca en miles de expedientes, contratos, escritos y sentencias usando lenguaje natural.
+          La IA entiende contexto legal y encuentra referencias exactas al instante.
+        </p>
+      </div>
+
+      <!-- Interactive Demo Section -->
+      <div class="mb-16">
+        <div class="max-w-4xl mx-auto bg-gradient-to-br from-base-900 to-base-800 rounded-2xl shadow-2xl overflow-hidden">
+          <!-- Demo Header -->
+          <div class="bg-base-800 px-6 py-4 border-b border-base-700">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                <span class="ml-4 text-base-300 text-sm font-medium">Gestor Legal IA - Demo</span>
+              </div>
+              <div class="flex items-center gap-2 text-base-400 text-sm">
+                <span>⚖️ 8,342 documentos legales</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Demo Content -->
+          <div class="bg-gradient-to-br from-blue-500 to-blue-700 p-8">
+            <div class="max-w-3xl mx-auto">
+              <!-- Search Screen -->
+              <div class="rounded-3xl p-6 shadow-2xl" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);">
+                <!-- Search Bar -->
+                <div class="mb-6">
+                  <form id="legal-search-form" class="relative">
+                    <input
+                      type="text"
+                      id="legal-search-input"
+                      placeholder="Escribe tu consulta legal..."
+                      class="w-full px-6 py-4 pr-24 border-2 border-blue-400/40 rounded-xl focus:outline-none focus:border-blue-400 placeholder-base-400"
+                      style="background: rgba(255, 255, 255, 1); color: #000000;"
+                    />
+                    <button
+                      type="submit"
+                      style="height: 100%"
+                      class="absolute right-0 px-6 py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-all duration-200"
+                    >
+                      Buscar
+                    </button>
+                  </form>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="mb-6">
+                  <p class="text-sm text-white mb-3 font-medium">Consultas de ejemplo:</p>
+                  <div class="flex flex-wrap gap-2">
+                    <button
+                      class="quick-search-btn px-4 py-2 bg-white hover:bg-blue-50 border-2 border-blue-300 hover:border-blue-400 rounded-lg text-sm font-medium transition-all duration-200 shadow-md"
+                      data-query="Precedentes sobre despido improcedente en el sector tecnológico"
+                      style="color: #000000;">
+                      📚 Despido improcedente
+                    </button>
+                    <button
+                      class="quick-search-btn px-4 py-2 bg-white hover:bg-blue-50 border-2 border-blue-300 hover:border-blue-400 rounded-lg text-sm font-medium transition-all duration-200 shadow-md"
+                      data-query="Cláusulas de confidencialidad en contratos mercantiles"
+                      style="color: #000000;">
+                      🔒 Cláusulas NDA
+                    </button>
+                    <button
+                      class="quick-search-btn px-4 py-2 bg-white hover:bg-blue-50 border-2 border-blue-300 hover:border-blue-400 rounded-lg text-sm font-medium transition-all duration-200 shadow-md"
+                      data-query="Jurisprudencia sobre responsabilidad civil por daños"
+                      style="color: #000000;">
+                      ⚖️ Responsabilidad civil
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Results Container -->
+                <div id="legal-results" class="space-y-4 min-h-[400px]">
+                  <!-- Initial State -->
+                  <div class="text-center py-16 text-white/70">
+                    <div class="text-6xl mb-4">⚖️</div>
+                    <p class="text-lg font-medium mx-auto max-w-md">Haz clic en una consulta de ejemplo o escribe tu búsqueda</p>
+                    <p class="text-sm mt-2 mx-auto max-w-md">El sistema analizará expedientes, sentencias, contratos y doctrina jurídica</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Info Panel -->
+          <div class="bg-base-100 px-6 py-5">
+            <p class="text-sm text-base-600 text-center font-medium max-w-2xl mx-auto">
+              Demo simulada con ejemplos genéricos. El sistema real indexa documentación específica de tu despacho.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Context Box -->
+      <div class="max-w-4xl mx-auto mb-16">
+        <div class="p-6">
+          <h3 class="text-sm font-semibold mb-4 text-center text-base-700">⚖️ Contexto de la demo:</h3>
+          <p class="text-sm mb-6 text-center text-base-600 max-w-3xl mx-auto">
+            Simulación para un despacho de abogados con 15 profesionales.
+            El sistema tiene indexados más de 8,000 documentos: expedientes, contratos modelo,
+            escritos judiciales, sentencias, jurisprudencia y doctrina legal.
+          </p>
+
+          <!-- Before/After Comparison Cards -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+            <!-- Before Card -->
+            <div class="bg-black rounded-lg p-5 border-2 border-base-400 hover:border-red-400 transition-all duration-300 shadow-lg shadow-red-500/40">
+              <div class="flex items-center gap-2 mb-3">
+                <div class="w-8 h-8 bg-red-500/40 rounded-lg flex items-center justify-center">
+                  <span class="text-xl">😰</span>
+                </div>
+                <h4 class="font-bold text-white">Antes</h4>
+              </div>
+              <p class="text-sm text-white/90 leading-relaxed">
+                Buscar precedentes requería <strong class="text-red-400">2-4 horas</strong> revisando expedientes antiguos, carpetas compartidas y bases de datos jurídicas.
+              </p>
+            </div>
+
+            <!-- After Card -->
+            <div class="bg-black rounded-lg p-5 border-2 border-base-400 hover:border-green-400 transition-all duration-300 shadow-lg shadow-green-500/40">
+              <div class="flex items-center gap-2 mb-3">
+                <div class="w-8 h-8 bg-green-500/40 rounded-lg flex items-center justify-center">
+                  <span class="text-xl">⚡</span>
+                </div>
+                <h4 class="font-bold text-white">Ahora</h4>
+              </div>
+              <p class="text-sm text-white/90 leading-relaxed">
+                Resultados en <strong class="text-green-300">&lt;10 segundos</strong> con citas exactas, extractos relevantes y referencias cruzadas automáticas.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Use Cases Section -->
+      <div class="mb-16">
+        <h2 class="text-3xl font-bold text-base-900 text-center mb-12">
+          Casos de uso para tu despacho
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+          <!-- Use Case 1 -->
+          <div class="bg-gradient-to-br from-blue-50 to-purple-50 border-2 border-blue-200 rounded-xl p-6">
+            <div class="flex items-start gap-3 mb-3">
+              <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center text-white flex-shrink-0">
+                📝
+              </div>
+              <div>
+                <h3 class="text-lg font-bold text-base-900 mb-2">Redacción de escritos</h3>
+                <p class="text-base-700 text-sm">
+                  "Encuentra demandas similares sobre arrendamientos urbanos que hayamos ganado" → El sistema muestra 12 expedientes con argumentaciones exitosas.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Use Case 2 -->
+          <div class="bg-gradient-to-br from-green-50 to-teal-50 border-2 border-green-200 rounded-xl p-6">
+            <div class="flex items-start gap-3 mb-3">
+              <div class="w-10 h-10 bg-green-600 rounded-lg flex items-center justify-center text-white flex-shrink-0">
+                ⚖️
+              </div>
+              <div>
+                <h3 class="text-lg font-bold text-base-900 mb-2">Jurisprudencia instantánea</h3>
+                <p class="text-base-700 text-sm">
+                  "Sentencias del TSJ sobre indemnizaciones por despido" → Resultados ordenados por relevancia con extractos destacados.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Use Case 3 -->
+          <div class="bg-gradient-to-br from-purple-50 to-pink-50 border-2 border-purple-200 rounded-xl p-6">
+            <div class="flex items-start gap-3 mb-3">
+              <div class="w-10 h-10 bg-purple-600 rounded-lg flex items-center justify-center text-white flex-shrink-0">
+                📋
+              </div>
+              <div>
+                <h3 class="text-lg font-bold text-base-900 mb-2">Contratos modelo</h3>
+                <p class="text-base-700 text-sm">
+                  "Cláusulas de penalización en contratos de prestación de servicios IT" → Acceso inmediato a contratos anteriores con esas cláusulas.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Use Case 4 -->
+          <div class="bg-gradient-to-br from-amber-50 to-orange-50 border-2 border-amber-200 rounded-xl p-6">
+            <div class="flex items-start gap-3 mb-3">
+              <div class="w-10 h-10 bg-amber-600 rounded-lg flex items-center justify-center text-white flex-shrink-0">
+                🔍
+              </div>
+              <div>
+                <h3 class="text-lg font-bold text-base-900 mb-2">Investigación rápida</h3>
+                <p class="text-base-700 text-sm">
+                  "Todos los expedientes de un cliente específico en los últimos 5 años" → Vista unificada con cronología automática.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Features Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+        <div class="bg-black border-2 border-base-300 rounded-xl p-6">
+          <div class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center text-white text-xl mb-4">
+            🧠
+          </div>
+          <h3 class="text-lg font-semibold text-white mb-3">Comprende Lenguaje Legal</h3>
+          <p class="text-white/80">
+            La IA está entrenada para entender terminología jurídica, referencias legales y contexto normativo.
+          </p>
+        </div>
+
+        <div class="bg-black border-2 border-base-300 rounded-xl p-6">
+          <div class="w-12 h-12 bg-purple-600 rounded-lg flex items-center justify-center text-white text-xl mb-4">
+            📑
+          </div>
+          <h3 class="text-lg font-semibold text-white mb-3">Todos los Formatos</h3>
+          <p class="text-white/80">
+            PDF escaneados, Word, emails, WhatsApp exportados, documentos notariales, registrales y más.
+          </p>
+        </div>
+
+        <div class="bg-black border-2 border-base-300 rounded-xl p-6">
+          <div class="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center text-white text-xl mb-4">
+            🔒
+          </div>
+          <h3 class="text-lg font-semibold text-white mb-3">Confidencialidad Total</h3>
+          <p class="text-white/80">
+            Sistema on-premise o cloud privado. Tus documentos nunca salen de tu infraestructura. Cumplimiento RGPD.
+          </p>
+        </div>
+      </div>
+
+      <!-- Stats Section -->
+      <div class="bg-gradient-to-br from-accent-600 to-blue-600 rounded-2xl p-8 md:p-12 text-white mb-16">
+        <h2 class="text-3xl font-bold text-center mb-8">
+          Impacto medible en tu despacho
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+          <div class="text-center">
+            <div class="text-5xl font-bold mb-2">80%</div>
+            <div class="text-lg opacity-90">Menos tiempo en investigación</div>
+          </div>
+          <div class="text-center">
+            <div class="text-5xl font-bold mb-2">2-4h</div>
+            <div class="text-lg opacity-90">Ahorradas por abogado/día</div>
+          </div>
+          <div class="text-center">
+            <div class="text-5xl font-bold mb-2">100%</div>
+            <div class="text-lg opacity-90">De documentos accesibles</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Implementation Process -->
+      <div class="mb-16">
+        <h2 class="text-3xl font-bold text-base-900 text-center mb-12">
+          Cómo implementamos el sistema
+        </h2>
+        <div class="max-w-3xl mx-auto space-y-4">
+          <div class="flex items-start gap-4 bg-white border-2 border-base-200 rounded-xl p-6">
+            <div class="w-10 h-10 bg-accent-600 rounded-full flex items-center justify-center text-white font-bold flex-shrink-0">
+              1
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold text-base-900 mb-2">Auditoría de documentación</h3>
+              <p class="text-base-600">Analizamos tu repositorio actual: servidores, drives, emails, expedientes físicos escaneados.</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4 bg-white border-2 border-base-200 rounded-xl p-6">
+            <div class="w-10 h-10 bg-accent-600 rounded-full flex items-center justify-center text-white font-bold flex-shrink-0">
+              2
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold text-base-900 mb-2">Indexación y entrenamiento</h3>
+              <p class="text-base-600">Configuramos el sistema con tu terminología específica y área de práctica (civil, mercantil, laboral, etc.).</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4 bg-white border-2 border-base-200 rounded-xl p-6">
+            <div class="w-10 h-10 bg-accent-600 rounded-full flex items-center justify-center text-white font-bold flex-shrink-0">
+              3
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold text-base-900 mb-2">Formación del equipo</h3>
+              <p class="text-base-600">Sesiones prácticas con tus abogados para maximizar el uso del sistema en casos reales.</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4 bg-white border-2 border-base-200 rounded-xl p-6">
+            <div class="w-10 h-10 bg-accent-600 rounded-full flex items-center justify-center text-white font-bold flex-shrink-0">
+              4
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold text-base-900 mb-2">Soporte continuo</h3>
+              <p class="text-base-600">Actualizaciones automáticas con nuevos expedientes y ajustes según feedback del equipo.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA Section -->
+      <div class="bg-gradient-to-r from-accent-600 to-blue-600 rounded-2xl p-8 text-white text-center mb-16">
+        <h3 class="text-2xl md:text-3xl font-bold mb-4">¿Quieres ver cómo funciona con tus documentos?</h3>
+        <p class="text-lg opacity-90 mb-6 max-w-2xl mx-auto">
+          Agenda una demo personalizada con documentos de tu despacho (confidencialidad garantizada)
+        </p>
+        <a
+          href="/reunion"
+          class="inline-block px-8 py-4 bg-white text-accent-600 font-bold rounded-xl hover:shadow-xl transition-all duration-200 hover:-translate-y-1">
+          📅 Agendar Demo Personalizada
+        </a>
+      </div>
+
+      <!-- Test IA Banner -->
+      <div class="mt-16">
+        <TestIABanner />
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const searchForm = document.getElementById('legal-search-form') as HTMLFormElement;
+    const searchInput = document.getElementById('legal-search-input') as HTMLInputElement;
+    const resultsContainer = document.getElementById('legal-results') as HTMLDivElement;
+    const quickSearchButtons = document.querySelectorAll('.quick-search-btn');
+
+    if (!searchForm || !searchInput || !resultsContainer) return;
+
+    // Documentos legales de ejemplo
+    const legalDocuments = [
+      {
+        title: 'Sentencia 142/2023 - TSJ Madrid',
+        docType: 'Jurisprudencia',
+        category: 'Laboral',
+        excerpt: 'El Tribunal considera improcedente el despido cuando no se han seguido los procedimientos establecidos en el convenio colectivo del sector tecnológico. Indemnización: 45 días por año trabajado.',
+        relevance: 96,
+        date: '15/03/2023'
+      },
+      {
+        title: 'Contrato de Prestación de Servicios - TechCorp SL',
+        docType: 'Contrato',
+        category: 'Mercantil',
+        excerpt: 'Cláusula 8.3: Confidencialidad. El prestador se compromete a no divulgar información confidencial durante la vigencia del contrato y 5 años posteriores. Penalización: 50.000€ por incumplimiento.',
+        relevance: 94,
+        date: '22/01/2024'
+      },
+      {
+        title: 'Demanda - Expediente 2024/1842',
+        docType: 'Escrito Judicial',
+        category: 'Civil',
+        excerpt: 'Reclamación por daños materiales y morales derivados de responsabilidad civil extracontractual. Cuantía: 25.000€. Fundamentación en artículo 1902 del Código Civil.',
+        relevance: 89,
+        date: '10/02/2024'
+      }
+    ];
+
+    function showResults(query: string) {
+      resultsContainer.innerHTML = '';
+
+      // Loading state
+      resultsContainer.innerHTML = `
+        <div class="text-center py-8">
+          <div class="inline-flex items-center gap-2 text-white">
+            <svg class="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            <span>Analizando 8,342 documentos legales...</span>
+          </div>
+        </div>
+      `;
+
+      setTimeout(() => {
+        const lowerQuery = query.toLowerCase();
+        let relevantDocs = legalDocuments;
+
+        // Filtrar documentos relevantes
+        if (lowerQuery.includes('despido') || lowerQuery.includes('laboral')) {
+          relevantDocs = [legalDocuments[0]];
+        } else if (lowerQuery.includes('confidencialidad') || lowerQuery.includes('nda') || lowerQuery.includes('cláusula')) {
+          relevantDocs = [legalDocuments[1]];
+        } else if (lowerQuery.includes('responsabilidad civil') || lowerQuery.includes('daños')) {
+          relevantDocs = [legalDocuments[2]];
+        }
+
+        resultsContainer.innerHTML = `
+          <div class="bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl p-4 mb-4">
+            <div class="flex items-center gap-2 text-sm font-medium text-white">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+              </svg>
+              Encontré ${relevantDocs.length} documento${relevantDocs.length > 1 ? 's' : ''} relevante${relevantDocs.length > 1 ? 's' : ''}
+            </div>
+          </div>
+        `;
+
+        relevantDocs.forEach(doc => {
+          const docCard = `
+            <div class="bg-white border-2 border-blue-300 rounded-xl p-6 hover:shadow-lg transition-all duration-200" style="color: #000000;">
+              <div class="flex items-start justify-between mb-3">
+                <div class="flex-1">
+                  <div class="flex items-center gap-2 mb-2">
+                    <span class="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-purple-100" style="color: #000000;">
+                      ${doc.docType}
+                    </span>
+                    <span class="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-blue-100" style="color: #000000;">
+                      ${doc.category}
+                    </span>
+                  </div>
+                  <h3 class="text-lg font-semibold mb-1" style="color: #000000;">${doc.title}</h3>
+                  <p class="text-xs text-base-500 mb-2">Fecha: ${doc.date}</p>
+                </div>
+                <div class="flex flex-col items-end ml-4">
+                  <span class="inline-flex items-center px-3 py-1 rounded-lg text-sm font-semibold bg-green-500 text-white shadow-sm">
+                    ${doc.relevance}% relevante
+                  </span>
+                </div>
+              </div>
+              <p class="mb-4 text-sm leading-relaxed" style="color: #000000;">${doc.excerpt}</p>
+              <div class="flex items-center gap-4 text-sm" style="color: #000000;">
+                <button class="flex items-center gap-1 hover:opacity-70 transition-colors">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                  </svg>
+                  Ver completo
+                </button>
+                <button class="flex items-center gap-1 hover:opacity-70 transition-colors">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                  </svg>
+                  Copiar cita
+                </button>
+                <button class="flex items-center gap-1 hover:opacity-70 transition-colors">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
+                  </svg>
+                  Referencias
+                </button>
+              </div>
+            </div>
+          `;
+          resultsContainer.innerHTML += docCard;
+        });
+      }, 1200);
+    }
+
+    // Handle form submission
+    searchForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const query = searchInput.value.trim();
+      if (!query) return;
+
+      showResults(query);
+    });
+
+    // Handle quick search buttons
+    quickSearchButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const query = button.getAttribute('data-query');
+        if (query) {
+          searchInput.value = query;
+          showResults(query);
+        }
+      });
+    });
+  });
+</script>
