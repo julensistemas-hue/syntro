@@ -1,6 +1,15 @@
 {
   "topics": [
     {
+      "tema": "Claude Code On-the-Go",
+      "palabras_clave": "on-the-go, code, tecnología, claude",
+      "notas": "Tema detectado automáticamente con score 45/100. Fuente: hackernews. Referencia: https://granda.org/en/2026/01/02/claude-code-on-the-go/",
+      "estado": "Pendiente",
+      "fecha_agregado": "2026-01-05",
+      "score_tendencia": 45,
+      "fuente_tendencia": "hackernews"
+    },
+    {
       "tema": "Self-hosting is being enshittified",
       "palabras_clave": "being, self-hosting, tecnología, enshittified",
       "notas": "Tema detectado automáticamente con score 39/100. Fuente: hackernews. Referencia: https://troubled.engineer/posts/selfhosting-in-2025/",
