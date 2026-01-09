@@ -1,0 +1,1261 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "Agente IA para Fisioterapeutas - Atención Multicanal 24/7 | AI Security";
+const description = "Asistente virtual especializado para clínicas de fisioterapia. Atiende pacientes por llamada, WhatsApp y web. Gestiona citas, consultas y seguimientos automáticamente.";
+const canonical = "https://aisecurity.es/servicios/agente-fisioterapeutas";
+---
+
+<BaseLayout title={title} description={description} canonical={canonical}>
+  <!-- Hero Section -->
+  <section class="py-16 bg-base-25">
+    <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
+      <div class="text-center mb-12">
+        <div class="inline-block px-4 py-2 bg-green-100 rounded-full text-green-800 text-sm font-semibold mb-4">
+          🏥 Especializado para Clínicas de Fisioterapia
+        </div>
+        <h1 class="text-4xl md:text-5xl font-bold text-base-900 mb-6">
+          Recepcionista virtual <span class="text-accent-600">que nunca descansa</span>
+        </h1>
+        <p class="text-xl text-base-600 max-w-3xl mx-auto mb-8">
+          Atención telefónica automatizada con voz natural. Gestiona llamadas, reserva citas,
+          responde preguntas frecuentes y deriva casos complejos a tu equipo.
+        </p>
+      </div>
+
+      <!-- Demo Selector Tabs -->
+      <div class="max-w-5xl mx-auto mb-8">
+        <p class="text-center text-base-700 font-semibold mb-6 text-lg">
+          👇 Haz clic para ver cada demo interactiva:
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <button data-demo="llamada" class="demo-tab-button group px-8 py-5 rounded-2xl font-bold text-lg transition-all duration-300 bg-accent-600 text-white shadow-xl hover:shadow-2xl hover:scale-105 border-4 border-accent-600">
+            <div class="flex items-center gap-3">
+              <span class="text-3xl group-hover:scale-110 transition-transform">📞</span>
+              <div class="text-left">
+                <div>Llamada Telefónica</div>
+                <div class="text-xs font-normal opacity-90">Voz natural IA</div>
+              </div>
+            </div>
+          </button>
+          <button data-demo="whatsapp" class="demo-tab-button group px-8 py-5 rounded-2xl font-bold text-lg transition-all duration-300 bg-white text-base-800 shadow-lg hover:shadow-2xl hover:scale-105 border-4 border-base-300 hover:border-green-500">
+            <div class="flex items-center gap-3">
+              <span class="text-3xl group-hover:scale-110 transition-transform">💬</span>
+              <div class="text-left">
+                <div>WhatsApp</div>
+                <div class="text-xs font-normal text-base-600">Mensajería automática</div>
+              </div>
+            </div>
+          </button>
+          <button data-demo="web" class="demo-tab-button group px-8 py-5 rounded-2xl font-bold text-lg transition-all duration-300 bg-white text-base-800 shadow-lg hover:shadow-2xl hover:scale-105 border-4 border-base-300 hover:border-blue-500">
+            <div class="flex items-center gap-3">
+              <span class="text-3xl group-hover:scale-110 transition-transform">🌐</span>
+              <div class="text-left">
+                <div>Reserva Web</div>
+                <div class="text-xs font-normal text-base-600">Calendario online</div>
+              </div>
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Demo: Atención por Llamada -->
+  <section id="demo-llamada" class="demo-section py-10 bg-base-25">
+    <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
+      <!-- Interactive Demo Section -->
+      <div class="mb-16">
+        <div class="max-w-4xl mx-auto bg-gradient-to-br from-base-900 to-base-800 rounded-2xl shadow-2xl overflow-hidden">
+          <!-- Demo Header -->
+          <div class="bg-base-800 px-6 py-4 border-b border-base-700">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                <span class="ml-4 text-base-300 text-sm font-medium">Atención Telefónica - Demo</span>
+              </div>
+              <div class="flex items-center gap-2 text-base-400 text-sm">
+                <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                Disponible 24/7
+              </div>
+            </div>
+          </div>
+
+          <!-- Phone Interface -->
+          <div class="bg-gradient-to-br from-blue-500 to-blue-700 p-8">
+            <div class="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto items-start">
+              <!-- Phone Mockup -->
+              <div class="relative bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 rounded-[3rem] p-3 shadow-2xl border-8 border-gray-800 w-full max-w-md mx-auto lg:mx-0 h-[750px]">
+                <!-- Phone screen -->
+                <div class="bg-black rounded-[2.5rem] overflow-hidden h-full flex flex-col">
+                  <!-- Status bar -->
+                  <div class="flex items-center justify-between text-white text-xs px-6 py-3 bg-black flex-shrink-0">
+                    <span class="font-semibold">9:41</span>
+                    <div class="flex gap-1.5 items-center">
+                      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"></path>
+                      </svg>
+                      <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M17.778 8.222c-4.296-4.296-11.26-4.296-15.556 0A1 1 0 01.808 6.808c5.076-5.077 13.308-5.077 18.384 0a1 1 0 01-1.414 1.414zM14.95 11.05a7 7 0 00-9.9 0 1 1 0 01-1.414-1.414 9 9 0 0112.728 0 1 1 0 01-1.414 1.414zM12.12 13.88a3 3 0 00-4.242 0 1 1 0 01-1.415-1.415 5 5 0 017.072 0 1 1 0 01-1.415 1.415zM9 16a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+                      </svg>
+                      <span class="text-[10px]">100%</span>
+                    </div>
+                  </div>
+
+                  <!-- Main content area -->
+                  <div class="bg-gradient-to-b from-gray-900 to-black flex-1 px-6 py-8 flex flex-col overflow-hidden relative">
+                    <!-- Pre-Call Screen (shown before call) -->
+                    <div id="pre-call-screen" class="absolute inset-0 px-6 py-8 flex flex-col">
+                      <!-- Contact photo and info -->
+                      <div class="text-center mb-8">
+                        <div class="w-32 h-32 mx-auto mb-4 rounded-full bg-gradient-to-br from-green-500 to-blue-600 flex items-center justify-center text-white text-5xl font-bold shadow-2xl">
+                          FV
+                        </div>
+                        <h3 class="text-white text-2xl font-semibold mb-2">FisioVital</h3>
+                        <p class="text-gray-400 text-base">+34 900 XXX XXX</p>
+                        <p id="call-status" class="text-gray-500 text-sm mt-2"></p>
+                      </div>
+
+                      <!-- Scenario Selector -->
+                      <div class="mb-auto">
+                        <p class="text-gray-400 text-xs font-semibold mb-3 text-center uppercase tracking-wide">Motivo de la llamada</p>
+                        <div class="space-y-2">
+                          <button data-scenario="reservar" class="scenario-button w-full text-left px-4 py-3 bg-gray-800/50 backdrop-blur rounded-xl border border-blue-500/50 hover:bg-gray-700/50 transition-all duration-200 text-sm text-white shadow-lg shadow-blue-500/20">
+                            <div class="flex items-center gap-3">
+                              <span class="text-xl">📅</span>
+                              <span>Primera consulta - Lesión hombro</span>
+                            </div>
+                          </button>
+                          <button data-scenario="modificar" class="scenario-button w-full text-left px-4 py-3 bg-gray-800/30 backdrop-blur rounded-xl border border-gray-700 hover:bg-gray-700/50 transition-all duration-200 text-sm text-white">
+                            <div class="flex items-center gap-3">
+                              <span class="text-xl">✏️</span>
+                              <span>Modificar cita existente</span>
+                            </div>
+                          </button>
+                          <button data-scenario="pago" class="scenario-button w-full text-left px-4 py-3 bg-gray-800/30 backdrop-blur rounded-xl border border-gray-700 hover:bg-gray-700/50 transition-all duration-200 text-sm text-white">
+                            <div class="flex items-center gap-3">
+                              <span class="text-xl">💳</span>
+                              <span>Consulta sobre precios</span>
+                            </div>
+                          </button>
+                        </div>
+                      </div>
+
+                      <!-- Call Button -->
+                      <div class="flex justify-center mt-auto pt-8">
+                        <button id="call-button" class="flex flex-col items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity">
+                          <div class="w-20 h-20 rounded-full bg-green-500 hover:bg-green-600 flex items-center justify-center shadow-2xl shadow-green-500/50 hover:scale-105 transition-transform">
+                            <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 20 20">
+                              <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
+                            </svg>
+                          </div>
+                          <span class="text-white text-xs"></span>
+                        </button>
+                      </div>
+                    </div>
+
+                    <!-- In-Call Screen (shown during call) -->
+                    <div id="in-call-screen" class="hidden absolute inset-0 px-6 py-8 flex-col justify-between">
+                      <!-- Contact photo and info (smaller) -->
+                      <div class="text-center pt-8">
+                        <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-gradient-to-br from-green-500 to-blue-600 flex items-center justify-center text-white text-4xl font-bold shadow-2xl">
+                          FV
+                        </div>
+                        <h3 class="text-white text-xl font-semibold mb-1">FisioVital</h3>
+                        <p class="text-green-400 text-sm font-medium">En llamada</p>
+                      </div>
+
+                      <!-- Call Duration -->
+                      <div class="text-center flex-1 flex flex-col justify-center">
+                        <div class="text-white text-5xl font-light mb-2" id="duration-text">00:00</div>
+                        <p class="text-gray-400 text-sm">Duración de la llamada</p>
+                      </div>
+
+                      <!-- Hang Up Button -->
+                      <div class="flex justify-center pb-8">
+                        <button id="hangup-button-in-phone" class="flex flex-col items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity">
+                          <div class="w-20 h-20 rounded-full bg-red-500 hover:bg-red-600 flex items-center justify-center shadow-2xl shadow-red-500/50 hover:scale-105 transition-transform">
+                            <svg class="w-10 h-10 text-white transform rotate-135" fill="currentColor" viewBox="0 0 20 20">
+                              <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
+                            </svg>
+                          </div>
+                          <span class="text-white text-xs">Colgar</span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Transcription Panel (always visible) -->
+              <div id="transcription-panel" class="bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl p-6 w-full max-w-md mx-auto lg:mx-0 h-[750px] flex flex-col">
+                <div class="flex items-center justify-between mb-4 pb-4 border-b border-gray-200 flex-shrink-0">
+                  <h4 style="color: #4f46e5;" class="text-lg font-semibold text-gray-900 flex items-center gap-2">
+                    <svg class="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clip-rule="evenodd"></path>
+                    </svg>
+                    Transcripción en vivo
+                  </h4>
+                  <div id="recording-indicator" class="hidden items-center gap-2">
+                    <span class="w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
+                    <span class="text-xs text-gray-500 font-medium">Grabando</span>
+                  </div>
+                </div>
+
+                <div id="conversation-log" class="space-y-3 flex-1 overflow-y-auto pr-2">
+                  <!-- Empty state -->
+                  <div id="empty-state" class="flex flex-col items-center justify-center h-full text-center py-12">
+                    <svg class="w-16 h-16 text-gray-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                    </svg>
+                    <p style="color: black;" class="text-gray-400 text-sm font-medium">La transcripción aparecerá aquí</p>
+                    <p style="color: black;" class="text-gray-300 text-xs mt-2">Selecciona un motivo y pulsa "Llamar"</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Info Panel -->
+          <div class="bg-base-100 px-6 py-5">
+            <p class="text-sm text-base-600 text-center font-medium max-w-2xl mx-auto">
+              Esta es una demo simulada. El sistema real utiliza síntesis de voz natural y procesamiento de lenguaje avanzado.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Features Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+        <div class="bg-black border-2 border-base-300 rounded-xl p-6">
+          <div class="w-12 h-12 bg-accent-600 rounded-lg flex items-center justify-center text-white text-xl mb-4">
+            🗣️
+          </div>
+          <h3 class="text-lg font-semibold text-white mb-3">Voz Natural</h3>
+          <p class="text-white/80">
+            Síntesis de voz con entonación natural y pronunciación perfecta en español.
+          </p>
+        </div>
+
+        <div class="bg-black border-2 border-base-300 rounded-xl p-6">
+          <div class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center text-white text-xl mb-4">
+            🎯
+          </div>
+          <h3 class="text-lg font-semibold text-white mb-3">Comprensión Contextual</h3>
+          <p class="text-white/80">
+            Entiende el contexto de la conversación y adapta las respuestas.
+          </p>
+        </div>
+
+        <div class="bg-black border-2 border-base-300 rounded-xl p-6">
+          <div class="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center text-white text-xl mb-4">
+            🔀
+          </div>
+          <h3 class="text-lg font-semibold text-white mb-3">Derivación Inteligente</h3>
+          <p class="text-white/80">
+            Transfiere llamadas complejas a fisioterapeutas cuando es necesario.
+          </p>
+        </div>
+      </div>
+
+      <!-- Stats Section -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-16">
+        <div class="rounded-xl p-6 text-white text-center" style="background: linear-gradient(to bottom right, #4338ca, #3730a3);">
+          <div class="text-4xl font-bold mb-2">24/7</div>
+          <div class="text-sm opacity-90">Disponibilidad</div>
+        </div>
+        <div class="rounded-xl p-6 text-white text-center" style="background: linear-gradient(to bottom right, #6366f1, #4f46e5);">
+          <div class="text-4xl font-bold mb-2">85%</div>
+          <div class="text-sm opacity-90">Llamadas resueltas</div>
+        </div>
+        <div class="rounded-xl p-6 text-white text-center" style="background: linear-gradient(to bottom right, #3b82f6, #2563eb);">
+          <div class="text-4xl font-bold mb-2">15-20h</div>
+          <div class="text-sm opacity-90">Ahorradas por mes</div>
+        </div>
+        <div class="rounded-xl p-6 text-white text-center" style="background: linear-gradient(to bottom right, #78ceff, #3b82f6);">
+          <div class="text-4xl font-bold mb-2">0s</div>
+          <div class="text-sm opacity-90">Tiempo de espera</div>
+        </div>
+      </div>
+
+      <!-- CTA Section -->
+      <div class="text-center rounded-2xl p-12 text-white">
+        <h2 class="text-3xl font-bold mb-4">
+          Nunca pierdas una llamada importante
+        </h2>
+        <p class="text-xl mb-8 max-w-2xl mx-auto opacity-90">
+          Descubre cómo nuestra IA puede transformar tu atención telefónica
+        </p>
+        <a
+          href="/reunion"
+          style="color: white;"
+          class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200"
+        >
+          Solicitar Demo Gratuita
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Demo: WhatsApp (Hidden initially) -->
+  <section id="demo-whatsapp" class="demo-section hidden py-20 relative overflow-hidden">
+    <!-- Background Image -->
+    <div class="absolute inset-0">
+      <img src="/images/3409297.jpg" alt="Background" class="w-full h-full object-cover" />
+    </div>
+    <!-- Overlay Gradient (light) -->
+    <div class="absolute inset-0 bg-gradient-to-bl from-green-500/10 via-blue-600/50 to-green-500/10"></div>
+
+    <!-- Content -->
+    <div class="relative z-10">
+    <div class="max-w-full mx-auto px-24 md:px-40 lg:px-64">
+      <!-- Interactive WhatsApp Demo -->
+      <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-6">
+        Gestiona citas desde WhatsApp
+      </h2>
+      <p class="text-lg text-white/90 text-center mb-8 max-w-3xl mx-auto">
+        Tus pacientes pueden reservar, modificar o cancelar citas directamente desde WhatsApp.
+        <strong class="text-white">El asistente de IA gestiona todo automáticamente</strong>.
+        Sin llamadas, sin esperas, disponible 24/7.
+      </p>
+
+      <!-- Container centered for WhatsApp mockup only -->
+      <div class="flex justify-center items-center max-w-7xl mx-auto">
+        <!-- WhatsApp Phone Mockup - Centered -->
+        <div style="margin-top:35px" class="w-full max-w-[420px]">
+          <div class="relative bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 rounded-[3rem] p-3 shadow-2xl border-8 border-gray-800">
+            <!-- Phone screen -->
+            <div class="bg-black rounded-[2.5rem] overflow-hidden w-full h-[730px] flex flex-col">
+              <!-- Status bar -->
+              <div class="flex items-center justify-between text-white text-xs px-6 py-3 bg-black flex-shrink-0">
+                <span class="font-semibold">9:41</span>
+                <div class="flex gap-1.5 items-center">
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"></path>
+                  </svg>
+                  <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M17.778 8.222c-4.296-4.296-11.26-4.296-15.556 0A1 1 0 01.808 6.808c5.076-5.077 13.308-5.077 18.384 0a1 1 0 01-1.414 1.414zM14.95 11.05a7 7 0 00-9.9 0 1 1 0 01-1.414-1.414 9 9 0 0112.728 0 1 1 0 01-1.414 1.414zM12.12 13.88a3 3 0 00-4.242 0 1 1 0 01-1.415-1.415 5 5 0 017.072 0 1 1 0 01-1.415 1.415zM9 16a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span class="text-[10px]">100%</span>
+                </div>
+              </div>
+
+              <!-- WhatsApp Content -->
+              <div class="bg-white/10 backdrop-blur-sm flex-1 flex flex-col overflow-hidden">
+          <!-- WhatsApp Header -->
+          <div class="bg-[#008069] px-4 py-4 flex items-center gap-3">
+            <div class="w-12 h-12 bg-gray-300 rounded-full flex items-center justify-center text-2xl">
+              🤖
+            </div>
+            <div class="flex-1">
+              <h5 class="text-white font-semibold text-base">FisioVital IA</h5>
+              <p class="text-white/80 text-sm">en línea</p>
+            </div>
+          </div>
+
+          <!-- WhatsApp Chat -->
+          <div class="bg-[#efeae2] p-4 flex-1 overflow-y-auto" id="chat-container-wa" style="background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iYSIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIj48cGF0aCBmaWxsPSIjZjBmMGYwIiBkPSJNMCAwaDQwdjQwSDB6Ci8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2EpIi8+PC9zdmc+'); background-size: 200px;">
+            <!-- Initial Bot Message -->
+            <div class="flex justify-start mb-4">
+              <div class="bg-white rounded-lg px-4 py-3 max-w-[85%] shadow-sm">
+                <p class="text-lg" style="color: #000000;">¡Hola! Soy el asistente de FisioVital. ¿Necesitas reservar o modificar una cita?</p>
+                <span class="text-sm text-gray-600 float-right mt-1">14:30 ✓✓</span>
+              </div>
+            </div>
+
+
+
+            <!-- Response Messages Container -->
+            <div id="chat-messages-wa" class="space-y-3"></div>
+          </div>
+
+          <!-- WhatsApp Input Bar -->
+          <div class="bg-[#f0f2f5] px-3 py-2 flex items-center gap-2 flex-shrink-0">
+            <button class="text-gray-600 hover:text-gray-800">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-5-9h10v2H7z"></path>
+              </svg>
+            </button>
+            <input
+              type="text"
+              id="chat-input-wa"
+              placeholder="Escribe un mensaje..."
+              class="flex-1 bg-white rounded-full px-4 py-2 text-base placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-[#25D366]"
+              style="color: #000000; background-color: #ffffff"
+            />
+            <button id="send-button-wa" class="bg-[#008069] text-white rounded-full p-2 hover:bg-[#006d5a] transition-colors">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path>
+              </svg>
+            </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Info Note -->
+      <div class="mt-8 text-center">
+        <p class="text-base text-white/85 max-w-2xl mx-auto leading-relaxed">
+          💡 Tus pacientes pueden reservar, modificar y consultar citas directamente desde WhatsApp, sin llamadas ni esperas.
+        </p>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- Demo: Web (Hidden initially) -->
+  <section id="demo-web" class="demo-section hidden pt-8 pb-20 bg-base-25">
+    <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
+      <!-- Hero Section -->
+      <div class="text-center mb-16">
+        <h1 class="text-4xl md:text-5xl font-bold text-base-900 mb-6">
+          Reservas automáticas <span class="text-accent-600">24/7</span>
+        </h1>
+
+        <p class="text-xl text-base-600 max-w-3xl mx-auto mb-8">
+          Tu asistente virtual gestiona citas, confirmaciones y recordatorios automáticamente.
+          Sin llamadas, sin esperas, sin complicaciones.
+        </p>
+      </div>
+
+      <!-- Interactive Demo Section -->
+      <div class="mb-16">
+        <div class="max-w-5xl mx-auto">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Calendar View -->
+            <div class="bg-base-50 rounded-2xl shadow-xl overflow-hidden">
+              <div class="bg-gradient-to-r from-green-600 to-blue-600 px-6 py-4 text-white">
+                <h3 class="text-lg font-semibold">Calendario de Disponibilidad</h3>
+                <p class="text-sm opacity-90">FisioVital - Clínica de Fisioterapia</p>
+              </div>
+
+              <div class="p-6">
+                <!-- Calendar Header -->
+                <div class="flex items-center justify-between mb-6">
+                  <button class="p-2 hover:bg-base-100 rounded-lg transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                  </button>
+                  <h4 class="text-lg font-semibold text-base-900">Enero 2025</h4>
+                  <button class="p-2 hover:bg-base-100 rounded-lg transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                  </button>
+                </div>
+
+                <!-- Calendar Grid -->
+                <div class="grid grid-cols-7 gap-2 mb-4">
+                  {['L', 'M', 'X', 'J', 'V', 'S', 'D'].map(day => (
+                    <div class="text-center text-sm font-medium text-base-500">{day}</div>
+                  ))}
+                </div>
+
+                <div class="grid grid-cols-7 gap-2" id="calendar-grid-web">
+                  <!-- Calendar days will be generated by JS -->
+                </div>
+
+                <!-- Time Slots -->
+                <div class="mt-6 pt-6 border-t border-base-200">
+                  <h5 class="text-sm font-semibold text-base-900 mb-3">Horarios disponibles</h5>
+                  <div class="grid grid-cols-3 gap-2" id="time-slots-web">
+                    <button class="time-slot-web px-3 py-2 border border-base-300 rounded-lg hover:border-accent-500 hover:bg-accent-50 transition-all text-sm font-medium">
+                      09:00
+                    </button>
+                    <button class="time-slot-web px-3 py-2 border border-base-300 rounded-lg hover:border-accent-500 hover:bg-accent-50 transition-all text-sm font-medium">
+                      10:00
+                    </button>
+                    <button class="time-slot-web px-3 py-2 border border-base-300 rounded-lg hover:border-accent-500 hover:bg-accent-50 transition-all text-sm font-medium">
+                      11:00
+                    </button>
+                    <button class="time-slot-web px-3 py-2 border border-base-300 rounded-lg hover:border-accent-500 hover:bg-accent-50 transition-all text-sm font-medium">
+                      12:00
+                    </button>
+                    <button class="time-slot-web px-3 py-2 border border-base-300 rounded-lg hover:border-accent-500 hover:bg-accent-50 transition-all text-sm font-medium">
+                      16:00
+                    </button>
+                    <button class="time-slot-web px-3 py-2 border border-base-300 rounded-lg hover:border-accent-500 hover:bg-accent-50 transition-all text-sm font-medium">
+                      17:00
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Booking Form -->
+            <div class="bg-base-50 rounded-2xl shadow-xl overflow-hidden">
+              <div class="bg-gradient-to-r from-green-600 to-blue-600 px-6 py-4 text-white">
+                <h3 class="text-lg font-semibold">Reservar Cita</h3>
+                <p class="text-sm opacity-90">Completa tus datos</p>
+              </div>
+
+              <div class="p-6">
+                <form id="booking-form-web" class="space-y-4">
+                  <div>
+                    <label class="block text-sm font-medium text-base-700 mb-2">Nombre completo</label>
+                    <input
+                      type="text"
+                      placeholder="María González"
+                      class="w-full px-4 py-3 border border-base-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-accent-500"
+                    />
+                  </div>
+
+                  <div>
+                    <label class="block text-sm font-medium text-base-700 mb-2">Email</label>
+                    <input
+                      type="email"
+                      placeholder="maria@ejemplo.com"
+                      class="w-full px-4 py-3 border border-base-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-accent-500"
+                    />
+                  </div>
+
+                  <div>
+                    <label class="block text-sm font-medium text-base-700 mb-2">Teléfono</label>
+                    <input
+                      type="tel"
+                      placeholder="+34 600 000 000"
+                      class="w-full px-4 py-3 border border-base-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-accent-500"
+                    />
+                  </div>
+
+                  <div>
+                    <label class="block text-sm font-medium text-base-700 mb-2">Tipo de tratamiento</label>
+                    <select class="w-full px-4 py-3 border border-base-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-accent-500">
+                      <option>Fisioterapia general</option>
+                      <option>Terapia deportiva</option>
+                      <option>Rehabilitación</option>
+                      <option>Masaje terapéutico</option>
+                      <option>Punción seca</option>
+                      <option>Primera consulta</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label class="block text-sm font-medium text-base-700 mb-2">Notas adicionales</label>
+                    <textarea
+                      rows="3"
+                      placeholder="Describe tu dolencia o motivo de consulta..."
+                      class="w-full px-4 py-3 border border-base-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-accent-500"
+                    ></textarea>
+                  </div>
+
+                  <div id="selected-slot-web" class="hidden p-4 bg-green-50 border border-green-200 rounded-lg">
+                    <div class="flex items-center gap-2 text-green-800 text-sm font-medium">
+                      <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                      </svg>
+                      <span id="selected-slot-text-web"></span>
+                    </div>
+                  </div>
+
+                  <button
+                    type="submit"
+                    class="w-full px-6 py-4 bg-gradient-to-r from-accent-600 to-blue-600 text-white rounded-xl font-semibold hover:from-accent-700 hover:to-blue-700 transition-all duration-200 shadow-lg hover:shadow-xl"
+                  >
+                    Confirmar Reserva
+                  </button>
+                </form>
+
+                <div id="booking-success-web" class="hidden mt-4 p-4 bg-green-50 border border-green-200 rounded-lg">
+                  <div class="text-center">
+                    <div class="text-4xl mb-2">✅</div>
+                    <h4 class="text-lg font-semibold text-green-800 mb-1">¡Cita confirmada!</h4>
+                    <p class="text-sm text-green-600">Recibirás un email de confirmación y un recordatorio 24h antes</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="text-xl text-base-600 max-w-3xl mx-auto mb-8 text-center">
+        Disponible también para <span class="font-bold text-green-700 bg-green-50 px-2 py-0.5 rounded">WhatsApp</span> y por <a href="#demo-llamada" class="text-accent-600 hover:text-accent-700 font-semibold underline decoration-2 underline-offset-2 transition-colors">agente IA en llamada</a>.
+      </p>
+
+      <!-- Stats Section -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-16">
+        <div class="bg-base-100 border border-base-200 rounded-xl p-6 text-center shadow-sm">
+          <div class="text-4xl font-bold mb-2 text-base-900">24/7</div>
+          <div class="text-sm text-base-600">Disponibilidad</div>
+        </div>
+        <div class="bg-base-100 border border-base-200 rounded-xl p-6 text-center shadow-sm">
+          <div class="text-4xl font-bold mb-2 text-base-900">85%</div>
+          <div class="text-sm text-base-600">Reservas automáticas</div>
+        </div>
+        <div class="bg-base-100 border border-base-200 rounded-xl p-6 text-center shadow-sm">
+          <div class="text-4xl font-bold mb-2 text-base-900">60%</div>
+          <div class="text-sm text-base-600">Reducción de llamadas</div>
+        </div>
+        <div class="bg-base-100 border border-base-200 rounded-xl p-6 text-center shadow-sm">
+          <div class="text-4xl font-bold mb-2 text-base-900">0</div>
+          <div class="text-sm text-base-600">No-shows con recordatorios</div>
+        </div>
+      </div>
+
+      <!-- CTA Section -->
+      <div class="text-center bg-gradient-to-br from-accent-600 to-blue-600 rounded-2xl p-12 text-white">
+        <h2 class="text-3xl font-bold mb-4">
+          Reduce llamadas y mejora la experiencia de tus pacientes
+        </h2>
+        <p class="text-xl mb-8 max-w-2xl mx-auto opacity-90">
+          Implementa nuestro sistema de citas en tu clínica de fisioterapia
+        </p>
+        <a
+          href="/reunion"
+          class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold bg-accent-600 hover:bg-accent-700 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200"
+          style="color: #000000;"
+        >
+          Solicitar Demo Gratuita
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  // Tab switching logic
+  const demoTabs = document.querySelectorAll('.demo-tab-button');
+  const demoSections = document.querySelectorAll('.demo-section');
+
+  demoTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const demoType = tab.getAttribute('data-demo');
+
+      // Update tab styles
+      demoTabs.forEach(t => {
+        t.classList.remove('bg-accent-600', 'text-white', 'shadow-lg', 'shadow-xl', 'border-accent-600');
+        t.classList.add('bg-white', 'text-base-800', 'shadow-md', 'border-base-300');
+      });
+      tab.classList.remove('bg-white', 'text-base-800', 'shadow-md', 'border-base-300');
+      tab.classList.add('bg-accent-600', 'text-white', 'shadow-lg', 'shadow-xl', 'border-accent-600');
+
+      // Show/hide demo sections
+      demoSections.forEach(section => {
+        section.classList.add('hidden');
+      });
+      const targetSection = document.getElementById(`demo-${demoType}`);
+      if (targetSection) {
+        targetSection.classList.remove('hidden');
+      }
+    });
+  });
+
+  // Demo Llamada - Phone Call Simulation (código exacto copiado)
+  document.addEventListener('DOMContentLoaded', () => {
+    const callButton = document.getElementById('call-button');
+    const callButtonContainer = document.getElementById('call-button-container');
+    const hangupButtonInPhone = document.getElementById('hangup-button-in-phone');
+    const durationText = document.getElementById('duration-text');
+    const conversationLog = document.getElementById('conversation-log');
+    const scenarioButtons = document.querySelectorAll('.scenario-button');
+    const scenarioSelectorContainer = document.getElementById('scenario-selector-container');
+    const preCallScreen = document.getElementById('pre-call-screen');
+    const inCallScreen = document.getElementById('in-call-screen');
+    const transcriptionPanel = document.getElementById('transcription-panel');
+    const recordingIndicator = document.getElementById('recording-indicator');
+    const emptyState = document.getElementById('empty-state');
+
+    let isInCall = false;
+    let callStartTime = 0;
+    let durationInterval: number;
+    let currentAudio: HTMLAudioElement | null = null;
+    let audioTimeouts: number[] = [];
+    let selectedScenario: keyof typeof scenarios = 'reservar';
+
+    // Escenarios adaptados para fisioterapia
+    const scenarios = {
+      reservar: [
+        { delay: 1000, speaker: 'AI', text: '¡Hola! Bienvenido a FisioVital. ¿En qué puedo ayudarte?', audio: '/audio/reservar/ai_1.mp3' },
+        { delay: 3000, speaker: 'User', text: 'Hola, tengo dolor en el hombro derecho desde hace una semana', audio: '/audio/reservar/user_1.mp3' },
+        { delay: 4500, speaker: 'AI', text: 'Entiendo. ¿Has sufrido alguna lesión reciente o es un dolor progresivo?', audio: '/audio/reservar/ai_2.mp3' },
+        { delay: 6000, speaker: 'User', text: 'Fue después de jugar al pádel el fin de semana pasado', audio: '/audio/reservar/user_2.mp3' },
+        { delay: 7500, speaker: 'AI', text: 'Perfecto. Te recomiendo una primera consulta de valoración. Tengo disponibilidad mañana a las 10:00 o pasado mañana a las 16:30. ¿Cuál prefieres?', audio: '/audio/reservar/ai_3.mp3' },
+        { delay: 9000, speaker: 'User', text: 'Mañana a las 10:00 me viene bien', audio: '/audio/reservar/user_3.mp3' },
+        { delay: 10500, speaker: 'AI', text: '¡Excelente! He reservado tu cita para mañana a las 10:00 - Valoración de hombro. Te enviaré un SMS de confirmación. ¿Necesitas algo más?', audio: '/audio/reservar/ai_4.mp3' },
+      ],
+      modificar: [
+        { delay: 1000, speaker: 'AI', text: 'Buenos días, FisioVital. ¿En qué puedo ayudarle?', audio: '/audio/modificar/ai_1.mp3' },
+        { delay: 3000, speaker: 'User', text: 'Necesito cambiar mi cita del viernes porque me surgió un imprevisto', audio: '/audio/modificar/user_1.mp3' },
+        { delay: 4500, speaker: 'AI', text: 'Sin problema. ¿Podría darme su nombre completo?', audio: '/audio/modificar/ai_2.mp3' },
+        { delay: 6000, speaker: 'User', text: 'Soy Carlos Martínez', audio: '/audio/modificar/user_2.mp3' },
+        { delay: 7500, speaker: 'AI', text: 'Perfecto, Carlos. Veo que tiene una cita el viernes a las 11:00. ¿Qué día le vendría mejor?', audio: '/audio/modificar/ai_3.mp3' },
+        { delay: 9500, speaker: 'User', text: '¿Tenéis algo el lunes siguiente por la tarde?', audio: '/audio/modificar/user_3.mp3' },
+        { delay: 11000, speaker: 'AI', text: 'Sí, tengo disponible el lunes a las 16:00 o a las 18:30. ¿Cuál prefiere?', audio: '/audio/modificar/ai_4.mp3' },
+        { delay: 12500, speaker: 'User', text: 'A las 18:30 me va perfecto', audio: '/audio/modificar/user_4.mp3' },
+        { delay: 13500, speaker: 'AI', text: 'Listo, he modificado su cita al lunes 18:30. Le enviaré una confirmación por SMS.', audio: '/audio/modificar/ai_5.mp3' },
+      ],
+      pago: [
+        { delay: 1000, speaker: 'AI', text: 'FisioVital, ¿en qué puedo ayudarle?', audio: '/audio/pago/ai_1.mp3' },
+        { delay: 3000, speaker: 'User', text: 'Quisiera saber cuánto cuesta una sesión de fisioterapia', audio: '/audio/pago/user_1.mp3' },
+        { delay: 5000, speaker: 'AI', text: 'Una sesión individual cuesta 35€. También tenemos bonos: 5 sesiones por 160€ (ahorra 15€) y 10 sesiones por 300€ (ahorra 50€). ¿Le gustaría información sobre algún tratamiento específico?', audio: '/audio/pago/ai_2.mp3' },
+        { delay: 7500, speaker: 'User', text: 'Sí, ¿hacéis punción seca?', audio: '/audio/pago/user_2.mp3' },
+        { delay: 9000, speaker: 'AI', text: 'Sí, ofrecemos punción seca. El precio es de 40€ por sesión. ¿Le gustaría agendar una consulta de valoración?', audio: '/audio/pago/ai_3.mp3' },
+        { delay: 11500, speaker: 'User', text: 'Sí, me interesa', audio: '/audio/pago/user_3.mp3' },
+        { delay: 12500, speaker: 'AI', text: 'Perfecto. ¿Qué día le vendría mejor para la consulta?', audio: '/audio/pago/ai_4.mp3' },
+      ]
+    };
+
+    function addConversationLine(speaker: string, text: string, audioSrc?: string) {
+      if (!conversationLog) return;
+
+      // Ocultar estado vacío en el primer mensaje
+      if (emptyState && !emptyState.classList.contains('hidden')) {
+        emptyState.classList.add('hidden');
+      }
+
+      const line = document.createElement('div');
+      line.className = speaker === 'AI'
+        ? 'flex gap-2 items-start'
+        : 'flex gap-2 items-start justify-end';
+
+      const bubble = document.createElement('div');
+      bubble.className = speaker === 'AI'
+        ? 'bg-blue-50 text-gray-800 px-4 py-2 rounded-2xl rounded-tl-sm max-w-[85%]'
+        : 'bg-blue-600 text-white px-4 py-2 rounded-2xl rounded-tr-sm max-w-[85%]';
+
+      const content = document.createElement('div');
+      const label = document.createElement('div');
+      label.className = 'text-xs font-semibold mb-1 opacity-70';
+      label.textContent = speaker === 'AI' ? '🤖 Asistente' : '👤 Tú';
+
+      const message = document.createElement('div');
+      message.className = 'text-sm leading-relaxed';
+      message.textContent = text;
+
+      content.appendChild(label);
+      content.appendChild(message);
+      bubble.appendChild(content);
+      line.appendChild(bubble);
+
+      conversationLog.appendChild(line);
+      conversationLog.scrollTop = conversationLog.scrollHeight;
+
+      // Reproducir audio si está disponible
+      if (audioSrc) {
+        playAudio(audioSrc);
+      }
+    }
+
+    function playAudio(src: string) {
+      // Detener audio actual si existe
+      if (currentAudio) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+      }
+
+      // Crear y reproducir nuevo audio
+      currentAudio = new Audio(src);
+      currentAudio.play().catch(error => {
+        console.log('Audio playback failed:', error);
+        // Silenciosamente fallar si el audio no está disponible
+      });
+    }
+
+    function stopAllAudio() {
+      if (currentAudio) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+        currentAudio = null;
+      }
+
+      // Limpiar todos los timeouts de audio
+      audioTimeouts.forEach(timeout => clearTimeout(timeout));
+      audioTimeouts = [];
+    }
+
+    function updateDuration() {
+      const elapsed = Math.floor((Date.now() - callStartTime) / 1000);
+      const minutes = Math.floor(elapsed / 60).toString().padStart(2, '0');
+      const seconds = (elapsed % 60).toString().padStart(2, '0');
+      if (durationText) {
+        durationText.textContent = `${minutes}:${seconds}`;
+      }
+    }
+
+    function startCall() {
+      isInCall = true;
+      callStartTime = Date.now();
+
+      // Usar escenario seleccionado
+      const conversation = scenarios[selectedScenario];
+
+      // Ocultar pantalla pre-llamada
+      if (preCallScreen) preCallScreen.classList.add('hidden');
+
+      // Mostrar pantalla en llamada
+      if (inCallScreen) {
+        inCallScreen.classList.remove('hidden');
+        inCallScreen.classList.add('flex');
+      }
+
+      // Mostrar indicador de grabación
+      if (recordingIndicator) {
+        recordingIndicator.classList.remove('hidden');
+        recordingIndicator.classList.add('flex');
+      }
+
+      // Start duration counter
+      durationInterval = setInterval(updateDuration, 1000) as unknown as number;
+
+      // Play conversation with audio
+      conversation.forEach(line => {
+        const timeout = setTimeout(() => {
+          if (isInCall) {
+            addConversationLine(line.speaker, line.text, line.audio);
+          }
+        }, line.delay) as unknown as number;
+        audioTimeouts.push(timeout);
+      });
+    }
+
+    function endCall() {
+      isInCall = false;
+      clearInterval(durationInterval);
+      stopAllAudio();
+
+      // Ocultar pantalla en llamada
+      if (inCallScreen) {
+        inCallScreen.classList.add('hidden');
+        inCallScreen.classList.remove('flex');
+      }
+
+      // Ocultar indicador de grabación
+      if (recordingIndicator) {
+        recordingIndicator.classList.add('hidden');
+        recordingIndicator.classList.remove('flex');
+      }
+
+      // Limpiar transcripción y mostrar estado vacío
+      if (conversationLog) {
+        conversationLog.innerHTML = `
+          <div id="empty-state" class="flex flex-col items-center justify-center h-full text-center py-12">
+            <svg class="w-16 h-16 text-gray-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+            </svg>
+            <p class="text-gray-400 text-sm font-medium">La transcripción aparecerá aquí</p>
+            <p class="text-gray-300 text-xs mt-2">Selecciona un motivo y pulsa "Llamar"</p>
+          </div>
+        `;
+      }
+
+      // Reset temporizador
+      if (durationText) durationText.textContent = '00:00';
+
+      // Mostrar pantalla pre-llamada
+      if (preCallScreen) preCallScreen.classList.remove('hidden');
+    }
+
+    // Función para actualizar el escenario seleccionado
+    function updateSelectedScenario(scenario: keyof typeof scenarios) {
+      selectedScenario = scenario;
+
+      // Actualizar estilos de los botones
+      scenarioButtons.forEach(btn => {
+        const btnScenario = btn.getAttribute('data-scenario');
+        if (btnScenario === scenario) {
+          btn.classList.remove('border-gray-700', 'bg-gray-800/30');
+          btn.classList.add('border-blue-500/50', 'bg-gray-800/50', 'shadow-lg', 'shadow-blue-500/20');
+        } else {
+          btn.classList.remove('border-blue-500/50', 'bg-gray-800/50', 'shadow-lg', 'shadow-blue-500/20');
+          btn.classList.add('border-gray-700', 'bg-gray-800/30');
+        }
+      });
+    }
+
+    // Event listener para el botón de llamar
+    if (callButton) {
+      callButton.addEventListener('click', startCall);
+    }
+
+    // Event listeners para los botones de escenario
+    scenarioButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const scenario = button.getAttribute('data-scenario') as keyof typeof scenarios;
+        if (scenario) {
+          updateSelectedScenario(scenario);
+        }
+      });
+    });
+
+    // Event listener para colgar (botón dentro del teléfono)
+    if (hangupButtonInPhone) {
+      hangupButtonInPhone.addEventListener('click', endCall);
+    }
+  });
+
+  // === WHATSAPP DEMO JAVASCRIPT (copiado exacto de migracion-wordpress.astro) ===
+  const chatMessagesWa = document.getElementById('chat-messages-wa');
+  const chatContainerWa = document.getElementById('chat-container-wa');
+  const chatInputWa = document.getElementById('chat-input-wa');
+  const sendButtonWa = document.getElementById('send-button-wa');
+  const demoTitleWa = document.getElementById('demo-title-wa');
+  const demoPriceWa = document.getElementById('demo-price-wa');
+  const demoButtonWa = document.getElementById('demo-button-wa');
+  const connectionCableWa = document.getElementById('connection-cable-wa');
+  const resetDemoButtonWa = document.getElementById('reset-demo-button-wa');
+  const particlesWa = [
+    document.getElementById('particle1Wa'),
+    document.getElementById('particle2Wa'),
+    document.getElementById('particle3Wa')
+  ];
+
+  let isPlayingWa = false;
+  const INITIAL_TITLE_WA = 'Clínica de Fisioterapia';
+  const INITIAL_PRICE_WA = '€35';
+  const INITIAL_BUTTON_COLOR_WA = '#10b981';
+
+  function addMessageWa(text, isUser = true) {
+    if (!chatMessagesWa) return;
+
+    const msgDiv = document.createElement('div');
+    msgDiv.className = isUser ? 'flex justify-end mb-3' : 'flex justify-start mb-3';
+
+    const time = new Date().toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
+
+    msgDiv.innerHTML = `
+      <div class="${isUser ? 'bg-[#d9fdd3]' : 'bg-white'} rounded-lg px-3 py-2 max-w-[85%] shadow-sm">
+        <p class="text-base" style="color: #000000;">${text}</p>
+        <span class="text-xs text-gray-600 float-right mt-1">${time}${isUser ? '' : ' ✓✓'}</span>
+      </div>
+    `;
+
+    chatMessagesWa.appendChild(msgDiv);
+
+    if (chatContainerWa) {
+      chatContainerWa.scrollTop = chatContainerWa.scrollHeight;
+    }
+  }
+
+  function typeMessageWa(text, callback) {
+    if (!chatInputWa) return;
+
+    let i = 0;
+    chatInputWa.value = '';
+    chatInputWa.focus();
+
+    const typingInterval = setInterval(() => {
+      if (i < text.length) {
+        chatInputWa.value += text[i];
+        i++;
+      } else {
+        clearInterval(typingInterval);
+        if (callback) callback();
+      }
+    }, 80);
+  }
+
+  function showCableAnimationWa(targetType = 'title') {
+    if (!connectionCableWa) return;
+
+    const cablePath = document.getElementById('cablePathWa');
+    if (cablePath) {
+      if (targetType === 'title') {
+        cablePath.setAttribute('d', 'M 350 500 Q 500 350, 650 500');
+      } else if (targetType === 'button') {
+        cablePath.setAttribute('d', 'M 350 550 Q 500 400, 650 550');
+      }
+    }
+
+    connectionCableWa.classList.remove('hidden');
+
+    let opacity = 0;
+    const fadeIn = setInterval(() => {
+      if (opacity < 1) {
+        opacity += 0.05;
+        connectionCableWa.style.opacity = opacity;
+      } else {
+        clearInterval(fadeIn);
+      }
+    }, 30);
+
+    particlesWa.forEach(p => {
+      if (p) p.setAttribute('opacity', '1');
+    });
+  }
+
+  function hideCableAnimationWa() {
+    if (!connectionCableWa) return;
+
+    particlesWa.forEach(p => {
+      if (p) p.setAttribute('opacity', '0');
+    });
+
+    let opacity = 1;
+    const fadeOut = setInterval(() => {
+      if (opacity > 0) {
+        opacity -= 0.05;
+        connectionCableWa.style.opacity = opacity;
+      } else {
+        clearInterval(fadeOut);
+        connectionCableWa.classList.add('hidden');
+      }
+    }, 30);
+  }
+
+  function updateWebsiteWa(type, value) {
+    if (type === 'title' && demoTitleWa) {
+      demoTitleWa.style.transform = 'scale(0.9)';
+      demoTitleWa.style.opacity = '0.3';
+      setTimeout(() => {
+        demoTitleWa.textContent = value;
+        demoTitleWa.style.transform = 'scale(1)';
+        demoTitleWa.style.opacity = '1';
+      }, 300);
+    } else if (type === 'price' && demoPriceWa) {
+      demoPriceWa.style.transform = 'scale(0.9) rotate(-5deg)';
+      demoPriceWa.style.opacity = '0.3';
+      setTimeout(() => {
+        demoPriceWa.textContent = value;
+        demoPriceWa.style.transform = 'scale(1) rotate(0deg)';
+        demoPriceWa.style.opacity = '1';
+      }, 300);
+    } else if (type === 'button' && demoButtonWa) {
+      demoButtonWa.style.transform = 'scale(0.9)';
+      demoButtonWa.style.opacity = '0.5';
+      setTimeout(() => {
+        demoButtonWa.style.backgroundColor = value;
+        demoButtonWa.style.transform = 'scale(1)';
+        demoButtonWa.style.opacity = '1';
+      }, 300);
+    }
+  }
+
+  async function runDemoWa() {
+    if (isPlayingWa) return;
+    isPlayingWa = true;
+
+    if (chatInputWa) chatInputWa.disabled = true;
+    if (sendButtonWa) sendButtonWa.disabled = true;
+
+    if (chatMessagesWa) chatMessagesWa.innerHTML = '';
+
+    // Mensaje 1: Usuario pregunta por dolor
+    const demoMessage1 = 'Hola, tengo dolor en la espalda baja desde hace 3 días';
+
+    await new Promise(resolve => {
+      typeMessageWa(demoMessage1, resolve);
+    });
+
+    await new Promise(resolve => setTimeout(resolve, 500));
+
+    if (chatInputWa) chatInputWa.value = '';
+    addMessageWa(demoMessage1, true);
+
+    await new Promise(resolve => setTimeout(resolve, 1200));
+
+    // Respuesta IA 1
+    addMessageWa('Hola! Lamento que tengas dolor. ¿El dolor es constante o solo al hacer ciertos movimientos?', false);
+
+    await new Promise(resolve => setTimeout(resolve, 2000));
+
+    // Mensaje 2: Usuario responde
+    const demoMessage2 = 'Me duele al agacharme y al estar sentado mucho rato';
+
+    await new Promise(resolve => {
+      typeMessageWa(demoMessage2, resolve);
+    });
+
+    await new Promise(resolve => setTimeout(resolve, 500));
+
+    if (chatInputWa) chatInputWa.value = '';
+    addMessageWa(demoMessage2, true);
+
+    await new Promise(resolve => setTimeout(resolve, 1200));
+
+    // Respuesta IA 2: Ofrece horarios
+    addMessageWa('Entiendo. Te recomiendo una sesión de fisioterapia para la zona lumbar. ¿Qué horario te viene mejor?\n\n📅 Mañana miércoles:\n• 10:00h\n• 16:30h\n• 18:00h', false);
+
+    await new Promise(resolve => setTimeout(resolve, 2500));
+
+    // Mensaje 3: Usuario elige horario
+    const demoMessage3 = 'Mañana a las 16:30 me viene bien';
+
+    await new Promise(resolve => {
+      typeMessageWa(demoMessage3, resolve);
+    });
+
+    await new Promise(resolve => setTimeout(resolve, 500));
+
+    if (chatInputWa) chatInputWa.value = '';
+    addMessageWa(demoMessage3, true);
+
+    await new Promise(resolve => setTimeout(resolve, 1200));
+
+    // Respuesta IA 3: Confirmación
+    addMessageWa('✅ ¡Perfecto! He reservado tu cita:\n\n📆 Miércoles 8 enero\n🕐 16:30h\n👨‍⚕️ Fisioterapeuta: Dr. Martínez\n📍 FisioVital - Consulta 2\n\nTe enviaré un recordatorio 1 hora antes. ¿Necesitas algo más?', false);
+
+    await new Promise(resolve => setTimeout(resolve, 1500));
+
+    isPlayingWa = false;
+  }
+
+  function resetDemoWa() {
+    if (demoTitleWa) {
+      demoTitleWa.textContent = INITIAL_TITLE_WA;
+      demoTitleWa.style.transform = 'scale(1)';
+      demoTitleWa.style.opacity = '1';
+    }
+
+    if (demoPriceWa) {
+      demoPriceWa.textContent = INITIAL_PRICE_WA;
+      demoPriceWa.style.transform = 'scale(1) rotate(0deg)';
+      demoPriceWa.style.opacity = '1';
+    }
+
+    if (demoButtonWa) {
+      demoButtonWa.style.backgroundColor = INITIAL_BUTTON_COLOR_WA;
+      demoButtonWa.style.transform = 'scale(1)';
+      demoButtonWa.style.opacity = '1';
+    }
+
+    if (chatMessagesWa) chatMessagesWa.innerHTML = '';
+    if (chatInputWa) {
+      chatInputWa.value = '';
+      chatInputWa.disabled = false;
+    }
+    if (sendButtonWa) sendButtonWa.disabled = false;
+
+    if (resetDemoButtonWa) {
+      resetDemoButtonWa.classList.add('hidden');
+    }
+
+    setTimeout(() => {
+      runDemoWa();
+    }, 300);
+  }
+
+  // Auto-start WhatsApp demo when section comes into view
+  const demoSectionWa = document.querySelector('#demo-whatsapp');
+  let hasAutoPlayedWa = false;
+
+  if (demoSectionWa) {
+    const observerWa = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !hasAutoPlayedWa && !isPlayingWa) {
+          hasAutoPlayedWa = true;
+          setTimeout(() => {
+            runDemoWa();
+          }, 1000);
+        }
+      });
+    }, {
+      threshold: 0.3
+    });
+
+    observerWa.observe(demoSectionWa);
+  }
+
+  if (resetDemoButtonWa) {
+    resetDemoButtonWa.addEventListener('click', resetDemoWa);
+  }
+
+  // === WEB BOOKING DEMO JAVASCRIPT (copiado exacto de gestor-citas.astro) ===
+  document.addEventListener('DOMContentLoaded', () => {
+    const calendarGridWeb = document.getElementById('calendar-grid-web');
+    const timeSlotsWeb = document.querySelectorAll('.time-slot-web');
+    const selectedSlotDivWeb = document.getElementById('selected-slot-web');
+    const selectedSlotTextWeb = document.getElementById('selected-slot-text-web');
+    const bookingFormWeb = document.getElementById('booking-form-web') as HTMLFormElement;
+    const bookingSuccessWeb = document.getElementById('booking-success-web');
+
+    let selectedDayWeb: number | null = null;
+    let selectedTimeWeb: string | null = null;
+
+    // Generate calendar
+    function generateCalendarWeb() {
+      if (!calendarGridWeb) return;
+
+      const today = new Date();
+      const currentMonth = today.getMonth();
+      const currentYear = today.getFullYear();
+      const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+      const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+
+      // Add empty cells for days before month starts
+      for (let i = 0; i < (firstDay === 0 ? 6 : firstDay - 1); i++) {
+        const emptyDay = document.createElement('div');
+        calendarGridWeb.appendChild(emptyDay);
+      }
+
+      // Add days
+      for (let day = 1; day <= daysInMonth; day++) {
+        const dayButton = document.createElement('button');
+        dayButton.type = 'button';
+        dayButton.textContent = day.toString();
+        dayButton.className = 'aspect-square p-2 rounded-lg text-sm font-medium transition-all';
+
+        const isPast = day < today.getDate();
+        const isToday = day === today.getDate();
+
+        if (isPast) {
+          dayButton.className += ' text-base-400 cursor-not-allowed';
+          dayButton.disabled = true;
+        } else if (isToday) {
+          dayButton.className += ' bg-accent-100 text-accent-700 hover:bg-accent-200';
+        } else {
+          dayButton.className += ' text-base-700 hover:bg-accent-50 hover:text-accent-600';
+        }
+
+        dayButton.addEventListener('click', () => selectDayWeb(day, dayButton));
+        calendarGridWeb.appendChild(dayButton);
+      }
+    }
+
+    function selectDayWeb(day: number, button: HTMLButtonElement) {
+      document.querySelectorAll('#calendar-grid-web button').forEach(btn => {
+        btn.classList.remove('bg-accent-600', 'text-white');
+      });
+
+      button.classList.add('bg-accent-600', 'text-white');
+      selectedDayWeb = day;
+      updateSelectedSlotWeb();
+    }
+
+    // Handle time slot selection
+    timeSlotsWeb.forEach(slot => {
+      slot.addEventListener('click', (e) => {
+        const button = e.currentTarget as HTMLButtonElement;
+
+        timeSlotsWeb.forEach(s => {
+          s.classList.remove('bg-accent-600', 'text-white', 'border-accent-600');
+        });
+
+        button.classList.add('bg-accent-600', 'text-white', 'border-accent-600');
+        selectedTimeWeb = button.textContent?.trim() || null;
+        updateSelectedSlotWeb();
+      });
+    });
+
+    function updateSelectedSlotWeb() {
+      if (selectedDayWeb && selectedTimeWeb && selectedSlotDivWeb && selectedSlotTextWeb) {
+        selectedSlotDivWeb.classList.remove('hidden');
+        selectedSlotTextWeb.textContent = `Cita seleccionada: ${selectedDayWeb} de Enero, ${selectedTimeWeb}`;
+      }
+    }
+
+    // Handle form submission
+    if (bookingFormWeb) {
+      bookingFormWeb.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        if (!selectedDayWeb || !selectedTimeWeb) {
+          alert('Por favor selecciona un día y hora');
+          return;
+        }
+
+        bookingFormWeb.classList.add('hidden');
+        if (bookingSuccessWeb) {
+          bookingSuccessWeb.classList.remove('hidden');
+        }
+      });
+    }
+
+    generateCalendarWeb();
+  });
+</script>
+</BaseLayout>
