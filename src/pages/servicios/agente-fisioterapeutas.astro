@@ -30,7 +30,7 @@ const canonical = "https://aisecurity.es/servicios/agente-fisioterapeutas";
        </div>
       
         <div class="flex flex-wrap justify-center gap-4">
-          <button data-demo="llamada" class="demo-tab-button group px-8 py-5 rounded-2xl font-bold text-lg transition-all duration-300 bg-blue-50 text-base-800 shadow-lg hover:shadow-2xl hover:scale-105 border-4 border-blue-200 hover:border-blue-500">
+          <button data-demo="llamada" class="demo-tab-button group px-8 py-5 rounded-2xl font-bold text-lg transition-all duration-300 bg-blue-200 text-base-800 shadow-lg hover:shadow-2xl hover:scale-105 border-4 border-blue-200 hover:border-blue-500">
             <div class="flex items-center gap-3">
               <span class="text-3xl group-hover:scale-110 transition-transform">📞</span>
               <div class="text-left">
@@ -39,7 +39,7 @@ const canonical = "https://aisecurity.es/servicios/agente-fisioterapeutas";
               </div>
             </div>
           </button>
-          <button data-demo="whatsapp" class="demo-tab-button group px-8 py-5 rounded-2xl font-bold text-lg transition-all duration-300 bg-green-50 text-base-800 shadow-lg hover:shadow-2xl hover:scale-105 border-4 border-green-200 hover:border-green-500">
+          <button data-demo="whatsapp" class="demo-tab-button group px-8 py-5 rounded-2xl font-bold text-lg transition-all duration-300 bg-green-200 text-base-800 shadow-lg hover:shadow-2xl hover:scale-105 border-4 border-green-200 hover:border-green-500">
             <div class="flex items-center gap-3">
               <span class="text-3xl group-hover:scale-110 transition-transform">💬</span>
               <div class="text-left">
@@ -48,7 +48,7 @@ const canonical = "https://aisecurity.es/servicios/agente-fisioterapeutas";
               </div>
             </div>
           </button>
-          <button data-demo="web" class="demo-tab-button group px-8 py-5 rounded-2xl font-bold text-lg transition-all duration-300 bg-purple-50 text-base-800 shadow-lg hover:shadow-2xl hover:scale-105 border-4 border-purple-200 hover:border-purple-500">
+          <button data-demo="web" class="demo-tab-button group px-8 py-5 rounded-2xl font-bold text-lg transition-all duration-300 bg-purple-200 text-base-800 shadow-lg hover:shadow-2xl hover:scale-105 border-4 border-purple-200 hover:border-purple-500">
             <div class="flex items-center gap-3">
               <span class="text-3xl group-hover:scale-110 transition-transform">🌐</span>
               <div class="text-left">
@@ -637,8 +637,9 @@ const canonical = "https://aisecurity.es/servicios/agente-fisioterapeutas";
         </div>
       </div>
 
-      <!-- CTA Section -->
-      <div class="text-center bg-gradient-to-br from-accent-600 to-blue-600 rounded-2xl p-12 text-white">
+
+        <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
+      <div class="text-center rounded-2xl p-12 text-white">
         <h2 class="text-3xl font-bold mb-4">
           Libera a tu equipo de tareas repetitivas
         </h2>
@@ -647,11 +648,15 @@ const canonical = "https://aisecurity.es/servicios/agente-fisioterapeutas";
         </p>
         <a
           href="/reunion"
-          class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold bg-white text-accent-600 hover:bg-base-50 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200"
+          style="color: white; background-color: #ad46ff;"
+          class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-green-600 hover:bg-green-700 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200"
         >
           Solicitar Demo Gratuita
         </a>
       </div>
+ 
+      <!-- CTA Section -->
+     
     </div>
   </section>
 </BaseLayout>
@@ -714,33 +719,30 @@ const canonical = "https://aisecurity.es/servicios/agente-fisioterapeutas";
       const clickedSubtitle = tab.querySelector('.demo-tab-subtitle');
 
       if (demoType === 'llamada') {
-        tab.classList.remove('bg-blue-50', 'text-base-800', 'border-blue-200', 'shadow-lg');
-        tab.classList.add('bg-blue-500', 'text-white', 'border-blue-600', 'shadow-xl');
+        tab.classList.remove('bg-blue-50', 'border-blue-200', 'shadow-lg');
+        tab.classList.add('bg-blue-500', 'border-blue-600', 'shadow-xl');
         if (clickedTitle) {
-          clickedTitle.classList.remove('text-base-800');
-          clickedTitle.classList.add('text-white');
+          clickedTitle.style.color = 'white';
         }
         if (clickedSubtitle) {
           clickedSubtitle.style.color = 'white';
           clickedSubtitle.classList.add('opacity-90');
         }
       } else if (demoType === 'whatsapp') {
-        tab.classList.remove('bg-green-50', 'text-base-800', 'border-green-200', 'shadow-lg');
-        tab.classList.add('bg-green-500', 'text-white', 'border-green-600', 'shadow-xl');
+        tab.classList.remove('bg-green-50', 'border-green-200', 'shadow-lg');
+        tab.classList.add('bg-green-500', 'border-green-600', 'shadow-xl');
         if (clickedTitle) {
-          clickedTitle.classList.remove('text-base-800');
-          clickedTitle.classList.add('text-white');
+          clickedTitle.style.color = 'white';
         }
         if (clickedSubtitle) {
           clickedSubtitle.style.color = 'white';
           clickedSubtitle.classList.add('opacity-90');
         }
       } else if (demoType === 'web') {
-        tab.classList.remove('bg-purple-50', 'text-base-800', 'border-purple-200', 'shadow-lg');
-        tab.classList.add('bg-purple-500', 'text-white', 'border-purple-600', 'shadow-xl');
+        tab.classList.remove('bg-purple-50', 'border-purple-200', 'shadow-lg');
+        tab.classList.add('bg-purple-500', 'border-purple-600', 'shadow-xl');
         if (clickedTitle) {
-          clickedTitle.classList.remove('text-base-800');
-          clickedTitle.classList.add('text-white');
+          clickedTitle.style.color = 'white';
         }
         if (clickedSubtitle) {
           clickedSubtitle.style.color = 'white';
