@@ -16,27 +16,26 @@ const canonical = "https://aisecurity.es/servicios/agente-fisioterapeutas";
           🏥 Especializado para Clínicas de Fisioterapia
         </div>
         -->
-        <h1 class="text-4xl md:text-5xl font-bold text-base-900 mb-6">
+        <h1 class="text-4xl md:text-5xl font-bold text-base-900 mb-12">
           Recepcionista virtual <span class="text-accent-600">que nunca descansa</span>
         </h1>
-        <p class="text-xl text-base-600 max-w-3xl mx-auto mb-8">
-          Atención telefónica automatizada con voz natural. Gestiona llamadas, reserva citas,
-          responde preguntas frecuentes y deriva casos complejos a tu equipo.
-        </p>
       </div>
 
       <!-- Demo Selector Tabs -->
       <div class="max-w-5xl mx-auto mb-8">
-        <p class="text-center text-base-700 font-semibold mb-6 text-lg">
+        <div class="flex  flex-wrap justify-center gap-4>"></div>
+          <p class="justify-center text-center text-base-700 font-semibold mb-6 text-lg">
           👇 Haz clic para ver cada demo interactiva:
-        </p>
+          </p>
+       </div>
+      
         <div class="flex flex-wrap justify-center gap-4">
           <button data-demo="llamada" class="demo-tab-button group px-8 py-5 rounded-2xl font-bold text-lg transition-all duration-300 bg-blue-50 text-base-800 shadow-lg hover:shadow-2xl hover:scale-105 border-4 border-blue-200 hover:border-blue-500">
             <div class="flex items-center gap-3">
               <span class="text-3xl group-hover:scale-110 transition-transform">📞</span>
               <div class="text-left">
                 <div class="demo-tab-title">Llamada Telefónica</div>
-                <div class="demo-tab-subtitle text-xs font-normal text-base-600">Voz natural IA</div>
+                <div class="demo-tab-subtitle text-xs font-normal" style="color: rgb(65, 55, 122)">Voz natural IA</div>
               </div>
             </div>
           </button>
@@ -45,7 +44,7 @@ const canonical = "https://aisecurity.es/servicios/agente-fisioterapeutas";
               <span class="text-3xl group-hover:scale-110 transition-transform">💬</span>
               <div class="text-left">
                 <div class="demo-tab-title">WhatsApp</div>
-                <div class="demo-tab-subtitle text-xs font-normal text-base-600">Mensajería automática</div>
+                <div class="demo-tab-subtitle text-xs font-normal" style="color: rgb(55, 122, 75)">Mensajería automática</div>
               </div>
             </div>
           </button>
@@ -54,7 +53,7 @@ const canonical = "https://aisecurity.es/servicios/agente-fisioterapeutas";
               <span class="text-3xl group-hover:scale-110 transition-transform">🌐</span>
               <div class="text-left">
                 <div class="demo-tab-title">Reserva Web</div>
-                <div class="demo-tab-subtitle text-xs font-normal text-base-600">Calendario online</div>
+                <div class="demo-tab-subtitle text-xs font-normal" style="color: rgb(111, 55, 122)">Calendario online</div>
               </div>
             </div>
           </button>
@@ -116,7 +115,7 @@ const canonical = "https://aisecurity.es/servicios/agente-fisioterapeutas";
                           FV
                         </div>
                         <h3 class="text-white text-2xl font-semibold mb-2">FisioVital</h3>
-                        <p class="text-gray-400 text-base">+34 900 XXX XXX</p>
+                        <p class="text-gray-400 text-base">900 434 343</p>
                         <p id="call-status" class="text-gray-500 text-sm mt-2"></p>
                       </div>
 
@@ -229,6 +228,13 @@ const canonical = "https://aisecurity.es/servicios/agente-fisioterapeutas";
         </div>
       </div>
 
+      <!-- Description Text (below demo) -->
+      <div class="text-center mt-12 mb-16">
+        <p class="text-xl text-base-600 max-w-3xl mx-auto">
+          Atención telefónica automatizada con voz natural. Gestiona llamadas, reserva citas, responde preguntas frecuentes y deriva casos complejos a tu equipo.
+        </p>
+      </div>
+
       <!-- Features Grid -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
         <div class="bg-black border-2 border-base-300 rounded-xl p-6">
@@ -285,7 +291,7 @@ const canonical = "https://aisecurity.es/servicios/agente-fisioterapeutas";
   </section>
 
   <!-- Demo: WhatsApp (Hidden initially) -->
-  <section id="demo-whatsapp" class="demo-section hidden py-20 bg-base-25">
+  <section id="demo-whatsapp" class="demo-section hidden  bg-base-25">
     <div class="max-w-full mx-auto px-8 md:px-12 lg:px-24">
       <!-- Container centered for WhatsApp mockup only -->
       <div class="flex justify-center items-center max-w-7xl mx-auto mb-12">
@@ -435,24 +441,14 @@ const canonical = "https://aisecurity.es/servicios/agente-fisioterapeutas";
   <section id="demo-web" class="demo-section hidden pt-8 pb-20 bg-base-25">
     <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
       <!-- Hero Section -->
-      <div class="text-center mb-16">
-        <h1 class="text-4xl md:text-5xl font-bold text-base-900 mb-6">
-          Reservas automáticas <span class="text-accent-600">24/7</span>
-        </h1>
-
-        <p class="text-xl text-base-600 max-w-3xl mx-auto mb-8">
-          Tu asistente virtual gestiona citas, confirmaciones y recordatorios automáticamente.
-          Sin llamadas, sin esperas, sin complicaciones.
-        </p>
-      </div>
-
+   
       <!-- Interactive Demo Section -->
       <div class="mb-16">
         <div class="max-w-5xl mx-auto">
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <!-- Calendar View -->
             <div class="bg-base-50 rounded-2xl shadow-xl overflow-hidden">
-              <div class="bg-gradient-to-r from-green-600 to-blue-600 px-6 py-4 text-white">
+              <div class="bg-gradient-to-r from-[#0052cc] to-blue-600 px-6 py-4 text-white">
                 <h3 class="text-lg font-semibold">Calendario de Disponibilidad</h3>
                 <p class="text-sm opacity-90">FisioVital - Clínica de Fisioterapia</p>
               </div>
@@ -513,7 +509,7 @@ const canonical = "https://aisecurity.es/servicios/agente-fisioterapeutas";
 
             <!-- Booking Form -->
             <div class="bg-base-50 rounded-2xl shadow-xl overflow-hidden">
-              <div class="bg-gradient-to-r from-green-600 to-blue-600 px-6 py-4 text-white">
+              <div class="bg-gradient-to-r from-blue-600 to-purple-600 px-6 py-4 text-white">
                 <h3 class="text-lg font-semibold">Reservar Cita</h3>
                 <p class="text-sm opacity-90">Completa tus datos</p>
               </div>
@@ -598,42 +594,60 @@ const canonical = "https://aisecurity.es/servicios/agente-fisioterapeutas";
         </div>
       </div>
 
-      <p class="text-xl text-base-600 max-w-3xl mx-auto mb-8 text-center">
-        Disponible también para <span class="font-bold text-green-700 bg-green-50 px-2 py-0.5 rounded">WhatsApp</span> y por <a href="#demo-llamada" class="text-accent-600 hover:text-accent-700 font-semibold underline decoration-2 underline-offset-2 transition-colors">agente IA en llamada</a>.
-      </p>
+      <!-- Description Text (below demo) -->
+      <div class="text-center mt-12 mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-base-900 mb-6">
+          Reservas automáticas 24/7
+        </h2>
+        <p class="text-xl text-base-600 max-w-3xl mx-auto">
+          Tu asistente virtual gestiona citas, confirmaciones y recordatorios automáticamente. Sin llamadas, sin esperas, sin complicaciones.
+        </p>
+      </div>
 
-      <!-- Stats Section -->
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-16">
-        <div class="bg-base-100 border border-base-200 rounded-xl p-6 text-center shadow-sm">
-          <div class="text-4xl font-bold mb-2 text-base-900">24/7</div>
-          <div class="text-sm text-base-600">Disponibilidad</div>
+      <!-- Features Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+        <div class="bg-base-100 border-2 border-base-300 rounded-xl p-6">
+          <div class="w-12 h-12 bg-accent-600 rounded-lg flex items-center justify-center text-white text-xl mb-4">
+            📅
+          </div>
+          <h3 class="text-lg font-semibold text-base-900 mb-3">Calendario Inteligente</h3>
+          <p class="text-base-600">
+            Sistema de reservas integrado con tu calendario. Sincronización automática con Google Calendar y Outlook.
+          </p>
         </div>
-        <div class="bg-base-100 border border-base-200 rounded-xl p-6 text-center shadow-sm">
-          <div class="text-4xl font-bold mb-2 text-base-900">85%</div>
-          <div class="text-sm text-base-600">Reservas automáticas</div>
+
+        <div class="bg-base-100 border-2 border-base-300 rounded-xl p-6">
+          <div class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center text-white text-xl mb-4">
+            🔔
+          </div>
+          <h3 class="text-lg font-semibold text-base-900 mb-3">Recordatorios Automáticos</h3>
+          <p class="text-base-600">
+            Envío de confirmaciones y recordatorios por email y SMS. Reduce no-shows hasta en un 80%.
+          </p>
         </div>
-        <div class="bg-base-100 border border-base-200 rounded-xl p-6 text-center shadow-sm">
-          <div class="text-4xl font-bold mb-2 text-base-900">60%</div>
-          <div class="text-sm text-base-600">Reducción de llamadas</div>
-        </div>
-        <div class="bg-base-100 border border-base-200 rounded-xl p-6 text-center shadow-sm">
-          <div class="text-4xl font-bold mb-2 text-base-900">0</div>
-          <div class="text-sm text-base-600">No-shows con recordatorios</div>
+
+        <div class="bg-base-100 border-2 border-base-300 rounded-xl p-6">
+          <div class="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center text-white text-xl mb-4">
+            🔄
+          </div>
+          <h3 class="text-lg font-semibold text-base-900 mb-3">Gestión Flexible</h3>
+          <p class="text-base-600">
+            Permite a tus pacientes modificar o cancelar citas fácilmente. Gestión autónoma sin intervención manual.
+          </p>
         </div>
       </div>
 
       <!-- CTA Section -->
       <div class="text-center bg-gradient-to-br from-accent-600 to-blue-600 rounded-2xl p-12 text-white">
         <h2 class="text-3xl font-bold mb-4">
-          Reduce llamadas y mejora la experiencia de tus pacientes
+          Libera a tu equipo de tareas repetitivas
         </h2>
         <p class="text-xl mb-8 max-w-2xl mx-auto opacity-90">
-          Implementa nuestro sistema de citas en tu clínica de fisioterapia
+          Descubre cómo el sistema de reservas online puede transformar tu clínica
         </p>
         <a
           href="/reunion"
-          class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold bg-accent-600 hover:bg-accent-700 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200"
-          style="color: #000000;"
+          class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold bg-white text-accent-600 hover:bg-base-50 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200"
         >
           Solicitar Demo Gratuita
         </a>
@@ -663,34 +677,34 @@ const canonical = "https://aisecurity.es/servicios/agente-fisioterapeutas";
 
         // Restore default (inactive) colors for each button
         if (tDemoType === 'llamada') {
-          t.classList.add('bg-blue-50', 'text-base-800', 'border-blue-200');
+          t.classList.add('bg-blue-50', 'border-blue-200');
           if (title) {
             title.classList.remove('text-white');
-            title.classList.add('text-base-800');
+            title.style.color = 'rgb(65, 55, 122)';
           }
           if (subtitle) {
             subtitle.classList.remove('text-white', 'opacity-90');
-            subtitle.classList.add('text-base-600');
+            subtitle.style.color = 'rgb(65, 55, 122)';
           }
         } else if (tDemoType === 'whatsapp') {
-          t.classList.add('bg-green-50', 'text-base-800', 'border-green-200');
+          t.classList.add('bg-green-50', 'border-green-200');
           if (title) {
             title.classList.remove('text-white');
-            title.classList.add('text-base-800');
+            title.style.color = 'rgb(55, 122, 75)';
           }
           if (subtitle) {
             subtitle.classList.remove('text-white', 'opacity-90');
-            subtitle.classList.add('text-base-600');
+            subtitle.style.color = 'rgb(55, 122, 75)';
           }
         } else if (tDemoType === 'web') {
-          t.classList.add('bg-purple-50', 'text-base-800', 'border-purple-200');
+          t.classList.add('bg-purple-50', 'border-purple-200');
           if (title) {
             title.classList.remove('text-white');
-            title.classList.add('text-base-800');
+            title.style.color = 'rgb(111, 55, 122)';
           }
           if (subtitle) {
             subtitle.classList.remove('text-white', 'opacity-90');
-            subtitle.classList.add('text-base-600');
+            subtitle.style.color = 'rgb(111, 55, 122)';
           }
         }
       });
@@ -707,8 +721,8 @@ const canonical = "https://aisecurity.es/servicios/agente-fisioterapeutas";
           clickedTitle.classList.add('text-white');
         }
         if (clickedSubtitle) {
-          clickedSubtitle.classList.remove('text-base-600');
-          clickedSubtitle.classList.add('text-white', 'opacity-90');
+          clickedSubtitle.style.color = 'white';
+          clickedSubtitle.classList.add('opacity-90');
         }
       } else if (demoType === 'whatsapp') {
         tab.classList.remove('bg-green-50', 'text-base-800', 'border-green-200', 'shadow-lg');
@@ -718,8 +732,8 @@ const canonical = "https://aisecurity.es/servicios/agente-fisioterapeutas";
           clickedTitle.classList.add('text-white');
         }
         if (clickedSubtitle) {
-          clickedSubtitle.classList.remove('text-base-600');
-          clickedSubtitle.classList.add('text-white', 'opacity-90');
+          clickedSubtitle.style.color = 'white';
+          clickedSubtitle.classList.add('opacity-90');
         }
       } else if (demoType === 'web') {
         tab.classList.remove('bg-purple-50', 'text-base-800', 'border-purple-200', 'shadow-lg');
@@ -729,8 +743,8 @@ const canonical = "https://aisecurity.es/servicios/agente-fisioterapeutas";
           clickedTitle.classList.add('text-white');
         }
         if (clickedSubtitle) {
-          clickedSubtitle.classList.remove('text-base-600');
-          clickedSubtitle.classList.add('text-white', 'opacity-90');
+          clickedSubtitle.style.color = 'white';
+          clickedSubtitle.classList.add('opacity-90');
         }
       }
 
@@ -743,6 +757,14 @@ const canonical = "https://aisecurity.es/servicios/agente-fisioterapeutas";
         targetSection.classList.remove('hidden');
       }
     });
+  });
+
+  // Select "Llamada" tab by default on page load
+  document.addEventListener('DOMContentLoaded', () => {
+    const llamadaTab = document.querySelector('button[data-demo="llamada"]');
+    if (llamadaTab) {
+      llamadaTab.click();
+    }
   });
 
   // Demo Llamada - Phone Call Simulation (código exacto copiado)
