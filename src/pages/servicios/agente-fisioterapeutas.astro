@@ -8,12 +8,14 @@ const canonical = "https://aisecurity.es/servicios/agente-fisioterapeutas";
 
 <BaseLayout title={title} description={description} canonical={canonical}>
   <!-- Hero Section -->
-  <section class="py-16 bg-base-25">
+  <section class="pt-8 pb-16 bg-base-25">
     <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
       <div class="text-center mb-12">
+         <!-- 
         <div class="inline-block px-4 py-2 bg-green-100 rounded-full text-green-800 text-sm font-semibold mb-4">
           🏥 Especializado para Clínicas de Fisioterapia
         </div>
+        -->
         <h1 class="text-4xl md:text-5xl font-bold text-base-900 mb-6">
           Recepcionista virtual <span class="text-accent-600">que nunca descansa</span>
         </h1>
@@ -29,30 +31,30 @@ const canonical = "https://aisecurity.es/servicios/agente-fisioterapeutas";
           👇 Haz clic para ver cada demo interactiva:
         </p>
         <div class="flex flex-wrap justify-center gap-4">
-          <button data-demo="llamada" class="demo-tab-button group px-8 py-5 rounded-2xl font-bold text-lg transition-all duration-300 bg-accent-600 text-white shadow-xl hover:shadow-2xl hover:scale-105 border-4 border-accent-600">
+          <button data-demo="llamada" class="demo-tab-button group px-8 py-5 rounded-2xl font-bold text-lg transition-all duration-300 bg-blue-50 text-base-800 shadow-lg hover:shadow-2xl hover:scale-105 border-4 border-blue-200 hover:border-blue-500">
             <div class="flex items-center gap-3">
               <span class="text-3xl group-hover:scale-110 transition-transform">📞</span>
               <div class="text-left">
-                <div>Llamada Telefónica</div>
-                <div class="text-xs font-normal opacity-90">Voz natural IA</div>
+                <div class="demo-tab-title">Llamada Telefónica</div>
+                <div class="demo-tab-subtitle text-xs font-normal text-base-600">Voz natural IA</div>
               </div>
             </div>
           </button>
-          <button data-demo="whatsapp" class="demo-tab-button group px-8 py-5 rounded-2xl font-bold text-lg transition-all duration-300 bg-white text-base-800 shadow-lg hover:shadow-2xl hover:scale-105 border-4 border-base-300 hover:border-green-500">
+          <button data-demo="whatsapp" class="demo-tab-button group px-8 py-5 rounded-2xl font-bold text-lg transition-all duration-300 bg-green-50 text-base-800 shadow-lg hover:shadow-2xl hover:scale-105 border-4 border-green-200 hover:border-green-500">
             <div class="flex items-center gap-3">
               <span class="text-3xl group-hover:scale-110 transition-transform">💬</span>
               <div class="text-left">
-                <div>WhatsApp</div>
-                <div class="text-xs font-normal text-base-600">Mensajería automática</div>
+                <div class="demo-tab-title">WhatsApp</div>
+                <div class="demo-tab-subtitle text-xs font-normal text-base-600">Mensajería automática</div>
               </div>
             </div>
           </button>
-          <button data-demo="web" class="demo-tab-button group px-8 py-5 rounded-2xl font-bold text-lg transition-all duration-300 bg-white text-base-800 shadow-lg hover:shadow-2xl hover:scale-105 border-4 border-base-300 hover:border-blue-500">
+          <button data-demo="web" class="demo-tab-button group px-8 py-5 rounded-2xl font-bold text-lg transition-all duration-300 bg-purple-50 text-base-800 shadow-lg hover:shadow-2xl hover:scale-105 border-4 border-purple-200 hover:border-purple-500">
             <div class="flex items-center gap-3">
               <span class="text-3xl group-hover:scale-110 transition-transform">🌐</span>
               <div class="text-left">
-                <div>Reserva Web</div>
-                <div class="text-xs font-normal text-base-600">Calendario online</div>
+                <div class="demo-tab-title">Reserva Web</div>
+                <div class="demo-tab-subtitle text-xs font-normal text-base-600">Calendario online</div>
               </div>
             </div>
           </button>
@@ -261,24 +263,7 @@ const canonical = "https://aisecurity.es/servicios/agente-fisioterapeutas";
       </div>
 
       <!-- Stats Section -->
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-16">
-        <div class="rounded-xl p-6 text-white text-center" style="background: linear-gradient(to bottom right, #4338ca, #3730a3);">
-          <div class="text-4xl font-bold mb-2">24/7</div>
-          <div class="text-sm opacity-90">Disponibilidad</div>
-        </div>
-        <div class="rounded-xl p-6 text-white text-center" style="background: linear-gradient(to bottom right, #6366f1, #4f46e5);">
-          <div class="text-4xl font-bold mb-2">85%</div>
-          <div class="text-sm opacity-90">Llamadas resueltas</div>
-        </div>
-        <div class="rounded-xl p-6 text-white text-center" style="background: linear-gradient(to bottom right, #3b82f6, #2563eb);">
-          <div class="text-4xl font-bold mb-2">15-20h</div>
-          <div class="text-sm opacity-90">Ahorradas por mes</div>
-        </div>
-        <div class="rounded-xl p-6 text-white text-center" style="background: linear-gradient(to bottom right, #78ceff, #3b82f6);">
-          <div class="text-4xl font-bold mb-2">0s</div>
-          <div class="text-sm opacity-90">Tiempo de espera</div>
-        </div>
-      </div>
+     
 
       <!-- CTA Section -->
       <div class="text-center rounded-2xl p-12 text-white">
@@ -300,31 +285,13 @@ const canonical = "https://aisecurity.es/servicios/agente-fisioterapeutas";
   </section>
 
   <!-- Demo: WhatsApp (Hidden initially) -->
-  <section id="demo-whatsapp" class="demo-section hidden py-20 relative overflow-hidden">
-    <!-- Background Image -->
-    <div class="absolute inset-0">
-      <img src="/images/3409297.jpg" alt="Background" class="w-full h-full object-cover" />
-    </div>
-    <!-- Overlay Gradient (light) -->
-    <div class="absolute inset-0 bg-gradient-to-bl from-green-500/10 via-blue-600/50 to-green-500/10"></div>
-
-    <!-- Content -->
-    <div class="relative z-10">
-    <div class="max-w-full mx-auto px-24 md:px-40 lg:px-64">
-      <!-- Interactive WhatsApp Demo -->
-      <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-6">
-        Gestiona citas desde WhatsApp
-      </h2>
-      <p class="text-lg text-white/90 text-center mb-8 max-w-3xl mx-auto">
-        Tus pacientes pueden reservar, modificar o cancelar citas directamente desde WhatsApp.
-        <strong class="text-white">El asistente de IA gestiona todo automáticamente</strong>.
-        Sin llamadas, sin esperas, disponible 24/7.
-      </p>
-
+  <section id="demo-whatsapp" class="demo-section hidden py-20 bg-base-25">
+    <div class="max-w-full mx-auto px-8 md:px-12 lg:px-24">
       <!-- Container centered for WhatsApp mockup only -->
-      <div class="flex justify-center items-center max-w-7xl mx-auto">
+      <div class="flex justify-center items-center max-w-7xl mx-auto mb-12">
         <!-- WhatsApp Phone Mockup - Centered -->
-        <div style="margin-top:35px" class="w-full max-w-[420px]">
+        <div class="w-full max-w-[420px]">
+          
           <div class="relative bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 rounded-[3rem] p-3 shadow-2xl border-8 border-gray-800">
             <!-- Phone screen -->
             <div class="bg-black rounded-[2.5rem] overflow-hidden w-full h-[730px] flex flex-col">
@@ -395,14 +362,72 @@ const canonical = "https://aisecurity.es/servicios/agente-fisioterapeutas";
           </div>
         </div>
       </div>
+    </div>
 
-      <!-- Info Note -->
-      <div class="mt-8 text-center">
-        <p class="text-base text-white/85 max-w-2xl mx-auto leading-relaxed">
+    <!-- Title and Info Text (below mockup) -->
+    <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-24 mt-12">
+      <div class="text-center">
+        <h2 class="text-3xl md:text-4xl font-bold text-base-900 mb-6">
+          Gestiona citas desde WhatsApp
+        </h2>
+        <p class="text-lg text-base-700 max-w-2xl mx-auto leading-relaxed">
           💡 Tus pacientes pueden reservar, modificar y consultar citas directamente desde WhatsApp, sin llamadas ni esperas.
         </p>
       </div>
     </div>
+
+    <!-- Features Grid -->
+    <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-24 mt-16">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+        <div class="bg-black border-2 border-base-300 rounded-xl p-6">
+          <div class="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center text-white text-xl mb-4">
+            💬
+          </div>
+          <h3 class="text-lg font-semibold text-white mb-3">Disponible 24/7</h3>
+          <p class="text-white/80">
+            Tus pacientes pueden gestionar citas en cualquier momento, incluso fuera del horario de consulta.
+          </p>
+        </div>
+
+        <div class="bg-black border-2 border-base-300 rounded-xl p-6">
+          <div class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center text-white text-xl mb-4">
+            🤖
+          </div>
+          <h3 class="text-lg font-semibold text-white mb-3">Respuestas Instantáneas</h3>
+          <p class="text-white/80">
+            El asistente responde al instante, sin tiempos de espera ni colas.
+          </p>
+        </div>
+
+        <div class="bg-black border-2 border-base-300 rounded-xl p-6">
+          <div class="w-12 h-12 bg-accent-600 rounded-lg flex items-center justify-center text-white text-xl mb-4">
+            📅
+          </div>
+          <h3 class="text-lg font-semibold text-white mb-3">Gestión Completa</h3>
+          <p class="text-white/80">
+            Reserva, modifica, cancela y consulta citas directamente desde WhatsApp.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
+      <div class="text-center rounded-2xl p-12 text-white">
+        <h2 class="text-3xl font-bold mb-4">
+          Libera a tu equipo de tareas repetitivas
+        </h2>
+        <p class="text-xl mb-8 max-w-2xl mx-auto opacity-90">
+          Descubre cómo la gestión automática de citas por WhatsApp puede transformar tu clínica
+        </p>
+        <a
+          href="/reunion"
+          style="color: white;"
+          class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-green-600 hover:bg-green-700 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200"
+        >
+          Solicitar Demo Gratuita
+        </a>
+      </div>
     </div>
   </section>
 
@@ -626,13 +651,88 @@ const canonical = "https://aisecurity.es/servicios/agente-fisioterapeutas";
     tab.addEventListener('click', () => {
       const demoType = tab.getAttribute('data-demo');
 
-      // Update tab styles
+      // Reset all tabs to their default (inactive) state
       demoTabs.forEach(t => {
-        t.classList.remove('bg-accent-600', 'text-white', 'shadow-lg', 'shadow-xl', 'border-accent-600');
-        t.classList.add('bg-white', 'text-base-800', 'shadow-md', 'border-base-300');
+        const tDemoType = t.getAttribute('data-demo');
+        const title = t.querySelector('.demo-tab-title');
+        const subtitle = t.querySelector('.demo-tab-subtitle');
+
+        // Remove all possible active classes
+        t.classList.remove('bg-blue-500', 'bg-green-500', 'bg-purple-500', 'text-white', 'shadow-xl', 'border-blue-600', 'border-green-600', 'border-purple-600');
+        t.classList.add('shadow-lg');
+
+        // Restore default (inactive) colors for each button
+        if (tDemoType === 'llamada') {
+          t.classList.add('bg-blue-50', 'text-base-800', 'border-blue-200');
+          if (title) {
+            title.classList.remove('text-white');
+            title.classList.add('text-base-800');
+          }
+          if (subtitle) {
+            subtitle.classList.remove('text-white', 'opacity-90');
+            subtitle.classList.add('text-base-600');
+          }
+        } else if (tDemoType === 'whatsapp') {
+          t.classList.add('bg-green-50', 'text-base-800', 'border-green-200');
+          if (title) {
+            title.classList.remove('text-white');
+            title.classList.add('text-base-800');
+          }
+          if (subtitle) {
+            subtitle.classList.remove('text-white', 'opacity-90');
+            subtitle.classList.add('text-base-600');
+          }
+        } else if (tDemoType === 'web') {
+          t.classList.add('bg-purple-50', 'text-base-800', 'border-purple-200');
+          if (title) {
+            title.classList.remove('text-white');
+            title.classList.add('text-base-800');
+          }
+          if (subtitle) {
+            subtitle.classList.remove('text-white', 'opacity-90');
+            subtitle.classList.add('text-base-600');
+          }
+        }
       });
-      tab.classList.remove('bg-white', 'text-base-800', 'shadow-md', 'border-base-300');
-      tab.classList.add('bg-accent-600', 'text-white', 'shadow-lg', 'shadow-xl', 'border-accent-600');
+
+      // Apply active state to the clicked tab only
+      const clickedTitle = tab.querySelector('.demo-tab-title');
+      const clickedSubtitle = tab.querySelector('.demo-tab-subtitle');
+
+      if (demoType === 'llamada') {
+        tab.classList.remove('bg-blue-50', 'text-base-800', 'border-blue-200', 'shadow-lg');
+        tab.classList.add('bg-blue-500', 'text-white', 'border-blue-600', 'shadow-xl');
+        if (clickedTitle) {
+          clickedTitle.classList.remove('text-base-800');
+          clickedTitle.classList.add('text-white');
+        }
+        if (clickedSubtitle) {
+          clickedSubtitle.classList.remove('text-base-600');
+          clickedSubtitle.classList.add('text-white', 'opacity-90');
+        }
+      } else if (demoType === 'whatsapp') {
+        tab.classList.remove('bg-green-50', 'text-base-800', 'border-green-200', 'shadow-lg');
+        tab.classList.add('bg-green-500', 'text-white', 'border-green-600', 'shadow-xl');
+        if (clickedTitle) {
+          clickedTitle.classList.remove('text-base-800');
+          clickedTitle.classList.add('text-white');
+        }
+        if (clickedSubtitle) {
+          clickedSubtitle.classList.remove('text-base-600');
+          clickedSubtitle.classList.add('text-white', 'opacity-90');
+        }
+      } else if (demoType === 'web') {
+        tab.classList.remove('bg-purple-50', 'text-base-800', 'border-purple-200', 'shadow-lg');
+        tab.classList.add('bg-purple-500', 'text-white', 'border-purple-600', 'shadow-xl');
+        if (clickedTitle) {
+          clickedTitle.classList.remove('text-base-800');
+          clickedTitle.classList.add('text-white');
+        }
+        if (clickedSubtitle) {
+          clickedSubtitle.classList.remove('text-base-600');
+          clickedSubtitle.classList.add('text-white', 'opacity-90');
+        }
+      }
 
       // Show/hide demo sections
       demoSections.forEach(section => {
