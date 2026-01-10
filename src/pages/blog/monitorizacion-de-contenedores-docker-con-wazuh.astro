@@ -1,0 +1,114 @@
+---
+import BlogLayout from "../../layouts/BlogLayout.astro";
+---
+
+<BlogLayout
+  title="Monitorización de contenedores Docker con Wazuh"
+  description="Monitorización de contenedores Docker con Wazuh: Guía práctica para implementación empresarial en Wazuh"
+  publishDate="2026-01-10"
+  author="AI Security"
+  readTime="8 min"
+  tags={["Docker", "contenedores", "logs", "monitoring", "security", "Wazuh", "Ciberseguridad"]}
+  canonical="https://aisecurity.es/blog/monitorizacion-de-contenedores-docker-con-wazuh">
+
+<div>
+<h2>Monitorización de contenedores Docker con Wazuh: Logs, Seguridad y Vulnerabilidades</h2>
+<p>La adopción masiva de Docker introduce nuevos vectores de ataque y desafíos de visibilidad. Wazuh proporciona una solución unificada para monitorizar la seguridad de tus contenedores, analizar sus logs en tiempo real y detectar imágenes con vulnerabilidades conocidas, todo desde una única plataforma.</p>
+
+<h2>Caso de uso empresarial</h2>
+<p>Una empresa de e-commerce migra su arquitectura monolítica a microservicios en Docker. Necesitan cumplir con PCI DSS, detectar accesos no autorizados a los contenedores de base de datos, y asegurarse de que ninguna imagen desplegada en producción contenga vulnerabilidades críticas. Wazuh centraliza la monitorización de todos los hosts Docker y los contenedores, generando alertas ante actividades maliciosas.</p>
+
+<h2>Requisitos previos</h2>
+<ul>
+<li>Wazuh Manager 4.7 o superior instalado y funcionando.</li>
+<li>Uno o más hosts con Docker Engine y Docker Compose instalados.</li>
+<li>Agente Wazuh instalado en cada host Docker.</li>
+<li>Integración con un registro de imágenes (opcional, para análisis proactivo).</li>
+</ul>
+
+<h2>Instalación paso a paso</h2>
+<p>Primero, habilita el módulo de Docker en el agente Wazuh que reside en tu host Docker. Edita el archivo de configuración del agente.</p>
+<pre><code class="language-bash"># En el host Docker, edita la configuración del agente
+sudo nano /var/ossec/etc/ossec.conf
+
+# Dentro de la etiqueta &lt;ossec_config&gt;, añade:
+&lt;wodle name="docker"&gt;
+  &lt;interval&gt;10m&lt;/interval&gt;
+  &lt;attempts&gt;5&lt;/attempts&gt;
+  &lt;run_on_start&gt;yes&lt;/run_on_start&gt;
+  &lt;disabled&gt;no&lt;/disabled&gt;
+&lt;/wodle&gt;</code></pre>
+<p>Reinicia el agente Wazuh para aplicar los cambios.</p>
+<pre><code class="language-bash">sudo systemctl restart wazuh-agent</code></pre>
+<p>Configura el manager para recibir y decodificar los eventos de Docker. Añade una nueva decodificación.</p>
+<pre><code class="language-bash"># En el Wazuh Manager, edita decoders locales
+sudo nano /var/ossec/etc/decoders/local_decoder.xml
+
+# Añade una decodificación para eventos de Docker
+&lt;decoder name="docker"&gt;
+  &lt;parent&gt;json&lt;/parent&gt;
+  &lt;regex&gt;^{"Type": "(\w+)", "Action": "(\w+)"&lt;/regex&gt;
+  &lt;order&gt;Type, Action&lt;/order&gt;
+&lt;/decoder&gt;</code></pre>
+
+<h2>Ejemplo práctico</h2>
+<p>Vamos a monitorizar un stack simple con Nginx y una aplicación. Crea un archivo docker-compose.yml.</p>
+<pre><code class="language-bash">version: '3.8'
+services:
+  web:
+    image: nginx:latest
+    container_name: my_nginx
+    ports:
+      - "8080:80"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+  app:
+    image: mi-app:dev
+    container_name: mi_aplicacion
+    environment:
+      - DB_HOST=database
+    depends_on:
+      - db
+  db:
+    image: mysql:5.7
+    container_name: mi_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: PASSWORD_SECRETA
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  db_data:</code></pre>
+<p>Wazuh monitorizará los logs de estos contenedores. Para detectar vulnerabilidades en las imágenes, integra el módulo de análisis de vulnerabilidades (SCA) o utiliza integraciones con Trivy o Clair. Una regla crítica alertaría si se despliega una imagen con una CVE conocida.</p>
+<pre><code class="language-bash"># Ejemplo de comando para escanear una imagen local con una herramienta externa
+# Este resultado puede ser parseado por Wazuh
+sudo docker scan nginx:latest</code></pre>
+<p>Configura una regla en el manager para alertar sobre acciones peligrosas, como la ejecución de un shell en un contenedor de producción.</p>
+<pre><code class="language-bash">&lt;!-- Regla de ejemplo en /var/ossec/etc/rules/local_rules.xml --&gt;
+&lt;group name="docker,"&gt;
+  &lt;rule id="100100" level="10"&gt;
+    &lt;decoded_as&gt;docker&lt;/decoded_as&gt;
+    &lt;field name="Type"&gt;exec&lt;/field&gt;
+    &lt;description&gt;Ejecución de comando en contenedor Docker.&lt;/description&gt;
+  &lt;/rule&gt;
+  &lt;rule id="100101" level="12"&gt;
+    &lt;if_sid&gt;100100&lt;/if_sid&gt;
+    &lt;field name="Action"&gt;start&lt;/field&gt;
+    &lt;match&gt;/bin/bash|/bin/sh&lt;/match&gt;
+    &lt;description&gt;Shell interactivo iniciado en un contenedor.&lt;/description&gt;
+  &lt;/rule&gt;
+&lt;/group&gt;</code></pre>
+
+<h2>Conclusión</h2>
+<p>Wazuh transforma la monitorización de Docker de una tarea fragmentada en un proceso centralizado y seguro. Al integrar el análisis de logs, la detección de comportamientos anómalos y el escaneo de vulnerabilidades, proporciona la capa de seguridad esencial para entornos de contenedores en producción. Para implementar una monitorización avanzada y personalizada para tu infraestructura, te invitamos a <a href="/reunion">solicitar una consulta</a> con nuestros expertos.</p>
+</div>
+
+  <hr />
+
+  <p class="text-sm text-base-600">
+    <strong>¿Necesitas implementar esta solución?</strong> <a href="/reunion">Solicita una consulta gratuita aquí</a>.
+  </p>
+</BlogLayout>
