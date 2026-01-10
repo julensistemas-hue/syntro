@@ -17,7 +17,8 @@
       "Bash(pnpm add:*)",
       "Bash(pnpm dev)",
       "Bash(timeout /t 10 /nobreak)",
-      "Skill(playwright-skill)"
+      "Skill(playwright-skill)",
+      "Bash(git rebase:*)"
     ],
     "deny": [],
     "ask": []
