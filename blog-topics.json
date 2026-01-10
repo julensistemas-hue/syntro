@@ -24,10 +24,11 @@
       "tema": "wazuh cursos",
       "palabras_clave": "cursos, wazuh, tendencias",
       "notas": "Tema detectado automáticamente con score 49/100. Fuente: google_trends. ",
-      "estado": "Pendiente",
+      "estado": "Procesado",
       "fecha_agregado": "2025-12-29",
       "score_tendencia": 49,
-      "fuente_tendencia": "google_trends"
+      "fuente_tendencia": "google_trends",
+      "fecha_procesado": "2026-01-10"
     },
     {
       "tema": "ChatGPT conversations still lack timestamps after years of requests",
