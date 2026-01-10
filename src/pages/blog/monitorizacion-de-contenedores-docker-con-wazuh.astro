@@ -13,70 +13,46 @@ import BlogLayout from "../../layouts/BlogLayout.astro";
 
 <div>
 <h2>Problema que resuelve</h2>
-<p>La adopción masiva de Docker introduce nuevos desafíos de seguridad y visibilidad. Los contenedores son efímeros, generan logs distribuidos y las imágenes pueden contener vulnerabilidades conocidas. Sin una monitorización centralizada, es imposible detectar actividades maliciosas, fallos de configuración o el uso de componentes vulnerables en tiempo real, dejando la infraestructura expuesta.</p>
+<p>La adopción masiva de Docker introduce nuevos desafíos de seguridad y visibilidad. Los contenedores son efímeros, se escalan dinámicamente y generan logs descentralizados. Sin una monitorización centralizada, es imposible detectar actividades maliciosas, vulnerabilidades en imágenes o configuraciones inseguras, dejando la infraestructura expuesta.</p>
 
 <h2>Caso de uso empresarial</h2>
-<p>Una empresa de e-commerce migra su plataforma a microservicios en Docker. El equipo de seguridad necesita una solución única para monitorizar los logs de todos los contenedores, auditar la actividad del daemon de Docker y escanear automáticamente las imágenes en busca de vulnerabilidades antes de su despliegue en producción, cumpliendo con políticas de seguridad internas.</p>
+<p>Una empresa de e-commerce migra su plataforma a microservicios en Docker. Necesitan cumplir con PCI DSS, lo que requiere auditoría de logs, detección de accesos no autorizados y escaneo de vulnerabilidades en las imágenes de contenedor desplegadas en producción. Wazuh centraliza toda esta información.</p>
 
 <h2>Requisitos previos</h2>
 <ul>
-<li>Wazuh Manager 4.7 o superior</li>
-<li>Agente Wazuh instalado en el host Docker</li>
-<li>Acceso root/sudo en el host para configurar el agente</li>
-<li>Docker y Docker Compose instalados</li>
-<li>Permisos para que el usuario wazuh ejecute comandos Docker</li>
+<li>Wazuh Manager 4.7 o superior desplegado</li>
+<li>Agente Wazuh instalado en el host Docker (Linux)</li>
+<li>Docker y Docker Compose instalados en el host</li>
+<li>Permisos de sudo para ejecutar comandos de administración</li>
 </ul>
 
 <h2>Implementación paso a paso</h2>
-<p>Paso 1 Configurar el agente para recopilar logs de Docker</p>
-<pre><code># Agregar usuario wazuh al grupo docker
-sudo usermod -aG docker wazuh
-
-# Crear regla local para capturar logs de contenedores
-sudo nano /var/ossec/etc/rules/local_rules.xml</code></pre>
-<p>En el archivo, define reglas para eventos como la creación de un contenedor privilegiado o la ejecución de un shell. No incluyas el XML completo, solo menciona que debes agregar reglas con group "docker".</p>
-
-<p>Paso 2 Habilitar el módulo de integración Docker en el agente</p>
+<p>Paso 1. Configurar el agente Wazuh para recoger logs de Docker</p>
 <pre><code># Editar la configuración del agente
 sudo nano /var/ossec/etc/ossec.conf</code></pre>
-<p>Busca la sección "wodle" y agrega la configuración del módulo Docker. Especifica el intervalo de escaneo, por ejemplo, every 300s.</p>
+<p>En este archivo, dentro de la sección ossec_config, añade un bloque localfile para monitorizar el socket de Docker y otro para los logs de contenedores en formato json. Especifica la ruta /var/lib/docker/containers/*/*.log.</p>
 
-<p>Paso 3 Configurar el módulo de Vulnerabilidades para escanear imágenes Docker</p>
-<pre><code># Instalar dependencias para el escaneo
-sudo apt-get install -y curl jq
+<p>Paso 2. Habilitar la integración de Docker en el agente</p>
+<pre><code># Editar la configuración de integraciones
+sudo nano /var/ossec/etc/shared/docker.yaml</code></pre>
+<p>Crea este archivo con una sección de integraciones. Define una integración de tipo docker que ejecute el comando 'docker ps' y otra de tipo vulnerability_detector configurada para escanear imágenes Docker.</p>
 
-# Probar la consulta a la API de Docker
-sudo docker images --format "table {{.Repository}}"</code></pre>
-<p>Luego, en la misma sección "wodle" del archivo ossec.conf, habilita el módulo "vulnerability-detector" y configura las fuentes de bases de datos de vulnerabilidades como NVD.</p>
+<p>Paso 3. Reiniciar el agente Wazuh</p>
+<pre><code>sudo systemctl restart wazuh-agent
+sudo tail -f /var/ossec/logs/ossec.log</code></pre>
 
-<p>Paso 4 Desplegar un entorno de prueba con docker-compose</p>
-<pre><code># Crear un docker-compose.yml de ejemplo
-cat > docker-compose.yml << EOL
-version: '3.8'
-services:
-  web:
-    image: nginx:1.21
-    ports:
-      - "8080:80"
-  app:
-    image: vulnerable-app:latest
-    environment:
-      - DB_HOST=database
-  database:
-    image: mysql:5.7
-EOL
-
-# Iniciar los servicios
+<p>Paso 4. Desplegar un entorno de prueba con Docker Compose</p>
+<p>Crea un archivo docker-compose.yml con 3 servicios. Un servicio web que use la imagen nginx, un servicio app que use una imagen node y un servicio db que use la imagen mysql. Asegúrate de definir volúmenes para persistencia de la base de datos.</p>
+<pre><code># Levantar los servicios
 sudo docker-compose up -d
-
-# Ver los logs de un contenedor específico
-sudo docker-compose logs web</code></pre>
+# Verificar que están corriendo
+sudo docker-compose ps</code></pre>
 
 <h2>Ejemplo práctico</h2>
-<p>Tras la configuración, Wazuh comenzará a generar alertas. Por ejemplo, si un desarrollador descarga y ejecuta una imagen de MySQL con una versión crítica conocida (CVE-2022-21344), el módulo de vulnerabilidades detectará la coincidencia y generará una alerta de nivel 8 en el dashboard de Wazuh, mostrando el ID de CVE, la imagen afectada y el host. Simultáneamente, si un contenedor es eliminado abruptamente, el log de ese evento será capturado y correlacionado, permitiendo investigar posibles actividades de limpieza de evidencias.</p>
+<p>Wazuh detecta automáticamente los nuevos contenedores. La integración de vulnerability_detector escaneará las imágenes nginx, node y mysql contra la base de datos de CVE. Si se encuentra una vulnerabilidad crítica (por ejemplo, CVE-2021-44228 en una versión antigua de Log4j en la app Node), Wazuh generará una alerta de nivel 12 en el dashboard, indicando el ID del CVE, la imagen afectada y el contenedor. Simultáneamente, si un atacante ejecuta un comando shell interactivo en el contenedor de la base de datos, Wazuh capturará este evento del log de Docker y activará una regerta de alerta por actividad sospechosa.</p>
 
 <h2>Conclusión y próximos pasos</h2>
-<p>La integración de Wazuh con Docker proporciona una capa de seguridad esencial para entornos contenedorizados, ofreciendo visibilidad total, detección de amenazas y gestión de vulnerabilidades en imágenes. Para escalar esta solución, se puede integrar con un registro de contenedores privado y automatizar la respuesta, como detener un contenedor que ejecute un proceso malicioso. <a href="/reunion">Solicita una consulta gratuita</a> para implementar esta solución en tu infraestructura y asegurar tu ciclo de vida de contenedores.</p>
+<p>Wazuh proporciona una capa de seguridad integral para entornos Docker, unificando la monitorización de logs, la detección de intrusiones y el escaneo proactivo de vulnerabilidades. Para escalar esta solución a un clúster Kubernetes o a un entorno de producción multi-host, se requiere configurar el agente en cada nodo y centralizar la gestión en el manager. <a href="/reunion">Solicita una consulta gratuita</a> para implementar esta solución.</p>
 </div>
 
   <hr />
