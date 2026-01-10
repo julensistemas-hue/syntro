@@ -14,10 +14,11 @@
       "tema": "Self-hosting is being enshittified",
       "palabras_clave": "being, self-hosting, tecnología, enshittified",
       "notas": "Tema detectado automáticamente con score 39/100. Fuente: hackernews. Referencia: https://troubled.engineer/posts/selfhosting-in-2025/",
-      "estado": "Pendiente",
+      "estado": "Procesado",
       "fecha_agregado": "2025-12-29",
       "score_tendencia": 39,
-      "fuente_tendencia": "hackernews"
+      "fuente_tendencia": "hackernews",
+      "fecha_procesado": "2026-01-10"
     },
     {
       "tema": "wazuh cursos",
