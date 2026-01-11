@@ -1,6 +1,15 @@
 {
   "topics": [
     {
+      "tema": "Show HN: I used Claude Code to discover connections between 100 books",
+      "palabras_clave": "code, used, tecnología, show, claude",
+      "notas": "Tema detectado automáticamente con score 45/100. Fuente: hackernews. Referencia: https://trails.pieterma.es/",
+      "estado": "Pendiente",
+      "fecha_agregado": "2026-01-11",
+      "score_tendencia": 45,
+      "fuente_tendencia": "hackernews"
+    },
+    {
       "tema": "n8n",
       "palabras_clave": "tendencias",
       "notas": "Tema detectado automáticamente con score 45/100. Fuente: google_trends. ",
