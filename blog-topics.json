@@ -1,6 +1,15 @@
 {
   "topics": [
     {
+      "tema": "CLI agents make self-hosting on a home server easier and fun",
+      "palabras_clave": "tecnología, self-hosting, home, make, agents",
+      "notas": "Tema detectado automáticamente con score 45/100. Fuente: hackernews. Referencia: https://fulghum.io/self-hosting",
+      "estado": "Pendiente",
+      "fecha_agregado": "2026-01-12",
+      "score_tendencia": 45,
+      "fuente_tendencia": "hackernews"
+    },
+    {
       "tema": "Show HN: I used Claude Code to discover connections between 100 books",
       "palabras_clave": "code, used, tecnología, show, claude",
       "notas": "Tema detectado automáticamente con score 45/100. Fuente: hackernews. Referencia: https://trails.pieterma.es/",
