@@ -70,22 +70,22 @@ export const POST: APIRoute = async ({ request }) => {
                                   <table role="presentation" style="width: 100%; border-collapse: collapse;">
                                     <tr>
                                       <td style="padding: 8px 0; color: #4a5568; font-size: 15px;">
-                                        <strong style="color: #2d3748;">Fecha:</strong> 20-22 Enero 2025
+                                        <strong style="color: #2d3748;">Disponible desde:</strong> 23 Febrero 2026
                                       </td>
                                     </tr>
                                     <tr>
                                       <td style="padding: 8px 0; color: #4a5568; font-size: 15px;">
-                                        <strong style="color: #2d3748;">Duracion:</strong> 3 dias intensivos
+                                        <strong style="color: #2d3748;">Modalidad:</strong> Plataforma online con acceso permanente
                                       </td>
                                     </tr>
                                     <tr>
                                       <td style="padding: 8px 0; color: #4a5568; font-size: 15px;">
-                                        <strong style="color: #2d3748;">Modalidad:</strong> 100% Online
+                                        <strong style="color: #2d3748;">Incluye:</strong> Videos, recursos, soporte directo del formador
                                       </td>
                                     </tr>
                                     <tr>
                                       <td style="padding: 8px 0; color: #4a5568; font-size: 15px;">
-                                        <strong style="color: #2d3748;">Precio:</strong> 100 euros
+                                        <strong style="color: #2d3748;">Precio:</strong> 50 euros (acceso permanente)
                                       </td>
                                     </tr>
                                   </table>
@@ -133,10 +133,10 @@ export const POST: APIRoute = async ({ request }) => {
 Gracias por inscribirte.
 
 Detalles:
-- Fecha: 20-22 Enero 2025
-- Horario: 3 dias
-- Modalidad: Online
-- Precio: 100 euros
+- Disponible desde: 23 Febrero 2026
+- Modalidad: Plataforma online con acceso permanente
+- Incluye: Videos, recursos, soporte directo del formador
+- Precio: 50 euros (acceso permanente)
 
 Te enviaremos los detalles de pago.
 
