@@ -1,6 +1,15 @@
 {
   "topics": [
     {
+      "tema": "Cowork: Claude Code for the rest of your work",
+      "palabras_clave": "cowork:, code, claude, rest, tecnología",
+      "notas": "Tema detectado automáticamente con score 45/100. Fuente: hackernews. Referencia: https://claude.com/blog/cowork-research-preview",
+      "estado": "Pendiente",
+      "fecha_agregado": "2026-01-13",
+      "score_tendencia": 45,
+      "fuente_tendencia": "hackernews"
+    },
+    {
       "tema": "CLI agents make self-hosting on a home server easier and fun",
       "palabras_clave": "tecnología, self-hosting, home, make, agents",
       "notas": "Tema detectado automáticamente con score 45/100. Fuente: hackernews. Referencia: https://fulghum.io/self-hosting",
