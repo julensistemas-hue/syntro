@@ -1,6 +1,15 @@
 {
   "topics": [
     {
+      "tema": "Claude Cowork exfiltrates files",
+      "palabras_clave": "claude, cowork, files, tecnología, exfiltrates",
+      "notas": "Tema detectado automáticamente con score 45/100. Fuente: hackernews. Referencia: https://www.promptarmor.com/resources/claude-cowork-exfiltrates-files",
+      "estado": "Pendiente",
+      "fecha_agregado": "2026-01-15",
+      "score_tendencia": 45,
+      "fuente_tendencia": "hackernews"
+    },
+    {
       "tema": "Cowork: Claude Code for the rest of your work",
       "palabras_clave": "cowork:, code, claude, rest, tecnología",
       "notas": "Tema detectado automáticamente con score 45/100. Fuente: hackernews. Referencia: https://claude.com/blog/cowork-research-preview",
