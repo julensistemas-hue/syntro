@@ -1,6 +1,15 @@
 {
   "topics": [
     {
+      "tema": "seguridad informatica",
+      "palabras_clave": "informatica, tendencias, seguridad",
+      "notas": "Tema detectado automáticamente con score 44/100. Fuente: google_trends. ",
+      "estado": "Pendiente",
+      "fecha_agregado": "2026-01-17",
+      "score_tendencia": 44,
+      "fuente_tendencia": "google_trends"
+    },
+    {
       "tema": "Claude Cowork exfiltrates files",
       "palabras_clave": "claude, cowork, files, tecnología, exfiltrates",
       "notas": "Tema detectado automáticamente con score 45/100. Fuente: hackernews. Referencia: https://www.promptarmor.com/resources/claude-cowork-exfiltrates-files",
