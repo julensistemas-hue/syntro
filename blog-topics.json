@@ -1,6 +1,15 @@
 {
   "topics": [
     {
+      "tema": "Gaussian Splatting – A$AP Rocky \"Helicopter\" music video",
+      "palabras_clave": "a$ap, splatting, rocky, gaussian, tecnología",
+      "notas": "Tema detectado automáticamente con score 45/100. Fuente: hackernews. Referencia: https://radiancefields.com/a-ap-rocky-releases-helicopter-music-video-featuring-gaussian-splatting",
+      "estado": "Pendiente",
+      "fecha_agregado": "2026-01-19",
+      "score_tendencia": 45,
+      "fuente_tendencia": "hackernews"
+    },
+    {
       "tema": "wazuh esquema nacional de seguridad",
       "palabras_clave": "seguridad, tendencias, wazuh, esquema, nacional",
       "notas": "Tema detectado automáticamente con score 59/100. Fuente: google_trends. ",
