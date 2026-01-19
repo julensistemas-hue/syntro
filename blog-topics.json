@@ -1,6 +1,15 @@
 {
   "topics": [
     {
+      "tema": "wazuh esquema nacional de seguridad",
+      "palabras_clave": "seguridad, tendencias, wazuh, esquema, nacional",
+      "notas": "Tema detectado automáticamente con score 59/100. Fuente: google_trends. ",
+      "estado": "Pendiente",
+      "fecha_agregado": "2026-01-19",
+      "score_tendencia": 59,
+      "fuente_tendencia": "google_trends"
+    },
+    {
       "tema": "seguridad informatica",
       "palabras_clave": "informatica, tendencias, seguridad",
       "notas": "Tema detectado automáticamente con score 44/100. Fuente: google_trends. ",
