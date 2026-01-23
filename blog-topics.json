@@ -1,6 +1,15 @@
 {
   "topics": [
     {
+      "tema": "I was banned from Claude for scaffolding a Claude.md file?",
+      "palabras_clave": "banned, scaffolding, from, tecnología, claude",
+      "notas": "Tema detectado automáticamente con score 45/100. Fuente: hackernews. Referencia: https://hugodaniel.com/posts/claude-code-banned-me/",
+      "estado": "Pendiente",
+      "fecha_agregado": "2026-01-23",
+      "score_tendencia": 45,
+      "fuente_tendencia": "hackernews"
+    },
+    {
       "tema": "Nvidia Stock Crash Prediction",
       "palabras_clave": "tecnología, stock, nvidia, crash, prediction",
       "notas": "Tema detectado automáticamente con score 45/100. Fuente: hackernews. Referencia: https://entropicthoughts.com/nvidia-stock-crash-prediction",
