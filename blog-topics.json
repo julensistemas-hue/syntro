@@ -1,6 +1,15 @@
 {
   "topics": [
     {
+      "tema": "elevenlabs",
+      "palabras_clave": "elevenlabs, tendencias",
+      "notas": "Tema detectado automáticamente con score 45/100. Fuente: google_trends. ",
+      "estado": "Pendiente",
+      "fecha_agregado": "2026-01-25",
+      "score_tendencia": 45,
+      "fuente_tendencia": "google_trends"
+    },
+    {
       "tema": "I was banned from Claude for scaffolding a Claude.md file?",
       "palabras_clave": "banned, scaffolding, from, tecnología, claude",
       "notas": "Tema detectado automáticamente con score 45/100. Fuente: hackernews. Referencia: https://hugodaniel.com/posts/claude-code-banned-me/",
