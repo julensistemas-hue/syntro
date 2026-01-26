@@ -1,6 +1,15 @@
 {
   "topics": [
     {
+      "tema": "ChatGPT is pulling answers from Elon Musk’s Grokipedia",
+      "palabras_clave": "pulling, noticias, answers, from, chatgpt",
+      "notas": "Tema detectado automáticamente con score 35/100. Fuente: rss_feeds. Referencia: https://techcrunch.com/2026/01/25/chatgpt-is-pulling-answers-from-elon-musks-grokipedia/",
+      "estado": "Pendiente",
+      "fecha_agregado": "2026-01-26",
+      "score_tendencia": 35,
+      "fuente_tendencia": "rss_feeds"
+    },
+    {
       "tema": "elevenlabs",
       "palabras_clave": "elevenlabs, tendencias",
       "notas": "Tema detectado automáticamente con score 45/100. Fuente: google_trends. ",
