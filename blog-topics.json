@@ -1,6 +1,15 @@
 {
   "topics": [
     {
+      "tema": "ChatGPT Containers can now run bash, pip/npm install packages and download files",
+      "palabras_clave": "containers, chatgpt, tecnología, pip/npm, bash,",
+      "notas": "Tema detectado automáticamente con score 45/100. Fuente: hackernews. Referencia: https://simonwillison.net/2026/Jan/26/chatgpt-containers/",
+      "estado": "Pendiente",
+      "fecha_agregado": "2026-01-27",
+      "score_tendencia": 45,
+      "fuente_tendencia": "hackernews"
+    },
+    {
       "tema": "ChatGPT is pulling answers from Elon Musk’s Grokipedia",
       "palabras_clave": "pulling, noticias, answers, from, chatgpt",
       "notas": "Tema detectado automáticamente con score 35/100. Fuente: rss_feeds. Referencia: https://techcrunch.com/2026/01/25/chatgpt-is-pulling-answers-from-elon-musks-grokipedia/",
