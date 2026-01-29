@@ -1,0 +1,906 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "Desarrollo Web Profesional - Webs Rápidas, Bonitas y Funcionales";
+const description = "Creamos tu web profesional desde 399€. Entrega en 5-7 días, PageSpeed 95+, sin mantenimiento. Diseño moderno y funcional para tu negocio.";
+const canonical = "https://aisecurity.es/servicios/desarrollo-web";
+---
+
+<BaseLayout title={title} description={description} canonical={canonical}>
+  <!-- Hero Section - Las 4 Claves -->
+  <section class="pt-12 pb-20 relative overflow-hidden">
+    <!-- Background Image -->
+    <div class="absolute inset-0">
+      <img src="/images/3409297.jpg" alt="Background" class="w-full h-full object-cover" />
+    </div>
+    <!-- Overlay Gradient -->
+    <div class="absolute inset-0 bg-gradient-to-bl from-accent-500/10 via-blue-600/50 to-accent-500/10"></div>
+
+    <!-- Content -->
+    <div class="relative z-10">
+      <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
+        <!-- Hero Header -->
+        <div class="text-center mb-12">
+          <h1 class="text-3xl md:text-5xl font-bold text-white mb-4">
+            Creamos Webs que<br>
+            <span class="text-blue-200">Venden</span>
+          </h1>
+          <p class="text-lg md:text-xl text-white/90 max-w-2xl mx-auto">
+            Rápidas, bonitas y sin complicaciones. Tu web profesional lista en días, no meses.
+          </p>
+        </div>
+
+        <!-- 4 Claves Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto mb-10">
+          <!-- Clave 1: Rápidas -->
+          <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 hover:bg-white/20 hover:scale-105 transition-all duration-300 group">
+            <div class="w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-xl flex items-center justify-center text-3xl mb-4 group-hover:scale-110 transition-transform shadow-lg">
+              ⚡
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Rápidas</h3>
+            <p class="text-white/80 text-sm mb-3">Entrega garantizada sin excusas</p>
+            <div class="space-y-1">
+              <div class="flex items-center gap-2 text-sm">
+                <span class="text-green-400">✓</span>
+                <span class="text-white/90">Landing: <strong class="text-white">5-7 días</strong></span>
+              </div>
+              <div class="flex items-center gap-2 text-sm">
+                <span class="text-green-400">✓</span>
+                <span class="text-white/90">Web completa: <strong class="text-white">7-14 días</strong></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Clave 2: Bonitas -->
+          <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 hover:bg-white/20 hover:scale-105 transition-all duration-300 group">
+            <div class="w-16 h-16 bg-gradient-to-br from-pink-400 to-purple-500 rounded-xl flex items-center justify-center text-3xl mb-4 group-hover:scale-110 transition-transform shadow-lg">
+              ✨
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Bonitas</h3>
+            <p class="text-white/80 text-sm mb-3">Diseño que convierte visitantes en clientes</p>
+            <div class="space-y-1">
+              <div class="flex items-center gap-2 text-sm">
+                <span class="text-green-400">✓</span>
+                <span class="text-white/90">Atención al <strong class="text-white">detalle</strong></span>
+              </div>
+              <div class="flex items-center gap-2 text-sm">
+                <span class="text-green-400">✓</span>
+                <span class="text-white/90">Diseño <strong class="text-white">profesional</strong></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Clave 3: Funcionales -->
+          <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 hover:bg-white/20 hover:scale-105 transition-all duration-300 group">
+            <div class="w-16 h-16 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-xl flex items-center justify-center text-3xl mb-4 group-hover:scale-110 transition-transform shadow-lg">
+              🎯
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Funcionales</h3>
+            <p class="text-white/80 text-sm mb-3">Rendimiento que Google premia</p>
+            <div class="space-y-1">
+              <div class="flex items-center gap-2 text-sm">
+                <span class="text-green-400">✓</span>
+                <span class="text-white/90">PageSpeed <strong class="text-white">95+</strong></span>
+              </div>
+              <div class="flex items-center gap-2 text-sm">
+                <span class="text-green-400">✓</span>
+                <span class="text-white/90">SEO <strong class="text-white">optimizado</strong></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Clave 4: Sin Mantenimiento -->
+          <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 hover:bg-white/20 hover:scale-105 transition-all duration-300 group">
+            <div class="w-16 h-16 bg-gradient-to-br from-green-400 to-emerald-500 rounded-xl flex items-center justify-center text-3xl mb-4 group-hover:scale-110 transition-transform shadow-lg">
+              🔧
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Sin Mantenimiento</h3>
+            <p class="text-white/80 text-sm mb-3">Olvídate de actualizaciones</p>
+            <div class="space-y-1">
+              <div class="flex items-center gap-2 text-sm">
+                <span class="text-green-400">✓</span>
+                <span class="text-white/90">Sin <strong class="text-white">plugins</strong> que actualizar</span>
+              </div>
+              <div class="flex items-center gap-2 text-sm">
+                <span class="text-green-400">✓</span>
+                <span class="text-white/90">Fácil de <strong class="text-white">editar</strong></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Precio Badge -->
+        <div class="flex justify-center">
+          <div class="inline-flex items-center gap-4 px-8 py-4 bg-gradient-to-r from-green-500/20 to-emerald-500/20 backdrop-blur-md rounded-2xl border-2 border-green-400/50 shadow-xl shadow-green-500/20 animate-pulse-slow">
+            <div class="text-center">
+              <span class="text-sm text-green-200 font-medium">Desde solo</span>
+              <div class="flex items-baseline gap-1">
+                <span class="text-4xl md:text-5xl font-extrabold text-white">399€</span>
+              </div>
+            </div>
+            <div class="w-px h-12 bg-white/30"></div>
+            <div class="text-left">
+              <p class="text-white font-semibold">Entrega garantizada</p>
+              <p class="text-green-200 text-sm">Hosting 1 año incluido</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    @keyframes pulse-slow {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.85; }
+    }
+    .animate-pulse-slow {
+      animation: pulse-slow 3s ease-in-out infinite;
+    }
+  </style>
+
+  <!-- Portfolio Section - Páginas Hechas -->
+  <section class="py-20 bg-base-50 relative overflow-hidden">
+    <!-- Background Image (subtle) -->
+    <div class="absolute inset-0 opacity-40">
+      <img src="/images/3409297.jpg" alt="Background" class="w-full h-full object-cover" />
+    </div>
+    <!-- Overlay -->
+    <div class="absolute inset-0 bg-base-50/70"></div>
+
+    <!-- Content -->
+    <div class="relative z-10">
+      <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
+        <!-- Section Header -->
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
+            Páginas que Hemos Creado
+          </h2>
+          <p class="text-lg text-gray-300 max-w-2xl mx-auto">
+            Ejemplos reales de nuestro trabajo. Cada proyecto es único, adaptado a las necesidades del cliente.
+          </p>
+        </div>
+
+        <!-- Portfolio Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          <!-- Portfolio Item 1: Juabera -->
+          <div class="group relative bg-base-100 rounded-2xl overflow-hidden border border-base-400 hover:border-blue-400 transition-all duration-500 shadow-xl hover:shadow-2xl hover:shadow-blue-500/20">
+            <!-- Screenshot -->
+            <div class="relative overflow-hidden">
+              <img
+                src="/images/portfolio/juabera.png"
+                alt="Juabera - Directorio de Cine"
+                class="w-full h-64 object-cover object-top transition-transform duration-500 group-hover:scale-105"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-base-900/80 via-transparent to-transparent"></div>
+            </div>
+
+            <!-- Info -->
+            <div class="p-6">
+              <div class="flex items-center gap-3 mb-3">
+                <div class="w-10 h-10 bg-gradient-to-br from-red-500 to-orange-500 rounded-lg flex items-center justify-center text-xl">
+                  🎬
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold text-white">Juabera</h3>
+                  <p class="text-sm text-gray-400">Directorio de Cine</p>
+                </div>
+              </div>
+
+              <p class="text-gray-300 text-sm mb-4">
+                Portal de entretenimiento con diseño vibrante, navegación intuitiva y catálogo de películas.
+              </p>
+
+              <div class="flex items-center gap-4">
+                <span class="inline-flex items-center gap-1 px-3 py-1 bg-red-500/20 text-red-300 rounded-full text-xs font-medium">
+                  <span>🎭</span> Entretenimiento
+                </span>
+                <span class="inline-flex items-center gap-1 px-3 py-1 bg-orange-500/20 text-orange-300 rounded-full text-xs font-medium">
+                  <span>🎨</span> Colores vibrantes
+                </span>
+              </div>
+
+              <a
+                href="https://juabera-es.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="mt-4 inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 font-medium transition-colors"
+              >
+                Ver sitio web
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Portfolio Item 2: AI Security -->
+          <div class="group relative bg-base-100 rounded-2xl overflow-hidden border border-base-400 hover:border-blue-400 transition-all duration-500 shadow-xl hover:shadow-2xl hover:shadow-blue-500/20">
+            <!-- Screenshot -->
+            <div class="relative overflow-hidden">
+              <img
+                src="/images/portfolio/aisecurity.png"
+                alt="AI Security - Plataforma de IA y Ciberseguridad"
+                class="w-full h-64 object-cover object-top transition-transform duration-500 group-hover:scale-105"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-base-900/80 via-transparent to-transparent"></div>
+            </div>
+
+            <!-- Info -->
+            <div class="p-6">
+              <div class="flex items-center gap-3 mb-3">
+                <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center text-xl">
+                  🤖
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold text-white">AI Security</h3>
+                  <p class="text-sm text-gray-400">IA y Ciberseguridad</p>
+                </div>
+              </div>
+
+              <p class="text-gray-300 text-sm mb-4">
+                Plataforma tecnológica con demos interactivas, diseño moderno y enfoque profesional B2B.
+              </p>
+
+              <div class="flex items-center gap-4">
+                <span class="inline-flex items-center gap-1 px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-xs font-medium">
+                  <span>💻</span> Tech
+                </span>
+                <span class="inline-flex items-center gap-1 px-3 py-1 bg-cyan-500/20 text-cyan-300 rounded-full text-xs font-medium">
+                  <span>🔒</span> Profesional
+                </span>
+              </div>
+
+              <a
+                href="https://aisecurity.es"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="mt-4 inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 font-medium transition-colors"
+              >
+                Ver sitio web
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- CTA Note -->
+        <div class="mt-10 text-center">
+          <div class="inline-flex items-center gap-3 px-6 py-4 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10">
+            <span class="text-2xl">💡</span>
+            <p class="text-white/90">
+              <strong class="text-white">¿Te gusta algún estilo?</strong> Podemos crear algo similar adaptado a tu marca y necesidades.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive WhatsApp Demo Section -->
+  <section id="whatsapp-demo-section" class="py-20 relative overflow-hidden">
+    <!-- Background Image -->
+    <div class="absolute inset-0">
+      <img src="/images/3409297.jpg" alt="Background" class="w-full h-full object-cover" />
+    </div>
+    <!-- Overlay Gradient -->
+    <div class="absolute inset-0 bg-gradient-to-bl from-accent-500/10 via-blue-600/50 to-accent-500/10"></div>
+
+    <!-- Content -->
+    <div class="relative z-10">
+      <div class="max-w-full mx-auto px-24 md:px-40 lg:px-64">
+        <!-- Section Header -->
+        <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-6">
+          Edita tu web desde WhatsApp
+        </h2>
+        <p class="text-lg text-white/90 text-center mb-8 max-w-3xl mx-auto">
+          Olvídate de paneles de administración complicados, plugins y editores visuales lentos.
+          <strong class="text-white">Actualiza tu web enviando un simple mensaje de WhatsApp</strong>.
+          Sin iniciar sesión, sin contraseñas, sin curva de aprendizaje.
+        </p>
+
+        <!-- Container with Flexbox for side-by-side layout -->
+        <div class="flex flex-col lg:flex-row gap-24 items-center justify-center relative max-w-7xl mx-auto">
+          <!-- Animated Cable Connection -->
+          <svg id="connection-cable" class="hidden lg:block absolute inset-0 pointer-events-none z-10" viewBox="0 0 1000 1000" preserveAspectRatio="none" style="opacity: 0;">
+            <defs>
+              <linearGradient id="cableGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:#25D366;stop-opacity:1" />
+                <stop offset="50%" style="stop-color:#00a8ff;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#6366f1;stop-opacity:1" />
+              </linearGradient>
+            </defs>
+            <path id="cablePath" d="M 350 650 Q 500 400, 650 450" stroke="url(#cableGradient)" stroke-width="6" fill="none" stroke-dasharray="15 8" stroke-linecap="round"/>
+            <circle id="particle1" r="12" fill="#25D366" opacity="0">
+              <animateMotion dur="1.5s" repeatCount="indefinite">
+                <mpath href="#cablePath"/>
+              </animateMotion>
+            </circle>
+            <circle id="particle2" r="12" fill="#00a8ff" opacity="0">
+              <animateMotion dur="1.5s" begin="0.3s" repeatCount="indefinite">
+                <mpath href="#cablePath"/>
+              </animateMotion>
+            </circle>
+            <circle id="particle3" r="12" fill="#6366f1" opacity="0">
+              <animateMotion dur="1.5s" begin="0.6s" repeatCount="indefinite">
+                <mpath href="#cablePath"/>
+              </animateMotion>
+            </circle>
+          </svg>
+
+          <!-- WhatsApp Phone Mockup - Left -->
+          <div style="margin-top:35px" class="w-full lg:w-[420px] flex-shrink-0 self-end">
+            <div class="relative bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 rounded-[3rem] p-3 shadow-2xl border-8 border-gray-800">
+              <!-- Phone screen -->
+              <div class="bg-black rounded-[2.5rem] overflow-hidden w-full h-[730px] flex flex-col">
+                <!-- Status bar -->
+                <div class="flex items-center justify-between text-white text-xs px-6 py-3 bg-black flex-shrink-0">
+                  <span class="font-semibold">9:41</span>
+                  <div class="flex gap-1.5 items-center">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"></path>
+                    </svg>
+                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M17.778 8.222c-4.296-4.296-11.26-4.296-15.556 0A1 1 0 01.808 6.808c5.076-5.077 13.308-5.077 18.384 0a1 1 0 01-1.414 1.414zM14.95 11.05a7 7 0 00-9.9 0 1 1 0 01-1.414-1.414 9 9 0 0112.728 0 1 1 0 01-1.414 1.414zM12.12 13.88a3 3 0 00-4.242 0 1 1 0 01-1.415-1.415 5 5 0 017.072 0 1 1 0 01-1.415 1.415zM9 16a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+                    </svg>
+                    <span class="text-[10px]">100%</span>
+                  </div>
+                </div>
+
+                <!-- WhatsApp Content -->
+                <div class="bg-white/10 backdrop-blur-sm flex-1 flex flex-col overflow-hidden">
+                  <!-- WhatsApp Header -->
+                  <div class="bg-[#008069] px-4 py-4 flex items-center gap-3">
+                    <div class="w-12 h-12 bg-gray-300 rounded-full flex items-center justify-center text-2xl">
+                      🤖
+                    </div>
+                    <div class="flex-1">
+                      <h5 class="text-white font-semibold text-base">Asistente IA</h5>
+                      <p class="text-white/80 text-sm">en línea</p>
+                    </div>
+                  </div>
+
+                  <!-- WhatsApp Chat -->
+                  <div class="bg-[#efeae2] p-4 flex-1 overflow-y-auto" id="chat-container" style="background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iYSIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIj48cGF0aCBmaWxsPSIjZjBmMGYwIiBkPSJNMCAwaDQwdjQwSDB6Ci8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2EpIi8+PC9zdmc+'); background-size: 200px;">
+                    <!-- Initial Bot Message -->
+                    <div class="flex justify-start mb-4">
+                      <div class="bg-white rounded-lg px-4 py-3 max-w-[85%] shadow-sm">
+                        <p class="text-lg" style="color: #000000;">¡Hola! Soy tu asistente de IA. Escribe lo que quieres cambiar en tu web:</p>
+                        <span class="text-sm text-gray-600 float-right mt-1">14:30 ✓✓</span>
+                      </div>
+                    </div>
+
+                    <!-- Response Messages Container -->
+                    <div id="chat-messages" class="space-y-3"></div>
+                  </div>
+
+                  <!-- WhatsApp Input Bar -->
+                  <div class="bg-[#f0f2f5] px-3 py-2 flex items-center gap-2 flex-shrink-0">
+                    <button class="text-gray-600 hover:text-gray-800">
+                      <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-5-9h10v2H7z"></path>
+                      </svg>
+                    </button>
+                    <input
+                      type="text"
+                      id="chat-input"
+                      placeholder="Escribe un mensaje..."
+                      class="flex-1 bg-white rounded-full px-4 py-2 text-base placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-[#25D366]"
+                      style="color: #000000; background-color: #ffffff"
+                    />
+                    <button id="send-button" class="bg-[#008069] text-white rounded-full p-2 hover:bg-[#006d5a] transition-colors">
+                      <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Website Preview - Below on all screens -->
+        <div class="mt-8 text-center">
+          <div class="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-xl shadow-2xl overflow-hidden border border-slate-700/50 w-full h-[730px] flex flex-col flex-shrink-0">
+            <!-- Browser Chrome -->
+            <div class="bg-slate-800 px-4 py-3 flex items-center gap-2 flex-shrink-0 border-b border-slate-700">
+              <div class="flex gap-1.5">
+                <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+              </div>
+              <div class="flex-1 bg-slate-900 rounded-lg px-4 py-1.5 text-sm text-slate-400 ml-2 flex items-center gap-2">
+                <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/>
+                </svg>
+                www.tuempresa.es
+              </div>
+            </div>
+
+            <!-- Website Content - Tech Style -->
+            <div class="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-6 text-center flex-1 overflow-y-auto flex flex-col">
+              <!-- Navigation Header -->
+              <div class="w-full mb-6 pb-4 border-b border-slate-700/50">
+                <nav class="flex items-center justify-between px-4">
+                  <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/30">
+                      <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"/>
+                      </svg>
+                    </div>
+                    <span class="font-bold text-lg text-white">TuEmpresa</span>
+                  </div>
+                  <div class="flex gap-6 text-sm font-medium">
+                    <a href="#" class="text-blue-400 hover:text-blue-300 transition-colors">Inicio</a>
+                    <a href="#" class="text-slate-400 hover:text-white transition-colors">Servicios</a>
+                    <a href="#" class="text-slate-400 hover:text-white transition-colors">Precios</a>
+                    <a href="#" class="text-slate-400 hover:text-white transition-colors">Contacto</a>
+                  </div>
+                </nav>
+              </div>
+
+              <!-- Content Container -->
+              <div class="flex-1 flex flex-col items-center justify-center">
+                <!-- Badge -->
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-blue-500/20 rounded-full border border-blue-500/30 mb-4">
+                  <span class="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></span>
+                  <span class="text-blue-300 text-sm font-medium">Nuevo 2025</span>
+                </div>
+
+                <h1 id="demo-title" class="text-3xl md:text-4xl font-extrabold mb-4 transition-all duration-500 bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent">
+                  Soluciones Digitales
+                </h1>
+
+                <p class="text-base md:text-lg mb-6 max-w-xl leading-relaxed text-slate-300">
+                  Impulsamos tu negocio con tecnología de vanguardia y diseño profesional
+                </p>
+
+                <!-- Precio destacado -->
+                <div class="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-5 mb-6 shadow-xl border border-slate-700/50 max-w-sm mx-auto">
+                  <div class="flex items-center justify-center gap-2 mb-3">
+                    <svg class="w-5 h-5 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z"/>
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z" clip-rule="evenodd"/>
+                    </svg>
+                    <p class="text-sm font-semibold uppercase tracking-wide text-blue-400">Plan Profesional</p>
+                  </div>
+                  <div class="flex items-baseline justify-center gap-1 mb-2">
+                    <span id="demo-price" class="text-4xl md:text-5xl font-extrabold transition-all duration-500 text-white">€199</span>
+                    <span class="text-lg font-semibold text-slate-400">/mes</span>
+                  </div>
+                  <p class="text-sm text-slate-400">Todo incluido, sin sorpresas</p>
+                </div>
+
+                <!-- CTA Button -->
+                <button
+                  id="demo-button"
+                  class="px-8 py-3.5 rounded-xl font-bold text-base shadow-xl transition-all duration-500 transform hover:scale-105 hover:shadow-2xl bg-gradient-to-r from-blue-500 to-cyan-500 text-white hover:from-blue-400 hover:to-cyan-400"
+                >
+                  Empezar Ahora →
+                </button>
+
+                <!-- Trust badges -->
+                <div class="flex items-center justify-center gap-6 mt-6 text-sm">
+                  <div class="flex items-center gap-2 text-slate-400">
+                    <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                    </svg>
+                    <span>Sin permanencia</span>
+                  </div>
+                  <div class="flex items-center gap-2 text-slate-400">
+                    <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                    </svg>
+                    <span>Soporte 24/7</span>
+                  </div>
+                  <div class="flex items-center gap-2 text-slate-400">
+                    <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                    </svg>
+                    <span>Garantía 30 días</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-8 text-center">
+          <p class="text-base text-white/85 max-w-2xl mx-auto leading-relaxed">
+            💡 Esta es una demostración simplificada. En tu web real, podrás editar cualquier texto, imagen, precio o elemento mediante WhatsApp.
+          </p>
+
+          <!-- Reset Demo Button -->
+          <button
+            id="reset-demo-button"
+            class="mt-6 px-8 py-3 bg-white/20 hover:bg-white/30 text-white font-semibold rounded-lg transition-all duration-300 backdrop-blur-sm border border-white/30 hidden"
+          >
+            🔄 Reiniciar Demo
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Automated WhatsApp Demo
+    const chatMessages = document.getElementById('chat-messages');
+    const chatContainer = document.getElementById('chat-container');
+    const chatInput = document.getElementById('chat-input');
+    const sendButton = document.getElementById('send-button');
+    const demoTitle = document.getElementById('demo-title');
+    const demoPrice = document.getElementById('demo-price');
+    const demoButton = document.getElementById('demo-button');
+    const connectionCable = document.getElementById('connection-cable');
+    const resetDemoButton = document.getElementById('reset-demo-button');
+    const particles = [
+      document.getElementById('particle1'),
+      document.getElementById('particle2'),
+      document.getElementById('particle3')
+    ];
+
+    let isPlaying = false;
+    const INITIAL_TITLE = 'Soluciones Digitales';
+    const INITIAL_PRICE = '€199';
+    const INITIAL_BUTTON_COLOR = 'linear-gradient(to right, #3b82f6, #06b6d4)';
+
+    function addMessage(text: string, isUser = true) {
+      if (!chatMessages) return;
+
+      const msgDiv = document.createElement('div');
+      msgDiv.className = isUser ? 'flex justify-end mb-3' : 'flex justify-start mb-3';
+
+      const time = new Date().toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
+
+      msgDiv.innerHTML = `
+        <div class="${isUser ? 'bg-[#d9fdd3]' : 'bg-white'} rounded-lg px-3 py-2 max-w-[85%] shadow-sm">
+          <p class="text-base" style="color: #000000;">${text}</p>
+          <span class="text-xs text-gray-600 float-right mt-1">${time}${isUser ? '' : ' ✓✓'}</span>
+        </div>
+      `;
+
+      chatMessages.appendChild(msgDiv);
+
+      if (chatContainer) {
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+      }
+    }
+
+    function typeMessage(text: string, callback: () => void) {
+      if (!chatInput) return;
+
+      let i = 0;
+      (chatInput as HTMLInputElement).value = '';
+      chatInput.focus();
+
+      const typingInterval = setInterval(() => {
+        if (i < text.length) {
+          (chatInput as HTMLInputElement).value += text[i];
+          i++;
+        } else {
+          clearInterval(typingInterval);
+          if (callback) callback();
+        }
+      }, 80);
+    }
+
+    function showCableAnimation(targetType = 'title') {
+      if (!connectionCable) return;
+
+      const cablePath = document.getElementById('cablePath');
+      if (cablePath) {
+        if (targetType === 'title') {
+          cablePath.setAttribute('d', 'M 350 500 Q 500 350, 650 500');
+        } else if (targetType === 'button') {
+          cablePath.setAttribute('d', 'M 350 550 Q 500 400, 650 550');
+        }
+      }
+
+      connectionCable.classList.remove('hidden');
+
+      let opacity = 0;
+      const fadeIn = setInterval(() => {
+        if (opacity < 1) {
+          opacity += 0.05;
+          connectionCable.style.opacity = String(opacity);
+        } else {
+          clearInterval(fadeIn);
+        }
+      }, 30);
+
+      particles.forEach(p => {
+        if (p) p.setAttribute('opacity', '1');
+      });
+    }
+
+    function hideCableAnimation() {
+      if (!connectionCable) return;
+
+      particles.forEach(p => {
+        if (p) p.setAttribute('opacity', '0');
+      });
+
+      let opacity = 1;
+      const fadeOut = setInterval(() => {
+        if (opacity > 0) {
+          opacity -= 0.05;
+          connectionCable.style.opacity = String(opacity);
+        } else {
+          clearInterval(fadeOut);
+          connectionCable.classList.add('hidden');
+        }
+      }, 30);
+    }
+
+    function updateWebsite(type: string, value: string) {
+      if (type === 'title' && demoTitle) {
+        demoTitle.style.transform = 'scale(0.9)';
+        demoTitle.style.opacity = '0.3';
+        setTimeout(() => {
+          demoTitle.textContent = value;
+          demoTitle.style.transform = 'scale(1)';
+          demoTitle.style.opacity = '1';
+        }, 300);
+      } else if (type === 'price' && demoPrice) {
+        demoPrice.style.transform = 'scale(0.9) rotate(-5deg)';
+        demoPrice.style.opacity = '0.3';
+        setTimeout(() => {
+          demoPrice.textContent = value;
+          demoPrice.style.transform = 'scale(1) rotate(0deg)';
+          demoPrice.style.opacity = '1';
+        }, 300);
+      } else if (type === 'button' && demoButton) {
+        demoButton.style.transform = 'scale(0.9)';
+        demoButton.style.opacity = '0.5';
+        setTimeout(() => {
+          demoButton.style.background = value;
+          demoButton.style.transform = 'scale(1)';
+          demoButton.style.opacity = '1';
+        }, 300);
+      }
+    }
+
+    async function runDemo() {
+      if (isPlaying) return;
+      isPlaying = true;
+
+      if (chatInput) (chatInput as HTMLInputElement).disabled = true;
+      if (sendButton) (sendButton as HTMLButtonElement).disabled = true;
+
+      if (chatMessages) chatMessages.innerHTML = '';
+
+      const demoMessage1 = 'Cambia el título a "Tu Negocio Online"';
+
+      await new Promise<void>(resolve => {
+        typeMessage(demoMessage1, resolve);
+      });
+
+      await new Promise(resolve => setTimeout(resolve, 500));
+
+      if (chatInput) (chatInput as HTMLInputElement).value = '';
+      addMessage(demoMessage1, true);
+
+      await new Promise(resolve => setTimeout(resolve, 800));
+
+      showCableAnimation('title');
+
+      await new Promise(resolve => setTimeout(resolve, 1200));
+
+      updateWebsite('title', 'Tu Negocio Online');
+
+      await new Promise(resolve => setTimeout(resolve, 1500));
+
+      hideCableAnimation();
+
+      await new Promise(resolve => setTimeout(resolve, 600));
+
+      addMessage('✅ Cambio finalizado. El título ha sido actualizado correctamente.', false);
+
+      await new Promise(resolve => setTimeout(resolve, 1500));
+
+      const demoMessage2 = 'Cambia el botón a color verde';
+
+      await new Promise<void>(resolve => {
+        typeMessage(demoMessage2, resolve);
+      });
+
+      await new Promise(resolve => setTimeout(resolve, 500));
+
+      if (chatInput) (chatInput as HTMLInputElement).value = '';
+      addMessage(demoMessage2, true);
+
+      await new Promise(resolve => setTimeout(resolve, 800));
+
+      showCableAnimation('button');
+
+      await new Promise(resolve => setTimeout(resolve, 1200));
+
+      updateWebsite('button', 'linear-gradient(to right, #10b981, #059669)');
+
+      await new Promise(resolve => setTimeout(resolve, 1500));
+
+      hideCableAnimation();
+
+      await new Promise(resolve => setTimeout(resolve, 600));
+
+      addMessage('✅ Listo. El botón ahora es verde.', false);
+
+      if (resetDemoButton) {
+        resetDemoButton.classList.remove('hidden');
+      }
+
+      isPlaying = false;
+    }
+
+    function resetDemo() {
+      if (demoTitle) {
+        demoTitle.textContent = INITIAL_TITLE;
+        demoTitle.style.transform = 'scale(1)';
+        demoTitle.style.opacity = '1';
+      }
+
+      if (demoPrice) {
+        demoPrice.textContent = INITIAL_PRICE;
+        demoPrice.style.transform = 'scale(1) rotate(0deg)';
+        demoPrice.style.opacity = '1';
+      }
+
+      if (demoButton) {
+        demoButton.style.background = INITIAL_BUTTON_COLOR;
+        demoButton.style.transform = 'scale(1)';
+        demoButton.style.opacity = '1';
+      }
+
+      if (chatMessages) chatMessages.innerHTML = '';
+      if (chatInput) {
+        (chatInput as HTMLInputElement).value = '';
+        (chatInput as HTMLInputElement).disabled = false;
+      }
+      if (sendButton) (sendButton as HTMLButtonElement).disabled = false;
+
+      if (resetDemoButton) {
+        resetDemoButton.classList.add('hidden');
+      }
+
+      setTimeout(() => {
+        runDemo();
+      }, 300);
+    }
+
+    const demoSection = document.querySelector('#whatsapp-demo-section');
+    let hasAutoPlayed = false;
+
+    if (demoSection) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !hasAutoPlayed && !isPlaying) {
+            hasAutoPlayed = true;
+            setTimeout(() => {
+              runDemo();
+            }, 1000);
+          }
+        });
+      }, {
+        threshold: 0.3
+      });
+
+      observer.observe(demoSection);
+    }
+
+    if (resetDemoButton) {
+      resetDemoButton.addEventListener('click', resetDemo);
+    }
+  </script>
+
+  <!-- Pricing Section -->
+  <section class="py-20 bg-base-50 relative overflow-hidden">
+    <!-- Background Image -->
+    <div class="absolute inset-0 opacity-40">
+      <img src="/images/3409297.jpg" alt="Background" class="w-full h-full object-cover" />
+    </div>
+    <!-- Overlay -->
+    <div class="absolute inset-0 bg-base-50/60"></div>
+
+    <!-- Content -->
+    <div class="relative z-10 max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
+      <h2 class="text-3xl font-bold mb-8 text-center text-white">Precios</h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        <!-- Landing Page -->
+        <div class="bg-base-50 rounded-xl p-6 border-1 flex flex-col">
+          <h4 class="text-xl font-bold mb-2 text-white">Landing Page</h4>
+          <p class="text-sm text-gray-300 mb-4">1-3 páginas</p>
+          <p class="text-sm text-gray-300 mb-4">Perfecta para presentar tu negocio, captar leads y mostrar servicios básicos con formulario de contacto</p>
+
+          <div class="text-3xl font-bold mb-4 text-white">399€</div>
+          <p class="text-sm text-gray-300 mb-4">Incluye:</p>
+
+          <ul class="space-y-2 text-sm text-gray-300 mb-6 flex-grow">
+            <li><span class="text-blue-400">✅</span> Diseño personalizado</li>
+            <li><span class="text-blue-400">✅</span> Optimización PageSpeed 95+</li>
+            <li><span class="text-blue-400">✅</span> Hosting 1 año incluido</li>
+            <li><span class="text-blue-400">✅</span> SSL gratuito</li>
+            <li><span class="text-blue-400">✅</span> Responsive móvil/tablet</li>
+            <li><span class="text-blue-400">✅</span> Entrega en 5-7 días</li>
+          </ul>
+          <a
+            href="/contacto-migracion?plan=landing"
+            style="color: white"
+            class="block w-full px-4 py-3 text-center bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors mt-auto"
+          >
+            Solicitar Información
+          </a>
+        </div>
+
+        <!-- Web Corporativa -->
+        <div class="bg-base-50 rounded-xl p-6 border-2 border-blue-500 relative flex flex-col">
+          <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-blue-600 px-4 py-1 rounded-full text-xs font-bold text-white">
+            MÁS POPULAR
+          </div>
+          <h4 class="text-xl font-bold mb-2 text-white">Web Corporativa</h4>
+          <p class="text-sm text-gray-300 mb-4">5-10 páginas</p>
+          <p class="text-sm text-gray-300 mb-4">Ideal para empresas que necesitan presencia profesional completa con blog, área de clientes y análisis de tráfico</p>
+
+          <div class="text-3xl font-bold mb-4 text-white">800€</div>
+          <p class="text-sm text-gray-300 mb-4">Incluye:</p>
+
+          <ul class="space-y-2 text-sm text-gray-300 mb-6 flex-grow">
+            <li><span class="text-blue-400">✅</span> Todo lo anterior +</li>
+            <li><span class="text-blue-400">✅</span> Formularios de contacto</li>
+            <li><span class="text-blue-400">✅</span> Integración Google Analytics</li>
+            <li><span class="text-blue-400">✅</span> Blog integrado</li>
+            <li><span class="text-blue-400">✅</span> Chatbot IA de contenidos</li>
+            <li><span class="text-blue-400">✅</span> Área de clientes básica</li>
+            <li><span class="text-blue-400">✅</span> Integración con CRM</li>
+            <li><span class="text-blue-400">✅</span> Entrega en 7-14 días</li>
+          </ul>
+          <a
+            href="/contacto-migracion?plan=corporativa"
+            style="color: white"
+            class="block w-full px-4 py-3 text-center bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors mt-auto"
+          >
+            Solicitar Información
+          </a>
+        </div>
+
+        <!-- Página Personalizada -->
+        <div class="bg-base-50 rounded-xl p-6 border-1 flex flex-col">
+          <h4 class="text-xl font-bold mb-2 text-white">Página Personalizada</h4>
+          <p class="text-sm text-gray-300 mb-4">Proyecto a medida</p>
+          <p class="text-sm text-gray-300 mb-4">Para e-commerce, portales complejos, plataformas multi-usuario o funcionalidades avanzadas personalizadas</p>
+
+          <div class="text-3xl font-bold mb-4 text-white">1,000€ - 2,000€</div>
+          <p class="text-sm text-gray-300 mb-4">Incluye:</p>
+
+          <ul class="space-y-2 text-sm text-gray-300 mb-6 flex-grow">
+            <li><span class="text-blue-400">✅</span> Todo lo anterior +</li>
+            <li><span class="text-blue-400">✅</span> Catálogo de productos</li>
+            <li><span class="text-blue-400">✅</span> Carrito y checkout</li>
+            <li><span class="text-blue-400">✅</span> Pasarela de pago</li>
+            <li><span class="text-blue-400">✅</span> Panel administración</li>
+            <li><span class="text-blue-400">✅</span> Gestión de usuarios avanzada</li>
+            <li><span class="text-blue-400">✅</span> API REST personalizada</li>
+            <li><span class="text-blue-400">✅</span> Integración con sistemas externos</li>
+            <li><span class="text-blue-400">✅</span> Entrega en 14-21 días</li>
+          </ul>
+          <a
+            href="/contacto-migracion?plan=personalizada"
+            style="color: white"
+            class="block w-full px-4 py-3 text-center bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors mt-auto"
+          >
+            Solicitar Información
+          </a>
+        </div>
+      </div>
+
+      <div class="flex justify-center mt-6">
+        <p class="text-center text-sm text-white opacity-75 max-w-2xl">
+          💡 Precios orientativos. El coste final depende de la complejidad de tu proyecto.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

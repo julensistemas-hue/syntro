@@ -1,0 +1,20 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import AIHeroFloating from "../components/landing/AIHeroFloating.astro";
+import ServicesSection from "../components/ai-services/ServicesSection.astro";
+import WhyChooseUs from "../components/landing/WhyChooseUs.astro";
+import HowItWorks from "../components/landing/HowItWorks.astro";
+import Testimonial from "../components/global/Testimonial.astro";
+
+const title = "AI Security - Automatización IA y Ciberseguridad Wazuh | PyMEs España";
+const description = "Soluciones de IA empresarial: chatbots 24/7, gestión documental inteligente y ciberseguridad Wazuh/ENS. Automatiza tu PyME sin perder el toque humano.";
+const canonical = "https://aisecurity.es/";
+---
+
+<BaseLayout title={title} description={description} canonical={canonical}>
+  <AIHeroFloating />
+  <ServicesSection />
+  <WhyChooseUs />
+  <HowItWorks />
+  <Testimonial />
+</BaseLayout>

@@ -1,0 +1,578 @@
+---
+// Tarjetas con posiciones finales - se expanden desde el centro hacia afuera
+// vertical: true = tarjeta en formato vertical (rotate 90deg)
+const cards = [
+  { id: 1, src: '/images/intro/a1.png', x: -40, y: -40, rotateY: -15, finalScale: 0.45, vertical: false, label: 'Recepcionista IA', href: '/servicios/atencion-llamadas' },
+  { id: 2, src: '/images/intro/a2.png', x: 5, y: -48, rotateY: 4, finalScale: 0.42, vertical: false, label: 'Agenda tu Reunión', href: '/reunion' },
+  { id: 3, src: '/images/intro/a3.png', x: 42, y: -38, rotateY: 16, finalScale: 0.38, vertical: false, label: 'Gestor Documental', href: '/servicios/gestor-documental' },
+  { id: 4, src: '/images/intro/a4.png', x: -55, y: -8, rotateY: -22, finalScale: 0.5, vertical: false, label: 'Soporte IT', href: '/servicios/desarrollo-web' },
+  { id: 5, src: '/images/intro/a5.png', x: 52, y: -5, rotateY: 20, finalScale: 0.48, vertical: false, label: 'Desarrollo Web', href: '/servicios/desarrollo-web' },
+  { id: 6, src: '/images/intro/a6.png', x: -42, y: 38, rotateY: -14, finalScale: 0.40, vertical: false, label: 'Wazuh SIEM', href: '/wazuh' },
+  { id: 7, src: '/images/intro/a7.png', x: -3, y: 50, rotateY: -3, finalScale: 0.35, vertical: false, label: 'Wazuh SIEM', href: '/wazuh' },
+  { id: 8, src: '/images/intro/a8.png', x: 44, y: 40, rotateY: 12, finalScale: 0.38, vertical: false, label: 'Wazuh SIEM', href: '/wazuh' },
+  { id: 9, src: '/images/intro/a9.png', x: -62, y: -32, rotateY: -10, finalScale: 0.30, vertical: false, label: 'Curso Wazuh', href: '/curso-wazuh' },
+  { id: 10, src: '/images/intro/a10.png', x: 60, y: -30, rotateY: 10, finalScale: 0.28, vertical: false, label: 'Soporte IT', href: '/servicios/desarrollo-web' },
+  { id: 11, src: '/images/intro/a11.png', x: -58, y: 45, rotateY: -8, finalScale: 0.26, vertical: false, label: 'Blog', href: '/blog' },
+  { id: 12, src: '/images/intro/a12.png', x: 58, y: 42, rotateY: 8, finalScale: 0.28, vertical: false, label: 'Automatización IA', href: '/servicios/automatizacion' },
+  { id: 13, src: '/images/intro/a13.png', x: -48, y: 5, rotateY: -18, finalScale: 0.44, vertical: true, label: 'Automatización IA', href: '/servicios/automatizacion' },
+  { id: 14, src: '/images/intro/a14.png', x: 48, y: -15, rotateY: 14, finalScale: 0.40, vertical: true, label: 'Chatbot Inteligente', href: '/servicios/chatbot' },
+];
+---
+
+<section class="relative min-h-screen overflow-hidden" style="background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #0f0f1a 100%);">
+  <!-- Floating Cards Container - ABOVE background, BELOW interactive content -->
+  <div class="floating-cards-container absolute inset-0" style="z-index: 5; perspective: 1200px;">
+    {cards.map((card, index) => (
+      <div
+        class={`floating-card absolute rounded-xl overflow-hidden ${card.vertical ? 'vertical-card' : ''}`}
+        data-href={card.href}
+        style={`
+          left: 50%;
+          top: 50%;
+          --final-x: ${card.x}vw;
+          --final-y: ${card.y}vh;
+          --final-ry: ${card.rotateY}deg;
+          --final-scale: ${card.finalScale};
+          --delay: ${index * 0.25}s;
+          width: 420px;
+          box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6), 0 0 40px rgba(59, 130, 246, 0.15);
+          border: 1px solid rgba(255, 255, 255, 0.15);
+        `}
+      >
+        <img
+          src={card.src}
+          alt={card.label}
+          class="w-full h-auto"
+          loading="eager"
+        />
+        <span class="card-label">{card.label}</span>
+      </div>
+    ))}
+  </div>
+
+  <!-- Central Content Box - ABOVE cards -->
+  <div class="relative min-h-screen flex items-center justify-center px-4 sm:px-6" style="opacity:90%; z-index: 10; pointer-events: none;">
+    <div  class="hero-box w-full max-w-2xl mx-auto rounded-3xl p-8 md:p-12" style="pointer-events: auto; background: rgba(10, 10, 18, 0.87); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border: 1px solid rgba(255, 255, 255, 0.08); box-shadow: 0 0 80px rgba(0, 0, 0, 0.6), 0 0 40px rgba(59, 130, 246, 0.08);">
+      <!-- Title -->
+      <h1 class="hero-title text-3xl sm:text-4xl md:text-5xl font-bold leading-tight tracking-tight mb-4 text-center text-white">
+        Automatiza tu negocio con
+        <span class="block mt-1 bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent">
+          Inteligencia Artificial
+        </span>
+      </h1>
+
+      <!-- Subtitle -->
+      <p class="hero-subtitle text-base md:text-lg mb-8 max-w-xl mx-auto text-center text-gray-300">
+        Resuelve tus dudas sobre chatbots, automatización y ciberseguridad.
+        <br class="hidden sm:block" />
+        La IA que entiende tu negocio.
+      </p>
+
+      <!-- Chat Input - Dark Style -->
+      <div class="hero-input-container">
+        <form id="chat-form" class="relative">
+          <div class="chat-input-wrapper flex items-center rounded-2xl px-2 py-1.5 transition-all" style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);">
+            <!-- Plus icon -->
+            <button type="button" class="p-2.5 text-gray-400 hover:text-gray-200 transition-colors">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+              </svg>
+            </button>
+
+            <!-- Input -->
+            <input
+              type="text"
+              id="chat-input"
+              placeholder="Pregunta sobre nuestros servicios de IA..."
+              class="flex-1 bg-transparent px-3 py-2.5 text-white placeholder-gray-500 focus:outline-none text-base"
+            />
+
+            <!-- Send button -->
+            <button
+              type="submit"
+              id="chat-submit"
+              class="p-2.5 bg-blue-600 hover:bg-blue-500 text-white rounded-xl transition-colors flex items-center justify-center"
+            >
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+              </svg>
+            </button>
+          </div>
+        </form>
+
+        <!-- Quick suggestion buttons -->
+        <div class="flex flex-wrap gap-2 mt-5 justify-center">
+          <button class="quick-question flex items-center gap-2 px-4 py-2 text-sm rounded-full text-gray-300 transition-all hover:text-white" style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);">
+            <svg class="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+            </svg>
+            ¿Qué es un chatbot IA?
+          </button>
+          <button class="quick-question flex items-center gap-2 px-4 py-2 text-sm rounded-full text-gray-300 transition-all hover:text-white" style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);">
+            <svg class="w-4 h-4 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            ¿Cuánto cuesta?
+          </button>
+          <button class="quick-question flex items-center gap-2 px-4 py-2 text-sm rounded-full text-gray-300 transition-all hover:text-white" style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);">
+            <svg class="w-4 h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+            </svg>
+            ¿Qué es Wazuh?
+          </button>
+          <button class="quick-question flex items-center gap-2 px-4 py-2 text-sm rounded-full text-gray-300 transition-all hover:text-white" style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);">
+            <svg class="w-4 h-4 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+            </svg>
+            Automatización
+          </button>
+        </div>
+      </div>
+
+      <!-- Chat messages container (hidden by default, shows when conversation starts) -->
+      <div id="chat-container" class="hidden mt-6">
+        <div id="chat-messages" class="rounded-2xl p-4 max-h-64 overflow-y-auto space-y-4" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1);">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll Indicator -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2" style="z-index: 20;">
+    <div class="flex flex-col items-center gap-2 text-gray-400 animate-bounce">
+      <span class="text-xs font-medium">Descubre más</span>
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Animation: 15s ciclo. Primeros 6s (0-40%) difuminadas, luego nítidas */
+  @keyframes expandToward {
+    0% {
+      opacity: 0;
+      filter: blur(8px);
+      transform: translate(-50%, -50%) translateX(0vw) translateY(0vh) rotateY(0deg) scale(0.05);
+    }
+    3% {
+      opacity: 0.5;
+      filter: blur(6px);
+      transform: translate(-50%, -50%) translateX(calc(var(--final-x) * 0.03)) translateY(calc(var(--final-y) * 0.03)) rotateY(calc(var(--final-ry) * 0.03)) scale(0.07);
+    }
+    20% {
+      opacity: 0.7;
+      filter: blur(3px);
+      transform: translate(-50%, -50%) translateX(calc(var(--final-x) * 0.2)) translateY(calc(var(--final-y) * 0.2)) rotateY(calc(var(--final-ry) * 0.2)) scale(0.22);
+    }
+    40% {
+      opacity: 0.9;
+      filter: blur(0px);
+      transform: translate(-50%, -50%) translateX(calc(var(--final-x) * 0.4)) translateY(calc(var(--final-y) * 0.4)) rotateY(calc(var(--final-ry) * 0.4)) scale(0.42);
+    }
+    55% {
+      opacity: 0.85;
+      filter: blur(0px);
+      transform: translate(-50%, -50%) translateX(calc(var(--final-x) * 0.55)) translateY(calc(var(--final-y) * 0.55)) rotateY(calc(var(--final-ry) * 0.55)) scale(0.6);
+    }
+    70% {
+      opacity: 0.7;
+      filter: blur(0px);
+      transform: translate(-50%, -50%) translateX(calc(var(--final-x) * 0.7)) translateY(calc(var(--final-y) * 0.7)) rotateY(calc(var(--final-ry) * 0.7)) scale(0.78);
+    }
+    85% {
+      opacity: 0.35;
+      filter: blur(1px);
+      transform: translate(-50%, -50%) translateX(calc(var(--final-x) * 0.85)) translateY(calc(var(--final-y) * 0.85)) rotateY(calc(var(--final-ry) * 0.85)) scale(0.95);
+    }
+    95% {
+      opacity: 0.1;
+      filter: blur(3px);
+      transform: translate(-50%, -50%) translateX(calc(var(--final-x) * 0.97)) translateY(calc(var(--final-y) * 0.97)) rotateY(calc(var(--final-ry) * 0.97)) scale(1.1);
+    }
+    100% {
+      opacity: 0;
+      filter: blur(5px);
+      transform: translate(-50%, -50%) translateX(calc(var(--final-x) * 1.05)) translateY(calc(var(--final-y) * 1.05)) rotateY(var(--final-ry)) scale(1.2);
+    }
+  }
+
+  .floating-card {
+    will-change: transform, opacity, filter;
+    animation: expandToward 15s linear infinite;
+    animation-delay: var(--delay);
+    opacity: 0;
+    cursor: pointer;
+    pointer-events: auto;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+
+  /* Hover: solo pausa */
+  .floating-card.paused {
+    animation-play-state: paused !important;
+    box-shadow: 0 25px 60px -12px rgba(59, 130, 246, 0.3), 0 0 50px rgba(59, 130, 246, 0.2) !important;
+    border-color: rgba(99, 102, 241, 0.4) !important;
+  }
+
+  /* Click: se agranda, endereza y se ilumina */
+  .floating-card.expanded {
+    animation: none !important;
+    opacity: 1 !important;
+    filter: blur(0px) brightness(1.15) !important;
+    box-shadow: 0 25px 60px -12px rgba(59, 130, 246, 0.4), 0 0 60px rgba(59, 130, 246, 0.25), 0 0 120px rgba(99, 102, 241, 0.15) !important;
+    border-color: rgba(99, 102, 241, 0.5) !important;
+    z-index: 50;
+    transition: transform 0.4s ease, box-shadow 0.3s ease, border-color 0.3s ease, filter 0.3s ease, opacity 0.2s ease;
+  }
+
+  /* Label que aparece en hover/paused debajo de la imagen */
+  .card-label {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 6px 12px;
+    font-size: 13px;
+    font-weight: 600;
+    color: white;
+    background: linear-gradient(180deg, rgba(10, 10, 30, 0.85) 0%, rgba(30, 30, 80, 0.95) 100%);
+    opacity: 0;
+    transform: translateY(100%);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    letter-spacing: 0.02em;
+  }
+
+  .floating-card.paused .card-label,
+  .floating-card.expanded .card-label {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .vertical-card {
+    width: 240px !important;
+    aspect-ratio: 9 / 16;
+    object-fit: cover;
+  }
+
+  .vertical-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+  }
+
+  /* Hero content fade in */
+  .hero-title {
+    animation: fadeInUp 0.8s ease-out both;
+  }
+
+  .hero-subtitle {
+    animation: fadeInUp 0.8s ease-out 0.15s both;
+  }
+
+  .hero-input-container {
+    animation: fadeInUp 0.8s ease-out 0.3s both;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Chat styles - Dark theme */
+  #chat-messages::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  #chat-messages::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 3px;
+  }
+
+  #chat-messages::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+  }
+
+  #chat-messages::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+  }
+
+  /* Input focus state */
+  .chat-input-wrapper:focus-within {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border-color: rgba(59, 130, 246, 0.5) !important;
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.15);
+  }
+
+  /* Quick question hover */
+  .quick-question:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .floating-card {
+      width: 220px !important;
+    }
+
+    .floating-cards-container {
+      opacity: 0.5;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .floating-card {
+      width: 150px !important;
+    }
+
+    .floating-cards-container {
+      opacity: 0.35;
+    }
+
+    .quick-question {
+      padding: 0.5rem 0.75rem;
+      font-size: 0.75rem;
+    }
+
+    .quick-question svg {
+      width: 0.875rem;
+      height: 0.875rem;
+    }
+  }
+</style>
+
+<script>
+  // Chat functionality
+  const chatForm = document.getElementById('chat-form');
+  const chatInput = document.getElementById('chat-input') as HTMLInputElement;
+  const chatContainer = document.getElementById('chat-container');
+  const chatMessages = document.getElementById('chat-messages');
+  const quickQuestions = document.querySelectorAll('.quick-question');
+
+  // Add message to chat
+  function addMessage(content: string, isUser: boolean) {
+    // Show chat container if hidden
+    if (chatContainer?.classList.contains('hidden')) {
+      chatContainer.classList.remove('hidden');
+    }
+
+    const messageDiv = document.createElement('div');
+    messageDiv.className = 'flex gap-3' + (isUser ? ' flex-row-reverse' : '');
+
+    const avatar = isUser
+      ? `<div class="flex-shrink-0 w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center">
+           <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+           </svg>
+         </div>`
+      : `<div class="flex-shrink-0 w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center">
+           <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+           </svg>
+         </div>`;
+
+    const bubbleClass = isUser
+      ? 'bg-blue-600 text-white rounded-2xl rounded-tr-sm'
+      : 'bg-white/10 text-gray-200 rounded-2xl rounded-tl-sm border border-white/10';
+
+    messageDiv.innerHTML = `
+      ${avatar}
+      <div class="flex-1 ${isUser ? 'text-right' : ''}">
+        <div class="${bubbleClass} px-4 py-3 text-sm inline-block max-w-[85%] ${isUser ? 'text-left' : ''}">
+          ${content}
+        </div>
+      </div>
+    `;
+
+    chatMessages?.appendChild(messageDiv);
+    chatMessages?.scrollTo({ top: chatMessages.scrollHeight, behavior: 'smooth' });
+  }
+
+  // Show typing indicator
+  function showTyping() {
+    if (chatContainer?.classList.contains('hidden')) {
+      chatContainer.classList.remove('hidden');
+    }
+
+    const typingDiv = document.createElement('div');
+    typingDiv.id = 'typing-indicator';
+    typingDiv.className = 'flex gap-3';
+    typingDiv.innerHTML = `
+      <div class="flex-shrink-0 w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center">
+        <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+        </svg>
+      </div>
+      <div class="flex-1">
+        <div class="bg-white/10 border border-white/10 rounded-2xl rounded-tl-sm px-4 py-3 inline-block">
+          <div class="flex gap-1">
+            <div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 0ms"></div>
+            <div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 150ms"></div>
+            <div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 300ms"></div>
+          </div>
+        </div>
+      </div>
+    `;
+    chatMessages?.appendChild(typingDiv);
+    chatMessages?.scrollTo({ top: chatMessages.scrollHeight, behavior: 'smooth' });
+  }
+
+  function hideTyping() {
+    document.getElementById('typing-indicator')?.remove();
+  }
+
+  // Send message to API
+  async function sendMessage(message: string) {
+    addMessage(message, true);
+    showTyping();
+
+    try {
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message })
+      });
+
+      hideTyping();
+
+      if (response.ok) {
+        const data = await response.json();
+        addMessage(data.reply, false);
+      } else {
+        addMessage('Lo siento, hubo un error. Por favor, intenta de nuevo o contacta con nosotros en info@aisecurity.es', false);
+      }
+    } catch (error) {
+      hideTyping();
+      addMessage('Lo siento, hubo un error de conexión. Por favor, intenta de nuevo.', false);
+    }
+  }
+
+  // Form submit handler
+  chatForm?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const message = chatInput?.value.trim();
+    if (message) {
+      sendMessage(message);
+      chatInput.value = '';
+    }
+  });
+
+  // Quick question buttons
+  quickQuestions.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const question = btn.textContent?.trim();
+      if (question) {
+        sendMessage(question);
+      }
+    });
+  });
+
+  // Floating card: hover = pause, click = expand (all pause, click again resumes all)
+  const floatingCards = document.querySelectorAll('.floating-card');
+  let expandedCard: HTMLElement | null = null;
+  let expandedPosX = 0;
+  let expandedPosY = 0;
+
+  // Pausa TODAS las tarjetas (excepto la expandida que usa animation:none)
+  function pauseAllCards() {
+    floatingCards.forEach(c => {
+      const card = c as HTMLElement;
+      if (card !== expandedCard) {
+        card.classList.add('paused');
+      }
+    });
+  }
+
+  // Reanuda TODAS las tarjetas
+  function resumeAllCards() {
+    floatingCards.forEach(c => {
+      (c as HTMLElement).classList.remove('paused');
+    });
+  }
+
+  function collapseExpanded() {
+    if (!expandedCard) return;
+    const el = expandedCard;
+    // Animar de vuelta a tamaño normal en la misma posición
+    el.style.transform = `translate(${expandedPosX}px, ${expandedPosY}px) scale(1)`;
+    setTimeout(() => {
+      el.classList.remove('expanded');
+      el.style.transform = '';
+      // La animación CSS se reanuda automáticamente al quitar .expanded
+    }, 400);
+    expandedCard = null;
+    // Reanudar todas las demás
+    resumeAllCards();
+  }
+
+  floatingCards.forEach(card => {
+    const el = card as HTMLElement;
+
+    // Hover: solo pausa la animación de esa tarjeta (si no hay ninguna expandida)
+    el.addEventListener('mouseenter', () => {
+      if (!expandedCard && !el.classList.contains('expanded')) {
+        el.classList.add('paused');
+      }
+    });
+
+    el.addEventListener('mouseleave', () => {
+      if (!expandedCard) {
+        el.classList.remove('paused');
+      }
+    });
+
+    // Click: 1er click = expandir, 2do click = navegar al servicio
+    el.addEventListener('click', () => {
+      if (el.classList.contains('expanded')) {
+        // Ya expandida → navegar al enlace del servicio
+        const href = el.dataset.href;
+        if (href) {
+          window.location.href = href;
+        }
+        return;
+      }
+
+      // Si hay otra expandida, colapsar primero
+      collapseExpanded();
+
+      // Capturar posición actual
+      const computed = getComputedStyle(el);
+      const matrix = new DOMMatrix(computed.transform);
+      expandedPosX = matrix.m41;
+      expandedPosY = matrix.m42;
+
+      // Pausar TODAS las demás tarjetas
+      pauseAllCards();
+
+      // Fijar posición de la clickada, quitar paused
+      el.classList.remove('paused');
+      el.style.transform = `translate(${expandedPosX}px, ${expandedPosY}px) scale(1)`;
+      el.classList.add('expanded');
+
+      // Animar a recta y más grande
+      requestAnimationFrame(() => {
+        el.style.transform = `translate(${expandedPosX}px, ${expandedPosY}px) rotateY(0deg) scale(1.25)`;
+      });
+
+      expandedCard = el;
+    });
+  });
+
+  // Click fuera cierra la tarjeta expandida y reanuda todas
+  document.addEventListener('click', (e) => {
+    if (expandedCard && !expandedCard.contains(e.target as Node)) {
+      collapseExpanded();
+    }
+  });
+</script>
