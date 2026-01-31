@@ -1,6 +1,15 @@
 {
   "topics": [
     {
+      "tema": "Peerweb: Decentralized website hosting via WebTorrent",
+      "palabras_clave": "website, tecnología, hosting, decentralized, peerweb:",
+      "notas": "Tema detectado automáticamente con score 47/100. Fuente: hackernews. Referencia: https://peerweb.lol/",
+      "estado": "Pendiente",
+      "fecha_agregado": "2026-01-31",
+      "score_tendencia": 47,
+      "fuente_tendencia": "hackernews"
+    },
+    {
       "tema": "ChatGPT Containers can now run bash, pip/npm install packages and download files",
       "palabras_clave": "containers, chatgpt, tecnología, pip/npm, bash,",
       "notas": "Tema detectado automáticamente con score 45/100. Fuente: hackernews. Referencia: https://simonwillison.net/2026/Jan/26/chatgpt-containers/",
