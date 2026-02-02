@@ -1,6 +1,15 @@
 {
   "topics": [
     {
+      "tema": "Show HN: Wikipedia as a doomscrollable social media feed",
+      "palabras_clave": "tecnología, social, wikipedia, doomscrollable, show",
+      "notas": "Tema detectado automáticamente con score 35/100. Fuente: hackernews. Referencia: https://xikipedia.org",
+      "estado": "Pendiente",
+      "fecha_agregado": "2026-02-02",
+      "score_tendencia": 35,
+      "fuente_tendencia": "hackernews"
+    },
+    {
       "tema": "Peerweb: Decentralized website hosting via WebTorrent",
       "palabras_clave": "website, tecnología, hosting, decentralized, peerweb:",
       "notas": "Tema detectado automáticamente con score 47/100. Fuente: hackernews. Referencia: https://peerweb.lol/",
