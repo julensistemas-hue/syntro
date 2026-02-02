@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import AIHero from "../components/landing/AIHero.astro";
+import AIHeroFloating from "../components/landing/AIHeroFloating.astro";
 import ServicesSection from "../components/ai-services/ServicesSection.astro";
 import WhyChooseUs from "../components/landing/WhyChooseUs.astro";
 import HowItWorks from "../components/landing/HowItWorks.astro";
@@ -12,7 +12,7 @@ const canonical = "https://aisecurity.es/";
 ---
 
 <BaseLayout title={title} description={description} canonical={canonical}>
-  <AIHero />
+  <AIHeroFloating />
   <ServicesSection />
   <WhyChooseUs />
   <HowItWorks />
