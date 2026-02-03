@@ -19,17 +19,10 @@ export const POST: APIRoute = async ({ request }) => {
     const selectedDate = data.get('selectedDate')?.toString();
     const selectedTime = data.get('selectedTime')?.toString();
 
-    // Validación básica: nombre es obligatorio, y al menos email o teléfono
-    if (!nombre) {
+    // Validación básica: solo email es obligatorio
+    if (!email) {
       return new Response(
-        JSON.stringify({ error: 'El nombre es obligatorio' }),
-        { status: 400, headers: { 'Content-Type': 'application/json' } }
-      );
-    }
-
-    if (!email && !telefono) {
-      return new Response(
-        JSON.stringify({ error: 'Debes proporcionar al menos un email o teléfono' }),
+        JSON.stringify({ error: 'El email es obligatorio' }),
         { status: 400, headers: { 'Content-Type': 'application/json' } }
       );
     }
@@ -362,7 +355,7 @@ Fecha: ${new Date().toLocaleString('es-ES', { timeZone: 'Europe/Madrid' })}
       from: 'AI Security <info@aisecurity.es>',
       to: 'info@aisecurity.es',
       replyTo: email || undefined,
-      subject: `Nueva solicitud de consulta - ${nombre}${empresa ? ` (${empresa})` : ''}`,
+      subject: `Nueva solicitud de consulta - ${nombre || email}${empresa ? ` (${empresa})` : ''}`,
       html: adminEmailHtml,
       text: adminTextFallback,
     });
