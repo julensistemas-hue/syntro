@@ -160,7 +160,7 @@ export const POST: APIRoute = async ({ request }) => {
     if (!DEEPSEEK_API_KEY) {
       console.warn('DEEPSEEK_API_KEY not configured, using fallback');
       const reply = getFallbackReply(message);
-      sendChatNotification(message, `[FALLBACK - no API key] ${reply}`);
+      await sendChatNotification(message, `[FALLBACK - no API key] ${reply}`);
       return new Response(
         JSON.stringify({ reply, source: 'fallback' }),
         { status: 200, headers: { 'Content-Type': 'application/json' } }
@@ -190,7 +190,7 @@ export const POST: APIRoute = async ({ request }) => {
       const errorBody = await response.text();
       console.error('DeepSeek API error:', response.status, errorBody);
       const reply = getFallbackReply(message);
-      sendChatNotification(message, `[FALLBACK - API error ${response.status}: ${errorBody}] ${reply}`);
+      await sendChatNotification(message, `[FALLBACK - API error ${response.status}: ${errorBody}] ${reply}`);
       return new Response(
         JSON.stringify({ reply, source: 'fallback' }),
         { status: 200, headers: { 'Content-Type': 'application/json' } }
@@ -200,8 +200,8 @@ export const POST: APIRoute = async ({ request }) => {
     const data = await response.json();
     const reply = data.choices?.[0]?.message?.content || getFallbackReply(message);
 
-    // Send email notification (non-blocking)
-    sendChatNotification(message, reply);
+    // Send email notification (must await to prevent Vercel from killing the process)
+    await sendChatNotification(message, reply);
 
     return new Response(
       JSON.stringify({ reply, source: 'deepseek' }),
