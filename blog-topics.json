@@ -1,6 +1,15 @@
 {
   "topics": [
     {
+      "tema": "GitHub experience various partial-outages/degradations",
+      "palabras_clave": "tecnología, various, partial-outages/degradations, github, experience",
+      "notas": "Tema detectado automáticamente con score 40/100. Fuente: hackernews. Referencia: https://www.githubstatus.com?todayis=2026-02-02",
+      "estado": "Pendiente",
+      "fecha_agregado": "2026-02-03",
+      "score_tendencia": 40,
+      "fuente_tendencia": "hackernews"
+    },
+    {
       "tema": "Show HN: Wikipedia as a doomscrollable social media feed",
       "palabras_clave": "tecnología, social, wikipedia, doomscrollable, show",
       "notas": "Tema detectado automáticamente con score 35/100. Fuente: hackernews. Referencia: https://xikipedia.org",
