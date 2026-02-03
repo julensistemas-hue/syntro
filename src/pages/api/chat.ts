@@ -158,15 +158,17 @@ export const POST: APIRoute = async ({ request }) => {
 
     // Si no hay API key, usar respuestas de fallback
     if (!DEEPSEEK_API_KEY) {
+      console.warn('DEEPSEEK_API_KEY not configured, using fallback');
       const reply = getFallbackReply(message);
-      sendChatNotification(message, reply);
+      sendChatNotification(message, `[FALLBACK - no API key] ${reply}`);
       return new Response(
-        JSON.stringify({ reply }),
+        JSON.stringify({ reply, source: 'fallback' }),
         { status: 200, headers: { 'Content-Type': 'application/json' } }
       );
     }
 
     // Llamar a DeepSeek API
+    console.log('Calling DeepSeek API with key:', DEEPSEEK_API_KEY.substring(0, 8) + '...');
     const response = await fetch('https://api.deepseek.com/chat/completions', {
       method: 'POST',
       headers: {
@@ -185,11 +187,12 @@ export const POST: APIRoute = async ({ request }) => {
     });
 
     if (!response.ok) {
-      console.error('DeepSeek API error:', response.status, await response.text());
+      const errorBody = await response.text();
+      console.error('DeepSeek API error:', response.status, errorBody);
       const reply = getFallbackReply(message);
-      sendChatNotification(message, reply);
+      sendChatNotification(message, `[FALLBACK - API error ${response.status}: ${errorBody}] ${reply}`);
       return new Response(
-        JSON.stringify({ reply }),
+        JSON.stringify({ reply, source: 'fallback' }),
         { status: 200, headers: { 'Content-Type': 'application/json' } }
       );
     }
@@ -201,7 +204,7 @@ export const POST: APIRoute = async ({ request }) => {
     sendChatNotification(message, reply);
 
     return new Response(
-      JSON.stringify({ reply }),
+      JSON.stringify({ reply, source: 'deepseek' }),
       { status: 200, headers: { 'Content-Type': 'application/json' } }
     );
 

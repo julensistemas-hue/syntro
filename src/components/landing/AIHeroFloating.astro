@@ -27,6 +27,10 @@ const cards = [
 ---
 
 <section class="relative min-h-screen overflow-hidden" style="background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #0f0f1a 100%);">
+  <!-- Background Image -->
+  <div class="absolute inset-0">
+    <img src="/images/6107094.jpg" alt="" class="w-full h-full object-cover opacity-10" aria-hidden="true" />
+  </div>
   <!-- Floating Cards Container - ABOVE background, BELOW interactive content -->
   <!-- Dos oleadas de tarjetas desfasadas 12s para solapar 3s entre ciclos -->
   <div class="floating-cards-container absolute inset-0" style="z-index: 5; perspective: 1200px;">
@@ -42,7 +46,7 @@ const cards = [
           --final-y: ${card.y}vh;
           --final-ry: ${card.rotateY}deg;
           --final-scale: ${card.finalScale};
-          --delay: ${index * 0.13}s;
+          --delay: 0s;
           width: 420px;
           box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6), 0 0 40px rgba(59, 130, 246, 0.15);
           border: 1px solid rgba(255, 255, 255, 0.15);
@@ -69,7 +73,7 @@ const cards = [
           --final-y: ${card.y}vh;
           --final-ry: ${card.rotateY}deg;
           --final-scale: ${card.finalScale};
-          --delay: ${12 + index * 0.13}s;
+          --delay: 12s;
           width: 420px;
           box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6), 0 0 40px rgba(59, 130, 246, 0.15);
           border: 1px solid rgba(255, 255, 255, 0.15);
