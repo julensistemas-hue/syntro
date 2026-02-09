@@ -1,6 +1,15 @@
 {
   "topics": [
     {
+      "tema": "Omega-3 is inversely related to risk of early-onset dementia",
+      "palabras_clave": "omega-3, inversely, tecnología, risk, related",
+      "notas": "Tema detectado automáticamente con score 44/100. Fuente: hackernews. Referencia: https://pubmed.ncbi.nlm.nih.gov/41506004/",
+      "estado": "Pendiente",
+      "fecha_agregado": "2026-02-09",
+      "score_tendencia": 44,
+      "fuente_tendencia": "hackernews"
+    },
+    {
       "tema": "Microsoft's Copilot chatbot is running into problems",
       "palabras_clave": "running, copilot, microsoft's, chatbot, tecnología",
       "notas": "Tema detectado automáticamente con score 45/100. Fuente: hackernews. Referencia: https://www.wsj.com/tech/ai/microsofts-pivotal-ai-product-is-running-into-big-problems-ce235b28",
