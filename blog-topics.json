@@ -1,6 +1,15 @@
 {
   "topics": [
     {
+      "tema": "Claude’s C Compiler vs. GCC",
+      "palabras_clave": "tecnología, compiler, claude’s",
+      "notas": "Tema detectado automáticamente con score 45/100. Fuente: hackernews. Referencia: https://harshanu.space/en/tech/ccc-vs-gcc/",
+      "estado": "Pendiente",
+      "fecha_agregado": "2026-02-09",
+      "score_tendencia": 45,
+      "fuente_tendencia": "hackernews"
+    },
+    {
       "tema": "Omega-3 is inversely related to risk of early-onset dementia",
       "palabras_clave": "omega-3, inversely, tecnología, risk, related",
       "notas": "Tema detectado automáticamente con score 44/100. Fuente: hackernews. Referencia: https://pubmed.ncbi.nlm.nih.gov/41506004/",
