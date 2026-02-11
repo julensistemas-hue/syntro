@@ -1,6 +1,15 @@
 {
   "topics": [
     {
+      "tema": "chatgpt empresas",
+      "palabras_clave": "tendencias, empresas, chatgpt",
+      "notas": "Tema detectado automáticamente con score 62/100. Fuente: google_trends. ",
+      "estado": "Pendiente",
+      "fecha_agregado": "2026-02-11",
+      "score_tendencia": 62,
+      "fuente_tendencia": "google_trends"
+    },
+    {
       "tema": "Claude’s C Compiler vs. GCC",
       "palabras_clave": "tecnología, compiler, claude’s",
       "notas": "Tema detectado automáticamente con score 45/100. Fuente: hackernews. Referencia: https://harshanu.space/en/tech/ccc-vs-gcc/",
