@@ -1,6 +1,15 @@
 {
   "topics": [
     {
+      "tema": "GEO",
+      "palabras_clave": "tendencias",
+      "notas": "Tema detectado automáticamente con score 53/100. Fuente: google_trends. ",
+      "estado": "Pendiente",
+      "fecha_agregado": "2026-02-16",
+      "score_tendencia": 53,
+      "fuente_tendencia": "google_trends"
+    },
+    {
       "tema": "chatgpt empresas",
       "palabras_clave": "tendencias, empresas, chatgpt",
       "notas": "Tema detectado automáticamente con score 62/100. Fuente: google_trends. ",
