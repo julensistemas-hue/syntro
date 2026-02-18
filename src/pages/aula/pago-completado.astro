@@ -1,0 +1,108 @@
+---
+import AulaAuthLayout from '../../layouts/AulaAuthLayout.astro';
+import { createClient } from '@supabase/supabase-js';
+import { verifyPayment } from '../../lib/stripe';
+
+const sessionId = Astro.url.searchParams.get('session_id');
+let paymentSuccess = false;
+let error = null;
+
+if (sessionId) {
+  try {
+    // Verify payment with Stripe
+    const paymentInfo = await verifyPayment(sessionId);
+
+    if (paymentInfo.paid) {
+      // Update user's payment status
+      const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL;
+      const serviceRoleKey = import.meta.env.SUPABASE_SERVICE_ROLE_KEY;
+
+      if (supabaseUrl && serviceRoleKey) {
+        const serverClient = createClient(supabaseUrl, serviceRoleKey);
+
+        // Find user by email and update payment status
+        const { error: updateError } = await serverClient
+          .from('course_users')
+          .update({
+            payment_verified: true,
+            payment_method: 'stripe',
+            payment_reference: sessionId,
+            payment_date: new Date().toISOString(),
+          })
+          .eq('email', paymentInfo.email);
+
+        if (!updateError) {
+          paymentSuccess = true;
+        } else {
+          console.error('Error updating payment status:', updateError);
+          error = 'Error al actualizar el estado del pago';
+        }
+      }
+    }
+  } catch (e) {
+    console.error('Payment verification error:', e);
+    error = 'Error al verificar el pago';
+  }
+}
+---
+
+<AulaAuthLayout title="Pago Completado - Aula Virtual">
+  <div class="min-h-screen flex items-center justify-center py-12 px-4" style="background: linear-gradient(135deg, #0f1419 0%, #1a1f26 50%, #0f1419 100%);">
+    <div class="max-w-md w-full text-center">
+      {paymentSuccess ? (
+        <>
+          <div class="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6" style="background-color: rgba(34, 197, 94, 0.2);">
+            <svg class="w-10 h-10" style="color: #4ade80;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+          </div>
+          <h1 class="text-3xl font-bold mb-4" style="color: #ffffff;">¡Pago completado!</h1>
+          <p class="mb-8" style="color: #9ca3af;">
+            Tu pago se ha procesado correctamente. Ya tienes acceso completo al Curso Intensivo de Wazuh.
+          </p>
+          <a
+            href="/aula"
+            class="inline-flex items-center gap-2 px-6 py-3 font-semibold rounded-lg transition-colors hover:opacity-90"
+            style="background-color: #0065ff; color: #ffffff;"
+          >
+            Acceder al curso
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </a>
+        </>
+      ) : (
+        <>
+          <div class="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6" style="background-color: rgba(245, 158, 11, 0.2);">
+            <svg class="w-10 h-10" style="color: #fbbf24;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
+          </div>
+          <h1 class="text-3xl font-bold mb-4" style="color: #ffffff;">Verificando pago...</h1>
+          <p class="mb-4" style="color: #9ca3af;">
+            {error || 'No hemos podido verificar tu pago automáticamente.'}
+          </p>
+          <p class="mb-8" style="color: #9ca3af;">
+            Si has completado el pago, espera unos minutos y recarga la página. Si el problema persiste, contacta con nosotros.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href="/aula"
+              class="px-6 py-3 font-medium rounded-lg transition-colors hover:opacity-80"
+              style="background-color: #374151; color: #e5e7eb;"
+            >
+              Ir al aula
+            </a>
+            <a
+              href="mailto:info@aisecurity.es"
+              class="px-6 py-3 font-semibold rounded-lg transition-colors hover:opacity-90"
+              style="background-color: #0065ff; color: #ffffff;"
+            >
+              Contactar soporte
+            </a>
+          </div>
+        </>
+      )}
+    </div>
+  </div>
+</AulaAuthLayout>

@@ -1,0 +1,141 @@
+<!--
+  AGENT.CONF - Configuracion centralizada para grupo "servidores-web"
+  Curso Intensivo de Wazuh - AI Security
+
+  Ubicacion en el Manager: /var/ossec/etc/shared/servidores-web/agent.conf
+
+  Esta configuracion se aplica automaticamente a todos los agentes
+  que pertenecen al grupo "servidores-web"
+
+  Comandos utiles:
+    - Crear grupo: /var/ossec/bin/agent_groups -a -g servidores-web
+    - Asignar agente: /var/ossec/bin/agent_groups -a -i 001 -g servidores-web
+    - Ver grupo: /var/ossec/bin/agent_groups -l -g servidores-web
+-->
+
+<agent_config>
+
+  <!-- =====================================================
+       LOGS DE APACHE
+       ===================================================== -->
+  <localfile>
+    <log_format>apache</log_format>
+    <location>/var/log/apache2/access.log</location>
+  </localfile>
+
+  <localfile>
+    <log_format>apache</log_format>
+    <location>/var/log/apache2/error.log</location>
+  </localfile>
+
+  <!-- Virtual hosts -->
+  <localfile>
+    <log_format>apache</log_format>
+    <location>/var/log/apache2/*-access.log</location>
+  </localfile>
+
+  <localfile>
+    <log_format>apache</log_format>
+    <location>/var/log/apache2/*-error.log</location>
+  </localfile>
+
+  <!-- =====================================================
+       LOGS DE NGINX (si usas Nginx en vez de Apache)
+       ===================================================== -->
+  <localfile>
+    <log_format>syslog</log_format>
+    <location>/var/log/nginx/access.log</location>
+  </localfile>
+
+  <localfile>
+    <log_format>syslog</log_format>
+    <location>/var/log/nginx/error.log</location>
+  </localfile>
+
+  <!-- =====================================================
+       LOGS DE PHP-FPM
+       ===================================================== -->
+  <localfile>
+    <log_format>syslog</log_format>
+    <location>/var/log/php*-fpm.log</location>
+  </localfile>
+
+  <!-- =====================================================
+       MONITOREO DE INTEGRIDAD - ARCHIVOS WEB
+       ===================================================== -->
+  <syscheck>
+    <!-- Monitorear archivos web en tiempo real -->
+    <directories check_all="yes" realtime="yes" report_changes="yes">/var/www</directories>
+
+    <!-- Archivos de configuracion de Apache -->
+    <directories check_all="yes">/etc/apache2</directories>
+
+    <!-- Archivos de configuracion de Nginx -->
+    <directories check_all="yes">/etc/nginx</directories>
+
+    <!-- SSL certificates -->
+    <directories check_all="yes">/etc/ssl/certs</directories>
+    <directories check_all="yes">/etc/letsencrypt</directories>
+
+    <!-- Ignorar archivos que cambian frecuentemente -->
+    <ignore>/var/www/cache</ignore>
+    <ignore>/var/www/*/cache</ignore>
+    <ignore>/var/www/*/logs</ignore>
+    <ignore>/var/www/*/tmp</ignore>
+    <ignore type="sregex">.log$|.tmp$|.cache$</ignore>
+  </syscheck>
+
+  <!-- =====================================================
+       ESCANEO DE VULNERABILIDADES WEB
+       ===================================================== -->
+  <wodle name="vulnerability-detector">
+    <disabled>no</disabled>
+    <interval>12h</interval>
+    <run_on_start>yes</run_on_start>
+  </wodle>
+
+</agent_config>
+
+<!-- =====================================================
+     CONFIGURACION ESPECIFICA POR SO
+     ===================================================== -->
+
+<!-- Solo para agentes Ubuntu -->
+<agent_config os="Linux" profile="ubuntu">
+  <localfile>
+    <log_format>syslog</log_format>
+    <location>/var/log/auth.log</location>
+  </localfile>
+</agent_config>
+
+<!-- Solo para agentes CentOS/RHEL -->
+<agent_config os="Linux" profile="centos,rhel">
+  <localfile>
+    <log_format>syslog</log_format>
+    <location>/var/log/secure</location>
+  </localfile>
+
+  <!-- Httpd en vez de Apache2 -->
+  <localfile>
+    <log_format>apache</log_format>
+    <location>/var/log/httpd/access_log</location>
+  </localfile>
+
+  <localfile>
+    <log_format>apache</log_format>
+    <location>/var/log/httpd/error_log</location>
+  </localfile>
+</agent_config>
+
+<!-- =====================================================
+     CONFIGURACION ESPECIFICA POR NOMBRE DE AGENTE
+     ===================================================== -->
+
+<!-- Ejemplo: servidor de produccion especifico -->
+<agent_config name="web-prod-01">
+  <!-- Configuracion extra solo para este servidor -->
+  <localfile>
+    <log_format>syslog</log_format>
+    <location>/var/log/app/custom-app.log</location>
+  </localfile>
+</agent_config>

@@ -1,0 +1,334 @@
+---
+import AulaLayout from '../../layouts/AulaLayout.astro';
+
+const user = Astro.locals.user;
+const paymentPending = Astro.locals.paymentPending;
+
+// If already paid, redirect to dashboard
+if (!paymentPending && user) {
+  return Astro.redirect('/aula');
+}
+
+const stripePublishableKey = import.meta.env.STRIPE_PUBLISHABLE_KEY;
+const hasStripe = !!stripePublishableKey;
+---
+
+<AulaLayout title="Completar Pago - Aula Virtual">
+  <div class="max-w-2xl mx-auto">
+    <!-- Header -->
+    <div class="text-center mb-8">
+      <h1 class="text-3xl font-bold" style="color: #ffffff;">Completar tu inscripción</h1>
+      <p class="mt-2" style="color: #9ca3af;">
+        Elige tu método de pago preferido para acceder al curso
+      </p>
+    </div>
+
+    <!-- Course Summary -->
+    <div class="rounded-2xl p-6 mb-8" style="background-color: #1a1f26; border: 1px solid #2d3748;">
+      <div class="flex items-start gap-4">
+        <div class="w-16 h-16 rounded-xl flex items-center justify-center flex-shrink-0" style="background-color: rgba(0, 101, 255, 0.2);">
+          <svg class="w-8 h-8" style="color: #38b1ff;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          </svg>
+        </div>
+        <div class="flex-1">
+          <h2 class="text-xl font-bold" style="color: #ffffff;">Curso Intensivo de Wazuh</h2>
+          <p class="mt-1" style="color: #9ca3af;">Aprende a implementar y gestionar Wazuh para cumplimiento ENS</p>
+          <ul class="mt-3 space-y-1 text-sm" style="color: #9ca3af;">
+            <li class="flex items-center gap-2">
+              <svg class="w-4 h-4" style="color: #4ade80;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              Acceso a todos los módulos y lecciones
+            </li>
+            <li class="flex items-center gap-2">
+              <svg class="w-4 h-4" style="color: #4ade80;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              Recursos descargables (PDFs, scripts, configs)
+            </li>
+            <li class="flex items-center gap-2">
+              <svg class="w-4 h-4" style="color: #4ade80;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              Soporte directo para resolver dudas
+            </li>
+            <li class="flex items-center gap-2">
+              <svg class="w-4 h-4" style="color: #4ade80;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              Acceso de por vida a las actualizaciones
+            </li>
+          </ul>
+        </div>
+        <div class="text-right flex-shrink-0">
+          <span class="text-3xl font-bold" style="color: #ffffff;">50€</span>
+          <p class="text-sm" style="color: #6b7280;">pago único</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Payment Methods -->
+    <div class="space-y-4">
+      <!-- Stripe Card Payment -->
+      {hasStripe && (
+        <div class="rounded-2xl p-6" style="background-color: #1a1f26; border: 1px solid #2d3748;">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-lg flex items-center justify-center" style="background-color: rgba(147, 51, 234, 0.2);">
+              <svg class="w-6 h-6" style="color: #a78bfa;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-bold" style="color: #ffffff;">Pago con Tarjeta</h3>
+              <p class="text-sm" style="color: #6b7280;">Visa, Mastercard, American Express</p>
+            </div>
+            <span class="ml-auto px-2 py-1 text-xs font-medium rounded" style="background-color: rgba(34, 197, 94, 0.2); color: #4ade80;">Recomendado</span>
+          </div>
+          <p class="text-sm mb-4" style="color: #9ca3af;">
+            Pago seguro procesado por Stripe. Acceso inmediato al curso tras la confirmación.
+          </p>
+          <button
+            id="stripe-checkout-btn"
+            class="w-full py-3 px-4 font-semibold rounded-lg transition-colors flex items-center justify-center gap-2 hover:opacity-90"
+            style="background-color: #9333ea; color: #ffffff;"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+            </svg>
+            Pagar con Tarjeta - 50€
+          </button>
+        </div>
+      )}
+
+      <!-- Bizum -->
+      <div class="rounded-2xl p-6" style="background-color: #1a1f26; border: 1px solid #2d3748;">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-lg flex items-center justify-center" style="background-color: rgba(59, 130, 246, 0.2);">
+            <span class="font-bold text-sm" style="color: #60a5fa;">Bz</span>
+          </div>
+          <div>
+            <h3 class="font-bold" style="color: #ffffff;">Bizum</h3>
+            <p class="text-sm" style="color: #6b7280;">Pago instantáneo desde tu móvil</p>
+          </div>
+        </div>
+        <div class="rounded-lg p-4 mb-4" style="background-color: #0f1419;">
+          <p class="text-sm mb-2" style="color: #e5e7eb;">Envía 50€ por Bizum a:</p>
+          <div class="flex items-center justify-between rounded-lg p-3" style="background-color: #1a1f26; border: 1px solid #374151;">
+            <span class="font-mono text-lg font-bold" style="color: #ffffff;">722 67 48 74</span>
+            <button
+              onclick="navigator.clipboard.writeText('722674874'); this.textContent = '¡Copiado!';"
+              class="text-sm transition-colors hover:opacity-80"
+              style="color: #38b1ff;"
+            >
+              Copiar
+            </button>
+          </div>
+          <p class="text-xs mt-2" style="color: #6b7280;">Concepto: Tu email ({user?.email})</p>
+        </div>
+        <p class="text-sm" style="color: #9ca3af;">
+          Una vez realizado el pago, te enviaremos un email de confirmación en menos de 24h.
+        </p>
+      </div>
+
+      <!-- Bank Transfer -->
+      <div class="rounded-2xl p-6" style="background-color: #1a1f26; border: 1px solid #2d3748;">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-lg flex items-center justify-center" style="background-color: rgba(16, 185, 129, 0.2);">
+            <svg class="w-6 h-6" style="color: #34d399;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-bold" style="color: #ffffff;">Transferencia Bancaria</h3>
+            <p class="text-sm" style="color: #6b7280;">Desde cualquier banco español</p>
+          </div>
+        </div>
+        <div class="rounded-lg p-4 mb-4" style="background-color: #0f1419;">
+          <p class="text-sm mb-2" style="color: #e5e7eb;">Realiza una transferencia de 50€ a:</p>
+          <div class="space-y-2">
+            <div class="flex items-center justify-between rounded-lg p-3" style="background-color: #1a1f26; border: 1px solid #374151;">
+              <div>
+                <p class="text-xs" style="color: #6b7280;">IBAN</p>
+                <span class="font-mono text-sm font-medium" style="color: #ffffff;">ES52 0081 1389 1200 0114 0773</span>
+              </div>
+              <button
+                onclick="navigator.clipboard.writeText('ES5200811389120001140773'); this.textContent = '¡Copiado!';"
+                class="text-sm transition-colors hover:opacity-80"
+                style="color: #38b1ff;"
+              >
+                Copiar
+              </button>
+            </div>
+            <div class="rounded-lg p-3" style="background-color: #1a1f26; border: 1px solid #374151;">
+              <p class="text-xs" style="color: #6b7280;">Beneficiario</p>
+              <span class="text-sm font-medium" style="color: #ffffff;">Julian Vergara Díaz</span>
+            </div>
+          </div>
+          <p class="text-xs mt-2" style="color: #6b7280;">Concepto: WAZUH + Tu email ({user?.email})</p>
+        </div>
+        <p class="text-sm" style="color: #9ca3af;">
+          Las transferencias pueden tardar 1-2 días hábiles. Te notificaremos por email cuando esté confirmado.
+        </p>
+      </div>
+    </div>
+
+    <!-- Help Section -->
+    <div class="mt-8 text-center">
+      <p style="color: #9ca3af;">
+        ¿Tienes alguna duda sobre el pago?
+        <a href="mailto:info@aisecurity.es" class="font-medium transition-colors hover:opacity-80" style="color: #38b1ff;">
+          Contáctanos
+        </a>
+      </p>
+    </div>
+
+    <!-- I've already paid -->
+    <div class="mt-6 p-4 rounded-lg text-center" style="background-color: #0f1419;">
+      <p class="text-sm mb-2" style="color: #9ca3af;">
+        ¿Ya has realizado el pago por transferencia o Bizum?
+      </p>
+      <button
+        id="confirm-payment-btn"
+        class="font-medium transition-colors text-sm hover:opacity-80"
+        style="color: #38b1ff;"
+      >
+        He realizado el pago →
+      </button>
+    </div>
+  </div>
+
+  <!-- Payment Confirmation Modal -->
+  <div id="confirm-modal" class="hidden fixed inset-0 flex items-center justify-center p-4 z-50" style="background-color: rgba(0, 0, 0, 0.7);">
+    <div class="rounded-2xl max-w-md w-full p-6" style="background-color: #1a1f26; border: 1px solid #2d3748;">
+      <h3 class="text-xl font-bold mb-4" style="color: #ffffff;">Confirmar pago manual</h3>
+      <form id="confirm-form" class="space-y-4">
+        <div>
+          <label class="block text-sm font-medium mb-2" style="color: #e5e7eb;">
+            Método de pago utilizado
+          </label>
+          <select name="method" required class="w-full px-4 py-3 rounded-lg" style="background-color: #0f1419; border: 1px solid #374151; color: #ffffff;">
+            <option value="">Selecciona...</option>
+            <option value="bizum">Bizum</option>
+            <option value="transfer">Transferencia bancaria</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-sm font-medium mb-2" style="color: #e5e7eb;">
+            Referencia o nombre del ordenante
+          </label>
+          <input
+            type="text"
+            name="reference"
+            required
+            placeholder="Ej: Tu nombre o referencia de Bizum"
+            class="w-full px-4 py-3 rounded-lg"
+            style="background-color: #0f1419; border: 1px solid #374151; color: #ffffff;"
+          />
+        </div>
+        <div class="flex gap-3 mt-6">
+          <button
+            type="button"
+            id="close-modal-btn"
+            class="flex-1 py-3 px-4 font-medium rounded-lg transition-colors hover:opacity-80"
+            style="background-color: #374151; color: #e5e7eb;"
+          >
+            Cancelar
+          </button>
+          <button
+            type="submit"
+            class="flex-1 py-3 px-4 font-semibold rounded-lg transition-colors hover:opacity-90"
+            style="background-color: #0065ff; color: #ffffff;"
+          >
+            Confirmar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Stripe checkout
+    const stripeBtn = document.getElementById('stripe-checkout-btn');
+    if (stripeBtn) {
+      stripeBtn.addEventListener('click', async () => {
+        stripeBtn.setAttribute('disabled', 'true');
+        stripeBtn.textContent = 'Redirigiendo...';
+
+        try {
+          const response = await fetch('/api/aula/create-checkout', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ course: 'wazuh' }),
+          });
+
+          const result = await response.json();
+
+          if (result.url) {
+            window.location.href = result.url;
+          } else {
+            throw new Error(result.error || 'Error al crear la sesión de pago');
+          }
+        } catch (error: any) {
+          alert(error.message);
+          stripeBtn.removeAttribute('disabled');
+          stripeBtn.innerHTML = '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>Pagar con Tarjeta - 50€';
+        }
+      });
+    }
+
+    // Manual payment confirmation modal
+    const confirmBtn = document.getElementById('confirm-payment-btn');
+    const modal = document.getElementById('confirm-modal');
+    const closeBtn = document.getElementById('close-modal-btn');
+    const confirmForm = document.getElementById('confirm-form') as HTMLFormElement;
+
+    confirmBtn?.addEventListener('click', () => {
+      modal?.classList.remove('hidden');
+    });
+
+    closeBtn?.addEventListener('click', () => {
+      modal?.classList.add('hidden');
+    });
+
+    modal?.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.add('hidden');
+      }
+    });
+
+    confirmForm?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(confirmForm);
+      const method = formData.get('method');
+      const reference = formData.get('reference');
+
+      const submitBtn = confirmForm.querySelector('button[type="submit"]') as HTMLButtonElement;
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Enviando...';
+
+      try {
+        const response = await fetch('/api/aula/confirm-payment', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ method, reference }),
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+          alert('¡Gracias! Hemos recibido tu confirmación. Te enviaremos un email cuando verifiquemos el pago.');
+          modal?.classList.add('hidden');
+        } else {
+          throw new Error(result.error);
+        }
+      } catch (error: any) {
+        alert(error.message || 'Error al enviar la confirmación');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Confirmar';
+      }
+    });
+  </script>
+</AulaLayout>

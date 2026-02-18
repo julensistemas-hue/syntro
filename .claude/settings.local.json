@@ -21,7 +21,12 @@
       "Bash(git rebase:*)",
       "Skill(playwright-skill:playwright-skill)",
       "Bash(find:*)",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "Bash(npx astro check:*)",
+      "Bash(timeout /t 8 /nobreak)",
+      "Bash(npx playwright install:*)",
+      "Bash(dir:*)",
+      "Bash(python3:*)"
     ],
     "deny": [],
     "ask": []

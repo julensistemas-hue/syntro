@@ -1,0 +1,222 @@
+<!--
+  OSSEC.CONF - Configuracion de ejemplo para Agente Linux
+  Curso Intensivo de Wazuh - AI Security
+
+  Ubicacion: /var/ossec/etc/ossec.conf
+  Tras modificar: sudo systemctl restart wazuh-agent
+-->
+
+<ossec_config>
+  <!-- =====================================================
+       CONEXION AL MANAGER
+       ===================================================== -->
+  <client>
+    <server>
+      <address>IP_DE_TU_MANAGER</address>
+      <port>1514</port>
+      <protocol>tcp</protocol>
+    </server>
+    <config-profile>ubuntu, ubuntu22, ubuntu22.04</config-profile>
+    <notify_time>10</notify_time>
+    <time-reconnect>60</time-reconnect>
+  </client>
+
+  <!-- =====================================================
+       BUFFER DE EVENTOS
+       ===================================================== -->
+  <client_buffer>
+    <disabled>no</disabled>
+    <queue_size>5000</queue_size>
+    <events_per_second>500</events_per_second>
+  </client_buffer>
+
+  <!-- =====================================================
+       LOGS DEL SISTEMA - BASICOS
+       ===================================================== -->
+  <!-- Syslog general -->
+  <localfile>
+    <log_format>syslog</log_format>
+    <location>/var/log/syslog</location>
+  </localfile>
+
+  <!-- Log de autenticacion (SSH, sudo, login) -->
+  <localfile>
+    <log_format>syslog</log_format>
+    <location>/var/log/auth.log</location>
+  </localfile>
+
+  <!-- Kernel messages -->
+  <localfile>
+    <log_format>syslog</log_format>
+    <location>/var/log/kern.log</location>
+  </localfile>
+
+  <!-- Cron jobs -->
+  <localfile>
+    <log_format>syslog</log_format>
+    <location>/var/log/cron.log</location>
+  </localfile>
+
+  <!-- dpkg (instalacion de paquetes) -->
+  <localfile>
+    <log_format>syslog</log_format>
+    <location>/var/log/dpkg.log</location>
+  </localfile>
+
+  <!-- =====================================================
+       LOGS DE APLICACIONES - APACHE
+       ===================================================== -->
+  <!-- Apache access log -->
+  <localfile>
+    <log_format>apache</log_format>
+    <location>/var/log/apache2/access.log</location>
+  </localfile>
+
+  <!-- Apache error log -->
+  <localfile>
+    <log_format>apache</log_format>
+    <location>/var/log/apache2/error.log</location>
+  </localfile>
+
+  <!-- Virtual hosts (si tienes varios sitios) -->
+  <localfile>
+    <log_format>apache</log_format>
+    <location>/var/log/apache2/*-access.log</location>
+  </localfile>
+
+  <!-- =====================================================
+       LOGS DE APLICACIONES - NGINX
+       ===================================================== -->
+  <localfile>
+    <log_format>syslog</log_format>
+    <location>/var/log/nginx/access.log</location>
+  </localfile>
+
+  <localfile>
+    <log_format>syslog</log_format>
+    <location>/var/log/nginx/error.log</location>
+  </localfile>
+
+  <!-- =====================================================
+       LOGS DE BASES DE DATOS - POSTGRESQL
+       ===================================================== -->
+  <localfile>
+    <log_format>postgresql_log</log_format>
+    <location>/var/log/postgresql/postgresql-*-main.log</location>
+  </localfile>
+
+  <!-- =====================================================
+       LOGS DE BASES DE DATOS - MYSQL/MariaDB
+       ===================================================== -->
+  <localfile>
+    <log_format>mysql_log</log_format>
+    <location>/var/log/mysql/error.log</location>
+  </localfile>
+
+  <localfile>
+    <log_format>mysql_log</log_format>
+    <location>/var/log/mysql/mysql-slow.log</location>
+  </localfile>
+
+  <!-- =====================================================
+       LOGS DE DOCKER (si usas Docker)
+       ===================================================== -->
+  <localfile>
+    <log_format>syslog</log_format>
+    <location>/var/log/docker.log</location>
+  </localfile>
+
+  <!-- =====================================================
+       LOGS DE FAIL2BAN (si lo usas)
+       ===================================================== -->
+  <localfile>
+    <log_format>syslog</log_format>
+    <location>/var/log/fail2ban.log</location>
+  </localfile>
+
+  <!-- =====================================================
+       MONITOREO DE INTEGRIDAD DE ARCHIVOS (FIM)
+       ===================================================== -->
+  <syscheck>
+    <disabled>no</disabled>
+    <frequency>43200</frequency>
+    <scan_on_start>yes</scan_on_start>
+
+    <!-- Archivos de configuracion criticos -->
+    <directories check_all="yes" realtime="yes">/etc/passwd</directories>
+    <directories check_all="yes" realtime="yes">/etc/shadow</directories>
+    <directories check_all="yes" realtime="yes">/etc/group</directories>
+    <directories check_all="yes" realtime="yes">/etc/sudoers</directories>
+    <directories check_all="yes">/etc/ssh</directories>
+    <directories check_all="yes">/etc/crontab</directories>
+    <directories check_all="yes">/etc/cron.d</directories>
+
+    <!-- Binarios del sistema -->
+    <directories check_all="yes">/usr/bin</directories>
+    <directories check_all="yes">/usr/sbin</directories>
+    <directories check_all="yes">/bin</directories>
+    <directories check_all="yes">/sbin</directories>
+
+    <!-- Aplicaciones web -->
+    <directories check_all="yes" realtime="yes">/var/www</directories>
+
+    <!-- Scripts de inicio -->
+    <directories check_all="yes">/etc/init.d</directories>
+    <directories check_all="yes">/etc/systemd/system</directories>
+
+    <!-- Ignorar archivos que cambian frecuentemente -->
+    <ignore>/etc/mtab</ignore>
+    <ignore>/etc/resolv.conf</ignore>
+    <ignore>/etc/adjtime</ignore>
+    <ignore type="sregex">.log$|.swp$|.tmp$</ignore>
+  </syscheck>
+
+  <!-- =====================================================
+       DETECCION DE ROOTKITS
+       ===================================================== -->
+  <rootcheck>
+    <disabled>no</disabled>
+    <frequency>43200</frequency>
+    <rootkit_files>/var/ossec/etc/shared/rootkit_files.txt</rootkit_files>
+    <rootkit_trojans>/var/ossec/etc/shared/rootkit_trojans.txt</rootkit_trojans>
+    <check_dev>yes</check_dev>
+    <check_files>yes</check_files>
+    <check_if>yes</check_if>
+    <check_pids>yes</check_pids>
+    <check_ports>yes</check_ports>
+    <check_sys>yes</check_sys>
+    <check_trojans>yes</check_trojans>
+    <check_unixaudit>yes</check_unixaudit>
+  </rootcheck>
+
+  <!-- =====================================================
+       INVENTARIO DEL SISTEMA (Syscollector)
+       ===================================================== -->
+  <wodle name="syscollector">
+    <disabled>no</disabled>
+    <interval>1h</interval>
+    <scan_on_start>yes</scan_on_start>
+    <hardware>yes</hardware>
+    <os>yes</os>
+    <network>yes</network>
+    <packages>yes</packages>
+    <ports all="no">yes</ports>
+    <processes>yes</processes>
+  </wodle>
+
+  <!-- =====================================================
+       MONITOREO DE COMANDOS (auditd)
+       ===================================================== -->
+  <localfile>
+    <log_format>audit</log_format>
+    <location>/var/log/audit/audit.log</location>
+  </localfile>
+
+  <!-- =====================================================
+       ACTIVE RESPONSE
+       ===================================================== -->
+  <active-response>
+    <disabled>no</disabled>
+  </active-response>
+
+</ossec_config>

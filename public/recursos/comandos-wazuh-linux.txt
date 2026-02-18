@@ -1,0 +1,159 @@
+# ============================================
+# COMANDOS ÚTILES DE WAZUH EN LINUX
+# Curso Intensivo de Wazuh - AI Security
+# ============================================
+
+# --------------------------------------------
+# GESTIÓN DEL SERVICIO
+# --------------------------------------------
+
+# Iniciar todos los servicios de Wazuh
+sudo systemctl start wazuh-manager
+sudo systemctl start wazuh-indexer
+sudo systemctl start wazuh-dashboard
+
+# Detener todos los servicios
+sudo systemctl stop wazuh-manager
+sudo systemctl stop wazuh-indexer
+sudo systemctl stop wazuh-dashboard
+
+# Reiniciar Wazuh Manager
+sudo systemctl restart wazuh-manager
+
+# Ver estado de los servicios
+sudo systemctl status wazuh-manager
+sudo systemctl status wazuh-indexer
+sudo systemctl status wazuh-dashboard
+
+# --------------------------------------------
+# GESTIÓN DE AGENTES
+# --------------------------------------------
+
+# Listar agentes conectados
+/var/ossec/bin/agent_control -l
+
+# Ver información de un agente específico (ID 001)
+/var/ossec/bin/agent_control -i 001
+
+# Reiniciar un agente remoto
+/var/ossec/bin/agent_control -R 001
+
+# Eliminar un agente
+/var/ossec/bin/manage_agents -r 001
+
+# Generar clave de registro para nuevo agente
+/var/ossec/bin/manage_agents -a
+
+# Extraer clave de un agente existente
+/var/ossec/bin/manage_agents -e 001
+
+# --------------------------------------------
+# LOGS Y DIAGNÓSTICO
+# --------------------------------------------
+
+# Ver logs del manager en tiempo real
+sudo tail -f /var/ossec/logs/ossec.log
+
+# Ver alertas en tiempo real
+sudo tail -f /var/ossec/logs/alerts/alerts.json
+
+# Ver alertas del archivo actual
+sudo cat /var/ossec/logs/alerts/alerts.log
+
+# Buscar errores en los logs
+sudo grep -i error /var/ossec/logs/ossec.log
+
+# Ver estado de la cola de eventos
+/var/ossec/bin/wazuh-control info
+
+# --------------------------------------------
+# REGLAS Y DECODERS
+# --------------------------------------------
+
+# Verificar sintaxis de las reglas
+/var/ossec/bin/wazuh-logtest
+
+# Ubicación de reglas personalizadas
+/var/ossec/etc/rules/local_rules.xml
+
+# Ubicación de decoders personalizados
+/var/ossec/etc/decoders/local_decoder.xml
+
+# Recargar reglas sin reiniciar
+/var/ossec/bin/wazuh-control reload
+
+# --------------------------------------------
+# ARCHIVOS DE CONFIGURACIÓN
+# --------------------------------------------
+
+# Configuración principal del manager
+/var/ossec/etc/ossec.conf
+
+# Configuración de agentes
+/var/ossec/etc/shared/default/agent.conf
+
+# Lista de agentes registrados
+/var/ossec/etc/client.keys
+
+# --------------------------------------------
+# INDEXER (Wazuh Indexer / OpenSearch)
+# --------------------------------------------
+
+# Ver estado del cluster
+curl -k -u admin:admin https://localhost:9200/_cluster/health?pretty
+
+# Ver índices
+curl -k -u admin:admin https://localhost:9200/_cat/indices?v
+
+# Ver espacio en disco
+curl -k -u admin:admin https://localhost:9200/_cat/allocation?v
+
+# --------------------------------------------
+# CERTIFICADOS SSL
+# --------------------------------------------
+
+# Ubicación de certificados
+/etc/wazuh-indexer/certs/
+
+# Regenerar certificados (si es necesario)
+sudo /usr/share/wazuh-indexer/plugins/opensearch-security/tools/wazuh-certs-tool.sh
+
+# --------------------------------------------
+# BACKUP Y RESTAURACIÓN
+# --------------------------------------------
+
+# Backup de la configuración
+sudo tar -czvf wazuh-backup-$(date +%Y%m%d).tar.gz /var/ossec/etc/
+
+# Backup de las reglas personalizadas
+sudo cp -r /var/ossec/etc/rules /backup/rules-$(date +%Y%m%d)
+
+# --------------------------------------------
+# MEMORIA Y RENDIMIENTO
+# --------------------------------------------
+
+# Ver uso de memoria del indexer
+curl -k -u admin:admin https://localhost:9200/_nodes/stats/jvm?pretty
+
+# Ver estadísticas del manager
+/var/ossec/bin/wazuh-control info
+
+# --------------------------------------------
+# TROUBLESHOOTING
+# --------------------------------------------
+
+# Verificar conectividad con un agente
+telnet IP_AGENTE 1514
+
+# Verificar puertos abiertos
+sudo ss -tlnp | grep -E '(1514|1515|55000|9200|443)'
+
+# Ver procesos de Wazuh
+ps aux | grep wazuh
+
+# Verificar permisos
+ls -la /var/ossec/
+
+# ============================================
+# Más recursos en: https://documentation.wazuh.com
+# ============================================

@@ -1,0 +1,244 @@
+---
+import AulaLayout from '../../layouts/AulaLayout.astro';
+import { createServerClient, type Module, type Lesson, type UserProgress } from '../../lib/supabase';
+
+const user = Astro.locals.user;
+const paymentPending = Astro.locals.paymentPending;
+
+// Use service role client to bypass RLS for reading course content
+const supabaseAdmin = createServerClient();
+
+// Fetch modules
+const { data: modules, error: modulesError } = await supabaseAdmin
+  .from('modules')
+  .select('*')
+  .eq('is_published', true)
+  .order('order_index', { ascending: true });
+
+// Fetch lessons for all modules
+const { data: lessons, error: lessonsError } = await supabaseAdmin
+  .from('lessons')
+  .select('*')
+  .eq('is_published', true)
+  .order('order_index', { ascending: true });
+
+// Fetch user progress
+let userProgress: UserProgress[] = [];
+if (user && !paymentPending) {
+  const { data: progress } = await supabaseAdmin
+    .from('user_progress')
+    .select('*')
+    .eq('user_id', user.id);
+  userProgress = progress || [];
+}
+
+// Group lessons by module
+const lessonsByModule = (lessons || []).reduce((acc: Record<number, Lesson[]>, lesson: Lesson) => {
+  if (!acc[lesson.module_id]) {
+    acc[lesson.module_id] = [];
+  }
+  acc[lesson.module_id].push(lesson);
+  return acc;
+}, {});
+
+// Calculate progress stats
+const totalLessons = lessons?.length || 0;
+const completedLessons = userProgress.filter(p => p.completed).length;
+const progressPercentage = totalLessons > 0 ? Math.round((completedLessons / totalLessons) * 100) : 0;
+
+// Check if lesson is completed
+function isLessonCompleted(lessonId: number): boolean {
+  return userProgress.some(p => p.lesson_id === lessonId && p.completed);
+}
+---
+
+<AulaLayout title="Mi Curso - Aula Virtual">
+  <!-- Welcome Header -->
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold" style="color: #ffffff;">
+      ¡Bienvenido{user?.user_metadata?.name ? `, ${user.user_metadata.name.split(' ')[0]}` : ''}!
+    </h1>
+    <p class="mt-2" style="color: #9ca3af;">
+      Continúa tu aprendizaje en el Curso Intensivo de Wazuh
+    </p>
+  </div>
+
+  <!-- Progress Card -->
+  {!paymentPending && (
+    <div class="rounded-2xl p-6 mb-8" style="background-color: #1a1f26; border: 1px solid #2d3748;">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <div>
+          <h2 class="text-lg font-semibold" style="color: #ffffff;">Tu Progreso</h2>
+          <p style="color: #9ca3af;">
+            {completedLessons} de {totalLessons} lecciones completadas
+          </p>
+        </div>
+        <div class="flex items-center gap-4">
+          <div class="w-48 h-3 rounded-full overflow-hidden" style="background-color: #374151;">
+            <div
+              class="h-full rounded-full transition-all duration-500"
+              style={`width: ${progressPercentage}%; background: linear-gradient(to right, #0065ff, #38b1ff);`}
+            ></div>
+          </div>
+          <span class="text-lg font-bold" style="color: #38b1ff;">{progressPercentage}%</span>
+        </div>
+      </div>
+    </div>
+  )}
+
+  <!-- Payment Pending State -->
+  {paymentPending && (
+    <div class="rounded-2xl p-8 mb-8 text-center" style="background-color: #1a1f26; border: 1px solid rgba(245, 158, 11, 0.3);">
+      <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style="background-color: rgba(245, 158, 11, 0.2);">
+        <svg class="w-8 h-8" style="color: #fbbf24;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+        </svg>
+      </div>
+      <h2 class="text-xl font-bold mb-2" style="color: #ffffff;">Contenido Bloqueado</h2>
+      <p class="mb-6 max-w-md mx-auto" style="color: #9ca3af;">
+        Completa el pago para desbloquear todo el contenido del curso, incluyendo videos, recursos descargables y acceso al foro de dudas.
+      </p>
+      <a
+        href="/aula/pago"
+        class="inline-flex items-center gap-2 px-6 py-3 font-semibold rounded-lg transition-colors hover:opacity-90"
+        style="background-color: #0065ff; color: #ffffff;"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+        </svg>
+        Completar Pago - 50€
+      </a>
+    </div>
+  )}
+
+  <!-- Modules List -->
+  <div class="space-y-6">
+    {(modules || []).map((module: Module, moduleIndex: number) => {
+      const moduleLessons = lessonsByModule[module.id] || [];
+      const moduleCompletedLessons = moduleLessons.filter((l: Lesson) => isLessonCompleted(l.id)).length;
+      const moduleProgress = moduleLessons.length > 0 ? Math.round((moduleCompletedLessons / moduleLessons.length) * 100) : 0;
+      const isLocked = paymentPending;
+
+      return (
+        <div class="rounded-2xl overflow-hidden" style={`background-color: #1a1f26; border: 1px solid #2d3748; ${isLocked ? 'opacity: 0.75;' : ''}`}>
+          <!-- Module Header -->
+          <div class="p-6" style="border-bottom: 1px solid #2d3748;">
+            <div class="flex items-start justify-between gap-4">
+              <div class="flex items-start gap-4">
+                <div
+                  class="w-12 h-12 rounded-xl flex items-center justify-center text-lg font-bold"
+                  style={
+                    moduleProgress === 100 ? 'background-color: rgba(34, 197, 94, 0.2); color: #4ade80;' :
+                    moduleProgress > 0 ? 'background-color: rgba(0, 101, 255, 0.2); color: #38b1ff;' :
+                    'background-color: #374151; color: #9ca3af;'
+                  }
+                >
+                  {moduleProgress === 100 ? (
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                  ) : (
+                    moduleIndex + 1
+                  )}
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold" style="color: #ffffff;">{module.title}</h3>
+                  <p class="mt-1" style="color: #9ca3af;">{module.description}</p>
+                </div>
+              </div>
+              <div class="text-right flex-shrink-0">
+                <span class="text-sm" style="color: #9ca3af;">
+                  {moduleCompletedLessons}/{moduleLessons.length} lecciones
+                </span>
+                {!isLocked && moduleProgress > 0 && (
+                  <div class="w-24 h-2 rounded-full mt-2 overflow-hidden" style="background-color: #374151;">
+                    <div
+                      class="h-full rounded-full"
+                      style={`width: ${moduleProgress}%; background-color: #0065ff;`}
+                    ></div>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+
+          <!-- Lessons List -->
+          <div>
+            {moduleLessons.map((lesson: Lesson, lessonIndex: number) => {
+              const isCompleted = isLessonCompleted(lesson.id);
+              return (
+                <a
+                  href={isLocked ? '#' : `/aula/leccion/${lesson.id}`}
+                  class={`flex items-center gap-4 p-4 transition-colors ${isLocked ? 'cursor-not-allowed' : 'hover:bg-white/5'}`}
+                  style={lessonIndex < moduleLessons.length - 1 ? 'border-bottom: 1px solid #2d3748;' : ''}
+                >
+                  <!-- Lesson Number/Status -->
+                  <div
+                    class="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
+                    style={
+                      isCompleted ? 'background-color: rgba(34, 197, 94, 0.2); color: #4ade80;' :
+                      isLocked ? 'background-color: #374151; color: #6b7280;' :
+                      'background-color: #374151; color: #9ca3af;'
+                    }
+                  >
+                    {isLocked ? (
+                      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                      </svg>
+                    ) : isCompleted ? (
+                      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                      </svg>
+                    ) : (
+                      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    )}
+                  </div>
+
+                  <!-- Lesson Info -->
+                  <div class="flex-1 min-w-0">
+                    <h4 class="font-medium" style={isLocked ? 'color: #6b7280;' : 'color: #ffffff;'}>
+                      {lesson.title}
+                    </h4>
+                    {lesson.duration_minutes && (
+                      <p class="text-sm" style="color: #9ca3af;">{lesson.duration_minutes} min</p>
+                    )}
+                  </div>
+
+                  <!-- Resources Badge -->
+                  {lesson.resources && (lesson.resources as any[]).length > 0 && !isLocked && (
+                    <span class="px-2 py-1 text-xs font-medium rounded" style="background-color: rgba(0, 101, 255, 0.2); color: #38b1ff;">
+                      {(lesson.resources as any[]).length} recurso{(lesson.resources as any[]).length > 1 ? 's' : ''}
+                    </span>
+                  )}
+
+                  <!-- Arrow -->
+                  {!isLocked && (
+                    <svg class="w-5 h-5" style="color: #6b7280;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                  )}
+                </a>
+              );
+            })}
+          </div>
+        </div>
+      );
+    })}
+  </div>
+
+  <!-- Empty State -->
+  {(!modules || modules.length === 0) && (
+    <div class="text-center py-12">
+      <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style="background-color: #374151;">
+        <svg class="w-8 h-8" style="color: #9ca3af;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+        </svg>
+      </div>
+      <h3 class="text-lg font-medium mb-2" style="color: #ffffff;">Contenido próximamente</h3>
+      <p style="color: #9ca3af;">Estamos preparando el contenido del curso. ¡Vuelve pronto!</p>
+    </div>
+  )}
+</AulaLayout>

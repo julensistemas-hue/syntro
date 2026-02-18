@@ -1,0 +1,160 @@
+<!--
+  OSSEC.CONF - Configuracion de ejemplo para Agente Windows
+  Curso Intensivo de Wazuh - AI Security
+
+  Ubicacion: C:\Program Files (x86)\ossec-agent\ossec.conf
+  Tras modificar: Restart-Service WazuhSvc
+-->
+
+<ossec_config>
+  <!-- =====================================================
+       CONEXION AL MANAGER
+       ===================================================== -->
+  <client>
+    <server>
+      <address>IP_DE_TU_MANAGER</address>
+      <port>1514</port>
+      <protocol>tcp</protocol>
+    </server>
+    <config-profile>windows</config-profile>
+    <notify_time>10</notify_time>
+    <time-reconnect>60</time-reconnect>
+  </client>
+
+  <!-- =====================================================
+       BUFFER DE EVENTOS
+       ===================================================== -->
+  <client_buffer>
+    <disabled>no</disabled>
+    <queue_size>5000</queue_size>
+    <events_per_second>500</events_per_second>
+  </client_buffer>
+
+  <!-- =====================================================
+       LOGS DE WINDOWS - BASICOS
+       ===================================================== -->
+  <!-- Eventos de Aplicacion -->
+  <localfile>
+    <location>Application</location>
+    <log_format>eventchannel</log_format>
+  </localfile>
+
+  <!-- Eventos de Seguridad (logins, permisos, etc) -->
+  <localfile>
+    <location>Security</location>
+    <log_format>eventchannel</log_format>
+    <query>Event/System[EventID != 4689]</query> <!-- Excluir process termination -->
+  </localfile>
+
+  <!-- Eventos del Sistema -->
+  <localfile>
+    <location>System</location>
+    <log_format>eventchannel</log_format>
+  </localfile>
+
+  <!-- =====================================================
+       LOGS DE WINDOWS - AVANZADOS (Recomendados)
+       ===================================================== -->
+  <!-- PowerShell - MUY IMPORTANTE para detectar ataques -->
+  <localfile>
+    <location>Microsoft-Windows-PowerShell/Operational</location>
+    <log_format>eventchannel</log_format>
+  </localfile>
+
+  <!-- Windows Defender -->
+  <localfile>
+    <location>Microsoft-Windows-Windows Defender/Operational</location>
+    <log_format>eventchannel</log_format>
+  </localfile>
+
+  <!-- Firewall de Windows -->
+  <localfile>
+    <location>Microsoft-Windows-Windows Firewall With Advanced Security/Firewall</location>
+    <log_format>eventchannel</log_format>
+  </localfile>
+
+  <!-- Sysmon (si lo tienes instalado - muy recomendado) -->
+  <localfile>
+    <location>Microsoft-Windows-Sysmon/Operational</location>
+    <log_format>eventchannel</log_format>
+  </localfile>
+
+  <!-- Remote Desktop -->
+  <localfile>
+    <location>Microsoft-Windows-TerminalServices-RemoteConnectionManager/Operational</location>
+    <log_format>eventchannel</log_format>
+  </localfile>
+
+  <!-- =====================================================
+       MONITOREO DE INTEGRIDAD DE ARCHIVOS (FIM)
+       ===================================================== -->
+  <syscheck>
+    <disabled>no</disabled>
+    <frequency>43200</frequency> <!-- Cada 12 horas -->
+    <scan_on_start>yes</scan_on_start>
+
+    <!-- Directorios criticos del sistema -->
+    <directories check_all="yes" realtime="yes">C:\Windows\System32\drivers\etc</directories>
+    <directories check_all="yes">C:\Windows\System32\config</directories>
+
+    <!-- Ejecutables y DLLs del sistema -->
+    <directories check_all="yes">C:\Windows\System32\*.exe</directories>
+    <directories check_all="yes">C:\Windows\System32\*.dll</directories>
+
+    <!-- Programas instalados -->
+    <directories check_all="yes">C:\Program Files</directories>
+    <directories check_all="yes">C:\Program Files (x86)</directories>
+
+    <!-- Startup y tareas programadas -->
+    <directories check_all="yes" realtime="yes">C:\Users\*\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup</directories>
+    <directories check_all="yes">C:\Windows\System32\Tasks</directories>
+
+    <!-- Ignorar archivos temporales -->
+    <ignore>C:\Windows\Temp</ignore>
+    <ignore type="sregex">.log$|.tmp$</ignore>
+  </syscheck>
+
+  <!-- =====================================================
+       DETECCION DE ROOTKITS
+       ===================================================== -->
+  <rootcheck>
+    <disabled>no</disabled>
+    <frequency>43200</frequency>
+    <windows_audit>yes</windows_audit>
+    <windows_malware>yes</windows_malware>
+    <windows_apps>yes</windows_apps>
+  </rootcheck>
+
+  <!-- =====================================================
+       INVENTARIO DEL SISTEMA (Syscollector)
+       ===================================================== -->
+  <wodle name="syscollector">
+    <disabled>no</disabled>
+    <interval>1h</interval>
+    <scan_on_start>yes</scan_on_start>
+    <hardware>yes</hardware>
+    <os>yes</os>
+    <network>yes</network>
+    <packages>yes</packages>
+    <ports all="no">yes</ports>
+    <processes>yes</processes>
+    <hotfixes>yes</hotfixes>
+  </wodle>
+
+  <!-- =====================================================
+       ESCANEO DE VULNERABILIDADES
+       ===================================================== -->
+  <wodle name="vulnerability-detector">
+    <disabled>no</disabled>
+    <interval>12h</interval>
+    <run_on_start>yes</run_on_start>
+  </wodle>
+
+  <!-- =====================================================
+       ACTIVE RESPONSE (Respuesta automatica)
+       ===================================================== -->
+  <active-response>
+    <disabled>no</disabled>
+  </active-response>
+
+</ossec_config>

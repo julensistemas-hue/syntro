@@ -1,0 +1,214 @@
+---
+import AulaAuthLayout from '../../layouts/AulaAuthLayout.astro';
+
+// If user is already logged in, redirect to dashboard
+const accessToken = Astro.cookies.get('sb-access-token')?.value;
+if (accessToken) {
+  return Astro.redirect('/aula');
+}
+---
+
+<AulaAuthLayout title="Registro - Aula Virtual" description="Crea tu cuenta en el aula virtual de AI Security">
+  <div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8" style="background: linear-gradient(135deg, #0f1419 0%, #1a1f26 50%, #0f1419 100%);">
+    <div class="max-w-md w-full">
+      <!-- Logo -->
+      <div class="text-center mb-8">
+        <a href="/" class="inline-block">
+          <img src="/logo.svg" alt="AI Security" class="h-12 w-auto mx-auto" />
+        </a>
+        <h1 class="mt-6 text-3xl font-bold" style="color: #ffffff;">
+          Crear Cuenta
+        </h1>
+        <p class="mt-2" style="color: #9ca3af;">
+          Regístrate para acceder al Curso de Wazuh
+        </p>
+      </div>
+
+      <!-- Info Box -->
+      <div class="mb-6 p-4 rounded-lg" style="background-color: rgba(0, 101, 255, 0.1); border: 1px solid rgba(0, 101, 255, 0.3);">
+        <div class="flex items-start gap-3">
+          <svg class="w-5 h-5 mt-0.5 flex-shrink-0" style="color: #38b1ff;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <div class="text-sm">
+            <p class="font-medium mb-1" style="color: #e5e7eb;">Proceso de inscripción:</p>
+            <ol class="list-decimal list-inside space-y-1" style="color: #9ca3af;">
+              <li>Crea tu cuenta con email y contraseña</li>
+              <li>Realiza el pago (tarjeta, transferencia o Bizum)</li>
+              <li>Accede al contenido completo del curso</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <!-- Register Card -->
+      <div class="rounded-2xl shadow-xl p-8" style="background-color: #1a1f26; border: 1px solid #2d3748;">
+        <form id="register-form" class="space-y-6">
+          <div>
+            <label for="name" class="block text-sm font-medium mb-2" style="color: #e5e7eb;">
+              Nombre completo
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              required
+              autocomplete="name"
+              class="w-full px-4 py-3 rounded-lg transition-colors"
+              style="background-color: #0f1419; border: 1px solid #374151; color: #ffffff;"
+              placeholder="Juan García"
+            />
+          </div>
+
+          <div>
+            <label for="email" class="block text-sm font-medium mb-2" style="color: #e5e7eb;">
+              Email
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              autocomplete="email"
+              class="w-full px-4 py-3 rounded-lg transition-colors"
+              style="background-color: #0f1419; border: 1px solid #374151; color: #ffffff;"
+              placeholder="tu@email.com"
+            />
+          </div>
+
+          <div>
+            <label for="password" class="block text-sm font-medium mb-2" style="color: #e5e7eb;">
+              Contraseña
+            </label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              required
+              autocomplete="new-password"
+              minlength="6"
+              class="w-full px-4 py-3 rounded-lg transition-colors"
+              style="background-color: #0f1419; border: 1px solid #374151; color: #ffffff;"
+              placeholder="Mínimo 6 caracteres"
+            />
+            <p class="mt-1 text-xs" style="color: #6b7280;">Mínimo 6 caracteres</p>
+          </div>
+
+          <div>
+            <label for="password-confirm" class="block text-sm font-medium mb-2" style="color: #e5e7eb;">
+              Confirmar contraseña
+            </label>
+            <input
+              type="password"
+              id="password-confirm"
+              name="password-confirm"
+              required
+              autocomplete="new-password"
+              minlength="6"
+              class="w-full px-4 py-3 rounded-lg transition-colors"
+              style="background-color: #0f1419; border: 1px solid #374151; color: #ffffff;"
+              placeholder="Repite tu contraseña"
+            />
+          </div>
+
+          <div class="flex items-start">
+            <input
+              type="checkbox"
+              id="terms"
+              name="terms"
+              required
+              class="h-4 w-4 mt-1 rounded"
+              style="background-color: #0f1419; border-color: #374151;"
+            />
+            <label for="terms" class="ml-2 text-sm" style="color: #9ca3af;">
+              Acepto los <a href="/terms" target="_blank" class="hover:opacity-80" style="color: #38b1ff;">términos y condiciones</a> y la <a href="/privacy" target="_blank" class="hover:opacity-80" style="color: #38b1ff;">política de privacidad</a>
+            </label>
+          </div>
+
+          <div id="error-message" class="hidden p-4 rounded-lg" style="background-color: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3);">
+            <p class="text-sm" style="color: #fca5a5;"></p>
+          </div>
+
+          <button
+            type="submit"
+            id="submit-btn"
+            class="w-full py-3 px-4 font-semibold rounded-lg transition-colors hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed"
+            style="background-color: #0065ff; color: #ffffff;"
+          >
+            Crear Cuenta
+          </button>
+        </form>
+
+        <div class="mt-6 text-center">
+          <p class="text-sm" style="color: #9ca3af;">
+            ¿Ya tienes cuenta?
+            <a href="/aula/login" class="font-medium transition-colors hover:opacity-80" style="color: #38b1ff;">
+              Inicia sesión
+            </a>
+          </p>
+        </div>
+      </div>
+
+      <!-- Back to home -->
+      <div class="mt-6 text-center">
+        <a href="/" class="text-sm transition-colors hover:opacity-80 inline-flex items-center gap-1" style="color: #6b7280;">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
+          Volver a la web
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('register-form') as HTMLFormElement;
+    const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+    const errorDiv = document.getElementById('error-message') as HTMLDivElement;
+    const errorText = errorDiv.querySelector('p') as HTMLParagraphElement;
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+      const name = formData.get('name') as string;
+      const email = formData.get('email') as string;
+      const password = formData.get('password') as string;
+      const passwordConfirm = formData.get('password-confirm') as string;
+
+      // Validate passwords match
+      if (password !== passwordConfirm) {
+        errorText.textContent = 'Las contraseñas no coinciden';
+        errorDiv.classList.remove('hidden');
+        return;
+      }
+
+      // Disable button
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Creando cuenta...';
+      errorDiv.classList.add('hidden');
+
+      try {
+        const response = await fetch('/api/auth/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email, password }),
+        });
+
+        const result = await response.json();
+
+        if (!response.ok) {
+          throw new Error(result.error || 'Error al crear la cuenta');
+        }
+
+        // Redirect to login with success message
+        window.location.href = '/aula/login?registered=true';
+      } catch (error: any) {
+        errorText.textContent = error.message || 'Error al crear la cuenta. Por favor, inténtalo de nuevo.';
+        errorDiv.classList.remove('hidden');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Crear Cuenta';
+      }
+    });
+  </script>
+</AulaAuthLayout>

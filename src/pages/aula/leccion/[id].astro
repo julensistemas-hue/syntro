@@ -1,0 +1,482 @@
+---
+import AulaLayout from '../../../layouts/AulaLayout.astro';
+import { createServerClient, type Lesson, type Module, type Comment, type Resource } from '../../../lib/supabase';
+
+const user = Astro.locals.user;
+const paymentPending = Astro.locals.paymentPending;
+
+// Redirect if payment pending
+if (paymentPending) {
+  return Astro.redirect('/aula?payment=pending');
+}
+
+const { id } = Astro.params;
+const lessonId = parseInt(id || '0');
+
+// Use service role client to bypass RLS
+const supabaseAdmin = createServerClient();
+
+// Fetch current lesson
+const { data: lesson } = await supabaseAdmin
+  .from('lessons')
+  .select('*, modules(*)')
+  .eq('id', lessonId)
+  .eq('is_published', true)
+  .single();
+
+if (!lesson) {
+  return Astro.redirect('/aula?error=not_found');
+}
+
+const module = lesson.modules as Module;
+
+// Fetch all lessons in this module for navigation
+const { data: moduleLessons } = await supabaseAdmin
+  .from('lessons')
+  .select('id, title, order_index')
+  .eq('module_id', lesson.module_id)
+  .eq('is_published', true)
+  .order('order_index', { ascending: true });
+
+// Find prev/next lessons
+const currentIndex = moduleLessons?.findIndex(l => l.id === lessonId) ?? -1;
+const prevLesson = currentIndex > 0 ? moduleLessons![currentIndex - 1] : null;
+const nextLesson = currentIndex < (moduleLessons?.length ?? 0) - 1 ? moduleLessons![currentIndex + 1] : null;
+
+// Fetch user progress for all lessons in this module
+let isCompleted = false;
+let completedLessons: number[] = [];
+if (user) {
+  const lessonIds = moduleLessons?.map(l => l.id) || [];
+  const { data: progressData } = await supabaseAdmin
+    .from('user_progress')
+    .select('lesson_id, completed')
+    .eq('user_id', user.id)
+    .in('lesson_id', lessonIds);
+
+  completedLessons = progressData?.filter(p => p.completed).map(p => p.lesson_id) || [];
+  isCompleted = completedLessons.includes(lessonId);
+}
+
+// Fetch comments
+const { data: comments } = await supabaseAdmin
+  .from('comments')
+  .select('*, course_users(name, email)')
+  .eq('lesson_id', lessonId)
+  .order('created_at', { ascending: false });
+
+// Extract YouTube video ID
+function getYouTubeId(url: string): string | null {
+  if (!url) return null;
+  const match = url.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/);
+  return match ? match[1] : null;
+}
+
+const youtubeId = lesson.video_url ? getYouTubeId(lesson.video_url) : null;
+const resources = (lesson.resources as Resource[]) || [];
+---
+
+<AulaLayout title={`${lesson.title} - Aula Virtual`}>
+  <!-- Breadcrumb -->
+  <nav class="mb-6">
+    <ol class="flex items-center gap-2 text-sm">
+      <li>
+        <a href="/aula" class="transition-colors hover:opacity-80" style="color: #6b7280;">
+          Mi Curso
+        </a>
+      </li>
+      <li style="color: #4b5563;">/</li>
+      <li>
+        <span style="color: #6b7280;">{module.title}</span>
+      </li>
+      <li style="color: #4b5563;">/</li>
+      <li class="font-medium" style="color: #ffffff;">{lesson.title}</li>
+    </ol>
+  </nav>
+
+  <!-- Video + Sidebar Grid -->
+  <div class="grid grid-cols-1 lg:grid-cols-10 gap-6 mb-8">
+    <!-- Video Player - 7 columns (70%) -->
+    {youtubeId && (
+      <div class="lg:col-span-7">
+        <div class="rounded-2xl overflow-hidden aspect-video shadow-lg" style="background-color: #000000; border: 2px solid rgba(56, 177, 255, 0.3); box-shadow: 0 0 20px rgba(56, 177, 255, 0.1);">
+          <iframe
+            id="youtube-player"
+            src={`https://www.youtube.com/embed/${youtubeId}?rel=0&modestbranding=1`}
+            class="w-full h-full"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+    )}
+
+    <!-- Sidebar - 3 columns (30%) -->
+    <div class="lg:col-span-3 space-y-4">
+      <!-- Resources -->
+      {resources.length > 0 && (
+        <div class="rounded-xl p-5" style="background-color: #1a1f26; border: 1px solid #2d3748;">
+          <h3 class="text-base font-bold mb-4 flex items-center gap-2" style="color: #ffffff;">
+            <svg class="w-5 h-5" style="color: #38b1ff;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+            Recursos
+          </h3>
+          <div class="space-y-2">
+            {resources.map((resource: Resource) => (
+              <a
+                href={resource.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors hover:opacity-90"
+                style="background-color: #0f1419;"
+              >
+                <div class="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0" style={
+                  resource.type === 'pdf' ? 'background-color: rgba(239, 68, 68, 0.2); color: #f87171;' :
+                  resource.type === 'zip' ? 'background-color: rgba(245, 158, 11, 0.2); color: #fbbf24;' :
+                  resource.type === 'link' ? 'background-color: rgba(59, 130, 246, 0.2); color: #60a5fa;' :
+                  'background-color: #374151; color: #9ca3af;'
+                }>
+                  {resource.type === 'pdf' ? (
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clip-rule="evenodd" />
+                    </svg>
+                  ) : resource.type === 'link' ? (
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  ) : (
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                    </svg>
+                  )}
+                </div>
+                <span class="font-medium text-sm truncate" style="color: #ffffff;">{resource.name}</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <!-- Module Navigation -->
+      <div class="rounded-xl p-5" style="background-color: #1a1f26; border: 1px solid #2d3748;">
+        <h3 class="text-base font-bold mb-4" style="color: #ffffff;">
+          {module.title}
+        </h3>
+        <div class="space-y-1.5">
+          {(moduleLessons || []).map((l: any, index: number) => {
+            const isCurrent = l.id === lessonId;
+            const isLessonCompleted = completedLessons.includes(l.id);
+            return (
+              <a
+                href={`/aula/leccion/${l.id}`}
+                class="lesson-item flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors"
+                data-lesson-id={l.id}
+                style={isCurrent
+                  ? 'background-color: rgba(0, 101, 255, 0.2); color: #38b1ff;'
+                  : isLessonCompleted
+                    ? 'background-color: rgba(34, 197, 94, 0.1); color: #4ade80;'
+                    : 'background-color: #0f1419; color: #9ca3af;'}
+              >
+                <span
+                  class="lesson-number w-7 h-7 rounded-full flex items-center justify-center text-xs font-medium flex-shrink-0"
+                  style={isCurrent
+                    ? 'background-color: #0065ff; color: #ffffff;'
+                    : isLessonCompleted
+                      ? 'background-color: rgba(34, 197, 94, 0.3); color: #4ade80;'
+                      : 'background-color: #374151; color: #6b7280;'}
+                >
+                  {isLessonCompleted && !isCurrent ? (
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                  ) : (
+                    index + 1
+                  )}
+                </span>
+                <span class={`text-sm truncate ${isCurrent ? 'font-medium' : ''}`}>
+                  {l.title}
+                </span>
+              </a>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="space-y-6">
+    <!-- Lesson Header -->
+    <div class="rounded-2xl p-6" style="background-color: #1a1f26; border: 1px solid #2d3748;">
+      <div class="flex items-start justify-between gap-4 mb-4">
+        <div>
+          <span class="text-sm font-medium" style="color: #38b1ff;">{module.title}</span>
+          <h1 class="text-2xl font-bold mt-1" style="color: #ffffff;">{lesson.title}</h1>
+          {lesson.duration_minutes && (
+            <p class="mt-1 flex items-center gap-1" style="color: #6b7280;">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              {lesson.duration_minutes} minutos
+            </p>
+          )}
+        </div>
+
+        <!-- Mark Complete Button -->
+        <button
+          id="complete-btn"
+          data-lesson-id={lessonId}
+          data-completed={isCompleted.toString()}
+          class="flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors"
+          style={isCompleted
+            ? 'background-color: rgba(34, 197, 94, 0.2); color: #4ade80;'
+            : 'background-color: #0065ff; color: #ffffff;'}
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+          </svg>
+          {isCompleted ? 'Completada' : 'Marcar como completada'}
+        </button>
+      </div>
+
+      {lesson.description && (
+        <p style="color: #9ca3af;">{lesson.description}</p>
+      )}
+    </div>
+
+    <!-- Text Content -->
+    {lesson.text_content && (
+      <div class="rounded-2xl p-6 prose prose-invert max-w-none" style="background-color: #1a1f26; border: 1px solid #2d3748;">
+        <div set:html={lesson.text_content} />
+      </div>
+    )}
+
+    <!-- Navigation -->
+    <div class="flex items-center justify-between gap-4">
+      {prevLesson ? (
+        <a
+          href={`/aula/leccion/${prevLesson.id}`}
+          class="flex items-center gap-2 px-4 py-2 rounded-lg transition-colors hover:opacity-80"
+          style="background-color: #374151; color: #e5e7eb;"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          <span class="hidden sm:inline">Anterior</span>
+        </a>
+      ) : (
+        <div></div>
+      )}
+
+      <a
+        href="/aula"
+        class="text-sm transition-colors hover:opacity-80"
+        style="color: #6b7280;"
+      >
+        Volver al índice
+      </a>
+
+      {nextLesson ? (
+        <a
+          href={`/aula/leccion/${nextLesson.id}`}
+          class="flex items-center gap-2 px-4 py-2 rounded-lg transition-colors hover:opacity-90"
+          style="background-color: #0065ff; color: #ffffff;"
+        >
+          <span class="hidden sm:inline">Siguiente</span>
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+      ) : (
+        <a
+          href="/aula"
+          class="flex items-center gap-2 px-4 py-2 rounded-lg transition-colors hover:opacity-90"
+          style="background-color: #22c55e; color: #ffffff;"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+          </svg>
+          Finalizar módulo
+        </a>
+      )}
+    </div>
+
+    <!-- Comments Section -->
+    <div class="rounded-2xl p-6" style="background-color: #1a1f26; border: 1px solid #2d3748;">
+      <h2 class="text-xl font-bold mb-6" style="color: #ffffff;">Dudas y Comentarios</h2>
+
+      <!-- Comment Form -->
+      <form id="comment-form" class="mb-8">
+        <input type="hidden" name="lesson_id" value={lessonId} />
+        <textarea
+          name="content"
+          rows="3"
+          required
+          placeholder="Escribe tu duda o comentario aquí..."
+          class="w-full px-4 py-3 rounded-lg transition-colors resize-none"
+          style="background-color: #0f1419; border: 1px solid #374151; color: #ffffff;"
+        ></textarea>
+        <div class="flex justify-between items-center mt-3">
+          <p class="text-sm" style="color: #6b7280;">
+            Te responderemos por email
+          </p>
+          <button
+            type="submit"
+            class="px-4 py-2 font-medium rounded-lg transition-colors disabled:opacity-50 hover:opacity-90"
+            style="background-color: #0065ff; color: #ffffff;"
+          >
+            Enviar comentario
+          </button>
+        </div>
+      </form>
+
+      <!-- Comments List -->
+      <div class="space-y-4">
+        {(comments || []).map((comment: any) => (
+          <div class="p-4 rounded-lg" style={comment.is_resolved ? 'background-color: rgba(34, 197, 94, 0.1); border: 1px solid rgba(34, 197, 94, 0.3);' : 'background-color: #0f1419; border: 1px solid #374151;'}>
+            <div class="flex items-start justify-between gap-2 mb-2">
+              <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-full flex items-center justify-center" style="background-color: rgba(0, 101, 255, 0.2);">
+                  <span class="text-sm font-semibold" style="color: #38b1ff;">
+                    {(comment.course_users?.name?.[0] || comment.course_users?.email?.[0] || 'U').toUpperCase()}
+                  </span>
+                </div>
+                <div>
+                  <p class="font-medium text-sm" style="color: #ffffff;">
+                    {comment.course_users?.name || 'Estudiante'}
+                  </p>
+                  <p class="text-xs" style="color: #6b7280;">
+                    {new Date(comment.created_at).toLocaleDateString('es-ES', {
+                      day: 'numeric',
+                      month: 'short',
+                      year: 'numeric'
+                    })}
+                  </p>
+                </div>
+              </div>
+              {comment.is_resolved && (
+                <span class="px-2 py-1 text-xs font-medium rounded" style="background-color: rgba(34, 197, 94, 0.2); color: #4ade80;">
+                  Respondido
+                </span>
+              )}
+            </div>
+            <p class="text-sm ml-10" style="color: #e5e7eb;">{comment.content}</p>
+
+            {comment.admin_reply && (
+              <div class="mt-3 ml-10 p-3 rounded-lg" style="background-color: #1a1f26; border: 1px solid #374151;">
+                <div class="flex items-center gap-2 mb-1">
+                  <span class="px-2 py-0.5 text-xs font-medium rounded" style="background-color: rgba(0, 101, 255, 0.2); color: #38b1ff;">
+                    Instructor
+                  </span>
+                  <span class="text-xs" style="color: #6b7280;">
+                    {comment.admin_replied_at && new Date(comment.admin_replied_at).toLocaleDateString('es-ES', {
+                      day: 'numeric',
+                      month: 'short'
+                    })}
+                  </span>
+                </div>
+                <p class="text-sm" style="color: #e5e7eb;">{comment.admin_reply}</p>
+              </div>
+            )}
+          </div>
+        ))}
+
+        {(!comments || comments.length === 0) && (
+          <div class="text-center py-8">
+            <p style="color: #6b7280;">No hay comentarios todavía. ¡Sé el primero en preguntar!</p>
+          </div>
+        )}
+      </div>
+    </div>
+  </div>
+</AulaLayout>
+
+<script>
+  // Mark as complete
+  const completeBtn = document.getElementById('complete-btn') as HTMLButtonElement;
+  if (completeBtn) {
+    completeBtn.addEventListener('click', async () => {
+      const lessonId = completeBtn.dataset.lessonId;
+      const isCompleted = completeBtn.dataset.completed === 'true';
+
+      completeBtn.disabled = true;
+
+      try {
+        const response = await fetch('/api/aula/progress', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            lesson_id: parseInt(lessonId || '0'),
+            completed: !isCompleted,
+          }),
+        });
+
+        if (response.ok) {
+          // Toggle state
+          completeBtn.dataset.completed = (!isCompleted).toString();
+          if (!isCompleted) {
+            // Mark as completed
+            completeBtn.style.backgroundColor = 'rgba(34, 197, 94, 0.2)';
+            completeBtn.style.color = '#4ade80';
+            completeBtn.innerHTML = '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>Completada';
+
+            // Update sidebar lesson item to show completed state (but keep current blue highlight)
+            const sidebarItem = document.querySelector(`.lesson-item[data-lesson-id="${lessonId}"]`) as HTMLElement;
+            if (sidebarItem) {
+              // Keep the blue background for current lesson, just add a subtle indicator
+              sidebarItem.style.backgroundColor = 'rgba(0, 101, 255, 0.2)';
+              sidebarItem.style.color = '#38b1ff';
+            }
+          } else {
+            // Mark as not completed
+            completeBtn.style.backgroundColor = '#0065ff';
+            completeBtn.style.color = '#ffffff';
+            completeBtn.innerHTML = '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>Marcar como completada';
+          }
+        }
+      } catch (error) {
+        console.error('Error updating progress:', error);
+      } finally {
+        completeBtn.disabled = false;
+      }
+    });
+  }
+
+  // Comment form
+  const commentForm = document.getElementById('comment-form') as HTMLFormElement;
+  if (commentForm) {
+    commentForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(commentForm);
+      const lessonId = formData.get('lesson_id');
+      const content = formData.get('content');
+
+      const submitBtn = commentForm.querySelector('button[type="submit"]') as HTMLButtonElement;
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Enviando...';
+
+      try {
+        const response = await fetch('/api/aula/comment', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ lesson_id: parseInt(lessonId as string), content }),
+        });
+
+        if (response.ok) {
+          // Reload to show new comment
+          window.location.reload();
+        } else {
+          const result = await response.json();
+          alert(result.error || 'Error al enviar el comentario');
+        }
+      } catch (error) {
+        alert('Error al enviar el comentario');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Enviar comentario';
+      }
+    });
+  }
+</script>

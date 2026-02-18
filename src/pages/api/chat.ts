@@ -85,7 +85,7 @@ SERVICIOS DE CIBERSEGURIDAD Y SISTEMAS:
 7. Curso Wazuh (/curso-wazuh)
    - Formación intensiva para administradores de sistemas
    - Contenido práctico: configuración, reglas, alertas, cumplimiento ENS
-   - Precio: 100€
+   - Precio: 50€
 
 8. Soporte IT y Administración de Sistemas (/servicios/desarrollo-web)
    - Administración Linux/Windows Server
@@ -111,7 +111,7 @@ Wazuh / Ciberseguridad:
 - Completo (hasta 50 servidores): 4,000-7,000€ pago único de implementación + 10 horas formación + dashboards ejecutivos + 90 días soporte
 - Soporte Continuo: 300€/mes (monitoreo 24/7, actualizaciones, parches, soporte prioritario, informes mensuales)
 - Los precios varían según la complejidad de la infraestructura
-- Curso Wazuh: 100€
+- Curso Wazuh: 50€
 
 Desarrollo Web:
 - Landing Page (1-3 páginas): 399€ — diseño personalizado, PageSpeed 95+, hosting 1 año incluido, SSL, responsive, entrega 5-7 días
