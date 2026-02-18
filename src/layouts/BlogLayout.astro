@@ -40,6 +40,34 @@ const fullTitle = `${title} | Blog AI Security`;
       canonical={canonical}
       ogImage={ogImage}
     />
+    <!-- Article Schema.org for SEO -->
+    <script is:inline type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": title,
+      "description": description,
+      "author": {
+        "@type": "Organization",
+        "name": author,
+        "url": "https://aisecurity.es"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "AI Security",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://aisecurity.es/favicon.png"
+        }
+      },
+      "datePublished": publishDate,
+      "dateModified": publishDate,
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": canonical
+      },
+      "image": ogImage,
+      "keywords": tags.join(", ")
+    })} />
   </head>
   <body class="flex flex-col min-h-svh">
     <Navigation />

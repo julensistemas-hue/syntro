@@ -159,18 +159,18 @@ const resources = (lesson.resources as Resource[]) || [];
       )}
 
       <!-- Module Navigation -->
-      <div class="rounded-xl p-5" style="background-color: #1a1f26; border: 1px solid #2d3748;">
-        <h3 class="text-base font-bold mb-4" style="color: #ffffff;">
+      <div class="rounded-xl p-4" style="background-color: #1a1f26; border: 1px solid #2d3748;">
+        <h3 class="text-sm font-bold mb-2" style="color: #ffffff;">
           {module.title}
         </h3>
-        <div class="space-y-1.5">
+        <div class="space-y-1">
           {(moduleLessons || []).map((l: any, index: number) => {
             const isCurrent = l.id === lessonId;
             const isLessonCompleted = completedLessons.includes(l.id);
             return (
               <a
                 href={`/aula/leccion/${l.id}`}
-                class="lesson-item flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors"
+                class="lesson-item flex items-center gap-2 px-2 py-2 rounded-lg transition-colors"
                 data-lesson-id={l.id}
                 style={isCurrent
                   ? 'background-color: rgba(0, 101, 255, 0.2); color: #38b1ff;'
@@ -179,7 +179,7 @@ const resources = (lesson.resources as Resource[]) || [];
                     : 'background-color: #0f1419; color: #9ca3af;'}
               >
                 <span
-                  class="lesson-number w-7 h-7 rounded-full flex items-center justify-center text-xs font-medium flex-shrink-0"
+                  class="lesson-number w-6 h-6 rounded-full flex items-center justify-center text-xs font-medium flex-shrink-0"
                   style={isCurrent
                     ? 'background-color: #0065ff; color: #ffffff;'
                     : isLessonCompleted
@@ -187,16 +187,26 @@ const resources = (lesson.resources as Resource[]) || [];
                       : 'background-color: #374151; color: #6b7280;'}
                 >
                   {isLessonCompleted && !isCurrent ? (
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                     </svg>
                   ) : (
                     index + 1
                   )}
                 </span>
-                <span class={`text-sm truncate ${isCurrent ? 'font-medium' : ''}`}>
+                <span class={`text-xs truncate ${isCurrent ? 'font-medium' : ''}`}>
                   {l.title}
                 </span>
+                {l.id === 2 && (
+                  <span class="ml-auto px-1.5 py-0.5 text-[10px] font-bold rounded flex-shrink-0" style="background-color: rgba(245, 158, 11, 0.2); color: #fbbf24;">
+                    Importante
+                  </span>
+                )}
+                {(l.id === 4 || l.id === 5) && (
+                  <span class="ml-auto px-1.5 py-0.5 text-[10px] font-medium rounded flex-shrink-0" style="background-color: rgba(107, 114, 128, 0.2); color: #9ca3af;">
+                    Opcional
+                  </span>
+                )}
               </a>
             );
           })}
@@ -211,8 +221,8 @@ const resources = (lesson.resources as Resource[]) || [];
     <div class="rounded-2xl p-6" style="background-color: #1a1f26; border: 1px solid #2d3748;">
       <div class="flex items-start justify-between gap-4 mb-4">
         <div>
-          <span class="text-sm font-medium" style="color: #38b1ff;">{module.title}</span>
-          <h1 class="text-2xl font-bold mt-1" style="color: #ffffff;">{lesson.title}</h1>
+          <span class="text-xs font-medium" style="color: #38b1ff;">{module.title}</span>
+          <h1 class="text-lg font-bold mt-1" style="color: #ffffff;">{lesson.title}</h1>
           {lesson.duration_minutes && (
             <p class="mt-1 flex items-center gap-1" style="color: #6b7280;">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -247,7 +257,7 @@ const resources = (lesson.resources as Resource[]) || [];
 
     <!-- Text Content -->
     {lesson.text_content && (
-      <div class="rounded-2xl p-6 prose prose-invert max-w-none" style="background-color: #1a1f26; border: 1px solid #2d3748;">
+      <div class="rounded-2xl p-6 prose prose-invert max-w-none lesson-content" style="background-color: #1a1f26; border: 1px solid #2d3748;">
         <div set:html={lesson.text_content} />
       </div>
     )}
@@ -480,3 +490,16 @@ const resources = (lesson.resources as Resource[]) || [];
     });
   }
 </script>
+
+<style is:global>
+  .lesson-content h2:first-child,
+  .lesson-content > div > h2:first-child,
+  .lesson-content > div > *:first-child {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+
+  .lesson-content .prose h2:first-child {
+    margin-top: 0 !important;
+  }
+</style>

@@ -1,0 +1,311 @@
+---
+import BlogLayout from "../../layouts/BlogLayout.astro";
+---
+
+<BlogLayout
+  title="Cómo Instalar Wazuh en Linux (Ubuntu 24.04)"
+  description="Aprende a instalar Wazuh en Ubuntu, Debian, CentOS y Rocky Linux. Guía paso a paso con el método all-in-one y la instalación de componentes por separado. Requisitos, comandos y configuración inicial."
+  publishDate="2026-02-18"
+  author="AI Security"
+  readTime="18 min"
+  tags={["Wazuh", "Linux", "Ubuntu", "Instalación", "SIEM", "Ciberseguridad"]}
+  canonical="https://aisecurity.es/blog/como-instalar-wazuh-en-linux">
+
+  <h2>Introducción</h2>
+
+  <p>
+    En esta guía te voy a enseñar <strong>cómo instalar Wazuh en un servidor Linux</strong> de forma sencilla y rápida. Cubriremos tanto el método <strong>all-in-one</strong> (todos los componentes en un solo servidor) como la <strong>instalación de componentes por separado</strong> para entornos de producción más grandes. Esta guía funciona para <strong>Ubuntu 24.04, 22.04, Debian 12, CentOS 8/9 y Rocky Linux</strong>.
+  </p>
+
+  <!-- Video del curso bloqueado -->
+  <div class="my-8">
+    <div class="relative w-full rounded-xl overflow-hidden" style="border: 2px solid #2d3748;">
+      <!-- Video thumbnail con blur -->
+      <div class="relative" style="padding-bottom: 56.25%;">
+        <!-- Miniatura de fondo -->
+        <img
+          src="/images/miniatura/instalacionLinux_miniatura.jpg"
+          alt="Video: Instalación de Wazuh en Linux"
+          class="absolute inset-0 w-full h-full object-cover"
+          style="filter: blur(2px) brightness(0.4);"
+        />
+        <div class="absolute inset-0 flex items-center justify-center" style="background: linear-gradient(135deg, rgba(0,101,255,0.2) 0%, rgba(0,0,0,0.7) 100%);">
+          <!-- Icono de play bloqueado -->
+          <div class="text-center">
+            <div class="w-20 h-20 mx-auto mb-4 rounded-full flex items-center justify-center" style="background-color: rgba(255,255,255,0.1); border: 2px solid rgba(255,255,255,0.2);">
+              <svg class="w-10 h-10" style="color: rgba(255,255,255,0.5);" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/>
+              </svg>
+            </div>
+            <div class="mb-2">
+              <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-medium" style="background-color: rgba(245, 158, 11, 0.2); color: #fbbf24;">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                </svg>
+                Contenido del curso
+              </span>
+            </div>
+            <h3 class="text-xl font-bold mb-2" style="color: #ffffff;">Video: Instalación de Wazuh en Linux</h3>
+            <p class="text-sm mb-4" style="color: #9ca3af;">18 minutos · Paso a paso con ejemplos prácticos</p>
+            <a
+              href="/curso-wazuh"
+              class="inline-flex items-center gap-2 px-6 py-3 font-semibold rounded-lg transition-all hover:scale-105"
+              style="background: linear-gradient(135deg, #0065ff 0%, #0052cc 100%); color: #ffffff;">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+              </svg>
+              Ver en el Curso Wazuh
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="text-center text-base-600 mt-3 text-sm">
+      Accede al video completo con el curso de Wazuh
+    </p>
+  </div>
+
+  <h2>Arquitectura de Wazuh: ¿Qué componentes necesitas?</h2>
+
+  <p>
+    Antes de instalar, es importante entender los <strong>tres componentes principales</strong> de Wazuh:
+  </p>
+
+  <ul>
+    <li><strong>Wazuh Indexer:</strong> Almacena y permite buscar todos los eventos y alertas. Basado en OpenSearch.</li>
+    <li><strong>Wazuh Server (Manager):</strong> Recibe los datos de los agentes, analiza logs, ejecuta reglas de detección y genera alertas.</li>
+    <li><strong>Wazuh Dashboard:</strong> Interfaz web para visualizar alertas, buscar eventos, gestionar agentes y generar reportes.</li>
+  </ul>
+
+  <p>
+    Además, necesitarás instalar <strong>Wazuh Agents</strong> en cada servidor o endpoint que quieras monitorizar.
+  </p>
+
+  <h2>Métodos de instalación</h2>
+
+  <p>
+    Tienes dos opciones principales para instalar Wazuh:
+  </p>
+
+  <h3>1. Instalación All-in-One (Recomendada para empezar)</h3>
+
+  <p>
+    El método <strong>all-in-one</strong> instala los tres componentes (Indexer, Server y Dashboard) en un único servidor con <strong>un solo comando</strong>. Es perfecto para:
+  </p>
+
+  <ul>
+    <li>Entornos de prueba y laboratorio</li>
+    <li>Pequeñas empresas (hasta 50-100 agentes)</li>
+    <li>Aprender a usar Wazuh antes de desplegarlo en producción</li>
+  </ul>
+
+  <div class="bg-green-200 border-l-4 border-green-700 p-4 my-6 rounded-r-lg">
+    <p class="m-0" style="color: #000000;"><strong style="color: #000000;">Ventaja:</strong> En menos de 10 minutos tienes Wazuh funcionando completamente, listo para añadir agentes.</p>
+  </div>
+
+  <h3>2. Instalación de componentes por separado</h3>
+
+  <p>
+    Para entornos de producción con alta disponibilidad o muchos agentes, es mejor instalar cada componente en servidores dedicados:
+  </p>
+
+  <ul>
+    <li>Un servidor (o cluster) para el <strong>Wazuh Indexer</strong></li>
+    <li>Un servidor (o cluster) para el <strong>Wazuh Server</strong></li>
+    <li>Un servidor para el <strong>Wazuh Dashboard</strong></li>
+  </ul>
+
+  <p>
+    Esto permite escalar cada componente de forma independiente según las necesidades.
+  </p>
+
+  <h2>Requisitos del sistema</h2>
+
+  <p>
+    Para una instalación all-in-one, estos son los <strong>requisitos mínimos</strong>:
+  </p>
+
+  <div class="overflow-x-auto my-6">
+    <table class="w-full border-collapse rounded-lg overflow-hidden" style="background-color: #1a1f26;">
+      <thead>
+        <tr style="background-color: #0065ff;">
+          <th class="px-4 py-3 text-left font-semibold" style="color: #ffffff;">Recurso</th>
+          <th class="px-4 py-3 text-left font-semibold" style="color: #ffffff;">Mínimo</th>
+          <th class="px-4 py-3 text-left font-semibold" style="color: #ffffff;">Recomendado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom: 1px solid #2d3748;">
+          <td class="px-4 py-3" style="color: #e5e7eb;">CPU</td>
+          <td class="px-4 py-3" style="color: #9ca3af;">2 cores</td>
+          <td class="px-4 py-3" style="color: #4ade80;">4 cores</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #2d3748;">
+          <td class="px-4 py-3" style="color: #e5e7eb;">RAM</td>
+          <td class="px-4 py-3" style="color: #9ca3af;">4 GB</td>
+          <td class="px-4 py-3" style="color: #4ade80;">8 GB</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #2d3748;">
+          <td class="px-4 py-3" style="color: #e5e7eb;">Disco</td>
+          <td class="px-4 py-3" style="color: #9ca3af;">50 GB</td>
+          <td class="px-4 py-3" style="color: #4ade80;">100 GB SSD</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-3" style="color: #e5e7eb;">Sistema Operativo</td>
+          <td class="px-4 py-3" colspan="2" style="color: #9ca3af;">Ubuntu 22.04/24.04, Debian 11/12, CentOS 8/9, Rocky Linux 8/9</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="bg-amber-200 border-l-4 border-amber-700 p-4 my-6 rounded-r-lg">
+    <p class="m-0" style="color: #000000;"><strong style="color: #000000;">Importante:</strong> El disco SSD es muy recomendable porque el Indexer hace muchas operaciones de lectura/escritura. Con HDD tradicional el rendimiento será notablemente peor.</p>
+  </div>
+
+  <h2>Instalación All-in-One paso a paso</h2>
+
+  <p>
+    Vamos a instalar Wazuh con el método all-in-one. Necesitas acceso root o sudo al servidor.
+  </p>
+
+  <h3>Paso 1: Preparar el servidor</h3>
+
+  <p>
+    Primero, asegúrate de que el sistema está actualizado:
+  </p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;"># Ubuntu/Debian
+sudo apt update && sudo apt upgrade -y
+
+# CentOS/Rocky Linux
+sudo dnf update -y</code></pre>
+
+  <h3>Paso 2: Descargar y ejecutar el instalador</h3>
+
+  <p>
+    Wazuh proporciona un script oficial que automatiza todo el proceso. Con <strong>un solo comando</strong> descargas el script y lo ejecutas:
+  </p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">curl -sO https://packages.wazuh.com/4.7/wazuh-install.sh && sudo bash ./wazuh-install.sh -a</code></pre>
+
+  <p>
+    El flag <code>-a</code> indica instalación all-in-one. El script:
+  </p>
+
+  <ul>
+    <li>Detecta automáticamente tu sistema operativo</li>
+    <li>Instala todas las dependencias necesarias</li>
+    <li>Configura el Wazuh Indexer, Server y Dashboard</li>
+    <li>Genera certificados SSL automáticamente</li>
+    <li>Inicia todos los servicios</li>
+  </ul>
+
+  <p>
+    El proceso tarda entre <strong>5 y 15 minutos</strong> dependiendo de la velocidad de tu servidor y conexión a Internet.
+  </p>
+
+  <h3>Paso 3: Guardar las credenciales</h3>
+
+  <p>
+    Al finalizar la instalación, el script te mostrará las <strong>credenciales de acceso</strong> al Dashboard:
+  </p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">INFO: --- Summary ---
+INFO: You can access the web interface https://&lt;wazuh-dashboard-ip&gt;
+    User: admin
+    Password: &lt;CONTRASEÑA_GENERADA&gt;</code></pre>
+
+  <div class="bg-red-200 border-l-4 border-red-700 p-4 my-6 rounded-r-lg">
+    <p class="m-0" style="color: #000000;"><strong style="color: #000000;">Importante:</strong> Guarda esta contraseña en un lugar seguro. Si la pierdes, tendrás que resetearla manualmente.</p>
+  </div>
+
+  <h3>Paso 4: Acceder al Dashboard</h3>
+
+  <p>
+    Abre tu navegador y accede a:
+  </p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">https://&lt;IP_DE_TU_SERVIDOR&gt;</code></pre>
+
+  <p>
+    Introduce el usuario <code>admin</code> y la contraseña que guardaste. ¡Ya tienes Wazuh funcionando!
+  </p>
+
+  <h2>Instalación de componentes por separado</h2>
+
+  <p>
+    Si necesitas una arquitectura distribuida, puedes instalar cada componente en un servidor diferente. Wazuh proporciona documentación detallada para cada caso:
+  </p>
+
+  <ul>
+    <li><a href="https://documentation.wazuh.com/current/installation-guide/wazuh-indexer/index.html" target="_blank" rel="noopener" style="color: #38b1ff;">Instalar Wazuh Indexer</a></li>
+    <li><a href="https://documentation.wazuh.com/current/installation-guide/wazuh-server/index.html" target="_blank" rel="noopener" style="color: #38b1ff;">Instalar Wazuh Server</a></li>
+    <li><a href="https://documentation.wazuh.com/current/installation-guide/wazuh-dashboard/index.html" target="_blank" rel="noopener" style="color: #38b1ff;">Instalar Wazuh Dashboard</a></li>
+  </ul>
+
+  <p>
+    El proceso es similar: descargas scripts específicos y los ejecutas en cada servidor. La principal diferencia es que debes configurar la comunicación entre componentes (IPs, certificados, etc.).
+  </p>
+
+  <h2>Siguiente paso: Instalar agentes</h2>
+
+  <p>
+    Con Wazuh instalado, el siguiente paso es instalar <strong>agentes</strong> en los servidores y endpoints que quieras monitorizar. Los agentes recopilan logs, monitorizan ficheros, detectan vulnerabilidades y envían toda esa información al Wazuh Server.
+  </p>
+
+  <p>
+    Puedes instalar agentes en:
+  </p>
+
+  <ul>
+    <li>Servidores Linux (Ubuntu, Debian, CentOS, Rocky, RHEL...)</li>
+    <li>Servidores Windows (Server 2016, 2019, 2022)</li>
+    <li>Estaciones de trabajo Windows 10/11</li>
+    <li>macOS</li>
+    <li>Contenedores Docker</li>
+  </ul>
+
+  <p>
+    Consulta la documentación oficial: <a href="https://documentation.wazuh.com/current/installation-guide/wazuh-agent/index.html" target="_blank" rel="noopener" style="color: #38b1ff;">Instalar Wazuh Agent</a>
+  </p>
+
+  <h2>Recursos adicionales</h2>
+
+  <ul>
+    <li><a href="https://documentation.wazuh.com/current/quickstart.html" target="_blank" rel="noopener" style="color: #38b1ff;">Guía Quickstart oficial de Wazuh</a></li>
+    <li><a href="/blog/que-es-wazuh-para-que-sirve">¿Qué es Wazuh y para qué sirve?</a></li>
+    <li><a href="/blog/monitorizacion-de-contenedores-docker-con-wazuh">Monitorización de contenedores Docker con Wazuh</a></li>
+  </ul>
+
+  <hr />
+
+  <p class="text-sm text-base-600">
+    <strong>Artículos relacionados:</strong>
+  </p>
+  <ul class="text-sm">
+    <li><a href="/blog/que-es-wazuh-para-que-sirve">¿Qué es Wazuh y para qué sirve?</a></li>
+    <li><a href="/blog/ia-threat-hunting-wazuh">IA para Threat Hunting en Wazuh</a></li>
+    <li><a href="/blog/monitorizacion-de-contenedores-docker-con-wazuh">Monitorización de contenedores Docker con Wazuh</a></li>
+  </ul>
+  <hr />
+
+  <div class="bg-accent-50 border border-accent-200 rounded-xl p-6 my-8">
+    <h3 class="text-accent-800 mt-0">Aprende Wazuh de forma práctica</h3>
+    <p class="text-base-700 mb-4">
+      Este artículo es solo el comienzo. En nuestro curso de Wazuh aprenderás a configurar agentes, crear reglas personalizadas, integrar con otras herramientas y mucho más, todo con ejemplos prácticos y acceso permanente.
+    </p>
+    <div class="flex flex-wrap gap-4">
+      <a style="color:black;" href="/curso-wazuh" class="inline-flex items-center gap-2 px-6 py-3 bg-accent-600 text-white font-semibold rounded-lg hover:bg-accent-700 transition-colors">
+        Ver Curso Wazuh - 50€
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </a>
+      <a style="color: black;" href="/wazuh" class="inline-flex items-center gap-2 px-6 py-3 bg-white text-accent-700 font-semibold rounded-lg border border-accent-300 hover:bg-accent-50 transition-colors">
+        Implementación profesional
+      </a>
+    </div>
+  </div>
+
+</BlogLayout>
