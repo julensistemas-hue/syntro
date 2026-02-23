@@ -1,6 +1,15 @@
 {
   "topics": [
     {
+      "tema": "Attention Media ≠ Social Networks",
+      "palabras_clave": "social, tecnología, attention, networks, media",
+      "notas": "Tema detectado automáticamente con score 45/100. Fuente: hackernews. Referencia: https://susam.net/attention-media-vs-social-networks.html",
+      "estado": "Pendiente",
+      "fecha_agregado": "2026-02-23",
+      "score_tendencia": 45,
+      "fuente_tendencia": "hackernews"
+    },
+    {
       "tema": "GEO",
       "palabras_clave": "tendencias",
       "notas": "Tema detectado automáticamente con score 53/100. Fuente: google_trends. ",
