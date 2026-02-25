@@ -82,11 +82,11 @@ INSERT INTO lessons (id, module_id, title, description, video_url, duration_minu
   {"name": "Checklist pre-instalación", "url": "/recursos/checklist-wazuh.pdf", "type": "pdf"}
 ]'::jsonb);
 
--- Lección 3: Instalación en Linux
+-- Lección 3: Instalación en Linux (Ubuntu 24.04)
 INSERT INTO lessons (id, module_id, title, description, video_url, duration_minutes, order_index, is_published, text_content, resources) VALUES
-(3, 1, 'Instalación de Wazuh en Linux',
-'Guía paso a paso para instalar Wazuh en un servidor Linux. Cubrimos Ubuntu, Debian, CentOS y Rocky Linux.',
-'https://youtu.be/DKCmZz88ihQ',
+(3, 1, 'Instalación en Linux (Ubuntu 24.04)',
+'Guía paso a paso para instalar Wazuh Manager, Indexer y Dashboard en Ubuntu 24.04. Instalación completa del servidor desde cero.',
+'https://youtu.be/aqvtuRVAy_0',
 18, 3, true,
 '<h2>Instalación de Wazuh en Linux</h2>
 

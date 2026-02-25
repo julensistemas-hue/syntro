@@ -21,6 +21,9 @@ package-lock.json
 .env
 .env.production
 
+# MCP config (contains sensitive tokens)
+.mcp.json
+
 # macOS-specific files
 .DS_Store
 
