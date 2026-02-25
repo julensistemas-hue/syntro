@@ -1,0 +1,255 @@
+---
+import BlogLayout from "../../layouts/BlogLayout.astro";
+---
+
+<BlogLayout
+  title="Cómo Instalar Wazuh con Docker Compose"
+  description="Guía paso a paso para instalar Wazuh usando Docker Compose. Despliega el SIEM completo en minutos con contenedores."
+  publishDate="2026-02-25"
+  author="AI Security"
+  readTime="12 min"
+  tags={["Wazuh", "Docker", "Docker Compose", "Contenedores", "SIEM", "Ciberseguridad"]}
+  canonical="https://aisecurity.es/blog/como-instalar-wazuh-con-docker">
+
+  <h2>Introducción</h2>
+
+  <p>
+    En esta guía te enseño <strong>cómo instalar Wazuh usando Docker Compose</strong>, una de las formas más rápidas y sencillas de desplegar el entorno completo. Con solo 4 comandos tendrás Wazuh funcionando con todos sus componentes: Indexer, Server y Dashboard.
+  </p>
+
+  <!-- Video del curso bloqueado -->
+  <div class="my-8">
+    <div class="relative w-full rounded-xl overflow-hidden" style="border: 2px solid #2d3748;">
+      <!-- Video thumbnail con blur -->
+      <div class="relative" style="padding-bottom: 56.25%;">
+        <!-- Miniatura de fondo -->
+        <img
+          src="/images/instalaciónConDockerCompose.jpg"
+          alt="Video: Instalación de Wazuh con Docker"
+          class="absolute inset-0 w-full h-full object-cover"
+          style="filter: blur(2px) brightness(0.4);"
+        />
+        <div class="absolute inset-0 flex items-center justify-center" style="background: linear-gradient(135deg, rgba(0,101,255,0.2) 0%, rgba(0,0,0,0.7) 100%);">
+          <!-- Icono de play bloqueado -->
+          <div class="text-center">
+            <div class="w-20 h-20 mx-auto mb-4 rounded-full flex items-center justify-center" style="background-color: rgba(255,255,255,0.1); border: 2px solid rgba(255,255,255,0.2);">
+              <svg class="w-10 h-10" style="color: rgba(255,255,255,0.5);" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/>
+              </svg>
+            </div>
+            <div class="mb-2">
+              <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-medium" style="background-color: rgba(245, 158, 11, 0.2); color: #fbbf24;">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                </svg>
+                Contenido del curso
+              </span>
+            </div>
+            <h3 class="text-xl font-bold mb-2" style="color: #ffffff;">Video: Instalación de Wazuh con Docker</h3>
+            <p class="text-sm mb-4" style="color: #9ca3af;">12 minutos · Paso a paso con Docker Compose</p>
+            <a
+              href="/curso-wazuh"
+              class="inline-flex items-center gap-2 px-6 py-3 font-semibold rounded-lg transition-all hover:scale-105"
+              style="background: linear-gradient(135deg, #0065ff 0%, #0052cc 100%); color: #ffffff;">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+              </svg>
+              Ver en el Curso Wazuh
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="text-center text-base-600 mt-3 text-sm">
+      Accede al video completo con el curso de Wazuh
+    </p>
+  </div>
+
+  <h2>¿Por qué usar Docker para Wazuh?</h2>
+
+  <p>
+    Docker ofrece varias ventajas para desplegar Wazuh:
+  </p>
+
+  <ul>
+    <li><strong>Rapidez:</strong> El entorno completo está listo en minutos</li>
+    <li><strong>Portabilidad:</strong> Funciona igual en cualquier sistema con Docker instalado</li>
+    <li><strong>Aislamiento:</strong> Los contenedores no interfieren con otros servicios del sistema</li>
+    <li><strong>Fácil actualización:</strong> Cambiar de versión es tan simple como modificar el tag</li>
+    <li><strong>Ideal para pruebas:</strong> Perfecto para laboratorios y entornos de desarrollo</li>
+  </ul>
+
+  <h2>Requisitos previos</h2>
+
+  <p>
+    Antes de empezar, necesitas tener instalado:
+  </p>
+
+  <ul>
+    <li><strong>Docker</strong> (versión 20.10 o superior)</li>
+    <li><strong>Docker Compose</strong> (versión 2.0 o superior)</li>
+    <li><strong>Git</strong> para clonar el repositorio</li>
+  </ul>
+
+  <div class="overflow-x-auto my-6">
+    <table class="w-full border-collapse rounded-lg overflow-hidden" style="background-color: #1a1f26;">
+      <thead>
+        <tr style="background-color: #0065ff;">
+          <th class="px-4 py-3 text-left font-semibold" style="color: #ffffff;">Recurso</th>
+          <th class="px-4 py-3 text-left font-semibold" style="color: #ffffff;">Mínimo</th>
+          <th class="px-4 py-3 text-left font-semibold" style="color: #ffffff;">Recomendado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom: 1px solid #2d3748;">
+          <td class="px-4 py-3" style="color: #e5e7eb;">CPU</td>
+          <td class="px-4 py-3" style="color: #9ca3af;">2 cores</td>
+          <td class="px-4 py-3" style="color: #4ade80;">4 cores</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #2d3748;">
+          <td class="px-4 py-3" style="color: #e5e7eb;">RAM</td>
+          <td class="px-4 py-3" style="color: #9ca3af;">4 GB</td>
+          <td class="px-4 py-3" style="color: #4ade80;">8 GB</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-3" style="color: #e5e7eb;">Disco</td>
+          <td class="px-4 py-3" style="color: #9ca3af;">20 GB</td>
+          <td class="px-4 py-3" style="color: #4ade80;">50 GB SSD</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Comandos de instalación</h2>
+
+  <p>
+    La instalación se realiza en <strong>4 simples pasos</strong>:
+  </p>
+
+  <h3>1. Clonar el repositorio oficial</h3>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">git clone https://github.com/wazuh/wazuh-docker.git -b v4.14.3</code></pre>
+
+  <p>
+    Esto descarga el repositorio oficial de Wazuh para Docker con la versión 4.14.3.
+  </p>
+
+  <h3>2. Acceder al directorio single-node</h3>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">cd wazuh-docker/single-node/</code></pre>
+
+  <p>
+    El directorio <code>single-node</code> contiene la configuración para desplegar todos los componentes en un solo servidor. También existe <code>multi-node</code> para despliegues distribuidos.
+  </p>
+
+  <h3>3. Generar certificados SSL</h3>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">docker compose -f generate-indexer-certs.yml run --rm generator</code></pre>
+
+  <p>
+    Este comando genera los certificados necesarios para la comunicación segura entre componentes.
+  </p>
+
+  <h3>4. Levantar los contenedores</h3>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">docker compose up -d</code></pre>
+
+  <p>
+    El flag <code>-d</code> ejecuta los contenedores en segundo plano (detached mode).
+  </p>
+
+  <div class="bg-green-200 border-l-4 border-green-700 p-4 my-6 rounded-r-lg">
+    <p class="m-0" style="color: #000000;"><strong style="color: #000000;">Todos los comandos juntos:</strong></p>
+    <pre style="background:#0f1419;padding:16px;border-radius:8px;margin-top:12px;overflow-x:auto;"><code style="color: #e5e7eb;">git clone https://github.com/wazuh/wazuh-docker.git -b v4.14.3
+cd wazuh-docker/single-node/
+docker compose -f generate-indexer-certs.yml run --rm generator
+docker compose up -d</code></pre>
+  </div>
+
+  <h2>Acceder al Dashboard</h2>
+
+  <p>
+    Una vez levantados los contenedores, accede al Dashboard en:
+  </p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">https://IP-servidor o https://localhost (si es en tu propia máquina)</code></pre>
+
+  <p>
+    Las credenciales por defecto son:
+  </p>
+
+  <ul>
+    <li><strong>Username:</strong> admin</li>
+    <li><strong>Password:</strong> SecretPassword</li>
+  </ul>
+
+  <h3>Obtener información del contenedor</h3>
+
+  <p>
+    Para ver la configuración y variables de entorno del contenedor del servidor:
+  </p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">docker inspect id-contenedor-server</code></pre>
+
+  <div class="bg-amber-200 border-l-4 border-amber-700 p-4 my-6 rounded-r-lg">
+    <p class="m-0" style="color: #000000;"><strong style="color: #000000;">Importante:</strong> Cambia la contraseña por defecto en entornos de producción. Puedes hacerlo modificando el archivo <code style="color: #000000; background-color: rgba(0,0,0,0.1);">docker-compose.yml</code> antes de levantar los contenedores.</p>
+  </div>
+
+  <h2>Comandos útiles</h2>
+
+  <p>
+    Algunos comandos que te serán útiles para gestionar el despliegue:
+  </p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;"># Ver estado de los contenedores
+docker compose ps
+
+# Ver logs en tiempo real
+docker compose logs -f
+
+# Parar los contenedores
+docker compose down
+
+# Reiniciar los contenedores
+docker compose restart</code></pre>
+
+  <h2>Recursos adicionales</h2>
+
+  <ul>
+    <li><a href="https://documentation.wazuh.com/current/deployment-options/docker/index.html" target="_blank" rel="noopener" style="color: #38b1ff;">Documentación oficial de Wazuh Docker</a></li>
+    <li><a href="https://github.com/wazuh/wazuh-docker" target="_blank" rel="noopener" style="color: #38b1ff;">Repositorio wazuh-docker en GitHub</a></li>
+    <li><a href="/blog/como-instalar-wazuh-en-linux">Instalación de Wazuh en Linux (sin Docker)</a></li>
+  </ul>
+
+  <hr />
+
+  <p class="text-sm text-base-600">
+    <strong>Artículos relacionados:</strong>
+  </p>
+  <ul class="text-sm">
+    <li><a href="/blog/como-instalar-wazuh-en-linux">Cómo Instalar Wazuh en Linux (Ubuntu 24.04)</a></li>
+    <li><a href="/blog/que-es-wazuh-para-que-sirve">¿Qué es Wazuh y para qué sirve?</a></li>
+    <li><a href="/blog/monitorizacion-de-contenedores-docker-con-wazuh">Monitorización de contenedores Docker con Wazuh</a></li>
+  </ul>
+  <hr />
+
+  <div class="bg-accent-50 border border-accent-200 rounded-xl p-6 my-8">
+    <h3 class="text-accent-800 mt-0">Aprende Wazuh de forma práctica</h3>
+    <p class="text-base-700 mb-4">
+      Este artículo es solo el comienzo. En nuestro curso de Wazuh aprenderás a configurar agentes, crear reglas personalizadas, integrar con otras herramientas y mucho más.
+    </p>
+    <div class="flex flex-wrap gap-4">
+      <a style="color:black;" href="/curso-wazuh" class="inline-flex items-center gap-2 px-6 py-3 bg-accent-600 text-white font-semibold rounded-lg hover:bg-accent-700 transition-colors">
+        Ver Curso Wazuh - 50€
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </a>
+      <a style="color: black;" href="/wazuh" class="inline-flex items-center gap-2 px-6 py-3 bg-white text-accent-700 font-semibold rounded-lg border border-accent-300 hover:bg-accent-50 transition-colors">
+        Implementación profesional
+      </a>
+    </div>
+  </div>
+
+</BlogLayout>
