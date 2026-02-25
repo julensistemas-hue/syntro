@@ -63,6 +63,38 @@ import BlogLayout from "../../layouts/BlogLayout.astro";
     </p>
   </div>
 
+  <h2>Requisito previo: Conectividad con el servidor</h2>
+
+  <div class="bg-amber-200 border-l-4 border-amber-700 p-4 my-6 rounded-r-lg">
+    <p class="m-0" style="color: #000000;"><strong style="color: #000000;">Importante:</strong> Antes de instalar el agente, asegúrate de que la máquina tiene <strong style="color: #000000;">conectividad con el servidor Wazuh</strong>. El agente necesita comunicarse con el servidor para enviar los logs y recibir configuración.</p>
+  </div>
+
+  <p>
+    Puedes verificar la conectividad de varias formas:
+  </p>
+
+  <h3>1. Ping al servidor</h3>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">ping IP_SERVIDOR</code></pre>
+
+  <h3>2. Verificar acceso al Dashboard (puerto 443)</h3>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;"># Usando curl
+curl -k https://IP_SERVIDOR
+
+# O abre en el navegador
+https://IP_SERVIDOR</code></pre>
+
+  <p>
+    Si el Dashboard carga correctamente, significa que hay conectividad. Si no funciona, revisa:
+  </p>
+
+  <ul>
+    <li>Firewall del servidor (puertos 443 y 1514 abiertos)</li>
+    <li>Firewall del cliente</li>
+    <li>Configuración de red/VPN si están en redes diferentes</li>
+  </ul>
+
   <h2>Comando de instalación</h2>
 
   <p>
