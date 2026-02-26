@@ -19,8 +19,8 @@ export const POST: APIRoute = async ({ request }) => {
       );
     }
 
-    const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL;
-    const supabaseAnonKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
+    const supabaseUrl = import.meta.env.SUPABASE_URL;
+    const supabaseAnonKey = import.meta.env.SUPABASE_ANON_KEY;
 
     if (!supabaseUrl || !supabaseAnonKey) {
       return new Response(

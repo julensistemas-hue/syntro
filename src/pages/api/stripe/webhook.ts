@@ -42,7 +42,7 @@ export const POST: APIRoute = async ({ request }) => {
 
       try {
         // Update payment status in Supabase
-        const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL;
+        const supabaseUrl = import.meta.env.SUPABASE_URL;
         const serviceRoleKey = import.meta.env.SUPABASE_SERVICE_ROLE_KEY;
 
         if (!supabaseUrl || !serviceRoleKey) {

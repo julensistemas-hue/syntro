@@ -37,8 +37,8 @@ export const onRequest = defineMiddleware(async (context, next) => {
   }
 
   // Get Supabase credentials
-  const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL;
-  const supabaseAnonKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
+  const supabaseUrl = import.meta.env.SUPABASE_URL;
+  const supabaseAnonKey = import.meta.env.SUPABASE_ANON_KEY;
 
   if (!supabaseUrl || !supabaseAnonKey) {
     // Supabase not configured, redirect to login
