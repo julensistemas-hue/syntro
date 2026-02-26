@@ -88,8 +88,8 @@ const canonical = "https://aisecurity.es/curso-wazuh";
                 <a
                   style="color: white;"
                   href="#inscripcion"
-                  class="inline-flex items-center justify-center px-6 py-4 text-base font-bold bg-gradient-to-br from-accent-600 to-blue-600 hover:from-accent-700 hover:to-blue-700 rounded-xl text-white shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5">
-                  ¡Inscríbete Ahora! →
+                  class="inline-flex items-center justify-center px-6 py-4 text-base font-bold bg-gradient-to-br from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 rounded-xl text-white shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5">
+                  Únete a la lista de espera →
                 </a>
               </div>
             </div>
@@ -517,11 +517,22 @@ const canonical = "https://aisecurity.es/curso-wazuh";
         ¡Empieza tu Transformación en Ciberseguridad!
       </h2>
       <p class="text-xl text-white/90 mb-8">
-        Plazas limitadas - Reserva tu lugar ahora
+        El curso estará disponible a partir del 28 de Febrero de 2026
       </p>
 
-      <!-- Inscription Form -->
+      <!-- Waitlist Form -->
       <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/30 max-w-xl mx-auto">
+        <!-- Coming Soon Notice -->
+        <div class="mb-6 p-4 rounded-lg border-l-4" style="background-color: rgba(245, 158, 11, 0.2); border-color: #f59e0b;">
+          <p class="text-white font-semibold flex items-center gap-2">
+            <span class="text-2xl">🚧</span>
+            Inscripciones próximamente disponibles
+          </p>
+          <p class="text-white/80 text-sm mt-1">
+            Déjanos tu email y te avisaremos cuando puedas inscribirte
+          </p>
+        </div>
+
         <form id="inscription-form" class="space-y-6">
           <div>
             <label for="email" class="block text-white font-semibold mb-2 text-left">
@@ -539,9 +550,9 @@ const canonical = "https://aisecurity.es/curso-wazuh";
 
           <button
             type="submit"
-            class="w-full px-8 py-4 text-lg font-semibold bg-accent-600 hover:bg-accent-700 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5"
+            class="w-full px-8 py-4 text-lg font-semibold bg-amber-500 hover:bg-amber-600 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5"
             style="color: #000000;">
-            ¡Inscríbete Ahora! →
+            Avisarme cuando esté disponible
           </button>
 
           <!-- Success/Error Messages -->
@@ -664,7 +675,7 @@ const canonical = "https://aisecurity.es/curso-wazuh";
         if (response.ok) {
           // Success
           messageDiv.classList.remove('hidden');
-          messageText.textContent = '✅ ¡Inscripción confirmada! Revisa tu email para las instrucciones de pago.';
+          messageText.textContent = '✅ ¡Te hemos añadido a la lista! Te avisaremos cuando el curso esté disponible.';
           messageText.className = 'text-white font-semibold';
           form.reset();
         } else {

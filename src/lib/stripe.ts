@@ -7,7 +7,7 @@ if (!stripeSecretKey) {
 }
 
 export const stripe = stripeSecretKey
-  ? new Stripe(stripeSecretKey, { apiVersion: '2025-06-30.basil' })
+  ? new Stripe(stripeSecretKey, { apiVersion: '2024-12-18.acacia' })
   : null;
 
 // Course pricing configuration
