@@ -1,0 +1,319 @@
+---
+import BlogLayout from "../../layouts/BlogLayout.astro";
+---
+
+<BlogLayout
+  title="Configurar Equipos sin Agente en Wazuh con Syslog"
+  description="Aprende a monitorizar routers, switches y dispositivos sin agente usando rsyslog como collector. Instalación, configuración TCP/UDP, reglas iptables y envío a Wazuh."
+  publishDate="2026-02-27"
+  author="AI Security"
+  readTime="12 min"
+  tags={["Wazuh", "Syslog", "rsyslog", "Agentless", "SIEM", "Redes", "Ciberseguridad"]}
+  canonical="https://aisecurity.es/blog/configurar-equipos-sin-agente-wazuh-syslog">
+
+  <h2>Introducción</h2>
+
+  <p>
+    En esta guía te enseño <strong>cómo monitorizar equipos que no pueden tener un agente Wazuh instalado</strong> (routers, switches, firewalls, impresoras de red, etc.). La solución es configurar un servidor Linux como <strong>Syslog Collector</strong> que recibe los logs y los envía automáticamente a Wazuh.
+  </p>
+
+  <!-- Video del curso bloqueado -->
+  <div class="my-8">
+    <div class="relative w-full rounded-xl overflow-hidden" style="border: 2px solid #2d3748;">
+      <div class="relative" style="padding-bottom: 56.25%;">
+        <img
+          src="/images/ConfiguracionDeEquiposSinAgente.png"
+          alt="Video: Configurar Equipos sin Agente en Wazuh"
+          class="absolute inset-0 w-full h-full object-cover"
+          style="filter: blur(2px) brightness(0.4);"
+        />
+        <div class="absolute inset-0 flex items-center justify-center" style="background: linear-gradient(135deg, rgba(0,101,255,0.2) 0%, rgba(0,0,0,0.7) 100%);">
+          <div class="text-center">
+            <div class="w-20 h-20 mx-auto mb-4 rounded-full flex items-center justify-center" style="background-color: rgba(255,255,255,0.1); border: 2px solid rgba(255,255,255,0.2);">
+              <svg class="w-10 h-10" style="color: rgba(255,255,255,0.5);" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/>
+              </svg>
+            </div>
+            <div class="mb-2">
+              <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-medium" style="background-color: rgba(245, 158, 11, 0.2); color: #fbbf24;">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                </svg>
+                Contenido del curso
+              </span>
+            </div>
+            <h3 class="text-xl font-bold mb-2" style="color: #ffffff;">Video: Equipos sin Agente</h3>
+            <p class="text-sm mb-4" style="color: #9ca3af;">12 minutos · rsyslog, iptables y configuración</p>
+            <a
+              href="/curso-wazuh"
+              class="inline-flex items-center gap-2 px-6 py-3 font-semibold rounded-lg transition-all hover:scale-105"
+              style="background: linear-gradient(135deg, #0065ff 0%, #0052cc 100%); color: #ffffff;">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+              </svg>
+              Ver en el Curso Wazuh
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="text-center text-base-600 mt-3 text-sm">
+      Accede al video completo con el curso de Wazuh
+    </p>
+  </div>
+
+  <h2>¿Qué son los equipos sin agente (Agentless)?</h2>
+
+  <p>
+    No todos los dispositivos pueden tener un agente Wazuh instalado. Ejemplos típicos:
+  </p>
+
+  <ul>
+    <li><strong>Routers</strong> (Cisco, MikroTik, etc.)</li>
+    <li><strong>Switches</strong> gestionables</li>
+    <li><strong>Firewalls</strong> (pfSense, FortiGate, etc.)</li>
+    <li><strong>Impresoras de red</strong></li>
+    <li><strong>Dispositivos IoT</strong></li>
+    <li><strong>Sistemas legacy</strong> que no soportan agentes</li>
+  </ul>
+
+  <p>
+    La solución es usar el protocolo <strong>Syslog</strong>: estos dispositivos envían sus logs a un servidor Linux que actúa como collector, y ese servidor (con agente Wazuh) los reenvía al SIEM.
+  </p>
+
+  <h2>Arquitectura de la solución</h2>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">┌─────────────────────┐     ┌─────────────────────┐     ┌─────────────────┐
+│  Equipos sin agente │     │  Linux con rsyslog  │     │   Wazuh Server  │
+│  (routers, switches)│────▶│  (Syslog Collector) │────▶│   (SIEM)        │
+│                     │ 514 │  + Agente Wazuh     │     │                 │
+└─────────────────────┘     └─────────────────────┘     └─────────────────┘
+                                     │
+                            /var/log/syslog</code></pre>
+
+  <h2>1. Instalar rsyslog</h2>
+
+  <p>
+    En el servidor Linux que actuará como Syslog Collector:
+  </p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;"># Debian/Ubuntu
+apt update && apt install rsyslog -y
+
+# RHEL/CentOS/Rocky Linux
+dnf install rsyslog -y</code></pre>
+
+  <h2>2. Configurar rsyslog para escuchar por TCP y UDP</h2>
+
+  <p>
+    Edita el archivo de configuración principal:
+  </p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">nano /etc/rsyslog.conf</code></pre>
+
+  <p>
+    Busca las siguientes líneas que están <strong>comentadas</strong> (con # al inicio) y <strong>descoméntalas</strong> quitando el #:
+  </p>
+
+  <h3>Para recibir por UDP (puerto 514):</h3>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;"># Antes (comentado):
+#module(load="imudp")
+#input(type="imudp" port="514")
+
+# Después (descomentado):
+module(load="imudp")
+input(type="imudp" port="514")</code></pre>
+
+  <h3>Para recibir por TCP (puerto 514):</h3>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;"># Antes (comentado):
+#module(load="imtcp")
+#input(type="imtcp" port="514")
+
+# Después (descomentado):
+module(load="imtcp")
+input(type="imtcp" port="514")</code></pre>
+
+  <div class="bg-amber-200 border-l-4 border-amber-700 p-4 my-6 rounded-r-lg">
+    <p class="m-0" style="color: #000000;"><strong style="color: #000000;">Nota:</strong> La mayoría de dispositivos de red usan <strong style="color: #000000;">UDP</strong> por defecto. TCP es más fiable pero no todos los dispositivos lo soportan. Habilita ambos para mayor compatibilidad.</p>
+  </div>
+
+  <h2>3. Reiniciar y habilitar rsyslog</h2>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;"># Reiniciar el servicio para aplicar cambios
+systemctl restart rsyslog
+
+# Habilitar en el arranque del sistema
+systemctl enable rsyslog
+
+# Verificar que está funcionando
+systemctl status rsyslog</code></pre>
+
+  <p>
+    Verifica que rsyslog está escuchando en el puerto 514:
+  </p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;"># Ver puertos UDP en escucha
+ss -ulnp | grep 514
+
+# Ver puertos TCP en escucha
+ss -tlnp | grep 514</code></pre>
+
+  <h2>4. Configurar firewall (iptables)</h2>
+
+  <p>
+    Por seguridad, permite conexiones al puerto 514 <strong>solo desde los equipos autorizados</strong>:
+  </p>
+
+  <h3>Permitir desde equipos específicos:</h3>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;"># Permitir desde el router (ej: 192.168.1.1)
+iptables -A INPUT -p udp -s 192.168.1.1 --dport 514 -j ACCEPT
+iptables -A INPUT -p tcp -s 192.168.1.1 --dport 514 -j ACCEPT
+
+# Permitir desde el switch (ej: 192.168.1.2)
+iptables -A INPUT -p udp -s 192.168.1.2 --dport 514 -j ACCEPT
+iptables -A INPUT -p tcp -s 192.168.1.2 --dport 514 -j ACCEPT
+
+# Permitir desde el firewall (ej: 192.168.1.254)
+iptables -A INPUT -p udp -s 192.168.1.254 --dport 514 -j ACCEPT
+iptables -A INPUT -p tcp -s 192.168.1.254 --dport 514 -j ACCEPT</code></pre>
+
+  <h3>Permitir desde una red completa:</h3>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;"># Permitir toda la red 192.168.1.0/24
+iptables -A INPUT -p udp -s 192.168.1.0/24 --dport 514 -j ACCEPT
+iptables -A INPUT -p tcp -s 192.168.1.0/24 --dport 514 -j ACCEPT</code></pre>
+
+  <h3>Bloquear el resto de conexiones al puerto 514:</h3>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;"># Denegar cualquier otra conexión al puerto 514
+iptables -A INPUT -p udp --dport 514 -j DROP
+iptables -A INPUT -p tcp --dport 514 -j DROP</code></pre>
+
+  <h3>Guardar las reglas de forma permanente:</h3>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;"># Debian/Ubuntu
+apt install iptables-persistent -y
+netfilter-persistent save
+
+# RHEL/CentOS/Rocky
+service iptables save</code></pre>
+
+  <h2>5. Configurar los equipos para enviar logs</h2>
+
+  <p>
+    Cada dispositivo debe configurarse para enviar sus logs al servidor rsyslog.
+  </p>
+
+  <h3>Router Cisco:</h3>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">logging host 192.168.1.100
+logging trap informational
+logging facility local7</code></pre>
+
+  <h3>Switch MikroTik:</h3>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">/system logging action
+add name=remote remote=192.168.1.100 remote-port=514 target=remote
+
+/system logging
+add action=remote topics=info</code></pre>
+
+  <h3>Firewall pfSense:</h3>
+
+  <p>
+    Status → System Logs → Settings → Remote Logging Options:
+  </p>
+
+  <ul>
+    <li>Enable Remote Logging: ✓</li>
+    <li>Remote log servers: 192.168.1.100:514</li>
+  </ul>
+
+  <h3>Otro equipo Linux:</h3>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;"># Editar /etc/rsyslog.conf y añadir al final:
+
+# Enviar por UDP (una @)
+*.* @192.168.1.100:514
+
+# Enviar por TCP (dos @@)
+*.* @@192.168.1.100:514</code></pre>
+
+  <h2>6. Cómo llegan los logs a Wazuh</h2>
+
+  <p>
+    Esta es la parte más sencilla: <strong>no hay que configurar nada adicional</strong>.
+  </p>
+
+  <div class="bg-green-200 border-l-4 border-green-700 p-4 my-6 rounded-r-lg">
+    <p class="m-0" style="color: #000000;"><strong style="color: #000000;">Flujo automático:</strong></p>
+    <ol style="color: #000000; margin: 8px 0 0 0;">
+      <li>Los equipos envían logs al puerto 514 del servidor rsyslog</li>
+      <li>rsyslog escribe estos logs en <code style="color: #000000; background-color: rgba(0,0,0,0.1);">/var/log/syslog</code></li>
+      <li>El agente Wazuh ya monitoriza <code style="color: #000000; background-color: rgba(0,0,0,0.1);">/var/log/syslog</code> por defecto</li>
+      <li>Los logs se envían automáticamente al servidor Wazuh</li>
+    </ol>
+  </div>
+
+  <p>
+    Puedes verificar que el agente está monitorizando el syslog mirando su configuración:
+  </p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">cat /var/ossec/etc/ossec.conf | grep -A2 "syslog"</code></pre>
+
+  <h2>7. Verificar que funciona</h2>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;"># Ver logs recibidos en tiempo real
+tail -f /var/log/syslog
+
+# Verificar que rsyslog escucha en el puerto 514
+ss -ulnp | grep 514
+ss -tlnp | grep 514
+
+# Ver reglas de iptables aplicadas
+iptables -L -n | grep 514</code></pre>
+
+  <h2>Recursos adicionales</h2>
+
+  <ul>
+    <li><a href="https://documentation.wazuh.com/current/user-manual/capabilities/log-data-collection/how-to-collect-wlogs/collecting-logs-from-remote-syslog.html" target="_blank" rel="noopener" style="color: #38b1ff;">Documentación oficial: Remote Syslog</a></li>
+    <li><a href="/blog/configuracion-de-grupos-en-wazuh">Configuración de Grupos en Wazuh</a></li>
+    <li><a href="/blog/como-instalar-agente-wazuh-en-linux">Instalación del Agente en Linux</a></li>
+  </ul>
+
+  <hr />
+
+  <p class="text-sm text-base-600">
+    <strong>Artículos relacionados:</strong>
+  </p>
+  <ul class="text-sm">
+    <li><a href="/blog/configuracion-de-grupos-en-wazuh">Configuración de Grupos en Wazuh</a></li>
+    <li><a href="/blog/como-instalar-wazuh-en-linux">Cómo Instalar Wazuh en Linux (Ubuntu 24.04)</a></li>
+    <li><a href="/blog/como-instalar-agente-wazuh-en-linux">Cómo Instalar el Agente Wazuh en Linux</a></li>
+    <li><a href="/blog/que-es-wazuh-para-que-sirve">¿Qué es Wazuh y para qué sirve?</a></li>
+  </ul>
+  <hr />
+
+  <div class="bg-accent-50 border border-accent-200 rounded-xl p-6 my-8">
+    <h3 class="text-accent-800 mt-0">Aprende Wazuh de forma práctica</h3>
+    <p class="text-base-700 mb-4">
+      Este artículo es parte del contenido del curso. Aprende a configurar syslog, crear reglas personalizadas, integrar con otras herramientas y mucho más.
+    </p>
+    <div class="flex flex-wrap gap-4">
+      <a style="color:black;" href="/curso-wazuh" class="inline-flex items-center gap-2 px-6 py-3 bg-accent-600 text-white font-semibold rounded-lg hover:bg-accent-700 transition-colors">
+        Ver Curso Wazuh - 50€
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </a>
+      <a style="color: black;" href="/wazuh" class="inline-flex items-center gap-2 px-6 py-3 bg-white text-accent-700 font-semibold rounded-lg border border-accent-300 hover:bg-accent-50 transition-colors">
+        Implementación profesional
+      </a>
+    </div>
+  </div>
+
+</BlogLayout>
