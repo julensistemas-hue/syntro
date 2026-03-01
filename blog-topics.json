@@ -1,6 +1,15 @@
 {
   "topics": [
     {
+      "tema": "seguridad llm",
+      "palabras_clave": "seguridad, tendencias",
+      "notas": "Tema detectado automáticamente con score 49/100. Fuente: google_trends. ",
+      "estado": "Pendiente",
+      "fecha_agregado": "2026-03-01",
+      "score_tendencia": 49,
+      "fuente_tendencia": "google_trends"
+    },
+    {
       "tema": "Attention Media ≠ Social Networks",
       "palabras_clave": "social, tecnología, attention, networks, media",
       "notas": "Tema detectado automáticamente con score 45/100. Fuente: hackernews. Referencia: https://susam.net/attention-media-vs-social-networks.html",
