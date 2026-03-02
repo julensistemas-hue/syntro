@@ -108,20 +108,18 @@ https://IP_SERVIDOR</code></pre>
 
   <h3>Debian/Ubuntu</h3>
 
-  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;"># Añadir repositorio GPG key
-curl -s https://packages.wazuh.com/key/GPG-KEY-WAZUH | gpg --no-default-keyring --keyring gnupg-ring:/usr/share/keyrings/wazuh.gpg --import && chmod 644 /usr/share/keyrings/wazuh.gpg
-
-# Añadir repositorio
-echo "deb [signed-by=/usr/share/keyrings/wazuh.gpg] https://packages.wazuh.com/4.x/apt/ stable main" | tee -a /etc/apt/sources.list.d/wazuh.list
-
-# Actualizar e instalar
-apt-get update
-WAZUH_MANAGER="TU_IP_SERVIDOR" WAZUH_AGENT_NAME="NOMBRE_AGENTE" apt-get install wazuh-agent</code></pre>
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">wget https://packages.wazuh.com/4.x/apt/pool/main/w/wazuh-agent/wazuh-agent_4.9.2-1_amd64.deb && sudo WAZUH_MANAGER='TU_IP_SERVIDOR' WAZUH_AGENT_NAME='NOMBRE_AGENTE' dpkg -i ./wazuh-agent_4.9.2-1_amd64.deb</code></pre>
 
   <div class="bg-amber-200 border-l-4 border-amber-700 p-4 my-6 rounded-r-lg">
     <p class="m-0" style="color: #000000;"><strong style="color: #000000;">Ejemplo real:</strong> Si tu servidor Wazuh está en 192.168.1.100 y quieres llamar al agente "servidor-web":</p>
-    <pre style="background:#0f1419;padding:16px;border-radius:8px;margin-top:12px;overflow-x:auto;"><code style="color: #e5e7eb;">WAZUH_MANAGER="192.168.1.100" WAZUH_AGENT_NAME="servidor-web" apt-get install wazuh-agent</code></pre>
+    <pre style="background:#0f1419;padding:16px;border-radius:8px;margin-top:12px;overflow-x:auto;"><code style="color: #e5e7eb;">wget https://packages.wazuh.com/4.x/apt/pool/main/w/wazuh-agent/wazuh-agent_4.9.2-1_amd64.deb && sudo WAZUH_MANAGER='192.168.1.100' WAZUH_AGENT_NAME='servidor-web' dpkg -i ./wazuh-agent_4.9.2-1_amd64.deb</code></pre>
   </div>
+
+  <h3>Habilitar e iniciar el servicio</h3>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">sudo systemctl daemon-reload
+sudo systemctl enable wazuh-agent
+sudo systemctl start wazuh-agent</code></pre>
 
   <h2>Archivo de configuración ossec.conf</h2>
 
