@@ -1,6 +1,15 @@
 {
   "topics": [
     {
+      "tema": "When does MCP make sense vs CLI?",
+      "palabras_clave": "sense, when, does, tecnología, make",
+      "notas": "Tema detectado automáticamente con score 50/100. Fuente: hackernews. Referencia: https://ejholmes.github.io/2026/02/28/mcp-is-dead-long-live-the-cli.html",
+      "estado": "Pendiente",
+      "fecha_agregado": "2026-03-02",
+      "score_tendencia": 50,
+      "fuente_tendencia": "hackernews"
+    },
+    {
       "tema": "seguridad llm",
       "palabras_clave": "seguridad, tendencias",
       "notas": "Tema detectado automáticamente con score 49/100. Fuente: google_trends. ",
