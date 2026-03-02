@@ -1,0 +1,323 @@
+---
+import BlogLayout from "../../layouts/BlogLayout.astro";
+---
+
+<BlogLayout
+  title="Equipos sin Agente: Logs organizados y Wazuh (2/2)"
+  description="Configura rsyslog para organizar logs en ficheros separados según origen. Templates, filtros IF, integración con ossec.conf y reinicio de servicios."
+  publishDate="2026-03-02"
+  author="AI Security"
+  readTime="10 min"
+  tags={["Wazuh", "Syslog", "rsyslog", "Templates", "SIEM", "Ciberseguridad"]}
+  canonical="https://aisecurity.es/blog/configurar-equipos-sin-agente-wazuh-syslog-parte-2">
+
+  <h2>Introducción</h2>
+
+  <p>
+    En la <a href="/blog/configurar-equipos-sin-agente-wazuh-syslog">parte 1</a> configuramos rsyslog para recibir logs en el puerto 514. Ahora vamos a <strong>organizar esos logs en ficheros separados</strong> según su origen, en lugar de mezclarlos todos en /var/log/syslog.
+  </p>
+
+  <p>
+    Esto es útil cuando tienes varios dispositivos enviando logs (NAS, routers, switches) y quieres tenerlos organizados para analizarlos mejor.
+  </p>
+
+  <!-- Video del curso bloqueado -->
+  <div class="my-8">
+    <div class="relative w-full rounded-xl overflow-hidden" style="border: 2px solid #2d3748;">
+      <div class="relative" style="padding-bottom: 56.25%;">
+        <img
+          src="/images/ConfiguracionDeEquiposSinAgente.png"
+          alt="Video: Equipos sin Agente - Parte 2"
+          class="absolute inset-0 w-full h-full object-cover"
+          style="filter: blur(2px) brightness(0.4);"
+        />
+        <div class="absolute inset-0 flex items-center justify-center" style="background: linear-gradient(135deg, rgba(0,101,255,0.2) 0%, rgba(0,0,0,0.7) 100%);">
+          <div class="text-center">
+            <div class="w-20 h-20 mx-auto mb-4 rounded-full flex items-center justify-center" style="background-color: rgba(255,255,255,0.1); border: 2px solid rgba(255,255,255,0.2);">
+              <svg class="w-10 h-10" style="color: rgba(255,255,255,0.5);" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/>
+              </svg>
+            </div>
+            <div class="mb-2">
+              <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-medium" style="background-color: rgba(245, 158, 11, 0.2); color: #fbbf24;">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                </svg>
+                Contenido del curso
+              </span>
+            </div>
+            <h3 class="text-xl font-bold mb-2" style="color: #ffffff;">Video: Equipos sin Agente (2/2)</h3>
+            <p class="text-sm mb-4" style="color: #9ca3af;">10 minutos · Templates, filtros IF y ossec.conf</p>
+            <a
+              href="/curso-wazuh"
+              class="inline-flex items-center gap-2 px-6 py-3 font-semibold rounded-lg transition-all hover:scale-105"
+              style="background: linear-gradient(135deg, #0065ff 0%, #0052cc 100%); color: #ffffff;">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+              </svg>
+              Ver en el Curso Wazuh
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="text-center text-base-600 mt-3 text-sm">
+      Accede al video completo con el curso de Wazuh
+    </p>
+  </div>
+
+  <h2>Configuración completa del rsyslog.conf</h2>
+
+  <p>
+    Edita el archivo de configuración:
+  </p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">nano /etc/rsyslog.conf</code></pre>
+
+  <p>
+    Añade la siguiente configuración al final del archivo:
+  </p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;"># DEBUG temporal (para ver qué variables tiene cada log)
+$template DebugFormat,"%TIMESTAMP:::date-rfc3339% DEBUG: fromhost=[%fromhost%] fromhost-ip=[%fromhost-ip%] hostname=[%hostname%] msg=[%msg%]\n"
+$template DebugLogs,"/var/log/remote/debug.log"
+
+# Template para logs remotos con timestamp y hostname
+$template RemoteStoreAll,"/var/log/remote/all.log"
+$template NASLogs,"/var/log/remote/nas.log"
+$template LogFormat,"%TIMESTAMP:::date-rfc3339% %HOSTNAME% %syslogtag% %msg%\n"
+
+# Procesar solo logs remotos (no locales)
+if $fromhost-ip != '127.0.0.1' then {
+
+    # DEBUG TEMPORAL (descomenta para ver las variables)
+    # ?DebugLogs;DebugFormat
+
+    # Primero: Filtrar logs que contengan "NAS:" en el mensaje
+    if $msg contains "NAS:" then {
+        ?NASLogs;LogFormat
+        stop
+    }
+
+    # Segundo: Todo lo demás va a all.log
+    ?RemoteStoreAll;LogFormat
+    stop
+}</code></pre>
+
+  <h2>Explicación de los Templates</h2>
+
+  <p>
+    Los templates en rsyslog definen <strong>dónde</strong> y <strong>cómo</strong> se guardan los logs:
+  </p>
+
+  <h3>Template de ruta (dónde guardar)</h3>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">$template NASLogs,"/var/log/remote/nas.log"</code></pre>
+
+  <p>
+    Define que los logs que usen este template se guardarán en <code>/var/log/remote/nas.log</code>.
+  </p>
+
+  <h3>Template de formato (cómo guardar)</h3>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">$template LogFormat,"%TIMESTAMP:::date-rfc3339% %HOSTNAME% %syslogtag% %msg%\n"</code></pre>
+
+  <p>
+    Define el formato de cada línea del log. Las variables disponibles son:
+  </p>
+
+  <ul>
+    <li><code>%fromhost%</code> - Hostname del equipo que envía el log</li>
+    <li><code>%fromhost-ip%</code> - IP del equipo que envía el log</li>
+    <li><code>%hostname%</code> - Hostname incluido en el mensaje syslog</li>
+    <li><code>%msg%</code> - Contenido del mensaje</li>
+    <li><code>%syslogtag%</code> - Tag/programa que genera el log</li>
+    <li><code>%TIMESTAMP:::date-rfc3339%</code> - Timestamp en formato ISO 8601</li>
+  </ul>
+
+  <h2>Explicación del IF (filtros condicionales)</h2>
+
+  <p>
+    La estructura del IF en rsyslog permite filtrar logs según condiciones:
+  </p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;"># Solo procesar logs que NO vengan de localhost (logs remotos)
+if $fromhost-ip != '127.0.0.1' then {
+
+    # Si el mensaje contiene "NAS:"
+    if $msg contains "NAS:" then {
+        ?NASLogs;LogFormat    # Guarda en /var/log/remote/nas.log usando LogFormat
+        stop                   # Para de procesar este log (no sigue a más reglas)
+    }
+
+    # Si no coincide con ningún filtro anterior, va aquí
+    ?RemoteStoreAll;LogFormat  # Guarda en /var/log/remote/all.log
+    stop
+}</code></pre>
+
+  <div class="bg-amber-200 border-l-4 border-amber-700 p-4 my-6 rounded-r-lg">
+    <p class="m-0" style="color: #000000;"><strong style="color: #000000;">Importante:</strong> El <code style="color: #000000; background-color: rgba(0,0,0,0.1);">stop</code> es crucial. Evita que el log se procese por más reglas y no se duplique en varios ficheros.</p>
+  </div>
+
+  <h3>Sintaxis de la escritura</h3>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">?NASLogs;LogFormat</code></pre>
+
+  <p>
+    Esto significa: "Escribe en el fichero definido por <code>NASLogs</code> usando el formato definido por <code>LogFormat</code>".
+  </p>
+
+  <h2>Crear el directorio para los logs</h2>
+
+  <p>
+    Antes de reiniciar rsyslog, crea el directorio donde se guardarán los logs:
+  </p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;"># Crear directorio
+mkdir -p /var/log/remote
+
+# Asignar permisos al usuario syslog
+chown syslog:adm /var/log/remote</code></pre>
+
+  <h2>Añadir los ficheros al ossec.conf</h2>
+
+  <p>
+    Para que Wazuh monitorice estos nuevos ficheros de log, edita el archivo de configuración del agente:
+  </p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">nano /var/ossec/etc/ossec.conf</code></pre>
+
+  <p>
+    Añade las siguientes secciones <code>localfile</code> dentro del bloque <code>&lt;ossec_config&gt;</code>:
+  </p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">&lt;!-- Logs del NAS --&gt;
+&lt;localfile&gt;
+  &lt;log_format&gt;syslog&lt;/log_format&gt;
+  &lt;location&gt;/var/log/remote/nas.log&lt;/location&gt;
+&lt;/localfile&gt;
+
+&lt;!-- Todos los logs remotos --&gt;
+&lt;localfile&gt;
+  &lt;log_format&gt;syslog&lt;/log_format&gt;
+  &lt;location&gt;/var/log/remote/all.log&lt;/location&gt;
+&lt;/localfile&gt;</code></pre>
+
+  <div class="bg-green-200 border-l-4 border-green-700 p-4 my-6 rounded-r-lg">
+    <p class="m-0" style="color: #000000;"><strong style="color: #000000;">Flujo completo:</strong></p>
+    <ol style="color: #000000; margin: 8px 0 0 0;">
+      <li>El dispositivo (NAS, router, etc.) envía logs al puerto 514</li>
+      <li>rsyslog los recibe y los filtra según las reglas IF</li>
+      <li>Los logs se escriben en ficheros separados (<code style="color: #000000; background-color: rgba(0,0,0,0.1);">/var/log/remote/nas.log</code>, etc.)</li>
+      <li>El agente Wazuh monitoriza esos ficheros (configurados en <code style="color: #000000; background-color: rgba(0,0,0,0.1);">localfile</code>)</li>
+      <li>Los logs se envían al servidor Wazuh para su análisis</li>
+    </ol>
+  </div>
+
+  <h2>Reiniciar los servicios</h2>
+
+  <p>
+    Después de modificar la configuración, reinicia ambos servicios:
+  </p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;"># Reiniciar rsyslog para aplicar la nueva configuración
+systemctl restart rsyslog
+
+# Reiniciar el agente Wazuh para que lea los nuevos ficheros
+systemctl restart wazuh-agent
+
+# Verificar que ambos servicios están funcionando
+systemctl status rsyslog
+systemctl status wazuh-agent</code></pre>
+
+  <h2>Verificar que funciona</h2>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;"># Ver logs del NAS en tiempo real
+tail -f /var/log/remote/nas.log
+
+# Ver todos los logs remotos
+tail -f /var/log/remote/all.log
+
+# Ver el debug (si lo tienes habilitado)
+tail -f /var/log/remote/debug.log
+
+# Verificar que rsyslog escucha en el puerto 514
+ss -ulnp | grep 514</code></pre>
+
+  <h2>Ejemplo: Añadir más filtros</h2>
+
+  <p>
+    Puedes añadir más filtros para organizar logs de otros dispositivos:
+  </p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;"># Templates adicionales
+$template RouterLogs,"/var/log/remote/router.log"
+$template SwitchLogs,"/var/log/remote/switch.log"
+$template FirewallLogs,"/var/log/remote/firewall.log"
+
+if $fromhost-ip != '127.0.0.1' then {
+
+    # Filtrar por IP del dispositivo
+    if $fromhost-ip == '192.168.1.1' then {
+        ?RouterLogs;LogFormat
+        stop
+    }
+
+    # Filtrar por contenido del mensaje
+    if $msg contains "SWITCH:" then {
+        ?SwitchLogs;LogFormat
+        stop
+    }
+
+    # Filtrar por hostname
+    if $hostname == 'pfsense' then {
+        ?FirewallLogs;LogFormat
+        stop
+    }
+
+    # El resto va a all.log
+    ?RemoteStoreAll;LogFormat
+    stop
+}</code></pre>
+
+  <h2>Recursos adicionales</h2>
+
+  <ul>
+    <li><a href="/blog/configurar-equipos-sin-agente-wazuh-syslog">Parte 1: Configurar Syslog Collector</a></li>
+    <li><a href="https://www.rsyslog.com/doc/v8-stable/configuration/templates.html" target="_blank" rel="noopener" style="color: #38b1ff;">Documentación oficial: rsyslog Templates</a></li>
+    <li><a href="https://documentation.wazuh.com/current/user-manual/capabilities/log-data-collection/index.html" target="_blank" rel="noopener" style="color: #38b1ff;">Wazuh: Log Data Collection</a></li>
+  </ul>
+
+  <hr />
+
+  <p class="text-sm text-base-600">
+    <strong>Artículos relacionados:</strong>
+  </p>
+  <ul class="text-sm">
+    <li><a href="/blog/configurar-equipos-sin-agente-wazuh-syslog">Equipos sin Agente: Configurar Syslog Collector (1/2)</a></li>
+    <li><a href="/blog/configuracion-de-grupos-en-wazuh">Configuración de Grupos en Wazuh</a></li>
+    <li><a href="/blog/como-instalar-agente-wazuh-en-linux">Cómo Instalar el Agente Wazuh en Linux</a></li>
+    <li><a href="/blog/que-es-wazuh-para-que-sirve">¿Qué es Wazuh y para qué sirve?</a></li>
+  </ul>
+  <hr />
+
+  <div class="bg-accent-50 border border-accent-200 rounded-xl p-6 my-8">
+    <h3 class="text-accent-800 mt-0">Aprende Wazuh de forma práctica</h3>
+    <p class="text-base-700 mb-4">
+      Este artículo es parte del contenido del curso. Aprende a configurar syslog, crear reglas personalizadas, integrar con otras herramientas y mucho más.
+    </p>
+    <div class="flex flex-wrap gap-4">
+      <a style="color:black;" href="/curso-wazuh" class="inline-flex items-center gap-2 px-6 py-3 bg-accent-600 text-white font-semibold rounded-lg hover:bg-accent-700 transition-colors">
+        Ver Curso Wazuh - 50€
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </a>
+      <a style="color: black;" href="/wazuh" class="inline-flex items-center gap-2 px-6 py-3 bg-white text-accent-700 font-semibold rounded-lg border border-accent-300 hover:bg-accent-50 transition-colors">
+        Implementación profesional
+      </a>
+    </div>
+  </div>
+
+</BlogLayout>
