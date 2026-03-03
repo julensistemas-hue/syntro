@@ -1,0 +1,216 @@
+---
+import BlogLayout from "../../layouts/BlogLayout.astro";
+---
+
+<BlogLayout
+  title="Integración Wazuh con VirusTotal: Análisis Automático de Malware"
+  description="Configura Wazuh para analizar automáticamente archivos sospechosos contra 70+ motores antivirus usando la API de VirusTotal. Guía paso a paso con FIM y EICAR."
+  publishDate="2026-03-03"
+  author="AI Security"
+  readTime="8 min"
+  tags={["Wazuh", "VirusTotal", "Malware", "FIM", "SIEM", "Ciberseguridad", "Integraciones"]}
+  canonical="https://aisecurity.es/blog/integracion-wazuh-virustotal">
+
+  <h2>Introducción</h2>
+
+  <p>
+    <strong>FIM (File Integrity Monitoring)</strong> detecta archivos nuevos o modificados, pero no sabe si son maliciosos. <strong>VirusTotal</strong> analiza hashes contra más de 70 motores antivirus. Al integrarlos, Wazuh envía automáticamente cada archivo sospechoso a VirusTotal y recibes alertas directamente en el dashboard.
+  </p>
+
+  <!-- Video del curso bloqueado -->
+  <div class="my-8">
+    <div class="relative w-full rounded-xl overflow-hidden" style="border: 2px solid #2d3748;">
+      <div class="relative" style="padding-bottom: 56.25%;">
+        <img
+          src="https://img.youtube.com/vi/T6MGq7l9kJY/maxresdefault.jpg"
+          alt="Video: Integración Wazuh con VirusTotal"
+          class="absolute inset-0 w-full h-full object-cover"
+          style="filter: blur(2px) brightness(0.4);"
+        />
+        <div class="absolute inset-0 flex items-center justify-center" style="background: linear-gradient(135deg, rgba(0,101,255,0.2) 0%, rgba(0,0,0,0.7) 100%);">
+          <div class="text-center">
+            <div class="w-20 h-20 mx-auto mb-4 rounded-full flex items-center justify-center" style="background-color: rgba(255,255,255,0.1); border: 2px solid rgba(255,255,255,0.2);">
+              <svg class="w-10 h-10" style="color: rgba(255,255,255,0.5);" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/>
+              </svg>
+            </div>
+            <div class="mb-2">
+              <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-medium" style="background-color: rgba(245, 158, 11, 0.2); color: #fbbf24;">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                </svg>
+                Contenido del curso
+              </span>
+            </div>
+            <h3 class="text-xl font-bold mb-2" style="color: #ffffff;">Video: Integración con VirusTotal</h3>
+            <p class="text-sm mb-4" style="color: #9ca3af;">10 minutos · Configuración completa y prueba EICAR</p>
+            <a
+              href="/curso-wazuh"
+              class="inline-flex items-center gap-2 px-6 py-3 font-semibold rounded-lg transition-all hover:scale-105"
+              style="background: linear-gradient(135deg, #0065ff 0%, #0052cc 100%); color: #ffffff;">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+              </svg>
+              Ver en el Curso Wazuh
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="text-center text-base-600 mt-3 text-sm">
+      Accede al video completo con el curso de Wazuh
+    </p>
+  </div>
+
+  <h2>Límites de la API gratuita</h2>
+
+  <p>
+    Antes de configurar, conoce los límites porque condicionan qué directorios vigilar:
+  </p>
+
+  <ul>
+    <li><strong>4 peticiones/minuto</strong></li>
+    <li><strong>500 peticiones/día</strong></li>
+  </ul>
+
+  <p>
+    Si vigilas demasiados directorios con mucho movimiento, agotarás el límite en horas. La solución: ser <strong>quirúrgicos</strong> con qué directorios envían a VirusTotal usando el atributo <code>report_changes</code>.
+  </p>
+
+  <p>
+    <strong>API Premium:</strong> Desde octubre 2025, el plan Lite parte desde $5.000/año. Para laboratorios y entornos medianos, la API gratuita es suficiente bien configurada.
+  </p>
+
+  <h2>Paso 1: Obtener la API Key</h2>
+
+  <ol>
+    <li>Entra en <a href="https://www.virustotal.com" target="_blank" rel="noopener">virustotal.com</a></li>
+    <li>Crea cuenta gratuita si no tienes</li>
+    <li>Haz clic en tu avatar → <strong>API key</strong></li>
+    <li>Copia la clave</li>
+  </ol>
+
+  <h2>Paso 2: Configurar la integración en el Manager</h2>
+
+  <p>
+    Edita el fichero de configuración del servidor Wazuh:
+  </p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">nano /var/ossec/etc/ossec.conf</code></pre>
+
+  <p>
+    Añade este bloque antes del cierre <code>&lt;/ossec_config&gt;</code>:
+  </p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">&lt;integration&gt;
+  &lt;name&gt;virustotal&lt;/name&gt;
+  &lt;api_key&gt;TU_API_KEY_AQUI&lt;/api_key&gt;
+  &lt;rule_id&gt;550,554&lt;/rule_id&gt;
+  &lt;alert_format&gt;json&lt;/alert_format&gt;
+&lt;/integration&gt;</code></pre>
+
+  <p><strong>Explicación:</strong></p>
+  <ul>
+    <li><code>rule_id 550</code>: Archivo nuevo detectado por FIM</li>
+    <li><code>rule_id 554</code>: Archivo modificado</li>
+    <li>Cada vez que FIM detecte algo en un directorio vigilado, enviará el hash SHA256 a VirusTotal</li>
+  </ul>
+
+  <p>Reinicia el manager:</p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">systemctl restart wazuh-manager
+systemctl status wazuh-manager</code></pre>
+
+  <p>Verifica el log de integraciones:</p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">tail -f /var/ossec/logs/integrations.log</code></pre>
+
+  <h2>Paso 3: Configurar FIM en el Agente</h2>
+
+  <p>
+    En el agente, edita <code>/var/ossec/etc/ossec.conf</code> y configura qué directorios vigila FIM. <strong>Solo los directorios con <code>report_changes="yes"</code></strong> enviarán hashes a VirusTotal:
+  </p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">&lt;syscheck&gt;
+  &lt;!-- Escaneo completo una vez al día --&gt;
+  &lt;frequency&gt;86400&lt;/frequency&gt;
+  &lt;scan_on_start&gt;yes&lt;/scan_on_start&gt;
+
+  &lt;!-- Directorios de RIESGO: vigilados CON VirusTotal --&gt;
+  &lt;directories realtime="yes" check_all="yes" report_changes="yes"&gt;/tmp&lt;/directories&gt;
+  &lt;directories realtime="yes" check_all="yes" report_changes="yes"&gt;/root&lt;/directories&gt;
+&lt;/syscheck&gt;</code></pre>
+
+  <p><strong>Lógica:</strong></p>
+  <ul>
+    <li><code>/tmp</code>, <code>/root</code>: Donde típicamente aparece malware → <strong>sí VirusTotal</strong></li>
+    <li><code>/etc</code>, <code>/bin</code>: Cambios de sistema, no malware → FIM normal, sin VirusTotal</li>
+  </ul>
+
+  <p>Reinicia el agente:</p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">systemctl restart wazuh-agent</code></pre>
+
+  <h2>Paso 4: Probar con fichero EICAR</h2>
+
+  <p>
+    El <strong>EICAR test file</strong> es un estándar para probar antivirus sin malware real. Todos los motores lo detectan como malicioso intencionalmente.
+  </p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">echo 'X5O!P%@AP[4\PZX54(P^)7CC)7}$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$H+H*' > /tmp/eicar_test.txt</code></pre>
+
+  <p>
+    FIM detecta el archivo nuevo → dispara regla 550 → envía hash a VirusTotal → recibes alerta.
+  </p>
+
+  <p>
+    En 30-60 segundos, ve al dashboard: <strong>Endpoint Security → Malware Detection</strong>
+  </p>
+
+  <p><strong>Verás:</strong></p>
+  <ul>
+    <li><strong>Rule ID:</strong> 87105 (VirusTotal: Alert)</li>
+    <li><strong>File:</strong> /tmp/eicar_test.txt</li>
+    <li><strong>Positives:</strong> Número de motores que lo detectaron</li>
+    <li><strong>Permalink:</strong> Enlace directo al análisis en virustotal.com</li>
+  </ul>
+
+  <p>Limpia después de la prueba:</p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">rm /tmp/eicar_test.txt</code></pre>
+
+  <h2>Resumen</h2>
+
+  <div style="background: linear-gradient(135deg, #1a1f2e 0%, #0f1419 100%); border: 1px solid #2d3748; border-radius: 12px; padding: 24px; margin: 24px 0;">
+    <table style="width: 100%; border-collapse: collapse; color: #e5e7eb;">
+      <tr style="border-bottom: 1px solid #2d3748;">
+        <td style="padding: 12px; font-weight: bold; color: #60a5fa;">Componente</td>
+        <td style="padding: 12px; font-weight: bold; color: #60a5fa;">Configuración</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #2d3748;">
+        <td style="padding: 12px;">Manager</td>
+        <td style="padding: 12px;"><code>&lt;integration&gt;</code> con API key y rule_id 550,554</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #2d3748;">
+        <td style="padding: 12px;">Agente FIM</td>
+        <td style="padding: 12px;"><code>report_changes="yes"</code> solo en directorios de riesgo</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #2d3748;">
+        <td style="padding: 12px;">Límites API</td>
+        <td style="padding: 12px;">4 req/min, 500 req/día (gratuita)</td>
+      </tr>
+      <tr>
+        <td style="padding: 12px;">Alerta</td>
+        <td style="padding: 12px;">Rule ID 87105 en Malware Detection</td>
+      </tr>
+    </table>
+  </div>
+
+  <h2>Próximos pasos</h2>
+
+  <p>
+    En el curso de Wazuh cubrimos más integraciones como Slack, TheHive y respuestas activas automatizadas. <a href="/curso-wazuh">Accede al curso completo</a>.
+  </p>
+
+</BlogLayout>
