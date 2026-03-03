@@ -1,0 +1,208 @@
+---
+import BlogLayout from "../../layouts/BlogLayout.astro";
+---
+
+<BlogLayout
+  title="Monitorizar Certificados Digitales con Wazuh FIM (ISO 27001 y ENS)"
+  description="Laboratorio práctico: configura FIM para detectar modificaciones en certificados .pfx, .p12 y .cer. Cumple ISO 27001 A.8.24 y ENS mp.com.3 con alertas personalizadas."
+  publishDate="2026-03-03"
+  author="AI Security"
+  readTime="10 min"
+  tags={["Wazuh", "FIM", "Certificados", "ISO 27001", "ENS", "Compliance", "Ciberseguridad"]}
+  canonical="https://aisecurity.es/blog/monitorizar-certificados-wazuh-fim">
+
+  <h2>Introducción</h2>
+
+  <p>
+    En este laboratorio práctico modificamos y eliminamos un certificado en Windows para ver cómo <strong>FIM (File Integrity Monitoring)</strong> detecta los cambios y qué información aporta en el panel de Wazuh.
+  </p>
+
+  <!-- Video del curso bloqueado -->
+  <div class="my-8">
+    <div class="relative w-full rounded-xl overflow-hidden" style="border: 2px solid #2d3748;">
+      <div class="relative" style="padding-bottom: 56.25%;">
+        <img
+          src="https://img.youtube.com/vi/Xp43SB19iBg/maxresdefault.jpg"
+          alt="Video: Panel FIM - Integridad de Archivos"
+          class="absolute inset-0 w-full h-full object-cover"
+          style="filter: blur(2px) brightness(0.4);"
+        />
+        <div class="absolute inset-0 flex items-center justify-center" style="background: linear-gradient(135deg, rgba(0,101,255,0.2) 0%, rgba(0,0,0,0.7) 100%);">
+          <div class="text-center">
+            <div class="w-20 h-20 mx-auto mb-4 rounded-full flex items-center justify-center" style="background-color: rgba(255,255,255,0.1); border: 2px solid rgba(255,255,255,0.2);">
+              <svg class="w-10 h-10" style="color: rgba(255,255,255,0.5);" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/>
+              </svg>
+            </div>
+            <div class="mb-2">
+              <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-medium" style="background-color: rgba(245, 158, 11, 0.2); color: #fbbf24;">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                </svg>
+                Contenido del curso
+              </span>
+            </div>
+            <h3 class="text-xl font-bold mb-2" style="color: #ffffff;">Video: Panel FIM - Certificados</h3>
+            <p class="text-sm mb-4" style="color: #9ca3af;">12 minutos · Laboratorio práctico ISO 27001 y ENS</p>
+            <a
+              href="/curso-wazuh"
+              class="inline-flex items-center gap-2 px-6 py-3 font-semibold rounded-lg transition-all hover:scale-105"
+              style="background: linear-gradient(135deg, #0065ff 0%, #0052cc 100%); color: #ffffff;">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+              </svg>
+              Ver en el Curso Wazuh
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="text-center text-base-600 mt-3 text-sm">
+      Accede al video completo con el curso de Wazuh
+    </p>
+  </div>
+
+  <h2>Marco normativo: Por qué es obligatorio</h2>
+
+  <div style="background: linear-gradient(135deg, #1a1f2e 0%, #0f1419 100%); border: 1px solid #2d3748; border-radius: 12px; padding: 24px; margin: 24px 0;">
+    <h3 style="color: #60a5fa; margin-top: 0;">ISO 27001 - Control A.8.24</h3>
+    <p style="color: #e5e7eb;">
+      Los <strong>certificados criptográficos</strong> deben estar protegidos, controlados y auditados. Cualquier cambio sobre ellos debe quedar registrado.
+    </p>
+
+    <h3 style="color: #60a5fa;">ENS - Medida mp.com.3</h3>
+    <p style="color: #e5e7eb; margin-bottom: 0;">
+      Protección de la autenticidad e integridad: los mecanismos criptográficos deben estar <strong>protegidos frente a modificaciones no autorizadas</strong>.
+    </p>
+  </div>
+
+  <p>
+    <strong>En la práctica:</strong> Si en una auditoría te preguntan si tienes controlado quién puede tocar los certificados y si tienes registro de cualquier modificación, la respuesta tiene que ser sí. Este laboratorio es exactamente esa demostración.
+  </p>
+
+  <h2>Configuración syscheck en el Agente Windows</h2>
+
+  <p>
+    Edita el fichero <code>ossec.conf</code> del agente Windows:
+  </p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">&lt;syscheck&gt;
+
+  &lt;frequency&gt;300&lt;/frequency&gt;
+  &lt;scan_on_start&gt;yes&lt;/scan_on_start&gt;
+
+  &lt;!-- Monitorización del certificado corporativo --&gt;
+  &lt;directories realtime="yes"
+               check_all="yes"
+               report_changes="yes"&gt;C:\Users\Administrador\Documents\Certificados\CertificadoEmpresa.pfx&lt;/directories&gt;
+
+  &lt;!-- Almacén de certificados de Windows --&gt;
+  &lt;windows_registry&gt;HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\SystemCertificates&lt;/windows_registry&gt;
+  &lt;windows_registry&gt;HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography&lt;/windows_registry&gt;
+
+&lt;/syscheck&gt;</code></pre>
+
+  <p><strong>Explicación:</strong></p>
+  <ul>
+    <li><code>realtime="yes"</code>: Detecta cambios al instante</li>
+    <li><code>check_all="yes"</code>: Verifica hash, permisos, propietario y tamaño</li>
+    <li><code>report_changes="yes"</code>: Activa análisis de VirusTotal si está integrado</li>
+    <li><code>windows_registry</code>: Vigila el almacén de certificados del sistema</li>
+  </ul>
+
+  <p>Reinicia el servicio del agente en Windows:</p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">Restart-Service WazuhSvc</code></pre>
+
+  <h2>Regla personalizada para certificados críticos</h2>
+
+  <p>
+    En el servidor Wazuh, edita el fichero de reglas locales:
+  </p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">nano /var/ossec/etc/rules/local_rules.xml</code></pre>
+
+  <p>Añade esta regla:</p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">&lt;group name="syscheck,certificate_monitor,"&gt;
+
+  &lt;rule id="100200" level="13"&gt;
+    &lt;if_sid&gt;553&lt;/if_sid&gt;
+    &lt;field name="syscheck.path"&gt;\.pfx$|\.p12$|\.cer$|\.key$&lt;/field&gt;
+    &lt;description&gt;CRITICO: Certificado digital eliminado - $(syscheck.path)&lt;/description&gt;
+    &lt;mitre&gt;
+      &lt;id&gt;T1485&lt;/id&gt;
+    &lt;/mitre&gt;
+    &lt;group&gt;certificate,integrity,gdpr_II_5.1.f,hipaa_164.312.c.1,pci_dss_11.5,&lt;/group&gt;
+  &lt;/rule&gt;
+
+&lt;/group&gt;</code></pre>
+
+  <p><strong>Explicación:</strong></p>
+  <ul>
+    <li><code>if_sid 553</code>: Se activa cuando FIM detecta archivo eliminado</li>
+    <li><code>level="13"</code>: Nivel crítico (máxima prioridad)</li>
+    <li><code>syscheck.path</code>: Filtra por extensiones de certificado (.pfx, .p12, .cer, .key)</li>
+    <li><code>MITRE T1485</code>: Data Destruction</li>
+    <li><code>group</code>: Compliance tags para GDPR, HIPAA y PCI-DSS</li>
+  </ul>
+
+  <p>Reinicia el manager:</p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">systemctl restart wazuh-manager</code></pre>
+
+  <h2>Panel FIM: Qué información aporta</h2>
+
+  <p>
+    Cuando se modifica o elimina un certificado, el panel <strong>Endpoint Security → File Integrity Monitoring</strong> muestra:
+  </p>
+
+  <ul>
+    <li><strong>Evento</strong>: added, modified o deleted</li>
+    <li><strong>Ruta completa</strong> del archivo afectado</li>
+    <li><strong>Hash SHA256</strong> antes y después (si modificado)</li>
+    <li><strong>Usuario</strong> que realizó la acción</li>
+    <li><strong>Timestamp</strong> exacto</li>
+    <li><strong>Cambios de permisos</strong> si los hubo</li>
+  </ul>
+
+  <h2>Resumen de compliance</h2>
+
+  <div style="background: linear-gradient(135deg, #1a1f2e 0%, #0f1419 100%); border: 1px solid #2d3748; border-radius: 12px; padding: 24px; margin: 24px 0;">
+    <table style="width: 100%; border-collapse: collapse; color: #e5e7eb;">
+      <tr style="border-bottom: 1px solid #2d3748;">
+        <td style="padding: 12px; font-weight: bold; color: #60a5fa;">Normativa</td>
+        <td style="padding: 12px; font-weight: bold; color: #60a5fa;">Control</td>
+        <td style="padding: 12px; font-weight: bold; color: #60a5fa;">Cobertura</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #2d3748;">
+        <td style="padding: 12px;">ISO 27001</td>
+        <td style="padding: 12px;">A.8.24</td>
+        <td style="padding: 12px;">Gestión de certificados criptográficos</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #2d3748;">
+        <td style="padding: 12px;">ENS</td>
+        <td style="padding: 12px;">mp.com.3</td>
+        <td style="padding: 12px;">Protección autenticidad e integridad</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #2d3748;">
+        <td style="padding: 12px;">PCI-DSS</td>
+        <td style="padding: 12px;">11.5</td>
+        <td style="padding: 12px;">Monitorización de integridad</td>
+      </tr>
+      <tr>
+        <td style="padding: 12px;">GDPR</td>
+        <td style="padding: 12px;">Art. 5.1.f</td>
+        <td style="padding: 12px;">Integridad y confidencialidad</td>
+      </tr>
+    </table>
+  </div>
+
+  <h2>Próximos pasos</h2>
+
+  <p>
+    En el curso de Wazuh vemos más paneles como Configuration Assessment, Malware Detection y Threat Hunting. <a href="/curso-wazuh">Accede al curso completo</a>.
+  </p>
+
+</BlogLayout>
