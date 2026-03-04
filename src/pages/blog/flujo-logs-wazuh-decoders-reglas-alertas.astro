@@ -1,0 +1,209 @@
+---
+import BlogLayout from "../../layouts/BlogLayout.astro";
+---
+
+<BlogLayout
+  title="Flujo de Logs en Wazuh: Decoders, Reglas y Alertas"
+  description="Entiende cómo Wazuh procesa los logs: pre-decoder, decoder, reglas y alertas. Configura notificaciones por correo, Discord o Slack."
+  publishDate="2026-03-04"
+  author="AI Security"
+  readTime="12 min"
+  tags={["Wazuh", "Decoders", "Reglas", "Alertas", "SIEM", "Logs"]}
+  canonical="https://aisecurity.es/blog/flujo-logs-wazuh-decoders-reglas-alertas">
+
+  <h2>Introducción</h2>
+
+  <p>
+    Cuando un log entra en Wazuh, pasa por varias fases de procesamiento hasta convertirse en una alerta visible en el dashboard o enviada por correo/Discord/Slack. Entender este flujo es fundamental para crear reglas personalizadas y configurar alertas efectivas.
+  </p>
+
+  <!-- Video del curso bloqueado -->
+  <div class="my-8">
+    <div class="relative w-full rounded-xl overflow-hidden" style="border: 2px solid #2d3748;">
+      <div class="relative" style="padding-bottom: 56.25%;">
+        <img
+          src="https://img.youtube.com/vi/c2uTrXBe_o8/maxresdefault.jpg"
+          alt="Video: Decoders, Reglas y Alertas en Wazuh"
+          class="absolute inset-0 w-full h-full object-cover"
+          style="filter: blur(2px) brightness(0.4);"
+        />
+        <div class="absolute inset-0 flex items-center justify-center" style="background: linear-gradient(135deg, rgba(0,101,255,0.2) 0%, rgba(0,0,0,0.7) 100%);">
+          <div class="text-center">
+            <div class="w-20 h-20 mx-auto mb-4 rounded-full flex items-center justify-center" style="background-color: rgba(255,255,255,0.1); border: 2px solid rgba(255,255,255,0.2);">
+              <svg class="w-10 h-10" style="color: rgba(255,255,255,0.5);" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/>
+              </svg>
+            </div>
+            <div class="mb-2">
+              <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-medium" style="background-color: rgba(245, 158, 11, 0.2); color: #fbbf24;">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                </svg>
+                Contenido del curso
+              </span>
+            </div>
+            <h3 class="text-xl font-bold mb-2" style="color: #ffffff;">Video: Decoders, Reglas y Alertas</h3>
+            <p class="text-sm mb-4" style="color: #9ca3af;">15 minutos · Flujo completo de procesamiento</p>
+            <a
+              href="/curso-wazuh"
+              class="inline-flex items-center gap-2 px-6 py-3 font-semibold rounded-lg transition-all hover:scale-105"
+              style="background: linear-gradient(135deg, #0065ff 0%, #0052cc 100%); color: #ffffff;">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+              </svg>
+              Ver en el Curso Wazuh
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="text-center text-base-600 mt-3 text-sm">
+      Accede al video completo con el curso de Wazuh
+    </p>
+  </div>
+
+  <h2>Flujo de procesamiento de logs</h2>
+
+  <div style="background: linear-gradient(135deg, #1a1f2e 0%, #0f1419 100%); border: 1px solid #2d3748; border-radius: 12px; padding: 24px; margin: 24px 0;">
+    <div style="display: flex; flex-direction: column; gap: 16px;">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <span style="background: #3b82f6; color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">1</span>
+        <span style="color: #e5e7eb;"><strong>Log entra</strong> → Wazuh recibe el log desde el agente o syslog</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <span style="background: #3b82f6; color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">2</span>
+        <span style="color: #e5e7eb;"><strong>Pre-decoder</strong> → Extrae timestamp, hostname, programa</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <span style="background: #3b82f6; color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">3</span>
+        <span style="color: #e5e7eb;"><strong>Decoder</strong> → Extrae variables específicas (usuario, IP, acción)</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <span style="background: #3b82f6; color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">4</span>
+        <span style="color: #e5e7eb;"><strong>Reglas</strong> → Evalúa si coincide con alguna regla y asigna nivel</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <span style="background: #3b82f6; color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">5</span>
+        <span style="color: #e5e7eb;"><strong>Indexación</strong> → Se guarda en la base de datos si supera umbral</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <span style="background: #10b981; color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">6</span>
+        <span style="color: #e5e7eb;"><strong>Alerta</strong> → Envía notificación según configuración</span>
+      </div>
+    </div>
+  </div>
+
+  <h2>1. Pre-decoder</h2>
+
+  <p>
+    La primera fase de procesamiento. El pre-decoder extrae los campos básicos del log:
+  </p>
+
+  <ul>
+    <li><strong>Timestamp</strong>: Fecha y hora del evento</li>
+    <li><strong>Hostname</strong>: Nombre del equipo que genera el log</li>
+    <li><strong>Programa</strong>: Aplicación que genera el log (sshd, apache, etc.)</li>
+  </ul>
+
+  <p>
+    Normaliza el formato para que el decoder pueda trabajar con un log estructurado.
+  </p>
+
+  <h2>2. Decoder</h2>
+
+  <p>
+    Analiza el contenido del log y extrae variables específicas usando expresiones regulares. Por ejemplo, de un log de SSH:
+  </p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">Feb 14 12:30:45 server sshd[1234]: Failed password for admin from 192.168.1.100 port 22 ssh2</code></pre>
+
+  <p>El decoder extrae:</p>
+
+  <ul>
+    <li><strong>Usuario</strong>: admin</li>
+    <li><strong>IP origen</strong>: 192.168.1.100</li>
+    <li><strong>Puerto</strong>: 22</li>
+    <li><strong>Resultado</strong>: Failed (intento fallido)</li>
+  </ul>
+
+  <h2>3. Reglas (Rules)</h2>
+
+  <p>
+    Las reglas evalúan los campos extraídos por el decoder. Si el log coincide con una regla, se genera un evento con un <strong>nivel de severidad (0-15)</strong>.
+  </p>
+
+  <ul>
+    <li><strong>Nivel 0-3</strong>: Informativo, normalmente no se indexa</li>
+    <li><strong>Nivel 4-7</strong>: Eventos de interés, se indexan</li>
+    <li><strong>Nivel 8-11</strong>: Alertas importantes</li>
+    <li><strong>Nivel 12-15</strong>: Crítico, requiere acción inmediata</li>
+  </ul>
+
+  <p>
+    Las reglas pueden heredar de otras reglas padre usando <code>if_sid</code>, permitiendo crear jerarquías de detección.
+  </p>
+
+  <h2>4. Indexación</h2>
+
+  <p>
+    Los eventos que superan el umbral de nivel configurado se indexan en la base de datos (Elasticsearch/OpenSearch) y aparecen en el dashboard de Wazuh.
+  </p>
+
+  <h2>5. Alertas</h2>
+
+  <p>
+    Según la configuración, los eventos pueden disparar alertas por diferentes canales:
+  </p>
+
+  <ul>
+    <li><strong>Correo electrónico</strong>: SMTP configurado en ossec.conf</li>
+    <li><strong>Discord</strong>: Webhook integration</li>
+    <li><strong>Slack</strong>: Webhook integration</li>
+    <li><strong>TheHive</strong>: Crear casos automáticamente</li>
+    <li><strong>PagerDuty</strong>: Escalado de incidentes</li>
+  </ul>
+
+  <p>
+    La configuración de alertas se hace en <code>ossec.conf</code> del manager, usando el bloque <code>&lt;integration&gt;</code>.
+  </p>
+
+  <h2>Resumen del flujo</h2>
+
+  <div style="background: linear-gradient(135deg, #1a1f2e 0%, #0f1419 100%); border: 1px solid #2d3748; border-radius: 12px; padding: 24px; margin: 24px 0;">
+    <table style="width: 100%; border-collapse: collapse; color: #e5e7eb;">
+      <tr style="border-bottom: 1px solid #2d3748;">
+        <td style="padding: 12px; font-weight: bold; color: #60a5fa;">Fase</td>
+        <td style="padding: 12px; font-weight: bold; color: #60a5fa;">Función</td>
+        <td style="padding: 12px; font-weight: bold; color: #60a5fa;">Ubicación</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #2d3748;">
+        <td style="padding: 12px;">Pre-decoder</td>
+        <td style="padding: 12px;">Extrae campos básicos</td>
+        <td style="padding: 12px;">/var/ossec/etc/decoders/</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #2d3748;">
+        <td style="padding: 12px;">Decoder</td>
+        <td style="padding: 12px;">Extrae variables específicas</td>
+        <td style="padding: 12px;">/var/ossec/etc/decoders/</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #2d3748;">
+        <td style="padding: 12px;">Reglas</td>
+        <td style="padding: 12px;">Evalúa y asigna nivel</td>
+        <td style="padding: 12px;">/var/ossec/etc/rules/</td>
+      </tr>
+      <tr>
+        <td style="padding: 12px;">Alertas</td>
+        <td style="padding: 12px;">Notifica según canal</td>
+        <td style="padding: 12px;">/var/ossec/etc/ossec.conf</td>
+      </tr>
+    </table>
+  </div>
+
+  <h2>Próximos pasos</h2>
+
+  <p>
+    En las siguientes lecciones del curso veremos cómo crear decoders y reglas personalizadas, y cómo configurar integraciones con Discord y Slack. <a href="/curso-wazuh">Accede al curso completo</a>.
+  </p>
+
+</BlogLayout>
