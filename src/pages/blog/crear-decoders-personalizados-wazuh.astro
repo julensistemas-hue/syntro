@@ -1,0 +1,369 @@
+---
+import BlogLayout from "../../layouts/BlogLayout.astro";
+---
+
+<BlogLayout
+  title="Cómo Crear Decoders Personalizados en Wazuh: Guía Práctica con Regex"
+  description="Aprende a crear decoders personalizados en Wazuh paso a paso. Entiende las expresiones regulares (regex) y extrae campos de cualquier log para crear reglas y alertas."
+  publishDate="2026-03-05"
+  author="AI Security"
+  readTime="15 min"
+  tags={["Wazuh", "Decoders", "Regex", "SIEM", "Logs", "Tutorial"]}
+  canonical="https://aisecurity.es/blog/crear-decoders-personalizados-wazuh">
+
+  <h2>Introducción</h2>
+
+  <p>
+    Uno de los superpoderes de Wazuh es su capacidad de procesar <strong>cualquier tipo de log</strong>. Pero para aprovechar esta potencia, necesitas saber crear <strong>decoders personalizados</strong>. En esta guía vamos a ver cómo hacerlo paso a paso, usando un ejemplo real de logs de un NAS.
+  </p>
+
+  <p>
+    <strong>Lo más importante:</strong> no intentes crear el decoder completo de una vez. Hazlo <strong>poco a poco</strong>, probando cada cambio con la herramienta de test.
+  </p>
+
+  <!-- Video de YouTube -->
+  <div class="my-8">
+    <div class="relative w-full rounded-xl overflow-hidden" style="border: 2px solid #2d3748;">
+      <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+        <iframe
+          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+          src="https://www.youtube.com/embed/PCzeC1I9S4s"
+          title="Crear Decoders Personalizados en Wazuh"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+    <p class="text-center text-base-600 mt-3 text-sm">
+      Video: Crear Decoders Personalizados en Wazuh
+    </p>
+  </div>
+
+  <h2>¿Qué es un Decoder y por qué lo necesitas?</h2>
+
+  <p>
+    Un <strong>decoder</strong> es un "traductor" que lee un log en texto plano y extrae los campos importantes en variables estructuradas. Sin un decoder, Wazuh solo ve texto sin significado.
+  </p>
+
+  <div style="background: linear-gradient(135deg, #1a1f2e 0%, #0f1419 100%); border: 1px solid #2d3748; border-radius: 12px; padding: 24px; margin: 24px 0;">
+    <p style="color: #9ca3af; margin-bottom: 16px;"><strong style="color: #60a5fa;">Sin decoder:</strong></p>
+    <pre style="background:#0f1419;padding:12px;border-radius:6px;overflow-x:auto;margin-bottom:16px;"><code style="color: #e5e7eb;">NAS: Users: marialopez, Source IP: 192.168.1.100, Computer name: MariaPC...</code></pre>
+    <p style="color: #6b7280; font-size: 14px;">→ Wazuh ve solo texto, no puede crear reglas específicas</p>
+
+    <p style="color: #9ca3af; margin-bottom: 16px; margin-top: 24px;"><strong style="color: #10b981;">Con decoder:</strong></p>
+    <pre style="background:#0f1419;padding:12px;border-radius:6px;overflow-x:auto;margin-bottom:16px;"><code style="color: #e5e7eb;">srcuser: marialopez
+srcip: 192.168.1.100
+computer_name: MariaPC
+action: Write
+resource: Certificados/CertificadoDigital.pfx</code></pre>
+    <p style="color: #6b7280; font-size: 14px;">→ Ahora puedes crear reglas: "Si action=Write AND resource contiene Certificado → Alerta nivel 10"</p>
+  </div>
+
+  <h2>El ejemplo: Log de acceso a NAS</h2>
+
+  <p>
+    Vamos a trabajar con este log real de un NAS (Network Attached Storage):
+  </p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">NAS: Users: marialopez, Source IP: 192.168.1.100, Computer name: MariaPC, Connection type: SMB, Accessed resources: shared/Certificados/CertificadoDigital.pfx, Action: Write</code></pre>
+
+  <p>
+    Los campos que queremos extraer son:
+  </p>
+
+  <ul>
+    <li><strong>Usuario</strong>: marialopez</li>
+    <li><strong>IP origen</strong>: 192.168.1.100</li>
+    <li><strong>Nombre equipo</strong>: MariaPC</li>
+    <li><strong>Tipo conexión</strong>: SMB</li>
+    <li><strong>Recurso</strong>: shared/Certificados/CertificadoDigital.pfx</li>
+    <li><strong>Acción</strong>: Write</li>
+  </ul>
+
+  <h2>Paso 1: Empezar simple (solo el usuario)</h2>
+
+  <p>
+    <strong>Regla de oro:</strong> nunca intentes capturar todo de una vez. Empieza con un solo campo y ve añadiendo.
+  </p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">&lt;decoder name="nas-access"&gt;
+  &lt;prematch&gt;^NAS: &lt;/prematch&gt;
+  &lt;regex&gt;^NAS: Users: (\S+)&lt;/regex&gt;
+  &lt;order&gt;srcuser&lt;/order&gt;
+&lt;/decoder&gt;</code></pre>
+
+  <h3>Explicación de cada parte:</h3>
+
+  <div style="background: linear-gradient(135deg, #1a1f2e 0%, #0f1419 100%); border: 1px solid #2d3748; border-radius: 12px; padding: 24px; margin: 24px 0;">
+    <table style="width: 100%; border-collapse: collapse; color: #e5e7eb;">
+      <tr style="border-bottom: 1px solid #2d3748;">
+        <td style="padding: 12px; font-weight: bold; color: #60a5fa; width: 30%;">Elemento</td>
+        <td style="padding: 12px; font-weight: bold; color: #60a5fa;">Significado</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #2d3748;">
+        <td style="padding: 12px; font-family: monospace; color: #fbbf24;">name="nas-access"</td>
+        <td style="padding: 12px;">Nombre único para identificar el decoder</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #2d3748;">
+        <td style="padding: 12px; font-family: monospace; color: #fbbf24;">&lt;prematch&gt;</td>
+        <td style="padding: 12px;">Filtro rápido: solo procesa logs que empiecen por "NAS: "</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #2d3748;">
+        <td style="padding: 12px; font-family: monospace; color: #fbbf24;">^</td>
+        <td style="padding: 12px;">Ancla al inicio de la línea</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #2d3748;">
+        <td style="padding: 12px; font-family: monospace; color: #fbbf24;">(\S+)</td>
+        <td style="padding: 12px;">Captura uno o más caracteres que NO sean espacios</td>
+      </tr>
+      <tr>
+        <td style="padding: 12px; font-family: monospace; color: #fbbf24;">&lt;order&gt;</td>
+        <td style="padding: 12px;">Asigna la captura a la variable "srcuser"</td>
+      </tr>
+    </table>
+  </div>
+
+  <h3>Probar con el Decoder Test</h3>
+
+  <p>
+    En Wazuh Dashboard, ve a <strong>Tools → Ruleset Test</strong> (o usa <code>/var/ossec/bin/wazuh-logtest</code> por terminal) y pega el log. Si funciona, verás:
+  </p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #10b981;">**Phase 2: Decoding
+   name: 'nas-access'
+   srcuser: 'marialopez'</code></pre>
+
+  <p style="color: #10b981; font-weight: bold;">✓ ¡Funciona! El usuario se ha extraído correctamente.</p>
+
+  <h2>Paso 2: Añadir la IP de origen</h2>
+
+  <p>
+    Ahora expandimos la regex para capturar también la IP:
+  </p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">&lt;decoder name="nas-access"&gt;
+  &lt;prematch&gt;^NAS: &lt;/prematch&gt;
+  &lt;regex type="pcre2"&gt;^NAS: Users: (\S+), Source IP: (\d+\.\d+\.\d+\.\d+)&lt;/regex&gt;
+  &lt;order&gt;srcuser,srcip&lt;/order&gt;
+&lt;/decoder&gt;</code></pre>
+
+  <h3>Novedades:</h3>
+
+  <div style="background: linear-gradient(135deg, #1a1f2e 0%, #0f1419 100%); border: 1px solid #2d3748; border-radius: 12px; padding: 24px; margin: 24px 0;">
+    <table style="width: 100%; border-collapse: collapse; color: #e5e7eb;">
+      <tr style="border-bottom: 1px solid #2d3748;">
+        <td style="padding: 12px; font-weight: bold; color: #60a5fa; width: 30%;">Elemento</td>
+        <td style="padding: 12px; font-weight: bold; color: #60a5fa;">Significado</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #2d3748;">
+        <td style="padding: 12px; font-family: monospace; color: #fbbf24;">type="pcre2"</td>
+        <td style="padding: 12px;">Usa regex PCRE2 (más potente y estándar)</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #2d3748;">
+        <td style="padding: 12px; font-family: monospace; color: #fbbf24;">\d+</td>
+        <td style="padding: 12px;">Uno o más dígitos (0-9)</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #2d3748;">
+        <td style="padding: 12px; font-family: monospace; color: #fbbf24;">\.</td>
+        <td style="padding: 12px;">Un punto literal (escapado con \)</td>
+      </tr>
+      <tr>
+        <td style="padding: 12px; font-family: monospace; color: #fbbf24;">\d+\.\d+\.\d+\.\d+</td>
+        <td style="padding: 12px;">Patrón completo de una IP (ej: 192.168.1.100)</td>
+      </tr>
+    </table>
+  </div>
+
+  <h2>Paso 3: El decoder completo</h2>
+
+  <p>
+    Siguiendo el mismo proceso, añadimos el resto de campos:
+  </p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">&lt;decoder name="nas-access"&gt;
+  &lt;prematch&gt;^NAS: &lt;/prematch&gt;
+  &lt;regex type="pcre2"&gt;^NAS: Users: (\S+), Source IP: (\d+\.\d+\.\d+\.\d+), Computer name: (\S+), Connection type: (\S+), Accessed resources: (.+), Action: (\w+)$&lt;/regex&gt;
+  &lt;order&gt;srcuser,srcip,computer_name,conn_type,resource,action&lt;/order&gt;
+&lt;/decoder&gt;</code></pre>
+
+  <h2>Guía Rápida de Regex para Wazuh</h2>
+
+  <p>
+    Estas son las expresiones regulares más útiles para crear decoders:
+  </p>
+
+  <div style="background: linear-gradient(135deg, #1a1f2e 0%, #0f1419 100%); border: 1px solid #2d3748; border-radius: 12px; padding: 24px; margin: 24px 0;">
+    <table style="width: 100%; border-collapse: collapse; color: #e5e7eb;">
+      <tr style="border-bottom: 1px solid #2d3748;">
+        <td style="padding: 12px; font-weight: bold; color: #60a5fa;">Regex</td>
+        <td style="padding: 12px; font-weight: bold; color: #60a5fa;">Significado</td>
+        <td style="padding: 12px; font-weight: bold; color: #60a5fa;">Ejemplo</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #2d3748;">
+        <td style="padding: 12px; font-family: monospace; color: #fbbf24;">\S+</td>
+        <td style="padding: 12px;">Uno o más caracteres NO espacios</td>
+        <td style="padding: 12px; color: #9ca3af;">marialopez, admin123</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #2d3748;">
+        <td style="padding: 12px; font-family: monospace; color: #fbbf24;">\d+</td>
+        <td style="padding: 12px;">Uno o más dígitos</td>
+        <td style="padding: 12px; color: #9ca3af;">192, 443, 2024</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #2d3748;">
+        <td style="padding: 12px; font-family: monospace; color: #fbbf24;">\w+</td>
+        <td style="padding: 12px;">Uno o más caracteres alfanuméricos (letras, números, _)</td>
+        <td style="padding: 12px; color: #9ca3af;">Write, Read, user_name</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #2d3748;">
+        <td style="padding: 12px; font-family: monospace; color: #fbbf24;">.+</td>
+        <td style="padding: 12px;">Uno o más de CUALQUIER carácter</td>
+        <td style="padding: 12px; color: #9ca3af;">shared/Docs/file.pdf</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #2d3748;">
+        <td style="padding: 12px; font-family: monospace; color: #fbbf24;">.*</td>
+        <td style="padding: 12px;">Cero o más de cualquier carácter</td>
+        <td style="padding: 12px; color: #9ca3af;">(puede estar vacío)</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #2d3748;">
+        <td style="padding: 12px; font-family: monospace; color: #fbbf24;">^</td>
+        <td style="padding: 12px;">Inicio de línea</td>
+        <td style="padding: 12px; color: #9ca3af;">^NAS: (empieza por NAS:)</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #2d3748;">
+        <td style="padding: 12px; font-family: monospace; color: #fbbf24;">$</td>
+        <td style="padding: 12px;">Fin de línea</td>
+        <td style="padding: 12px; color: #9ca3af;">Write$ (termina en Write)</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #2d3748;">
+        <td style="padding: 12px; font-family: monospace; color: #fbbf24;">\.</td>
+        <td style="padding: 12px;">Punto literal (escapado)</td>
+        <td style="padding: 12px; color: #9ca3af;">192\.168 (IP literal)</td>
+      </tr>
+      <tr>
+        <td style="padding: 12px; font-family: monospace; color: #fbbf24;">( )</td>
+        <td style="padding: 12px;">Grupo de captura → se asigna a variable</td>
+        <td style="padding: 12px; color: #9ca3af;">Users: (\S+) → srcuser</td>
+      </tr>
+    </table>
+  </div>
+
+  <h2>¿Por qué usar PCRE2?</h2>
+
+  <p>
+    Wazuh soporta dos tipos de regex:
+  </p>
+
+  <ul>
+    <li><strong>Regex nativa de Wazuh</strong>: Más simple pero limitada</li>
+    <li><strong>PCRE2</strong> (<code>type="pcre2"</code>): Estándar de la industria, más potente</li>
+  </ul>
+
+  <p>
+    Recomendación: usa siempre <code>type="pcre2"</code> para decoders complejos. La sintaxis es la misma que usarías en Python, JavaScript o cualquier otro lenguaje.
+  </p>
+
+  <h2>¿Para qué sirve extraer estos campos?</h2>
+
+  <p>
+    Una vez que el decoder extrae los campos, puedes crear <strong>reglas específicas</strong>:
+  </p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">&lt;!-- Alerta: Alguien modifica un certificado --&gt;
+&lt;rule id="100001" level="12"&gt;
+  &lt;decoded_as&gt;nas-access&lt;/decoded_as&gt;
+  &lt;field name="action"&gt;Write&lt;/field&gt;
+  &lt;field name="resource"&gt;Certificado&lt;/field&gt;
+  &lt;description&gt;Modificación de certificado en NAS por $(srcuser) desde $(srcip)&lt;/description&gt;
+&lt;/rule&gt;
+
+&lt;!-- Alerta: Acceso desde IP externa --&gt;
+&lt;rule id="100002" level="10"&gt;
+  &lt;decoded_as&gt;nas-access&lt;/decoded_as&gt;
+  &lt;field name="srcip"&gt;^(?!192\.168\.)&lt;/field&gt;
+  &lt;description&gt;Acceso a NAS desde IP externa: $(srcip)&lt;/description&gt;
+&lt;/rule&gt;
+
+&lt;!-- Alerta: Usuario desconocido --&gt;
+&lt;rule id="100003" level="8"&gt;
+  &lt;decoded_as&gt;nas-access&lt;/decoded_as&gt;
+  &lt;field name="srcuser"&gt;^(?!admin|marialopez|juangarcia)&lt;/field&gt;
+  &lt;description&gt;Acceso a NAS con usuario no autorizado: $(srcuser)&lt;/description&gt;
+&lt;/rule&gt;</code></pre>
+
+  <p>
+    <strong>Sin el decoder, nada de esto sería posible.</strong> Solo tendrías el texto plano sin poder filtrar por usuario, IP o acción.
+  </p>
+
+  <h2>Metodología: Construir decoders poco a poco</h2>
+
+  <div style="background: linear-gradient(135deg, #1a1f2e 0%, #0f1419 100%); border: 1px solid #2d3748; border-radius: 12px; padding: 24px; margin: 24px 0;">
+    <div style="display: flex; flex-direction: column; gap: 16px;">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <span style="background: #3b82f6; color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">1</span>
+        <span style="color: #e5e7eb;">Empieza con <code style="color: #fbbf24;">&lt;prematch&gt;</code> para filtrar logs</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <span style="background: #3b82f6; color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">2</span>
+        <span style="color: #e5e7eb;">Captura <strong>un solo campo</strong> con la regex</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <span style="background: #3b82f6; color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">3</span>
+        <span style="color: #e5e7eb;"><strong>Prueba</strong> con Ruleset Test o wazuh-logtest</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <span style="background: #3b82f6; color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">4</span>
+        <span style="color: #e5e7eb;">Si funciona, añade el siguiente campo</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <span style="background: #10b981; color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">5</span>
+        <span style="color: #e5e7eb;">Repite hasta completar el decoder</span>
+      </div>
+    </div>
+  </div>
+
+  <p>
+    <strong>No saltes pasos.</strong> Si intentas escribir la regex completa de una vez, cuando falle no sabrás qué parte está mal.
+  </p>
+
+  <h2>Dónde guardar el decoder</h2>
+
+  <p>
+    Los decoders personalizados se guardan en:
+  </p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">/var/ossec/etc/decoders/local_decoder.xml</code></pre>
+
+  <p>
+    Después de modificar el archivo, reinicia el manager:
+  </p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">systemctl restart wazuh-manager</code></pre>
+
+  <h2>Resumen</h2>
+
+  <ul>
+    <li><strong>Decoder</strong> = traductor de logs a campos estructurados</li>
+    <li><strong>Sin decoder</strong>, no puedes crear reglas específicas</li>
+    <li>Usa <code>type="pcre2"</code> para regex estándar</li>
+    <li><strong>Construye poco a poco</strong> y prueba cada paso</li>
+    <li>Regex esenciales: <code>\S+</code> (no espacios), <code>\d+</code> (dígitos), <code>.+</code> (todo), <code>( )</code> (captura)</li>
+  </ul>
+
+  <h2>Próximos pasos</h2>
+
+  <p>
+    Una vez que domines los decoders, el siguiente paso es crear <strong>reglas personalizadas</strong> que usen los campos extraídos para generar alertas. En el <a href="/curso-wazuh">Curso de Wazuh</a> cubrimos todo el flujo completo: decoders → reglas → alertas → notificaciones.
+  </p>
+
+  <div style="background: linear-gradient(135deg, rgba(0, 101, 255, 0.1) 0%, rgba(0, 82, 204, 0.1) 100%); border: 1px solid rgba(0, 101, 255, 0.3); border-radius: 12px; padding: 24px; margin: 24px 0; text-align: center;">
+    <p style="color: #e5e7eb; margin-bottom: 16px;">¿Quieres aprender a crear reglas y configurar alertas por Discord/Email?</p>
+    <a
+      href="/curso-wazuh"
+      class="inline-flex items-center gap-2 px-6 py-3 font-semibold rounded-lg transition-all hover:scale-105"
+      style="background: linear-gradient(135deg, #0065ff 0%, #0052cc 100%); color: #ffffff; text-decoration: none;">
+      Ver Curso de Wazuh
+    </a>
+  </div>
+
+</BlogLayout>
