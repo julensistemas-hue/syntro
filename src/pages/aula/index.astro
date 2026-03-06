@@ -112,7 +112,7 @@ function isLessonCompleted(lessonId: number): boolean {
   )}
 
   <!-- Modules List -->
-  <div class="space-y-6">
+  <div class="space-y-4">
     {(modules || []).map((module: Module, moduleIndex: number) => {
       const moduleLessons = lessonsByModule[module.id] || [];
       const moduleCompletedLessons = moduleLessons.filter((l: Lesson) => isLessonCompleted(l.id)).length;
@@ -120,13 +120,22 @@ function isLessonCompleted(lessonId: number): boolean {
       const isLocked = paymentPending;
 
       return (
-        <div class="rounded-2xl overflow-hidden" style={`background-color: #1a1f26; border: 1px solid #2d3748; ${isLocked ? 'opacity: 0.75;' : ''}`}>
-          <!-- Module Header -->
-          <div class="p-6" style="border-bottom: 1px solid #2d3748;">
+        <div
+          class="module-accordion rounded-2xl overflow-hidden"
+          style={`background-color: #1a1f26; border: 1px solid #2d3748; ${isLocked ? 'opacity: 0.75;' : ''}`}
+          data-module-id={module.id}
+        >
+          <!-- Module Header (Clickable) -->
+          <button
+            type="button"
+            class="module-header w-full p-6 text-left transition-colors hover:bg-white/5"
+            aria-expanded="false"
+            data-module-id={module.id}
+          >
             <div class="flex items-start justify-between gap-4">
               <div class="flex items-start gap-4">
                 <div
-                  class="w-12 h-12 rounded-xl flex items-center justify-center text-lg font-bold"
+                  class="w-12 h-12 rounded-xl flex items-center justify-center text-lg font-bold flex-shrink-0"
                   style={
                     moduleProgress === 100 ? 'background-color: rgba(34, 197, 94, 0.2); color: #4ade80;' :
                     moduleProgress > 0 ? 'background-color: rgba(0, 101, 255, 0.2); color: #38b1ff;' :
@@ -146,24 +155,40 @@ function isLessonCompleted(lessonId: number): boolean {
                   <p class="mt-1" style="color: #9ca3af;">{module.description}</p>
                 </div>
               </div>
-              <div class="text-right flex-shrink-0">
-                <span class="text-sm" style="color: #9ca3af;">
-                  {moduleCompletedLessons}/{moduleLessons.length} lecciones
-                </span>
-                {!isLocked && moduleProgress > 0 && (
-                  <div class="w-24 h-2 rounded-full mt-2 overflow-hidden" style="background-color: #374151;">
-                    <div
-                      class="h-full rounded-full"
-                      style={`width: ${moduleProgress}%; background-color: #0065ff;`}
-                    ></div>
-                  </div>
-                )}
+              <div class="flex items-center gap-4 flex-shrink-0">
+                <div class="text-right">
+                  <span class="text-sm" style="color: #9ca3af;">
+                    {moduleCompletedLessons}/{moduleLessons.length} lecciones
+                  </span>
+                  {!isLocked && moduleProgress > 0 && (
+                    <div class="w-24 h-2 rounded-full mt-2 overflow-hidden" style="background-color: #374151;">
+                      <div
+                        class="h-full rounded-full"
+                        style={`width: ${moduleProgress}%; background-color: #0065ff;`}
+                      ></div>
+                    </div>
+                  )}
+                </div>
+                <!-- Chevron Icon -->
+                <svg
+                  class="module-chevron w-6 h-6 transition-transform duration-200"
+                  style="color: #6b7280;"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
               </div>
             </div>
-          </div>
+          </button>
 
-          <!-- Lessons List -->
-          <div>
+          <!-- Lessons List (Collapsible) -->
+          <div
+            class="module-content hidden"
+            data-module-id={module.id}
+            style="border-top: 1px solid #2d3748;"
+          >
             {moduleLessons.map((lesson: Lesson, lessonIndex: number) => {
               const isCompleted = isLessonCompleted(lesson.id);
               return (
@@ -242,3 +267,39 @@ function isLessonCompleted(lessonId: number): boolean {
     </div>
   )}
 </AulaLayout>
+
+<script>
+  // Module accordion functionality
+  document.addEventListener('DOMContentLoaded', () => {
+    const moduleHeaders = document.querySelectorAll('.module-header');
+
+    moduleHeaders.forEach((header) => {
+      header.addEventListener('click', () => {
+        const moduleId = header.getAttribute('data-module-id');
+        const content = document.querySelector(`.module-content[data-module-id="${moduleId}"]`);
+        const chevron = header.querySelector('.module-chevron');
+        const isExpanded = header.getAttribute('aria-expanded') === 'true';
+
+        // Toggle the content visibility
+        if (isExpanded) {
+          content?.classList.add('hidden');
+          header.setAttribute('aria-expanded', 'false');
+          chevron?.classList.remove('rotate-180');
+        } else {
+          content?.classList.remove('hidden');
+          header.setAttribute('aria-expanded', 'true');
+          chevron?.classList.add('rotate-180');
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  .module-chevron {
+    transition: transform 0.2s ease-in-out;
+  }
+  .module-chevron.rotate-180 {
+    transform: rotate(180deg);
+  }
+</style>
