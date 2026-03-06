@@ -1,0 +1,170 @@
+---
+import BlogLayout from "../../layouts/BlogLayout.astro";
+---
+
+<BlogLayout
+  title="Detectar Instalaciones y Desinstalaciones de Software en Windows con Wazuh"
+  description="Crea reglas en Wazuh para detectar cuando se instala o desinstala software en equipos Windows. Event IDs 11707 y 11724 para auditar cambios."
+  publishDate="2026-03-06"
+  author="AI Security"
+  readTime="8 min"
+  tags={["Wazuh", "Windows", "Reglas", "Software", "Auditoría", "SIEM"]}
+  canonical="https://aisecurity.es/blog/detectar-instalaciones-software-windows-wazuh">
+
+  <h2>Introducción</h2>
+
+  <p>
+    Windows genera eventos específicos cuando se instala o desinstala software. Con Wazuh puedes capturar estos eventos y generar alertas para <strong>auditar cambios en tu infraestructura</strong>. Esto es útil para detectar software no autorizado o cambios sospechosos.
+  </p>
+
+  <!-- Video del curso bloqueado -->
+  <div class="my-8">
+    <div class="relative w-full rounded-xl overflow-hidden" style="border: 2px solid #2d3748;">
+      <div class="relative" style="padding-bottom: 56.25%;">
+        <img
+          src="https://img.youtube.com/vi/UsNVFhMk0SM/maxresdefault.jpg"
+          alt="Video: Detectar Instalaciones de Software"
+          class="absolute inset-0 w-full h-full object-cover"
+          style="filter: blur(2px) brightness(0.4);"
+        />
+        <div class="absolute inset-0 flex items-center justify-center" style="background: linear-gradient(135deg, rgba(0,101,255,0.2) 0%, rgba(0,0,0,0.7) 100%);">
+          <div class="text-center">
+            <div class="w-20 h-20 mx-auto mb-4 rounded-full flex items-center justify-center" style="background-color: rgba(255,255,255,0.1); border: 2px solid rgba(255,255,255,0.2);">
+              <svg class="w-10 h-10" style="color: rgba(255,255,255,0.5);" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/>
+              </svg>
+            </div>
+            <div class="mb-2">
+              <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-medium" style="background-color: rgba(245, 158, 11, 0.2); color: #fbbf24;">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                </svg>
+                Contenido del curso
+              </span>
+            </div>
+            <h3 class="text-xl font-bold mb-2" style="color: #ffffff;">Video: Detectar Software Windows</h3>
+            <p class="text-sm mb-4" style="color: #9ca3af;">12 minutos - Reglas para Event ID 11707 y 11724</p>
+            <a
+              href="/curso-wazuh"
+              class="inline-flex items-center gap-2 px-6 py-3 font-semibold rounded-lg transition-all hover:scale-105"
+              style="background: linear-gradient(135deg, #0065ff 0%, #0052cc 100%); color: #ffffff;">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+              </svg>
+              Ver en el Curso Wazuh
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="text-center text-base-600 mt-3 text-sm">
+      Accede al video completo con el curso de Wazuh
+    </p>
+  </div>
+
+  <h2>Event IDs de Windows</h2>
+
+  <p>
+    Windows Installer genera eventos en el log de Application cuando se instala o desinstala software:
+  </p>
+
+  <div style="background: linear-gradient(135deg, #1a1f2e 0%, #0f1419 100%); border: 1px solid #2d3748; border-radius: 12px; padding: 24px; margin: 24px 0;">
+    <table style="width: 100%; border-collapse: collapse; color: #e5e7eb;">
+      <tr style="border-bottom: 1px solid #2d3748;">
+        <td style="padding: 12px; font-weight: bold; color: #60a5fa;">Event ID</td>
+        <td style="padding: 12px; font-weight: bold; color: #60a5fa;">Acción</td>
+        <td style="padding: 12px; font-weight: bold; color: #60a5fa;">Descripción</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #2d3748;">
+        <td style="padding: 12px;">11707</td>
+        <td style="padding: 12px;">Instalación</td>
+        <td style="padding: 12px;">Software instalado correctamente</td>
+      </tr>
+      <tr>
+        <td style="padding: 12px;">11724</td>
+        <td style="padding: 12px;">Desinstalación</td>
+        <td style="padding: 12px;">Software eliminado del sistema</td>
+      </tr>
+    </table>
+  </div>
+
+  <h2>Regla para detectar instalaciones</h2>
+
+  <p>
+    Añade esta regla en <code>/var/ossec/etc/rules/local_rules.xml</code>:
+  </p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">&lt;rule id="100200" level="8"&gt;
+  &lt;if_group&gt;windows&lt;/if_group&gt;
+  &lt;field name="win.system.eventID"&gt;^11707$&lt;/field&gt;
+  &lt;description&gt;Software instalado en Windows: $(win.eventdata.data)&lt;/description&gt;
+  &lt;options&gt;no_full_log&lt;/options&gt;
+  &lt;group&gt;software_install,policy_violation&lt;/group&gt;
+&lt;/rule&gt;</code></pre>
+
+  <p><strong>Explicación:</strong></p>
+  <ul>
+    <li><code>if_group windows</code>: Solo aplica a eventos de Windows</li>
+    <li><code>win.system.eventID</code>: Filtra por Event ID 11707</li>
+    <li><code>$(win.eventdata.data)</code>: Incluye el nombre del software en la alerta</li>
+    <li><code>level="8"</code>: Severidad media-alta</li>
+    <li><code>no_full_log</code>: No incluye el log completo (reduce tamaño)</li>
+  </ul>
+
+  <h2>Regla para detectar desinstalaciones</h2>
+
+  <p>
+    Las desinstalaciones pueden ser más críticas (eliminación de software de seguridad, por ejemplo):
+  </p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">&lt;rule id="100201" level="12"&gt;
+  &lt;if_group&gt;windows&lt;/if_group&gt;
+  &lt;field name="win.system.eventID"&gt;^11724$&lt;/field&gt;
+  &lt;description&gt;Software desinstalado en Windows: $(win.eventdata.data)&lt;/description&gt;
+  &lt;options&gt;no_full_log&lt;/options&gt;
+  &lt;group&gt;software_uninstall,policy_violation&lt;/group&gt;
+&lt;/rule&gt;</code></pre>
+
+  <p><strong>Nota:</strong> Level 12 es más alto porque desinstalar software puede indicar:</p>
+  <ul>
+    <li>Eliminación de antivirus o herramientas de seguridad</li>
+    <li>Usuario intentando ocultar actividad</li>
+    <li>Preparación para instalar software malicioso</li>
+  </ul>
+
+  <h2>Aplicar las reglas</h2>
+
+  <p>Reinicia el manager para aplicar:</p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">systemctl restart wazuh-manager</code></pre>
+
+  <h2>Qué verás en el dashboard</h2>
+
+  <p>
+    Cuando un usuario instale o desinstale software, verás alertas en el dashboard con:
+  </p>
+
+  <ul>
+    <li><strong>Nombre del software</strong> afectado</li>
+    <li><strong>Equipo</strong> donde ocurrió</li>
+    <li><strong>Usuario</strong> que realizó la acción</li>
+    <li><strong>Timestamp</strong> exacto</li>
+  </ul>
+
+  <h2>Casos de uso</h2>
+
+  <ul>
+    <li><strong>Cumplimiento normativo</strong>: Auditar cambios de software (ISO 27001, ENS)</li>
+    <li><strong>Detección de amenazas</strong>: Alertar si se desinstala el antivirus</li>
+    <li><strong>Control de políticas</strong>: Detectar instalaciones no autorizadas</li>
+    <li><strong>Inventario de software</strong>: Mantener registro de cambios</li>
+  </ul>
+
+  <h2>Próximos pasos</h2>
+
+  <p>
+    En el curso de Wazuh también vemos cómo crear decoders personalizados para logs de aplicaciones propias. <a href="/curso-wazuh">Accede al curso completo</a>.
+  </p>
+
+</BlogLayout>
