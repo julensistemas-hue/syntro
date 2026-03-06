@@ -26,7 +26,8 @@
       "Bash(timeout /t 8 /nobreak)",
       "Bash(npx playwright install:*)",
       "Bash(dir:*)",
-      "Bash(python3:*)"
+      "Bash(python3:*)",
+      "Bash(xxd:*)"
     ],
     "deny": [],
     "ask": []

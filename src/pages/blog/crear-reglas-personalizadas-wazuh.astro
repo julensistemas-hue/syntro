@@ -1,0 +1,193 @@
+---
+import BlogLayout from "../../layouts/BlogLayout.astro";
+---
+
+<BlogLayout
+  title="Crear Reglas Personalizadas en Wazuh: Detecta Accesos y Acciones"
+  description="Aprende a crear reglas en Wazuh para detectar accesos a carpetas, usuarios específicos o acciones Delete/Write. Ejemplos prácticos con NAS y variables dinámicas."
+  publishDate="2026-03-06"
+  author="AI Security"
+  readTime="10 min"
+  tags={["Wazuh", "Reglas", "Alertas", "NAS", "SIEM", "Ciberseguridad"]}
+  canonical="https://aisecurity.es/blog/crear-reglas-personalizadas-wazuh">
+
+  <h2>Introducción</h2>
+
+  <p>
+    Las reglas personalizadas en Wazuh permiten detectar patrones específicos en tus logs y generar alertas cuando se cumplen ciertas condiciones. En este artículo vemos ejemplos prácticos con logs de NAS: detectar accesos a carpetas, usuarios específicos y acciones como Delete o Write.
+  </p>
+
+  <!-- Video del curso bloqueado -->
+  <div class="my-8">
+    <div class="relative w-full rounded-xl overflow-hidden" style="border: 2px solid #2d3748;">
+      <div class="relative" style="padding-bottom: 56.25%;">
+        <img
+          src="https://img.youtube.com/vi/q_uimgSJGGw/maxresdefault.jpg"
+          alt="Video: Creación de Reglas Personalizadas"
+          class="absolute inset-0 w-full h-full object-cover"
+          style="filter: blur(2px) brightness(0.4);"
+        />
+        <div class="absolute inset-0 flex items-center justify-center" style="background: linear-gradient(135deg, rgba(0,101,255,0.2) 0%, rgba(0,0,0,0.7) 100%);">
+          <div class="text-center">
+            <div class="w-20 h-20 mx-auto mb-4 rounded-full flex items-center justify-center" style="background-color: rgba(255,255,255,0.1); border: 2px solid rgba(255,255,255,0.2);">
+              <svg class="w-10 h-10" style="color: rgba(255,255,255,0.5);" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/>
+              </svg>
+            </div>
+            <div class="mb-2">
+              <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-medium" style="background-color: rgba(245, 158, 11, 0.2); color: #fbbf24;">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                </svg>
+                Contenido del curso
+              </span>
+            </div>
+            <h3 class="text-xl font-bold mb-2" style="color: #ffffff;">Video: Reglas Personalizadas</h3>
+            <p class="text-sm mb-4" style="color: #9ca3af;">15 minutos - Ejemplos prácticos con NAS</p>
+            <a
+              href="/curso-wazuh"
+              class="inline-flex items-center gap-2 px-6 py-3 font-semibold rounded-lg transition-all hover:scale-105"
+              style="background: linear-gradient(135deg, #0065ff 0%, #0052cc 100%); color: #ffffff;">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+              </svg>
+              Ver en el Curso Wazuh
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="text-center text-base-600 mt-3 text-sm">
+      Accede al video completo con el curso de Wazuh
+    </p>
+  </div>
+
+  <h2>Estructura básica de una regla</h2>
+
+  <p>
+    Las reglas en Wazuh se definen en ficheros XML dentro de <code>/var/ossec/etc/rules/</code>. La estructura básica es:
+  </p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">&lt;rule id="100071" level="10"&gt;
+  &lt;if_sid&gt;100070&lt;/if_sid&gt;
+  &lt;field name="campo"&gt;valor&lt;/field&gt;
+  &lt;description&gt;Descripción de la alerta&lt;/description&gt;
+&lt;/rule&gt;</code></pre>
+
+  <p><strong>Componentes:</strong></p>
+  <ul>
+    <li><code>id</code>: Identificador único de la regla (100000+ para personalizadas)</li>
+    <li><code>level</code>: Severidad de la alerta (0-15)</li>
+    <li><code>if_sid</code>: Regla padre de la que hereda (el decoder)</li>
+    <li><code>field</code>: Campo extraído por el decoder a evaluar</li>
+    <li><code>description</code>: Texto de la alerta que aparece en el dashboard</li>
+  </ul>
+
+  <h2>Ejemplo 1: Detectar acceso a carpeta específica</h2>
+
+  <p><strong>Log de entrada:</strong></p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">NAS: Users: marialopez, Source IP: 192.168.1.100, Computer name: MariaPC, Connection type: SMB, Accessed resources: Dpto_direccion/Certificados/CertificadoDigital.pfc, Action: Write</code></pre>
+
+  <p><strong>Regla:</strong></p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">&lt;rule id="100071" level="10"&gt;
+  &lt;if_sid&gt;100070&lt;/if_sid&gt;
+  &lt;field name="resource"&gt;Dpto_direccion&lt;/field&gt;
+  &lt;description&gt;Acceso a carpeta Direccion en NAS&lt;/description&gt;
+&lt;/rule&gt;</code></pre>
+
+  <p><strong>Cómo funciona:</strong></p>
+  <ul>
+    <li>Hereda de la regla 100070 (decoder genérico de NAS)</li>
+    <li>Filtra por el campo <code>resource</code> que contenga "Dpto_direccion"</li>
+    <li>Genera alerta nivel 10 cuando cualquier usuario accede a esa carpeta</li>
+  </ul>
+
+  <h2>Ejemplo 2: Usuario + Acción específica</h2>
+
+  <p><strong>Log de entrada:</strong></p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">NAS: Users: Juan, Source IP: 192.168.1.100, Computer name: MariaPC, Connection type: SMB, Accessed resources: sdsds/Certificados/CertificadoDigital.pfc, Action: Delete</code></pre>
+
+  <p><strong>Regla:</strong></p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">&lt;rule id="100072" level="10"&gt;
+  &lt;if_sid&gt;100070&lt;/if_sid&gt;
+  &lt;field name="srcusernas"&gt;Juan&lt;/field&gt;
+  &lt;field name="actionNas"&gt;Delete&lt;/field&gt;
+  &lt;description&gt;El usuario Juan ha eliminado un fichero&lt;/description&gt;
+&lt;/rule&gt;</code></pre>
+
+  <p><strong>Cómo funciona:</strong></p>
+  <ul>
+    <li>Usa <strong>dos campos</strong> para mayor precisión</li>
+    <li>Solo dispara si el usuario es "Juan" <strong>Y</strong> la acción es "Delete"</li>
+    <li>Útil para auditar acciones de usuarios específicos</li>
+  </ul>
+
+  <h2>Ejemplo 3: IP + Acción con variables dinámicas</h2>
+
+  <p><strong>Log de entrada:</strong></p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">NAS: Users: marialopez, Source IP: 192.168.1.155, Computer name: MariaPC, Connection type: SMB, Accessed resources: sdsds/Certificados/CertificadoDigital.pfc, Action: Write</code></pre>
+
+  <p><strong>Regla:</strong></p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">&lt;rule id="100073" level="10"&gt;
+  &lt;if_sid&gt;100070&lt;/if_sid&gt;
+  &lt;field name="srcipNas"&gt;192.168.1.155&lt;/field&gt;
+  &lt;field name="actionNas"&gt;Write&lt;/field&gt;
+  &lt;description&gt;El equipo con la IP $(srcipNas) ha modificado el fichero $(resource)&lt;/description&gt;
+&lt;/rule&gt;</code></pre>
+
+  <p><strong>Cómo funciona:</strong></p>
+  <ul>
+    <li>Filtra por IP origen específica + acción Write</li>
+    <li>Usa <strong>variables dinámicas</strong> <code>$(campo)</code> en la descripción</li>
+    <li>La alerta incluirá los valores reales del log: IP y recurso afectado</li>
+  </ul>
+
+  <h2>Resumen de sintaxis</h2>
+
+  <div style="background: linear-gradient(135deg, #1a1f2e 0%, #0f1419 100%); border: 1px solid #2d3748; border-radius: 12px; padding: 24px; margin: 24px 0;">
+    <table style="width: 100%; border-collapse: collapse; color: #e5e7eb;">
+      <tr style="border-bottom: 1px solid #2d3748;">
+        <td style="padding: 12px; font-weight: bold; color: #60a5fa;">Elemento</td>
+        <td style="padding: 12px; font-weight: bold; color: #60a5fa;">Uso</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #2d3748;">
+        <td style="padding: 12px;"><code>if_sid</code></td>
+        <td style="padding: 12px;">Hereda de regla padre (decoder)</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #2d3748;">
+        <td style="padding: 12px;"><code>field name="x"</code></td>
+        <td style="padding: 12px;">Filtra por campo extraído por decoder</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #2d3748;">
+        <td style="padding: 12px;"><code>$(campo)</code></td>
+        <td style="padding: 12px;">Variable dinámica en description</td>
+      </tr>
+      <tr>
+        <td style="padding: 12px;"><code>level</code></td>
+        <td style="padding: 12px;">Severidad: 0-3 info, 4-7 medio, 8-15 crítico</td>
+      </tr>
+    </table>
+  </div>
+
+  <h2>Dónde añadir las reglas</h2>
+
+  <p>
+    Las reglas personalizadas se añaden en <code>/var/ossec/etc/rules/local_rules.xml</code>. Después de modificar el fichero, reinicia el manager:
+  </p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">systemctl restart wazuh-manager</code></pre>
+
+  <h2>Próximos pasos</h2>
+
+  <p>
+    En el curso de Wazuh vemos cómo crear decoders personalizados para extraer los campos que necesitas. <a href="/curso-wazuh">Accede al curso completo</a>.
+  </p>
+
+</BlogLayout>
