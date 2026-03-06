@@ -233,21 +233,39 @@ const resources = (lesson.resources as Resource[]) || [];
           )}
         </div>
 
-        <!-- Mark Complete Button -->
-        <button
-          id="complete-btn"
-          data-lesson-id={lessonId}
-          data-completed={isCompleted.toString()}
-          class="flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors"
-          style={isCompleted
-            ? 'background-color: rgba(34, 197, 94, 0.2); color: #4ade80;'
-            : 'background-color: #0065ff; color: #ffffff;'}
-        >
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-          </svg>
-          {isCompleted ? 'Completada' : 'Marcar como completada'}
-        </button>
+        <!-- Mark Complete Button + Next Button -->
+        <div class="flex items-center gap-3">
+          <button
+            id="complete-btn"
+            data-lesson-id={lessonId}
+            data-completed={isCompleted.toString()}
+            data-next-lesson-id={nextLesson?.id || ''}
+            class="flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors"
+            style={isCompleted
+              ? 'background-color: rgba(34, 197, 94, 0.2); color: #4ade80;'
+              : 'background-color: #0065ff; color: #ffffff;'}
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            {isCompleted ? 'Completada' : 'Marcar como completada'}
+          </button>
+
+          {/* Next lesson button - visible when completed */}
+          {nextLesson && (
+            <a
+              id="next-lesson-btn"
+              href={`/aula/leccion/${nextLesson.id}`}
+              class={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all hover:opacity-90 ${isCompleted ? '' : 'hidden'}`}
+              style="background-color: #0065ff; color: #ffffff;"
+            >
+              Siguiente
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          )}
+        </div>
       </div>
 
       {lesson.description && (
@@ -405,6 +423,8 @@ const resources = (lesson.resources as Resource[]) || [];
 <script>
   // Mark as complete
   const completeBtn = document.getElementById('complete-btn') as HTMLButtonElement;
+  const nextLessonBtn = document.getElementById('next-lesson-btn') as HTMLAnchorElement;
+
   if (completeBtn) {
     completeBtn.addEventListener('click', async () => {
       const lessonId = completeBtn.dataset.lessonId;
@@ -431,6 +451,11 @@ const resources = (lesson.resources as Resource[]) || [];
             completeBtn.style.color = '#4ade80';
             completeBtn.innerHTML = '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>Completada';
 
+            // Show next lesson button
+            if (nextLessonBtn) {
+              nextLessonBtn.classList.remove('hidden');
+            }
+
             // Update sidebar lesson item to show completed state (but keep current blue highlight)
             const sidebarItem = document.querySelector(`.lesson-item[data-lesson-id="${lessonId}"]`) as HTMLElement;
             if (sidebarItem) {
@@ -443,6 +468,11 @@ const resources = (lesson.resources as Resource[]) || [];
             completeBtn.style.backgroundColor = '#0065ff';
             completeBtn.style.color = '#ffffff';
             completeBtn.innerHTML = '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>Marcar como completada';
+
+            // Hide next lesson button
+            if (nextLessonBtn) {
+              nextLessonBtn.classList.add('hidden');
+            }
           }
         }
       } catch (error) {
