@@ -1,6 +1,6 @@
 ---
 import AulaLayout from '../../../layouts/AulaLayout.astro';
-import { createServerClient, type Lesson, type Module, type Comment, type Resource } from '../../../lib/supabase';
+import { createServerClient, type Lesson, type Module, type Resource } from '../../../lib/supabase';
 
 const user = Astro.locals.user;
 const paymentPending = Astro.locals.paymentPending;
@@ -57,13 +57,6 @@ if (user) {
   completedLessons = progressData?.filter(p => p.completed).map(p => p.lesson_id) || [];
   isCompleted = completedLessons.includes(lessonId);
 }
-
-// Fetch comments
-const { data: comments } = await supabaseAdmin
-  .from('comments')
-  .select('*, course_users(name, email)')
-  .eq('lesson_id', lessonId)
-  .order('created_at', { ascending: false });
 
 // Extract YouTube video ID
 function getYouTubeId(url: string): string | null {
@@ -329,94 +322,6 @@ const resources = (lesson.resources as Resource[]) || [];
         </a>
       )}
     </div>
-
-    <!-- Comments Section -->
-    <div class="rounded-2xl p-6" style="background-color: #1a1f26; border: 1px solid #2d3748;">
-      <h2 class="text-xl font-bold mb-6" style="color: #ffffff;">Dudas y Comentarios</h2>
-
-      <!-- Comment Form -->
-      <form id="comment-form" class="mb-8">
-        <input type="hidden" name="lesson_id" value={lessonId} />
-        <textarea
-          name="content"
-          rows="3"
-          required
-          placeholder="Escribe tu duda o comentario aquí..."
-          class="w-full px-4 py-3 rounded-lg transition-colors resize-none"
-          style="background-color: #0f1419; border: 1px solid #374151; color: #ffffff;"
-        ></textarea>
-        <div class="flex justify-between items-center mt-3">
-          <p class="text-sm" style="color: #6b7280;">
-            Te responderemos por email
-          </p>
-          <button
-            type="submit"
-            class="px-4 py-2 font-medium rounded-lg transition-colors disabled:opacity-50 hover:opacity-90"
-            style="background-color: #0065ff; color: #ffffff;"
-          >
-            Enviar comentario
-          </button>
-        </div>
-      </form>
-
-      <!-- Comments List -->
-      <div class="space-y-4">
-        {(comments || []).map((comment: any) => (
-          <div class="p-4 rounded-lg" style={comment.is_resolved ? 'background-color: rgba(34, 197, 94, 0.1); border: 1px solid rgba(34, 197, 94, 0.3);' : 'background-color: #0f1419; border: 1px solid #374151;'}>
-            <div class="flex items-start justify-between gap-2 mb-2">
-              <div class="flex items-center gap-2">
-                <div class="w-8 h-8 rounded-full flex items-center justify-center" style="background-color: rgba(0, 101, 255, 0.2);">
-                  <span class="text-sm font-semibold" style="color: #38b1ff;">
-                    {(comment.course_users?.name?.[0] || comment.course_users?.email?.[0] || 'U').toUpperCase()}
-                  </span>
-                </div>
-                <div>
-                  <p class="font-medium text-sm" style="color: #ffffff;">
-                    {comment.course_users?.name || 'Estudiante'}
-                  </p>
-                  <p class="text-xs" style="color: #6b7280;">
-                    {new Date(comment.created_at).toLocaleDateString('es-ES', {
-                      day: 'numeric',
-                      month: 'short',
-                      year: 'numeric'
-                    })}
-                  </p>
-                </div>
-              </div>
-              {comment.is_resolved && (
-                <span class="px-2 py-1 text-xs font-medium rounded" style="background-color: rgba(34, 197, 94, 0.2); color: #4ade80;">
-                  Respondido
-                </span>
-              )}
-            </div>
-            <p class="text-sm ml-10" style="color: #e5e7eb;">{comment.content}</p>
-
-            {comment.admin_reply && (
-              <div class="mt-3 ml-10 p-3 rounded-lg" style="background-color: #1a1f26; border: 1px solid #374151;">
-                <div class="flex items-center gap-2 mb-1">
-                  <span class="px-2 py-0.5 text-xs font-medium rounded" style="background-color: rgba(0, 101, 255, 0.2); color: #38b1ff;">
-                    Instructor
-                  </span>
-                  <span class="text-xs" style="color: #6b7280;">
-                    {comment.admin_replied_at && new Date(comment.admin_replied_at).toLocaleDateString('es-ES', {
-                      day: 'numeric',
-                      month: 'short'
-                    })}
-                  </span>
-                </div>
-                <p class="text-sm" style="color: #e5e7eb;">{comment.admin_reply}</p>
-              </div>
-            )}
-          </div>
-        ))}
-
-        {(!comments || comments.length === 0) && (
-          <div class="text-center py-8">
-            <p style="color: #6b7280;">No hay comentarios todavía. ¡Sé el primero en preguntar!</p>
-          </div>
-        )}
-      </div>
-    </div>
   </div>
 </AulaLayout>
 
@@ -479,43 +384,6 @@ const resources = (lesson.resources as Resource[]) || [];
         console.error('Error updating progress:', error);
       } finally {
         completeBtn.disabled = false;
-      }
-    });
-  }
-
-  // Comment form
-  const commentForm = document.getElementById('comment-form') as HTMLFormElement;
-  if (commentForm) {
-    commentForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-      const formData = new FormData(commentForm);
-      const lessonId = formData.get('lesson_id');
-      const content = formData.get('content');
-
-      const submitBtn = commentForm.querySelector('button[type="submit"]') as HTMLButtonElement;
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'Enviando...';
-
-      try {
-        const response = await fetch('/api/aula/comment', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ lesson_id: parseInt(lessonId as string), content }),
-        });
-
-        if (response.ok) {
-          // Reload to show new comment
-          window.location.reload();
-        } else {
-          const result = await response.json();
-          alert(result.error || 'Error al enviar el comentario');
-        }
-      } catch (error) {
-        alert('Error al enviar el comentario');
-      } finally {
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Enviar comentario';
       }
     });
   }
