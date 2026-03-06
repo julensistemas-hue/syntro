@@ -1,0 +1,207 @@
+---
+import BlogLayout from "../../layouts/BlogLayout.astro";
+---
+
+<BlogLayout
+  title="Configurar Alertas por Correo en Wazuh con Postfix y Gmail/Microsoft"
+  description="Configura Postfix con SMTP de Gmail o Microsoft 365 para enviar alertas de Wazuh. Contraseña de aplicación, email_alerts por regla y destinatarios personalizados."
+  publishDate="2026-03-06"
+  author="AI Security"
+  readTime="12 min"
+  tags={["Wazuh", "Alertas", "Postfix", "Gmail", "SMTP", "Correo"]}
+  canonical="https://aisecurity.es/blog/configurar-alertas-correo-wazuh-postfix-gmail">
+
+  <h2>Introducción</h2>
+
+  <p>
+    Wazuh puede enviar alertas por correo electrónico cuando se disparan reglas específicas. Para ello necesitas configurar un servidor de correo local (Postfix) que reenvíe a través de SMTP de Gmail o Microsoft 365. En este artículo configuramos todo paso a paso.
+  </p>
+
+  <!-- Video del curso bloqueado -->
+  <div class="my-8">
+    <div class="relative w-full rounded-xl overflow-hidden" style="border: 2px solid #2d3748;">
+      <div class="relative" style="padding-bottom: 56.25%;">
+        <img
+          src="https://img.youtube.com/vi/sTc6IBEV8v0/maxresdefault.jpg"
+          alt="Video: Configurar Alertas por Correo"
+          class="absolute inset-0 w-full h-full object-cover"
+          style="filter: blur(2px) brightness(0.4);"
+        />
+        <div class="absolute inset-0 flex items-center justify-center" style="background: linear-gradient(135deg, rgba(0,101,255,0.2) 0%, rgba(0,0,0,0.7) 100%);">
+          <div class="text-center">
+            <div class="w-20 h-20 mx-auto mb-4 rounded-full flex items-center justify-center" style="background-color: rgba(255,255,255,0.1); border: 2px solid rgba(255,255,255,0.2);">
+              <svg class="w-10 h-10" style="color: rgba(255,255,255,0.5);" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/>
+              </svg>
+            </div>
+            <div class="mb-2">
+              <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-medium" style="background-color: rgba(245, 158, 11, 0.2); color: #fbbf24;">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                </svg>
+                Contenido del curso
+              </span>
+            </div>
+            <h3 class="text-xl font-bold mb-2" style="color: #ffffff;">Video: Alertas por Correo</h3>
+            <p class="text-sm mb-4" style="color: #9ca3af;">18 minutos - Postfix + Gmail/Microsoft</p>
+            <a
+              href="/curso-wazuh"
+              class="inline-flex items-center gap-2 px-6 py-3 font-semibold rounded-lg transition-all hover:scale-105"
+              style="background: linear-gradient(135deg, #0065ff 0%, #0052cc 100%); color: #ffffff;">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+              </svg>
+              Ver en el Curso Wazuh
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="text-center text-base-600 mt-3 text-sm">
+      Accede al video completo con el curso de Wazuh
+    </p>
+  </div>
+
+  <h2>Paso 1: Crear contraseña de aplicación en Gmail</h2>
+
+  <p>
+    Gmail no permite usar tu contraseña normal para SMTP. Necesitas una <strong>contraseña de aplicación</strong>:
+  </p>
+
+  <div style="background: linear-gradient(135deg, #1a1f2e 0%, #0f1419 100%); border: 1px solid #2d3748; border-radius: 12px; padding: 24px; margin: 24px 0;">
+    <h3 style="color: #60a5fa; margin-top: 0;">Requisito previo</h3>
+    <p style="color: #e5e7eb; margin-bottom: 0;">
+      Debes tener la <strong>verificación en dos pasos</strong> activada en tu cuenta de Google. Sin esto, no podrás crear contraseñas de aplicación.
+    </p>
+  </div>
+
+  <ol>
+    <li>Ve a <a href="https://myaccount.google.com/security" target="_blank" rel="noopener">myaccount.google.com/security</a></li>
+    <li>Activa la <strong>Verificación en dos pasos</strong> si no la tienes</li>
+    <li>Busca <strong>Contraseñas de aplicaciones</strong></li>
+    <li>Selecciona "Correo" y "Otro (nombre personalizado)" → escribe "Wazuh"</li>
+    <li>Guarda la contraseña de <strong>16 caracteres</strong> que te genera</li>
+  </ol>
+
+  <h2>Paso 2: Instalar y configurar Postfix</h2>
+
+  <p>Instala Postfix y los módulos SASL para autenticación:</p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">apt update && apt install -y postfix libsasl2-modules</code></pre>
+
+  <p>Durante la instalación, selecciona <strong>"Internet Site"</strong> y escribe el nombre de tu servidor.</p>
+
+  <h3>Configurar relay a Gmail</h3>
+
+  <p>Edita <code>/etc/postfix/main.cf</code> y añade al final:</p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">relayhost = [smtp.gmail.com]:587
+smtp_sasl_auth_enable = yes
+smtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd
+smtp_sasl_security_options = noanonymous
+smtp_tls_security_level = encrypt
+smtp_tls_CAfile = /etc/ssl/certs/ca-certificates.crt</code></pre>
+
+  <h3>Crear fichero de credenciales</h3>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">nano /etc/postfix/sasl_passwd</code></pre>
+
+  <p>Añade esta línea (con tu email y contraseña de aplicación):</p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">[smtp.gmail.com]:587 tucuenta@gmail.com:contraseña_de_16_caracteres</code></pre>
+
+  <p>Protege el fichero y genera el hash:</p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">chmod 600 /etc/postfix/sasl_passwd
+postmap /etc/postfix/sasl_passwd
+systemctl restart postfix</code></pre>
+
+  <h2>Configuración para Microsoft 365</h2>
+
+  <p>Si usas Microsoft en lugar de Gmail, cambia el relayhost:</p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">relayhost = [smtp.office365.com]:587</code></pre>
+
+  <p>Y en <code>/etc/postfix/sasl_passwd</code>:</p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">[smtp.office365.com]:587 tucuenta@tudominio.com:tu_contraseña</code></pre>
+
+  <h2>Paso 3: Configurar alertas en Wazuh</h2>
+
+  <p>En el servidor Wazuh, edita <code>/var/ossec/etc/ossec.conf</code> y configura las alertas por correo:</p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">&lt;global&gt;
+  &lt;email_notification&gt;yes&lt;/email_notification&gt;
+  &lt;smtp_server&gt;localhost&lt;/smtp_server&gt;
+  &lt;email_from&gt;wazuh@tuservidor.com&lt;/email_from&gt;
+&lt;/global&gt;</code></pre>
+
+  <h3>Alertas personalizadas por regla</h3>
+
+  <p>Puedes enviar alertas específicas a destinatarios diferentes según la regla:</p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">&lt;!-- Alerta para regla 100072: Usuario Juan elimina fichero --&gt;
+&lt;email_alerts&gt;
+  &lt;email_to&gt;ResponsableDeInformacion@tudominio.com&lt;/email_to&gt;
+  &lt;rule_id&gt;100072&lt;/rule_id&gt;
+  &lt;format&gt;full&lt;/format&gt;
+&lt;/email_alerts&gt;
+
+&lt;!-- Alerta para regla 100073: IP específica modifica fichero --&gt;
+&lt;email_alerts&gt;
+  &lt;email_to&gt;sistemasTI@tudominio.com&lt;/email_to&gt;
+  &lt;rule_id&gt;100073&lt;/rule_id&gt;
+  &lt;format&gt;full&lt;/format&gt;
+&lt;/email_alerts&gt;</code></pre>
+
+  <p><strong>Explicación:</strong></p>
+  <ul>
+    <li><code>email_to</code>: Destinatario del correo</li>
+    <li><code>rule_id</code>: ID de la regla que dispara la alerta</li>
+    <li><code>format</code>: "full" incluye todos los detalles del evento</li>
+  </ul>
+
+  <p>Reinicia el manager:</p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">systemctl restart wazuh-manager</code></pre>
+
+  <h2>Probar el envío</h2>
+
+  <p>Prueba que Postfix envía correctamente:</p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">echo "Prueba de Wazuh" | mail -s "Test Postfix" tucorreo@ejemplo.com</code></pre>
+
+  <p>Verifica el log de Postfix:</p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">tail -f /var/log/mail.log</code></pre>
+
+  <h2>Resumen</h2>
+
+  <div style="background: linear-gradient(135deg, #1a1f2e 0%, #0f1419 100%); border: 1px solid #2d3748; border-radius: 12px; padding: 24px; margin: 24px 0;">
+    <table style="width: 100%; border-collapse: collapse; color: #e5e7eb;">
+      <tr style="border-bottom: 1px solid #2d3748;">
+        <td style="padding: 12px; font-weight: bold; color: #60a5fa;">Proveedor</td>
+        <td style="padding: 12px; font-weight: bold; color: #60a5fa;">SMTP Server</td>
+        <td style="padding: 12px; font-weight: bold; color: #60a5fa;">Puerto</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #2d3748;">
+        <td style="padding: 12px;">Gmail</td>
+        <td style="padding: 12px;">smtp.gmail.com</td>
+        <td style="padding: 12px;">587</td>
+      </tr>
+      <tr>
+        <td style="padding: 12px;">Microsoft 365</td>
+        <td style="padding: 12px;">smtp.office365.com</td>
+        <td style="padding: 12px;">587</td>
+      </tr>
+    </table>
+  </div>
+
+  <h2>Próximos pasos</h2>
+
+  <p>
+    En el curso de Wazuh también vemos cómo configurar alertas a Discord y Slack mediante webhooks. <a href="/curso-wazuh">Accede al curso completo</a>.
+  </p>
+
+</BlogLayout>
