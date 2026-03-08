@@ -96,10 +96,35 @@ import AulaAuthLayout from '../../layouts/AulaAuthLayout.astro';
     const successDiv = document.getElementById('success-message') as HTMLDivElement;
     const successText = successDiv.querySelector('p') as HTMLParagraphElement;
 
-    // Get tokens from URL hash (Supabase sends them in the hash fragment)
-    const hashParams = new URLSearchParams(window.location.hash.substring(1));
-    const accessToken = hashParams.get('access_token');
-    const refreshToken = hashParams.get('refresh_token');
+    // Get tokens from URL - try hash first (Supabase default), then query params
+    let accessToken: string | null = null;
+    let refreshToken: string | null = null;
+
+    // Try hash fragment first (#access_token=...)
+    if (window.location.hash) {
+      const hashParams = new URLSearchParams(window.location.hash.substring(1));
+      accessToken = hashParams.get('access_token');
+      refreshToken = hashParams.get('refresh_token');
+    }
+
+    // If not in hash, try query params (?access_token=...)
+    if (!accessToken) {
+      const queryParams = new URLSearchParams(window.location.search);
+      accessToken = queryParams.get('access_token');
+      refreshToken = queryParams.get('refresh_token');
+    }
+
+    // Also check for 'token' parameter (some Supabase versions use this)
+    if (!accessToken) {
+      const queryParams = new URLSearchParams(window.location.search);
+      accessToken = queryParams.get('token');
+    }
+
+    // Debug: log what we found
+    console.log('URL:', window.location.href);
+    console.log('Hash:', window.location.hash);
+    console.log('Search:', window.location.search);
+    console.log('Access token found:', !!accessToken);
 
     if (!accessToken) {
       errorText.textContent = 'Enlace inválido o expirado. Solicita un nuevo enlace de recuperación.';
