@@ -146,16 +146,16 @@ $template RouterLogs,"/var/log/remote/router.log"
 $template LogFormat,"%TIMESTAMP% %HOSTNAME% %msg%\n"
 
 # Filtros condicionales
-if $fromhost-ip != '127.0.0.1' then {
-    if $msg contains "NAS:" then {
+if $fromhost-ip != '127.0.0.1' then {'{'}
+    if $msg contains "NAS:" then {'{'}
         ?NASLogs;LogFormat
         stop
-    }
-    if $fromhost-ip == '192.168.1.1' then {
+    {'}'}
+    if $fromhost-ip == '192.168.1.1' then {'{'}
         ?RouterLogs;LogFormat
         stop
-    }
-}</code></pre>
+    {'}'}
+{'}'}</code></pre>
     </div>
     <div class="absolute inset-0 flex items-center justify-center" style="background: rgba(0,0,0,0.6); border-radius: 8px;">
       <a href="/curso-wazuh" class="inline-flex items-center gap-2 px-5 py-2.5 font-semibold rounded-lg transition-all hover:scale-105" style="background: linear-gradient(135deg, #0065ff 0%, #0052cc 100%); color: #ffffff;">
