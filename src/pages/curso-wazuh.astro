@@ -53,43 +53,28 @@ const canonical = "https://aisecurity.es/curso-wazuh";
                 <p class="text-gray-300 text-xs">Incluye material y soporte</p>
               </div>
 
-              <!-- Countdown Section -->
-              <div class="mb-6">
-                <p class="text-white text-base font-bold mb-4 text-center uppercase tracking-wider">Disponible desde</p>
-                <div id="countdown" class="grid grid-cols-4 gap-2">
-                  <div class="rounded-lg p-3 text-center border-2 shadow-sm" style="background-color: #374151; border-color: #6366F1;">
-                    <div id="days" class="text-2xl md:text-3xl font-bold text-white mb-1">00</div>
-                    <div class="text-gray-300 text-xs uppercase tracking-wider font-medium">Días</div>
-                  </div>
-                  <div class="rounded-lg p-3 text-center border-2 shadow-sm" style="background-color: #374151; border-color: #6366F1;">
-                    <div id="hours" class="text-2xl md:text-3xl font-bold text-white mb-1">00</div>
-                    <div class="text-gray-300 text-xs uppercase tracking-wider font-medium">Hrs</div>
-                  </div>
-                  <div class="rounded-lg p-3 text-center border-2 shadow-sm" style="background-color: #374151; border-color: #6366F1;">
-                    <div id="minutes" class="text-2xl md:text-3xl font-bold text-white mb-1">00</div>
-                    <div class="text-gray-300 text-xs uppercase tracking-wider font-medium">Min</div>
-                  </div>
-                  <div class="rounded-lg p-3 text-center border-2 shadow-sm" style="background-color: #374151; border-color: #6366F1;">
-                    <div id="seconds" class="text-2xl md:text-3xl font-bold text-white mb-1">00</div>
-                    <div class="text-gray-300 text-xs uppercase tracking-wider font-medium">Seg</div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Date & Details -->
-              <div class="text-center mb-6 p-4 rounded-lg border-l-4" style="background-color: #374151; border-color: #8B5CF6;">
-                <p class="text-white text-sm font-bold">
-                  📅 Disponible a partir del 9 de Marzo 2026
+              <!-- Available Now Badge -->
+              <div class="mb-6 p-4 rounded-lg border-2 text-center" style="background-color: rgba(34, 197, 94, 0.2); border-color: #22c55e;">
+                <p class="text-green-400 text-lg font-bold flex items-center justify-center gap-2">
+                  <span class="text-2xl">✅</span>
+                  ¡Curso disponible ahora!
                 </p>
+                <p class="text-gray-300 text-sm mt-1">Acceso inmediato tras el pago</p>
               </div>
 
-              <!-- CTA Button -->
+              <!-- CTA Buttons -->
               <div class="flex flex-col gap-3">
                 <a
                   style="color: white;"
-                  href="#inscripcion"
+                  href="/aula/registro"
                   class="inline-flex items-center justify-center px-6 py-4 text-base font-bold bg-gradient-to-br from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 rounded-xl text-white shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5">
-                  Únete a la lista de espera →
+                  Crear cuenta y empezar →
+                </a>
+                <a
+                  style="color: white;"
+                  href="/aula/login"
+                  class="inline-flex items-center justify-center px-6 py-3 text-sm font-semibold bg-transparent border-2 border-white/30 hover:border-white/50 rounded-xl text-white transition-all duration-200">
+                  Ya tengo cuenta - Iniciar sesión
                 </a>
               </div>
             </div>
@@ -517,54 +502,50 @@ const canonical = "https://aisecurity.es/curso-wazuh";
         ¡Empieza tu Transformación en Ciberseguridad!
       </h2>
       <p class="text-xl text-white/90 mb-8">
-        El curso estará disponible a partir del 9 de Marzo de 2026
+        Acceso inmediato a todo el contenido del curso
       </p>
 
-      <!-- Waitlist Form -->
+      <!-- CTA Box -->
       <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/30 max-w-xl mx-auto">
-        <!-- Coming Soon Notice -->
-        <div class="mb-6 p-4 rounded-lg border-l-4" style="background-color: rgba(245, 158, 11, 0.2); border-color: #f59e0b;">
-          <p class="text-white font-semibold flex items-center gap-2">
-            <span class="text-2xl">🚧</span>
-            Inscripciones próximamente disponibles
+        <!-- Available Now Notice -->
+        <div class="mb-6 p-4 rounded-lg border-2 text-center" style="background-color: rgba(34, 197, 94, 0.2); border-color: #22c55e;">
+          <p class="text-green-400 text-lg font-bold flex items-center justify-center gap-2">
+            <span class="text-2xl">✅</span>
+            ¡Curso disponible ahora!
           </p>
           <p class="text-white/80 text-sm mt-1">
-            Déjanos tu email y te avisaremos cuando puedas inscribirte
+            Regístrate y accede en minutos
           </p>
         </div>
 
-        <form id="inscription-form" class="space-y-6">
-          <div>
-            <label for="email" class="block text-white font-semibold mb-2 text-left">
-              Correo Electrónico
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              required
-              placeholder="tu@email.com"
-              class="w-full px-4 py-3 rounded-lg border-2 border-white/30 bg-white/20 text-white placeholder-white/60 focus:outline-none focus:border-accent-400 transition-colors"
-            />
-          </div>
+        <!-- Price reminder -->
+        <div class="mb-6 text-center">
+          <span class="text-4xl font-bold text-white">50€</span>
+          <span class="text-white/60 ml-2 line-through">100€</span>
+          <p class="text-white/80 text-sm mt-1">Pago único - Acceso permanente</p>
+        </div>
 
-          <button
-            type="submit"
-            class="w-full px-8 py-4 text-lg font-semibold bg-amber-500 hover:bg-amber-600 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5"
+        <!-- CTA Buttons -->
+        <div class="space-y-3">
+          <a
+            href="/aula/registro"
+            class="block w-full px-8 py-4 text-lg font-semibold bg-amber-500 hover:bg-amber-600 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5 text-center"
             style="color: #000000;">
-            Avisarme cuando esté disponible
-          </button>
-
-          <!-- Success/Error Messages -->
-          <div id="form-message" class="hidden p-4 rounded-lg border-l-4" style="background-color: #374151; border-color: #8B5CF6;">
-            <p id="message-text" class="text-white font-semibold"></p>
-          </div>
-        </form>
+            Crear cuenta y empezar →
+          </a>
+          <a
+            href="/aula/login"
+            class="block w-full px-6 py-3 text-base font-semibold bg-transparent border-2 border-white/30 hover:border-white/50 rounded-xl transition-all duration-200 text-center"
+            style="color: white;">
+            Ya tengo cuenta - Iniciar sesión
+          </a>
+        </div>
       </div>
 
-      <!-- Small Countdown Repeat (Optional) -->
+      <!-- Contact info -->
       <div class="mt-8 text-center">
         <p class="text-white/80 text-sm">
+          ¿Dudas? Escríbenos a <a href="mailto:info@aisecurity.es" class="text-white underline">info@aisecurity.es</a>
         </p>
       </div>
     </div>
@@ -598,106 +579,6 @@ const canonical = "https://aisecurity.es/curso-wazuh";
       activeButton.classList.remove('text-gray-600', 'border-transparent');
     }
   };
-
-  // Countdown functionality
-  const targetDate = new Date('2026-03-09T00:00:00').getTime();
-
-  function updateCountdown() {
-    const now = new Date().getTime();
-    const distance = targetDate - now;
-
-    if (distance < 0) {
-      // Course is available
-      const countdownElement = document.getElementById('countdown');
-      if (countdownElement) {
-        countdownElement.innerHTML = '<p class="text-2xl font-bold text-white">¡Ya disponible!</p>';
-      }
-      return;
-    }
-
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-    // Update main countdown
-    const daysEl = document.getElementById('days');
-    const hoursEl = document.getElementById('hours');
-    const minutesEl = document.getElementById('minutes');
-    const secondsEl = document.getElementById('seconds');
-
-    if (daysEl) daysEl.textContent = days.toString().padStart(2, '0');
-    if (hoursEl) hoursEl.textContent = hours.toString().padStart(2, '0');
-    if (minutesEl) minutesEl.textContent = minutes.toString().padStart(2, '0');
-    if (secondsEl) secondsEl.textContent = seconds.toString().padStart(2, '0');
-
-    // Update small countdown
-    const daysSmallEl = document.getElementById('countdown-days-small');
-    if (daysSmallEl) daysSmallEl.textContent = days.toString();
-  }
-
-  // Update countdown every second
-  setInterval(updateCountdown, 1000);
-  updateCountdown(); // Run immediately
-
-  // Form submission
-  const form = document.getElementById('inscription-form');
-  const messageDiv = document.getElementById('form-message');
-  const messageText = document.getElementById('message-text');
-
-  if (form && messageDiv && messageText) {
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-      const emailInput = document.getElementById('email');
-      const email = emailInput ? emailInput.value : '';
-
-      if (!email) return;
-
-      // Show loading state
-      const submitButton = form.querySelector('button[type="submit"]');
-      if (submitButton) {
-        submitButton.textContent = 'Enviando...';
-        submitButton.setAttribute('disabled', 'true');
-      }
-
-      try {
-        const response = await fetch('/api/inscripcion-curso-wazuh', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ email }),
-        });
-
-        const data = await response.json();
-
-        if (response.ok) {
-          // Success
-          messageDiv.classList.remove('hidden');
-          messageText.textContent = '✅ ¡Te hemos añadido a la lista! Te avisaremos cuando el curso esté disponible.';
-          messageText.className = 'text-white font-semibold';
-          form.reset();
-        } else {
-          // Error
-          messageDiv.classList.remove('hidden');
-          messageText.textContent = '❌ ' + (data.error || 'Error al procesar la inscripción. Inténtalo de nuevo.');
-          messageText.className = 'text-white font-semibold';
-        }
-      } catch (error) {
-        // Network error
-        messageDiv.classList.remove('hidden');
-        messageText.textContent = '❌ Error de conexión. Por favor, inténtalo de nuevo.';
-        messageText.className = 'text-white font-semibold';
-      } finally {
-        // Reset button
-        if (submitButton) {
-          submitButton.textContent = '¡Inscríbete Ahora! →';
-          submitButton.removeAttribute('disabled');
-        }
-      }
-    });
-  }
 
   // Smooth scroll for CTA
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
