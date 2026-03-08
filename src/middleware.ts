@@ -7,6 +7,7 @@ const PUBLIC_AULA_ROUTES = [
   '/aula/registro',
   '/aula/logout',
   '/aula/recuperar',
+  '/aula/nueva-contrasena',
   '/aula/pago-completado',
 ];
 
