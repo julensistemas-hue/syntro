@@ -17,7 +17,7 @@ export const COURSE_CONFIG = {
     name: 'Curso Intensivo Wazuh',
     description: 'Aprende a implementar y gestionar Wazuh para cumplimiento ENS',
     priceId: import.meta.env.STRIPE_WAZUH_PRICE_ID || '',
-    priceAmount: 50, // €0.50 in cents - TESTING MODE
+    priceAmount: 50_00, // €50 in cents
     currency: 'eur',
   }
 };
