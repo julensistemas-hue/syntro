@@ -1,0 +1,261 @@
+---
+import BlogLayout from "../../layouts/BlogLayout.astro";
+---
+
+<BlogLayout
+  title="Caso Práctico: Investigar un Ataque SSH con Wazuh Discover y Threat Hunting"
+  description="Investiga paso a paso un ataque de fuerza bruta SSH real usando los paneles Threat Hunting y Discover de Wazuh. Caso práctico con medidas correctivas."
+  publishDate="2026-03-06"
+  author="AI Security"
+  readTime="12 min"
+  tags={["Wazuh", "Discover", "Threat Hunting", "SSH", "Incidentes", "Forense"]}
+  canonical="https://aisecurity.es/blog/investigar-ataque-ssh-wazuh-discover">
+
+  <h2>Introducción</h2>
+
+  <p>
+    Un usuario reporta que no puede acceder al servidor Linux. Su contraseña no funciona y nadie la ha cambiado. ¿Qué ha pasado? En este artículo investigamos el incidente paso a paso usando los paneles <strong>Threat Hunting</strong> y <strong>Discover</strong> de Wazuh.
+  </p>
+
+  <!-- Video del curso bloqueado -->
+  <div class="my-8">
+    <div class="relative w-full rounded-xl overflow-hidden" style="border: 2px solid #2d3748;">
+      <div class="relative" style="padding-bottom: 56.25%;">
+        <img
+          src="https://img.youtube.com/vi/-6RJD3yTXww/maxresdefault.jpg"
+          alt="Video: Investigación de Incidente SSH"
+          class="absolute inset-0 w-full h-full object-cover"
+          style="filter: blur(2px) brightness(0.4);"
+        />
+        <div class="absolute inset-0 flex items-center justify-center" style="background: linear-gradient(135deg, rgba(0,101,255,0.2) 0%, rgba(0,0,0,0.7) 100%);">
+          <div class="text-center">
+            <div class="w-20 h-20 mx-auto mb-4 rounded-full flex items-center justify-center" style="background-color: rgba(255,255,255,0.1); border: 2px solid rgba(255,255,255,0.2);">
+              <svg class="w-10 h-10" style="color: rgba(255,255,255,0.5);" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/>
+              </svg>
+            </div>
+            <div class="mb-2">
+              <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-medium" style="background-color: rgba(245, 158, 11, 0.2); color: #fbbf24;">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                </svg>
+                Contenido del curso
+              </span>
+            </div>
+            <h3 class="text-xl font-bold mb-2" style="color: #ffffff;">Video: Investigación de Incidente</h3>
+            <p class="text-sm mb-4" style="color: #9ca3af;">20 minutos - Caso práctico paso a paso</p>
+            <a
+              href="/curso-wazuh"
+              class="inline-flex items-center gap-2 px-6 py-3 font-semibold rounded-lg transition-all hover:scale-105"
+              style="background: linear-gradient(135deg, #0065ff 0%, #0052cc 100%); color: #ffffff;">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+              </svg>
+              Ver en el Curso Wazuh
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="text-center text-base-600 mt-3 text-sm">
+      Accede al video completo con el curso de Wazuh
+    </p>
+  </div>
+
+  <h2>El escenario</h2>
+
+  <p>
+    Lunes por la mañana. El usuario <strong>jperez</strong> reporta que no puede acceder al servidor Linux por SSH. La contraseña que siempre ha funcionado ahora es rechazada. Nadie del equipo de sistemas la ha cambiado.
+  </p>
+
+  <div style="background: linear-gradient(135deg, #7f1d1d 0%, #450a0a 100%); border: 1px solid #dc2626; border-radius: 12px; padding: 24px; margin: 24px 0;">
+    <h3 style="color: #fca5a5; margin-top: 0;">⚠️ Primeras señales de alerta</h3>
+    <p style="color: #fecaca; margin-bottom: 0;">
+      Al revisar el correo, encontramos <strong>20 alertas de Wazuh</strong> desde las 1:43 AM. Todas relacionadas con intentos de acceso SSH al usuario jperez. Esto huele a ataque de fuerza bruta.
+    </p>
+  </div>
+
+  <h2>Panel Threat Hunting: búsqueda proactiva</h2>
+
+  <p>
+    El panel <strong>Threat Hunting</strong> está diseñado para buscar amenazas de forma proactiva. Filtramos por el servidor afectado y los eventos de autenticación:
+  </p>
+
+  <div style="background: linear-gradient(135deg, #1a1f2e 0%, #0f1419 100%); border: 1px solid #2d3748; border-radius: 12px; padding: 24px; margin: 24px 0;">
+    <h3 style="color: #60a5fa; margin-top: 0;">Hallazgos en Threat Hunting</h3>
+    <ul style="color: #e5e7eb; margin-bottom: 0;">
+      <li><strong>362 fallos de autenticación</strong> (reglas nivel 12+)</li>
+      <li><strong>7 autenticaciones exitosas</strong> - el atacante consiguió entrar</li>
+      <li>Todo concentrado entre las 1:43 AM y las 2:15 AM</li>
+    </ul>
+  </div>
+
+  <p>
+    La proporción es clara: 362 intentos fallidos seguidos de 7 éxitos. Un ataque de diccionario que tuvo éxito.
+  </p>
+
+  <h2>Panel Discover: análisis forense</h2>
+
+  <p>
+    El panel <strong>Discover</strong> da acceso directo al motor de búsqueda de Wazuh. Es perfecto para análisis forense detallado. Construimos búsquedas específicas:
+  </p>
+
+  <h3>Búsqueda 1: Intentos fallidos + exitosos</h3>
+
+  <p>Filtramos por la máquina afectada y los eventos SSH:</p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">agent.name: "servidor-linux" AND rule.groups: "authentication"</code></pre>
+
+  <p>Resultado: timeline completo del ataque, desde el primer intento fallido hasta los accesos exitosos.</p>
+
+  <h3>Búsqueda 2: Acceso exitoso del usuario</h3>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">login ssh jperez success</code></pre>
+
+  <p>Encontramos exactamente cuándo el atacante consiguió acceso: <strong>2:08 AM</strong>.</p>
+
+  <h3>Búsqueda 3: Cambio de contraseña</h3>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">passwd jperez</code></pre>
+
+  <p>
+    <strong>¡Bingo!</strong> A las 2:10 AM hay un evento de cambio de contraseña para el usuario jperez. El atacante cambió la contraseña para mantener el acceso y bloquear al usuario legítimo.
+  </p>
+
+  <h3>Búsqueda 4: Afectación a otras máquinas</h3>
+
+  <p>Filtramos por la IP origen del atacante para ver si intentó acceder a otros sistemas:</p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">srcip: "IP_ATACANTE" AND rule.groups: "authentication"</code></pre>
+
+  <p>Descubrimos que la misma IP intentó acceso a otros 3 servidores sin éxito.</p>
+
+  <h2>Línea temporal del ataque</h2>
+
+  <div style="background: linear-gradient(135deg, #1a1f2e 0%, #0f1419 100%); border: 1px solid #2d3748; border-radius: 12px; padding: 24px; margin: 24px 0;">
+    <table style="width: 100%; border-collapse: collapse; color: #e5e7eb;">
+      <tr style="border-bottom: 1px solid #2d3748;">
+        <td style="padding: 12px; font-weight: bold; color: #60a5fa;">Hora</td>
+        <td style="padding: 12px; font-weight: bold; color: #60a5fa;">Evento</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #2d3748;">
+        <td style="padding: 12px;">01:43 AM</td>
+        <td style="padding: 12px;">Inician intentos de fuerza bruta SSH</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #2d3748;">
+        <td style="padding: 12px;">01:43 - 02:08</td>
+        <td style="padding: 12px;">362 intentos fallidos de autenticación</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #2d3748;">
+        <td style="padding: 12px;">02:08 AM</td>
+        <td style="padding: 12px;">Primera autenticación exitosa del atacante</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #2d3748;">
+        <td style="padding: 12px;">02:10 AM</td>
+        <td style="padding: 12px;">Cambio de contraseña del usuario jperez</td>
+      </tr>
+      <tr>
+        <td style="padding: 12px;">08:30 AM</td>
+        <td style="padding: 12px;">Usuario legítimo reporta que no puede acceder</td>
+      </tr>
+    </table>
+  </div>
+
+  <h2>Medidas correctivas</h2>
+
+  <p>Con el análisis completo, implementamos las siguientes medidas:</p>
+
+  <h3>1. Fail2ban - Bloqueo automático</h3>
+
+  <p>Bloquea IPs automáticamente tras X intentos fallidos:</p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">apt install fail2ban
+systemctl enable fail2ban</code></pre>
+
+  <p>Configuración en <code>/etc/fail2ban/jail.local</code>:</p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">[sshd]
+enabled = true
+port = ssh
+filter = sshd
+logpath = /var/log/auth.log
+maxretry = 5
+bantime = 3600
+findtime = 600</code></pre>
+
+  <p><strong>Resultado:</strong> Tras 5 intentos fallidos en 10 minutos, la IP se bloquea durante 1 hora.</p>
+
+  <h3>2. Autenticación por clave pública</h3>
+
+  <p>Deshabilitar contraseñas SSH y usar solo claves públicas:</p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;"># Generar clave en el cliente
+ssh-keygen -t ed25519
+
+# Copiar clave al servidor
+ssh-copy-id usuario@servidor</code></pre>
+
+  <p>Editar <code>/etc/ssh/sshd_config</code>:</p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">PasswordAuthentication no
+PubkeyAuthentication yes</code></pre>
+
+  <p>Reiniciar SSH:</p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">systemctl restart sshd</code></pre>
+
+  <p><strong>Resultado:</strong> Los ataques de fuerza bruta quedan completamente neutralizados.</p>
+
+  <h2>Marco normativo</h2>
+
+  <div style="background: linear-gradient(135deg, #1a1f2e 0%, #0f1419 100%); border: 1px solid #2d3748; border-radius: 12px; padding: 24px; margin: 24px 0;">
+    <h3 style="color: #60a5fa; margin-top: 0;">ISO 27001 - Gestión de incidentes</h3>
+    <ul style="color: #e5e7eb;">
+      <li><strong>A.5.24</strong>: Planificación y preparación de la gestión de incidentes</li>
+      <li><strong>A.5.25</strong>: Evaluación y decisión sobre eventos de seguridad</li>
+      <li><strong>A.5.26</strong>: Respuesta a incidentes de seguridad de la información</li>
+      <li><strong>A.5.27</strong>: Aprendizaje de los incidentes de seguridad</li>
+      <li><strong>A.5.28</strong>: Recopilación de evidencias</li>
+    </ul>
+    <p style="color: #9ca3af; margin-bottom: 0;">
+      <em>Este caso práctico demuestra el cumplimiento de todo el ciclo: detección, evaluación, respuesta, aprendizaje y documentación de evidencias.</em>
+    </p>
+  </div>
+
+  <div style="background: linear-gradient(135deg, #1a1f2e 0%, #0f1419 100%); border: 1px solid #2d3748; border-radius: 12px; padding: 24px; margin: 24px 0;">
+    <h3 style="color: #60a5fa; margin-top: 0;">ENS - Esquema Nacional de Seguridad</h3>
+    <ul style="color: #e5e7eb; margin-bottom: 0;">
+      <li><strong>op.exp.7</strong>: Gestión de incidentes de seguridad</li>
+    </ul>
+    <p style="color: #9ca3af; margin-bottom: 0; margin-top: 12px;">
+      <em>Wazuh proporciona la capacidad de detección, análisis y documentación que exige el ENS para la gestión de incidentes.</em>
+    </p>
+  </div>
+
+  <h2>Resumen</h2>
+
+  <div style="background: linear-gradient(135deg, #1a1f2e 0%, #0f1419 100%); border: 1px solid #2d3748; border-radius: 12px; padding: 24px; margin: 24px 0;">
+    <table style="width: 100%; border-collapse: collapse; color: #e5e7eb;">
+      <tr style="border-bottom: 1px solid #2d3748;">
+        <td style="padding: 12px; font-weight: bold; color: #60a5fa;">Panel</td>
+        <td style="padding: 12px; font-weight: bold; color: #60a5fa;">Uso principal</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #2d3748;">
+        <td style="padding: 12px;">Threat Hunting</td>
+        <td style="padding: 12px;">Búsqueda proactiva, visión general de amenazas</td>
+      </tr>
+      <tr>
+        <td style="padding: 12px;">Discover</td>
+        <td style="padding: 12px;">Análisis forense, búsquedas específicas, correlación de eventos</td>
+      </tr>
+    </table>
+  </div>
+
+  <h2>Próximos pasos</h2>
+
+  <p>
+    En el curso de Wazuh profundizamos en más casos prácticos de investigación de incidentes y configuraciones avanzadas de detección. <a href="/curso-wazuh">Accede al curso completo</a>.
+  </p>
+
+</BlogLayout>

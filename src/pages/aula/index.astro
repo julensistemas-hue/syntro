@@ -50,6 +50,36 @@ const progressPercentage = totalLessons > 0 ? Math.round((completedLessons / tot
 function isLessonCompleted(lessonId: number): boolean {
   return userProgress.some(p => p.lesson_id === lessonId && p.completed);
 }
+
+// Get tags for a lesson based on lesson ID
+function getLessonTags(lessonId: number): string[] {
+  const tagMap: Record<number, string[]> = {
+    // Módulo 1 - Introducción
+    2: ['importante'],  // Qué es Wazuh
+    3: ['opcional'],    // Instalación Linux
+    4: ['opcional'],    // Instalación Docker
+    // Módulo 2 - Agentes
+    10: ['importante'], // Equipos sin Agente 1/2
+    11: ['importante'], // Equipos sin Agente 2/2
+    // Módulo 4 - Paneles (todos ENS)
+    12: ['ens'], 13: ['ens'], 14: ['ens'], 15: ['ens'], 16: ['ens'], 17: ['ens'], 19: ['ens'],
+    // Módulo 7 - Integraciones
+    18: ['opcional'],   // VirusTotal
+    24: ['proximamente'], // IA Local Ollama
+  };
+  return tagMap[lessonId] || [];
+}
+
+// Tag styles
+function getTagStyle(tag: string): { bg: string; text: string; label: string } {
+  const styles: Record<string, { bg: string; text: string; label: string }> = {
+    'importante': { bg: 'rgba(239, 68, 68, 0.2)', text: '#fca5a5', label: 'Importante' },
+    'ens': { bg: 'rgba(34, 197, 94, 0.2)', text: '#86efac', label: 'ENS' },
+    'opcional': { bg: 'rgba(156, 163, 175, 0.2)', text: '#d1d5db', label: 'Opcional' },
+    'proximamente': { bg: 'rgba(245, 158, 11, 0.2)', text: '#fcd34d', label: 'Próximamente' },
+  };
+  return styles[tag] || { bg: 'rgba(107, 114, 128, 0.2)', text: '#9ca3af', label: tag };
+}
 ---
 
 <AulaLayout title="Mi Curso - Aula Virtual">
@@ -224,9 +254,22 @@ function isLessonCompleted(lessonId: number): boolean {
 
                   <!-- Lesson Info -->
                   <div class="flex-1 min-w-0">
-                    <h4 class="font-medium" style={isLocked ? 'color: #6b7280;' : 'color: #ffffff;'}>
-                      {lesson.title}
-                    </h4>
+                    <div class="flex items-center gap-2 flex-wrap">
+                      <h4 class="font-medium" style={isLocked ? 'color: #6b7280;' : 'color: #ffffff;'}>
+                        {lesson.title}
+                      </h4>
+                      {getLessonTags(lesson.id).map((tag: string) => {
+                        const style = getTagStyle(tag);
+                        return (
+                          <span
+                            class="px-2 py-0.5 text-xs font-medium rounded"
+                            style={`background-color: ${style.bg}; color: ${style.text};`}
+                          >
+                            {style.label}
+                          </span>
+                        );
+                      })}
+                    </div>
                     {lesson.duration_minutes && (
                       <p class="text-sm" style="color: #9ca3af;">{lesson.duration_minutes} min</p>
                     )}
