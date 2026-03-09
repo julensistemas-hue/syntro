@@ -69,7 +69,7 @@ function getLessonTags(lessonId: number): string[] {
     18: ['opcional'],   // VirusTotal
     24: ['proximamente'], // IA Local Ollama
     // Módulo 8 - Decoders, Reglas y Alertas
-    28: ['importante'], // Caso Práctico FortiGate
+    28: ['caso-practico'], // Caso Práctico FortiGate
   };
   return tagMap[lessonId] || [];
 }
@@ -81,6 +81,7 @@ function getTagStyle(tag: string): { bg: string; text: string; label: string } {
     'ens': { bg: 'rgba(34, 197, 94, 0.2)', text: '#86efac', label: 'ENS' },
     'opcional': { bg: 'rgba(156, 163, 175, 0.2)', text: '#d1d5db', label: 'Opcional' },
     'proximamente': { bg: 'rgba(245, 158, 11, 0.2)', text: '#fcd34d', label: 'Próximamente' },
+    'caso-practico': { bg: 'rgba(168, 85, 247, 0.2)', text: '#c4b5fd', label: 'Caso Práctico' },
   };
   return styles[tag] || { bg: 'rgba(107, 114, 128, 0.2)', text: '#9ca3af', label: tag };
 }
@@ -225,6 +226,7 @@ function getTagStyle(tag: string): { bg: string; text: string; label: string } {
           >
             {moduleLessons.map((lesson: Lesson, lessonIndex: number) => {
               const isCompleted = isLessonCompleted(lesson.id);
+              const isCasoPractico = getLessonTags(lesson.id).includes('caso-practico');
               return (
                 <a
                   href={isLocked ? '#' : `/aula/leccion/${lesson.id}`}
@@ -237,6 +239,7 @@ function getTagStyle(tag: string): { bg: string; text: string; label: string } {
                     style={
                       isCompleted ? 'background-color: rgba(34, 197, 94, 0.2); color: #4ade80;' :
                       isLocked ? 'background-color: #374151; color: #6b7280;' :
+                      isCasoPractico ? 'background-color: rgba(168, 85, 247, 0.3); color: #c4b5fd;' :
                       'background-color: #374151; color: #9ca3af;'
                     }
                   >
@@ -247,6 +250,11 @@ function getTagStyle(tag: string): { bg: string; text: string; label: string } {
                     ) : isCompleted ? (
                       <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                      </svg>
+                    ) : isCasoPractico ? (
+                      /* Icono de reto/puzzle para caso práctico */
+                      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H6a1 1 0 01-1-1v-3a1 1 0 00-1-1H3a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" />
                       </svg>
                     ) : (
                       <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
