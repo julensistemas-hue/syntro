@@ -51,27 +51,30 @@ function isLessonCompleted(lessonId: number): boolean {
   return userProgress.some(p => p.lesson_id === lessonId && p.completed);
 }
 
-// Get tags for a lesson based on lesson ID
-function getLessonTags(lessonId: number): string[] {
-  const tagMap: Record<number, string[]> = {
-    // Módulo 1 - Introducción
-    2: ['importante'],  // Qué es Wazuh
-    3: ['opcional'],    // Instalación Linux
-    4: ['opcional'],    // Instalación Docker
-    // Módulo 2 - Agentes
-    10: ['importante'], // Equipos sin Agente 1/2
-    11: ['importante'], // Equipos sin Agente 2/2
-    // Módulo 4 - Paneles (todos ENS)
-    14: ['ens'], 17: ['ens'], 19: ['ens'],
-    26: ['proximamente'], // Panel Evaluación de Configuración
-    27: ['proximamente'], // Cómo crear tu dashboard personalizado
-    // Módulo 7 - Integraciones
-    18: ['opcional'],   // VirusTotal
-    24: ['proximamente'], // IA Local Ollama
-    // Módulo 8 - Decoders, Reglas y Alertas
-    28: ['caso-practico'], // Caso Práctico FortiGate
-  };
-  return tagMap[lessonId] || [];
+// Get tags for a lesson based on title (more robust than hardcoded IDs)
+function getLessonTags(lesson: Lesson): string[] {
+  const title = lesson.title.toLowerCase();
+
+  // Importante - lecciones clave
+  if (title.includes('qué es wazuh') || title.includes('que es wazuh')) return ['importante'];
+  if (title.includes('wazuh en windows') || title.includes('agente en windows') || title.includes('agente wazuh en windows')) return ['importante'];
+  if (title.includes('equipos sin agente')) return ['importante'];
+
+  // Opcional - instalaciones alternativas
+  if (title.includes('wazuh en linux') || title.includes('ubuntu') || title.includes('agente wazuh en linux')) return ['opcional'];
+  if (title.includes('docker')) return ['opcional'];
+  if (title.includes('virustotal')) return ['opcional'];
+
+  // ENS - paneles relacionados con cumplimiento
+  if (title.includes('panel') && (title.includes('security events') || title.includes('integrity monitoring') || title.includes('vulnerability'))) return ['ens'];
+
+  // Próximamente - contenido pendiente
+  if (title.includes('evaluación de configuración') || title.includes('dashboard personalizado') || title.includes('ollama') || title.includes('ia local')) return ['proximamente'];
+
+  // Caso Práctico
+  if (title.includes('caso práctico') || title.includes('caso practico')) return ['caso-practico'];
+
+  return [];
 }
 
 // Tag styles
@@ -226,7 +229,7 @@ function getTagStyle(tag: string): { bg: string; text: string; label: string } {
           >
             {moduleLessons.map((lesson: Lesson, lessonIndex: number) => {
               const isCompleted = isLessonCompleted(lesson.id);
-              const isCasoPractico = getLessonTags(lesson.id).includes('caso-practico');
+              const isCasoPractico = getLessonTags(lesson).includes('caso-practico');
               return (
                 <a
                   href={isLocked ? '#' : `/aula/leccion/${lesson.id}`}
@@ -270,7 +273,7 @@ function getTagStyle(tag: string): { bg: string; text: string; label: string } {
                       <h4 class="font-medium" style={isLocked ? 'color: #6b7280;' : 'color: #ffffff;'}>
                         {lesson.title}
                       </h4>
-                      {getLessonTags(lesson.id).map((tag: string) => {
+                      {getLessonTags(lesson).map((tag: string) => {
                         const style = getTagStyle(tag);
                         return (
                           <span

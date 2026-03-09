@@ -67,6 +67,21 @@ function getYouTubeId(url: string): string | null {
 
 const youtubeId = lesson.video_url ? getYouTubeId(lesson.video_url) : null;
 const resources = (lesson.resources as Resource[]) || [];
+
+// Check if this is the Windows installation lesson (show warning popup)
+const isWindowsLesson = lesson.title.toLowerCase().includes('wazuh en windows') ||
+                        lesson.title.toLowerCase().includes('agente en windows') ||
+                        lesson.title.toLowerCase().includes('agente wazuh en windows');
+
+// Helper to get lesson tag based on title
+function getLessonTag(title: string): { label: string; bg: string; color: string } | null {
+  const t = title.toLowerCase();
+  if (t.includes('qué es wazuh') || t.includes('que es wazuh')) return { label: 'Importante', bg: 'rgba(59, 130, 246, 0.2)', color: '#93c5fd' };
+  if (t.includes('wazuh en windows') || t.includes('agente en windows')) return { label: 'Importante', bg: 'rgba(59, 130, 246, 0.2)', color: '#93c5fd' };
+  if (t.includes('wazuh en linux') || t.includes('ubuntu') || t.includes('docker')) return { label: 'Opcional', bg: 'rgba(107, 114, 128, 0.2)', color: '#9ca3af' };
+  if (t.includes('equipos sin agente')) return { label: 'Importante', bg: 'rgba(59, 130, 246, 0.2)', color: '#93c5fd' };
+  return null;
+}
 ---
 
 <AulaLayout title={`${lesson.title} - Aula Virtual`}>
@@ -86,6 +101,83 @@ const resources = (lesson.resources as Resource[]) || [];
       <li class="font-medium" style="color: #ffffff;">{lesson.title}</li>
     </ol>
   </nav>
+
+  <!-- Windows Warning Modal -->
+  {isWindowsLesson && (
+    <div id="windows-warning-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4" style="background-color: rgba(0, 0, 0, 0.8);">
+      <div class="max-w-lg w-full rounded-2xl p-6 relative" style="background-color: #1a1f26; border: 1px solid #f59e0b;">
+        <!-- Warning Icon -->
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style="background-color: rgba(245, 158, 11, 0.2);">
+            <svg class="w-6 h-6" style="color: #fbbf24;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold" style="color: #fbbf24;">Solo para laboratorio y pruebas</h3>
+        </div>
+
+        <!-- Content -->
+        <div class="space-y-4 mb-6">
+          <p style="color: #e5e7eb;">
+            <strong style="color: #ffffff;">Instalar Wazuh Server en Windows no es recomendable para produccion.</strong>
+            Esta guia esta pensada para montar un laboratorio de pruebas o aprender.
+          </p>
+
+          <div class="rounded-lg p-4" style="background-color: #0f1419; border: 1px solid #374151;">
+            <p class="text-sm font-medium mb-2" style="color: #4ade80;">Para entornos de produccion, usa:</p>
+            <ul class="space-y-2 text-sm" style="color: #9ca3af;">
+              <li class="flex items-start gap-2">
+                <svg class="w-4 h-4 mt-0.5 flex-shrink-0" style="color: #4ade80;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span><strong style="color: #ffffff;">Linux (recomendado)</strong> - Ubuntu, CentOS, RHEL, Amazon Linux</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="w-4 h-4 mt-0.5 flex-shrink-0" style="color: #4ade80;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span><strong style="color: #ffffff;">Docker</strong> - Despliegue rapido con contenedores</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="w-4 h-4 mt-0.5 flex-shrink-0" style="color: #4ade80;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span><strong style="color: #ffffff;">Kubernetes</strong> - Para infraestructuras escalables</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="w-4 h-4 mt-0.5 flex-shrink-0" style="color: #4ade80;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span><strong style="color: #ffffff;">Amazon AMI</strong> - Para despliegue en AWS</span>
+              </li>
+            </ul>
+          </div>
+
+          <a
+            href="https://documentation.wazuh.com/current/installation-guide/index.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 text-sm transition-colors hover:opacity-80"
+            style="color: #38b1ff;"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+            Ver guia oficial de instalacion de Wazuh
+          </a>
+        </div>
+
+        <!-- Button -->
+        <button
+          id="close-windows-warning"
+          class="w-full py-3 px-4 font-semibold rounded-lg transition-colors hover:opacity-90"
+          style="background-color: #0065ff; color: #ffffff;"
+        >
+          Entendido, continuar con el laboratorio
+        </button>
+      </div>
+    </div>
+  )}
 
   <!-- Video + Sidebar Grid -->
   <div class="grid grid-cols-1 lg:grid-cols-10 gap-6 mb-8">
@@ -190,16 +282,14 @@ const resources = (lesson.resources as Resource[]) || [];
                 <span class={`text-xs truncate ${isCurrent ? 'font-medium' : ''}`}>
                   {l.title}
                 </span>
-                {l.id === 2 && (
-                  <span class="ml-auto px-1.5 py-0.5 text-[10px] font-bold rounded flex-shrink-0" style="background-color: rgba(245, 158, 11, 0.2); color: #fbbf24;">
-                    Importante
-                  </span>
-                )}
-                {(l.id === 4 || l.id === 5) && (
-                  <span class="ml-auto px-1.5 py-0.5 text-[10px] font-medium rounded flex-shrink-0" style="background-color: rgba(107, 114, 128, 0.2); color: #9ca3af;">
-                    Opcional
-                  </span>
-                )}
+                {(() => {
+                  const tag = getLessonTag(l.title);
+                  return tag ? (
+                    <span class="ml-auto px-1.5 py-0.5 text-[10px] font-medium rounded flex-shrink-0" style={`background-color: ${tag.bg}; color: ${tag.color};`}>
+                      {tag.label}
+                    </span>
+                  ) : null;
+                })()}
               </a>
             );
           })}
@@ -450,6 +540,30 @@ const resources = (lesson.resources as Resource[]) || [];
       showBtn.addEventListener('click', () => {
         solutionBlur.classList.add('revealed');
         showBtn.classList.add('hidden');
+      });
+    }
+
+    // Windows warning modal
+    const windowsModal = document.getElementById('windows-warning-modal');
+    const closeWindowsBtn = document.getElementById('close-windows-warning');
+
+    if (windowsModal && closeWindowsBtn) {
+      closeWindowsBtn.addEventListener('click', () => {
+        windowsModal.style.display = 'none';
+      });
+
+      // Close on backdrop click
+      windowsModal.addEventListener('click', (e) => {
+        if (e.target === windowsModal) {
+          windowsModal.style.display = 'none';
+        }
+      });
+
+      // Close on Escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && windowsModal.style.display !== 'none') {
+          windowsModal.style.display = 'none';
+        }
       });
     }
   });
