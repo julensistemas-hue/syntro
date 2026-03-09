@@ -66,7 +66,7 @@ function getLessonTags(lesson: Lesson): string[] {
   if (title.includes('virustotal')) return ['opcional'];
 
   // ENS - paneles relacionados con cumplimiento
-  if (title.includes('panel') && (title.includes('security events') || title.includes('integrity monitoring') || title.includes('vulnerability'))) return ['ens'];
+  if (title.includes('panel') && (title.includes('integridad') || title.includes('fim') || title.includes('discover') || title.includes('threat hunting') || title.includes('vulnerability'))) return ['ens'];
 
   // Próximamente - contenido pendiente
   if (title.includes('evaluación de configuración') || title.includes('dashboard personalizado') || title.includes('ollama') || title.includes('ia local')) return ['proximamente'];
