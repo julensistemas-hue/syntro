@@ -1,6 +1,6 @@
 import type { APIRoute } from 'astro';
 import { createClient } from '@supabase/supabase-js';
-import nodemailer from 'nodemailer';
+import { Resend } from 'resend';
 
 export const POST: APIRoute = async ({ request }) => {
   try {
@@ -63,49 +63,78 @@ export const POST: APIRoute = async ({ request }) => {
 
     // The trigger in the database will automatically create the course_user entry
 
-    // Send notification email to admin
+    // Send notification email to admin using Resend
     try {
-      const transporter = nodemailer.createTransport({
-        host: import.meta.env.SMTP_HOST,
-        port: parseInt(import.meta.env.SMTP_PORT || '587'),
-        secure: false,
-        auth: {
-          user: import.meta.env.SMTP_USER,
-          pass: import.meta.env.SMTP_PASSWORD,
-        },
-      });
+      const resend = new Resend(import.meta.env.RESEND_API_KEY);
 
-      await transporter.sendMail({
-        from: `"${import.meta.env.SMTP_FROM_NAME || 'AI Security'}" <${import.meta.env.SMTP_FROM_EMAIL || 'info@aisecurity.es'}>`,
+      await resend.emails.send({
+        from: 'AI Security <info@aisecurity.es>',
         to: 'info@aisecurity.es',
-        subject: '📝 Nuevo registro - Curso Wazuh',
+        replyTo: email,
+        subject: 'Nuevo registro - Curso Wazuh',
         html: `
-          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-            <h2 style="color: #1a1a1a;">Nuevo usuario registrado</h2>
-
-            <div style="background: #e3f2fd; border: 1px solid #2196f3; padding: 15px; border-radius: 8px; margin: 20px 0;">
-              <p style="margin: 0; color: #1565c0;">
-                <strong>📝 Pendiente de pago</strong><br>
-                El usuario aún no ha completado el pago.
-              </p>
-            </div>
-
-            <div style="background: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
-              <p style="margin: 0 0 10px 0;"><strong>Nombre:</strong> ${name || 'No proporcionado'}</p>
-              <p style="margin: 0 0 10px 0;"><strong>Email:</strong> ${email}</p>
-              <p style="margin: 0;"><strong>Fecha:</strong> ${new Date().toLocaleString('es-ES', { timeZone: 'Europe/Madrid' })}</p>
-            </div>
-          </div>
+          <!DOCTYPE html>
+          <html>
+            <head><meta charset="utf-8"></head>
+            <body style="margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background-color: #f8fafc;">
+              <table role="presentation" style="width: 100%; border-collapse: collapse;">
+                <tr>
+                  <td align="center" style="padding: 40px 20px;">
+                    <table role="presentation" style="max-width: 600px; width: 100%; border-collapse: collapse; background-color: #ffffff; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                      <tr>
+                        <td style="padding: 30px; background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%); border-radius: 12px 12px 0 0;">
+                          <h2 style="margin: 0; color: #ffffff; font-size: 24px; font-weight: 600;">
+                            Nuevo Registro - Curso Wazuh
+                          </h2>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="padding: 30px;">
+                          <div style="background: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 8px; padding: 16px; margin-bottom: 20px;">
+                            <p style="margin: 0; color: #92400e; font-size: 14px;">
+                              <strong>Pendiente de pago</strong> - El usuario aun no ha completado el pago.
+                            </p>
+                          </div>
+                          <table role="presentation" style="width: 100%; border-collapse: collapse;">
+                            <tr>
+                              <td style="padding: 12px; background-color: #f1f5f9; border-radius: 8px; margin-bottom: 8px;">
+                                <p style="margin: 0; color: #334155; font-size: 15px;">
+                                  <strong style="color: #1e293b;">Nombre:</strong> ${name || 'No proporcionado'}
+                                </p>
+                              </td>
+                            </tr>
+                            <tr><td style="height: 8px;"></td></tr>
+                            <tr>
+                              <td style="padding: 12px; background-color: #f1f5f9; border-radius: 8px;">
+                                <p style="margin: 0; color: #334155; font-size: 15px;">
+                                  <strong style="color: #1e293b;">Email:</strong> ${email}
+                                </p>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="padding: 12px 0;">
+                                <p style="margin: 0; color: #64748b; font-size: 14px;">
+                                  <strong>Fecha:</strong> ${new Date().toLocaleString('es-ES', { timeZone: 'Europe/Madrid' })}
+                                </p>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </body>
+          </html>
         `,
-        text: `
-Nuevo usuario registrado
+        text: `Nuevo registro - Curso Wazuh
 
 Nombre: ${name || 'No proporcionado'}
 Email: ${email}
 Fecha: ${new Date().toLocaleString('es-ES', { timeZone: 'Europe/Madrid' })}
 
-Pendiente de pago.
-        `,
+Pendiente de pago.`,
       });
     } catch (emailError) {
       console.error('Error sending registration notification:', emailError);
