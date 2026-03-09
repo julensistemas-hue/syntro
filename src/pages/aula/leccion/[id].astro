@@ -400,4 +400,57 @@ const resources = (lesson.resources as Resource[]) || [];
   .lesson-content .prose h2:first-child {
     margin-top: 0 !important;
   }
+
+  /* Solution blur effect */
+  .solution-blur {
+    filter: blur(5px);
+    user-select: none;
+    pointer-events: none;
+    transition: filter 0.3s ease;
+  }
+
+  .solution-blur.revealed {
+    filter: none;
+    user-select: auto;
+    pointer-events: auto;
+  }
+
+  /* Show solution button */
+  .show-solution-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    margin-top: 1rem;
+    background-color: #0065ff;
+    color: #ffffff;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+  }
+
+  .show-solution-btn:hover {
+    background-color: #0052cc;
+  }
+
+  .show-solution-btn.hidden {
+    display: none;
+  }
 </style>
+
+<script>
+  // Solution reveal functionality
+  document.addEventListener('DOMContentLoaded', () => {
+    const solutionBlur = document.querySelector('.solution-blur');
+    const showBtn = document.querySelector('.show-solution-btn');
+
+    if (showBtn && solutionBlur) {
+      showBtn.addEventListener('click', () => {
+        solutionBlur.classList.add('revealed');
+        showBtn.classList.add('hidden');
+      });
+    }
+  });
+</script>
