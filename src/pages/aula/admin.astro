@@ -13,13 +13,25 @@ if (!user || user.email !== ADMIN_EMAIL) {
 
 const supabaseAdmin = createServerClient();
 
+// Emails to exclude from stats (test accounts)
+const EXCLUDED_EMAILS = [
+  'julenproyecto@gmail.com',
+  'jvergara@nostravant.es',
+  'proyectozeropersonal404@gmail.com',
+  'info@aisecurity.es',
+  'julen.sistemas@gmail.com'
+];
+
 // Fetch all course users
 const { data: courseUsers, error } = await supabaseAdmin
   .from('course_users')
   .select('*')
   .order('created_at', { ascending: false });
 
-const users = courseUsers || [];
+const allUsers = courseUsers || [];
+
+// Filter out test accounts
+const users = allUsers.filter(u => !EXCLUDED_EMAILS.includes(u.email?.toLowerCase()));
 
 // Calculate stats
 const totalUsers = users.length;
