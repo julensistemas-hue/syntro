@@ -1,6 +1,15 @@
 {
   "topics": [
     {
+      "tema": "$96 3D-printed rocket that recalculates its mid-air trajectory using a $5 sensor",
+      "palabras_clave": "tecnología, 3d-printed, rocket, recalculates, that",
+      "notas": "Tema detectado automáticamente con score 45/100. Fuente: hackernews. Referencia: https://github.com/novatic14/MANPADS-System-Launcher-and-Rocket",
+      "estado": "Pendiente",
+      "fecha_agregado": "2026-03-16",
+      "score_tendencia": 45,
+      "fuente_tendencia": "hackernews"
+    },
+    {
       "tema": "Debian decides not to decide on AI-generated contributions",
       "palabras_clave": "tecnología, ai-generated, decide, debian, decides",
       "notas": "Tema detectado automáticamente con score 45/100. Fuente: hackernews. Referencia: https://lwn.net/SubscriberLink/1061544/125f911834966dd0/",
