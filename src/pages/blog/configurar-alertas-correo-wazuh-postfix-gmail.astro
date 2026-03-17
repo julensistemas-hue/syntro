@@ -4,11 +4,11 @@ import BlogLayout from "../../layouts/BlogLayout.astro";
 
 <BlogLayout
   title="Configurar Alertas por Correo en Wazuh con Postfix y Gmail/Microsoft"
-  description="Configura Postfix con SMTP de Gmail o Microsoft 365 para enviar alertas de Wazuh. Contraseña de aplicación, email_alerts por regla y destinatarios personalizados."
+  description="Configura alertas por correo en Wazuh con Postfix y Gmail/Microsoft 365. Cumplimiento ISO 27001 (A.5.24-A.5.26) y ENS (op.mon.1, op.mon.3)."
   publishDate="2026-03-06"
   author="AI Security"
   readTime="12 min"
-  tags={["Wazuh", "Alertas", "Postfix", "Gmail", "SMTP", "Correo"]}
+  tags={["Wazuh", "Alertas", "Postfix", "Gmail", "SMTP", "Correo", "ENS", "ISO 27001"]}
   canonical="https://aisecurity.es/blog/configurar-alertas-correo-wazuh-postfix-gmail">
 
   <h2>Introducción</h2>
@@ -79,9 +79,9 @@ import BlogLayout from "../../layouts/BlogLayout.astro";
   <ol>
     <li>Ve a <a href="https://myaccount.google.com/security" target="_blank" rel="noopener">myaccount.google.com/security</a></li>
     <li>Activa la <strong>Verificación en dos pasos</strong> si no la tienes</li>
-    <li>Busca <strong>Contraseñas de aplicaciones</strong></li>
-    <li>Selecciona "Correo" y "Otro (nombre personalizado)" → escribe "Wazuh"</li>
-    <li>Guarda la contraseña de <strong>16 caracteres</strong> que te genera</li>
+    <li>Accede directamente a <a href="https://myaccount.google.com/apppasswords" target="_blank" rel="noopener"><strong>Contraseñas de aplicaciones</strong></a></li>
+    <li>Escribe un nombre descriptivo (ej: "Wazuh SIEM") y haz clic en "Crear"</li>
+    <li>Guarda la contraseña de <strong>16 caracteres</strong> que te genera (sin espacios)</li>
   </ol>
 
   <h2>Paso 2: Instalar y configurar Postfix</h2>
@@ -197,6 +197,109 @@ systemctl restart postfix</code></pre>
       </tr>
     </table>
   </div>
+
+  <h2>Cumplimiento ISO 27001:2022</h2>
+
+  <p>
+    Configurar alertas por correo en Wazuh contribuye directamente al cumplimiento de varios controles del <strong>Anexo A de ISO 27001:2022</strong>:
+  </p>
+
+  <div style="background: linear-gradient(135deg, #1a1f2e 0%, #0f1419 100%); border: 1px solid #2d3748; border-radius: 12px; padding: 24px; margin: 24px 0;">
+    <table style="width: 100%; border-collapse: collapse; color: #e5e7eb;">
+      <tr style="border-bottom: 1px solid #2d3748;">
+        <td style="padding: 12px; font-weight: bold; color: #60a5fa;">Control</td>
+        <td style="padding: 12px; font-weight: bold; color: #60a5fa;">Nombre</td>
+        <td style="padding: 12px; font-weight: bold; color: #60a5fa;">Cómo ayudan las alertas</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #2d3748;">
+        <td style="padding: 12px; color: #34d399; font-weight: bold;">A.5.24</td>
+        <td style="padding: 12px;">Planificación y preparación de gestión de incidentes</td>
+        <td style="padding: 12px;">Notificación inmediata al equipo responsable cuando ocurre un incidente</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #2d3748;">
+        <td style="padding: 12px; color: #34d399; font-weight: bold;">A.5.25</td>
+        <td style="padding: 12px;">Evaluación y decisión sobre incidentes</td>
+        <td style="padding: 12px;">Información detallada en el correo permite evaluar la severidad rápidamente</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #2d3748;">
+        <td style="padding: 12px; color: #34d399; font-weight: bold;">A.5.26</td>
+        <td style="padding: 12px;">Respuesta a incidentes de seguridad</td>
+        <td style="padding: 12px;">Reducción del tiempo de respuesta gracias a alertas en tiempo real</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #2d3748;">
+        <td style="padding: 12px; color: #34d399; font-weight: bold;">A.8.15</td>
+        <td style="padding: 12px;">Registro de eventos (Logging)</td>
+        <td style="padding: 12px;">Los correos sirven como registro secundario de eventos críticos</td>
+      </tr>
+      <tr>
+        <td style="padding: 12px; color: #34d399; font-weight: bold;">A.8.16</td>
+        <td style="padding: 12px;">Actividades de monitorización</td>
+        <td style="padding: 12px;">Monitorización activa con notificación automática a responsables</td>
+      </tr>
+    </table>
+  </div>
+
+  <h2>Cumplimiento ENS (Esquema Nacional de Seguridad)</h2>
+
+  <p>
+    Para organizaciones sujetas al <strong>ENS (RD 311/2022)</strong>, las alertas por correo son fundamentales para cumplir con:
+  </p>
+
+  <div style="background: linear-gradient(135deg, #1a1f2e 0%, #0f1419 100%); border: 1px solid #2d3748; border-radius: 12px; padding: 24px; margin: 24px 0;">
+    <table style="width: 100%; border-collapse: collapse; color: #e5e7eb;">
+      <tr style="border-bottom: 1px solid #2d3748;">
+        <td style="padding: 12px; font-weight: bold; color: #fbbf24;">Medida</td>
+        <td style="padding: 12px; font-weight: bold; color: #fbbf24;">Nombre</td>
+        <td style="padding: 12px; font-weight: bold; color: #fbbf24;">Cómo ayudan las alertas</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #2d3748;">
+        <td style="padding: 12px; color: #f472b6; font-weight: bold;">op.mon.1</td>
+        <td style="padding: 12px;">Detección de intrusión</td>
+        <td style="padding: 12px;">Notificación inmediata cuando se detecta actividad sospechosa</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #2d3748;">
+        <td style="padding: 12px; color: #f472b6; font-weight: bold;">op.mon.3</td>
+        <td style="padding: 12px;">Vigilancia</td>
+        <td style="padding: 12px;">Sistema de vigilancia activo con escalado a responsables</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #2d3748;">
+        <td style="padding: 12px; color: #f472b6; font-weight: bold;">op.exp.7</td>
+        <td style="padding: 12px;">Gestión de incidentes</td>
+        <td style="padding: 12px;">Proceso automatizado de notificación para gestión de incidentes</td>
+      </tr>
+      <tr>
+        <td style="padding: 12px; color: #f472b6; font-weight: bold;">op.exp.9</td>
+        <td style="padding: 12px;">Registro de la gestión de incidentes</td>
+        <td style="padding: 12px;">Los correos proporcionan evidencia documental de las alertas generadas</td>
+      </tr>
+    </table>
+  </div>
+
+  <div style="background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%); border: 2px solid #6366f1; border-radius: 12px; padding: 24px; margin: 24px 0;">
+    <div style="display: flex; align-items: flex-start; gap: 16px;">
+      <div style="background: #6366f1; border-radius: 50%; padding: 8px; flex-shrink: 0;">
+        <svg style="width: 24px; height: 24px; color: white;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+      </div>
+      <div>
+        <h4 style="color: #a5b4fc; margin: 0 0 8px 0; font-weight: bold;">Tiempos de respuesta ENS</h4>
+        <p style="color: #c7d2fe; margin: 0;">
+          El ENS establece tiempos máximos de respuesta según la categoría del sistema. Las alertas por correo permiten cumplir con <code style="background: #312e81; padding: 2px 6px; border-radius: 4px;">op.mon.3</code> al garantizar que el personal de seguridad recibe notificaciones <strong>en tiempo real</strong>, reduciendo drásticamente el tiempo de detección y respuesta.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <h2>¿Por qué son importantes las alertas por correo?</h2>
+
+  <ul>
+    <li><strong>Respuesta rápida</strong>: El equipo de seguridad recibe notificaciones inmediatas sin necesidad de revisar el dashboard constantemente</li>
+    <li><strong>Escalado automático</strong>: Puedes enviar alertas a diferentes responsables según el tipo de incidente</li>
+    <li><strong>Evidencia documental</strong>: Los correos sirven como registro secundario para auditorías</li>
+    <li><strong>Disponibilidad 24/7</strong>: Las alertas llegan aunque nadie esté monitorizando activamente</li>
+    <li><strong>Cumplimiento normativo</strong>: Demuestra que existe un sistema de notificación de incidentes operativo</li>
+  </ul>
 
   <h2>Próximos pasos</h2>
 
