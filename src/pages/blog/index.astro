@@ -7,51 +7,13 @@ const canonical = "https://aisecurity.es/blog";
 
 // Array de artículos del blog (luego podríamos usar Content Collections)
 const articles = [
-  {
-    slug: "ciberseguridad-basica-empleados-guia-completa",
-    title: "Ciberseguridad Básica para Empleados: Guía Completa",
-    description: "Todo lo que necesitas saber sobre ciberseguridad en el trabajo: contraseñas, phishing, WiFi, dispositivos, ingeniería social y más. Guía práctica para cumplir ISO 27001 y ENS.",
-    publishDate: "2026-03-18",
-    readTime: "12 min",
-    tags: ["Concienciación", "Ciberseguridad", "ISO 27001", "ENS"],
-    category: "Concienciación"
-  },
-  {
-    slug: "detectar-phishing-outlook-microsoft-guia-empleados",
-    title: "Cómo detectar emails de phishing en Outlook y Microsoft 365",
-    description: "Aprende a identificar emails fraudulentos en Outlook y Microsoft 365. Verifica remitentes, detecta enlaces sospechosos y usa las herramientas de seguridad de Microsoft.",
-    publishDate: "2026-03-18",
-    readTime: "7 min",
-    tags: ["Concienciación", "Phishing", "Outlook", "Microsoft 365"],
-    category: "Concienciación"
-  },
-  {
-    slug: "detectar-phishing-gmail-guia-empleados",
-    title: "Cómo detectar emails de phishing en Gmail: Guía para empleados",
-    description: "Aprende a identificar emails fraudulentos en Gmail. Verifica remitentes, detecta enlaces sospechosos y protege tu empresa del phishing.",
-    publishDate: "2026-03-18",
-    readTime: "6 min",
-    tags: ["Concienciación", "Phishing", "Gmail", "Seguridad"],
-    category: "Concienciación"
-  },
-  {
-    slug: "tu-contrasena-mayuscula-numeros-hackeable",
-    title: "¿Tu contraseña empieza con mayúscula y acaba en números? Es hackeable",
-    description: "Si tu contraseña sigue el patrón Palabra2024 o similar, los hackers la descifran en minutos. Descubre por qué este patrón es tan predecible.",
-    publishDate: "2026-03-18",
-    readTime: "3 min",
-    tags: ["Concienciación", "Contraseñas", "Seguridad"],
-    category: "Concienciación"
-  },
-  {
-    slug: "contrasenas-seguras-empleados-guia-completa",
-    title: "Contraseñas Seguras: Guía Completa para Empleados",
-    description: "Aprende por qué usar contraseñas diferentes, cómo compartirlas de forma segura, requisitos mínimos y qué gestores usar. Guía para ISO 27001 y ENS.",
-    publishDate: "2026-03-18",
-    readTime: "8 min",
-    tags: ["Concienciación", "Contraseñas", "ISO 27001", "ENS"],
-    category: "Concienciación"
-  },
+  // TODO: Artículos de Concienciación - Descomentar cuando estén listos para producción
+  // Los archivos existen en /blog/ pero no se muestran en el índice
+  // - ciberseguridad-basica-empleados-guia-completa
+  // - detectar-phishing-outlook-microsoft-guia-empleados
+  // - detectar-phishing-gmail-guia-empleados
+  // - tu-contrasena-mayuscula-numeros-hackeable
+  // - contrasenas-seguras-empleados-guia-completa
   {
     slug: "investigar-ataque-ssh-wazuh-discover",
     title: "Caso Práctico: Investigar un Ataque SSH con Wazuh Discover y Threat Hunting",
@@ -259,8 +221,8 @@ const articles = [
   // Más artículos se añadirán aquí
 ];
 
-// Categorías disponibles
-const categories = ["Todos", "Concienciación", "Wazuh & Seguridad", "IA para Sistemas"];
+// Categorías disponibles (Concienciación comentada hasta que los artículos estén listos)
+const categories = ["Todos", "Wazuh & Seguridad", "IA para Sistemas"];
 ---
 
 <BaseLayout title={title} description={description} canonical={canonical}>

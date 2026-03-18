@@ -286,3 +286,27 @@ CREATE TRIGGER update_lessons_updated_at
 CREATE TRIGGER update_user_progress_updated_at
   BEFORE UPDATE ON user_progress
   FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+
+-- =====================================================
+-- TABLA: concienciacion_leads
+-- Leads capturados desde artículos de concienciación
+-- =====================================================
+CREATE TABLE concienciacion_leads (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  email TEXT NOT NULL,
+  source TEXT,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+-- Índice para búsqueda por email (evitar duplicados)
+CREATE INDEX idx_concienciacion_leads_email ON concienciacion_leads(email);
+
+-- Permitir inserción desde el service role (API)
+ALTER TABLE concienciacion_leads ENABLE ROW LEVEL SECURITY;
+
+-- Política: Solo service role puede insertar y leer
+CREATE POLICY "Service role full access to concienciacion_leads"
+  ON concienciacion_leads
+  FOR ALL
+  USING (true)
+  WITH CHECK (true);
