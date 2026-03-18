@@ -1,0 +1,299 @@
+---
+import BlogLayout from "../../layouts/BlogLayout.astro";
+import LeadCaptureConcienciacion from "../../components/blog/LeadCaptureConcienciacion.astro";
+---
+
+<BlogLayout
+  title="Ciberseguridad Básica para Empleados: Guía Completa"
+  description="Todo lo que necesitas saber sobre ciberseguridad en el trabajo: contraseñas, phishing, WiFi, dispositivos, ingeniería social y más. Guía práctica para cumplir ISO 27001 y ENS."
+  publishDate="2026-03-18"
+  author="AI Security"
+  readTime="12 min"
+  tags={["Concienciación", "Ciberseguridad", "ISO 27001", "ENS", "Seguridad"]}
+  canonical="https://aisecurity.es/blog/ciberseguridad-basica-empleados-guia-completa">
+
+  <h2>Por qué la ciberseguridad es responsabilidad de todos</h2>
+
+  <p>
+    Tu empresa puede tener los mejores firewalls, antivirus y sistemas de seguridad del mundo. Pero si un empleado hace clic en un enlace de phishing o usa "123456" como contraseña, todo eso no sirve de nada.
+  </p>
+
+  <p>
+    <strong>El 95% de los incidentes de seguridad involucran error humano.</strong> No porque los empleados sean tontos, sino porque los atacantes son muy buenos en lo que hacen. Conocen la psicología humana y explotan nuestra prisa, confianza y rutinas.
+  </p>
+
+  <div class="bg-amber-200 border-l-4 border-amber-700 p-4 my-6 rounded-r-lg">
+    <p class="m-0" style="color: #000000;"><strong style="color: #000000;">Realidad:</strong> Los hackers no atacan sistemas, atacan personas. Tú eres la última línea de defensa de tu empresa.</p>
+  </div>
+
+  <p>
+    Esta guía cubre los fundamentos de seguridad que todo empleado debe conocer. No importa si trabajas en finanzas, marketing, producción o atención al cliente: estas prácticas aplican a todos.
+  </p>
+
+  <h2>1. Gestión de contraseñas</h2>
+
+  <p>
+    Las contraseñas son la llave de tu vida digital laboral. Una contraseña débil o reutilizada es como dejar la puerta de la oficina abierta por la noche.
+  </p>
+
+  <h3>Reglas fundamentales</h3>
+
+  <ul>
+    <li><strong>Una contraseña diferente para cada servicio</strong>: Si reutilizas, un hackeo en un sitio compromete todos los demás</li>
+    <li><strong>Mínimo 12 caracteres</strong>: Más largo = más seguro (14-16 es ideal)</li>
+    <li><strong>Evita patrones predecibles</strong>: "Empresa2024!" está en todas las listas de ataque</li>
+    <li><strong>Usa un gestor de contraseñas</strong>: Bitwarden, 1Password, o el que recomiende tu empresa</li>
+    <li><strong>Activa 2FA siempre que sea posible</strong>: Especialmente en email y servicios críticos</li>
+  </ul>
+
+  <div class="bg-green-200 border-l-4 border-green-700 p-4 my-6 rounded-r-lg">
+    <p class="m-0" style="color: #000000;"><strong style="color: #000000;">Profundiza:</strong> Lee nuestra <a href="/blog/contrasenas-seguras-empleados-guia-completa" style="color: #7c3aed;">Guía completa de contraseñas seguras</a> para entender por qué y cómo implementar estas prácticas.</p>
+  </div>
+
+  <h3>Nunca compartas contraseñas por email o chat</h3>
+
+  <p>
+    Si necesitas compartir credenciales con un compañero:
+  </p>
+
+  <ul>
+    <li>Usa la función de compartir del gestor de contraseñas corporativo</li>
+    <li>Usa servicios de un solo uso como <a href="https://onetimesecret.com" target="_blank">OneTimeSecret</a></li>
+    <li>En último caso, dila por teléfono (nunca escrita)</li>
+  </ul>
+
+  <h2>2. Protección contra phishing</h2>
+
+  <p>
+    El phishing es el ataque más común y efectivo. Los ciberdelincuentes se hacen pasar por empresas o personas de confianza para robar credenciales o instalar malware.
+  </p>
+
+  <h3>Señales de alerta</h3>
+
+  <ul>
+    <li><strong>Urgencia artificial</strong>: "Tu cuenta será bloqueada en 24h"</li>
+    <li><strong>Remitente sospechoso</strong>: El nombre dice "Microsoft" pero el email es @gmail.com</li>
+    <li><strong>Enlaces que no coinciden</strong>: El texto dice una cosa, la URL real otra</li>
+    <li><strong>Archivos adjuntos inesperados</strong>: Especialmente .exe, .zip con contraseña, documentos con macros</li>
+    <li><strong>Errores de ortografía y gramática</strong>: Las empresas profesionales revisan sus comunicaciones</li>
+    <li><strong>Solicitud de datos sensibles</strong>: Nadie legítimo te pide contraseñas por email</li>
+  </ul>
+
+  <h3>Qué hacer</h3>
+
+  <ol>
+    <li><strong>Verifica antes de hacer clic</strong>: Pasa el ratón sobre enlaces para ver la URL real</li>
+    <li><strong>Verifica el remitente</strong>: Comprueba la dirección de email, no solo el nombre</li>
+    <li><strong>Ante la duda, no hagas clic</strong>: Accede al servicio directamente escribiendo la URL</li>
+    <li><strong>Reporta el email</strong>: Usa la función de reportar phishing y avisa a IT</li>
+  </ol>
+
+  <div class="bg-green-200 border-l-4 border-green-700 p-4 my-6 rounded-r-lg">
+    <p class="m-0" style="color: #000000;"><strong style="color: #000000;">Guías específicas:</strong></p>
+    <ul class="mt-2 mb-0" style="color: #000000;">
+      <li><a href="/blog/detectar-phishing-gmail-guia-empleados" style="color: #7c3aed;">Cómo detectar phishing en Gmail</a></li>
+      <li><a href="/blog/detectar-phishing-outlook-microsoft-guia-empleados" style="color: #7c3aed;">Cómo detectar phishing en Outlook/Microsoft 365</a></li>
+    </ul>
+  </div>
+
+  <h2>3. Seguridad en redes WiFi</h2>
+
+  <h3>En la oficina</h3>
+
+  <ul>
+    <li>Usa solo la red corporativa autorizada</li>
+    <li>No conectes dispositivos personales sin autorización</li>
+    <li>Si ves redes WiFi duplicadas o sospechosas, avisa a IT</li>
+  </ul>
+
+  <h3>Trabajando en remoto o viajes</h3>
+
+  <ul>
+    <li><strong>Evita WiFi públicas</strong> (cafeterías, aeropuertos, hoteles) para trabajo sensible</li>
+    <li><strong>Usa siempre la VPN corporativa</strong> cuando trabajes fuera de la oficina</li>
+    <li><strong>Si no hay VPN disponible</strong>: Usa los datos móviles de tu teléfono (hotspot)</li>
+    <li><strong>Nunca accedas a banca o servicios críticos</strong> en WiFi públicas sin VPN</li>
+  </ul>
+
+  <div class="bg-red-200 border-l-4 border-red-700 p-4 my-6 rounded-r-lg">
+    <p class="m-0" style="color: #000000;"><strong style="color: #000000;">Peligro real:</strong> En una WiFi pública, un atacante puede interceptar todo tu tráfico: emails, contraseñas, documentos. Es trivialmente fácil con herramientas gratuitas.</p>
+  </div>
+
+  <h2>4. Seguridad de dispositivos</h2>
+
+  <h3>Ordenador de trabajo</h3>
+
+  <ul>
+    <li><strong>Bloquea siempre al levantarte</strong>: Win+L en Windows, Cmd+Ctrl+Q en Mac</li>
+    <li><strong>Configura bloqueo automático</strong>: Máximo 5 minutos de inactividad</li>
+    <li><strong>No desactives el antivirus</strong>: Aunque "ralentice" el equipo</li>
+    <li><strong>Mantén el sistema actualizado</strong>: Las actualizaciones corrigen vulnerabilidades</li>
+    <li><strong>No instales software no autorizado</strong>: Pregunta a IT antes</li>
+    <li><strong>Cifra el disco duro</strong>: BitLocker (Windows) o FileVault (Mac)</li>
+  </ul>
+
+  <h3>Móvil</h3>
+
+  <ul>
+    <li><strong>PIN o biométrico obligatorio</strong>: Nada de "deslizar para desbloquear"</li>
+    <li><strong>Mantén el sistema actualizado</strong>: iOS y Android publican parches críticos</li>
+    <li><strong>Descarga apps solo de tiendas oficiales</strong>: App Store o Google Play</li>
+    <li><strong>Revisa los permisos de las apps</strong>: ¿Una linterna necesita acceso a tus contactos?</li>
+    <li><strong>Activa "Buscar mi dispositivo"</strong>: Para poder borrarlo si lo pierdes</li>
+  </ul>
+
+  <h3>Dispositivos USB y externos</h3>
+
+  <ul>
+    <li><strong>No conectes USBs desconocidos</strong>: Los "USB perdidos" son una técnica de ataque común</li>
+    <li><strong>No uses cargadores públicos</strong> (aeropuertos, estaciones): Pueden transferir datos (juice jacking)</li>
+    <li><strong>Usa solo periféricos autorizados</strong>: Ratones y teclados USB también pueden ser vectores de ataque</li>
+  </ul>
+
+  <h2>5. Ingeniería social</h2>
+
+  <p>
+    La ingeniería social es manipular a personas para que revelen información o realicen acciones peligrosas. Va más allá del email: incluye llamadas, mensajes, e incluso visitas presenciales.
+  </p>
+
+  <h3>Técnicas comunes</h3>
+
+  <ul>
+    <li><strong>Pretexting</strong>: "Soy del soporte técnico, necesito tu contraseña para arreglar un problema"</li>
+    <li><strong>Baiting</strong>: USB "perdidos" en el parking, descargas gratuitas con malware</li>
+    <li><strong>Quid pro quo</strong>: "Te doy acceso a X si me das tu login"</li>
+    <li><strong>Tailgating</strong>: Alguien entra detrás de ti a una zona restringida sin identificarse</li>
+    <li><strong>Vishing</strong>: Phishing por teléfono ("Llamamos de Microsoft, su ordenador tiene un virus")</li>
+  </ul>
+
+  <h3>Cómo protegerte</h3>
+
+  <ul>
+    <li><strong>Verifica la identidad</strong>: Si alguien de "IT" te llama, cuelga y llama tú al número oficial</li>
+    <li><strong>Nunca des credenciales por teléfono</strong>: IT real nunca las necesita</li>
+    <li><strong>No dejes entrar a desconocidos</strong>: Pide que se identifiquen, avisa a recepción</li>
+    <li><strong>Desconfía de lo urgente y lo demasiado bueno</strong>: Ambos son señales de manipulación</li>
+  </ul>
+
+  <h2>6. Manejo de información sensible</h2>
+
+  <h3>Clasificación de información</h3>
+
+  <p>
+    Tu empresa probablemente tiene diferentes niveles de confidencialidad:
+  </p>
+
+  <ul>
+    <li><strong>Pública</strong>: Puede compartirse libremente (web, marketing)</li>
+    <li><strong>Interna</strong>: Solo empleados (procedimientos, organigramas)</li>
+    <li><strong>Confidencial</strong>: Acceso restringido (datos financieros, estrategias)</li>
+    <li><strong>Altamente confidencial</strong>: Muy restringido (datos personales, contratos, I+D)</li>
+  </ul>
+
+  <h3>Buenas prácticas</h3>
+
+  <ul>
+    <li><strong>Conoce la política de clasificación</strong> de tu empresa</li>
+    <li><strong>No envíes información confidencial por email</strong> sin cifrar</li>
+    <li><strong>Usa los canales aprobados</strong>: SharePoint, sistemas de gestión documental</li>
+    <li><strong>Aplica "need to know"</strong>: Solo comparte con quien realmente necesita saber</li>
+    <li><strong>Destruye documentos sensibles</strong>: Trituradora, no papelera normal</li>
+    <li><strong>Pantalla limpia</strong>: No dejes documentos sensibles visibles en tu escritorio</li>
+  </ul>
+
+  <h2>7. Copias de seguridad</h2>
+
+  <p>
+    El ransomware cifra tus archivos y pide rescate. La única defensa real son las copias de seguridad actualizadas.
+  </p>
+
+  <h3>Qué debes hacer</h3>
+
+  <ul>
+    <li><strong>Guarda trabajo en ubicaciones corporativas</strong>: OneDrive, SharePoint, servidores de red</li>
+    <li><strong>No guardes archivos importantes solo en local</strong>: "Mis Documentos" sin sincronizar = riesgo</li>
+    <li><strong>Verifica que las copias funcionan</strong>: De vez en cuando, intenta recuperar un archivo</li>
+    <li><strong>No desactives la sincronización</strong> de OneDrive/Google Drive por "ahorrar recursos"</li>
+  </ul>
+
+  <div class="bg-amber-200 border-l-4 border-amber-700 p-4 my-6 rounded-r-lg">
+    <p class="m-0" style="color: #000000;"><strong style="color: #000000;">Pregunta a IT:</strong> ¿Dónde debo guardar mis archivos para que estén respaldados? ¿Con qué frecuencia se hacen copias? ¿Cómo recupero un archivo borrado accidentalmente?</p>
+  </div>
+
+  <h2>8. Seguridad física</h2>
+
+  <p>
+    La seguridad no es solo digital. Un portátil robado o un documento olvidado pueden causar brechas graves.
+  </p>
+
+  <ul>
+    <li><strong>No dejes el portátil desatendido</strong>: En cafeterías, coches, trenes</li>
+    <li><strong>Usa candado de portátil</strong> si lo dejas en la oficina fuera de horas</li>
+    <li><strong>Cierra con llave cajones con documentos sensibles</strong></li>
+    <li><strong>No discutas información confidencial en público</strong>: El competidor puede estar en la mesa de al lado</li>
+    <li><strong>Recoge documentos de la impresora inmediatamente</strong></li>
+    <li><strong>Usa filtros de privacidad</strong> en la pantalla si trabajas en espacios públicos</li>
+  </ul>
+
+  <h2>9. Qué hacer ante un incidente</h2>
+
+  <p>
+    Si crees que algo ha pasado (clic en phishing, pérdida de dispositivo, comportamiento extraño del ordenador):
+  </p>
+
+  <ol>
+    <li><strong>No entres en pánico</strong>: Actuar rápido es mejor que actuar perfecto</li>
+    <li><strong>Avisa a IT inmediatamente</strong>: Mejor una falsa alarma que ignorar un ataque real</li>
+    <li><strong>No intentes arreglarlo tú solo</strong>: Puedes destruir evidencias o empeorar la situación</li>
+    <li><strong>Documenta lo que recuerdes</strong>: Qué hiciste, cuándo, qué viste</li>
+    <li><strong>Sigue las instrucciones de IT</strong>: Puede que te pidan desconectar el equipo de la red</li>
+  </ol>
+
+  <div class="bg-green-200 border-l-4 border-green-700 p-4 my-6 rounded-r-lg">
+    <p class="m-0" style="color: #000000;"><strong style="color: #000000;">Cultura sin culpa:</strong> Las empresas con buena cultura de seguridad no castigan a los empleados que reportan incidentes. Es mejor saber que hiciste clic en algo sospechoso que ocultarlo y que el ataque se propague.</p>
+  </div>
+
+  <h2>Checklist de seguridad diaria</h2>
+
+  <p>
+    Revisa estos puntos regularmente:
+  </p>
+
+  <ul>
+    <li>☐ Mi contraseña es única para cada servicio</li>
+    <li>☐ Uso un gestor de contraseñas</li>
+    <li>☐ Tengo 2FA activado en email y servicios críticos</li>
+    <li>☐ Verifico remitentes y enlaces antes de hacer clic</li>
+    <li>☐ Mi ordenador se bloquea automáticamente</li>
+    <li>☐ El sistema operativo y antivirus están actualizados</li>
+    <li>☐ Uso VPN cuando trabajo fuera de la oficina</li>
+    <li>☐ Mis archivos importantes están en ubicaciones con backup</li>
+    <li>☐ No dejo el portátil desatendido en lugares públicos</li>
+    <li>☐ Sé cómo y a quién reportar un incidente de seguridad</li>
+  </ul>
+
+  <h2>Cumplimiento ISO 27001 y ENS</h2>
+
+  <p>
+    Si tu empresa busca certificarse en <strong>ISO 27001</strong> o cumplir el <strong>Esquema Nacional de Seguridad (ENS)</strong>, la formación en concienciación de empleados es un requisito obligatorio.
+  </p>
+
+  <p>
+    Esta guía cubre los fundamentos que todo empleado debe conocer. Pero la formación no es un evento único: debe ser continua, con recordatorios periódicos y actualizaciones sobre nuevas amenazas.
+  </p>
+
+  <LeadCaptureConcienciacion source="blog-ciberseguridad-basica" />
+
+  <hr />
+
+  <p class="text-sm text-base-600">
+    <strong>Artículos relacionados:</strong>
+  </p>
+  <ul class="text-sm">
+    <li><a href="/blog/contrasenas-seguras-empleados-guia-completa">Contraseñas Seguras: Guía Completa para Empleados</a></li>
+    <li><a href="/blog/tu-contrasena-mayuscula-numeros-hackeable">¿Tu contraseña empieza con mayúscula y acaba en números? Es hackeable</a></li>
+    <li><a href="/blog/detectar-phishing-gmail-guia-empleados">Cómo detectar emails de phishing en Gmail</a></li>
+    <li><a href="/blog/detectar-phishing-outlook-microsoft-guia-empleados">Cómo detectar phishing en Outlook/Microsoft 365</a></li>
+  </ul>
+
+</BlogLayout>

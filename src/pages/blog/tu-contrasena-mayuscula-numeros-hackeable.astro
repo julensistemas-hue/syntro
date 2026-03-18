@@ -1,0 +1,193 @@
+---
+import BlogLayout from "../../layouts/BlogLayout.astro";
+import LeadCaptureConcienciacion from "../../components/blog/LeadCaptureConcienciacion.astro";
+---
+
+<BlogLayout
+  title="¿Tu contraseña empieza con mayúscula y acaba en números? Es hackeable"
+  description="Si tu contraseña sigue el patrón Palabra2024 o similar, los hackers la descifran en minutos. Descubre por qué este patrón es tan predecible y qué alternativas usar."
+  publishDate="2026-03-18"
+  author="AI Security"
+  readTime="3 min"
+  tags={["Concienciación", "Contraseñas", "Seguridad"]}
+  canonical="https://aisecurity.es/blog/tu-contrasena-mayuscula-numeros-hackeable">
+
+  <p>
+    <strong>Empresa2024</strong>, <strong>Madrid1234</strong>, <strong>Password123!</strong>
+  </p>
+
+  <p>
+    Si tu contraseña se parece a alguna de estas, tenemos malas noticias: <strong>es hackeable en minutos</strong>, a veces segundos.
+  </p>
+
+  <h2>El patrón que todos usamos</h2>
+
+  <p>
+    Cuando una empresa obliga a usar "al menos una mayúscula, un número y un símbolo", el 90% de los empleados hace exactamente lo mismo:
+  </p>
+
+  <ul>
+    <li><strong>Primera letra mayúscula</strong>: Empresa, Madrid, Verano, Futbol</li>
+    <li><strong>Números al final</strong>: 123, 2024, 2025, año de nacimiento</li>
+    <li><strong>Símbolo obvio</strong>: ! al final, o nada</li>
+  </ul>
+
+  <p>
+    Resultado: <code>Empresa2024!</code>, <code>Verano2024</code>, <code>Futbol123!</code>
+  </p>
+
+  <div class="bg-red-200 border-l-4 border-red-700 p-4 my-6 rounded-r-lg">
+    <p class="m-0" style="color: #000000;"><strong style="color: #000000;">El problema:</strong> Los hackers conocen este patrón perfectamente. No prueban combinaciones aleatorias; prueban primero las que los humanos usamos.</p>
+  </div>
+
+  <h2>Cómo funcionan los ataques de diccionario</h2>
+
+  <p>
+    Los atacantes no tecleen contraseñas una a una. Usan programas automatizados con <strong>diccionarios de contraseñas</strong>: listas de millones de contraseñas comunes y patrones predecibles.
+  </p>
+
+  <p>
+    Estos diccionarios incluyen:
+  </p>
+
+  <ul>
+    <li>Las 10.000 contraseñas más usadas del mundo</li>
+    <li>Palabras comunes en español: empresa, madrid, futbol, verano...</li>
+    <li>Años: 2020, 2021, 2022, 2023, 2024, 2025</li>
+    <li>Combinaciones: cada palabra + cada año + símbolos comunes</li>
+    <li>Variaciones: M4dr1d (a por 4, i por 1), p@ssword, etc.</li>
+  </ul>
+
+  <p>
+    Un programa puede probar <strong>millones de combinaciones por segundo</strong>. Tu "Empresa2024!" está entre las primeras 1000 que prueba.
+  </p>
+
+  <h2>¿Cuánto tarda en descifrarse?</h2>
+
+  <table class="w-full my-6 text-sm">
+    <thead>
+      <tr class="border-b border-base-600">
+        <th class="text-left py-2 text-white">Contraseña</th>
+        <th class="text-left py-2 text-white">Tiempo</th>
+        <th class="text-left py-2 text-white">Por qué</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-base-700">
+        <td class="py-2 text-white/80">Empresa2024</td>
+        <td class="py-2 text-red-400">3 minutos</td>
+        <td class="py-2 text-white/60">Palabra común + año actual</td>
+      </tr>
+      <tr class="border-b border-base-700">
+        <td class="py-2 text-white/80">Madrid1234!</td>
+        <td class="py-2 text-red-400">5 minutos</td>
+        <td class="py-2 text-white/60">Ciudad + números secuenciales</td>
+      </tr>
+      <tr class="border-b border-base-700">
+        <td class="py-2 text-white/80">Verano2024!</td>
+        <td class="py-2 text-red-400">3 minutos</td>
+        <td class="py-2 text-white/60">Estación + año</td>
+      </tr>
+      <tr class="border-b border-base-700">
+        <td class="py-2 text-white/80">M4dr1d2024</td>
+        <td class="py-2 text-amber-400">15 minutos</td>
+        <td class="py-2 text-white/60">Variación leetspeak conocida</td>
+      </tr>
+      <tr>
+        <td class="py-2 text-white/80">kT#9mP$2vL@8</td>
+        <td class="py-2 text-green-400">34.000 años</td>
+        <td class="py-2 text-white/60">Aleatoria, sin patrón</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Las variaciones "inteligentes" tampoco funcionan</h2>
+
+  <p>
+    "Ya, pero yo cambio letras por números. <strong>M4dr1d</strong> en vez de Madrid. Eso es seguro, ¿no?"
+  </p>
+
+  <p>
+    <strong>No.</strong> Las sustituciones típicas están en todos los diccionarios de ataque:
+  </p>
+
+  <ul>
+    <li><code>a</code> → <code>4</code> o <code>@</code></li>
+    <li><code>e</code> → <code>3</code></li>
+    <li><code>i</code> → <code>1</code> o <code>!</code></li>
+    <li><code>o</code> → <code>0</code></li>
+    <li><code>s</code> → <code>5</code> o <code>$</code></li>
+  </ul>
+
+  <p>
+    Cuando el atacante prueba "madrid", también prueba automáticamente: m4drid, madr1d, m@drid, m4dr1d... y todas las combinaciones posibles.
+  </p>
+
+  <div class="bg-amber-200 border-l-4 border-amber-700 p-4 my-6 rounded-r-lg">
+    <p class="m-0" style="color: #000000;"><strong style="color: #000000;">Realidad:</strong> Si un humano puede pensar en esa variación, un programa de ataque ya la tiene en su lista.</p>
+  </div>
+
+  <h2>Qué hacer en su lugar</h2>
+
+  <h3>Opción 1: Contraseñas aleatorias (la mejor)</h3>
+
+  <p>
+    Usa un gestor de contraseñas como <strong>Bitwarden</strong> o <strong>1Password</strong> para generar contraseñas completamente aleatorias:
+  </p>
+
+  <p>
+    <code>kT#9mP$2vL@8nQ&4xR</code>
+  </p>
+
+  <p>
+    Imposible de recordar, pero el gestor la recuerda por ti. Tú solo necesitas una contraseña maestra.
+  </p>
+
+  <h3>Opción 2: Frases de contraseña (passphrase)</h3>
+
+  <p>
+    Si necesitas algo memorable, usa una frase de varias palabras sin relación lógica:
+  </p>
+
+  <p>
+    <code>gato-lampara-tren-azul-17</code>
+  </p>
+
+  <p>
+    Es fácil de recordar, tiene 25 caracteres, y no sigue ningún patrón predecible. Tardaría siglos en descifrarse por fuerza bruta.
+  </p>
+
+  <h3>Lo que NO debes hacer</h3>
+
+  <ul>
+    <li>❌ <code>Palabra + año</code> (Empresa2024)</li>
+    <li>❌ <code>Nombre + fecha de nacimiento</code> (Juan1985)</li>
+    <li>❌ <code>Palabra con sustituciones obvias</code> (P@ssw0rd)</li>
+    <li>❌ <code>Secuencias de teclado</code> (Qwerty123)</li>
+    <li>❌ <code>La misma contraseña en todas partes</code></li>
+  </ul>
+
+  <h2>Resumen</h2>
+
+  <p>
+    El patrón <strong>Mayúscula + palabra + números</strong> es el más común del mundo. Los atacantes lo saben y lo explotan. No importa qué palabra uses: si sigue el patrón, es vulnerable.
+  </p>
+
+  <p>
+    <strong>La solución:</strong> Usa un gestor de contraseñas con contraseñas aleatorias, o al menos frases largas sin patrón predecible.
+  </p>
+
+  <LeadCaptureConcienciacion source="blog-contrasena-hackeable" />
+
+  <hr />
+
+  <p class="text-sm text-base-600">
+    <strong>Artículos relacionados:</strong>
+  </p>
+  <ul class="text-sm">
+    <li><a href="/blog/contrasenas-seguras-empleados-guia-completa">Contraseñas Seguras: Guía Completa para Empleados</a></li>
+    <li><a href="/blog/detectar-phishing-gmail-guia-empleados">Cómo detectar emails de phishing en Gmail</a></li>
+    <li><a href="/blog/ciberseguridad-basica-empleados-guia-completa">Ciberseguridad básica para empleados: Guía completa</a></li>
+  </ul>
+
+</BlogLayout>

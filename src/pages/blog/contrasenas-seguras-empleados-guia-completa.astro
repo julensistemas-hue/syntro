@@ -1,0 +1,273 @@
+---
+import BlogLayout from "../../layouts/BlogLayout.astro";
+import LeadCaptureConcienciacion from "../../components/blog/LeadCaptureConcienciacion.astro";
+---
+
+<BlogLayout
+  title="Contraseñas Seguras: Guía Completa para Empleados"
+  description="Aprende por qué usar contraseñas diferentes en cada servicio, cómo compartirlas de forma segura, qué requisitos mínimos deben cumplir y qué gestores de contraseñas usar. Guía práctica para cumplir ISO 27001 y ENS."
+  publishDate="2026-03-18"
+  author="AI Security"
+  readTime="8 min"
+  tags={["Concienciación", "Contraseñas", "ISO 27001", "ENS", "Seguridad"]}
+  canonical="https://aisecurity.es/blog/contrasenas-seguras-empleados-guia-completa">
+
+  <h2>¿Por qué las contraseñas son tan importantes?</h2>
+
+  <p>
+    Las contraseñas son la <strong>primera línea de defensa</strong> de tu empresa. Un empleado con una contraseña débil o reutilizada puede comprometer toda la organización: acceso a datos de clientes, información financiera, correos confidenciales y sistemas críticos.
+  </p>
+
+  <p>
+    Según estudios recientes, el <strong>81% de las brechas de seguridad</strong> están relacionadas con contraseñas débiles o robadas. Y lo peor: la mayoría de estos ataques son evitables con prácticas básicas.
+  </p>
+
+  <div class="bg-red-200 border-l-4 border-red-700 p-4 my-6 rounded-r-lg">
+    <p class="m-0" style="color: #000000;"><strong style="color: #000000;">Dato alarmante:</strong> El 65% de los empleados reutiliza la misma contraseña en múltiples servicios. Si un atacante obtiene esa contraseña, tiene acceso a todo.</p>
+  </div>
+
+  <h2>1. Por qué usar contraseñas diferentes en cada servicio</h2>
+
+  <p>
+    Imagina este escenario: usas la misma contraseña para tu email corporativo, LinkedIn, y una tienda online donde compraste algo hace años. Esa tienda sufre una brecha de datos (algo muy común), y tu email y contraseña acaban en una base de datos que los hackers comparten en la dark web.
+  </p>
+
+  <p>
+    <strong>¿Qué hace el atacante?</strong>
+  </p>
+
+  <ul>
+    <li>Prueba tu email + contraseña en Gmail, Outlook, Office 365</li>
+    <li>Prueba en LinkedIn, Facebook, Twitter</li>
+    <li>Prueba en Amazon, PayPal, tu banco</li>
+    <li>Todo esto de forma <strong>automatizada en segundos</strong></li>
+  </ul>
+
+  <p>
+    Si usas la misma contraseña, el atacante entra en todos esos servicios. Si usas contraseñas diferentes, solo compromete la tienda online (que probablemente ni usas ya).
+  </p>
+
+  <div class="bg-green-200 border-l-4 border-green-700 p-4 my-6 rounded-r-lg">
+    <p class="m-0" style="color: #000000;"><strong style="color: #000000;">Regla de oro:</strong> Una contraseña única para cada servicio. Sin excepciones. Usa un gestor de contraseñas para recordarlas todas.</p>
+  </div>
+
+  <h2>2. Nunca compartas contraseñas por email o chat</h2>
+
+  <p>
+    Este es uno de los errores más comunes y peligrosos. "Te paso la contraseña del servidor por email" o "Mira, la clave del WiFi es..." por WhatsApp.
+  </p>
+
+  <p>
+    <strong>¿Por qué es tan peligroso?</strong>
+  </p>
+
+  <ul>
+    <li><strong>Si hackean tu email</strong>: Lo primero que busca un atacante es "contraseña", "password", "clave", "acceso". Encuentra todas las que has compartido.</li>
+    <li><strong>Los chats se guardan</strong>: WhatsApp, Teams, Slack... todo queda guardado. Si alguien accede a tu cuenta, ve todo el historial.</li>
+    <li><strong>Capturas de pantalla</strong>: El destinatario puede hacer captura y guardarla en un lugar inseguro.</li>
+    <li><strong>Reenvíos accidentales</strong>: "Ups, le di a reenviar a todos" con la contraseña del servidor de producción.</li>
+  </ul>
+
+  <h3>¿Cómo compartir contraseñas de forma segura?</h3>
+
+  <ul>
+    <li><strong>Gestores de contraseñas con compartición</strong>: Bitwarden, 1Password permiten compartir credenciales de forma cifrada</li>
+    <li><strong>Servicios de un solo uso</strong>: <a href="https://onetimesecret.com/" target="_blank">OneTimeSecret</a> crea links que se autodestruyen tras ser leídos</li>
+    <li><strong>Verbalmente</strong>: Si es urgente, dilo por teléfono y que el otro lo escriba sin guardarlo</li>
+    <li><strong>Nunca por escrito permanente</strong>: Ni email, ni chat, ni post-its en el monitor</li>
+  </ul>
+
+  <div class="bg-amber-200 border-l-4 border-amber-700 p-4 my-6 rounded-r-lg">
+    <p class="m-0" style="color: #000000;"><strong style="color: #000000;">Consejo ISO 27001:</strong> Documenta en tu política de seguridad cómo deben compartirse las credenciales. Los auditores lo revisarán.</p>
+  </div>
+
+  <h2>3. Requisitos mínimos de complejidad</h2>
+
+  <p>
+    La complejidad de una contraseña determina cuánto tiempo tardaría un atacante en descifrarla por fuerza bruta (probando todas las combinaciones posibles).
+  </p>
+
+  <h3>Qué hace una contraseña fuerte</h3>
+
+  <ul>
+    <li><strong>Longitud mínima: 12 caracteres</strong> (mejor 16 o más)</li>
+    <li><strong>Mezcla de tipos</strong>: mayúsculas, minúsculas, números, símbolos</li>
+    <li><strong>Sin palabras del diccionario</strong>: "contraseña123" se descifra en segundos</li>
+    <li><strong>Sin información personal</strong>: nada de nombres, fechas de nacimiento, matrículas</li>
+    <li><strong>Sin patrones de teclado</strong>: "qwerty", "123456", "asdfgh" están en todas las listas</li>
+  </ul>
+
+  <h3>Tiempo para descifrar según complejidad</h3>
+
+  <table class="w-full my-6 text-sm">
+    <thead>
+      <tr class="border-b border-base-600">
+        <th class="text-left py-2 text-white">Contraseña</th>
+        <th class="text-left py-2 text-white">Tiempo</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-base-700">
+        <td class="py-2 text-white/80">123456</td>
+        <td class="py-2 text-red-400">Instantáneo</td>
+      </tr>
+      <tr class="border-b border-base-700">
+        <td class="py-2 text-white/80">password</td>
+        <td class="py-2 text-red-400">Instantáneo</td>
+      </tr>
+      <tr class="border-b border-base-700">
+        <td class="py-2 text-white/80">Empresa2024</td>
+        <td class="py-2 text-amber-400">3 minutos</td>
+      </tr>
+      <tr class="border-b border-base-700">
+        <td class="py-2 text-white/80">Tr0b4dor&3</td>
+        <td class="py-2 text-amber-400">3 días</td>
+      </tr>
+      <tr class="border-b border-base-700">
+        <td class="py-2 text-white/80">correct-horse-battery-staple</td>
+        <td class="py-2 text-green-400">550 años</td>
+      </tr>
+      <tr>
+        <td class="py-2 text-white/80">kT#9mP$2vL@8nQ&amp;4</td>
+        <td class="py-2 text-green-400">34.000 años</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>4. Evita patrones predecibles</h2>
+
+  <p>
+    Este punto es tan importante que hemos escrito un <a href="/blog/tu-contrasena-mayuscula-numeros-hackeable">artículo específico sobre por qué "Mayúscula + palabra + números" es hackeable</a>.
+  </p>
+
+  <p>
+    El resumen: los atacantes conocen los patrones que usamos los humanos. Si tu política de empresa dice "mínimo una mayúscula y un número", el 90% de empleados hará:
+  </p>
+
+  <ul>
+    <li><strong>Primera letra mayúscula</strong>: Password, Empresa, Madrid</li>
+    <li><strong>Números al final</strong>: 123, 2024, año actual</li>
+    <li><strong>Símbolos predecibles</strong>: ! al final, @ en lugar de "a"</li>
+  </ul>
+
+  <p>
+    Resultado: <code>Empresa2024!</code>, <code>Madrid123!</code>, <code>Password2024!</code>
+  </p>
+
+  <p>
+    <strong>Estos patrones están en los diccionarios de ataque.</strong> Los hackers no prueban "aaaa", "aaab", "aaac"... Prueban primero las contraseñas más comunes y los patrones más usados.
+  </p>
+
+  <div class="bg-red-200 border-l-4 border-red-700 p-4 my-6 rounded-r-lg">
+    <p class="m-0" style="color: #000000;"><strong style="color: #000000;">Lee el artículo completo:</strong> <a href="/blog/tu-contrasena-mayuscula-numeros-hackeable" style="color: #7c3aed;">¿Tu contraseña empieza con mayúscula y acaba en números? Es hackeable</a></p>
+  </div>
+
+  <h2>5. Gestores de contraseñas recomendados</h2>
+
+  <p>
+    "No puedo recordar 50 contraseñas diferentes" - Exacto. Por eso existen los gestores de contraseñas. Tú solo recuerdas UNA contraseña maestra (muy fuerte), y el gestor recuerda todas las demás.
+  </p>
+
+  <h3>Bitwarden (Nuestra recomendación)</h3>
+
+  <ul>
+    <li><strong>Gratuito</strong> para uso personal (versión de pago muy asequible para empresas)</li>
+    <li><strong>Open source</strong>: El código es público, auditado por expertos</li>
+    <li><strong>Multiplataforma</strong>: Windows, Mac, Linux, iOS, Android, extensiones de navegador</li>
+    <li><strong>Autocompletado</strong>: Rellena formularios automáticamente</li>
+    <li><strong>Generador de contraseñas</strong>: Crea contraseñas aleatorias de cualquier longitud</li>
+    <li><strong>Compartición segura</strong>: Comparte credenciales con el equipo de forma cifrada</li>
+  </ul>
+
+  <h3>1Password (Premium)</h3>
+
+  <ul>
+    <li>Excelente interfaz y experiencia de usuario</li>
+    <li>Funciones avanzadas para empresas</li>
+    <li>Watchtower: Alerta si alguna de tus contraseñas aparece en filtraciones</li>
+    <li>De pago (desde 2.99$/mes personal)</li>
+  </ul>
+
+  <h3>KeePassXC (Para técnicos)</h3>
+
+  <ul>
+    <li>100% offline (la base de datos la guardas tú)</li>
+    <li>Open source y gratuito</li>
+    <li>Requiere más configuración manual</li>
+    <li>Ideal si no quieres depender de servicios en la nube</li>
+  </ul>
+
+  <div class="bg-green-200 border-l-4 border-green-700 p-4 my-6 rounded-r-lg">
+    <p class="m-0" style="color: #000000;"><strong style="color: #000000;">Para empresas:</strong> Bitwarden Teams (4$/usuario/mes) o 1Password Business (7.99$/usuario/mes) incluyen administración centralizada, políticas de seguridad y logs de auditoría para ISO 27001/ENS.</p>
+  </div>
+
+  <h2>6. Autenticación de dos factores (2FA)</h2>
+
+  <p>
+    Incluso con una contraseña perfecta, si alguien la descubre (phishing, keylogger, brecha de datos), puede entrar en tu cuenta. El 2FA añade una segunda capa de protección.
+  </p>
+
+  <p>
+    Con 2FA activado, para entrar necesitas:
+  </p>
+
+  <ol>
+    <li><strong>Algo que sabes</strong>: Tu contraseña</li>
+    <li><strong>Algo que tienes</strong>: Tu móvil con la app de autenticación</li>
+  </ol>
+
+  <p>
+    Si el atacante tiene tu contraseña pero no tu móvil, no puede entrar.
+  </p>
+
+  <h3>Apps de autenticación recomendadas</h3>
+
+  <ul>
+    <li><strong>Microsoft Authenticator</strong>: Integración perfecta con Office 365</li>
+    <li><strong>Google Authenticator</strong>: Simple y funcional</li>
+    <li><strong>Authy</strong>: Permite backup en la nube (recuperar si pierdes el móvil)</li>
+  </ul>
+
+  <div class="bg-amber-200 border-l-4 border-amber-700 p-4 my-6 rounded-r-lg">
+    <p class="m-0" style="color: #000000;"><strong style="color: #000000;">Importante:</strong> Los SMS como segundo factor son mejor que nada, pero menos seguros que las apps. Los atacantes pueden clonar SIMs o interceptar SMS.</p>
+  </div>
+
+  <h2>Checklist: ¿Tus contraseñas cumplen?</h2>
+
+  <ul>
+    <li>☐ Uso contraseñas diferentes para cada servicio</li>
+    <li>☐ Mis contraseñas tienen al menos 12 caracteres</li>
+    <li>☐ No uso patrones predecibles (Palabra2024!)</li>
+    <li>☐ Uso un gestor de contraseñas</li>
+    <li>☐ Tengo 2FA activado en servicios críticos (email, banco, redes sociales)</li>
+    <li>☐ Nunca comparto contraseñas por email o chat</li>
+    <li>☐ No tengo contraseñas apuntadas en post-its o documentos</li>
+  </ul>
+
+  <h2>Cumplimiento ISO 27001 y ENS</h2>
+
+  <p>
+    Si tu empresa busca certificarse en <strong>ISO 27001</strong> o cumplir el <strong>Esquema Nacional de Seguridad (ENS)</strong>, necesitas:
+  </p>
+
+  <ul>
+    <li><strong>Política de contraseñas documentada</strong>: Requisitos mínimos, caducidad, historial</li>
+    <li><strong>Formación a empleados</strong>: Evidencia de que el personal conoce las normas</li>
+    <li><strong>Controles técnicos</strong>: Que los sistemas fuercen los requisitos de complejidad</li>
+    <li><strong>Gestión de accesos</strong>: Quién tiene acceso a qué, revisiones periódicas</li>
+  </ul>
+
+  <LeadCaptureConcienciacion source="blog-contrasenas-seguras" />
+
+  <hr />
+
+  <p class="text-sm text-base-600">
+    <strong>Artículos relacionados:</strong>
+  </p>
+  <ul class="text-sm">
+    <li><a href="/blog/tu-contrasena-mayuscula-numeros-hackeable">¿Tu contraseña empieza con mayúscula y acaba en números? Es hackeable</a></li>
+    <li><a href="/blog/detectar-phishing-gmail-guia-empleados">Cómo detectar emails de phishing en Gmail</a></li>
+    <li><a href="/blog/ciberseguridad-basica-empleados-guia-completa">Ciberseguridad básica para empleados: Guía completa</a></li>
+  </ul>
+
+</BlogLayout>

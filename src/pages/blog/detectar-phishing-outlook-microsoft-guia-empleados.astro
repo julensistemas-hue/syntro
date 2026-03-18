@@ -1,0 +1,314 @@
+---
+import BlogLayout from "../../layouts/BlogLayout.astro";
+import LeadCaptureConcienciacion from "../../components/blog/LeadCaptureConcienciacion.astro";
+---
+
+<BlogLayout
+  title="Cómo detectar emails de phishing en Outlook y Microsoft 365: Guía para empleados"
+  description="Aprende a identificar emails fraudulentos en Outlook y Microsoft 365. Verifica remitentes, detecta enlaces sospechosos y usa las herramientas de seguridad de Microsoft. Guía práctica con ejemplos."
+  publishDate="2026-03-18"
+  author="AI Security"
+  readTime="7 min"
+  tags={["Concienciación", "Phishing", "Outlook", "Microsoft 365", "Seguridad", "ISO 27001"]}
+  canonical="https://aisecurity.es/blog/detectar-phishing-outlook-microsoft-guia-empleados">
+
+  <h2>El phishing en entornos corporativos Microsoft</h2>
+
+  <p>
+    Microsoft 365 (Outlook, Teams, SharePoint) es el ecosistema empresarial más usado del mundo. Eso lo convierte en el <strong>objetivo principal de los ataques de phishing</strong>.
+  </p>
+
+  <p>
+    Los atacantes conocen perfectamente cómo lucen los emails de Microsoft, SharePoint y Teams. Crean copias casi perfectas que engañan incluso a usuarios experimentados.
+  </p>
+
+  <div class="bg-red-200 border-l-4 border-red-700 p-4 my-6 rounded-r-lg">
+    <p class="m-0" style="color: #000000;"><strong style="color: #000000;">Dato importante:</strong> El 45% de todos los emails de phishing imitan a Microsoft. "Tu sesión de Office 365 ha expirado" y "Tienes un documento compartido en SharePoint" son los señuelos más comunes.</p>
+  </div>
+
+  <h2>Señales de alerta en Outlook</h2>
+
+  <h3>1. Verifica el remitente real</h3>
+
+  <p>
+    En Outlook, los atacantes pueden poner cualquier nombre visible, pero la dirección real revela la verdad.
+  </p>
+
+  <p>
+    <strong>En Outlook Web (navegador):</strong>
+  </p>
+
+  <ol>
+    <li>Pasa el ratón sobre el nombre del remitente</li>
+    <li>Aparecerá una tarjeta con la dirección de email completa</li>
+    <li>Verifica que el dominio sea legítimo</li>
+  </ol>
+
+  <!-- PLACEHOLDER: CAPTURA Outlook Web mostrando hover sobre remitente -->
+  <div class="bg-base-800 border-2 border-dashed border-base-600 rounded-lg p-8 my-6 text-center">
+    <p class="text-base-400 m-0">📸 CAPTURA PENDIENTE</p>
+    <p class="text-base-500 text-sm m-0 mt-2">Outlook Web: Hover sobre remitente mostrando email completo</p>
+  </div>
+
+  <p>
+    <strong>En Outlook Desktop (aplicación):</strong>
+  </p>
+
+  <ol>
+    <li>Haz clic en el nombre del remitente</li>
+    <li>Se abrirá la tarjeta de contacto con el email completo</li>
+    <li>O haz doble clic en el email → Archivo → Propiedades → Ver cabeceras</li>
+  </ol>
+
+  <!-- PLACEHOLDER: CAPTURA Outlook Desktop mostrando tarjeta de contacto con email -->
+  <div class="bg-base-800 border-2 border-dashed border-base-600 rounded-lg p-8 my-6 text-center">
+    <p class="text-base-400 m-0">📸 CAPTURA PENDIENTE</p>
+    <p class="text-base-500 text-sm m-0 mt-2">Outlook Desktop: Tarjeta de contacto mostrando dirección real</p>
+  </div>
+
+  <p>
+    <strong>Dominios legítimos de Microsoft:</strong>
+  </p>
+
+  <ul>
+    <li><code>@microsoft.com</code></li>
+    <li><code>@office.com</code></li>
+    <li><code>@office365.com</code></li>
+    <li><code>@sharepoint.com</code></li>
+    <li><code>@teams.microsoft.com</code></li>
+  </ul>
+
+  <p>
+    <strong>Dominios fraudulentos comunes:</strong>
+  </p>
+
+  <ul>
+    <li><code>@microsoft-support.com</code> (guion sospechoso)</li>
+    <li><code>@microsoftonline-login.com</code></li>
+    <li><code>@office365-security.net</code></li>
+    <li><code>@sharepolnt.com</code> (L cambiada por I)</li>
+  </ul>
+
+  <h3>2. Comprueba los enlaces sin hacer clic</h3>
+
+  <p>
+    <strong>En Outlook Web:</strong>
+  </p>
+
+  <ol>
+    <li>Pasa el ratón sobre el enlace (sin clic)</li>
+    <li>La URL real aparece en un tooltip o en la barra inferior del navegador</li>
+  </ol>
+
+  <p>
+    <strong>En Outlook Desktop:</strong>
+  </p>
+
+  <ol>
+    <li>Pasa el ratón sobre el enlace</li>
+    <li>Aparece un pequeño popup con la URL completa</li>
+  </ol>
+
+  <!-- PLACEHOLDER: CAPTURA Outlook mostrando hover sobre enlace con URL real -->
+  <div class="bg-base-800 border-2 border-dashed border-base-600 rounded-lg p-8 my-6 text-center">
+    <p class="text-base-400 m-0">📸 CAPTURA PENDIENTE</p>
+    <p class="text-base-500 text-sm m-0 mt-2">Outlook: Hover sobre enlace mostrando URL destino</p>
+  </div>
+
+  <p>
+    <strong>URLs legítimas de Microsoft:</strong>
+  </p>
+
+  <ul>
+    <li><code>https://login.microsoftonline.com/</code></li>
+    <li><code>https://portal.office.com/</code></li>
+    <li><code>https://*.sharepoint.com/</code></li>
+    <li><code>https://teams.microsoft.com/</code></li>
+  </ul>
+
+  <div class="bg-amber-200 border-l-4 border-amber-700 p-4 my-6 rounded-r-lg">
+    <p class="m-0" style="color: #000000;"><strong style="color: #000000;">Cuidado:</strong> Los phishers usan URLs largas y confusas como <code>https://login-microsoftonline.com.suspicious.ru/auth</code>. Lo importante es el dominio principal (lo que va justo antes del primer /), no lo que viene después.</p>
+  </div>
+
+  <h3>3. Alertas de seguridad de Microsoft</h3>
+
+  <p>
+    Microsoft 365 tiene sistemas avanzados de detección de phishing. Presta atención a los avisos:
+  </p>
+
+  <!-- PLACEHOLDER: CAPTURA de banner de advertencia de Outlook "Este mensaje parece sospechoso" -->
+  <div class="bg-base-800 border-2 border-dashed border-base-600 rounded-lg p-8 my-6 text-center">
+    <p class="text-base-400 m-0">📸 CAPTURA PENDIENTE</p>
+    <p class="text-base-500 text-sm m-0 mt-2">Outlook: Banner amarillo/rojo de advertencia de seguridad</p>
+  </div>
+
+  <ul>
+    <li><strong>Banner rojo "Phishing detectado"</strong>: Microsoft está muy seguro. No interactúes con el email.</li>
+    <li><strong>Banner amarillo "Remitente no verificado"</strong>: Procede con precaución.</li>
+    <li><strong>"[EXTERNO]" en el asunto</strong>: El email viene de fuera de tu organización.</li>
+    <li><strong>"Este remitente no pasó la verificación"</strong>: Los sistemas DMARC/SPF fallaron.</li>
+  </ul>
+
+  <p>
+    <strong>Si ves cualquiera de estos avisos, extrema la precaución.</strong>
+  </p>
+
+  <h3>4. Phishing específico de Microsoft 365</h3>
+
+  <p>
+    Los ataques más comunes que imitan a Microsoft:
+  </p>
+
+  <h4>Falsos documentos compartidos de SharePoint/OneDrive</h4>
+
+  <ul>
+    <li>"Juan García ha compartido un documento contigo"</li>
+    <li>El enlace parece ir a SharePoint pero lleva a una página de login falsa</li>
+    <li><strong>Verificación:</strong> ¿Esperabas este documento? ¿Conoces al remitente?</li>
+  </ul>
+
+  <h4>Falsas alertas de sesión expirada</h4>
+
+  <ul>
+    <li>"Tu sesión de Office 365 ha expirado"</li>
+    <li>"Verifica tu cuenta para mantener el acceso"</li>
+    <li><strong>Realidad:</strong> Microsoft nunca te pide verificar así. Si tienes dudas, ve directamente a portal.office.com</li>
+  </ul>
+
+  <h4>Falsos mensajes de Teams</h4>
+
+  <ul>
+    <li>"Tienes un mensaje nuevo en Teams"</li>
+    <li>El enlace va a una página que parece Teams pero no lo es</li>
+    <li><strong>Verificación:</strong> Abre Teams directamente desde la aplicación, no desde el enlace</li>
+  </ul>
+
+  <h4>Falsas alertas de buzón lleno</h4>
+
+  <ul>
+    <li>"Tu buzón está al 95% de capacidad"</li>
+    <li>"Haz clic aquí para liberar espacio"</li>
+    <li><strong>Realidad:</strong> Outlook te avisa dentro de la aplicación, no por email externo</li>
+  </ul>
+
+  <h2>Cómo reportar phishing en Outlook</h2>
+
+  <h3>En Outlook Web</h3>
+
+  <ol>
+    <li>Selecciona el email sospechoso</li>
+    <li>Haz clic en los tres puntos (⋯) en la barra superior</li>
+    <li>Selecciona "Reportar" → "Reportar phishing"</li>
+  </ol>
+
+  <!-- PLACEHOLDER: CAPTURA Outlook Web mostrando menú Reportar phishing -->
+  <div class="bg-base-800 border-2 border-dashed border-base-600 rounded-lg p-8 my-6 text-center">
+    <p class="text-base-400 m-0">📸 CAPTURA PENDIENTE</p>
+    <p class="text-base-500 text-sm m-0 mt-2">Outlook Web: Menú de tres puntos → Reportar → Reportar phishing</p>
+  </div>
+
+  <h3>En Outlook Desktop</h3>
+
+  <ol>
+    <li>Selecciona el email</li>
+    <li>En la pestaña "Inicio", busca "Reportar mensaje"</li>
+    <li>Selecciona "Phishing"</li>
+  </ol>
+
+  <p>
+    Si tu organización tiene el complemento "Report Message" de Microsoft, tendrás un botón específico para esto.
+  </p>
+
+  <!-- PLACEHOLDER: CAPTURA Outlook Desktop mostrando botón Report Message -->
+  <div class="bg-base-800 border-2 border-dashed border-base-600 rounded-lg p-8 my-6 text-center">
+    <p class="text-base-400 m-0">📸 CAPTURA PENDIENTE</p>
+    <p class="text-base-500 text-sm m-0 mt-2">Outlook Desktop: Botón "Report Message" en la cinta de opciones</p>
+  </div>
+
+  <div class="bg-green-200 border-l-4 border-green-700 p-4 my-6 rounded-r-lg">
+    <p class="m-0" style="color: #000000;"><strong style="color: #000000;">Importante:</strong> Al reportar, Microsoft analiza el email y mejora la protección para toda la organización. Reportar no es solo defenderte a ti, es defender a tus compañeros.</p>
+  </div>
+
+  <h2>Safe Links y Safe Attachments</h2>
+
+  <p>
+    Si tu empresa tiene Microsoft Defender for Office 365, dispones de protecciones adicionales:
+  </p>
+
+  <h3>Safe Links</h3>
+
+  <p>
+    Microsoft reescribe los enlaces de los emails para verificarlos en tiempo real cuando haces clic:
+  </p>
+
+  <ul>
+    <li>El enlace pasa primero por los servidores de Microsoft</li>
+    <li>Si el destino es malicioso, te bloquea el acceso</li>
+    <li>Reconoces estos enlaces porque empiezan por <code>https://eur01.safelinks.protection.outlook.com/</code> o similar</li>
+  </ul>
+
+  <h3>Safe Attachments</h3>
+
+  <p>
+    Los archivos adjuntos se analizan en un entorno aislado antes de que puedas abrirlos:
+  </p>
+
+  <ul>
+    <li>Puede tardar unos segundos más en mostrar el adjunto</li>
+    <li>Si es malicioso, el adjunto se bloquea automáticamente</li>
+  </ul>
+
+  <p>
+    <strong>Nota:</strong> Estas protecciones no son infalibles. Siguen siendo importantes las verificaciones manuales.
+  </p>
+
+  <h2>Qué hacer si ya has hecho clic</h2>
+
+  <ol>
+    <li><strong>No introduzcas credenciales</strong>: Si la página te pide login, cierra inmediatamente</li>
+    <li><strong>Si ya las introdujiste</strong>:
+      <ul>
+        <li>Cambia tu contraseña de Microsoft 365 inmediatamente</li>
+        <li>Revisa la actividad reciente de tu cuenta en <a href="https://mysignins.microsoft.com" target="_blank">mysignins.microsoft.com</a></li>
+        <li>Avisa a tu departamento de IT</li>
+      </ul>
+    </li>
+    <li><strong>Si descargaste un archivo</strong>:
+      <ul>
+        <li>No lo abras</li>
+        <li>Desconecta el ordenador de la red (WiFi off, cable desenchufado)</li>
+        <li>Contacta con IT inmediatamente</li>
+      </ul>
+    </li>
+  </ol>
+
+  <h2>Checklist rápido anti-phishing para Outlook</h2>
+
+  <ul>
+    <li>☐ ¿El remitente tiene un dominio legítimo de Microsoft? (no microsoft-support.com)</li>
+    <li>☐ ¿Outlook muestra algún banner de advertencia?</li>
+    <li>☐ ¿El enlace lleva realmente a microsoft.com o sharepoint.com?</li>
+    <li>☐ ¿Esperaba este documento/mensaje?</li>
+    <li>☐ ¿Tiene sentido que esta persona me envíe esto?</li>
+    <li>☐ ¿Me presionan para actuar urgentemente?</li>
+    <li>☐ ¿Me piden mis credenciales por email?</li>
+  </ul>
+
+  <p>
+    <strong>Ante la duda, no hagas clic.</strong> Accede a SharePoint, OneDrive o Teams directamente escribiendo la URL o usando la aplicación.
+  </p>
+
+  <LeadCaptureConcienciacion source="blog-phishing-outlook" />
+
+  <hr />
+
+  <p class="text-sm text-base-600">
+    <strong>Artículos relacionados:</strong>
+  </p>
+  <ul class="text-sm">
+    <li><a href="/blog/detectar-phishing-gmail-guia-empleados">Cómo detectar emails de phishing en Gmail</a></li>
+    <li><a href="/blog/contrasenas-seguras-empleados-guia-completa">Contraseñas Seguras: Guía Completa para Empleados</a></li>
+    <li><a href="/blog/ciberseguridad-basica-empleados-guia-completa">Ciberseguridad básica para empleados: Guía completa</a></li>
+  </ul>
+
+</BlogLayout>

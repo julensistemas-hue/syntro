@@ -1,0 +1,279 @@
+---
+import BlogLayout from "../../layouts/BlogLayout.astro";
+import LeadCaptureConcienciacion from "../../components/blog/LeadCaptureConcienciacion.astro";
+---
+
+<BlogLayout
+  title="Cómo detectar emails de phishing en Gmail: Guía para empleados"
+  description="Aprende a identificar emails fraudulentos en Gmail. Verifica remitentes, detecta enlaces sospechosos y protege tu empresa del phishing. Guía práctica con ejemplos visuales."
+  publishDate="2026-03-18"
+  author="AI Security"
+  readTime="6 min"
+  tags={["Concienciación", "Phishing", "Gmail", "Seguridad", "ISO 27001"]}
+  canonical="https://aisecurity.es/blog/detectar-phishing-gmail-guia-empleados">
+
+  <h2>¿Qué es el phishing?</h2>
+
+  <p>
+    El <strong>phishing</strong> es un tipo de ataque donde los ciberdelincuentes se hacen pasar por empresas o personas de confianza para engañarte y que les des información sensible: contraseñas, datos bancarios, acceso a sistemas corporativos.
+  </p>
+
+  <p>
+    El email es el canal más usado para phishing. Cada día se envían <strong>3.400 millones de emails de phishing</strong> en todo el mundo. Muchos son obvios y acaban en spam, pero algunos son tan sofisticados que engañan incluso a profesionales experimentados.
+  </p>
+
+  <div class="bg-red-200 border-l-4 border-red-700 p-4 my-6 rounded-r-lg">
+    <p class="m-0" style="color: #000000;"><strong style="color: #000000;">Dato importante:</strong> El 91% de los ciberataques a empresas comienzan con un email de phishing. Un solo clic de un empleado puede comprometer toda la organización.</p>
+  </div>
+
+  <h2>Señales de alerta en Gmail</h2>
+
+  <h3>1. Verifica el remitente real</h3>
+
+  <p>
+    Los atacantes pueden poner cualquier nombre en el campo "De:", pero no pueden falsificar la dirección de email real (o al menos no fácilmente).
+  </p>
+
+  <p>
+    <strong>Cómo verificar en Gmail:</strong>
+  </p>
+
+  <ol>
+    <li>Mira el nombre del remitente en la bandeja de entrada</li>
+    <li>Pasa el ratón por encima (sin hacer clic) - aparecerá la dirección real</li>
+    <li>O abre el email y mira justo debajo del nombre del remitente</li>
+  </ol>
+
+  <!-- PLACEHOLDER: CAPTURA Gmail mostrando cómo pasar el ratón sobre el remitente para ver la dirección real -->
+  <div class="bg-base-800 border-2 border-dashed border-base-600 rounded-lg p-8 my-6 text-center">
+    <p class="text-base-400 m-0">📸 CAPTURA PENDIENTE</p>
+    <p class="text-base-500 text-sm m-0 mt-2">Gmail: Hover sobre remitente mostrando dirección real</p>
+  </div>
+
+  <p>
+    <strong>Ejemplo de phishing:</strong>
+  </p>
+
+  <ul>
+    <li>Nombre visible: <code>Soporte Microsoft</code></li>
+    <li>Email real: <code>soporte-microsoft@gmail.com</code> o <code>support@micros0ft-help.xyz</code></li>
+  </ul>
+
+  <p>
+    <strong>Email legítimo:</strong>
+  </p>
+
+  <ul>
+    <li>Nombre visible: <code>Microsoft</code></li>
+    <li>Email real: <code>noreply@microsoft.com</code></li>
+  </ul>
+
+  <div class="bg-amber-200 border-l-4 border-amber-700 p-4 my-6 rounded-r-lg">
+    <p class="m-0" style="color: #000000;"><strong style="color: #000000;">Cuidado con dominios parecidos:</strong> Los atacantes usan dominios que parecen legítimos: <code>microsoft-support.com</code>, <code>paypa1.com</code> (con un 1 en lugar de L), <code>arnazon.com</code>. Verifica letra por letra.</p>
+  </div>
+
+  <h3>2. Comprueba los enlaces antes de hacer clic</h3>
+
+  <p>
+    El texto del enlace puede decir una cosa, pero llevarte a otra. <strong>Nunca hagas clic sin verificar primero.</strong>
+  </p>
+
+  <p>
+    <strong>Cómo verificar en Gmail:</strong>
+  </p>
+
+  <ol>
+    <li>Pasa el ratón por encima del enlace (SIN hacer clic)</li>
+    <li>Mira en la esquina inferior izquierda de la ventana del navegador</li>
+    <li>Ahí aparece la URL real a la que te llevará el enlace</li>
+  </ol>
+
+  <!-- PLACEHOLDER: CAPTURA Gmail mostrando hover sobre un enlace y la URL que aparece abajo -->
+  <div class="bg-base-800 border-2 border-dashed border-base-600 rounded-lg p-8 my-6 text-center">
+    <p class="text-base-400 m-0">📸 CAPTURA PENDIENTE</p>
+    <p class="text-base-500 text-sm m-0 mt-2">Gmail: Hover sobre enlace mostrando URL real en esquina inferior</p>
+  </div>
+
+  <p>
+    <strong>Ejemplo de phishing:</strong>
+  </p>
+
+  <ul>
+    <li>Texto del enlace: <code>Accede a tu cuenta de Microsoft</code></li>
+    <li>URL real: <code>https://login-microsoft.suspicious-site.ru/verify</code></li>
+  </ul>
+
+  <p>
+    <strong>Enlace legítimo:</strong>
+  </p>
+
+  <ul>
+    <li>Texto del enlace: <code>Accede a tu cuenta de Microsoft</code></li>
+    <li>URL real: <code>https://login.microsoftonline.com/</code></li>
+  </ul>
+
+  <h3>3. Desconfía de la urgencia artificial</h3>
+
+  <p>
+    Los emails de phishing casi siempre intentan que actúes rápido, sin pensar:
+  </p>
+
+  <ul>
+    <li>"Tu cuenta será suspendida en 24 horas"</li>
+    <li>"Acción requerida inmediatamente"</li>
+    <li>"Se ha detectado actividad sospechosa - verifica ahora"</li>
+    <li>"Has ganado un premio - reclámalo antes de que expire"</li>
+    <li>"Factura pendiente - paga hoy para evitar recargos"</li>
+  </ul>
+
+  <div class="bg-green-200 border-l-4 border-green-700 p-4 my-6 rounded-r-lg">
+    <p class="m-0" style="color: #000000;"><strong style="color: #000000;">Regla de oro:</strong> Si un email te presiona para actuar ya, para. Las empresas legítimas no te amenazan con suspensiones inmediatas sin previo aviso. Si es urgente de verdad, te llamarán.</p>
+  </div>
+
+  <h3>4. Errores ortográficos y gramaticales</h3>
+
+  <p>
+    Las empresas profesionales tienen equipos de comunicación que revisan sus emails. Los phishers no.
+  </p>
+
+  <p>
+    Señales de alerta:
+  </p>
+
+  <ul>
+    <li>Errores de ortografía obvios</li>
+    <li>Gramática extraña (traducciones automáticas)</li>
+    <li>Mezcla de idiomas</li>
+    <li>Saludo genérico: "Estimado cliente" en vez de tu nombre</li>
+    <li>Formato inconsistente: diferentes fuentes, colores, tamaños</li>
+  </ul>
+
+  <h3>5. Archivos adjuntos sospechosos</h3>
+
+  <p>
+    Los archivos adjuntos son una de las formas más comunes de distribuir malware.
+  </p>
+
+  <p>
+    <strong>Archivos de alto riesgo:</strong>
+  </p>
+
+  <ul>
+    <li><code>.exe</code>, <code>.bat</code>, <code>.cmd</code> - Ejecutables de Windows</li>
+    <li><code>.js</code>, <code>.vbs</code> - Scripts que ejecutan código</li>
+    <li><code>.zip</code>, <code>.rar</code> con contraseña - Ocultan el contenido del antivirus</li>
+    <li><code>.docm</code>, <code>.xlsm</code> - Office con macros (pueden ejecutar código)</li>
+  </ul>
+
+  <div class="bg-red-200 border-l-4 border-red-700 p-4 my-6 rounded-r-lg">
+    <p class="m-0" style="color: #000000;"><strong style="color: #000000;">Nunca abras:</strong> Un archivo que no esperabas, especialmente si te piden "habilitar macros" o "habilitar contenido" al abrirlo.</p>
+  </div>
+
+  <h3>6. Solicitud de información sensible</h3>
+
+  <p>
+    Ninguna empresa legítima te pedirá por email:
+  </p>
+
+  <ul>
+    <li>Tu contraseña</li>
+    <li>Tu número de tarjeta completo</li>
+    <li>Tu PIN o CVV</li>
+    <li>Tu número de la Seguridad Social</li>
+    <li>Códigos de verificación que acabas de recibir</li>
+  </ul>
+
+  <p>
+    Si un email te pide cualquiera de estos datos, es phishing. Sin excepciones.
+  </p>
+
+  <h2>Funciones de seguridad de Gmail</h2>
+
+  <h3>Advertencias de Gmail</h3>
+
+  <p>
+    Gmail tiene sistemas automáticos de detección de phishing. Cuando detecta algo sospechoso, muestra banners de advertencia:
+  </p>
+
+  <!-- PLACEHOLDER: CAPTURA de advertencia de Gmail "Este mensaje parece peligroso" -->
+  <div class="bg-base-800 border-2 border-dashed border-base-600 rounded-lg p-8 my-6 text-center">
+    <p class="text-base-400 m-0">📸 CAPTURA PENDIENTE</p>
+    <p class="text-base-500 text-sm m-0 mt-2">Gmail: Banner rojo de advertencia "Este mensaje parece peligroso"</p>
+  </div>
+
+  <ul>
+    <li><strong>Banner rojo</strong>: "Este mensaje parece peligroso" - Gmail está muy seguro de que es phishing</li>
+    <li><strong>Banner amarillo</strong>: "Ten cuidado con este mensaje" - Algo es sospechoso</li>
+    <li><strong>"Remitente externo"</strong>: El email viene de fuera de tu organización</li>
+  </ul>
+
+  <p>
+    <strong>Confía en estas advertencias.</strong> Si Gmail te avisa, no hagas clic en nada del email.
+  </p>
+
+  <h3>Ver detalles del remitente</h3>
+
+  <p>
+    Para una verificación más profunda:
+  </p>
+
+  <ol>
+    <li>Abre el email</li>
+    <li>Haz clic en los tres puntos (⋮) junto a "Responder"</li>
+    <li>Selecciona "Mostrar original"</li>
+    <li>Busca las cabeceras "SPF", "DKIM" y "DMARC"</li>
+  </ol>
+
+  <p>
+    Si ves "PASS" en las tres, el email probablemente viene de quien dice ser. Si ves "FAIL" en alguna, es muy sospechoso.
+  </p>
+
+  <h2>Qué hacer si sospechas phishing</h2>
+
+  <ol>
+    <li><strong>NO hagas clic</strong> en ningún enlace del email</li>
+    <li><strong>NO abras</strong> archivos adjuntos</li>
+    <li><strong>NO respondas</strong> al email</li>
+    <li><strong>Reporta el email</strong>: En Gmail, haz clic en los tres puntos (⋮) → "Denunciar suplantación de identidad"</li>
+    <li><strong>Avisa a IT</strong>: Tu equipo de informática debe saber que hay intentos de phishing activos</li>
+    <li><strong>Elimina el email</strong>: Una vez reportado, bórralo</li>
+  </ol>
+
+  <div class="bg-green-200 border-l-4 border-green-700 p-4 my-6 rounded-r-lg">
+    <p class="m-0" style="color: #000000;"><strong style="color: #000000;">Si ya has hecho clic:</strong> Cambia inmediatamente la contraseña del servicio afectado. Si introdujiste credenciales de trabajo, avisa a IT de inmediato. Si introdujiste datos bancarios, contacta con tu banco.</p>
+  </div>
+
+  <h2>Checklist rápido anti-phishing</h2>
+
+  <p>
+    Antes de hacer clic en cualquier enlace o abrir cualquier adjunto:
+  </p>
+
+  <ul>
+    <li>☐ ¿El remitente es quien dice ser? (verifica el email real)</li>
+    <li>☐ ¿El dominio del remitente es correcto? (microsoft.com vs micros0ft.com)</li>
+    <li>☐ ¿El enlace lleva donde dice? (hover para verificar)</li>
+    <li>☐ ¿Esperaba este email? ¿Tiene sentido que me lo envíen?</li>
+    <li>☐ ¿Me presionan para actuar rápido? (señal de alerta)</li>
+    <li>☐ ¿Me piden contraseñas o datos sensibles? (nunca legítimo)</li>
+    <li>☐ ¿Hay errores de ortografía o formato extraño?</li>
+  </ul>
+
+  <p>
+    Si la respuesta a alguna de estas preguntas es "no" o "sí, me presionan", <strong>no hagas clic</strong>. Verifica por otro canal (llama a la empresa, accede directamente a su web escribiendo la URL).
+  </p>
+
+  <LeadCaptureConcienciacion source="blog-phishing-gmail" />
+
+  <hr />
+
+  <p class="text-sm text-base-600">
+    <strong>Artículos relacionados:</strong>
+  </p>
+  <ul class="text-sm">
+    <li><a href="/blog/detectar-phishing-outlook-microsoft-guia-empleados">Cómo detectar phishing en Outlook/Microsoft 365</a></li>
+    <li><a href="/blog/contrasenas-seguras-empleados-guia-completa">Contraseñas Seguras: Guía Completa para Empleados</a></li>
+    <li><a href="/blog/ciberseguridad-basica-empleados-guia-completa">Ciberseguridad básica para empleados: Guía completa</a></li>
+  </ul>
+
+</BlogLayout>
