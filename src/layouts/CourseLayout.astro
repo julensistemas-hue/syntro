@@ -1,0 +1,548 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Navigation from "../components/global/Navigation.astro";
+import Footer from "../components/global/Footer.astro";
+import Analytics from "@vercel/analytics/astro";
+import SpeedInsights from "@vercel/speed-insights/astro";
+
+interface Section {
+  id: string;
+  title: string;
+  shortTitle?: string;
+}
+
+interface Props {
+  title: string;
+  description: string;
+  sections: Section[];
+  canonical?: string;
+  ogImage?: string;
+  // SEO avanzado
+  keywords?: string;
+  author?: string;
+  publishDate?: string;
+  modifiedDate?: string;
+  readTime?: string;
+  category?: string;
+}
+
+const {
+  title,
+  description,
+  sections,
+  canonical,
+  ogImage = "https://aisecurity.es/og-image.png",
+  keywords = "",
+  author = "AI Security",
+  publishDate = "2025-03-19",
+  modifiedDate = "2025-03-19",
+  readTime = "10 min",
+  category = "Ciberseguridad"
+} = Astro.props;
+
+const fullTitle = `${title} | AI Security`;
+
+// Schema.org Course estructurado
+const courseSchema = {
+  "@context": "https://schema.org",
+  "@type": "Course",
+  "name": title,
+  "description": description,
+  "provider": {
+    "@type": "Organization",
+    "name": "AI Security",
+    "url": "https://aisecurity.es"
+  },
+  "educationalLevel": "Beginner",
+  "isAccessibleForFree": true,
+  "inLanguage": "es",
+  "datePublished": publishDate,
+  "dateModified": modifiedDate,
+  "author": {
+    "@type": "Organization",
+    "name": author,
+    "url": "https://aisecurity.es"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "AI Security",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://aisecurity.es/favicon.png"
+    }
+  },
+  "hasCourseInstance": {
+    "@type": "CourseInstance",
+    "courseMode": "online",
+    "courseWorkload": `PT${parseInt(readTime)}M`
+  },
+  "syllabusSections": sections.map((s, i) => ({
+    "@type": "Syllabus",
+    "name": s.title,
+    "position": i + 1
+  }))
+};
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": title,
+  "description": description,
+  "image": ogImage,
+  "datePublished": publishDate,
+  "dateModified": modifiedDate,
+  "author": {
+    "@type": "Organization",
+    "name": author,
+    "url": "https://aisecurity.es"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "AI Security",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://aisecurity.es/favicon.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": canonical
+  },
+  "articleSection": category,
+  "wordCount": 2500,
+  "timeRequired": `PT${parseInt(readTime)}M`
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Inicio",
+      "item": "https://aisecurity.es"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://aisecurity.es/blog"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": title,
+      "item": canonical
+    }
+  ]
+};
+---
+
+<html
+  lang="es"
+  class="scroll-smooth selection:bg-accent-500 selection:text-white">
+  <head>
+    <BaseHead
+      title={fullTitle}
+      description={description}
+      canonical={canonical}
+      ogImage={ogImage}
+    />
+    {keywords && <meta name="keywords" content={keywords} />}
+    <meta property="article:published_time" content={publishDate} />
+    <meta property="article:modified_time" content={modifiedDate} />
+    <meta property="article:section" content={category} />
+    <meta property="og:type" content="article" />
+
+    <!-- Schema.org JSON-LD -->
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(courseSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  </head>
+  <body class="flex flex-col min-h-screen" style="background-color: #0a0a0a;">
+    <Navigation />
+
+    <main class="flex-1 flex flex-col">
+      <!-- Course Header con Progress -->
+      <header class="py-6 border-b border-gray-800" style="background-color: #111111;">
+        <div class="max-w-4xl mx-auto px-6">
+          <div class="flex items-center gap-2 text-purple-400 text-sm font-medium mb-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+            </svg>
+            Mini-curso gratuito
+          </div>
+
+          <h1 class="text-2xl md:text-3xl font-bold text-white mb-4">{title}</h1>
+
+          <!-- Progress Bar -->
+          <div class="flex items-center gap-4">
+            <div class="flex-1 h-2 bg-gray-800 rounded-full overflow-hidden">
+              <div id="progress-bar" class="h-full bg-gradient-to-r from-purple-500 to-blue-500 rounded-full transition-all duration-500" style="width: 0%"></div>
+            </div>
+            <span id="progress-text" class="text-gray-400 text-sm font-medium whitespace-nowrap">0 / {sections.length}</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Content Area -->
+      <div class="flex-1 flex flex-col lg:flex-row">
+        <!-- Sidebar -->
+        <aside class="lg:w-72 border-b lg:border-b-0 lg:border-r border-gray-800 p-4 lg:p-6" style="background-color: #0d0d0d;">
+          <h3 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-4">Contenido</h3>
+          <nav id="section-nav" class="space-y-1">
+            {sections.map((section, index) => (
+              <button
+                data-section={section.id}
+                data-index={index}
+                class="nav-btn w-full text-left px-3 py-2.5 rounded-lg flex items-center gap-3 transition-all duration-200 text-gray-400 hover:text-white hover:bg-gray-800"
+              >
+                <span class="nav-number flex items-center justify-center w-6 h-6 rounded-full border-2 border-gray-600 text-xs font-bold shrink-0">
+                  {index + 1}
+                </span>
+                <span class="text-sm">{section.shortTitle || section.title}</span>
+                <svg class="nav-check w-4 h-4 ml-auto text-green-500 opacity-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+              </button>
+            ))}
+          </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="flex-1 flex flex-col">
+          <div id="content-wrapper" class="flex-1 p-6 lg:p-10 overflow-y-auto" style="background-color: #0a0a0a;">
+            <div class="max-w-3xl mx-auto">
+              <slot />
+            </div>
+          </div>
+
+          <!-- Navigation Buttons -->
+          <footer class="p-4 lg:p-6 border-t border-gray-800" style="background-color: #111111;">
+            <div class="max-w-3xl mx-auto flex items-center justify-between">
+              <button id="prev-btn" disabled class="flex items-center gap-2 px-5 py-2.5 rounded-lg text-gray-400 hover:text-white hover:bg-gray-800 transition-colors disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-transparent">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                <span>Anterior</span>
+              </button>
+
+              <span id="section-indicator" class="text-gray-500 text-sm">1 de {sections.length}</span>
+
+              <button id="next-btn" class="flex items-center gap-2 px-5 py-2.5 rounded-lg bg-purple-600 text-white hover:bg-purple-500 transition-colors font-medium">
+                <span>Siguiente</span>
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </button>
+            </div>
+          </footer>
+        </div>
+      </div>
+    </main>
+
+    <Footer />
+    <Analytics />
+    <SpeedInsights />
+
+    <style is:global>
+      /* Ocultar todas las secciones por defecto */
+      .course-section {
+        display: none;
+      }
+      .course-section.active {
+        display: block;
+        animation: fadeIn 0.3s ease-out;
+      }
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      /* Nav buttons states */
+      .nav-btn.active {
+        background-color: rgba(139, 92, 246, 0.2);
+        color: white;
+      }
+      .nav-btn.active .nav-number {
+        background-color: rgb(139, 92, 246);
+        border-color: rgb(139, 92, 246);
+        color: white;
+      }
+      .nav-btn.completed .nav-check {
+        opacity: 1;
+      }
+      .nav-btn.completed .nav-number {
+        background-color: rgb(34, 197, 94);
+        border-color: rgb(34, 197, 94);
+        color: white;
+      }
+
+      /* Estilos del contenido del curso */
+      .course-section h2 {
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: white;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid #374151;
+      }
+
+      .course-section h3 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: white;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+      }
+
+      .course-section p {
+        color: #d1d5db;
+        line-height: 1.75;
+        margin-bottom: 1rem;
+      }
+
+      .course-section ul, .course-section ol {
+        color: #d1d5db;
+        margin-bottom: 1.5rem;
+        padding-left: 1.5rem;
+      }
+
+      .course-section li {
+        margin-bottom: 0.5rem;
+        line-height: 1.6;
+      }
+
+      .course-section strong {
+        color: white;
+        font-weight: 600;
+      }
+
+      .course-section a {
+        color: #a78bfa;
+        text-decoration: none;
+      }
+      .course-section a:hover {
+        text-decoration: underline;
+      }
+
+      .course-section code {
+        background-color: #1f2937;
+        color: #f472b6;
+        padding: 0.125rem 0.375rem;
+        border-radius: 0.25rem;
+        font-size: 0.875rem;
+      }
+
+      /* Cajas de alerta */
+      .alert-box {
+        padding: 1rem 1.25rem;
+        border-radius: 0.5rem;
+        margin: 1.5rem 0;
+      }
+      .alert-box p {
+        margin: 0;
+      }
+      .alert-red {
+        background-color: rgba(239, 68, 68, 0.15);
+        border-left: 4px solid #ef4444;
+      }
+      .alert-green {
+        background-color: rgba(34, 197, 94, 0.15);
+        border-left: 4px solid #22c55e;
+      }
+      .alert-amber {
+        background-color: rgba(245, 158, 11, 0.15);
+        border-left: 4px solid #f59e0b;
+      }
+      .alert-blue {
+        background-color: rgba(59, 130, 246, 0.15);
+        border-left: 4px solid #3b82f6;
+      }
+
+      /* Cards */
+      .info-card {
+        background-color: #1a1a1a;
+        border: 1px solid #333;
+        border-radius: 0.75rem;
+        padding: 1.25rem;
+        margin-bottom: 1rem;
+      }
+      .info-card-title {
+        color: white;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+      }
+      .info-card-text {
+        color: #9ca3af;
+        font-size: 0.875rem;
+        margin: 0;
+      }
+
+      /* Tabla */
+      .course-section table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1.5rem 0;
+      }
+      .course-section th {
+        text-align: left;
+        padding: 0.75rem 1rem;
+        background-color: #1a1a1a;
+        color: white;
+        font-weight: 600;
+        border-bottom: 2px solid #333;
+      }
+      .course-section td {
+        padding: 0.75rem 1rem;
+        border-bottom: 1px solid #333;
+        color: #d1d5db;
+      }
+
+      /* Badge */
+      .badge {
+        display: inline-block;
+        padding: 0.25rem 0.5rem;
+        border-radius: 0.25rem;
+        font-size: 0.75rem;
+        font-weight: 600;
+      }
+      .badge-red { background-color: rgba(239, 68, 68, 0.2); color: #f87171; }
+      .badge-amber { background-color: rgba(245, 158, 11, 0.2); color: #fbbf24; }
+      .badge-green { background-color: rgba(34, 197, 94, 0.2); color: #4ade80; }
+    </style>
+
+    <script define:vars={{ totalSections: sections.length }}>
+      document.addEventListener('DOMContentLoaded', () => {
+        const navButtons = document.querySelectorAll('.nav-btn');
+        const sections = document.querySelectorAll('.course-section');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const progressBar = document.getElementById('progress-bar');
+        const progressText = document.getElementById('progress-text');
+        const sectionIndicator = document.getElementById('section-indicator');
+        const contentWrapper = document.getElementById('content-wrapper');
+
+        let currentIndex = 0;
+        const completedSections = new Set();
+        const storageKey = 'course-contrasenas-progress';
+
+        // Cargar progreso guardado
+        function loadProgress() {
+          try {
+            const saved = localStorage.getItem(storageKey);
+            if (saved) {
+              const data = JSON.parse(saved);
+              if (data.completed) {
+                data.completed.forEach(i => completedSections.add(i));
+              }
+              if (typeof data.currentIndex === 'number' && data.currentIndex < totalSections) {
+                currentIndex = data.currentIndex;
+              }
+            }
+          } catch (e) {
+            console.error('Error loading progress:', e);
+          }
+        }
+
+        // Guardar progreso
+        function saveProgress() {
+          try {
+            localStorage.setItem(storageKey, JSON.stringify({
+              completed: Array.from(completedSections),
+              currentIndex
+            }));
+          } catch (e) {
+            console.error('Error saving progress:', e);
+          }
+        }
+
+        // Actualizar UI
+        function updateUI() {
+          // Mostrar solo la sección actual
+          sections.forEach((section, index) => {
+            if (index === currentIndex) {
+              section.classList.add('active');
+            } else {
+              section.classList.remove('active');
+            }
+          });
+
+          // Actualizar navegación lateral
+          navButtons.forEach((btn, index) => {
+            btn.classList.remove('active');
+            btn.classList.remove('completed');
+
+            if (index === currentIndex) {
+              btn.classList.add('active');
+            }
+            if (completedSections.has(index)) {
+              btn.classList.add('completed');
+            }
+          });
+
+          // Botón anterior
+          prevBtn.disabled = currentIndex === 0;
+
+          // Botón siguiente
+          if (currentIndex === totalSections - 1) {
+            nextBtn.innerHTML = '<span>Finalizar</span><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>';
+          } else {
+            nextBtn.innerHTML = '<span>Siguiente</span><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>';
+          }
+
+          // Progress bar
+          const progress = (completedSections.size / totalSections) * 100;
+          progressBar.style.width = progress + '%';
+          progressText.textContent = completedSections.size + ' / ' + totalSections;
+
+          // Indicador de sección
+          sectionIndicator.textContent = (currentIndex + 1) + ' de ' + totalSections;
+
+          // Scroll al inicio del contenido
+          if (contentWrapper) {
+            contentWrapper.scrollTop = 0;
+          }
+        }
+
+        // Ir a sección
+        function goToSection(index) {
+          // Marcar la actual como completada al salir
+          completedSections.add(currentIndex);
+          currentIndex = index;
+          saveProgress();
+          updateUI();
+        }
+
+        // Event listeners
+        navButtons.forEach((btn, index) => {
+          btn.addEventListener('click', () => goToSection(index));
+        });
+
+        prevBtn.addEventListener('click', () => {
+          if (currentIndex > 0) {
+            goToSection(currentIndex - 1);
+          }
+        });
+
+        nextBtn.addEventListener('click', () => {
+          if (currentIndex < totalSections - 1) {
+            goToSection(currentIndex + 1);
+          } else {
+            // Última sección - marcar como completada
+            completedSections.add(currentIndex);
+            saveProgress();
+            updateUI();
+            // Mostrar mensaje de completado
+            alert('¡Felicidades! Has completado el curso.');
+          }
+        });
+
+        // Inicializar
+        loadProgress();
+        updateUI();
+      });
+    </script>
+  </body>
+</html>
