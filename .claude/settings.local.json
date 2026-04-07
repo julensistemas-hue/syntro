@@ -35,7 +35,9 @@
       "Bash(powershell -ExecutionPolicy Bypass -File \"C:\\Users\\Jul\\Documents\\Project\\aisecurity.es\\web\\syntro\\update_payment.ps1\")",
       "Bash(powershell:*)",
       "Bash(git restore:*)",
-      "Bash(git checkout:*)"
+      "Bash(git checkout:*)",
+      "Bash(timeout 15 pnpm dev:*)",
+      "Bash(timeout 12 pnpm dev:*)"
     ],
     "deny": [],
     "ask": []
