@@ -111,6 +111,124 @@ if (accessToken) {
             />
           </div>
 
+          <!-- Tipo de facturación -->
+          <div class="p-4 rounded-lg" style="background-color: rgba(0, 101, 255, 0.05); border: 1px solid #374151;">
+            <p class="text-sm font-medium mb-3" style="color: #e5e7eb;">Datos de facturación</p>
+            <div class="flex gap-4">
+              <label class="flex items-center cursor-pointer">
+                <input
+                  type="radio"
+                  id="billing-personal"
+                  name="billing_type"
+                  value="personal"
+                  checked
+                  class="h-4 w-4"
+                  style="accent-color: #0065ff;"
+                />
+                <span class="ml-2 text-sm" style="color: #9ca3af;">Particular</span>
+              </label>
+              <label class="flex items-center cursor-pointer">
+                <input
+                  type="radio"
+                  id="billing-company"
+                  name="billing_type"
+                  value="company"
+                  class="h-4 w-4"
+                  style="accent-color: #0065ff;"
+                />
+                <span class="ml-2 text-sm" style="color: #9ca3af;">Empresa</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Campos de empresa (ocultos por defecto) -->
+          <div id="company-fields" class="space-y-4 hidden">
+            <div>
+              <label for="company_name" class="block text-sm font-medium mb-2" style="color: #e5e7eb;">
+                Razón social
+              </label>
+              <input
+                type="text"
+                id="company_name"
+                name="company_name"
+                class="w-full px-4 py-3 rounded-lg transition-colors"
+                style="background-color: #0f1419; border: 1px solid #374151; color: #ffffff;"
+                placeholder="Nombre de la empresa"
+              />
+            </div>
+
+            <div>
+              <label for="cif" class="block text-sm font-medium mb-2" style="color: #e5e7eb;">
+                CIF / NIF
+              </label>
+              <input
+                type="text"
+                id="cif"
+                name="cif"
+                class="w-full px-4 py-3 rounded-lg transition-colors"
+                style="background-color: #0f1419; border: 1px solid #374151; color: #ffffff;"
+                placeholder="B12345678"
+              />
+            </div>
+
+            <div>
+              <label for="billing_address" class="block text-sm font-medium mb-2" style="color: #e5e7eb;">
+                Dirección de facturación
+              </label>
+              <input
+                type="text"
+                id="billing_address"
+                name="billing_address"
+                class="w-full px-4 py-3 rounded-lg transition-colors"
+                style="background-color: #0f1419; border: 1px solid #374151; color: #ffffff;"
+                placeholder="Calle, número, piso"
+              />
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label for="billing_city" class="block text-sm font-medium mb-2" style="color: #e5e7eb;">
+                  Ciudad
+                </label>
+                <input
+                  type="text"
+                  id="billing_city"
+                  name="billing_city"
+                  class="w-full px-4 py-3 rounded-lg transition-colors"
+                  style="background-color: #0f1419; border: 1px solid #374151; color: #ffffff;"
+                  placeholder="Madrid"
+                />
+              </div>
+              <div>
+                <label for="billing_postal_code" class="block text-sm font-medium mb-2" style="color: #e5e7eb;">
+                  Código postal
+                </label>
+                <input
+                  type="text"
+                  id="billing_postal_code"
+                  name="billing_postal_code"
+                  class="w-full px-4 py-3 rounded-lg transition-colors"
+                  style="background-color: #0f1419; border: 1px solid #374151; color: #ffffff;"
+                  placeholder="28001"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label for="billing_province" class="block text-sm font-medium mb-2" style="color: #e5e7eb;">
+                Provincia
+              </label>
+              <input
+                type="text"
+                id="billing_province"
+                name="billing_province"
+                class="w-full px-4 py-3 rounded-lg transition-colors"
+                style="background-color: #0f1419; border: 1px solid #374151; color: #ffffff;"
+                placeholder="Madrid"
+              />
+            </div>
+          </div>
+
           <div class="flex items-start">
             <input
               type="checkbox"
@@ -166,6 +284,35 @@ if (accessToken) {
     const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
     const errorDiv = document.getElementById('error-message') as HTMLDivElement;
     const errorText = errorDiv.querySelector('p') as HTMLParagraphElement;
+    const companyFields = document.getElementById('company-fields') as HTMLDivElement;
+    const billingPersonal = document.getElementById('billing-personal') as HTMLInputElement;
+    const billingCompany = document.getElementById('billing-company') as HTMLInputElement;
+
+    // Toggle company fields visibility
+    function toggleCompanyFields() {
+      if (billingCompany.checked) {
+        companyFields.classList.remove('hidden');
+        // Make company fields required
+        (document.getElementById('company_name') as HTMLInputElement).required = true;
+        (document.getElementById('cif') as HTMLInputElement).required = true;
+        (document.getElementById('billing_address') as HTMLInputElement).required = true;
+        (document.getElementById('billing_city') as HTMLInputElement).required = true;
+        (document.getElementById('billing_postal_code') as HTMLInputElement).required = true;
+        (document.getElementById('billing_province') as HTMLInputElement).required = true;
+      } else {
+        companyFields.classList.add('hidden');
+        // Remove required from company fields
+        (document.getElementById('company_name') as HTMLInputElement).required = false;
+        (document.getElementById('cif') as HTMLInputElement).required = false;
+        (document.getElementById('billing_address') as HTMLInputElement).required = false;
+        (document.getElementById('billing_city') as HTMLInputElement).required = false;
+        (document.getElementById('billing_postal_code') as HTMLInputElement).required = false;
+        (document.getElementById('billing_province') as HTMLInputElement).required = false;
+      }
+    }
+
+    billingPersonal.addEventListener('change', toggleCompanyFields);
+    billingCompany.addEventListener('change', toggleCompanyFields);
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -175,12 +322,27 @@ if (accessToken) {
       const email = formData.get('email') as string;
       const password = formData.get('password') as string;
       const passwordConfirm = formData.get('password-confirm') as string;
+      const billingType = formData.get('billing_type') as string;
 
       // Validate passwords match
       if (password !== passwordConfirm) {
         errorText.textContent = 'Las contraseñas no coinciden';
         errorDiv.classList.remove('hidden');
         return;
+      }
+
+      // Build billing data
+      const billingData: any = {
+        billing_type: billingType,
+      };
+
+      if (billingType === 'company') {
+        billingData.company_name = formData.get('company_name') as string;
+        billingData.cif = formData.get('cif') as string;
+        billingData.billing_address = formData.get('billing_address') as string;
+        billingData.billing_city = formData.get('billing_city') as string;
+        billingData.billing_postal_code = formData.get('billing_postal_code') as string;
+        billingData.billing_province = formData.get('billing_province') as string;
       }
 
       // Disable button
@@ -192,7 +354,7 @@ if (accessToken) {
         const response = await fetch('/api/auth/register', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name, email, password }),
+          body: JSON.stringify({ name, email, password, ...billingData }),
         });
 
         const result = await response.json();

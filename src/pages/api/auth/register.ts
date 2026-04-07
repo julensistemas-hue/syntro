@@ -4,7 +4,18 @@ import { Resend } from 'resend';
 
 export const POST: APIRoute = async ({ request }) => {
   try {
-    const { name, email, password } = await request.json();
+    const {
+      name,
+      email,
+      password,
+      billing_type,
+      company_name,
+      cif,
+      billing_address,
+      billing_city,
+      billing_postal_code,
+      billing_province
+    } = await request.json();
 
     if (!email || !password) {
       return new Response(
@@ -32,6 +43,19 @@ export const POST: APIRoute = async ({ request }) => {
 
     const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
+    // Build billing info for user metadata
+    const billingInfo = billing_type === 'company' ? {
+      billing_type: 'company',
+      company_name: company_name || '',
+      cif: cif || '',
+      billing_address: billing_address || '',
+      billing_city: billing_city || '',
+      billing_postal_code: billing_postal_code || '',
+      billing_province: billing_province || '',
+    } : {
+      billing_type: 'personal',
+    };
+
     // Register user with Supabase Auth
     const { data, error } = await supabase.auth.signUp({
       email,
@@ -40,6 +64,7 @@ export const POST: APIRoute = async ({ request }) => {
         data: {
           name: name || '',
           full_name: name || '',
+          ...billingInfo,
         },
       },
     });
@@ -111,6 +136,33 @@ export const POST: APIRoute = async ({ request }) => {
                                 </p>
                               </td>
                             </tr>
+                            <tr><td style="height: 8px;"></td></tr>
+                            <tr>
+                              <td style="padding: 12px; background-color: ${billing_type === 'company' ? '#dbeafe' : '#f1f5f9'}; border-radius: 8px;">
+                                <p style="margin: 0; color: #334155; font-size: 15px;">
+                                  <strong style="color: #1e293b;">Tipo facturación:</strong> ${billing_type === 'company' ? '🏢 Empresa' : '👤 Particular'}
+                                </p>
+                              </td>
+                            </tr>
+                            ${billing_type === 'company' ? `
+                            <tr><td style="height: 8px;"></td></tr>
+                            <tr>
+                              <td style="padding: 12px; background-color: #dbeafe; border-radius: 8px;">
+                                <p style="margin: 0 0 8px 0; color: #334155; font-size: 15px;">
+                                  <strong style="color: #1e293b;">Razón social:</strong> ${company_name}
+                                </p>
+                                <p style="margin: 0 0 8px 0; color: #334155; font-size: 15px;">
+                                  <strong style="color: #1e293b;">CIF:</strong> ${cif}
+                                </p>
+                                <p style="margin: 0 0 8px 0; color: #334155; font-size: 15px;">
+                                  <strong style="color: #1e293b;">Dirección:</strong> ${billing_address}
+                                </p>
+                                <p style="margin: 0; color: #334155; font-size: 15px;">
+                                  <strong style="color: #1e293b;">Localidad:</strong> ${billing_city}, ${billing_postal_code} (${billing_province})
+                                </p>
+                              </td>
+                            </tr>
+                            ` : ''}
                             <tr>
                               <td style="padding: 12px 0;">
                                 <p style="margin: 0; color: #64748b; font-size: 14px;">
@@ -132,6 +184,14 @@ export const POST: APIRoute = async ({ request }) => {
 
 Nombre: ${name || 'No proporcionado'}
 Email: ${email}
+Tipo facturación: ${billing_type === 'company' ? 'Empresa' : 'Particular'}
+${billing_type === 'company' ? `
+Datos de empresa:
+- Razón social: ${company_name}
+- CIF: ${cif}
+- Dirección: ${billing_address}
+- Localidad: ${billing_city}, ${billing_postal_code} (${billing_province})
+` : ''}
 Fecha: ${new Date().toLocaleString('es-ES', { timeZone: 'Europe/Madrid' })}
 
 Pendiente de pago.`,
