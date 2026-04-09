@@ -1,0 +1,37 @@
+name: SEO - Actualizar fechas artículos
+
+on:
+  schedule:
+    # Cada lunes a las 08:00 UTC (09:00 hora España)
+    - cron: '0 8 * * 1'
+  workflow_dispatch: # Permite ejecutar manualmente desde GitHub
+
+jobs:
+  update-dates:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repositorio
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Ejecutar script de fechas
+        run: node scripts/seo-automation/1-update-dates.js
+
+      - name: Commit y push si hay cambios
+        run: |
+          git config user.name "SEO Bot"
+          git config user.email "bot@aisecurity.es"
+          git add src/pages/blog/
+          if git diff --staged --quiet; then
+            echo "Sin cambios, nada que commitear"
+          else
+            git commit -m "chore: actualizar modifiedDate artículos blog [SEO auto]"
+            git push
+          fi

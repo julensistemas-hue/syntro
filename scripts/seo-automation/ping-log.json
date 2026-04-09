@@ -1,0 +1,39 @@
+{
+  "pings": [
+    {
+      "timestamp": "2026-04-08T18:25:46.837Z",
+      "results": [
+        {
+          "engine": "Google",
+          "success": false,
+          "statusCode": 404
+        },
+        {
+          "engine": "Bing (sitemap)",
+          "success": false,
+          "statusCode": 410
+        },
+        {
+          "engine": "IndexNow API",
+          "success": true,
+          "statusCode": 202
+        },
+        {
+          "engine": "Bing (IndexNow)",
+          "success": true,
+          "statusCode": 202
+        },
+        {
+          "engine": "Yandex",
+          "success": true,
+          "statusCode": 202
+        },
+        {
+          "engine": "Yandex (sitemap)",
+          "success": true,
+          "statusCode": 200
+        }
+      ]
+    }
+  ]
+}

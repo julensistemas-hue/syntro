@@ -1,0 +1,33 @@
+name: SEO - Ping a buscadores tras deploy
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: # Permite ejecutar manualmente desde GitHub
+
+jobs:
+  ping-search-engines:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repositorio
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Esperar a que Vercel desplegó (60s)
+        run: sleep 60
+
+      - name: Ejecutar ping a buscadores
+        run: node scripts/seo-automation/5-ping-search-engines.js
+
+      - name: Guardar log de ping
+        uses: actions/upload-artifact@v4
+        with:
+          name: ping-log-${{ github.run_number }}
+          path: scripts/seo-automation/ping-log.json
+          retention-days: 30

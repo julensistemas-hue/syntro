@@ -1,0 +1,37 @@
+name: SEO - Rotación A/B títulos y descripciones
+
+on:
+  schedule:
+    # Cada 2 semanas, el lunes a las 09:00 UTC (día 1 y 15 de cada mes)
+    - cron: '0 9 1,15 * *'
+  workflow_dispatch: # Permite ejecutar manualmente desde GitHub
+
+jobs:
+  ab-rotation:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repositorio
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Ejecutar rotación A/B
+        run: node scripts/seo-automation/3-ab-rotation.js --rotate
+
+      - name: Commit y push si hay cambios
+        run: |
+          git config user.name "SEO Bot"
+          git config user.email "bot@aisecurity.es"
+          git add src/pages/blog/ scripts/seo-automation/ab-state.json
+          if git diff --staged --quiet; then
+            echo "Sin cambios, nada que commitear"
+          else
+            git commit -m "chore: rotación A/B títulos y descripciones [SEO auto]"
+            git push
+          fi
