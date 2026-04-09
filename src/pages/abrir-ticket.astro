@@ -18,7 +18,7 @@ const canonical = "https://aisecurity.es/abrir-ticket";
         <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-base-900 mb-4">
           Abre tu Ticket de Soporte
         </h1>
-        <p class="text-lg md:text-xl text-base-700 max-w-3xl mx-auto">
+        <p class="text-lg md:text-xl text-base-700 max-w-3xl mx-auto" style="max-width: 48rem;">
           Describe tu problema técnico y te contactamos en menos de 2 horas
           <br>
           <span class="text-accent-600 font-semibold">(Horario: 08:00-14:00 y 16:00-19:00)</span>
@@ -27,8 +27,8 @@ const canonical = "https://aisecurity.es/abrir-ticket";
 
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
         <!-- Formulario de Ticket -->
-        <div class="bg-white rounded-2xl shadow-xl border border-base-200 p-6 md:p-8">
-          <h2 class="text-2xl font-bold text-base-900 mb-6 flex items-center gap-3">
+        <div class="bg-base-50 rounded-2xl shadow-xl border border-base-200 p-6 md:p-8">
+          <h2 class="text-2xl font-bold text-base-900 mb-6 flex items-center gap-3" style="font-size: 1.5rem;">
             <span class="w-10 h-10 bg-accent-100 rounded-xl flex items-center justify-center text-xl">📝</span>
             Describe tu Incidencia
           </h2>
@@ -44,7 +44,7 @@ const canonical = "https://aisecurity.es/abrir-ticket";
                 id="nombre"
                 name="nombre"
                 required
-                class="w-full px-4 py-3 border-2 border-base-300 rounded-xl focus:border-accent-500 focus:ring-2 focus:ring-accent-200 transition-all duration-200 text-base-900 bg-white"
+                class="w-full px-4 py-3 border-2 border-base-300 rounded-xl focus:border-accent-500 focus:ring-2 focus:ring-accent-200 transition-all duration-200 text-base-900 bg-base-50"
                 placeholder="Tu nombre"
               />
             </div>
@@ -59,7 +59,7 @@ const canonical = "https://aisecurity.es/abrir-ticket";
                 id="email"
                 name="email"
                 required
-                class="w-full px-4 py-3 border-2 border-base-300 rounded-xl focus:border-accent-500 focus:ring-2 focus:ring-accent-200 transition-all duration-200 text-base-900 bg-white"
+                class="w-full px-4 py-3 border-2 border-base-300 rounded-xl focus:border-accent-500 focus:ring-2 focus:ring-accent-200 transition-all duration-200 text-base-900 bg-base-50"
                 placeholder="tu@empresa.com"
               />
             </div>
@@ -67,13 +67,13 @@ const canonical = "https://aisecurity.es/abrir-ticket";
             <!-- Empresa (opcional) -->
             <div>
               <label for="empresa" class="block text-sm font-semibold text-base-800 mb-2">
-                Empresa <span class="text-base-500 font-normal">(opcional)</span>
+                Empresa <span class="text-base-600 font-normal">(opcional)</span>
               </label>
               <input
                 type="text"
                 id="empresa"
                 name="empresa"
-                class="w-full px-4 py-3 border-2 border-base-300 rounded-xl focus:border-accent-500 focus:ring-2 focus:ring-accent-200 transition-all duration-200 text-base-900 bg-white"
+                class="w-full px-4 py-3 border-2 border-base-300 rounded-xl focus:border-accent-500 focus:ring-2 focus:ring-accent-200 transition-all duration-200 text-base-900 bg-base-50"
                 placeholder="Nombre de tu empresa"
               />
             </div>
@@ -87,7 +87,7 @@ const canonical = "https://aisecurity.es/abrir-ticket";
                 id="tipo"
                 name="tipo"
                 required
-                class="w-full px-4 py-3 border-2 border-base-300 rounded-xl focus:border-accent-500 focus:ring-2 focus:ring-accent-200 transition-all duration-200 text-base-900 bg-white"
+                class="w-full px-4 py-3 border-2 border-base-300 rounded-xl focus:border-accent-500 focus:ring-2 focus:ring-accent-200 transition-all duration-200 text-base-900 bg-base-50"
               >
                 <option value="">Selecciona una opción</option>
                 <option value="pc-lento">PC lento o no arranca</option>
@@ -111,7 +111,7 @@ const canonical = "https://aisecurity.es/abrir-ticket";
                 name="descripcion"
                 required
                 rows="4"
-                class="w-full px-4 py-3 border-2 border-base-300 rounded-xl focus:border-accent-500 focus:ring-2 focus:ring-accent-200 transition-all duration-200 text-base-900 bg-white resize-none"
+                class="w-full px-4 py-3 border-2 border-base-300 rounded-xl focus:border-accent-500 focus:ring-2 focus:ring-accent-200 transition-all duration-200 text-base-900 bg-base-50 resize-none"
                 placeholder="Describe tu problema con el mayor detalle posible: qué ocurre, cuándo empezó, qué has probado..."
               ></textarea>
             </div>
@@ -125,10 +125,10 @@ const canonical = "https://aisecurity.es/abrir-ticket";
                 type="text"
                 id="anydesk"
                 name="anydesk"
-                class="w-full px-4 py-3 border-2 border-accent-200 rounded-xl focus:border-accent-500 focus:ring-2 focus:ring-accent-200 transition-all duration-200 text-base-900 bg-white"
+                class="w-full px-4 py-3 border-2 border-accent-200 rounded-xl focus:border-accent-500 focus:ring-2 focus:ring-accent-200 transition-all duration-200 text-base-900 bg-base-50"
                 placeholder="Ej: 123 456 789"
               />
-              <p class="text-xs text-base-700 mt-2">
+              <p class="text-xs text-base-700 mt-2" style="max-width: none;">
                 Si no lo tienes instalado, mira las instrucciones a la derecha
               </p>
             </div>
@@ -166,74 +166,74 @@ const canonical = "https://aisecurity.es/abrir-ticket";
 
         <!-- Instrucciones AnyDesk -->
         <div class="space-y-6">
-          <!-- Info Card -->
-          <div class="bg-accent-600 rounded-2xl shadow-xl p-6 md:p-8 text-white">
-            <h2 class="text-2xl font-bold mb-4 flex items-center gap-3">
+          <!-- Info Card - color fijo para que no se invierta en dark mode -->
+          <div class="rounded-2xl shadow-xl p-6 md:p-8" style="background-color: #0065ff;">
+            <h2 class="text-2xl font-bold mb-4 flex items-center gap-3 text-white" style="font-size: 1.5rem; color: white;">
               <span class="text-3xl">🖥️</span>
               ¿Cómo funciona el soporte remoto?
             </h2>
             <ol class="space-y-4">
               <li class="flex gap-4">
-                <span class="flex-shrink-0 w-8 h-8 bg-white/20 rounded-full flex items-center justify-center font-bold">1</span>
+                <span class="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center font-bold text-white" style="background-color: rgba(255,255,255,0.2);">1</span>
                 <div>
-                  <p class="font-semibold text-white">Rellena el formulario</p>
-                  <p class="text-base-100 text-sm">Describe tu problema con el mayor detalle posible</p>
+                  <p class="font-semibold text-white" style="color: white; max-width: none;">Rellena el formulario</p>
+                  <p class="text-sm" style="color: rgba(255,255,255,0.85); max-width: none;">Describe tu problema con el mayor detalle posible</p>
                 </div>
               </li>
               <li class="flex gap-4">
-                <span class="flex-shrink-0 w-8 h-8 bg-white/20 rounded-full flex items-center justify-center font-bold">2</span>
+                <span class="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center font-bold text-white" style="background-color: rgba(255,255,255,0.2);">2</span>
                 <div>
-                  <p class="font-semibold text-white">Instala AnyDesk</p>
-                  <p class="text-base-100 text-sm">Software seguro para conexión remota (instrucciones abajo)</p>
+                  <p class="font-semibold text-white" style="color: white; max-width: none;">Instala AnyDesk</p>
+                  <p class="text-sm" style="color: rgba(255,255,255,0.85); max-width: none;">Software seguro para conexión remota (instrucciones abajo)</p>
                 </div>
               </li>
               <li class="flex gap-4">
-                <span class="flex-shrink-0 w-8 h-8 bg-white/20 rounded-full flex items-center justify-center font-bold">3</span>
+                <span class="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center font-bold text-white" style="background-color: rgba(255,255,255,0.2);">3</span>
                 <div>
-                  <p class="font-semibold text-white">Te contactamos</p>
-                  <p class="text-base-100 text-sm">En menos de 2 horas nos pondremos en contacto</p>
+                  <p class="font-semibold text-white" style="color: white; max-width: none;">Te contactamos</p>
+                  <p class="text-sm" style="color: rgba(255,255,255,0.85); max-width: none;">En menos de 2 horas nos pondremos en contacto</p>
                 </div>
               </li>
               <li class="flex gap-4">
-                <span class="flex-shrink-0 w-8 h-8 bg-white/20 rounded-full flex items-center justify-center font-bold">4</span>
+                <span class="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center font-bold text-white" style="background-color: rgba(255,255,255,0.2);">4</span>
                 <div>
-                  <p class="font-semibold text-white">Resolvemos tu problema</p>
-                  <p class="text-base-100 text-sm">La primera hora es totalmente gratuita</p>
+                  <p class="font-semibold text-white" style="color: white; max-width: none;">Resolvemos tu problema</p>
+                  <p class="text-sm" style="color: rgba(255,255,255,0.85); max-width: none;">La primera hora es totalmente gratuita</p>
                 </div>
               </li>
             </ol>
           </div>
 
           <!-- AnyDesk Download Card -->
-          <div class="bg-white rounded-2xl shadow-xl border border-base-200 p-6 md:p-8">
+          <div class="bg-base-50 rounded-2xl shadow-xl border border-base-200 p-6 md:p-8">
             <div class="flex items-center gap-4 mb-6">
               <img src="https://anydesk.com/favicon.ico" alt="AnyDesk" class="w-12 h-12 rounded-xl shadow-md" />
               <div>
-                <h3 class="text-xl font-bold text-base-900">Instalar AnyDesk</h3>
-                <p class="text-sm text-base-700">Software de escritorio remoto seguro</p>
+                <h3 class="text-xl font-bold text-base-900" style="font-size: 1.25rem;">Instalar AnyDesk</h3>
+                <p class="text-sm text-base-700" style="max-width: none;">Software de escritorio remoto seguro</p>
               </div>
             </div>
 
             <div class="space-y-3 mb-6">
-              <div class="flex items-start gap-3 p-3 bg-base-50 rounded-xl border border-base-200">
+              <div class="flex items-start gap-3 p-3 bg-base-100 rounded-xl border border-base-200">
                 <span class="text-accent-600 text-xl font-bold">✓</span>
                 <div>
-                  <p class="font-semibold text-base-800 text-sm">100% Seguro</p>
-                  <p class="text-xs text-base-700">Conexión cifrada de extremo a extremo</p>
+                  <p class="font-semibold text-base-800 text-sm" style="max-width: none;">100% Seguro</p>
+                  <p class="text-xs text-base-700" style="max-width: none;">Conexión cifrada de extremo a extremo</p>
                 </div>
               </div>
-              <div class="flex items-start gap-3 p-3 bg-base-50 rounded-xl border border-base-200">
+              <div class="flex items-start gap-3 p-3 bg-base-100 rounded-xl border border-base-200">
                 <span class="text-accent-600 text-xl font-bold">✓</span>
                 <div>
-                  <p class="font-semibold text-base-800 text-sm">Tú controlas el acceso</p>
-                  <p class="text-xs text-base-700">Solo nos conectamos cuando tú lo autorizas</p>
+                  <p class="font-semibold text-base-800 text-sm" style="max-width: none;">Tú controlas el acceso</p>
+                  <p class="text-xs text-base-700" style="max-width: none;">Solo nos conectamos cuando tú lo autorizas</p>
                 </div>
               </div>
-              <div class="flex items-start gap-3 p-3 bg-base-50 rounded-xl border border-base-200">
+              <div class="flex items-start gap-3 p-3 bg-base-100 rounded-xl border border-base-200">
                 <span class="text-accent-600 text-xl font-bold">✓</span>
                 <div>
-                  <p class="font-semibold text-base-800 text-sm">Instalación rápida</p>
-                  <p class="text-xs text-base-700">Solo 3 MB, funciona inmediatamente</p>
+                  <p class="font-semibold text-base-800 text-sm" style="max-width: none;">Instalación rápida</p>
+                  <p class="text-xs text-base-700" style="max-width: none;">Solo 3 MB, funciona inmediatamente</p>
                 </div>
               </div>
             </div>
@@ -253,7 +253,7 @@ const canonical = "https://aisecurity.es/abrir-ticket";
             </a>
 
             <div class="mt-4 text-center">
-              <p class="text-sm text-base-700">¿Otro sistema operativo?</p>
+              <p class="text-sm text-base-700" style="max-width: none;">¿Otro sistema operativo?</p>
               <div class="flex justify-center gap-4 mt-2">
                 <a href="https://anydesk.com/es/downloads/mac-os" target="_blank" rel="noopener noreferrer" class="text-accent-600 hover:underline text-sm font-medium">macOS</a>
                 <a href="https://anydesk.com/es/downloads/linux" target="_blank" rel="noopener noreferrer" class="text-accent-600 hover:underline text-sm font-medium">Linux</a>
@@ -264,7 +264,7 @@ const canonical = "https://aisecurity.es/abrir-ticket";
 
           <!-- Cómo encontrar ID -->
           <div class="bg-base-100 border-2 border-base-200 rounded-2xl p-6">
-            <h4 class="font-bold text-base-900 mb-3 flex items-center gap-2">
+            <h4 class="font-bold text-base-900 mb-3 flex items-center gap-2" style="font-size: 1rem;">
               <span class="text-xl">💡</span>
               ¿Dónde encuentro mi ID de AnyDesk?
             </h4>
@@ -274,8 +274,8 @@ const canonical = "https://aisecurity.es/abrir-ticket";
               <li><strong class="text-base-800">3.</strong> Tu ID aparece en la pantalla principal con el título <em>"Esta Mesa"</em> o <em>"This Desk"</em></li>
               <li><strong class="text-base-800">4.</strong> Es un número de 9 dígitos (ej: 123 456 789)</li>
             </ol>
-            <div class="mt-4 p-3 bg-white rounded-xl border border-base-200">
-              <p class="text-xs text-base-700">
+            <div class="mt-4 p-3 bg-base-50 rounded-xl border border-base-200">
+              <p class="text-xs text-base-700" style="max-width: none;">
                 <strong class="text-base-800">Nota:</strong> Si no quieres instalarlo ahora, no hay problema. Te guiaremos cuando te contactemos.
               </p>
             </div>
@@ -286,13 +286,13 @@ const canonical = "https://aisecurity.es/abrir-ticket";
   </section>
 
   <!-- Sección de valor para PyMEs -->
-  <section class="py-16 bg-white">
+  <section class="py-16 bg-base-100">
     <div class="max-w-7xl mx-auto px-4 md:px-8">
       <div class="text-center mb-12">
-        <h2 class="text-2xl md:text-3xl font-bold text-base-900 mb-4">
+        <h2 class="text-base-900 mb-4" style="font-size: clamp(1.5rem, 3vw, 2rem);">
           Tu Departamento IT bajo demanda
         </h2>
-        <p class="text-base-700 max-w-2xl mx-auto">
+        <p class="text-base-700 max-w-2xl mx-auto" style="max-width: 42rem;">
           Ideal para empresas que no pueden contratar un informático a tiempo completo pero necesitan soporte técnico profesional de forma periódica
         </p>
       </div>
@@ -300,24 +300,24 @@ const canonical = "https://aisecurity.es/abrir-ticket";
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div class="bg-base-50 rounded-xl p-6 border-2 border-base-200 hover:border-accent-300 transition-colors">
           <div class="w-14 h-14 bg-accent-100 rounded-xl flex items-center justify-center text-2xl mb-4">🆘</div>
-          <h3 class="text-lg font-bold text-base-900 mb-2">Soporte de emergencia</h3>
-          <p class="text-base-700 text-sm">
+          <h3 class="text-lg font-bold text-base-900 mb-2" style="font-size: 1.125rem;">Soporte de emergencia</h3>
+          <p class="text-base-700 text-sm" style="max-width: none;">
             PC que no arranca, virus, email caído... Resolvemos urgencias técnicas que bloquean tu trabajo.
           </p>
         </div>
 
         <div class="bg-base-50 rounded-xl p-6 border-2 border-base-200 hover:border-accent-300 transition-colors">
           <div class="w-14 h-14 bg-accent-100 rounded-xl flex items-center justify-center text-2xl mb-4">⚙️</div>
-          <h3 class="text-lg font-bold text-base-900 mb-2">Automatización de tareas</h3>
-          <p class="text-base-700 text-sm">
+          <h3 class="text-lg font-bold text-base-900 mb-2" style="font-size: 1.125rem;">Automatización de tareas</h3>
+          <p class="text-base-700 text-sm" style="max-width: none;">
             Automatizamos backups, actualizaciones, informes y tareas repetitivas para que tu equipo se centre en lo importante.
           </p>
         </div>
 
         <div class="bg-base-50 rounded-xl p-6 border-2 border-base-200 hover:border-accent-300 transition-colors">
           <div class="w-14 h-14 bg-accent-100 rounded-xl flex items-center justify-center text-2xl mb-4">🧠</div>
-          <h3 class="text-lg font-bold text-base-900 mb-2">Consultoría IT</h3>
-          <p class="text-base-700 text-sm">
+          <h3 class="text-lg font-bold text-base-900 mb-2" style="font-size: 1.125rem;">Consultoría IT</h3>
+          <p class="text-base-700 text-sm" style="max-width: none;">
             Problemas técnicos complejos que tu técnico habitual no puede resolver. Somos tu escalado experto.
           </p>
         </div>
@@ -325,25 +325,25 @@ const canonical = "https://aisecurity.es/abrir-ticket";
     </div>
   </section>
 
-  <!-- Horario y contacto -->
-  <section class="py-12 bg-accent-600">
-    <div class="max-w-4xl mx-auto px-4 md:px-8 text-center text-white">
-      <h2 class="text-2xl md:text-3xl font-bold mb-4">Horario de Atención</h2>
+  <!-- Horario y contacto - color fijo para que no se invierta en dark mode -->
+  <section class="py-12" style="background-color: #0065ff;">
+    <div class="max-w-4xl mx-auto px-4 md:px-8 text-center">
+      <h2 class="text-2xl md:text-3xl font-bold mb-4 text-white" style="color: white; font-size: clamp(1.5rem, 3vw, 2rem);">Horario de Atención</h2>
       <div class="flex flex-col sm:flex-row justify-center gap-4 sm:gap-8 mb-6">
-        <div class="bg-white/10 backdrop-blur-sm rounded-xl px-6 py-4">
-          <p class="text-base-100 text-sm mb-1">Mañanas</p>
-          <p class="text-2xl font-bold text-white">08:00 - 14:00</p>
+        <div class="rounded-xl px-6 py-4" style="background-color: rgba(255,255,255,0.15);">
+          <p class="text-sm mb-1" style="color: rgba(255,255,255,0.85); max-width: none;">Mañanas</p>
+          <p class="text-2xl font-bold" style="color: white; max-width: none;">08:00 - 14:00</p>
         </div>
-        <div class="bg-white/10 backdrop-blur-sm rounded-xl px-6 py-4">
-          <p class="text-base-100 text-sm mb-1">Tardes</p>
-          <p class="text-2xl font-bold text-white">16:00 - 19:00</p>
+        <div class="rounded-xl px-6 py-4" style="background-color: rgba(255,255,255,0.15);">
+          <p class="text-sm mb-1" style="color: rgba(255,255,255,0.85); max-width: none;">Tardes</p>
+          <p class="text-2xl font-bold" style="color: white; max-width: none;">16:00 - 19:00</p>
         </div>
       </div>
-      <p class="text-base-100">
+      <p class="mb-6" style="color: rgba(255,255,255,0.85); max-width: none;">
         Lunes a Viernes · Tiempo de respuesta: &lt; 2 horas
       </p>
-      <div class="mt-6">
-        <a href="mailto:info@aisecurity.es" class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white text-accent-700 hover:bg-base-50 rounded-xl font-semibold transition-colors">
+      <div>
+        <a href="mailto:info@aisecurity.es" class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold transition-colors" style="background-color: white; color: #0065ff;">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
           </svg>
@@ -355,40 +355,40 @@ const canonical = "https://aisecurity.es/abrir-ticket";
 
   <!-- Modal de éxito -->
   <div id="success-modal" class="fixed inset-0 z-50 hidden">
-  <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" id="modal-backdrop"></div>
-  <div class="flex items-center justify-center min-h-screen p-4">
-    <div class="relative bg-white rounded-2xl shadow-2xl max-w-md w-full p-8 transform scale-95 opacity-0 transition-all duration-300" id="modal-content">
-      <button id="close-modal" class="absolute top-4 right-4 text-base-400 hover:text-base-600 transition-colors">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-        </svg>
-      </button>
-
-      <div class="text-center">
-        <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-          <svg class="w-10 h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+    <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" id="modal-backdrop"></div>
+    <div class="flex items-center justify-center min-h-screen p-4">
+      <div class="relative bg-base-50 rounded-2xl shadow-2xl max-w-md w-full p-8 transform scale-95 opacity-0 transition-all duration-300" id="modal-content">
+        <button id="close-modal" class="absolute top-4 right-4 text-base-600 hover:text-base-800 transition-colors">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
           </svg>
-        </div>
-        <h3 class="text-2xl font-bold text-base-900 mb-3">¡Ticket enviado!</h3>
-        <p class="text-base-800 mb-6">
-          Hemos recibido tu solicitud. Te contactaremos en menos de 2 horas durante nuestro horario de atención.
-        </p>
-        <div class="bg-accent-50 rounded-xl p-4 mb-6 text-left">
-          <p class="font-semibold text-base-900 mb-2">Próximos pasos:</p>
-          <ol class="list-decimal list-inside text-sm text-base-700 space-y-1">
-            <li>Si aún no lo has hecho, descarga e instala AnyDesk</li>
-            <li>Te contactaremos para confirmar los detalles</li>
-            <li>Nos conectamos y resolvemos tu problema</li>
-          </ol>
-        </div>
-        <button id="modal-ok-btn" class="w-full py-3 px-6 bg-accent-600 hover:bg-accent-700 text-white font-bold rounded-xl transition-colors">
-          Entendido
         </button>
+
+        <div class="text-center">
+          <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+            <svg class="w-10 h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold text-base-900 mb-3" style="font-size: 1.5rem;">¡Ticket enviado!</h3>
+          <p class="text-base-700 mb-6" style="max-width: none;">
+            Hemos recibido tu solicitud. Te contactaremos en menos de 2 horas durante nuestro horario de atención.
+          </p>
+          <div class="bg-accent-50 rounded-xl p-4 mb-6 text-left">
+            <p class="font-semibold text-base-900 mb-2" style="max-width: none;">Próximos pasos:</p>
+            <ol class="list-decimal list-inside text-sm text-base-700 space-y-1">
+              <li>Si aún no lo has hecho, descarga e instala AnyDesk</li>
+              <li>Te contactaremos para confirmar los detalles</li>
+              <li>Nos conectamos y resolvemos tu problema</li>
+            </ol>
+          </div>
+          <button id="modal-ok-btn" class="w-full py-3 px-6 bg-accent-600 hover:bg-accent-700 text-white font-bold rounded-xl transition-colors">
+            Entendido
+          </button>
+        </div>
       </div>
     </div>
   </div>
-</div>
 </BaseLayout>
 
 <script>
@@ -426,7 +426,6 @@ const canonical = "https://aisecurity.es/abrir-ticket";
     const submitBtn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
     const originalText = submitBtn.innerHTML;
 
-    // Mostrar estado de carga
     submitBtn.disabled = true;
     submitBtn.innerHTML = `
       <svg class="animate-spin w-6 h-6" fill="none" viewBox="0 0 24 24">
@@ -446,7 +445,6 @@ const canonical = "https://aisecurity.es/abrir-ticket";
       const result = await response.json();
 
       if (response.ok) {
-        // Éxito - mostrar modal
         form.reset();
         showModal();
         statusDiv.classList.add('hidden');
@@ -454,14 +452,13 @@ const canonical = "https://aisecurity.es/abrir-ticket";
         throw new Error(result.error || 'Error al enviar el ticket');
       }
     } catch (error) {
-      // Error
       statusDiv.className = 'mt-6 p-6 bg-red-50 border-2 border-red-200 rounded-xl';
       statusDiv.innerHTML = `
         <div class="flex items-start gap-4">
           <span class="text-4xl">❌</span>
           <div>
-            <h3 class="text-lg font-bold text-red-800 mb-2">Error al enviar el ticket</h3>
-            <p class="text-red-700">
+            <h3 class="text-lg font-bold text-red-800 mb-2" style="font-size: 1.125rem;">Error al enviar el ticket</h3>
+            <p class="text-red-700" style="max-width: none;">
               Ha ocurrido un error. Por favor, inténtalo de nuevo o contacta directamente por email a
               <a href="mailto:info@aisecurity.es" class="font-bold underline">info@aisecurity.es</a>
             </p>
