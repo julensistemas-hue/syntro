@@ -8,8 +8,13 @@ const canonical = "https://aisecurity.es/soporte-tecnico";
 
 <BaseLayout title={title} description={description} canonical={canonical}>
   <!-- BANNER PROMOCIONAL - PRIMERA HORA GRATIS -->
-  <section class="relative overflow-hidden" style="background: linear-gradient(to right, #0065ff, #4f46e5, #0b8aff);">
-    <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent"></div>
+  <section class="relative overflow-hidden">
+    <!-- Background Image -->
+    <div class="absolute inset-0">
+      <img src="/images/6107094.jpg" alt="Background" class="w-full h-full object-cover opacity-40" />
+    </div>
+    <!-- Overlay Gradient -->
+    <div class="absolute inset-0" style="background: linear-gradient(to right, #0065ff, #4f46e5, #0b8aff); opacity: 0.85;"></div>
 
     <div class="relative z-10 max-w-7xl mx-auto px-4 py-6 md:py-8">
       <div class="flex flex-col lg:flex-row items-center justify-between gap-6">
@@ -58,8 +63,7 @@ const canonical = "https://aisecurity.es/soporte-tecnico";
   </section>
 
   <!-- Hero Section -->
-  <section class="py-20 relative overflow-hidden" style="background: linear-gradient(to right, #0065ff, #4f46e5, #0b8aff);">
-    <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent"></div>
+  <section class="py-20 relative overflow-hidden" style="background-color: #0a0c0e;">
 
     <!-- Content -->
     <div class="relative z-10 max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
