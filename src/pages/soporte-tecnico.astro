@@ -8,13 +8,7 @@ const canonical = "https://aisecurity.es/soporte-tecnico";
 
 <BaseLayout title={title} description={description} canonical={canonical}>
   <!-- BANNER PROMOCIONAL - PRIMERA HORA GRATIS -->
-  <section class="relative overflow-hidden">
-    <!-- Background Image -->
-    <div class="absolute inset-0">
-      <img src="/images/6107094.jpg" alt="Background" class="w-full h-full object-cover opacity-40" />
-    </div>
-    <!-- Overlay Gradient -->
-    <div class="absolute inset-0" style="background: linear-gradient(to right, #0065ff, #4f46e5, #0b8aff); opacity: 0.85;"></div>
+  <section class="relative overflow-hidden" style="background-color: #0a0c0e;">
 
     <div class="relative z-10 max-w-7xl mx-auto px-4 py-6 md:py-8">
       <div class="flex flex-col lg:flex-row items-center justify-between gap-6">
@@ -196,73 +190,74 @@ const canonical = "https://aisecurity.es/soporte-tecnico";
   </section>
 
   <!-- Value Proposition for SMBs -->
-  <section class="py-16 bg-white">
+  <section class="py-16" style="background-color: #0a0c0e;">
     <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <div>
           <span class="inline-block px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-semibold mb-4">
             Para empresas de 5 a 50 empleados
           </span>
-          <h2 class="text-3xl md:text-4xl font-bold text-base-900 mb-6">
-            Tu departamento IT <span class="text-blue-600">sin contratar</span> un informático
+          <h2 class="text-3xl md:text-4xl font-bold mb-6" style="color: white;">
+            Tu departamento IT <span style="color: #38b1ff;">sin contratar</span> un informático
           </h2>
-          <p class="text-lg text-base-600 mb-6 leading-relaxed">
+          <p class="text-lg mb-6 leading-relaxed" style="color: rgba(255,255,255,0.80); max-width: none;">
             Muchas PyMEs no pueden justificar un técnico a tiempo completo, pero sí necesitan
-            <strong>soporte profesional de forma periódica</strong>: resolver incidencias,
+            <strong style="color: white;">soporte profesional de forma periódica</strong>: resolver incidencias,
             automatizar tareas, consultoría para decisiones técnicas...
           </p>
           <div class="space-y-4">
             <div class="flex items-start gap-4 p-4 bg-green-50 rounded-xl border border-green-200">
               <span class="text-2xl">🆘</span>
               <div>
-                <h4 class="font-bold text-base-900">Soporte de emergencia</h4>
-                <p class="text-sm text-base-600">PC que no arranca, virus, email caído... Incidencias que bloquean tu trabajo.</p>
+                <h4 class="font-bold text-base-900" style="font-size: 1rem;">Soporte de emergencia</h4>
+                <p class="text-sm text-base-700" style="max-width: none;">PC que no arranca, virus, email caído... Incidencias que bloquean tu trabajo.</p>
               </div>
             </div>
             <div class="flex items-start gap-4 p-4 bg-purple-50 rounded-xl border border-purple-200">
               <span class="text-2xl">⚙️</span>
               <div>
-                <h4 class="font-bold text-base-900">Automatización de tareas</h4>
-                <p class="text-sm text-base-600">Backups automáticos, informes, actualizaciones... Libera tiempo de tu equipo.</p>
+                <h4 class="font-bold text-base-900" style="font-size: 1rem;">Automatización de tareas</h4>
+                <p class="text-sm text-base-700" style="max-width: none;">Backups automáticos, informes, actualizaciones... Libera tiempo de tu equipo.</p>
               </div>
             </div>
             <div class="flex items-start gap-4 p-4 bg-blue-50 rounded-xl border border-blue-200">
               <span class="text-2xl">🧠</span>
               <div>
-                <h4 class="font-bold text-base-900">Consultoría IT</h4>
-                <p class="text-sm text-base-600">Problemas técnicos complejos que tu técnico habitual no puede resolver.</p>
+                <h4 class="font-bold text-base-900" style="font-size: 1rem;">Consultoría IT</h4>
+                <p class="text-sm text-base-700" style="max-width: none;">Problemas técnicos complejos que tu técnico habitual no puede resolver.</p>
               </div>
             </div>
           </div>
         </div>
-        <div class="bg-gradient-to-br from-base-100 to-base-50 rounded-2xl p-8 border border-base-200">
-          <h3 class="text-xl font-bold text-base-900 mb-6 text-center">¿Te identificas con esto?</h3>
+        <div class="rounded-2xl p-8 border border-base-700" style="background-color: #16181a;">
+          <h3 class="text-xl font-bold text-white mb-6 text-center" style="color: white; font-size: 1.25rem;">¿Te identificas con esto?</h3>
           <ul class="space-y-4">
             <li class="flex items-center gap-3">
-              <span class="w-6 h-6 bg-red-100 rounded-full flex items-center justify-center text-red-600 text-sm">✗</span>
-              <span class="text-base-700">"No tenemos presupuesto para un informático fijo"</span>
+              <span class="w-6 h-6 bg-red-900 rounded-full flex items-center justify-center text-red-400 text-sm flex-shrink-0">✗</span>
+              <span style="color: rgba(255,255,255,0.80);">"No tenemos presupuesto para un informático fijo"</span>
             </li>
             <li class="flex items-center gap-3">
-              <span class="w-6 h-6 bg-red-100 rounded-full flex items-center justify-center text-red-600 text-sm">✗</span>
-              <span class="text-base-700">"El sobrino del jefe ya no nos puede ayudar"</span>
+              <span class="w-6 h-6 bg-red-900 rounded-full flex items-center justify-center text-red-400 text-sm flex-shrink-0">✗</span>
+              <span style="color: rgba(255,255,255,0.80);">"El sobrino del jefe ya no nos puede ayudar"</span>
             </li>
             <li class="flex items-center gap-3">
-              <span class="w-6 h-6 bg-red-100 rounded-full flex items-center justify-center text-red-600 text-sm">✗</span>
-              <span class="text-base-700">"Perdemos horas con problemas técnicos tontos"</span>
+              <span class="w-6 h-6 bg-red-900 rounded-full flex items-center justify-center text-red-400 text-sm flex-shrink-0">✗</span>
+              <span style="color: rgba(255,255,255,0.80);">"Perdemos horas con problemas técnicos tontos"</span>
             </li>
             <li class="flex items-center gap-3">
-              <span class="w-6 h-6 bg-red-100 rounded-full flex items-center justify-center text-red-600 text-sm">✗</span>
-              <span class="text-base-700">"Nuestro técnico no sabe de servidores/redes"</span>
+              <span class="w-6 h-6 bg-red-900 rounded-full flex items-center justify-center text-red-400 text-sm flex-shrink-0">✗</span>
+              <span style="color: rgba(255,255,255,0.80);">"Nuestro técnico no sabe de servidores/redes"</span>
             </li>
           </ul>
-          <div class="mt-8 p-4 bg-accent-100 rounded-xl border-2 border-accent-300">
-            <p class="text-center text-accent-800 font-semibold">
+          <div class="mt-8 p-4 rounded-xl border-2" style="background-color: #0b3d91; border-color: #38b1ff;">
+            <p class="text-center font-semibold" style="color: white; max-width: none;">
               <span class="text-2xl">✓</span> Nosotros somos tu solución
             </p>
           </div>
           <a
             href="/abrir-ticket"
-            class="block w-full mt-6 py-4 px-6 bg-accent-600 hover:bg-accent-700 text-white font-bold text-center rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+            class="block w-full mt-6 py-4 px-6 text-white font-bold text-center rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+            style="background-color: #0065ff; color: white;"
           >
             Prueba gratis (1ª hora sin coste)
           </a>
@@ -272,13 +267,13 @@ const canonical = "https://aisecurity.es/soporte-tecnico";
   </section>
 
   <!-- Services Section -->
-  <section class="py-20" style="background-color: #0a0c0e;">
+  <section class="py-20 bg-gradient-to-b from-base-50 to-base-100">
     <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
       <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4" style="color: white;">
+        <h2 class="text-3xl md:text-4xl font-bold text-base-900 mb-4">
           ¿En qué te podemos ayudar?
         </h2>
-        <p class="text-xl max-w-3xl mx-auto" style="color: rgba(255,255,255,0.75); max-width: 48rem;">
+        <p class="text-xl text-base-600 max-w-3xl mx-auto">
           Soporte técnico integral para todas las necesidades informáticas de tu empresa
         </p>
       </div>
