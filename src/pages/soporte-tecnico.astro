@@ -8,7 +8,11 @@ const canonical = "https://aisecurity.es/soporte-tecnico";
 
 <BaseLayout title={title} description={description} canonical={canonical}>
   <!-- BANNER PROMOCIONAL - PRIMERA HORA GRATIS -->
-  <section class="relative overflow-hidden" style="background-color: #0a0c0e;">
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0">
+      <img src="/images/6107094.jpg" alt="Background" class="w-full h-full object-cover opacity-40" />
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-bl from-accent-500/60 via-blue-600/70 to-accent-500/60"></div>
 
     <div class="relative z-10 max-w-7xl mx-auto px-4 py-6 md:py-8">
       <div class="flex flex-col lg:flex-row items-center justify-between gap-6">
@@ -57,13 +61,7 @@ const canonical = "https://aisecurity.es/soporte-tecnico";
   </section>
 
   <!-- Hero Section -->
-  <section class="py-20 relative overflow-hidden">
-    <!-- Background Image -->
-    <div class="absolute inset-0">
-      <img src="/images/6107094.jpg" alt="Background" class="w-full h-full object-cover opacity-40" />
-    </div>
-    <!-- Overlay Gradient -->
-    <div class="absolute inset-0 bg-gradient-to-bl from-accent-500/60 via-blue-600/70 to-accent-500/60"></div>
+  <section class="py-20 relative overflow-hidden" style="background-color: #0a0c0e;">
 
     <!-- Content -->
     <div class="relative z-10 max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
@@ -190,11 +188,15 @@ const canonical = "https://aisecurity.es/soporte-tecnico";
   </section>
 
   <!-- Value Proposition for SMBs -->
-  <section class="py-16" style="background-color: #0a0c0e;">
-    <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
+  <section class="py-16 relative overflow-hidden">
+    <div class="absolute inset-0">
+      <img src="/images/6107094.jpg" alt="Background" class="w-full h-full object-cover opacity-40" />
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-bl from-accent-500/60 via-blue-600/70 to-accent-500/60"></div>
+    <div class="relative z-10 max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <div>
-          <span class="inline-block px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-semibold mb-4">
+          <span class="inline-block px-4 py-2 bg-white/20 text-white rounded-full text-sm font-semibold mb-4 border border-white/30">
             Para empresas de 5 a 50 empleados
           </span>
           <h2 class="text-3xl md:text-4xl font-bold mb-6" style="color: white;">
@@ -229,28 +231,28 @@ const canonical = "https://aisecurity.es/soporte-tecnico";
             </div>
           </div>
         </div>
-        <div class="rounded-2xl p-8 border border-base-700" style="background-color: #16181a;">
+        <div class="rounded-2xl p-8 border border-white/20 backdrop-blur-sm" style="background-color: rgba(0,0,0,0.5);">
           <h3 class="text-xl font-bold text-white mb-6 text-center" style="color: white; font-size: 1.25rem;">¿Te identificas con esto?</h3>
           <ul class="space-y-4">
             <li class="flex items-center gap-3">
-              <span class="w-6 h-6 bg-red-900 rounded-full flex items-center justify-center text-red-400 text-sm flex-shrink-0">✗</span>
-              <span style="color: rgba(255,255,255,0.80);">"No tenemos presupuesto para un informático fijo"</span>
+              <span class="w-6 h-6 bg-red-500/30 rounded-full flex items-center justify-center text-red-300 text-sm flex-shrink-0">✗</span>
+              <span style="color: rgba(255,255,255,0.85);">"No tenemos presupuesto para un informático fijo"</span>
             </li>
             <li class="flex items-center gap-3">
-              <span class="w-6 h-6 bg-red-900 rounded-full flex items-center justify-center text-red-400 text-sm flex-shrink-0">✗</span>
-              <span style="color: rgba(255,255,255,0.80);">"El sobrino del jefe ya no nos puede ayudar"</span>
+              <span class="w-6 h-6 bg-red-500/30 rounded-full flex items-center justify-center text-red-300 text-sm flex-shrink-0">✗</span>
+              <span style="color: rgba(255,255,255,0.85);">"El sobrino del jefe ya no nos puede ayudar"</span>
             </li>
             <li class="flex items-center gap-3">
-              <span class="w-6 h-6 bg-red-900 rounded-full flex items-center justify-center text-red-400 text-sm flex-shrink-0">✗</span>
-              <span style="color: rgba(255,255,255,0.80);">"Perdemos horas con problemas técnicos tontos"</span>
+              <span class="w-6 h-6 bg-red-500/30 rounded-full flex items-center justify-center text-red-300 text-sm flex-shrink-0">✗</span>
+              <span style="color: rgba(255,255,255,0.85);">"Perdemos horas con problemas técnicos tontos"</span>
             </li>
             <li class="flex items-center gap-3">
-              <span class="w-6 h-6 bg-red-900 rounded-full flex items-center justify-center text-red-400 text-sm flex-shrink-0">✗</span>
-              <span style="color: rgba(255,255,255,0.80);">"Nuestro técnico no sabe de servidores/redes"</span>
+              <span class="w-6 h-6 bg-red-500/30 rounded-full flex items-center justify-center text-red-300 text-sm flex-shrink-0">✗</span>
+              <span style="color: rgba(255,255,255,0.85);">"Nuestro técnico no sabe de servidores/redes"</span>
             </li>
           </ul>
-          <div class="mt-8 p-4 rounded-xl border-2" style="background-color: #0b3d91; border-color: #38b1ff;">
-            <p class="text-center font-semibold" style="color: white; max-width: none;">
+          <div class="mt-8 p-4 rounded-xl border border-white/30" style="background-color: rgba(255,255,255,0.15);">
+            <p class="text-center font-semibold text-white" style="color: white; max-width: none;">
               <span class="text-2xl">✓</span> Nosotros somos tu solución
             </p>
           </div>
