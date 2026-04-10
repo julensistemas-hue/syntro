@@ -264,14 +264,12 @@ const canonical = "https://aisecurity.es/soporte-tecnico";
             <li><span class="text-blue-400">✅</span> Descuento 7.5%</li>
             <li><span class="text-blue-400">✅</span> Primera incidencia gratis</li>
           </ul>
-          <a
-            href="/reunion"
-                        style="color: white;"
-
-            class="block w-full px-4 py-3 text-center bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors mt-auto"
+          <button
+            data-plan="5h"
+            class="checkout-btn block w-full px-4 py-3 text-center bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors mt-auto cursor-pointer"
           >
             Contratar
-          </a>
+          </button>
         </div>
 
         <!-- 10 hours pack - POPULAR -->
@@ -293,14 +291,12 @@ const canonical = "https://aisecurity.es/soporte-tecnico";
             <li><span class="text-blue-400">✅</span> Atención prioritaria</li>
             <li><span class="text-blue-400">✅</span> Respuesta &lt; 2h</li>
           </ul>
-          <a
-            href="/reunion"
-                        style="color: white;"
-
-            class="block w-full px-4 py-3 text-center bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors mt-auto"
+          <button
+            data-plan="10h"
+            class="checkout-btn block w-full px-4 py-3 text-center bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors mt-auto cursor-pointer"
           >
             Contratar
-          </a>
+          </button>
         </div>
 
         <!-- 20 hours pack - BEST DEAL -->
@@ -319,13 +315,12 @@ const canonical = "https://aisecurity.es/soporte-tecnico";
             <li><span class="text-blue-400">✅</span> Atención VIP</li>
             <li><span class="text-blue-400">✅</span> Informes mensuales</li>
           </ul>
-          <a
-            href="/reunion"
-            style="color: white;"
-            class="block w-full px-4 py-3 text-center bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors mt-auto"
+          <button
+            data-plan="20h"
+            class="checkout-btn block w-full px-4 py-3 text-center bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors mt-auto cursor-pointer"
           >
             Contratar
-          </a>
+          </button>
         </div>
       </div>
 
@@ -396,3 +391,37 @@ const canonical = "https://aisecurity.es/soporte-tecnico";
     content: '−';
   }
 </style>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('.checkout-btn').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const planId = btn.dataset.plan;
+      if (!planId) return;
+
+      btn.disabled = true;
+      btn.textContent = 'Redirigiendo...';
+
+      try {
+        const res = await fetch('/api/soporte/create-checkout', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ planId }),
+        });
+
+        const data = await res.json();
+
+        if (data.url) {
+          window.location.href = data.url;
+        } else {
+          alert('Error al iniciar el pago. Inténtalo de nuevo o contáctanos en info@aisecurity.es');
+          btn.disabled = false;
+          btn.textContent = 'Contratar';
+        }
+      } catch {
+        alert('Error de conexión. Inténtalo de nuevo.');
+        btn.disabled = false;
+        btn.textContent = 'Contratar';
+      }
+    });
+  });
+</script>

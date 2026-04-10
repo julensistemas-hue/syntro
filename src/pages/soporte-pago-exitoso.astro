@@ -1,0 +1,111 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { stripe, SOPORTE_CONFIG } from '../lib/stripe';
+
+const sessionId = Astro.url.searchParams.get('session_id');
+let planName = '';
+let planAmount = '';
+let customerEmail = '';
+let paymentSuccess = false;
+
+if (sessionId && stripe) {
+  try {
+    const session = await stripe.checkout.sessions.retrieve(sessionId);
+    if (session.payment_status === 'paid' && session.metadata?.type === 'soporte') {
+      paymentSuccess = true;
+      const planId = session.metadata.plan_id as keyof typeof SOPORTE_CONFIG;
+      const plan = SOPORTE_CONFIG[planId];
+      planName = plan?.name || 'Bolsa de soporte';
+      planAmount = plan ? `€${plan.priceAmount / 100}` : '';
+      customerEmail = session.customer_details?.email || session.customer_email || '';
+    }
+  } catch (e) {
+    console.error('Error verifying soporte payment:', e);
+  }
+}
+---
+
+<BaseLayout title="¡Pago completado! - AI Security">
+  <div class="min-h-screen flex items-center justify-center py-20 px-4" style="background: linear-gradient(135deg, #0f1419 0%, #1a1f26 50%, #0f1419 100%);">
+    <div class="max-w-lg w-full text-center">
+      {paymentSuccess ? (
+        <>
+          <div class="w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-8" style="background-color: rgba(34, 197, 94, 0.15); border: 2px solid rgba(34, 197, 94, 0.3);">
+            <svg class="w-12 h-12" style="color: #4ade80;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+          </div>
+
+          <h1 class="text-3xl font-bold mb-3" style="color: #ffffff; font-size: 2rem;">¡Pago completado!</h1>
+          <p class="text-lg mb-8" style="color: #9ca3af; max-width: none;">
+            Hemos recibido tu pago correctamente.
+          </p>
+
+          <div class="rounded-2xl p-6 mb-8 text-left" style="background-color: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);">
+            <h3 class="font-bold mb-4" style="color: #ffffff; font-size: 1rem;">Resumen de tu compra</h3>
+            <div class="space-y-3">
+              <div class="flex justify-between items-center">
+                <span style="color: #9ca3af;">Servicio</span>
+                <span style="color: #ffffff;">{planName}</span>
+              </div>
+              {planAmount && (
+                <div class="flex justify-between items-center">
+                  <span style="color: #9ca3af;">Importe</span>
+                  <span class="font-bold" style="color: #4ade80;">{planAmount}</span>
+                </div>
+              )}
+              {customerEmail && (
+                <div class="flex justify-between items-center">
+                  <span style="color: #9ca3af;">Email</span>
+                  <span style="color: #ffffff;">{customerEmail}</span>
+                </div>
+              )}
+            </div>
+          </div>
+
+          <div class="rounded-xl p-4 mb-8" style="background-color: rgba(0, 101, 255, 0.15); border: 1px solid rgba(0, 101, 255, 0.3);">
+            <p style="color: #93c5fd; max-width: none;">
+              📧 Te hemos enviado un email de confirmación. Nos pondremos en contacto contigo en las próximas <strong style="color: white;">24 horas</strong> para coordinar el inicio del soporte.
+            </p>
+          </div>
+
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href="/"
+              class="px-6 py-3 font-medium rounded-lg transition-all hover:opacity-80"
+              style="background-color: rgba(255,255,255,0.1); color: #e5e7eb; border: 1px solid rgba(255,255,255,0.2);"
+            >
+              Volver al inicio
+            </a>
+            <a
+              href="mailto:info@aisecurity.es"
+              class="px-6 py-3 font-semibold rounded-lg transition-all hover:opacity-90"
+              style="background-color: #0065ff; color: #ffffff;"
+            >
+              Contactar directamente
+            </a>
+          </div>
+        </>
+      ) : (
+        <>
+          <div class="w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-8" style="background-color: rgba(245, 158, 11, 0.15); border: 2px solid rgba(245, 158, 11, 0.3);">
+            <svg class="w-12 h-12" style="color: #fbbf24;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
+          </div>
+          <h1 class="text-3xl font-bold mb-4" style="color: #ffffff; font-size: 2rem;">Verificando pago...</h1>
+          <p class="mb-8" style="color: #9ca3af; max-width: none;">
+            Si has completado el pago, espera unos minutos y recarga la página. Si el problema persiste, contáctanos.
+          </p>
+          <a
+            href="mailto:info@aisecurity.es"
+            class="px-6 py-3 font-semibold rounded-lg transition-all hover:opacity-90"
+            style="background-color: #0065ff; color: #ffffff;"
+          >
+            Contactar soporte
+          </a>
+        </>
+      )}
+    </div>
+  </div>
+</BaseLayout>
