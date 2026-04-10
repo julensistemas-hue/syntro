@@ -9,14 +9,13 @@ export const POST: APIRoute = async ({ request }) => {
 
     const nombre = data.get('nombre')?.toString();
     const email = data.get('email')?.toString();
-    const telefono = data.get('telefono')?.toString();
     const empresa = data.get('empresa')?.toString();
     const tipo = data.get('tipo')?.toString();
     const descripcion = data.get('descripcion')?.toString();
     const anydesk = data.get('anydesk')?.toString();
 
     // Validación básica
-    if (!nombre || !email || !telefono || !tipo || !descripcion) {
+    if (!nombre || !email || !tipo || !descripcion) {
       return new Response(
         JSON.stringify({ error: 'Todos los campos obligatorios deben estar completos' }),
         { status: 400, headers: { 'Content-Type': 'application/json' } }
@@ -98,7 +97,7 @@ export const POST: APIRoute = async ({ request }) => {
                               </p>
                               <ol style="margin: 0; padding-left: 20px; color: #92400e; font-size: 14px; line-height: 1.8;">
                                 <li>Si aun no lo has hecho, <a href="https://anydesk.com/es/downloads/windows" style="color: #0284c7; text-decoration: underline;">descarga AnyDesk</a></li>
-                                <li>Te llamaremos al <strong>${telefono}</strong> en menos de 2 horas</li>
+                                <li>Te contactaremos en menos de 2 horas</li>
                                 <li>Nos conectamos y resolvemos tu problema</li>
                               </ol>
                             </div>
@@ -142,7 +141,7 @@ RESUMEN DEL TICKET:
 
 PROXIMOS PASOS:
 1. Si aun no lo has hecho, descarga AnyDesk: https://anydesk.com/es/downloads/windows
-2. Te llamaremos al ${telefono} en menos de 2 horas
+2. Te contactaremos en menos de 2 horas
 3. Nos conectamos y resolvemos tu problema
 
 Horario de atencion: 08:00-14:00 y 16:00-19:00 (Lunes a Viernes)
@@ -211,8 +210,8 @@ info@aisecurity.es | 722 67 48 74
                         <tr>
                           <td style="padding: 12px 0;">
                             <p style="margin: 0; color: #475569; font-size: 14px;">
-                              <strong style="color: #1e293b;">Telefono:</strong>
-                              <a href="tel:${telefono}" style="color: #0284c7; font-weight: 600; font-size: 16px;">${telefono}</a>
+                              <strong style="color: #1e293b;">Email:</strong>
+                              <a href="mailto:${email}" style="color: #0284c7;">${email}</a>
                             </p>
                           </td>
                         </tr>
@@ -266,8 +265,8 @@ info@aisecurity.es | 722 67 48 74
 
                       <!-- Quick Actions -->
                       <div style="margin-top: 24px; text-align: center;">
-                        <a href="tel:${telefono}" style="display: inline-block; padding: 14px 28px; background-color: #10b981; color: #ffffff; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 16px; margin-right: 8px;">
-                          📞 Llamar al cliente
+                        <a href="mailto:${email}" style="display: inline-block; padding: 14px 28px; background-color: #10b981; color: #ffffff; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 16px; margin-right: 8px;">
+                          ✉️ Responder al cliente
                         </a>
                         <a href="mailto:${email}" style="display: inline-block; padding: 14px 28px; background-color: #3b82f6; color: #ffffff; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 16px;">
                           ✉️ Enviar email
@@ -299,7 +298,6 @@ info@aisecurity.es | 722 67 48 74
 INFORMACION DEL CLIENTE:
 - Nombre: ${nombre}
 - Email: ${email}
-- Telefono: ${telefono}
 - Empresa: ${empresa || 'No especificada'}
 - AnyDesk ID: ${anydesk || 'No proporcionado'}
 
