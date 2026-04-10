@@ -26,19 +26,19 @@ export const COURSE_CONFIG = {
 export const SOPORTE_CONFIG = {
   '5h': {
     name: 'Bolsa de Soporte Técnico 5 horas',
-    description: '5 horas prepagadas de soporte técnico profesional. Válido 6 meses.',
+    description: '5 horas prepagadas de soporte técnico profesional. Sin caducidad.',
     priceAmount: 185_00, // €185 in cents
     currency: 'eur',
   },
   '10h': {
     name: 'Bolsa de Soporte Técnico 10 horas',
-    description: '10 horas prepagadas de soporte técnico profesional. Válido 6 meses. Atención prioritaria.',
+    description: '10 horas prepagadas de soporte técnico profesional. Sin caducidad. Atención prioritaria.',
     priceAmount: 350_00, // €350 in cents
     currency: 'eur',
   },
   '20h': {
     name: 'Bolsa de Soporte Técnico 20 horas',
-    description: '20 horas prepagadas de soporte técnico profesional. Válido 12 meses. Atención VIP.',
+    description: '20 horas prepagadas de soporte técnico profesional. Sin caducidad. Atención VIP.',
     priceAmount: 600_00, // €600 in cents
     currency: 'eur',
   },
