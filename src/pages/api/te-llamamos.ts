@@ -7,7 +7,6 @@ export const POST: APIRoute = async ({ request }) => {
   try {
     const data = await request.formData();
     const telefono = data.get('telefono')?.toString().trim();
-    const nombre = data.get('nombre')?.toString().trim() || 'No indicado';
 
     if (!telefono) {
       return new Response(
@@ -21,7 +20,7 @@ export const POST: APIRoute = async ({ request }) => {
     await resend.emails.send({
       from: 'AI Security <info@aisecurity.es>',
       to: 'info@aisecurity.es',
-      subject: `📞 Solicitud de llamada: ${nombre} - ${telefono}`,
+      subject: `📞 Solicitud de llamada: ${telefono}`,
       html: `
         <!DOCTYPE html>
         <html>
@@ -39,8 +38,7 @@ export const POST: APIRoute = async ({ request }) => {
                     <td style="padding:32px 40px;">
                       <table role="presentation" style="width:100%;background:#eff6ff;border-radius:8px;border-left:4px solid #3b82f6;">
                         <tr><td style="padding:20px;">
-                          <p style="margin:0 0 12px;color:#1e3a5f;font-size:14px;"><strong>Nombre:</strong> ${nombre}</p>
-                          <p style="margin:0 0 12px;color:#1e3a5f;font-size:14px;"><strong>Teléfono:</strong> <span style="font-size:18px;font-weight:700;">${telefono}</span></p>
+                          <p style="margin:0 0 12px;color:#1e3a5f;font-size:14px;"><strong>Teléfono:</strong> <span style="font-size:22px;font-weight:700;">${telefono}</span></p>
                           <p style="margin:0;color:#1e3a5f;font-size:14px;"><strong>Fecha:</strong> ${fecha}</p>
                         </td></tr>
                       </table>
@@ -55,7 +53,7 @@ export const POST: APIRoute = async ({ request }) => {
           </body>
         </html>
       `,
-      text: `Solicitud de llamada\n\nNombre: ${nombre}\nTeléfono: ${telefono}\nFecha: ${fecha}`,
+      text: `Solicitud de llamada\n\nTeléfono: ${telefono}\nFecha: ${fecha}`,
     });
 
     return new Response(
