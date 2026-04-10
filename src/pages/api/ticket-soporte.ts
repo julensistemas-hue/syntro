@@ -9,6 +9,7 @@ export const POST: APIRoute = async ({ request }) => {
 
     const nombre = data.get('nombre')?.toString();
     const email = data.get('email')?.toString();
+    const telefono = data.get('telefono')?.toString();
     const empresa = data.get('empresa')?.toString();
     const tipo = data.get('tipo')?.toString();
     const descripcion = data.get('descripcion')?.toString();
@@ -207,14 +208,16 @@ info@aisecurity.es | 722 67 48 74
                             </p>
                           </td>
                         </tr>
+                        ${telefono ? `
                         <tr>
                           <td style="padding: 12px 0;">
                             <p style="margin: 0; color: #475569; font-size: 14px;">
-                              <strong style="color: #1e293b;">Email:</strong>
-                              <a href="mailto:${email}" style="color: #0284c7;">${email}</a>
+                              <strong style="color: #1e293b;">Teléfono:</strong>
+                              <a href="tel:${telefono}" style="color: #0284c7; font-weight: 600; font-size: 16px;">${telefono}</a>
                             </p>
                           </td>
                         </tr>
+                        ` : ''}
                         ${empresa ? `
                         <tr>
                           <td style="padding: 12px 0;">
@@ -298,7 +301,7 @@ info@aisecurity.es | 722 67 48 74
 INFORMACION DEL CLIENTE:
 - Nombre: ${nombre}
 - Email: ${email}
-- Empresa: ${empresa || 'No especificada'}
+${telefono ? `- Teléfono: ${telefono}\n` : ''}- Empresa: ${empresa || 'No especificada'}
 - AnyDesk ID: ${anydesk || 'No proporcionado'}
 
 DETALLES DE LA INCIDENCIA:
