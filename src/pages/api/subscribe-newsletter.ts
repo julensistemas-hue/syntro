@@ -27,23 +27,35 @@ export const POST: APIRoute = async ({ request }) => {
       );
     }
 
+    // Anti-bot: Si no viene form_time, es POST directo a la API (bot)
+    if (!formTime) {
+      console.log('Bot detectado (POST directo sin form_time):', email);
+      await resend.emails.send({
+        from: 'AI Security <info@aisecurity.es>',
+        to: 'info@aisecurity.es',
+        subject: `[BOT DETECTADO - POST directo] ${email || 'sin email'}`,
+        text: `Bot detectado: POST directo a la API sin pasar por el formulario.\n\nEmail: ${email || 'no proporcionado'}\nFecha: ${new Date().toLocaleString('es-ES', { timeZone: 'Europe/Madrid' })}`,
+      });
+      return new Response(
+        JSON.stringify({ success: true, message: 'Suscripción exitosa' }),
+        { status: 200, headers: { 'Content-Type': 'application/json' } }
+      );
+    }
+
     // Anti-bot: Validación de tiempo (mínimo 5 segundos en la página)
-    if (formTime) {
-      const timeDiff = Date.now() - parseInt(formTime, 10);
-      if (timeDiff < 5000) {
-        console.log('Bot detectado (tiempo):', email, `${timeDiff}ms`);
-        // Notificar al admin - podría ser legítimo
-        await resend.emails.send({
-          from: 'AI Security <info@aisecurity.es>',
-          to: 'info@aisecurity.es',
-          subject: `[BOT DETECTADO - Tiempo] ${email || 'sin email'}`,
-          text: `Posible bot detectado por tiempo de envío muy rápido.\n\nEmail: ${email || 'no proporcionado'}\nTiempo en página: ${timeDiff}ms (mínimo: 5000ms)\nFecha: ${new Date().toLocaleString('es-ES', { timeZone: 'Europe/Madrid' })}\n\nNota: Si este email es legítimo, puedes añadirlo manualmente.`,
-        });
-        return new Response(
-          JSON.stringify({ success: true, message: 'Suscripción exitosa' }),
-          { status: 200, headers: { 'Content-Type': 'application/json' } }
-        );
-      }
+    const timeDiff = Date.now() - parseInt(formTime, 10);
+    if (timeDiff < 5000) {
+      console.log('Bot detectado (tiempo):', email, `${timeDiff}ms`);
+      await resend.emails.send({
+        from: 'AI Security <info@aisecurity.es>',
+        to: 'info@aisecurity.es',
+        subject: `[BOT DETECTADO - Tiempo] ${email || 'sin email'}`,
+        text: `Posible bot detectado por tiempo de envío muy rápido.\n\nEmail: ${email || 'no proporcionado'}\nTiempo en página: ${timeDiff}ms (mínimo: 5000ms)\nFecha: ${new Date().toLocaleString('es-ES', { timeZone: 'Europe/Madrid' })}\n\nNota: Si este email es legítimo, puedes añadirlo manualmente.`,
+      });
+      return new Response(
+        JSON.stringify({ success: true, message: 'Suscripción exitosa' }),
+        { status: 200, headers: { 'Content-Type': 'application/json' } }
+      );
     }
 
     // Validación
