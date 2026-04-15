@@ -1,0 +1,97 @@
+{
+  "currentVariations": {
+    "ciberseguridad-basica-empleados-guia-completa": {
+      "titleIndex": 1,
+      "descIndex": 1
+    },
+    "detectar-phishing-gmail-guia-empleados": {
+      "titleIndex": 1,
+      "descIndex": 1
+    },
+    "detectar-phishing-outlook-microsoft-guia-empleados": {
+      "titleIndex": 1,
+      "descIndex": 1
+    },
+    "tu-contrasena-mayuscula-numeros-hackeable": {
+      "titleIndex": 1,
+      "descIndex": 1
+    },
+    "contrasenas-seguras-empleados-guia-completa": {
+      "titleIndex": 1,
+      "descIndex": 1
+    }
+  },
+  "history": [
+    {
+      "timestamp": "2026-04-15T10:13:39.680Z",
+      "rotations": [
+        {
+          "slug": "ciberseguridad-basica-empleados-guia-completa",
+          "from": {
+            "title": 0,
+            "desc": 0
+          },
+          "to": {
+            "title": 1,
+            "desc": 1
+          },
+          "newTitle": "Test de Ciberseguridad para Empleados: Guía Práctica 2025",
+          "newDesc": "Test de concienciación en ciberseguridad para empresas. Evalúa a tus empleados en phishing, contraseñas y seguridad digital. Cumple ISO 27001 y ENS."
+        },
+        {
+          "slug": "detectar-phishing-gmail-guia-empleados",
+          "from": {
+            "title": 0,
+            "desc": 0
+          },
+          "to": {
+            "title": 1,
+            "desc": 1
+          },
+          "newTitle": "Test de Phishing en Gmail para Empleados: Aprende a Detectarlo",
+          "newDesc": "Test de phishing para empleados que usan Gmail. Entrena a tu equipo para detectar emails fraudulentos y cumple requisitos ISO 27001."
+        },
+        {
+          "slug": "detectar-phishing-outlook-microsoft-guia-empleados",
+          "from": {
+            "title": 0,
+            "desc": 0
+          },
+          "to": {
+            "title": 1,
+            "desc": 1
+          },
+          "newTitle": "Test de Phishing en Outlook para Empleados: Detecta Amenazas",
+          "newDesc": "Test de phishing para usuarios de Outlook y Microsoft 365. Evalúa la preparación de tu equipo contra ataques de suplantación."
+        },
+        {
+          "slug": "tu-contrasena-mayuscula-numeros-hackeable",
+          "from": {
+            "title": 0,
+            "desc": 0
+          },
+          "to": {
+            "title": 1,
+            "desc": 1
+          },
+          "newTitle": "Test: ¿Tu Contraseña es Segura? El Patrón Mayúscula+Números es Hackeable",
+          "newDesc": "El 90% de empleados usa contraseñas predecibles como Empresa2024. Evalúa a tu equipo con nuestro test de seguridad de contraseñas."
+        },
+        {
+          "slug": "contrasenas-seguras-empleados-guia-completa",
+          "from": {
+            "title": 0,
+            "desc": 0
+          },
+          "to": {
+            "title": 1,
+            "desc": 1
+          },
+          "newTitle": "Test de Contraseñas Seguras: Curso para Empleados con Evaluación",
+          "newDesc": "Curso de contraseñas seguras con test de evaluación. Forma a tus empleados en gestores de contraseñas, 2FA y buenas prácticas."
+        }
+      ]
+    }
+  ],
+  "lastRotation": "2026-04-15T10:13:39.680Z"
+}
