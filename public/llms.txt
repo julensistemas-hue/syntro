@@ -1,0 +1,91 @@
+# AI Security — aisecurity.es
+
+Plataforma profesional española de Inteligencia Artificial y Ciberseguridad para PyMEs (10-200 empleados).
+
+Filosofía: transparencia total, demos interactivas reales y resultados medibles. Sin promesas vacías.
+
+---
+
+## Servicios de Inteligencia Artificial
+
+### Chatbot Inteligente
+- Atención al cliente 24/7 con integración a bases de datos, ERP y CRM
+- Consulta facturas, pedidos y productos en tiempo real
+- Demo interactiva disponible en /servicios/chatbot
+
+### Gestor Documental IA
+- Búsqueda semántica en documentación corporativa (políticas, manuales, procedimientos)
+- Encuentra información en segundos vs 10-15 minutos navegando carpetas
+- Demo interactiva disponible en /servicios/gestor-documental
+
+### Gestor de Citas IA
+- Automatización de reservas, confirmaciones y recordatorios
+- Integración con Google Calendar y Outlook
+- Demo interactiva disponible en /servicios/gestor-citas
+
+### Atención de Llamadas IA
+- Recepcionista virtual con voz natural en español
+- Deriva casos complejos a agentes humanos automáticamente
+- Demo disponible en /servicios/atencion-llamadas
+
+### Automatización de Procesos
+- RPA con IA para tareas repetitivas: emails, informes, facturas
+- Dashboard de ahorro medible en horas/mes
+- Demo disponible en /servicios/automatizacion
+
+---
+
+## Servicios de Ciberseguridad y Sistemas
+
+### Wazuh y ENS (Prioridad Alta)
+- SIEM open-source para detección de amenazas y cumplimiento normativo
+- Requisito clave para empresas que implementan el ENS (Esquema Nacional de Seguridad)
+- Servicios: implementación completa, configuración ENS, monitoreo en tiempo real, formación, soporte
+- Más información en /wazuh
+- Curso intensivo Wazuh disponible en /curso-wazuh
+
+### Administración de Sistemas
+- Linux y Windows Server
+- Copias de seguridad automatizadas (Veeam, Restic, Duplicati)
+- Microinformática y soporte técnico
+
+### Consultoría de Infraestructura
+- Cloud y on-premise
+- Desarrollo web y microservicios
+- Más información en /soporte-tecnico
+
+---
+
+## Páginas principales
+
+- / — Homepage con resumen de todos los servicios
+- /servicios/chatbot — Demo interactiva de chatbot
+- /servicios/gestor-documental — Demo de búsqueda documental
+- /servicios/gestor-citas — Demo del gestor de citas
+- /servicios/atencion-llamadas — Demo de atención de llamadas IA
+- /servicios/automatizacion — Dashboard de automatización de procesos
+- /wazuh — Servicios Wazuh y cumplimiento ENS
+- /curso-wazuh — Curso intensivo de Wazuh (20 enero 2025)
+- /soporte-tecnico — Soporte técnico y sistemas
+- /reunion — Solicitar consulta gratuita
+- /blog — Blog técnico sobre IA, Wazuh y sistemas
+- /faq — Preguntas frecuentes
+
+---
+
+## Público objetivo
+
+PyMEs españolas de 10 a 200 empleados que buscan:
+- Reducir costes operativos mediante automatización inteligente
+- Cumplir con el ENS (Esquema Nacional de Seguridad) usando Wazuh
+- Mejorar atención al cliente sin perder calidad humana
+- Modernizar infraestructura IT (cloud y on-premise)
+
+---
+
+## Contacto y conversión
+
+- Consulta gratuita: https://aisecurity.es/reunion
+- Blog técnico: https://aisecurity.es/blog
+- Canal YouTube: tutoriales Wazuh y sistemas (→ web para implementación profesional)
+- Dominio: https://aisecurity.es

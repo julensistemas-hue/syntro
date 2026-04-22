@@ -3,15 +3,15 @@
 
 User-agent: *
 Allow: /
+Disallow: /api/
+Crawl-delay: 1
 
 # Sitemap
 Sitemap: https://aisecurity.es/sitemap-index.xml
 Sitemap: https://aisecurity.es/sitemap-0.xml
 
-# Bloquear acceso a carpetas internas (si las hubiera)
-Disallow: /api/
-Disallow: /.well-known/
-
-# Crawl-delay para bots agresivos (opcional)
-User-agent: *
-Crawl-delay: 1
+# Preferencias de uso de contenido por agentes IA (Content Signals)
+# ai-train=no   → No permitir uso para entrenar modelos de IA
+# search=yes    → Permitir indexación en búsquedas IA (ChatGPT, Perplexity, Claude...)
+# ai-input=yes  → Permitir uso como contexto en respuestas de agentes IA
+Content-Signal: ai-train=no, search=yes, ai-input=yes
