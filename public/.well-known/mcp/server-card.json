@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "1.0",
+  "serverInfo": {
+    "name": "AI Security",
+    "version": "1.0.0",
+    "description": "AI Security — Servicios de Inteligencia Artificial y Ciberseguridad para PyMEs españolas. Chatbots, automatización de procesos, Wazuh/ENS."
+  },
+  "capabilities": {
+    "tools": false,
+    "resources": true
+  },
+  "resources": [
+    {
+      "name": "services-catalog",
+      "uri": "https://aisecurity.es/llms.txt",
+      "description": "Catálogo completo de servicios en formato markdown"
+    },
+    {
+      "name": "agent-skills",
+      "uri": "https://aisecurity.es/.well-known/agent-skills/index.json",
+      "description": "Índice de skills disponibles para agentes IA"
+    },
+    {
+      "name": "consultation-request",
+      "uri": "https://aisecurity.es/reunion",
+      "description": "Formulario para solicitar consulta gratuita"
+    }
+  ]
+}

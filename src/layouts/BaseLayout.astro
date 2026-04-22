@@ -46,6 +46,7 @@ const {
       canonical={canonical}
       ogImage={ogImage}
     />
+    <slot name="head" />
   </head>
   <body class="bg-base-50 flex flex-col min-h-svh">
     <!-- Google Tag Manager (noscript) -->
@@ -57,5 +58,45 @@ const {
     <Footer />
     <Analytics />
     <SpeedInsights />
+    <!-- WebMCP: expone acciones del sitio a agentes IA via navigator.modelContext -->
+    <script is:inline>
+      (function () {
+        if (typeof navigator === 'undefined' || !navigator.modelContext) return;
+        try {
+          navigator.modelContext.provideContext({
+            tools: [
+              {
+                name: 'request-consultation',
+                description: 'Solicitar una consulta gratuita con AI Security sobre servicios de IA o ciberseguridad para tu empresa',
+                inputSchema: {
+                  type: 'object',
+                  properties: {
+                    service: {
+                      type: 'string',
+                      description: 'Servicio de interés: chatbot, gestor-documental, gestor-citas, atencion-llamadas, automatizacion, wazuh, soporte-tecnico'
+                    }
+                  }
+                },
+                execute: function (params) {
+                  var url = 'https://aisecurity.es/reunion';
+                  if (params && params.service) url += '?servicio=' + encodeURIComponent(params.service);
+                  window.location.href = url;
+                  return { success: true, url: url };
+                }
+              },
+              {
+                name: 'view-services',
+                description: 'Ver el catálogo completo de servicios de IA y ciberseguridad de AI Security',
+                inputSchema: { type: 'object', properties: {} },
+                execute: function () {
+                  window.location.href = 'https://aisecurity.es/';
+                  return { success: true, url: 'https://aisecurity.es/' };
+                }
+              }
+            ]
+          });
+        } catch (e) {}
+      })();
+    </script>
   </body>
 </html>

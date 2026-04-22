@@ -1,0 +1,19 @@
+{
+  "$schema": "https://agentskills.io/schema/v0.2.0/index.json",
+  "skills": [
+    {
+      "name": "request-consultation",
+      "type": "action",
+      "description": "Request a free consultation with AI Security about AI automation or cybersecurity services for your business",
+      "url": "https://aisecurity.es/.well-known/agent-skills/request-consultation/SKILL.md",
+      "sha256": "4e2f2efa3a208d806dfbbb4403948a8d391a99c9cd1d40abc77b47b711b342cb"
+    },
+    {
+      "name": "view-services",
+      "type": "resource",
+      "description": "Browse AI Security's complete catalog of AI and cybersecurity services for Spanish SMEs",
+      "url": "https://aisecurity.es/.well-known/agent-skills/view-services/SKILL.md",
+      "sha256": "acf330472a03e4e8b96dd4cac0eeb54e8a82b2737ca57ed6bb4d3678102a548a"
+    }
+  ]
+}

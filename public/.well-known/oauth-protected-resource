@@ -1,0 +1,9 @@
+{
+  "resource": "https://aisecurity.es",
+  "authorization_servers": [
+    "https://sgvavsireozksiqjlewh.supabase.co/auth/v1"
+  ],
+  "scopes_supported": ["openid", "email", "offline_access"],
+  "bearer_methods_supported": ["header", "cookie"],
+  "resource_documentation": "https://aisecurity.es/llms.txt"
+}

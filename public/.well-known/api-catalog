@@ -1,0 +1,24 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://aisecurity.es/api/send-meeting-request",
+      "service-doc": [
+        {
+          "href": "https://aisecurity.es/reunion",
+          "type": "text/html",
+          "title": "Solicitar reunión gratuita"
+        }
+      ]
+    },
+    {
+      "anchor": "https://aisecurity.es/api/inscripcion-curso-wazuh",
+      "service-doc": [
+        {
+          "href": "https://aisecurity.es/curso-wazuh",
+          "type": "text/html",
+          "title": "Inscripción Curso Wazuh"
+        }
+      ]
+    }
+  ]
+}
