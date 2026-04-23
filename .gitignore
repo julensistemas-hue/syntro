@@ -24,6 +24,14 @@ package-lock.json
 # MCP config (contains sensitive tokens)
 .mcp.json
 
+# Google API credentials (NUNCA subir al repo)
+scripts/seo-automation/google-credentials.json
+scripts/seo-automation/ab-state.json
+scripts/seo-automation/ping-log.json
+scripts/seo-automation/indexing-log.json
+scripts/seo-automation/content-variations-state.json
+scripts/seo-automation/indexnow-key.txt
+
 # macOS-specific files
 .DS_Store
 

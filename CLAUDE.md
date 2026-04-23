@@ -2,6 +2,17 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## 📂 Documentación de referencia
+
+Antes de trabajar en áreas específicas, leer la documentación correspondiente:
+
+- **SEO y posicionamiento**: `docs/seo/README.md` — estrategia geo, blog, automatizaciones, keywords objetivo
+  - Estrategia geográfica: `docs/seo/geo-posicionamiento.md`
+  - Scripts y GitHub Actions SEO: `docs/seo/automatizaciones.md`
+  - **Agente especializado**: usar `seo-specialist` (`.claude/agents/seo-specialist.md`) para cualquier tarea SEO
+
+---
+
 ## 🎯 Contexto del Proyecto: AI SECURITY
 
 ### Visión General
@@ -208,6 +219,49 @@ src/
 - Sitemap integration enabled
 - Site URL configured as "https://yoursite.com" (update for production)
 - GPL-3.0 licensed template originally by Michael Andreuzza, modified by Bektur Aslan
+
+## ⚡ Acceso Directo a Supabase — IMPORTANTE
+
+Claude tiene acceso completo a la base de datos Supabase mediante la API REST con el `SUPABASE_SERVICE_ROLE_KEY` del fichero `.env`. **Puedes y debes usarla directamente** sin pedir al usuario que lo haga manualmente.
+
+### Credenciales (en `.env`)
+- **URL**: `https://sgvavsireozksiqjlewh.supabase.co`
+- **Service Role Key**: en `.env` como `SUPABASE_SERVICE_ROLE_KEY`
+
+### Operaciones disponibles vía curl
+
+**Listar usuarios:**
+```bash
+curl -s "https://sgvavsireozksiqjlewh.supabase.co/auth/v1/admin/users?per_page=100" \
+  -H "Authorization: Bearer <SERVICE_ROLE_KEY>" \
+  -H "apikey: <SERVICE_ROLE_KEY>"
+```
+
+**Eliminar usuario por ID:**
+```bash
+curl -s -X DELETE "https://sgvavsireozksiqjlewh.supabase.co/auth/v1/admin/users/<USER_ID>" \
+  -H "Authorization: Bearer <SERVICE_ROLE_KEY>" \
+  -H "apikey: <SERVICE_ROLE_KEY>"
+```
+
+**Consultar tablas (ej: course_users):**
+```bash
+curl -s "https://sgvavsireozksiqjlewh.supabase.co/rest/v1/course_users?select=*" \
+  -H "Authorization: Bearer <SERVICE_ROLE_KEY>" \
+  -H "apikey: <SERVICE_ROLE_KEY>"
+```
+
+**Insertar/actualizar/eliminar en tablas:**
+```bash
+# DELETE con filtro
+curl -s -X DELETE "https://sgvavsireozksiqjlewh.supabase.co/rest/v1/course_users?email=eq.usuario@ejemplo.com" \
+  -H "Authorization: Bearer <SERVICE_ROLE_KEY>" \
+  -H "apikey: <SERVICE_ROLE_KEY>"
+```
+
+> **Nota**: Eliminar un usuario de `auth.users` elimina en cascada sus datos de `course_users`, `user_progress` y `comments` gracias al `ON DELETE CASCADE` del schema.
+
+---
 
 ## Deployment
 
