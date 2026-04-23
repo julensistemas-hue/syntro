@@ -1,12 +1,130 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-const title = "Curso Wazuh 2026 | Práctico + Últimas Integraciones | 50€";
-const description = "Curso 100% práctico de Wazuh con contenido actualizado 2026. Aprende SIEM, XDR, integraciones con VirusTotal, Microsoft 365, Chat IA y más. Acceso permanente + actualizaciones mensuales. Desde 0 hasta implementación real.";
+const title = "Curso Wazuh en Español 2026 | SIEM, XDR y ENS desde Cero | 50€";
+const description = "Aprende Wazuh desde cero en español. Curso práctico 2026: instalación completa, configuración de agentes, reglas personalizadas, cumplimiento ENS, integraciones con VirusTotal y Microsoft 365. Acceso permanente + actualizaciones mensuales. 50€ pago único.";
 const canonical = "https://aisecurity.es/curso-wazuh";
+
+const courseSchema = {
+  "@context": "https://schema.org",
+  "@type": "Course",
+  "name": "Curso Wazuh en Español 2026",
+  "description": "Curso 100% práctico de Wazuh SIEM/XDR en español. Aprende instalación, configuración, reglas personalizadas y cumplimiento ENS desde cero hasta implementación real en entornos empresariales.",
+  "provider": {
+    "@type": "Organization",
+    "name": "AI Security",
+    "url": "https://aisecurity.es",
+    "sameAs": "https://www.youtube.com/@aisecurityes"
+  },
+  "url": "https://aisecurity.es/curso-wazuh",
+  "inLanguage": "es",
+  "educationalLevel": "Beginner to Intermediate",
+  "teaches": ["Wazuh SIEM", "Wazuh XDR", "Detección de amenazas", "Cumplimiento ENS", "Monitorización de seguridad", "File Integrity Monitoring", "Reglas y decoders Wazuh"],
+  "courseMode": "Online",
+  "availableLanguage": "Spanish",
+  "offers": {
+    "@type": "Offer",
+    "price": "50",
+    "priceCurrency": "EUR",
+    "availability": "https://schema.org/InStock",
+    "url": "https://aisecurity.es/aula/registro"
+  },
+  "hasCourseInstance": {
+    "@type": "CourseInstance",
+    "courseMode": "Online",
+    "courseWorkload": "PT10H",
+    "inLanguage": "es"
+  }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Qué es Wazuh?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Wazuh es una plataforma open-source de seguridad que actúa como SIEM (Security Information and Event Management) y XDR (Extended Detection and Response). Permite monitorizar en tiempo real servidores Linux, Windows y dispositivos de red, detectar amenazas, analizar logs y cumplir con normativas como ENS, PCI-DSS y GDPR."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Para qué sirve Wazuh en empresas?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Wazuh sirve para detectar intrusiones y amenazas en tiempo real, monitorizar la integridad de archivos críticos, cumplir con el Esquema Nacional de Seguridad (ENS), gestionar vulnerabilidades, analizar logs de sistemas y dispositivos de red, y generar alertas automáticas ante incidentes de seguridad."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Necesito conocimientos previos para este curso de Wazuh?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No se requieren conocimientos previos de Wazuh. El curso empieza desde cero con la instalación completa. Se recomienda tener nociones básicas de administración de sistemas Linux/Windows, aunque el curso incluye todo lo necesario paso a paso."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué incluye el precio del curso de Wazuh?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "El curso incluye acceso permanente a todos los videos, actualizaciones mensuales sin coste adicional, recursos descargables (scripts, configuraciones, plantillas), casos prácticos reales con cumplimiento ENS, y soporte directo con el formador. Todo por 50€ de pago único."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cómo instalar Wazuh?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Wazuh se instala mediante el Wazuh Manager en un servidor Linux, seguido de la configuración del Wazuh Indexer y el Dashboard. En el curso cubrimos la instalación completa paso a paso: desde los requisitos del sistema, instalación del manager, despliegue de agentes en Linux y Windows, hasta la configuración de comunicación segura con certificados TLS."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Wazuh sirve para cumplir el ENS (Esquema Nacional de Seguridad)?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. Wazuh es una herramienta clave para el cumplimiento del Esquema Nacional de Seguridad (ENS) en España. Proporciona monitorización continua, detección de accesos no autorizados, control de integridad de archivos y generación de informes de cumplimiento. En el curso vemos cómo configurar Wazuh específicamente para los requisitos del ENS."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuánto tiempo se tarda en aprender Wazuh?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Con este curso puedes tener Wazuh instalado y funcionando en tu entorno en pocas horas. Para dominar la configuración avanzada, reglas personalizadas e integraciones, suelen necesitarse entre 1 y 3 semanas de práctica. El acceso permanente te permite avanzar a tu ritmo."
+      }
+    }
+  ]
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Inicio",
+      "item": "https://aisecurity.es"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Curso Wazuh",
+      "item": "https://aisecurity.es/curso-wazuh"
+    }
+  ]
+};
 ---
 
 <BaseLayout title={title} description={description} canonical={canonical}>
+  <!-- Structured Data -->
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(courseSchema)} slot="head" />
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} slot="head" />
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} slot="head" />
   <!-- Hero Section -->
   <section class="relative py-20 overflow-hidden">
     <!-- Background Image -->
@@ -20,10 +138,12 @@ const canonical = "https://aisecurity.es/curso-wazuh";
     <div class="relative z-10 max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
       <!-- Title Section (Centered) -->
       <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white">
-          Curso Práctico de Wazuh:<br>
-          <span class="text-blue-200">Aprende a tu ritmo con acceso permanente</span>
-        </h2>
+        <p class="text-blue-200 text-sm font-semibold uppercase tracking-widest mb-3">Curso online en español · Actualizado 2026</p>
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white">
+          Curso Wazuh: SIEM y XDR<br>
+          <span class="text-blue-200">desde Cero hasta Implementación Real</span>
+        </h1>
+        <p class="mt-4 text-lg text-white/80 max-w-2xl mx-auto">Aprende a instalar, configurar y administrar Wazuh en entornos empresariales reales. Detecta amenazas, monitoriza sistemas y cumple con el ENS.</p>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
@@ -435,14 +555,178 @@ const canonical = "https://aisecurity.es/curso-wazuh";
     </div>
   </section>
 
+  <!-- ¿Qué es Wazuh? Section - SEO informacional -->
+  <section class="py-20 relative overflow-hidden">
+    <div class="absolute inset-0">
+      <img src="/images/3409297.jpg" alt="Background" class="w-full h-full object-cover" />
+    </div>
+    <div class="absolute inset-0" style="background: rgba(5, 10, 25, 0.90);"></div>
+    <div class="relative z-10 max-w-5xl mx-auto px-8 md:px-12 lg:px-24">
+      <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-6">¿Qué es Wazuh y para qué sirve?</h2>
+      <p class="text-white/80 text-center max-w-3xl mx-auto mb-12 text-lg">
+        Wazuh es una plataforma open-source de seguridad que combina SIEM (Security Information and Event Management) y XDR (Extended Detection and Response). Es gratuita, de código abierto y una de las más utilizadas por administradores de sistemas en España.
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="rounded-xl p-6 border border-white/10" style="background-color: rgba(255,255,255,0.05);">
+          <h3 class="text-white font-bold text-lg mb-3">Wazuh como SIEM</h3>
+          <p class="text-white/70 text-sm leading-relaxed">
+            Recopila, correlaciona y analiza logs de múltiples fuentes (Linux, Windows, firewalls, aplicaciones) para detectar patrones de ataque, accesos no autorizados y comportamientos anómalos en tiempo real.
+          </p>
+        </div>
+        <div class="rounded-xl p-6 border border-white/10" style="background-color: rgba(255,255,255,0.05);">
+          <h3 class="text-white font-bold text-lg mb-3">Wazuh como XDR</h3>
+          <p class="text-white/70 text-sm leading-relaxed">
+            Extiende la detección más allá de los logs: monitoriza integridad de archivos (FIM), detecta rootkits y malware, escanea vulnerabilidades y permite respuesta activa automatizada ante incidentes.
+          </p>
+        </div>
+        <div class="rounded-xl p-6 border border-white/10" style="background-color: rgba(255,255,255,0.05);">
+          <h3 class="text-white font-bold text-lg mb-3">Wazuh y el ENS</h3>
+          <p class="text-white/70 text-sm leading-relaxed">
+            El <strong class="text-white">Esquema Nacional de Seguridad (ENS)</strong> exige monitorización continua de sistemas. Wazuh es la herramienta open-source de referencia para cumplir estos requisitos: genera informes de cumplimiento, detecta brechas y mantiene trazabilidad de eventos.
+          </p>
+        </div>
+        <div class="rounded-xl p-6 border border-white/10" style="background-color: rgba(255,255,255,0.05);">
+          <h3 class="text-white font-bold text-lg mb-3">¿Por qué Wazuh es gratuito?</h3>
+          <p class="text-white/70 text-sm leading-relaxed">
+            Wazuh es open-source bajo licencia GPL. El software es gratuito; la empresa ofrece servicios de soporte de pago. Esto lo hace ideal para PyMEs que necesitan seguridad profesional sin licencias costosas como Splunk o IBM QRadar.
+          </p>
+        </div>
+      </div>
+      <div class="mt-10 text-center">
+        <p class="text-white/60 text-sm">¿Prefieres que alguien lo implemente por ti? <a href="/wazuh" class="text-accent-400 underline hover:text-accent-300">Ver servicio de implementación Wazuh profesional →</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Para quién es este curso -->
+  <section class="py-20 relative overflow-hidden">
+    <div class="absolute inset-0">
+      <img src="/images/3409297.jpg" alt="Background" class="w-full h-full object-cover" />
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-bl from-accent-500/10 via-blue-600/60 to-accent-500/10"></div>
+    <div class="relative z-10 max-w-5xl mx-auto px-8 md:px-12 lg:px-24">
+      <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-4">¿Para quién es este curso de Wazuh?</h2>
+      <p class="text-white/80 text-center max-w-2xl mx-auto mb-12">Este curso está diseñado para cualquiera que quiera aprender Wazuh en español, con ejemplos reales y sin rodeos.</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-5 border border-white/20">
+          <div class="text-3xl mb-3">🖥️</div>
+          <h3 class="text-white font-bold mb-2">Administradores de sistemas</h3>
+          <p class="text-white/70 text-sm">Linux o Windows, que quieren implementar monitorización de seguridad sin gastar en soluciones comerciales caras.</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-5 border border-white/20">
+          <div class="text-3xl mb-3">🏢</div>
+          <h3 class="text-white font-bold mb-2">IT de PyMEs</h3>
+          <p class="text-white/70 text-sm">Responsables de IT en empresas que deben cumplir el ENS o mejorar su postura de seguridad con presupuesto limitado.</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-5 border border-white/20">
+          <div class="text-3xl mb-3">🎓</div>
+          <h3 class="text-white font-bold mb-2">Estudiantes y recién titulados</h3>
+          <p class="text-white/70 text-sm">Que quieren añadir Wazuh a su CV y diferenciarse en el mercado laboral de ciberseguridad con conocimiento práctico.</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-5 border border-white/20">
+          <div class="text-3xl mb-3">🔐</div>
+          <h3 class="text-white font-bold mb-2">Analistas de ciberseguridad</h3>
+          <p class="text-white/70 text-sm">Que quieren profundizar en detección de amenazas, análisis de logs y respuesta a incidentes con una herramienta open-source.</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-5 border border-white/20">
+          <div class="text-3xl mb-3">🤝</div>
+          <h3 class="text-white font-bold mb-2">Consultores y MSP</h3>
+          <p class="text-white/70 text-sm">Que ofrecen servicios de ciberseguridad a clientes y quieren incorporar Wazuh como solución SIEM en sus servicios gestionados.</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-5 border border-white/20">
+          <div class="text-3xl mb-3">📜</div>
+          <h3 class="text-white font-bold mb-2">Empresas con requisitos ENS</h3>
+          <p class="text-white/70 text-sm">Que necesitan implementar Wazuh para cumplir el Esquema Nacional de Seguridad y necesitan formación técnica de su equipo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section - clave para snippets destacados -->
+  <section class="py-20 relative overflow-hidden">
+    <div class="absolute inset-0">
+      <img src="/images/3409297.jpg" alt="Background" class="w-full h-full object-cover" />
+    </div>
+    <div class="absolute inset-0" style="background: rgba(5, 10, 25, 0.92);"></div>
+    <div class="relative z-10 max-w-4xl mx-auto px-8 md:px-12 lg:px-24">
+      <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-4">Preguntas Frecuentes sobre Wazuh</h2>
+      <p class="text-white/70 text-center mb-12">Las dudas más habituales resueltas</p>
+      <div class="space-y-4">
+        <details class="group bg-white/5 rounded-xl border border-white/10 hover:border-accent-500/50 transition-all duration-300">
+          <summary class="cursor-pointer px-6 py-5 flex items-center justify-between font-semibold text-lg text-white">
+            <span>¿Qué es Wazuh exactamente?</span>
+            <svg class="w-5 h-5 transition-transform group-open:rotate-180 text-accent-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </summary>
+          <div class="px-6 pb-6 text-white/70 leading-relaxed">
+            Wazuh es una plataforma open-source de seguridad que actúa como SIEM y XDR. Permite monitorizar en tiempo real servidores Linux y Windows, detectar intrusiones, analizar logs, controlar la integridad de archivos y cumplir normativas como el ENS, PCI-DSS o GDPR. Es gratuito y es una alternativa open-source a soluciones como Splunk o IBM QRadar.
+          </div>
+        </details>
+        <details class="group bg-white/5 rounded-xl border border-white/10 hover:border-accent-500/50 transition-all duration-300">
+          <summary class="cursor-pointer px-6 py-5 flex items-center justify-between font-semibold text-lg text-white">
+            <span>¿Necesito conocimientos previos para aprender Wazuh?</span>
+            <svg class="w-5 h-5 transition-transform group-open:rotate-180 text-accent-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </summary>
+          <div class="px-6 pb-6 text-white/70 leading-relaxed">
+            No se requieren conocimientos previos de Wazuh. El curso empieza desde cero con la instalación completa. Se recomienda tener nociones básicas de administración de sistemas Linux o Windows, aunque el curso incluye todo lo necesario paso a paso con ejemplos prácticos.
+          </div>
+        </details>
+        <details class="group bg-white/5 rounded-xl border border-white/10 hover:border-accent-500/50 transition-all duration-300">
+          <summary class="cursor-pointer px-6 py-5 flex items-center justify-between font-semibold text-lg text-white">
+            <span>¿Cómo se instala Wazuh?</span>
+            <svg class="w-5 h-5 transition-transform group-open:rotate-180 text-accent-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </summary>
+          <div class="px-6 pb-6 text-white/70 leading-relaxed">
+            Wazuh se instala en un servidor Linux (recomendado: Ubuntu 22.04 o RHEL/CentOS 8+). El proceso incluye: instalación del Wazuh Manager + Indexer + Dashboard mediante el script oficial, y posterior despliegue de agentes en los sistemas a monitorizar (Linux y Windows). En el curso cubrimos todo paso a paso, incluyendo la configuración de comunicación segura con certificados TLS.
+          </div>
+        </details>
+        <details class="group bg-white/5 rounded-xl border border-white/10 hover:border-accent-500/50 transition-all duration-300">
+          <summary class="cursor-pointer px-6 py-5 flex items-center justify-between font-semibold text-lg text-white">
+            <span>¿Wazuh sirve para cumplir el Esquema Nacional de Seguridad (ENS)?</span>
+            <svg class="w-5 h-5 transition-transform group-open:rotate-180 text-accent-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </summary>
+          <div class="px-6 pb-6 text-white/70 leading-relaxed">
+            Sí. Wazuh es una herramienta clave para el cumplimiento del ENS en España. Proporciona monitorización continua (requisito del ENS), detección de accesos no autorizados, control de integridad de archivos, gestión de vulnerabilidades y generación automática de informes de cumplimiento. En el curso vemos cómo configurar Wazuh específicamente para los requisitos del ENS nivel básico y medio.
+          </div>
+        </details>
+        <details class="group bg-white/5 rounded-xl border border-white/10 hover:border-accent-500/50 transition-all duration-300">
+          <summary class="cursor-pointer px-6 py-5 flex items-center justify-between font-semibold text-lg text-white">
+            <span>¿Qué diferencia hay entre Wazuh Manager, Agent e Indexer?</span>
+            <svg class="w-5 h-5 transition-transform group-open:rotate-180 text-accent-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </summary>
+          <div class="px-6 pb-6 text-white/70 leading-relaxed">
+            <strong class="text-white">Wazuh Manager</strong>: el servidor central que recibe datos de los agentes, aplica reglas y genera alertas. <strong class="text-white">Wazuh Agent</strong>: software instalado en cada sistema a monitorizar (Linux, Windows, macOS) que recopila y envía logs al manager. <strong class="text-white">Wazuh Indexer</strong>: basado en OpenSearch, almacena y permite buscar todos los eventos. El <strong class="text-white">Dashboard</strong> es la interfaz web para visualizar todo.
+          </div>
+        </details>
+        <details class="group bg-white/5 rounded-xl border border-white/10 hover:border-accent-500/50 transition-all duration-300">
+          <summary class="cursor-pointer px-6 py-5 flex items-center justify-between font-semibold text-lg text-white">
+            <span>¿Cuánto cuesta Wazuh?</span>
+            <svg class="w-5 h-5 transition-transform group-open:rotate-180 text-accent-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </summary>
+          <div class="px-6 pb-6 text-white/70 leading-relaxed">
+            El software Wazuh es completamente gratuito y open-source. Puedes instalarlo en tu propio servidor sin coste de licencia. Los costes son solo los del servidor donde lo instales (puede ser una VM, un servidor físico o cloud) y, si lo necesitas, el coste de soporte profesional o formación como este curso.
+          </div>
+        </details>
+        <details class="group bg-white/5 rounded-xl border border-white/10 hover:border-accent-500/50 transition-all duration-300">
+          <summary class="cursor-pointer px-6 py-5 flex items-center justify-between font-semibold text-lg text-white">
+            <span>¿El curso incluye actualizaciones cuando Wazuh saca nuevas versiones?</span>
+            <svg class="w-5 h-5 transition-transform group-open:rotate-180 text-accent-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </summary>
+          <div class="px-6 pb-6 text-white/70 leading-relaxed">
+            Sí. Con el pago único de 50€ tienes acceso permanente al curso y a todas las actualizaciones futuras sin coste adicional. El contenido se actualiza mensualmente para reflejar las nuevas versiones de Wazuh y nuevas integraciones disponibles.
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
   <!-- Additional Information Section -->
-  <section class="py-20 bg-base-50 relative overflow-hidden">
+  <section class="py-20 relative overflow-hidden">
     <!-- Background Image -->
-    <div class="absolute inset-0 opacity-40">
+    <div class="absolute inset-0">
       <img src="/images/3409297.jpg" alt="Background" class="w-full h-full object-cover" />
     </div>
     <!-- Dark overlay -->
-    <div class="absolute inset-0 bg-base-50/60"></div>
+    <div class="absolute inset-0" style="background: rgba(5, 10, 25, 0.92);"></div>
 
     <!-- Content -->
     <div class="relative z-10 max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
