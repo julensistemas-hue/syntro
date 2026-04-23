@@ -11,7 +11,7 @@ const currentPath = Astro.url.pathname;
   data-scrolled="false">
   <div class="w-full mx-auto px-6 max-w-7xl">
     <div
-      x-data="{ open: false, dropdownOpen: false, wazuhDropdown: false }"
+      x-data="{ open: false, dropdownOpen: false, wazuhOpen: false }"
       class="relative flex flex-col w-full py-2.5 mx-auto lg:items-center lg:justify-between lg:flex-row">
 
       <!-- Logo -->
@@ -64,138 +64,233 @@ const currentPath = Astro.url.pathname;
         <!-- Llamadas IA -->
         <a
           href="/servicios/atencion-llamadas"
-          class={`w-full lg:w-auto text-sm font-medium transition-colors duration-200 px-3 py-2 rounded-lg ${currentPath === '/servicios/atencion-llamadas' ? 'bg-accent-100 text-accent-700' : 'text-base-800 hover:text-accent-600 hover:bg-accent-50'}`}>
+          class={`w-full lg:w-auto text-sm font-medium transition-colors duration-200 px-3 py-2 rounded-lg ${currentPath === '/servicios/atencion-llamadas' ? 'bg-accent-100 text-accent-700' : 'text-base-700 hover:text-base-900 hover:bg-base-100'}`}>
           Llamadas IA
         </a>
 
-        <!-- Documental -->
+        <!-- Soporte IT -->
         <a
-          href="/servicios/gestor-documental"
-          class={`w-full lg:w-auto text-sm font-medium transition-colors duration-200 px-3 py-2 rounded-lg ${currentPath === '/servicios/gestor-documental' ? 'bg-accent-100 text-accent-700' : 'text-base-800 hover:text-accent-600 hover:bg-accent-50'}`}>
-          Documental
+          href="/soporte-tecnico"
+          class={`w-full lg:w-auto text-sm font-medium transition-colors duration-200 px-3 py-2 rounded-lg ${currentPath === '/soporte-tecnico' ? 'bg-accent-100 text-accent-700' : 'text-base-700 hover:text-base-900 hover:bg-base-100'}`}>
+          Soporte IT
         </a>
 
         <!-- Dropdown: Wazuh -->
-        <div class="relative w-full lg:w-auto" @click.away="wazuhDropdown = false">
+        <div class="relative w-full lg:w-auto" @click.away="wazuhOpen = false">
           <button
-            @click="wazuhDropdown = !wazuhDropdown"
-            class={`w-full lg:w-auto text-sm font-medium transition-colors duration-200 px-3 py-2 rounded-lg inline-flex items-center justify-between lg:justify-center gap-2 ${currentPath === '/wazuh' || currentPath === '/curso-wazuh' ? 'bg-accent-100 text-accent-700' : 'text-base-800 hover:text-accent-600 hover:bg-accent-50'}`}
-            :aria-expanded="wazuhDropdown.toString()">
+            @click="wazuhOpen = !wazuhOpen"
+            class={`w-full lg:w-auto text-sm font-medium transition-colors duration-200 px-3 py-2 rounded-lg inline-flex items-center justify-between lg:justify-center gap-1.5 ${currentPath === '/wazuh' || currentPath === '/curso-wazuh' ? 'bg-accent-100 text-accent-700' : 'text-base-700 hover:text-base-900 hover:bg-base-100'}`}
+            :aria-expanded="wazuhOpen.toString()">
             <span>Wazuh</span>
-            <svg class="w-4 h-4 transition-transform" :class="{'rotate-180': wazuhDropdown}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-3.5 h-3.5 transition-transform duration-200" :class="{'rotate-180': wazuhOpen}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
             </svg>
           </button>
 
-          <!-- Wazuh Dropdown Menu -->
+          <!-- Wazuh Dropdown -->
           <div
-            x-show="wazuhDropdown"
+            x-show="wazuhOpen"
             x-transition:enter="transition ease-out duration-200"
-            x-transition:enter-start="opacity-0 scale-95"
-            x-transition:enter-end="opacity-100 scale-100"
+            x-transition:enter-start="opacity-0 -translate-y-1"
+            x-transition:enter-end="opacity-100 translate-y-0"
             x-transition:leave="transition ease-in duration-150"
-            x-transition:leave-start="opacity-100 scale-100"
-            x-transition:leave-end="opacity-0 scale-95"
-            class="w-full lg:absolute lg:left-0 lg:w-56 mt-2 bg-base-50 rounded-xl shadow-lg border border-base-200 py-2 z-50"
+            x-transition:leave-start="opacity-100 translate-y-0"
+            x-transition:leave-end="opacity-0 -translate-y-1"
+            class="w-full lg:absolute lg:left-0 lg:w-56 mt-2 z-50"
             style="display: none;">
-            <a
-              href="/curso-wazuh"
-              class={`block px-4 py-2.5 text-sm font-medium transition-colors ${currentPath === '/curso-wazuh' ? 'bg-accent-100 text-accent-700' : 'text-base-900 hover:bg-accent-50 hover:text-accent-600'}`}>
-              Curso Wazuh
-            </a>
-            <a
-              href="/wazuh"
-              class={`block px-4 py-2.5 text-sm font-medium transition-colors ${currentPath === '/wazuh' ? 'bg-accent-100 text-accent-700' : 'text-base-900 hover:bg-accent-50 hover:text-accent-600'}`}>
-              Implementación Wazuh
-            </a>
+            <div class="rounded-xl shadow-2xl overflow-hidden" style="background: linear-gradient(135deg, #0f1117 0%, #161b25 100%); border: 1px solid rgba(255,255,255,0.08);">
+              <div class="px-4 py-2.5" style="border-bottom: 1px solid rgba(255,255,255,0.06);">
+                <p class="text-[10px] font-bold uppercase tracking-widest" style="color: #f87171;">Wazuh / ENS</p>
+              </div>
+              <a
+                href="/wazuh"
+                @click="wazuhOpen = false"
+                class="group flex items-start gap-3 px-4 py-3 transition-all duration-150 hover:bg-white/5">
+                <svg class="w-4 h-4 mt-0.5 flex-shrink-0" style="color: #f87171;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                </svg>
+                <div>
+                  <p class="text-sm font-semibold text-white/90 group-hover:text-white transition-colors leading-tight">Implementación Wazuh</p>
+                  <p class="text-xs mt-0.5" style="color: rgba(148,163,184,0.7);">SIEM + cumplimiento ENS</p>
+                </div>
+              </a>
+              <a
+                href="/curso-wazuh"
+                @click="wazuhOpen = false"
+                class="group flex items-start gap-3 px-4 py-3 transition-all duration-150 hover:bg-white/5">
+                <svg class="w-4 h-4 mt-0.5 flex-shrink-0" style="color: #60a5fa;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                </svg>
+                <div>
+                  <p class="text-sm font-semibold text-white/90 group-hover:text-white transition-colors leading-tight">Curso Wazuh</p>
+                  <p class="text-xs mt-0.5" style="color: rgba(148,163,184,0.7);">Formación intensiva práctica</p>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mega Dropdown: Servicios -->
+        <div class="relative w-full lg:w-auto" @click.away="dropdownOpen = false">
+          <button
+            @click="dropdownOpen = !dropdownOpen"
+            class={`w-full lg:w-auto text-sm font-medium transition-all duration-200 px-3 py-2 rounded-lg inline-flex items-center justify-between lg:justify-center gap-1.5 ${['/servicios/chatbot','/servicios/gestor-documental','/servicios/gestor-citas','/servicios/automatizacion','/servicios/desarrollo-web','/servicios/geo-posicionamiento','/soporte-tecnico'].includes(currentPath) ? 'bg-accent-100 text-accent-700' : 'text-base-700 hover:text-base-900 hover:bg-base-100'}`}
+            :aria-expanded="dropdownOpen.toString()">
+            <span>Servicios</span>
+            <svg class="w-3.5 h-3.5 transition-transform duration-200" :class="{'rotate-180': dropdownOpen}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+
+          <!-- Mega Menu oscuro -->
+          <div
+            x-show="dropdownOpen"
+            x-transition:enter="transition ease-out duration-200"
+            x-transition:enter-start="opacity-0 -translate-y-2 scale-[0.98]"
+            x-transition:enter-end="opacity-100 translate-y-0 scale-100"
+            x-transition:leave="transition ease-in duration-150"
+            x-transition:leave-start="opacity-100 translate-y-0 scale-100"
+            x-transition:leave-end="opacity-0 -translate-y-2 scale-[0.98]"
+            class="w-full lg:absolute lg:right-0 lg:w-[820px] mt-2 z-50"
+            style="display: none;">
+
+            <div class="rounded-2xl shadow-2xl overflow-hidden" style="background: linear-gradient(135deg, #0f1117 0%, #161b25 50%, #0f1117 100%); border: 1px solid rgba(255,255,255,0.08);">
+
+              <!-- Header del panel con gradiente tipo hero -->
+              <div class="px-6 py-4 relative overflow-hidden" style="background: linear-gradient(135deg, rgba(59,130,246,0.25) 0%, rgba(99,102,241,0.20) 50%, rgba(59,130,246,0.15) 100%); border-bottom: 1px solid rgba(255,255,255,0.07);">
+                <div class="absolute inset-0 opacity-30" style="background: radial-gradient(ellipse at 20% 50%, rgba(99,102,241,0.3) 0%, transparent 60%);" aria-hidden="true"></div>
+                <div class="relative flex items-center justify-between">
+                  <div>
+                    <p class="text-xs font-bold uppercase tracking-widest" style="color: #60a5fa;">Todos los Servicios</p>
+                    <p class="text-white font-extrabold text-base mt-0.5 tracking-tight">Soluciones IA · Ciberseguridad · Sistemas</p>
+                  </div>
+                  <span class="text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wide" style="background: rgba(99,102,241,0.25); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.3);">PyMEs</span>
+                </div>
+              </div>
+
+              <!-- Tres columnas -->
+              <div class="grid grid-cols-1 lg:grid-cols-3" style="divide-color: rgba(255,255,255,0.06);">
+
+                <!-- Columna 1: Inteligencia Artificial -->
+                <div class="p-5" style="border-right: 1px solid rgba(255,255,255,0.06);">
+                  <p class="text-[10px] font-bold uppercase tracking-widest mb-4" style="color: #60a5fa;">Inteligencia Artificial</p>
+                  <div class="space-y-0.5">
+                    <a href="/servicios/chatbot" @click="dropdownOpen = false"
+                      class="group block px-3 py-2.5 rounded-lg transition-all duration-150"
+                      style={currentPath === '/servicios/chatbot' ? 'background: rgba(99,102,241,0.15);' : ''}>
+                      <p class="text-sm font-semibold text-white/90 group-hover:text-white transition-colors">Chatbot Inteligente</p>
+                      <p class="text-xs mt-0.5" style="color: rgba(148,163,184,0.7);">Atención 24/7 con IA</p>
+                    </a>
+                    <a href="/servicios/gestor-documental" @click="dropdownOpen = false"
+                      class="group block px-3 py-2.5 rounded-lg transition-all duration-150"
+                      style={currentPath === '/servicios/gestor-documental' ? 'background: rgba(99,102,241,0.15);' : ''}>
+                      <p class="text-sm font-semibold text-white/90 group-hover:text-white transition-colors">Gestor Documental IA</p>
+                      <p class="text-xs mt-0.5" style="color: rgba(148,163,184,0.7);">Búsqueda semántica</p>
+                    </a>
+                    <a href="/servicios/gestor-citas" @click="dropdownOpen = false"
+                      class="group block px-3 py-2.5 rounded-lg transition-all duration-150"
+                      style={currentPath === '/servicios/gestor-citas' ? 'background: rgba(99,102,241,0.15);' : ''}>
+                      <p class="text-sm font-semibold text-white/90 group-hover:text-white transition-colors">Gestor de Citas IA</p>
+                      <p class="text-xs mt-0.5" style="color: rgba(148,163,184,0.7);">Reservas automatizadas</p>
+                    </a>
+                    <a href="/servicios/automatizacion" @click="dropdownOpen = false"
+                      class="group block px-3 py-2.5 rounded-lg transition-all duration-150"
+                      style={currentPath === '/servicios/automatizacion' ? 'background: rgba(99,102,241,0.15);' : ''}>
+                      <p class="text-sm font-semibold text-white/90 group-hover:text-white transition-colors">Automatización RPA</p>
+                      <p class="text-xs mt-0.5" style="color: rgba(148,163,184,0.7);">Procesos repetitivos con IA</p>
+                    </a>
+                    <a href="/servicios/atencion-llamadas" @click="dropdownOpen = false"
+                      class="group block px-3 py-2.5 rounded-lg transition-all duration-150"
+                      style={currentPath === '/servicios/atencion-llamadas' ? 'background: rgba(99,102,241,0.15);' : ''}>
+                      <p class="text-sm font-semibold text-white/90 group-hover:text-white transition-colors">Atención de Llamadas IA</p>
+                      <p class="text-xs mt-0.5" style="color: rgba(148,163,184,0.7);">Recepcionista virtual 24/7</p>
+                    </a>
+                  </div>
+                </div>
+
+                <!-- Columna 2: Ciberseguridad -->
+                <div class="p-5" style="border-right: 1px solid rgba(255,255,255,0.06);">
+                  <p class="text-[10px] font-bold uppercase tracking-widest mb-4" style="color: #f87171;">Ciberseguridad</p>
+                  <div class="space-y-0.5">
+                    <a href="/wazuh" @click="dropdownOpen = false"
+                      class="group block px-3 py-2.5 rounded-lg transition-all duration-150"
+                      style={currentPath === '/wazuh' ? 'background: rgba(239,68,68,0.12);' : ''}>
+                      <div class="flex items-center gap-2">
+                        <p class="text-sm font-semibold text-white/90 group-hover:text-white transition-colors">Implementación Wazuh</p>
+                        <span class="text-[9px] font-bold px-1.5 py-0.5 rounded-full leading-none flex-shrink-0" style="background: rgba(239,68,68,0.3); color: #fca5a5; border: 1px solid rgba(239,68,68,0.4);">ENS</span>
+                      </div>
+                      <p class="text-xs mt-0.5" style="color: rgba(148,163,184,0.7);">SIEM y cumplimiento normativo</p>
+                    </a>
+                    <a href="/curso-wazuh" @click="dropdownOpen = false"
+                      class="group block px-3 py-2.5 rounded-lg transition-all duration-150"
+                      style={currentPath === '/curso-wazuh' ? 'background: rgba(239,68,68,0.12);' : ''}>
+                      <p class="text-sm font-semibold text-white/90 group-hover:text-white transition-colors">Curso Wazuh Intensivo</p>
+                      <p class="text-xs mt-0.5" style="color: rgba(148,163,184,0.7);">Formación práctica y certificada</p>
+                    </a>
+                    <a href="/soporte-tecnico" @click="dropdownOpen = false"
+                      class="group block px-3 py-2.5 rounded-lg transition-all duration-150"
+                      style={currentPath === '/soporte-tecnico' ? 'background: rgba(239,68,68,0.12);' : ''}>
+                      <p class="text-sm font-semibold text-white/90 group-hover:text-white transition-colors">Ciberseguridad Empresarial</p>
+                      <p class="text-xs mt-0.5" style="color: rgba(148,163,184,0.7);">Auditorías y protección activa</p>
+                    </a>
+                  </div>
+                </div>
+
+                <!-- Columna 3: Sistemas y Web -->
+                <div class="p-5">
+                  <p class="text-[10px] font-bold uppercase tracking-widest mb-4" style="color: #4ade80;">Sistemas y Web</p>
+                  <div class="space-y-0.5">
+                    <a href="/soporte-tecnico" @click="dropdownOpen = false"
+                      class="group block px-3 py-2.5 rounded-lg hover:bg-white/5 transition-all duration-150">
+                      <p class="text-sm font-semibold text-white/90 group-hover:text-white transition-colors">Soporte IT</p>
+                      <p class="text-xs mt-0.5" style="color: rgba(148,163,184,0.7);">Linux y Windows Server</p>
+                    </a>
+                    <a href="/soporte-tecnico" @click="dropdownOpen = false"
+                      class="group block px-3 py-2.5 rounded-lg hover:bg-white/5 transition-all duration-150">
+                      <p class="text-sm font-semibold text-white/90 group-hover:text-white transition-colors">Copias de Seguridad</p>
+                      <p class="text-xs mt-0.5" style="color: rgba(148,163,184,0.7);">Veeam, Restic, Duplicati</p>
+                    </a>
+                    <a href="/servicios/desarrollo-web" @click="dropdownOpen = false"
+                      class="group block px-3 py-2.5 rounded-lg hover:bg-white/5 transition-all duration-150"
+                      style={currentPath === '/servicios/desarrollo-web' ? 'background: rgba(74,222,128,0.08);' : ''}>
+                      <p class="text-sm font-semibold text-white/90 group-hover:text-white transition-colors">Desarrollo Web</p>
+                      <p class="text-xs mt-0.5" style="color: rgba(148,163,184,0.7);">Webs y microservicios</p>
+                    </a>
+                    <a href="/servicios/geo-posicionamiento" @click="dropdownOpen = false"
+                      class="group block px-3 py-2.5 rounded-lg transition-all duration-150"
+                      style="background: rgba(74,222,128,0.07); border: 1px solid rgba(74,222,128,0.18);">
+                      <div class="flex items-center gap-2">
+                        <p class="text-sm font-semibold text-white/90 group-hover:text-white transition-colors">Posicionamiento GEO IA</p>
+                        <span class="text-[9px] font-bold px-1.5 py-0.5 rounded-full leading-none flex-shrink-0" style="background: rgba(74,222,128,0.2); color: #4ade80; border: 1px solid rgba(74,222,128,0.35);">NUEVO</span>
+                      </div>
+                      <p class="text-xs mt-0.5" style="color: rgba(74,222,128,0.65);">Visibilidad en búsquedas IA</p>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Footer -->
+              <div class="px-6 py-3 flex items-center justify-between" style="background: rgba(0,0,0,0.3); border-top: 1px solid rgba(255,255,255,0.06);">
+                <p class="text-xs" style="color: rgba(148,163,184,0.6);">¿Necesitas algo personalizado?</p>
+                <a href="/reunion" @click="dropdownOpen = false"
+                  class="text-xs font-semibold flex items-center gap-1 transition-colors"
+                  style="color: #60a5fa;">
+                  Consulta gratuita
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
 
         <!-- Blog -->
         <a
           href="/blog"
-          class={`w-full lg:w-auto text-sm font-medium transition-colors duration-200 px-3 py-2 rounded-lg ${currentPath.startsWith('/blog') ? 'bg-accent-100 text-accent-700' : 'text-base-800 hover:text-accent-600 hover:bg-accent-50'}`}>
+          class={`w-full lg:w-auto text-sm font-medium transition-colors duration-200 px-3 py-2 rounded-lg ${currentPath.startsWith('/blog') ? 'bg-accent-100 text-accent-700' : 'text-base-700 hover:text-base-900 hover:bg-base-100'}`}>
           Blog
         </a>
-
-        <!-- Dropdown: Más Servicios -->
-        <div class="relative w-full lg:w-auto" @click.away="dropdownOpen = false">
-          <button
-            @click="dropdownOpen = !dropdownOpen"
-            class="w-full lg:w-auto text-sm font-medium text-base-800 transition-colors duration-200 hover:text-accent-600 hover:bg-accent-50 px-3 py-2 rounded-lg inline-flex items-center justify-between lg:justify-center gap-2"
-            :aria-expanded="dropdownOpen.toString()">
-            <span>Más Servicios</span>
-            <svg class="w-4 h-4 transition-transform" :class="{'rotate-180': dropdownOpen}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-            </svg>
-          </button>
-
-          <!-- Dropdown Menu -->
-          <div
-            x-show="dropdownOpen"
-            x-transition:enter="transition ease-out duration-200"
-            x-transition:enter-start="opacity-0 scale-95"
-            x-transition:enter-end="opacity-100 scale-100"
-            x-transition:leave="transition ease-in duration-150"
-            x-transition:leave-start="opacity-100 scale-100"
-            x-transition:leave-end="opacity-0 scale-95"
-            class="w-full lg:absolute lg:right-0 lg:w-64 mt-2 bg-base-50 rounded-xl shadow-lg border border-base-200 py-2 z-50"
-            style="display: none;">
-
-            <!-- Sección IA -->
-            <div class="px-3 py-2">
-              <p class="text-xs font-bold text-base-500 uppercase tracking-wider">Inteligencia Artificial</p>
-            </div>
-            <a
-              href="/servicios/automatizacion"
-              class={`block px-4 py-2.5 text-sm font-medium transition-colors ${currentPath === '/servicios/automatizacion' ? 'bg-accent-100 text-accent-700' : 'text-base-900 hover:bg-accent-50 hover:text-accent-600'}`}>
-              Automatizaciones
-            </a>
-            <a
-              href="/servicios/gestor-citas"
-              class={`block px-4 py-2.5 text-sm font-medium transition-colors ${currentPath === '/servicios/gestor-citas' ? 'bg-accent-100 text-accent-700' : 'text-base-900 hover:bg-accent-50 hover:text-accent-600'}`}>
-              Gestor de Citas IA
-            </a>
-            <a
-              href="/servicios/desarrollo-web"
-              class={`block px-4 py-2.5 text-sm font-medium transition-colors ${currentPath === '/servicios/desarrollo-web' ? 'bg-accent-100 text-accent-700' : 'text-base-900 hover:bg-accent-50 hover:text-accent-600'}`}>
-              Desarrollo Web
-            </a>
-            <a
-              href="/servicios/geo-posicionamiento"
-              class={`block px-4 py-2.5 text-sm font-medium transition-colors ${currentPath === '/servicios/geo-posicionamiento' ? 'bg-accent-100 text-accent-700' : 'text-base-900 hover:bg-accent-50 hover:text-accent-600'}`}>
-              Posicionamiento GEO IA
-            </a>
-            <a
-              href="/reunion"
-              class={`block px-4 py-2.5 text-sm font-medium transition-colors ${currentPath === '/reunion' ? 'bg-accent-100 text-accent-700' : 'text-base-900 hover:bg-accent-50 hover:text-accent-600'}`}>
-              Consultoría Personalizada
-            </a>
-
-            <!-- Separador -->
-            <div class="border-t border-base-200 my-2"></div>
-
-            <!-- Sección Ciberseguridad -->
-            <div class="px-3 py-2">
-              <p class="text-xs font-bold text-base-500 uppercase tracking-wider">Ciberseguridad</p>
-            </div>
-            <a
-              href="/soporte-tecnico"
-              class={`block px-4 py-2.5 text-sm font-medium transition-colors ${currentPath === '/soporte-tecnico' ? 'bg-accent-100 text-accent-700' : 'text-base-900 hover:bg-accent-50 hover:text-accent-600'}`}>
-              Soporte IT
-            </a>
-            <a
-              href="/soporte-tecnico"
-              class={`block px-4 py-2.5 text-sm font-medium transition-colors ${currentPath === '/soporte-tecnico' ? 'bg-accent-100 text-accent-700' : 'text-base-900 hover:bg-accent-50 hover:text-accent-600'}`}>
-              Ciberseguridad
-            </a>
-            <a
-              href="/soporte-tecnico"
-              class={`block px-4 py-2.5 text-sm font-medium transition-colors ${currentPath === '/soporte-tecnico' ? 'bg-accent-100 text-accent-700' : 'text-base-900 hover:bg-accent-50 hover:text-accent-600'}`}>
-              Copias de Seguridad
-            </a>
-          </div>
-        </div>
 
         <!-- CTA Button -->
         <a
@@ -219,13 +314,11 @@ const currentPath = Astro.url.pathname;
 
   window.addEventListener('scroll', () => {
     if (window.scrollY > 20) {
-      // Cuando se hace scroll: más sombra + más transparencia
       header?.classList.add('shadow-medium');
       header?.classList.remove('bg-base-50/95');
       header?.classList.add('bg-base-50/70');
       header?.setAttribute('data-scrolled', 'true');
     } else {
-      // En la parte superior: menos sombra + más opacidad
       header?.classList.remove('shadow-medium');
       header?.classList.remove('bg-base-50/70');
       header?.classList.add('bg-base-50/95');
