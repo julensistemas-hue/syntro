@@ -24,14 +24,87 @@ const { google } = require('googleapis');
 const CREDENTIALS_PATH = path.join(__dirname, 'google-credentials.json');
 const SITE_URL = 'https://aisecurity.es';
 
-// URLs de concienciación a indexar
+// Todas las URLs públicas del sitio a indexar
 const URLS_TO_INDEX = [
+  // Páginas principales
+  '/',
+  '/wazuh',
+  '/curso-wazuh',
+  '/reunion',
+  '/soporte-tecnico',
+  '/faq',
+
+  // Servicios IA
+  '/servicios/chatbot',
+  '/servicios/gestor-citas',
+  '/servicios/gestor-documental',
+  '/servicios/gestor-documental-abogados',
+  '/servicios/atencion-llamadas',
+  '/servicios/automatizacion',
+  '/servicios/agente-fisioterapeutas',
+  '/servicios/desarrollo-web',
+
+  // Blog — Wazuh
+  '/blog/que-es-wazuh-para-que-sirve',
+  '/blog/como-instalar-wazuh-en-linux',
+  '/blog/como-instalar-agente-wazuh-en-windows',
+  '/blog/como-instalar-agente-wazuh-en-linux',
+  '/blog/como-instalar-wazuh-con-docker',
+  '/blog/wazuh-elastic-security-configuracion-de-siem-completo',
+  '/blog/ia-threat-hunting-wazuh',
+  '/blog/monitorizacion-de-contenedores-docker-con-wazuh',
+  '/blog/configurar-alertas-correo-wazuh-postfix-gmail',
+  '/blog/configuracion-de-grupos-en-wazuh',
+  '/blog/crear-reglas-personalizadas-wazuh',
+  '/blog/crear-decoders-personalizados-wazuh',
+  '/blog/flujo-logs-wazuh-decoders-reglas-alertas',
+  '/blog/integracion-wazuh-virustotal',
+  '/blog/investigar-ataque-ssh-wazuh-discover',
+  '/blog/detectar-instalaciones-software-windows-wazuh',
+  '/blog/monitorizar-certificados-wazuh-fim',
+  '/blog/panel-vulnerability-detection-wazuh',
+  '/blog/configurar-equipos-sin-agente-wazuh-syslog',
+  '/blog/como-monitorizar-tu-tenant-de-office365-registros-de-exchange-sharepoint',
+
+  // Blog — Concienciación ciberseguridad
   '/blog/ciberseguridad-basica-empleados-guia-completa',
   '/blog/detectar-phishing-outlook-microsoft-guia-empleados',
   '/blog/detectar-phishing-gmail-guia-empleados',
   '/blog/tu-contrasena-mayuscula-numeros-hackeable',
   '/blog/contrasenas-seguras-empleados-guia-completa',
-  '/servicios/test-concienciacion-empleados' // Landing principal
+
+  // Blog — Soporte técnico / sistemas
+  '/blog/backup-automatico-pymes-guia-completa',
+  '/blog/pc-empresa-lento-causas-y-soluciones',
+  '/blog/configurar-correo-corporativo-outlook-movil',
+
+  // Blog — IA
+  '/blog/automatizacion-de-atencion-al-cliente-con-chatbots-ia',
+  '/blog/automatizacion-de-generacion-de-reportes-empresariales-con-ia',
+  '/blog/deteccion-de-anomalias-en-sistemas-de-monitoreo-it',
+
+  // Soporte técnico — páginas geo
+  '/soporte-tecnico/benicarlo',
+  '/soporte-tecnico/madrid',
+  '/soporte-tecnico/burriana',
+  '/soporte-tecnico/vila-real',
+  '/soporte-tecnico/vinaros',
+  '/soporte-tecnico/peniscola',
+  '/soporte-tecnico/oropesa-del-mar',
+  '/soporte-tecnico/benicassim',
+  '/soporte-tecnico/nules',
+  '/soporte-tecnico/moncofa',
+  '/soporte-tecnico/onda',
+  '/soporte-tecnico/almenara',
+  '/soporte-tecnico/almassora',
+  '/soporte-tecnico/betxi',
+  '/soporte-tecnico/la-vall-duixo',
+  '/soporte-tecnico/lalcora',
+  '/soporte-tecnico/segorbe',
+  '/soporte-tecnico/cabanes',
+  '/soporte-tecnico/calig',
+  '/soporte-tecnico/torreblanca',
+  '/soporte-tecnico/alcala-de-xivert',
 ];
 
 // Log de indexaciones
