@@ -1,0 +1,119 @@
+---
+import BlogLayout from "../../layouts/BlogLayout.astro";
+---
+
+<BlogLayout
+  title="Cómo Configurar el Correo Corporativo en Outlook y en el Móvil"
+  description="Guía paso a paso para configurar una cuenta de correo de empresa en Outlook, Gmail y dispositivos móviles iOS y Android. Sin tecnicismos, para cualquier empleado."
+  publishDate="2026-04-22"
+  modifiedDate="2026-04-22"
+  author="AI Security"
+  readTime="6 min"
+  tags={["Soporte Técnico", "Email", "Microsoft 365", "Configuración"]}
+  canonical="https://aisecurity.es/blog/configurar-correo-corporativo-outlook-movil">
+
+  <p>
+    Configurar el correo de empresa es una de las tareas de soporte más habituales: empleado nuevo, equipo nuevo, dispositivo nuevo... Es algo que se repite constantemente. Esta guía cubre los tres escenarios más comunes para que cualquiera pueda hacerlo sin necesidad de llamar a un técnico.
+  </p>
+
+  <div class="bg-blue-50 border-l-4 border-blue-600 p-4 my-6 rounded-r-lg">
+    <p class="m-0 text-base-800"><strong>Antes de empezar:</strong> Necesitas saber el tipo de servidor de correo que usa tu empresa. Los más habituales son Microsoft 365 (Exchange Online), Google Workspace o un servidor propio con IMAP/SMTP. Si no lo sabes, pregunta a quien gestione el IT de tu empresa.</p>
+  </div>
+
+  <h2>Opción A: Correo con Microsoft 365 (Exchange Online)</h2>
+
+  <p>
+    Es el caso más habitual en empresas españolas. Tu dirección acaba en el dominio de tu empresa (ej: tu.nombre@tuempresa.com) y está gestionada desde el portal de Microsoft.
+  </p>
+
+  <h3>En Outlook para Windows</h3>
+
+  <ol>
+    <li>Abre Outlook → menú <strong>Archivo</strong> → <strong>Agregar cuenta</strong></li>
+    <li>Escribe tu dirección de correo corporativa y pulsa <strong>Conectar</strong></li>
+    <li>Introduce tu contraseña cuando te la pida</li>
+    <li>Si tu empresa tiene autenticación de dos factores (MFA), aprueba la solicitud en tu móvil</li>
+    <li>Listo — Outlook descargará los mensajes automáticamente</li>
+  </ol>
+
+  <p>
+    En la mayoría de los casos con Microsoft 365, Outlook detecta la configuración automáticamente. Si no funciona a la primera, asegúrate de que el administrador de IT ha añadido tu cuenta al tenant de Microsoft 365.
+  </p>
+
+  <h3>En el móvil (iOS o Android)</h3>
+
+  <p>
+    La forma más recomendable es usar la app <strong>Outlook para móvil</strong> (gratuita en App Store y Google Play) en vez de la app de correo nativa del sistema. Gestiona mucho mejor el correo corporativo y tiene funciones adicionales como acceso al calendario compartido.
+  </p>
+
+  <ol>
+    <li>Descarga e instala Outlook para móvil</li>
+    <li>Al abrirla, pulsa <strong>Agregar cuenta</strong></li>
+    <li>Escribe tu correo corporativo y pulsa <strong>Continuar</strong></li>
+    <li>Introduce la contraseña y aprueba el MFA si corresponde</li>
+    <li>Opcional: cuando pregunte si añadir otra cuenta, puedes añadir también el Gmail personal</li>
+  </ol>
+
+  <h2>Opción B: Correo con Google Workspace</h2>
+
+  <p>
+    Cada vez más empresas usan Google Workspace (antes G Suite). Tu correo es Gmail pero con el dominio de la empresa.
+  </p>
+
+  <h3>En el navegador</h3>
+
+  <p>
+    Simplemente entra en <strong>mail.google.com</strong> e inicia sesión con tu correo corporativo. Al ser Gmail, no necesitas configurar nada.
+  </p>
+
+  <h3>En Outlook (si prefieres usar Outlook aunque el correo sea de Google)</h3>
+
+  <ol>
+    <li>Abre Outlook → <strong>Archivo</strong> → <strong>Agregar cuenta</strong></li>
+    <li>Escribe tu correo de Google Workspace y pulsa <strong>Conectar</strong></li>
+    <li>Selecciona <strong>Google</strong> como tipo de cuenta</li>
+    <li>Se abrirá una ventana del navegador pidiendo que inicies sesión con Google — hazlo</li>
+    <li>Aprueba los permisos que solicita Outlook</li>
+  </ol>
+
+  <h3>En el móvil</h3>
+
+  <p>
+    En Android, la app de Gmail nativa ya gestiona bien las cuentas de Google Workspace. En iOS, descarga la app de Gmail o usa Outlook para móvil siguiendo el mismo proceso que con Microsoft 365.
+  </p>
+
+  <h2>Opción C: Servidor propio con IMAP/SMTP</h2>
+
+  <p>
+    Si tu empresa tiene un servidor de correo propio (hosting con cPanel, Plesk, servidor Exchange on-premise...), necesitas configurar manualmente los datos del servidor. Pide estos datos a quien gestione el IT:
+  </p>
+
+  <ul>
+    <li><strong>Servidor de entrada (IMAP)</strong>: ej. mail.tuempresa.com, puerto 993 (SSL)</li>
+    <li><strong>Servidor de salida (SMTP)</strong>: ej. mail.tuempresa.com, puerto 587 (TLS)</li>
+    <li><strong>Usuario</strong>: normalmente tu dirección de correo completa</li>
+    <li><strong>Contraseña</strong>: la que te hayan asignado</li>
+  </ul>
+
+  <h3>En Outlook</h3>
+
+  <ol>
+    <li><strong>Archivo</strong> → <strong>Agregar cuenta</strong> → escribe tu correo</li>
+    <li>Outlook intentará detectar la configuración automáticamente. Si falla, selecciona <strong>Opciones avanzadas</strong> → <strong>Configurar la cuenta manualmente</strong></li>
+    <li>Selecciona <strong>IMAP</strong> e introduce los datos del servidor</li>
+  </ol>
+
+  <h2>Problemas más habituales y soluciones rápidas</h2>
+
+  <ul>
+    <li><strong>"Contraseña incorrecta" aunque sea la correcta</strong>: Si la empresa usa MFA, puede ser que Outlook necesite una "contraseña de aplicación" específica, no tu contraseña habitual.</li>
+    <li><strong>El correo llega al ordenador pero no al móvil</strong>: Comprueba que en el móvil está configurado IMAP (no POP3). POP3 descarga los mensajes y los elimina del servidor.</li>
+    <li><strong>No puedo enviar pero sí recibo</strong>: El problema suele ser el servidor SMTP o el puerto. El puerto 587 con TLS/STARTTLS suele funcionar cuando el 465 falla.</li>
+    <li><strong>Outlook pide la contraseña constantemente</strong>: Suele ser un problema de caché de credenciales. Ve al Panel de control → Administrador de credenciales y elimina las entradas de Office/Microsoft.</li>
+  </ul>
+
+  <div class="bg-green-50 border-l-4 border-green-600 p-4 my-6 rounded-r-lg">
+    <p class="m-0 text-base-800"><strong>¿Sigues sin conseguirlo?</strong> Estos problemas se resuelven en minutos con acceso remoto. En <a href="/soporte-tecnico" style="color: #1d4ed8;">nuestro servicio de soporte técnico</a> la primera hora es gratuita — abrimos un ticket y lo resolvemos hoy.</p>
+  </div>
+
+</BlogLayout>

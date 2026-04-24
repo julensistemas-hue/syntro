@@ -1,0 +1,283 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const ciudad = "Madrid";
+const title = `Soporte Técnico Informático para Empresas en ${ciudad} — Remoto y sin desplazamientos`;
+const description = `Soporte IT para PyMEs en ${ciudad}. Reparación de PCs, configuración de redes, backup, Microsoft 365 y más. 100% remoto, primera hora gratis. Respuesta en menos de 2h.`;
+const canonical = `https://aisecurity.es/soporte-tecnico/madrid`;
+---
+
+<BaseLayout title={title} description={description} canonical={canonical}>
+
+  <!-- Hero -->
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0">
+      <img src="/images/6107094.jpg" alt="Background" class="w-full h-full object-cover opacity-40" />
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-bl from-accent-500/60 via-blue-600/70 to-accent-500/60"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-8 md:px-12 lg:px-24 pt-16 pb-16">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <span class="inline-block px-4 py-2 bg-white/20 text-white rounded-full text-sm font-semibold mb-4 border border-white/30">
+            Soporte remoto · Empresas de Madrid
+          </span>
+          <h1 class="text-3xl md:text-5xl font-bold mb-6" style="color: white;">
+            Soporte Técnico para empresas en <span style="color: #38b1ff;">Madrid</span>
+          </h1>
+          <p class="text-lg mb-4 leading-relaxed" style="color: rgba(255,255,255,0.85); max-width: none;">
+            ¿Tienes una PyME en Madrid y necesitas un técnico informático sin pagar uno a jornada completa?
+            Te resolvemos las incidencias <strong style="color: white;">100% en remoto</strong> — sin desplazamientos,
+            sin esperas, sin contrato.
+          </p>
+          <p class="text-base mb-8" style="color: rgba(255,255,255,0.75); max-width: none;">
+            Trabajamos con empresas de Alcobendas, Pozuelo, Getafe, Leganés, Alcalá de Henares y toda la Comunidad de Madrid.
+            Si tienes conexión a internet, podemos ayudarte hoy mismo.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4">
+            <a
+              href="/abrir-ticket"
+              class="inline-flex items-center justify-center gap-2 px-8 py-4 font-bold rounded-xl shadow-xl transition-all duration-300 hover:-translate-y-0.5"
+              style="background-color: #0065ff; color: white;"
+            >
+              Primera hora gratis — Abrir ticket
+            </a>
+            <a
+              href="/reunion"
+              class="inline-flex items-center justify-center gap-2 px-8 py-4 font-semibold rounded-xl border-2 border-white/40 backdrop-blur-sm transition-all duration-200 hover:bg-white/10"
+              style="color: white;"
+            >
+              Hablar con un técnico
+            </a>
+          </div>
+        </div>
+
+        <!-- Pain points -->
+        <div class="rounded-2xl p-8 border border-white/20 backdrop-blur-sm" style="background-color: rgba(0,0,0,0.5);">
+          <h3 class="text-lg font-bold text-white mb-5">¿Te suena alguna de estas situaciones?</h3>
+          <ul class="space-y-4 mb-6">
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-red-500/30 rounded-full flex items-center justify-center text-red-300 text-xs flex-shrink-0 mt-0.5">✗</span>
+              <span style="color: rgba(255,255,255,0.85);">El PC de un empleado no arranca y tienes una reunión en 2 horas</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-red-500/30 rounded-full flex items-center justify-center text-red-300 text-xs flex-shrink-0 mt-0.5">✗</span>
+              <span style="color: rgba(255,255,255,0.85);">El correo corporativo no funciona en el móvil de la comercial</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-red-500/30 rounded-full flex items-center justify-center text-red-300 text-xs flex-shrink-0 mt-0.5">✗</span>
+              <span style="color: rgba(255,255,255,0.85);">Lleváis meses sin backup y nadie sabe cómo montarlo</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-red-500/30 rounded-full flex items-center justify-center text-red-300 text-xs flex-shrink-0 mt-0.5">✗</span>
+              <span style="color: rgba(255,255,255,0.85);">El técnico de siempre tardará 3 días en venir</span>
+            </li>
+          </ul>
+          <div class="p-4 rounded-xl border border-white/20" style="background-color: rgba(0,101,255,0.2);">
+            <p class="text-white font-semibold text-center">
+              Abrimos el acceso remoto y lo resolvemos hoy.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Por qué remoto funciona igual de bien -->
+  <section class="py-16 bg-base-900 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10">
+      <img src="/images/6107094.jpg" alt="Background" class="w-full h-full object-cover" />
+    </div>
+    <div class="relative z-10 max-w-5xl mx-auto px-8 md:px-12 lg:px-24">
+      <div class="text-center mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold text-white mb-3">
+          ¿Por qué funciona el soporte remoto para empresas en Madrid?
+        </h2>
+        <p class="text-white/70 max-w-2xl mx-auto">
+          La mayoría de incidencias informáticas no requieren presencia física. El acceso remoto
+          nos permite ver exactamente lo que ves tú y trabajar como si estuviéramos sentados delante del equipo.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/15 text-center">
+          <div class="text-4xl mb-4">⚡</div>
+          <h3 class="text-white font-bold mb-2">Respuesta inmediata</h3>
+          <p class="text-white/70 text-sm leading-relaxed">
+            Sin desplazamientos ni esperas. En menos de 2h estamos conectados a tu equipo
+            resolviendo el problema.
+          </p>
+        </div>
+        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/15 text-center">
+          <div class="text-4xl mb-4">💶</div>
+          <h3 class="text-white font-bold mb-2">Más económico</h3>
+          <p class="text-white/70 text-sm leading-relaxed">
+            Sin tarifa de desplazamiento. Pagas solo el tiempo de trabajo real, desde €30/h
+            con bolsa de horas.
+          </p>
+        </div>
+        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/15 text-center">
+          <div class="text-4xl mb-4">🔒</div>
+          <h3 class="text-white font-bold mb-2">Acceso seguro</h3>
+          <p class="text-white/70 text-sm leading-relaxed">
+            Usamos TeamViewer o AnyDesk con sesión única y controlada por ti. Tú ves todo
+            lo que hacemos en tiempo real.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Servicios -->
+  <section class="py-16 bg-gradient-to-b from-base-900 to-base-800">
+    <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
+      <div class="text-center mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold text-white mb-3">
+          ¿En qué te ayudamos?
+        </h2>
+        <p class="text-white/70">Soporte técnico completo para PyMEs en Madrid</p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        {[
+          { icon: "💻", label: "PCs lentos o con errores" },
+          { icon: "📧", label: "Email corporativo (M365, Gmail)" },
+          { icon: "🌐", label: "Redes y WiFi empresarial" },
+          { icon: "💾", label: "Backup automático" },
+          { icon: "🔧", label: "Instalación de software" },
+          { icon: "🛡️", label: "Eliminación de virus" },
+          { icon: "📱", label: "Móviles y tablets empresa" },
+          { icon: "🖨️", label: "Impresoras en red" },
+          { icon: "☁️", label: "OneDrive y SharePoint" },
+          { icon: "🔑", label: "VPN y acceso remoto" },
+          { icon: "🖥️", label: "Servidores Windows/Linux" },
+          { icon: "🆘", label: "Incidencias urgentes" },
+        ].map(({ icon, label }) => (
+          <div class="bg-white/8 rounded-xl p-4 border border-white/10 flex items-center gap-3 hover:bg-white/12 transition-colors">
+            <span class="text-2xl flex-shrink-0">{icon}</span>
+            <span class="text-white/85 text-sm font-medium">{label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Precios -->
+  <section class="py-16 relative overflow-hidden" style="background-color: #0d1117;">
+    <div class="absolute inset-0 opacity-15">
+      <img src="/images/6107094.jpg" alt="Background" class="w-full h-full object-cover" />
+    </div>
+    <div class="relative z-10 max-w-5xl mx-auto px-8 md:px-12 lg:px-24">
+      <div class="text-center mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold text-white mb-3">Precios transparentes</h2>
+        <p class="text-white/70">Sin sorpresas. Paga solo por lo que usas.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 flex flex-col">
+          <h4 class="text-lg font-bold text-white mb-1">Hora suelta</h4>
+          <div class="text-3xl font-bold text-white my-3">€40<span class="text-lg font-normal text-white/60">/hora</span></div>
+          <p class="text-white/60 text-sm mb-4">Incidencia puntual sin compromiso</p>
+          <ul class="space-y-2 text-sm text-white/75 mb-6 flex-grow">
+            <li>✅ Sin contrato previo</li>
+            <li>✅ Soporte remoto</li>
+            <li>✅ Primera hora gratis</li>
+          </ul>
+          <a href="/abrir-ticket" class="block text-center py-3 px-4 bg-blue-600 hover:bg-blue-500 text-white font-semibold rounded-lg transition-colors">
+            Abrir ticket
+          </a>
+        </div>
+
+        <div class="bg-white/15 backdrop-blur-sm rounded-xl p-6 border-2 border-blue-400 flex flex-col relative">
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-blue-600 px-4 py-1 rounded-full text-xs font-bold text-white">
+            MÁS POPULAR
+          </div>
+          <h4 class="text-lg font-bold text-white mb-1">Bolsa 10h</h4>
+          <div class="text-3xl font-bold text-white my-3">€350<span class="text-lg font-normal text-white/60"> total</span></div>
+          <p class="text-white/60 text-sm mb-4">€35/hora · Ahorra €50</p>
+          <ul class="space-y-2 text-sm text-white/75 mb-6 flex-grow">
+            <li>✅ 10 horas prepagadas</li>
+            <li>✅ Atención prioritaria</li>
+            <li>✅ Respuesta &lt;2h</li>
+            <li>✅ Válidas 12 meses</li>
+          </ul>
+          <a href="/abrir-ticket" class="block text-center py-3 px-4 bg-blue-600 hover:bg-blue-500 text-white font-semibold rounded-lg transition-colors">
+            Contratar
+          </a>
+        </div>
+
+        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 flex flex-col">
+          <h4 class="text-lg font-bold text-white mb-1">Bolsa 20h</h4>
+          <div class="text-3xl font-bold text-white my-3">€600<span class="text-lg font-normal text-white/60"> total</span></div>
+          <p class="text-white/60 text-sm mb-4">€30/hora · Ahorra €200</p>
+          <ul class="space-y-2 text-sm text-white/75 mb-6 flex-grow">
+            <li>✅ 20 horas prepagadas</li>
+            <li>✅ Atención VIP</li>
+            <li>✅ Informes mensuales</li>
+            <li>✅ Descuento 25%</li>
+          </ul>
+          <a href="/abrir-ticket" class="block text-center py-3 px-4 bg-blue-600 hover:bg-blue-500 text-white font-semibold rounded-lg transition-colors">
+            Contratar
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA final -->
+  <section class="py-16 relative overflow-hidden">
+    <div class="absolute inset-0">
+      <img src="/images/6107094.jpg" alt="Background" class="w-full h-full object-cover" />
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-bl from-accent-500/60 via-blue-600/70 to-accent-500/60"></div>
+    <div class="relative z-10 max-w-3xl mx-auto px-8 text-center">
+      <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">
+        ¿Tienes un problema técnico ahora mismo?
+      </h2>
+      <p class="text-white/85 mb-8">
+        Abre un ticket y te llamamos en menos de 2 horas. Primera hora sin coste, sin tarjeta.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href="/abrir-ticket"
+          class="inline-flex items-center justify-center gap-2 px-10 py-4 text-lg font-bold bg-white hover:bg-base-50 rounded-xl shadow-xl transition-all duration-300 hover:-translate-y-0.5"
+          style="color: #0065ff;"
+        >
+          Abrir Ticket Gratis
+        </a>
+        <a
+          href="mailto:info@aisecurity.es"
+          class="inline-flex items-center justify-center gap-2 px-8 py-4 text-lg font-semibold bg-white/10 hover:bg-white/20 text-white border-2 border-white/30 rounded-xl backdrop-blur-sm transition-all"
+        >
+          info@aisecurity.es
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Schema JSON-LD -->
+  <script is:inline type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "AI Security — Soporte Técnico Madrid",
+    "description": "Soporte técnico informático remoto para PyMEs en Madrid. Reparación de PCs, redes, backup, Microsoft 365 y más. Primera hora gratis.",
+    "url": "https://aisecurity.es/soporte-tecnico/madrid",
+    "telephone": "",
+    "email": "info@aisecurity.es",
+    "areaServed": {
+      "@type": "City",
+      "name": "Madrid"
+    },
+    "serviceType": "Soporte Técnico Informático",
+    "priceRange": "€€",
+    "offers": {
+      "@type": "Offer",
+      "name": "Primera hora de soporte gratuita",
+      "price": "0",
+      "priceCurrency": "EUR"
+    }
+  }
+  </script>
+
+</BaseLayout>
