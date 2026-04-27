@@ -2,6 +2,7 @@
 import BaseHead from "../components/BaseHead.astro";
 import Navigation from "../components/global/Navigation.astro";
 import Footer from "../components/global/Footer.astro";
+import Mascot from "../components/global/Mascot.astro";
 import Analytics from "@vercel/analytics/astro";
 import SpeedInsights from "@vercel/speed-insights/astro";
 
@@ -56,6 +57,7 @@ const {
     <Navigation />
     <main class="grow"><slot /></main>
     <Footer />
+    <Mascot />
     <Analytics />
     <SpeedInsights />
     <!-- WebMCP: expone acciones del sitio a agentes IA via navigator.modelContext -->

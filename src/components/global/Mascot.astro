@@ -1,0 +1,560 @@
+---
+// Asistente flotante — esquina inferior derecha
+// Click → abre popup de chat
+---
+
+<!-- ══ WIDGET FLOTANTE ══ -->
+<div id="mascot-widget" aria-label="Abrir asistente" role="button" tabindex="0">
+
+  <!-- Burbuja de llamada -->
+  <div id="mascot-bubble">¿Te ayudo? 👋</div>
+
+  <!-- Robot SVG -->
+  <svg id="mascot-svg" width="68" height="90" viewBox="0 0 68 90" xmlns="http://www.w3.org/2000/svg">
+
+    <!-- Antena -->
+    <line x1="34" y1="4" x2="34" y2="14" stroke="#64748b" stroke-width="2.5" stroke-linecap="round"/>
+    <circle cx="34" cy="3" r="3" fill="#3b82f6"/>
+
+    <!-- Cabeza robot -->
+    <rect x="12" y="14" width="44" height="34" rx="10" fill="#1e293b"/>
+    <rect x="15" y="17" width="38" height="28" rx="7" fill="#0f172a"/>
+
+    <!-- Pantallita cara — modo ACTIVO (escribe) -->
+    <g id="face-active">
+      <!-- Ojos -->
+      <rect x="18" y="23" width="12" height="8" rx="3" fill="#3b82f6" opacity="0.9"/>
+      <rect x="38" y="23" width="12" height="8" rx="3" fill="#3b82f6" opacity="0.9"/>
+      <!-- Pupila izq -->
+      <rect class="pupil-l" x="21" y="25" width="5" height="4" rx="1.5" fill="white"/>
+      <!-- Pupila der -->
+      <rect class="pupil-r" x="41" y="25" width="5" height="4" rx="1.5" fill="white"/>
+      <!-- Boca / barra de carga -->
+      <rect x="20" y="35" width="28" height="4" rx="2" fill="#1e3a5f"/>
+      <rect class="loading-bar" x="20" y="35" width="10" height="4" rx="2" fill="#22c55e"/>
+    </g>
+
+    <!-- Pantallita cara — modo DURMIENDO -->
+    <g id="face-sleep" opacity="0">
+      <!-- Ojos cerrados -->
+      <path d="M18,27 Q24,23 30,27" stroke="#3b82f6" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <path d="M38,27 Q44,23 50,27" stroke="#3b82f6" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <!-- Boca dormido -->
+      <path d="M24,37 Q34,34 44,37" stroke="#334155" stroke-width="2" fill="none" stroke-linecap="round"/>
+    </g>
+
+    <!-- Cuello -->
+    <rect x="30" y="48" width="8" height="7" fill="#334155"/>
+
+    <!-- Cuerpo -->
+    <rect x="10" y="55" width="48" height="28" rx="8" fill="#1e40af"/>
+    <!-- Detalle pecho -->
+    <rect x="22" y="62" width="24" height="4" rx="2" fill="#1d4ed8" opacity="0.6"/>
+    <circle cx="34" cy="72" r="4" fill="#2563eb"/>
+    <circle cx="34" cy="72" r="2.5" fill="#3b82f6"/>
+
+    <!-- Brazo izquierdo -->
+    <g id="arm-l">
+      <rect x="2" y="57" width="10" height="22" rx="5" fill="#1e40af"/>
+      <rect x="1" y="76" width="12" height="8" rx="4" fill="#1e293b"/>
+    </g>
+    <!-- Brazo derecho -->
+    <g id="arm-r">
+      <rect x="56" y="57" width="10" height="22" rx="5" fill="#1e40af"/>
+      <rect x="55" y="76" width="12" height="8" rx="4" fill="#1e293b"/>
+    </g>
+
+    <!-- Piernas -->
+    <rect x="18" y="81" width="13" height="10" rx="4" fill="#1e293b"/>
+    <rect x="37" y="81" width="13" height="10" rx="4" fill="#1e293b"/>
+
+    <!-- ZZZ durmiendo -->
+    <g id="zzz" opacity="0">
+      <text x="49" y="20" font-size="9"  font-weight="bold" fill="#a78bfa" font-family="system-ui,sans-serif">z</text>
+      <text x="56" y="12" font-size="12" font-weight="bold" fill="#7c3aed" font-family="system-ui,sans-serif">z</text>
+      <text x="64" y="3"  font-size="15" font-weight="bold" fill="#5b21b6" font-family="system-ui,sans-serif">Z</text>
+    </g>
+
+  </svg>
+</div>
+
+
+<!-- ══ POPUP CHAT ══ -->
+<div id="mascot-popup" aria-hidden="true">
+  <div id="popup-header">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <div id="popup-avatar">🤖</div>
+      <div>
+        <div style="font-weight:700;font-size:0.9rem;color:white;">Asistente AI Security</div>
+        <div style="font-size:0.72rem;color:rgba(255,255,255,0.6);">Responde al instante</div>
+      </div>
+    </div>
+    <button id="popup-close" aria-label="Cerrar">✕</button>
+  </div>
+
+  <div id="popup-messages">
+    <div class="msg bot">
+      <span>¡Hola! 👋 Soy el asistente de <strong>AI Security</strong>.<br>¿En qué puedo ayudarte hoy?</span>
+    </div>
+  </div>
+
+  <div id="popup-quickbtns">
+    <button class="qbtn" data-q="servicios-ia">🤖 Servicios de IA</button>
+    <button class="qbtn" data-q="soporte">🖥️ Soporte técnico</button>
+    <button class="qbtn" data-q="wazuh">🛡️ Wazuh / Seguridad</button>
+    <button class="qbtn" data-q="precio">💰 Precios</button>
+    <button class="qbtn" data-q="humano">👤 Hablar con un humano</button>
+  </div>
+
+  <div id="popup-input-row">
+    <input id="popup-input" type="text" placeholder="Escribe tu pregunta..." autocomplete="off" maxlength="200"/>
+    <button id="popup-send">→</button>
+  </div>
+</div>
+
+
+<style is:global>
+  /* ══ WIDGET ══ */
+  #mascot-widget {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 999;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    outline: none;
+  }
+
+  #mascot-bubble {
+    background: #1e293b;
+    color: white;
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 20px;
+    white-space: nowrap;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    animation: bubble-float 2.5s ease-in-out infinite;
+    border: 1px solid rgba(59,130,246,0.4);
+  }
+  @keyframes bubble-float {
+    0%, 100% { transform: translateY(0);   }
+    50%       { transform: translateY(-4px); }
+  }
+
+  #mascot-svg {
+    filter: drop-shadow(0 4px 14px rgba(37,99,235,0.5));
+    transition: transform 0.2s ease;
+  }
+  #mascot-widget:hover #mascot-svg {
+    transform: scale(1.08) translateY(-3px);
+  }
+
+  /* Brazos tecleando */
+  #arm-l {
+    animation: tap-l 0.35s ease-in-out infinite alternate;
+    transform-origin: 7px 60px;
+  }
+  #arm-r {
+    animation: tap-r 0.35s ease-in-out infinite alternate;
+    transform-origin: 61px 60px;
+  }
+  @keyframes tap-l {
+    from { transform: rotate(-10deg) translateY(0);   }
+    to   { transform: rotate(-4deg)  translateY(-3px); }
+  }
+  @keyframes tap-r {
+    from { transform: rotate(4deg)   translateY(-3px); }
+    to   { transform: rotate(10deg)  translateY(0);   }
+  }
+
+  /* Barra de carga */
+  .loading-bar {
+    animation: load 1.8s ease-in-out infinite;
+  }
+  @keyframes load {
+    0%   { width: 4px;  }
+    50%  { width: 24px; }
+    100% { width: 4px;  }
+  }
+
+  /* Pupilas mirando */
+  .pupil-l { animation: look 3s ease-in-out infinite; }
+  .pupil-r { animation: look 3s ease-in-out infinite; }
+  @keyframes look {
+    0%,100% { transform: translateX(0);  }
+    30%      { transform: translateX(2px); }
+    70%      { transform: translateX(-2px); }
+  }
+
+  /* ZZZ */
+  @keyframes zzz-float {
+    0%   { opacity: 0; transform: translate(0,6px);   }
+    25%  { opacity: 1; }
+    75%  { opacity: 1; }
+    100% { opacity: 0; transform: translate(0,-14px); }
+  }
+
+  /* ══ ESTADO DURMIENDO ══ */
+  #mascot-widget.sleeping #face-active  { opacity: 0; }
+  #mascot-widget.sleeping #face-sleep   { opacity: 1; }
+  #mascot-widget.sleeping #arm-l        { animation: none; transform: rotate(12deg); }
+  #mascot-widget.sleeping #arm-r        { animation: none; transform: rotate(-12deg); }
+  #mascot-widget.sleeping #mascot-svg   { animation: sway 4s ease-in-out infinite; }
+  #mascot-widget.sleeping #zzz          { opacity: 1; animation: zzz-float 2s ease-in-out infinite; }
+  #mascot-widget.sleeping #mascot-bubble { display: none; }
+
+  @keyframes sway {
+    0%,100% { transform: rotate(0deg);     }
+    35%      { transform: rotate(-2.5deg); }
+    65%      { transform: rotate(2.5deg);  }
+  }
+
+  /* ══ POPUP ══ */
+  #mascot-popup {
+    position: fixed;
+    bottom: 7.5rem;
+    right: 1.5rem;
+    width: 380px;
+    min-height: 520px;
+    background: #0f172a;
+    border: 1px solid rgba(59,130,246,0.25);
+    border-radius: 18px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    z-index: 998;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+  #mascot-popup.open {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: all;
+  }
+
+  #popup-header {
+    background: linear-gradient(135deg, #1e3a5f, #1d4ed8);
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  #popup-avatar {
+    width: 36px;
+    height: 36px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+  }
+  #popup-close {
+    background: rgba(255,255,255,0.12);
+    border: none;
+    color: white;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+  }
+  #popup-close:hover { background: rgba(255,255,255,0.25); }
+
+  #popup-messages {
+    flex: 1;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-height: 320px;
+    max-height: 400px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #334155 transparent;
+  }
+
+  /* ── Fila de mensaje ── */
+  .msg {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    max-width: 88%;
+  }
+  /* Avatar bot */
+  .msg.bot::before {
+    content: '🤖';
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #1e3a5f;
+    border-radius: 50%;
+    border: 1px solid rgba(59,130,246,0.3);
+  }
+  .msg span {
+    font-size: 0.875rem;
+    line-height: 1.6;
+    padding: 10px 14px;
+  }
+  /* BOT — gris oscuro, burbuja izquierda */
+  .msg.bot span {
+    background: #1e293b;
+    color: rgba(255,255,255,0.92);
+    border-radius: 4px 16px 16px 16px;
+    border: 1px solid rgba(59,130,246,0.2);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  }
+  /* USUARIO — azul vivo, burbuja derecha */
+  .msg.user {
+    align-self: flex-end;
+    flex-direction: row-reverse;
+    margin-left: auto;
+  }
+  .msg.user span {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    color: white;
+    border-radius: 16px 4px 16px 16px;
+    font-weight: 500;
+    box-shadow: 0 2px 10px rgba(37,99,235,0.4);
+  }
+  /* Avatar usuario */
+  .msg.user::before {
+    content: '👤';
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #1d4ed8;
+    border-radius: 50%;
+  }
+  /* Typing */
+  .msg.typing { max-width: 88%; }
+  .msg.typing span {
+    background: #1e293b;
+    color: rgba(255,255,255,0.45);
+    font-style: italic;
+    border-radius: 4px 16px 16px 16px;
+    border: 1px solid rgba(255,255,255,0.07);
+    padding: 10px 14px;
+    animation: pulse-typing 1.2s ease-in-out infinite;
+  }
+  @keyframes pulse-typing {
+    0%, 100% { opacity: 0.45; }
+    50%       { opacity: 0.8; }
+  }
+
+  #popup-quickbtns {
+    padding: 0 12px 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .qbtn {
+    font-size: 0.8rem;
+    padding: 6px 12px;
+    background: rgba(37,99,235,0.15);
+    border: 1px solid rgba(59,130,246,0.3);
+    color: rgba(255,255,255,0.8);
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+    white-space: nowrap;
+  }
+  .qbtn:hover {
+    background: rgba(37,99,235,0.35);
+    border-color: #3b82f6;
+    color: white;
+  }
+
+  #popup-input-row {
+    display: flex;
+    gap: 8px;
+    padding: 10px 14px 14px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  #popup-input {
+    flex: 1;
+    background: #1e293b;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 0.875rem;
+    color: white;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  #popup-input::placeholder { color: rgba(255,255,255,0.3); }
+  #popup-input:focus { border-color: #3b82f6; }
+  #popup-send {
+    background: #2563eb;
+    border: none;
+    color: white;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+    flex-shrink: 0;
+  }
+  #popup-send:hover { background: #1d4ed8; }
+
+  @media (max-width: 450px) {
+    #mascot-popup { width: calc(100vw - 2rem); right: 1rem; }
+  }
+</style>
+
+<script>
+  const widget   = document.getElementById('mascot-widget')!;
+  const popup    = document.getElementById('mascot-popup')!;
+  const closeBtn = document.getElementById('popup-close')!;
+  const messages = document.getElementById('popup-messages')!;
+  const input    = document.getElementById('popup-input') as HTMLInputElement;
+  const sendBtn  = document.getElementById('popup-send')!;
+  const quickBtns = document.querySelectorAll<HTMLButtonElement>('.qbtn');
+
+  // ── Animación dormir ──
+  let sleepTimer = setTimeout(() => sleep(), 10000);
+  function sleep() {
+    widget.classList.add('sleeping');
+    sleepTimer = setTimeout(wake, 6000);
+  }
+  function wake() {
+    widget.classList.remove('sleeping');
+    sleepTimer = setTimeout(sleep, 10000);
+  }
+  function resetSleep() {
+    clearTimeout(sleepTimer);
+    widget.classList.remove('sleeping');
+    sleepTimer = setTimeout(sleep, 10000);
+  }
+
+  // ── Abrir / cerrar popup ──
+  widget.addEventListener('click', () => {
+    popup.classList.toggle('open');
+    popup.setAttribute('aria-hidden', popup.classList.contains('open') ? 'false' : 'true');
+    resetSleep();
+  });
+  widget.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') widget.click(); });
+  closeBtn.addEventListener('click', e => {
+    e.stopPropagation();
+    popup.classList.remove('open');
+  });
+
+  function addMsg(text: string, type = 'bot', link: string | null = null, linkText: string | null = null) {
+    const div = document.createElement('div');
+    div.className = `msg ${type}`;
+    let html = `<span>${text}`;
+    if (link) html += `<br><a href="${link}" style="color:#60a5fa;text-decoration:underline;font-weight:600;">${linkText}</a>`;
+    html += '</span>';
+    div.innerHTML = html;
+    messages.appendChild(div);
+    messages.scrollTop = messages.scrollHeight;
+  }
+
+  // ── Transcripción y estado ──
+  const transcript: { role: string; text: string }[] = [];
+  const quickBtnsEl = document.getElementById('popup-quickbtns')!;
+  let conversationStarted = false;
+
+  function hideQuickBtns() {
+    if (!conversationStarted) {
+      conversationStarted = true;
+      quickBtnsEl.style.display = 'none';
+    }
+  }
+
+  // ── Llamar a DeepSeek vía /api/chat ──
+  async function botReplyAI(userText: string) {
+    const typing = document.createElement('div');
+    typing.className = 'msg typing';
+    typing.innerHTML = '<span>escribiendo...</span>';
+    messages.appendChild(typing);
+    messages.scrollTop = messages.scrollHeight;
+
+    try {
+      const res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: userText }),
+      });
+      const data = await res.json();
+      const reply: string = data.reply ?? 'Lo siento, no puedo responder ahora. Contáctanos en /contacto';
+      typing.remove();
+      transcript.push({ role: 'bot', text: reply });
+      addMsg(reply, 'bot');
+    } catch {
+      typing.remove();
+      const fallback = 'Error de conexión. Puedes contactarnos en info@aisecurity.es';
+      transcript.push({ role: 'bot', text: fallback });
+      addMsg(fallback, 'bot');
+    }
+    messages.scrollTop = messages.scrollHeight;
+  }
+
+  // Botones rápidos — mandan el texto del botón como pregunta a DeepSeek
+  const quickLabels: Record<string, string> = {
+    'servicios-ia': '¿Qué servicios de IA ofrecéis?',
+    'soporte':      '¿Cómo funciona el soporte técnico?',
+    'wazuh':        '¿Qué es Wazuh y para qué sirve?',
+    'precio':       '¿Cuáles son vuestros precios?',
+    'humano':       'Quiero hablar con una persona',
+  };
+
+  quickBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const q = btn.getAttribute('data-q') ?? '';
+      const label = quickLabels[q] ?? btn.textContent?.trim() ?? '';
+      transcript.push({ role: 'user', text: label });
+      addMsg(label, 'user');
+      hideQuickBtns();
+      botReplyAI(label);
+    });
+  });
+
+  // Input libre
+  function sendInput() {
+    const val = input.value.trim();
+    if (!val) return;
+    transcript.push({ role: 'user', text: val });
+    addMsg(val, 'user');
+    hideQuickBtns();
+    input.value = '';
+    botReplyAI(val);
+  }
+
+  sendBtn.addEventListener('click', sendInput);
+  input.addEventListener('keydown', (e: KeyboardEvent) => { if (e.key === 'Enter') sendInput(); });
+
+  // ── Enviar transcripción cuando abandona la página ──
+  function sendTranscript() {
+    if (transcript.filter(m => m.role === 'user').length === 0) return;
+    const payload = JSON.stringify({ messages: transcript, page: window.location.pathname });
+    navigator.sendBeacon('/api/chat-transcript', new Blob([payload], { type: 'application/json' }));
+  }
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'hidden') sendTranscript();
+  });
+</script>
