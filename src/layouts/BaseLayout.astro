@@ -60,6 +60,79 @@ const {
     <Mascot />
     <Analytics />
     <SpeedInsights />
+    <!-- Tracking global de clics para GA4 -->
+    <script is:inline>
+    (function () {
+      if (typeof gtag !== 'function') return;
+
+      // Categorías por destino
+      function getCategory(href) {
+        if (!href) return 'other';
+        if (href.includes('/reunion'))        return 'lead';
+        if (href.includes('/contacto'))       return 'lead';
+        if (href.includes('/abrir-ticket'))   return 'lead';
+        if (href.includes('mailto:'))         return 'email';
+        if (href.includes('tel:'))            return 'phone';
+        if (href.includes('/wazuh'))          return 'wazuh';
+        if (href.includes('/curso-wazuh'))    return 'curso';
+        if (href.includes('/soporte-tecnico'))return 'soporte';
+        if (href.includes('/servicios/'))     return 'servicio';
+        if (href.includes('/blog'))           return 'blog';
+        if (href.includes('/precio') || href.includes('stripe.com') || href.includes('buy.stripe')) return 'pago';
+        if (href.startsWith('http') && !href.includes('aisecurity.es')) return 'externo';
+        return 'navegacion';
+      }
+
+      document.addEventListener('click', function (e) {
+        var el = e.target.closest('a, button');
+        if (!el) return;
+
+        var tag  = el.tagName.toLowerCase();
+        var href = el.getAttribute('href') || el.closest('a')?.getAttribute('href') || '';
+        var label = (el.textContent || el.getAttribute('aria-label') || '').trim().slice(0, 80);
+        var category = getCategory(href);
+        var page = window.location.pathname;
+
+        if (tag === 'a' && href) {
+          gtag('event', 'click_link', {
+            event_category: category,
+            event_label: label,
+            link_url: href,
+            page_path: page,
+          });
+          // Marcar como conversión si es lead
+          if (category === 'lead' || category === 'email' || category === 'phone') {
+            gtag('event', 'conversion_click', {
+              event_category: category,
+              event_label: label,
+              page_path: page,
+            });
+          }
+        } else if (tag === 'button') {
+          gtag('event', 'click_button', {
+            event_category: category || 'ui',
+            event_label: label,
+            page_path: page,
+          });
+        }
+      }, true);
+
+      // Tracking de envío de formularios
+      document.addEventListener('submit', function (e) {
+        var form = e.target;
+        var id   = form.id || form.getAttribute('name') || 'form';
+        gtag('event', 'form_submit', {
+          event_category: 'lead',
+          event_label: id,
+          page_path: window.location.pathname,
+        });
+        gtag('event', 'conversion_form', {
+          event_category: 'lead',
+          event_label: id,
+        });
+      }, true);
+    })();
+    </script>
     <!-- WebMCP: expone acciones del sitio a agentes IA via navigator.modelContext -->
     <script is:inline>
       (function () {
