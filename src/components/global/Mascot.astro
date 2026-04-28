@@ -462,11 +462,24 @@
     popup.classList.remove('open');
   });
 
+  // Convierte menciones de rutas (/contacto, /wazuh…) en <a> clicables
+  function linkify(text: string): string {
+    return text.replace(
+      /\/([\w\-\/]+)/g,
+      (match, path) => {
+        const url = '/' + path.replace(/[.,;:!?)]+$/, '');
+        const trailing = match.slice(url.length);
+        return `<a href="${url}" style="color:#60a5fa;text-decoration:underline;font-weight:600;" target="_self">${url}</a>${trailing}`;
+      }
+    );
+  }
+
   function addMsg(text: string, type = 'bot', link: string | null = null, linkText: string | null = null) {
     const div = document.createElement('div');
     div.className = `msg ${type}`;
-    let html = `<span>${text}`;
-    if (link) html += `<br><a href="${link}" style="color:#60a5fa;text-decoration:underline;font-weight:600;">${linkText}</a>`;
+    const safeText = type === 'bot' ? linkify(text) : text;
+    let html = `<span>${safeText}`;
+    if (link) html += `<br><a href="${link}" style="color:#60a5fa;text-decoration:underline;font-weight:600;" target="_self">${linkText}</a>`;
     html += '</span>';
     div.innerHTML = html;
     messages.appendChild(div);
