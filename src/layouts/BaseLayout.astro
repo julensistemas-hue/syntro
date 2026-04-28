@@ -60,15 +60,22 @@ const {
     <Mascot />
     <Analytics />
     <SpeedInsights />
+    <!-- GA4 directo (sin depender de GTM para eventos custom) -->
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-QZ1G3QDQCC"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-QZ1G3QDQCC', { send_page_view: false });
+    </script>
     <!-- Tracking global de clics para GA4 -->
     <script is:inline>
     (function () {
       window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
 
       function sendEvent(name, params) {
-        window.dataLayer.push({ event: name, ...params });
-        // También intentar gtag si ya está disponible
-        if (typeof gtag === 'function') gtag('event', name, params);
+        gtag('event', name, params);
       }
 
       function getCategory(href) {
