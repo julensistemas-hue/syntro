@@ -63,22 +63,27 @@ const {
     <!-- Tracking global de clics para GA4 -->
     <script is:inline>
     (function () {
-      if (typeof gtag !== 'function') return;
+      window.dataLayer = window.dataLayer || [];
 
-      // Categorías por destino
+      function sendEvent(name, params) {
+        window.dataLayer.push({ event: name, ...params });
+        // También intentar gtag si ya está disponible
+        if (typeof gtag === 'function') gtag('event', name, params);
+      }
+
       function getCategory(href) {
-        if (!href) return 'other';
-        if (href.includes('/reunion'))        return 'lead';
-        if (href.includes('/contacto'))       return 'lead';
-        if (href.includes('/abrir-ticket'))   return 'lead';
-        if (href.includes('mailto:'))         return 'email';
-        if (href.includes('tel:'))            return 'phone';
-        if (href.includes('/wazuh'))          return 'wazuh';
-        if (href.includes('/curso-wazuh'))    return 'curso';
-        if (href.includes('/soporte-tecnico'))return 'soporte';
-        if (href.includes('/servicios/'))     return 'servicio';
-        if (href.includes('/blog'))           return 'blog';
-        if (href.includes('/precio') || href.includes('stripe.com') || href.includes('buy.stripe')) return 'pago';
+        if (!href) return 'ui';
+        if (href.includes('/reunion'))         return 'lead';
+        if (href.includes('/contacto'))        return 'lead';
+        if (href.includes('/abrir-ticket'))    return 'lead';
+        if (href.includes('mailto:'))          return 'email';
+        if (href.includes('tel:'))             return 'phone';
+        if (href.includes('/curso-wazuh'))     return 'curso';
+        if (href.includes('/wazuh'))           return 'wazuh';
+        if (href.includes('/soporte-tecnico')) return 'soporte';
+        if (href.includes('/servicios/'))      return 'servicio';
+        if (href.includes('/blog'))            return 'blog';
+        if (href.includes('stripe.com') || href.includes('buy.stripe')) return 'pago';
         if (href.startsWith('http') && !href.includes('aisecurity.es')) return 'externo';
         return 'navegacion';
       }
@@ -87,46 +92,44 @@ const {
         var el = e.target.closest('a, button');
         if (!el) return;
 
-        var tag  = el.tagName.toLowerCase();
-        var href = el.getAttribute('href') || el.closest('a')?.getAttribute('href') || '';
-        var label = (el.textContent || el.getAttribute('aria-label') || '').trim().slice(0, 80);
+        var tag      = el.tagName.toLowerCase();
+        var href     = el.getAttribute('href') || '';
+        var label    = (el.textContent || el.getAttribute('aria-label') || '').trim().replace(/\s+/g, ' ').slice(0, 100);
         var category = getCategory(href);
-        var page = window.location.pathname;
+        var page     = window.location.pathname;
 
         if (tag === 'a' && href) {
-          gtag('event', 'click_link', {
+          sendEvent('click_link', {
             event_category: category,
             event_label: label,
             link_url: href,
             page_path: page,
           });
-          // Marcar como conversión si es lead
           if (category === 'lead' || category === 'email' || category === 'phone') {
-            gtag('event', 'conversion_click', {
+            sendEvent('conversion_click', {
               event_category: category,
               event_label: label,
               page_path: page,
             });
           }
         } else if (tag === 'button') {
-          gtag('event', 'click_button', {
-            event_category: category || 'ui',
+          sendEvent('click_button', {
+            event_category: category,
             event_label: label,
             page_path: page,
           });
         }
       }, true);
 
-      // Tracking de envío de formularios
       document.addEventListener('submit', function (e) {
         var form = e.target;
-        var id   = form.id || form.getAttribute('name') || 'form';
-        gtag('event', 'form_submit', {
+        var id   = form.id || form.getAttribute('name') || form.action || 'form';
+        sendEvent('form_submit', {
           event_category: 'lead',
           event_label: id,
           page_path: window.location.pathname,
         });
-        gtag('event', 'conversion_form', {
+        sendEvent('conversion_form', {
           event_category: 'lead',
           event_label: id,
         });
