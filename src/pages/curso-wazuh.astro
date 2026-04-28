@@ -1,8 +1,8 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-const title = "Curso Wazuh en Español 2026 | SIEM, XDR y ENS desde Cero | 50€";
-const description = "Aprende Wazuh desde cero en español. Curso práctico 2026: instalación completa, configuración de agentes, reglas personalizadas, cumplimiento ENS, integraciones con VirusTotal y Microsoft 365. Acceso permanente + actualizaciones mensuales. 50€ pago único.";
+const title = "Curso Wazuh en Español | SIEM y XDR desde Cero hasta ENS | 50€";
+const description = "Curso Wazuh en español: aprende a instalar, configurar y administrar Wazuh SIEM/XDR desde cero. Cumplimiento ENS, detección de amenazas, agentes Windows/Linux. Acceso permanente + actualizaciones. 50€ pago único. +80 alumnos.";
 const canonical = "https://aisecurity.es/curso-wazuh";
 
 const courseSchema = {
@@ -182,21 +182,40 @@ const breadcrumbSchema = {
                 <p class="text-gray-300 text-sm mt-1">Acceso inmediato tras el pago</p>
               </div>
 
+              <!-- Social proof mini -->
+              <div class="mb-4 flex items-center justify-center gap-3 text-sm text-gray-300">
+                <div class="flex -space-x-2">
+                  <div class="w-7 h-7 rounded-full bg-purple-500 border-2 border-gray-800 flex items-center justify-center text-white text-xs font-bold">J</div>
+                  <div class="w-7 h-7 rounded-full bg-blue-500 border-2 border-gray-800 flex items-center justify-center text-white text-xs font-bold">M</div>
+                  <div class="w-7 h-7 rounded-full bg-green-500 border-2 border-gray-800 flex items-center justify-center text-white text-xs font-bold">R</div>
+                  <div class="w-7 h-7 rounded-full bg-yellow-500 border-2 border-gray-800 flex items-center justify-center text-white text-xs font-bold">A</div>
+                </div>
+                <span>+80 alumnos ya dentro</span>
+              </div>
+
               <!-- CTA Buttons -->
               <div class="flex flex-col gap-3">
                 <a
                   style="color: white;"
                   href="/aula/registro"
                   class="inline-flex items-center justify-center px-6 py-4 text-base font-bold bg-gradient-to-br from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 rounded-xl text-white shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5">
-                  Crear cuenta y empezar →
+                  Acceder al curso por 50€ →
+                </a>
+                <a
+                  style="color: white;"
+                  href="#temario"
+                  class="inline-flex items-center justify-center px-6 py-3 text-sm font-semibold bg-transparent border-2 border-white/30 hover:border-white/50 rounded-xl text-white transition-all duration-200">
+                  Ver temario completo gratis
                 </a>
                 <a
                   style="color: white;"
                   href="/aula/login"
-                  class="inline-flex items-center justify-center px-6 py-3 text-sm font-semibold bg-transparent border-2 border-white/30 hover:border-white/50 rounded-xl text-white transition-all duration-200">
+                  class="inline-flex items-center justify-center px-4 py-2 text-xs text-gray-400 hover:text-white transition-colors duration-200">
                   Ya tengo cuenta - Iniciar sesión
                 </a>
               </div>
+              <!-- Guarantee -->
+              <p class="text-center text-gray-400 text-xs mt-4">🔒 Pago seguro · Acceso inmediato · Sin suscripción</p>
             </div>
           </div>
         </div>
@@ -417,7 +436,7 @@ const breadcrumbSchema = {
   </section>
 
   <!-- Course Content Section -->
-  <section class="py-20 relative overflow-hidden">
+  <section id="temario" class="py-20 relative overflow-hidden">
     <!-- Background Image -->
     <div class="absolute inset-0">
       <img src="/images/3409297.jpg" alt="Background" class="w-full h-full object-cover" />
@@ -815,7 +834,7 @@ const breadcrumbSchema = {
             href="/aula/registro"
             class="block w-full px-8 py-4 text-lg font-semibold bg-gradient-to-br from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5 text-center"
             style="color: white;">
-            Crear cuenta y empezar →
+            Acceder al curso por 50€ →
           </a>
           <a
             href="/aula/login"
@@ -824,6 +843,7 @@ const breadcrumbSchema = {
             Ya tengo cuenta - Iniciar sesión
           </a>
         </div>
+        <p class="text-white/60 text-xs mt-4">🔒 Pago seguro · Acceso inmediato · Sin suscripción mensual</p>
       </div>
 
       <!-- Contact info -->
