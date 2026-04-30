@@ -65,6 +65,7 @@ async function main() {
   const args = process.argv.slice(2);
   const doAll = args.includes('--all');
   const urlArg = args.includes('--url') ? args[args.indexOf('--url') + 1] : null;
+  const fromEnv = args.includes('--from-env'); // modo GitHub Actions: lee INDEXING_URLS
 
   let credentials;
   if (process.env.GOOGLE_CREDENTIALS_JSON) {
@@ -82,7 +83,13 @@ async function main() {
   // Determinar qué URLs solicitar
   let urlsToRequest = [];
 
-  if (urlArg) {
+  if (fromEnv) {
+    // Modo GitHub Actions: URLs separadas por comas en INDEXING_URLS
+    const envUrls = process.env.INDEXING_URLS || '';
+    if (!envUrls) { console.log('ℹ️  INDEXING_URLS vacío, nada que indexar.'); return; }
+    urlsToRequest = envUrls.split(',').map(u => u.trim()).filter(Boolean)
+      .map(u => u.startsWith('http') ? u : BASE_URL + u);
+  } else if (urlArg) {
     // URL específica por argumento
     urlsToRequest = [urlArg.startsWith('http') ? urlArg : BASE_URL + urlArg];
   } else if (doAll) {

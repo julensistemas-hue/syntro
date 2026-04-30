@@ -1,0 +1,97 @@
+name: Google Indexing — Notificar páginas modificadas
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'src/pages/**/*.astro'   # solo cuando cambia una página pública
+
+jobs:
+  notify-indexing:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2   # necesario para comparar con el commit anterior
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Instalar dependencias
+        run: npm install googleapis --no-save
+
+      - name: Detectar páginas cambiadas y convertir a URLs
+        id: detect
+        run: |
+          BASE_URL="https://aisecurity.es"
+
+          # Archivos .astro en src/pages/ que cambiaron en este push
+          CHANGED=$(git diff --name-only HEAD~1 HEAD -- 'src/pages/**/*.astro' 2>/dev/null || \
+                    git diff --name-only HEAD^ HEAD -- 'src/pages/**/*.astro' 2>/dev/null || \
+                    git show --name-only --format="" HEAD | grep '^src/pages/.*\.astro$')
+
+          echo "Archivos cambiados:"
+          echo "$CHANGED"
+
+          URLS=""
+          while IFS= read -r file; do
+            [ -z "$file" ] && continue
+
+            # Ignorar rutas que no son páginas públicas indexables
+            if echo "$file" | grep -qE '^src/pages/(api|aula|_)'; then
+              echo "  ⏭️  Ignorando (no indexable): $file"
+              continue
+            fi
+
+            # Convertir ruta de archivo a URL
+            # src/pages/index.astro       → /
+            # src/pages/blog/foo.astro    → /blog/foo
+            # src/pages/foo/index.astro   → /foo
+            slug=$(echo "$file" \
+              | sed 's|^src/pages/||' \
+              | sed 's|\.astro$||' \
+              | sed 's|/index$||' \
+              | sed 's|^index$||')
+
+            if [ -z "$slug" ]; then
+              url="${BASE_URL}/"
+            else
+              url="${BASE_URL}/${slug}"
+            fi
+
+            echo "  ✅ $file → $url"
+            URLS="$URLS,$url"
+          done <<< "$CHANGED"
+
+          # Quitar la coma inicial
+          URLS="${URLS#,}"
+
+          if [ -z "$URLS" ]; then
+            echo "no_urls=true" >> $GITHUB_OUTPUT
+            echo "ℹ️  No hay páginas públicas que necesiten indexación."
+          else
+            echo "urls=$URLS" >> $GITHUB_OUTPUT
+            echo "no_urls=false" >> $GITHUB_OUTPUT
+            echo "URLs a indexar: $URLS"
+          fi
+
+      - name: Solicitar indexación a Google
+        if: steps.detect.outputs.no_urls != 'true'
+        env:
+          GOOGLE_CREDENTIALS_JSON: ${{ secrets.GOOGLE_CREDENTIALS_JSON }}
+          INDEXING_URLS: ${{ steps.detect.outputs.urls }}
+        run: node scripts/seo-automation/9-request-indexing.js --from-env
+
+      - name: Resumen
+        if: steps.detect.outputs.no_urls != 'true'
+        run: |
+          echo "### Indexación solicitada ✅" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "URLs notificadas a Google:" >> $GITHUB_STEP_SUMMARY
+          IFS=',' read -ra URLS <<< "${{ steps.detect.outputs.urls }}"
+          for url in "${URLS[@]}"; do
+            echo "- $url" >> $GITHUB_STEP_SUMMARY
+          done
