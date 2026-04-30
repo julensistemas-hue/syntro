@@ -1,16 +1,25 @@
 import { google } from 'googleapis';
-import { readFileSync } from 'fs';
+import { readFileSync, existsSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
+
+// Cargar .env si existe (local), en GitHub Actions las vars vienen como process.env
 const envPath = join(__dirname, '../.env');
-const envContent = readFileSync(envPath, 'utf-8');
-const env = {};
-for (const line of envContent.split('\n')) {
-  const match = line.match(/^([^#=]+)=(.*)$/);
-  if (match) env[match[1].trim()] = match[2].trim().replace(/^"(.*)"$/, '$1');
+if (existsSync(envPath)) {
+  const envContent = readFileSync(envPath, 'utf-8');
+  for (const line of envContent.split('\n')) {
+    const match = line.match(/^([^#=]+)=(.*)$/);
+    if (match) {
+      const key = match[1].trim();
+      const val = match[2].trim().replace(/^"(.*)"$/, '$1');
+      if (!process.env[key]) process.env[key] = val;
+    }
+  }
 }
+
+const env = process.env;
 
 const PROPERTY_ID = '519124169';
 const PRIVATE_KEY = env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n');
