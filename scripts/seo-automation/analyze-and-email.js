@@ -16,6 +16,7 @@ const path = require('path');
 
 const GSC_FILE = path.join(__dirname, 'search-console-data.json');
 const GA4_FILE = path.join(__dirname, 'ga4-data.json');
+const CHANGES_FILE = path.join(__dirname, 'seo-changes.json');
 const RESEND_API_KEY = process.env.RESEND_API_KEY || 're_YG4icTFX_BY8beBj8wNbrpDYCBQn2xPci';
 const TO = process.env.REPORT_EMAIL || 'julen.sistemas@gmail.com';
 
@@ -33,6 +34,7 @@ function loadJSON(file, fallback = null) {
 // ─── load data ──────────────────────────────────────────────────────────────
 const gsc = loadJSON(GSC_FILE);
 const ga4 = loadJSON(GA4_FILE);
+const changesLog = loadJSON(CHANGES_FILE, { changes: [] });
 
 if (!gsc) { console.error('❌ No search-console-data.json'); process.exit(1); }
 
@@ -41,6 +43,50 @@ const periodStart = gsc.startDate || gsc.period?.startDate || '';
 const periodEnd = gsc.endDate || gsc.period?.endDate || '';
 const extraNotes = process.argv[2] && fs.existsSync(process.argv[2])
   ? fs.readFileSync(process.argv[2], 'utf-8') : '';
+
+// ─── change tracking ────────────────────────────────────────────────────────
+
+// Para cada cambio registrado, busca las métricas actuales de esa página en GSC
+function evaluateChanges() {
+  const results = [];
+  for (const change of changesLog.changes || []) {
+    // Buscar la página en topPages de GSC (normalizar URL)
+    const slug = change.page.startsWith('/') ? change.page : '/' + change.page;
+    const current = (gsc.topPages || []).find(p => {
+      const pageSlug = p.page.replace('https://aisecurity.es', '') || '/';
+      return pageSlug === slug || p.page === slug;
+    });
+
+    if (!current || !change.snapshot) {
+      results.push({ ...change, status: 'no-data', current: null });
+      continue;
+    }
+
+    const curClicks = current.clicks || 0;
+    const curCtr = current.ctr || 0;
+    const curPos = current.position || 0;
+    const snap = change.snapshot;
+
+    const clicksDelta = curClicks - (snap.clicks || 0);
+    const ctrDelta = curCtr - (snap.ctr || 0);
+    const posDelta = (snap.position || 0) - curPos; // positivo = mejoró posición
+
+    // Determinar si mejoró, empeoró o sin cambio relevante
+    let status = 'neutral';
+    if (ctrDelta > 0.005 || clicksDelta > 3 || posDelta > 0.5) status = 'improved';
+    else if (ctrDelta < -0.005 || clicksDelta < -5 || posDelta < -1) status = 'declined';
+
+    results.push({
+      ...change,
+      status,
+      current: { clicks: curClicks, ctr: curCtr, position: curPos },
+      delta: { clicks: clicksDelta, ctr: ctrDelta, position: posDelta }
+    });
+  }
+  return results;
+}
+
+const changeResults = evaluateChanges();
 
 // ─── analysis ───────────────────────────────────────────────────────────────
 
@@ -81,6 +127,56 @@ if (ga4) {
       }
     }
   }
+}
+
+// Change tracking HTML
+let changeTrackingHtml = '';
+if (changeResults.length > 0) {
+  const statusIcon = s => s === 'improved' ? '✅' : s === 'declined' ? '❌' : s === 'no-data' ? '⏳' : '➡️';
+  const statusColor = s => s === 'improved' ? '#0a7c42' : s === 'declined' ? '#c5221f' : '#666';
+  const statusLabel = s => s === 'improved' ? 'Mejoró' : s === 'declined' ? 'Empeoró' : s === 'no-data' ? 'Sin datos aún' : 'Sin cambio relevante';
+
+  const rows = changeResults.map(c => {
+    const icon = statusIcon(c.status);
+    const color = statusColor(c.status);
+    const label = statusLabel(c.status);
+    const snapInfo = c.snapshot ? `CTR ${(c.snapshot.ctr * 100).toFixed(1)}% · Pos ${c.snapshot.position?.toFixed(1)} · ${c.snapshot.clicks} clicks` : '—';
+    const curInfo = c.current ? `CTR ${(c.current.ctr * 100).toFixed(1)}% · Pos ${c.current.position?.toFixed(1)} · ${c.current.clicks} clicks` : '—';
+    const deltaInfo = c.delta ? [
+      c.delta.clicks !== 0 ? `${c.delta.clicks > 0 ? '+' : ''}${c.delta.clicks} clicks` : '',
+      c.delta.ctr !== 0 ? `CTR ${c.delta.ctr > 0 ? '+' : ''}${(c.delta.ctr * 100).toFixed(1)}pp` : '',
+      c.delta.position !== 0 ? `Pos ${c.delta.position > 0 ? '▲' : '▼'}${Math.abs(c.delta.position).toFixed(1)}` : '',
+    ].filter(Boolean).join(' · ') || '—' : '—';
+
+    return `
+    <tr style="border-bottom:1px solid #e8eaed">
+      <td style="padding:10px;font-size:12px;max-width:200px">
+        <div style="font-weight:600;color:#333">${c.page}</div>
+        <div style="color:#888;font-size:11px;margin-top:2px">${c.description}</div>
+        <div style="color:#aaa;font-size:10px;margin-top:2px">${c.date}</div>
+      </td>
+      <td style="padding:10px;font-size:11px;color:#666;text-align:center">${snapInfo}</td>
+      <td style="padding:10px;font-size:11px;text-align:center;color:#333">${curInfo}</td>
+      <td style="padding:10px;font-size:12px;text-align:center;font-weight:600;color:${color}">${deltaInfo || '—'}</td>
+      <td style="padding:10px;font-size:12px;text-align:center;color:${color}">${icon} ${label}</td>
+    </tr>`;
+  }).join('');
+
+  changeTrackingHtml = `
+  <div style="background:white;padding:20px 28px;border-left:4px solid #fbbc04;border-right:1px solid #e8eaed;margin-top:8px">
+    <h2 style="margin:0 0 6px;font-size:15px;color:#333">📋 Seguimiento de cambios anteriores</h2>
+    <p style="margin:0 0 14px;font-size:11px;color:#666">Cambios aplicados en iteraciones previas y su impacto en GSC desde entonces</p>
+    <table style="width:100%;border-collapse:collapse;font-size:12px">
+      <tr style="background:#f8f9fa">
+        <th style="padding:8px 10px;font-size:11px;font-weight:600;color:#555;text-align:left">Cambio</th>
+        <th style="padding:8px 10px;font-size:11px;font-weight:600;color:#555;text-align:center">Antes</th>
+        <th style="padding:8px 10px;font-size:11px;font-weight:600;color:#555;text-align:center">Ahora</th>
+        <th style="padding:8px 10px;font-size:11px;font-weight:600;color:#555;text-align:center">Δ</th>
+        <th style="padding:8px 10px;font-size:11px;font-weight:600;color:#555;text-align:center">Estado</th>
+      </tr>
+      <tbody>${rows}</tbody>
+    </table>
+  </div>`;
 }
 
 // Best engaged pages from GA4
@@ -224,6 +320,7 @@ const html = `<!DOCTYPE html>
     </div>
   </div>
 
+  ${changeTrackingHtml}
   ${crossHtml}
   ${engagedHtml}
 
@@ -280,6 +377,28 @@ const html = `<!DOCTYPE html>
 </div>
 </body>
 </html>`;
+
+// ─── update snapshots in seo-changes.json ───────────────────────────────────
+// Actualiza el snapshot de cada cambio con los datos actuales para la próxima iteración
+try {
+  let updated = false;
+  for (const result of changeResults) {
+    if (result.current && result.status !== 'no-data') {
+      const entry = changesLog.changes.find(c => c.id === result.id);
+      if (entry) {
+        entry.lastChecked = new Date().toISOString().split('T')[0];
+        entry.lastMetrics = result.current;
+        updated = true;
+      }
+    }
+  }
+  if (updated) {
+    fs.writeFileSync(CHANGES_FILE, JSON.stringify(changesLog, null, 2));
+    console.log('✅ seo-changes.json actualizado con métricas recientes');
+  }
+} catch (e) {
+  console.warn('⚠️ No se pudo actualizar seo-changes.json:', e.message);
+}
 
 // ─── send via Resend ─────────────────────────────────────────────────────────
 const subject = `📊 SEO+GA4 aisecurity.es — ${new Date().toLocaleDateString('es-ES')}`;

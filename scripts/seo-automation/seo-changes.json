@@ -1,0 +1,46 @@
+{
+  "changes": [
+    {
+      "id": "2026-04-30-01",
+      "date": "2026-04-30",
+      "type": "meta",
+      "page": "/blog/como-instalar-agente-wazuh-en-windows",
+      "description": "Title reescrito: 'Cómo Instalar el Agente Wazuh en Windows' → 'Instalar Agente Wazuh en Windows: Guía Completa 2026'. Description más accionable con '15 minutos'.",
+      "reason": "1.926 impresiones con CTR 1.5% — title genérico no diferenciaba ni incluía acción",
+      "snapshot": {
+        "clicks": 29,
+        "impressions": 1926,
+        "ctr": 0.015,
+        "position": 6.5
+      }
+    },
+    {
+      "id": "2026-04-30-02",
+      "date": "2026-04-30",
+      "type": "meta",
+      "page": "/blog/que-es-wazuh-para-que-sirve",
+      "description": "Title reescrito: 'Qué es Wazuh: SIEM Open Source...' → 'Qué es Wazuh y Para Qué Sirve: SIEM/XDR Open Source [2026]'. Description incluye keyword exacta 'qué es wazuh y para qué sirve'.",
+      "reason": "1.716 impresiones con CTR 1.0% — keyword exacta de búsqueda no estaba en el title",
+      "snapshot": {
+        "clicks": 17,
+        "impressions": 1716,
+        "ctr": 0.009,
+        "position": 6.2
+      }
+    },
+    {
+      "id": "2026-04-30-03",
+      "date": "2026-04-30",
+      "type": "content",
+      "page": "/curso-wazuh",
+      "description": "H1 cambiado a 'Curso Wazuh en Español: SIEM y XDR desde Cero hasta ENS'. Subtítulo incluye diferenciador 'único curso en español' y menciona ENS explícitamente.",
+      "reason": "Keyword 'curso wazuh' en posición 13 con 102 impresiones — H1 no incluía la keyword exacta ni ENS",
+      "snapshot": {
+        "clicks": 53,
+        "impressions": 597,
+        "ctr": 0.088,
+        "position": 9.1
+      }
+    }
+  ]
+}
