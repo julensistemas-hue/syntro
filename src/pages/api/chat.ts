@@ -107,9 +107,9 @@ Servicios de IA:
 - Todos los servicios de IA incluyen: análisis previo gratuito, desarrollo personalizado, formación y soporte
 
 Wazuh / Ciberseguridad:
-- Básico (hasta 20 servidores): 1,500-3,000€ pago único de implementación + 2 días formación + 30 días soporte post-implementación
-- Completo (hasta 50 servidores): 4,000-7,000€ pago único de implementación + 10 horas formación + dashboards ejecutivos + 90 días soporte
-- Soporte Continuo: 300€/mes (monitoreo 24/7, actualizaciones, parches, soporte prioritario, informes mensuales)
+- Básico (hasta 20 servidores): 999-1,499€ pago único de implementación + 2 días formación + 30 días soporte post-implementación
+- Completo (hasta 50 servidores): 1,999-3,999€ pago único de implementación + 10 horas formación + dashboards ejecutivos + 90 días soporte
+- Soporte Continuo: 200€/mes (monitoreo 24/7, actualizaciones, parches, soporte prioritario, informes mensuales)
 - Los precios varían según la complejidad de la infraestructura
 - Curso Wazuh: 50€
 

@@ -86,7 +86,7 @@
       <div id="popup-avatar">🤖</div>
       <div>
         <div style="font-weight:700;font-size:0.9rem;color:white;">Asistente AI Security</div>
-        <div style="font-size:0.72rem;color:rgba(255,255,255,0.6);">Responde al instante</div>
+        <div id="popup-subtitle" style="font-size:0.72rem;color:rgba(255,255,255,0.6);">Responde al instante</div>
       </div>
     </div>
     <button id="popup-close" aria-label="Cerrar">✕</button>
@@ -497,6 +497,35 @@
       quickBtnsEl.style.display = 'none';
     }
   }
+
+  // ── Contexto por página ──
+  const pageCtx: Record<string, { bubble: string; subtitle: string; greeting: string }> = {
+    '/wazuh':                     { bubble: '¿Dudas sobre Wazuh? 🛡️',        subtitle: 'Experto en Wazuh y ENS',          greeting: '¡Hola! 👋 Estás viendo nuestra solución <strong>Wazuh / ENS</strong>.<br>¿Te explico cómo funciona la implementación o el cumplimiento normativo?' },
+    '/curso-wazuh':               { bubble: '¿Te apuntas al curso? 🎓',        subtitle: 'Formación Wazuh intensiva',       greeting: '¡Hola! 👋 ¿Tienes alguna duda sobre el <strong>Curso Wazuh</strong>? Puedo explicarte el temario, precio o cómo inscribirte.' },
+    '/servicios/chatbot':         { bubble: '¿Quieres un chatbot así? 🤖',     subtitle: 'Demo Chatbot IA',                 greeting: '¡Hola! 👋 Acabas de ver nuestro <strong>Chatbot IA</strong> en acción.<br>¿Quieres saber cómo funcionaría en tu empresa?' },
+    '/servicios/gestor-documental':{ bubble: '¿Buscas info al instante? 📄',   subtitle: 'Demo Gestor Documental IA',      greeting: '¡Hola! 👋 ¿Te imaginas encontrar cualquier documento de tu empresa en segundos? Te cuento cómo funciona el <strong>Gestor Documental IA</strong>.' },
+    '/servicios/gestor-citas':    { bubble: '¿Automatizas tus citas? 📅',      subtitle: 'Demo Gestor de Citas IA',        greeting: '¡Hola! 👋 ¿Tienes dudas sobre cómo automatizar las <strong>citas y reservas</strong> de tu negocio? Pregúntame.' },
+    '/servicios/atencion-llamadas':{ bubble: '¿Atención 24/7 sin coste fijo? 📞', subtitle: 'Demo Atención de Llamadas IA', greeting: '¡Hola! 👋 ¿Quieres saber cómo funciona nuestra <strong>Recepcionista Virtual IA</strong> para tu empresa?' },
+    '/servicios/automatizacion':  { bubble: '¿Cuánto tiempo ahorrarías? ⚡',   subtitle: 'Demo Automatización de Procesos', greeting: '¡Hola! 👋 ¿Hay algún proceso repetitivo en tu empresa que quieras <strong>automatizar con IA</strong>? Cuéntame.' },
+    '/reunion':                   { bubble: '¿Alguna duda antes? 💬',           subtitle: 'Estamos aquí para ayudarte',     greeting: '¡Hola! 👋 ¿Tienes alguna duda antes de la <strong>reunión gratuita</strong>? Puedo resolver tus preguntas ahora mismo.' },
+    '/blog':                      { bubble: '¿Alguna pregunta técnica? 💡',     subtitle: 'Asistente técnico',              greeting: '¡Hola! 👋 ¿Alguna pregunta sobre los artículos del <strong>blog</strong> o sobre nuestros servicios?' },
+  };
+
+  function getPageCtx() {
+    const path = window.location.pathname.replace(/\/$/, '') || '/';
+    // Soporte técnico por poblaciones
+    if (path.startsWith('/soporte-tecnico/')) {
+      const town = path.split('/').pop()?.replace(/-/g, ' ') ?? '';
+      return { bubble: `¿Soporte IT en ${town}? 🖥️`, subtitle: `Soporte técnico en ${town}`, greeting: `¡Hola! 👋 ¿Necesitas <strong>soporte informático en ${town}</strong>? Cuéntame qué necesitas.` };
+    }
+    return pageCtx[path] ?? { bubble: '¿Te ayudo? 👋', subtitle: 'Responde al instante', greeting: '¡Hola! 👋 Soy el asistente de <strong>AI Security</strong>.<br>¿En qué puedo ayudarte hoy?' };
+  }
+
+  // Aplicar contexto al cargar
+  const ctx = getPageCtx();
+  document.getElementById('mascot-bubble')!.textContent = ctx.bubble;
+  document.getElementById('popup-subtitle')!.textContent = ctx.subtitle;
+  document.querySelector<HTMLElement>('#popup-messages .msg.bot span')!.innerHTML = ctx.greeting;
 
   // ── Llamar a DeepSeek vía /api/chat ──
   async function botReplyAI(userText: string) {
