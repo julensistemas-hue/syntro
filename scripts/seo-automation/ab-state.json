@@ -1,24 +1,24 @@
 {
   "currentVariations": {
     "ciberseguridad-basica-empleados-guia-completa": {
-      "titleIndex": 1,
-      "descIndex": 1
+      "titleIndex": 2,
+      "descIndex": 2
     },
     "detectar-phishing-gmail-guia-empleados": {
-      "titleIndex": 1,
-      "descIndex": 1
+      "titleIndex": 2,
+      "descIndex": 2
     },
     "detectar-phishing-outlook-microsoft-guia-empleados": {
-      "titleIndex": 1,
-      "descIndex": 1
+      "titleIndex": 2,
+      "descIndex": 2
     },
     "tu-contrasena-mayuscula-numeros-hackeable": {
-      "titleIndex": 1,
-      "descIndex": 1
+      "titleIndex": 2,
+      "descIndex": 2
     },
     "contrasenas-seguras-empleados-guia-completa": {
-      "titleIndex": 1,
-      "descIndex": 1
+      "titleIndex": 2,
+      "descIndex": 2
     }
   },
   "history": [
@@ -91,7 +91,77 @@
           "newDesc": "Curso de contraseñas seguras con test de evaluación. Forma a tus empleados en gestores de contraseñas, 2FA y buenas prácticas."
         }
       ]
+    },
+    {
+      "timestamp": "2026-05-01T10:19:49.491Z",
+      "rotations": [
+        {
+          "slug": "ciberseguridad-basica-empleados-guia-completa",
+          "from": {
+            "title": 1,
+            "desc": 1
+          },
+          "to": {
+            "title": 2,
+            "desc": 2
+          },
+          "newTitle": "Concienciación en Ciberseguridad: Guía para Empleados con Test",
+          "newDesc": "Plataforma de tests de seguridad para empleados. Mide el nivel de concienciación de tu equipo con evaluaciones de phishing, contraseñas y ciberseguridad."
+        },
+        {
+          "slug": "detectar-phishing-gmail-guia-empleados",
+          "from": {
+            "title": 1,
+            "desc": 1
+          },
+          "to": {
+            "title": 2,
+            "desc": 2
+          },
+          "newTitle": "Detectar Phishing en Gmail: Test de Concienciación para Empresas",
+          "newDesc": "Evaluación de phishing en Gmail para empresas. Mide cuántos empleados caerían en un ataque de phishing con nuestro test gratuito."
+        },
+        {
+          "slug": "detectar-phishing-outlook-microsoft-guia-empleados",
+          "from": {
+            "title": 1,
+            "desc": 1
+          },
+          "to": {
+            "title": 2,
+            "desc": 2
+          },
+          "newTitle": "Phishing en Microsoft 365: Test de Concienciación para Empresas",
+          "newDesc": "Simulación de phishing para empresas con Microsoft 365. Descubre cuántos empleados detectarían un email fraudulento."
+        },
+        {
+          "slug": "tu-contrasena-mayuscula-numeros-hackeable",
+          "from": {
+            "title": 1,
+            "desc": 1
+          },
+          "to": {
+            "title": 2,
+            "desc": 2
+          },
+          "newTitle": "Contraseñas Hackeables: Por qué Empresa2024 No es Segura (con Test)",
+          "newDesc": "Test de contraseñas para empresas: ¿Cuántos empleados usan patrones hackeables? Descúbrelo con nuestra evaluación gratuita."
+        },
+        {
+          "slug": "contrasenas-seguras-empleados-guia-completa",
+          "from": {
+            "title": 1,
+            "desc": 1
+          },
+          "to": {
+            "title": 2,
+            "desc": 2
+          },
+          "newTitle": "Formación en Contraseñas Seguras: Guía con Test para Empresas",
+          "newDesc": "Plataforma de formación en contraseñas para empresas. Incluye test de evaluación, certificado y seguimiento del progreso del equipo."
+        }
+      ]
     }
   ],
-  "lastRotation": "2026-04-15T10:13:39.680Z"
+  "lastRotation": "2026-05-01T10:19:49.491Z"
 }
