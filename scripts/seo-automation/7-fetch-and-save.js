@@ -55,9 +55,11 @@ async function main() {
   if (!site) throw new Error('Propiedad aisecurity.es no encontrada');
   const siteUrl = site.siteUrl;
 
-  const current28 = getDates(28);
-  const previous28 = getDates(56, 31);
-  const current90 = getDates(90);
+  // Últimos 3 días vs 3 días anteriores (el trigger corre 2x/semana)
+  // GSC tiene delay de ~3 días, por eso offsetDays=3 por defecto
+  const current3 = getDates(3);          // últimos 3 días disponibles
+  const previous3 = getDates(3, 6);      // los 3 días anteriores a esos
+  const current90 = getDates(90);        // tendencia larga para detectar nuevas keywords
 
   async function query(dates, dimensions, rowLimit = 100) {
     const res = await sc.searchanalytics.query({ siteUrl, requestBody: { ...dates, dimensions, rowLimit } });
@@ -65,10 +67,10 @@ async function main() {
   }
 
   const [kwCurrent, pagesCurrent, kwPrevious, pagesPrevious, kw90] = await Promise.all([
-    query(current28, ['query'], 100),
-    query(current28, ['page'], 30),
-    query(previous28, ['query'], 100),
-    query(previous28, ['page'], 30),
+    query(current3, ['query'], 100),
+    query(current3, ['page'], 30),
+    query(previous3, ['query'], 100),
+    query(previous3, ['page'], 30),
     query(current90, ['query'], 50),
   ]);
 
@@ -81,7 +83,8 @@ async function main() {
   const data = {
     generatedAt: new Date().toISOString(),
     siteUrl,
-    period: current28,
+    period: current3,
+    periodDays: 3,
     totals: {
       current: { clicks: sumClicks(kwCurrent), impressions: sumImpressions(kwCurrent) },
       previous: { clicks: sumClicks(kwPrevious), impressions: sumImpressions(kwPrevious) },
@@ -104,17 +107,17 @@ async function main() {
     }),
     trending90: kw90.map(r => ({ keyword: r.keys[0], clicks: r.clicks, impressions: r.impressions, position: r.position })),
     opportunities: kwCurrent
-      .filter(r => r.impressions >= 30 && r.ctr < 0.04 && r.position < 20)
+      .filter(r => r.impressions >= 5 && r.ctr < 0.04 && r.position < 20)
       .sort((a, b) => b.impressions - a.impressions)
       .slice(0, 15)
       .map(r => ({ keyword: r.keys[0], clicks: r.clicks, impressions: r.impressions, ctr: r.ctr, position: r.position })),
     nearTop: kwCurrent
-      .filter(r => r.position >= 4 && r.position <= 15 && r.impressions >= 15)
+      .filter(r => r.position >= 4 && r.position <= 15 && r.impressions >= 2)
       .sort((a, b) => b.impressions - a.impressions)
       .slice(0, 10)
       .map(r => ({ keyword: r.keys[0], clicks: r.clicks, impressions: r.impressions, ctr: r.ctr, position: r.position })),
     newKeywords: kwCurrent
-      .filter(r => !prevKwMap.has(r.keys[0]) && r.impressions >= 10)
+      .filter(r => !prevKwMap.has(r.keys[0]) && r.impressions >= 2)
       .sort((a, b) => b.impressions - a.impressions)
       .slice(0, 15)
       .map(r => ({ keyword: r.keys[0], clicks: r.clicks, impressions: r.impressions, position: r.position })),
@@ -139,20 +142,20 @@ async function main() {
     `**Generado:** ${new Date(data.generatedAt).toLocaleString('es-ES')}`,
     `**Período actual:** ${data.period.startDate} → ${data.period.endDate}`,
     '',
-    `## Totales (28 días)`,
+    `## Totales (3 días)`,
     `| | Actual | Anterior | Cambio |`,
     `|--|--|--|--|`,
     `| Clicks | ${data.totals.current.clicks} | ${data.totals.previous.clicks} | ${clicksDiff >= 0 ? '+' : ''}${clicksPct}% |`,
     `| Impresiones | ${data.totals.current.impressions} | ${data.totals.previous.impressions} | - |`,
     '',
-    `## Top 15 Keywords (28 días)`,
+    `## Top 15 Keywords (3 días)`,
     `| Keyword | Clicks | Impresiones | CTR | Posición | vs anterior |`,
     `|---------|--------|-------------|-----|----------|-------------|`,
     ...data.topKeywords.slice(0, 15).map(k =>
       `| ${k.keyword} | ${k.clicks} | ${k.impressions} | ${(k.ctr*100).toFixed(1)}% | ${k.position.toFixed(1)} | ${k.isNew ? '🆕 nueva' : k.clicks > k.prevClicks ? `📈 +${k.clicks - k.prevClicks}` : k.clicks < k.prevClicks ? `📉 ${k.clicks - k.prevClicks}` : '➡️'} |`
     ),
     '',
-    `## Top Páginas (28 días)`,
+    `## Top Páginas (3 días)`,
     `| Página | Clicks | CTR | Posición | vs anterior |`,
     `|--------|--------|-----|----------|-------------|`,
     ...data.topPages.slice(0, 12).map(p =>

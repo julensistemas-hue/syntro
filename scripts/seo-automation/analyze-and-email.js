@@ -303,7 +303,7 @@ const html = `<!DOCTYPE html>
   </div>
 
   <div style="background:white;padding:20px 28px;border-left:1px solid #e8eaed;border-right:1px solid #e8eaed">
-    <h2 style="margin:0 0 14px;font-size:15px;color:#1a73e8">KPIs 28 días</h2>
+    <h2 style="margin:0 0 14px;font-size:15px;color:#1a73e8">KPIs — últimos 3 días vs 3 días anteriores</h2>
     <div style="display:flex;gap:12px;flex-wrap:wrap">
       ${kpiCard('Clicks GSC', cur.clicks,
         `vs ${prev.clicks} anterior`,

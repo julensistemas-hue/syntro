@@ -52,8 +52,9 @@ async function main() {
   const authClient = await auth.getClient();
   const analyticsdata = google.analyticsdata({ version: 'v1beta', auth: authClient });
 
-  const current28 = getDates(28);
-  const previous28 = getDates(56, 29);
+  // 3 días vs 3 días anteriores (trigger 2x/semana)
+  const current28 = getDates(3);      // nombre mantenido por compatibilidad con el resto del código
+  const previous28 = getDates(3, 4);  // los 3 días anteriores (offsetDays=4 para no solapar)
 
   async function runReport(dateRange, dimensions, metrics, limit = 20, orderBy = null) {
     const body = {
@@ -209,7 +210,7 @@ async function main() {
   const md = [
     `# Google Analytics 4 — aisecurity.es`,
     `**Generado:** ${new Date(data.generatedAt).toLocaleString('es-ES')}`,
-    `**Período:** ${data.period.startDate} → ${data.period.endDate} (28 días)`,
+    `**Período:** ${data.period.startDate} → ${data.period.endDate} (3 días)`,
     '',
     `## Resumen`,
     `- Sesiones totales: **${totalSessions}**`,
@@ -222,7 +223,7 @@ async function main() {
       `| ${c.channel} | ${c.sessions} | ${c.activeUsers} | ${fmtPct(c.bounceRate)} | ${c.conversions} |`
     ),
     '',
-    `## Top Páginas (28 días)`,
+    `## Top Páginas (3 días)`,
     `| Página | Sesiones | Usuarios | Bounce | Duración media | vs anterior |`,
     `|--------|----------|----------|--------|----------------|-------------|`,
     ...topPages.slice(0, 15).map(p =>
