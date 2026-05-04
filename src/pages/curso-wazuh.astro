@@ -446,7 +446,7 @@ const breadcrumbSchema = {
         <!-- Module 1 -->
         <details class="group bg-base-50 rounded-xl border-2 border-base-400 hover:border-accent-500 transition-all duration-300">
           <summary class="cursor-pointer px-6 py-5 flex items-center justify-between font-bold text-xl text-white hover:text-accent-300">
-            <span>📚 Módulo 1: Introducción y Arquitectura de Wazuh</span>
+            <span>📚 Módulo 1: Introducción a Wazuh</span>
             <svg class="w-6 h-6 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
             </svg>
@@ -456,34 +456,56 @@ const breadcrumbSchema = {
             <div class="rounded-xl p-5 border border-white/10" style="background: rgba(255,255,255,0.05);">
               <div class="flex items-center gap-3 mb-2">
                 <span class="text-accent-400 font-bold text-sm bg-accent-500/10 px-2 py-0.5 rounded">1.1</span>
-                <h4 class="text-white font-bold">¿Qué es Wazuh y por qué usarlo frente a otras soluciones SIEM?</h4>
+                <h4 class="text-white font-bold">Introducción al curso: cómo funciona y cómo sacarle el máximo partido</h4>
               </div>
               <p class="text-white/70 text-sm leading-relaxed">
-                Respondemos a la pregunta más frecuente: <strong class="text-white">¿qué es Wazuh exactamente y para qué sirve?</strong> Wazuh es una plataforma open-source de seguridad que actúa simultáneamente como SIEM (Security Information and Event Management) y XDR (Extended Detection and Response). A diferencia de soluciones comerciales como Splunk, IBM QRadar o Microsoft Sentinel — que pueden costar decenas de miles de euros al año — Wazuh es completamente gratuito bajo licencia GPL. Analizamos sus ventajas competitivas: coste cero de licencia, comunidad activa, integración nativa con el ENS español, y capacidad para monitorizar Linux, Windows, macOS y dispositivos de red desde una única consola.
+                Antes de entrar en materia técnica, explicamos cómo está estructurado este curso y qué puedes esperar de él. Cada lección incluye <strong class="text-white">etiquetas que indican su tipo</strong>: conceptual, práctica, caso práctico o laboratorio. Así puedes avanzar según tu nivel y necesidades: si ya tienes Wazuh instalado, puedes saltar directamente a los módulos de configuración; si eres administrador de sistemas, quizá te interese empezar por los paneles. También verás cómo acceder al entorno de prácticas y cómo pedir soporte si te atascas.
               </p>
-              <p class="text-white/50 text-xs mt-2">Lo que aprenderás: diferencias entre SIEM y XDR · Wazuh vs Splunk · Wazuh vs Elastic SIEM · por qué Wazuh es la opción más usada en PyMEs españolas</p>
+              <p class="text-white/50 text-xs mt-2">Lo que aprenderás: estructura del curso · etiquetas de lecciones · cómo avanzar según tu nivel · acceso al entorno de laboratorio</p>
             </div>
 
             <div class="rounded-xl p-5 border border-white/10" style="background: rgba(255,255,255,0.05);">
               <div class="flex items-center gap-3 mb-2">
                 <span class="text-accent-400 font-bold text-sm bg-accent-500/10 px-2 py-0.5 rounded">1.2</span>
-                <h4 class="text-white font-bold">Arquitectura de Wazuh: Manager, Agents, Indexer y Dashboard</h4>
+                <h4 class="text-white font-bold">¿Qué es Wazuh y para qué sirve? — SIEM, XDR y detección de amenazas</h4>
               </div>
               <p class="text-white/70 text-sm leading-relaxed">
-                Entender la arquitectura de Wazuh es imprescindible antes de instalarlo. En este apartado explicamos cómo se comunican los cuatro componentes principales: el <strong class="text-white">Wazuh Manager</strong> (cerebro central que procesa eventos y aplica reglas), los <strong class="text-white">Wazuh Agents</strong> (software instalado en cada servidor o endpoint a monitorizar), el <strong class="text-white">Wazuh Indexer</strong> (motor de almacenamiento basado en OpenSearch que guarda todos los eventos) y el <strong class="text-white">Wazuh Dashboard</strong> (interfaz web de visualización). Verás diagramas reales de flujo de datos y entenderás cómo escalar la arquitectura en entornos con decenas o cientos de agentes.
+                Respondemos la pregunta más frecuente: <strong class="text-white">¿qué es Wazuh exactamente?</strong> Wazuh es una plataforma open-source de ciberseguridad que actúa como SIEM (Security Information and Event Management) y XDR (Extended Detection and Response). Analizamos sus casos de uso principales — detección de intrusiones, monitorización de integridad, análisis de vulnerabilidades, cumplimiento normativo (ENS, PCI-DSS, GDPR) — y vemos por qué se está convirtiendo en el estándar para administradores de sistemas en España que necesitan securizar infraestructuras sin presupuesto para soluciones comerciales como Splunk o Microsoft Sentinel.
               </p>
-              <p class="text-white/50 text-xs mt-2">Lo que aprenderás: diagrama de arquitectura Wazuh · flujo de datos Manager↔Agent · diferencia entre Indexer y Manager · requisitos de hardware por componente</p>
+              <p class="text-white/50 text-xs mt-2">Lo que aprenderás: qué es Wazuh · diferencia SIEM vs XDR · Wazuh vs Splunk · casos de uso reales · Wazuh para ENS y cumplimiento normativo</p>
             </div>
 
             <div class="rounded-xl p-5 border border-white/10" style="background: rgba(255,255,255,0.05);">
               <div class="flex items-center gap-3 mb-2">
                 <span class="text-accent-400 font-bold text-sm bg-accent-500/10 px-2 py-0.5 rounded">1.3</span>
-                <h4 class="text-white font-bold">Casos de uso reales de Wazuh en empresas españolas</h4>
+                <h4 class="text-white font-bold">Instalación de Wazuh en Windows: agente y conexión al manager</h4>
               </div>
               <p class="text-white/70 text-sm leading-relaxed">
-                ¿Para qué se usa Wazuh en la práctica? Analizamos casos de uso reales: desde una PyME que necesita cumplir el <strong class="text-white">ENS (Esquema Nacional de Seguridad)</strong> para mantener contratos con administraciones públicas, hasta un MSP que gestiona la seguridad de múltiples clientes desde una sola consola. Vemos ejemplos concretos: detección de ataques de fuerza bruta SSH, alertas por accesos fuera de horario, monitorización de cambios en archivos de configuración críticos (/etc/passwd, /etc/shadow) y cumplimiento de PCI-DSS en empresas con pagos online.
+                Guía paso a paso para instalar el <strong class="text-white">agente Wazuh en Windows 10, 11 y Windows Server</strong>. Cubrimos la descarga del instalador oficial, la configuración del fichero <code class="text-accent-300 font-mono text-xs">ossec.conf</code> para apuntar al manager, el registro del agente con la dirección y clave de autenticación, y la verificación de que el agente aparece como activo en el Dashboard. También vemos cómo configurar el <strong class="text-white">firewall de Windows</strong> para permitir la comunicación con el manager (puerto 1514/UDP o TCP) y cómo resolver los problemas más comunes: agente que no conecta, errores de certificado o servicio que no arranca.
               </p>
-              <p class="text-white/50 text-xs mt-2">Lo que aprenderás: Wazuh para ENS · Wazuh en MSP · Wazuh para PCI-DSS · casos de uso reales con alertas y dashboards</p>
+              <p class="text-white/50 text-xs mt-2">Lo que aprenderás: instalar agente Wazuh Windows · ossec.conf Windows · registrar agente en manager · firewall Windows Wazuh · troubleshooting conexión</p>
+            </div>
+
+            <div class="rounded-xl p-5 border border-white/10" style="background: rgba(255,255,255,0.05);">
+              <div class="flex items-center gap-3 mb-2">
+                <span class="text-accent-400 font-bold text-sm bg-accent-500/10 px-2 py-0.5 rounded">1.4</span>
+                <h4 class="text-white font-bold">Instalación de Wazuh en Linux (Ubuntu 24.04): servidor completo paso a paso</h4>
+              </div>
+              <p class="text-white/70 text-sm leading-relaxed">
+                Instalación completa del stack Wazuh — Manager, Indexer y Dashboard — en <strong class="text-white">Ubuntu 24.04 LTS</strong> usando el script oficial de instalación. Cubrimos los requisitos mínimos de hardware (4 vCPU, 8 GB RAM, 50 GB disco para entornos pequeños), la preparación del sistema (actualización de paquetes, configuración de hostname, apertura de puertos), la ejecución del instalador y la primera verificación de que todos los servicios están activos. También vemos cómo acceder al Dashboard por primera vez, cambiar las credenciales por defecto y confirmar que el sistema indexa correctamente los primeros eventos.
+              </p>
+              <p class="text-white/50 text-xs mt-2">Lo que aprenderás: instalar Wazuh Ubuntu 24.04 · requisitos hardware Wazuh · script instalación Wazuh · abrir puertos firewall · primer acceso al Dashboard</p>
+            </div>
+
+            <div class="rounded-xl p-5 border border-white/10" style="background: rgba(255,255,255,0.05);">
+              <div class="flex items-center gap-3 mb-2">
+                <span class="text-accent-400 font-bold text-sm bg-accent-500/10 px-2 py-0.5 rounded">1.5</span>
+                <h4 class="text-white font-bold">Instalación de Wazuh con Docker y Docker Compose: laboratorio en minutos</h4>
+              </div>
+              <p class="text-white/70 text-sm leading-relaxed">
+                ¿No quieres tocar tu servidor de producción para aprender? La instalación con <strong class="text-white">Docker Compose</strong> levanta el stack completo de Wazuh en un solo comando, ideal para laboratorio, desarrollo o pruebas. Veremos cómo clonar el repositorio oficial de Wazuh Docker, configurar el fichero <code class="text-accent-300 font-mono text-xs">docker-compose.yml</code> (ajustar contraseñas, puertos y volúmenes persistentes), ejecutar <code class="text-accent-300 font-mono text-xs">docker compose up -d</code> y verificar que todos los contenedores arrancan correctamente. También veremos cómo conectar agentes externos al Wazuh en Docker y cómo gestionar la persistencia de datos para que los índices no se pierdan al reiniciar.
+              </p>
+              <p class="text-white/50 text-xs mt-2">Lo que aprenderás: Wazuh Docker Compose · docker-compose.yml Wazuh · instalar Wazuh en Docker · laboratorio Wazuh · volúmenes persistentes · conectar agentes a Docker</p>
             </div>
 
           </div>
@@ -492,7 +514,7 @@ const breadcrumbSchema = {
         <!-- Module 2 -->
         <details class="group bg-base-50 rounded-xl border-2 border-base-400 hover:border-accent-500 transition-all duration-300">
           <summary class="cursor-pointer px-6 py-5 flex items-center justify-between font-bold text-xl text-white hover:text-accent-300">
-            <span>⚙️ Módulo 2: Instalación y Configuración de Wazuh</span>
+            <span>⚙️ Módulo 2: Configuración de Agentes</span>
             <svg class="w-6 h-6 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
             </svg>
@@ -502,34 +524,56 @@ const breadcrumbSchema = {
             <div class="rounded-xl p-5 border border-white/10" style="background: rgba(255,255,255,0.05);">
               <div class="flex items-center gap-3 mb-2">
                 <span class="text-accent-400 font-bold text-sm bg-accent-500/10 px-2 py-0.5 rounded">2.1</span>
-                <h4 class="text-white font-bold">Cómo instalar el Wazuh Manager paso a paso en Linux</h4>
+                <h4 class="text-white font-bold">Agente Windows: instalación avanzada y configuración de ossec.conf</h4>
               </div>
               <p class="text-white/70 text-sm leading-relaxed">
-                La pregunta más buscada: <strong class="text-white">¿cómo se instala Wazuh?</strong> Cubrimos la instalación completa del stack Wazuh (Manager + Indexer + Dashboard) en Ubuntu 22.04 y RHEL/CentOS 8+, usando el script oficial de Wazuh. Explicamos los requisitos mínimos de hardware (CPU, RAM, disco), la configuración de firewall y puertos necesarios (1514, 1515, 55000, 9200, 443), y las opciones de instalación: all-in-one para entornos pequeños vs. instalación distribuida para entornos de producción. Incluye troubleshooting de los errores más comunes durante la instalación.
+                Una vez tienes el agente básico en Windows, hay mucho más que configurar. En esta lección profundizamos en el fichero <code class="text-accent-300 font-mono text-xs">ossec.conf</code> del agente Windows: qué secciones existen, cómo controlar exactamente qué logs se envían al manager (Event Channels, archivos de log, canales de PowerShell), cómo configurar el <strong class="text-white">File Integrity Monitoring (FIM)</strong> para carpetas críticas de Windows, y cómo ajustar la frecuencia de envío para no saturar el manager con eventos poco relevantes. También vemos la gestión remota del agente desde el Wazuh Dashboard: reiniciar, actualizar configuración o desconectar sin acceso físico al equipo.
               </p>
-              <p class="text-white/50 text-xs mt-2">Lo que aprenderás: instalar Wazuh en Ubuntu · instalar Wazuh en CentOS · requisitos del sistema · puertos Wazuh · script de instalación oficial</p>
+              <p class="text-white/50 text-xs mt-2">Lo que aprenderás: ossec.conf Windows avanzado · Event Channels · FIM Windows · gestión remota agente · ajuste de logs enviados · PowerShell logging</p>
             </div>
 
             <div class="rounded-xl p-5 border border-white/10" style="background: rgba(255,255,255,0.05);">
               <div class="flex items-center gap-3 mb-2">
                 <span class="text-accent-400 font-bold text-sm bg-accent-500/10 px-2 py-0.5 rounded">2.2</span>
-                <h4 class="text-white font-bold">Cómo instalar y desplegar agentes Wazuh en Linux y Windows</h4>
+                <h4 class="text-white font-bold">Agente Linux: instalación, ossec.conf y logs personalizados de aplicaciones</h4>
               </div>
               <p class="text-white/70 text-sm leading-relaxed">
-                Un sistema Wazuh sin agentes no monitoriza nada. Aprenderás a instalar el <strong class="text-white">agente Wazuh en Linux</strong> (Debian, Ubuntu, RHEL, CentOS) y en <strong class="text-white">Windows</strong> (10, 11, Server 2019/2022) de forma manual y mediante scripting para múltiples máquinas. Veremos el fichero de configuración principal del agente (<code class="text-accent-300 font-mono text-xs">ossec.conf</code>), cómo registrar el agente en el Manager usando el método de clave compartida, cómo verificar que el agente está activo y enviando datos, y cómo gestionar agentes desde el Dashboard: estado, versión, último contacto.
+                Instalamos el agente Wazuh en <strong class="text-white">Ubuntu y Debian</strong> y configuramos el fichero <code class="text-accent-300 font-mono text-xs">ossec.conf</code> para que monitorice los logs del sistema (<code class="text-accent-300 font-mono text-xs">auth.log</code>, <code class="text-accent-300 font-mono text-xs">syslog</code>) y los de aplicaciones específicas. Aprenderás a agregar logs personalizados de cualquier servicio: <strong class="text-white">Apache, Nginx, PostgreSQL, MySQL</strong>, aplicaciones propias que escriben en <code class="text-accent-300 font-mono text-xs">/var/log/</code>, o cualquier fichero con formato de log. El objetivo es que Wazuh entienda y analice los logs de toda la pila tecnológica de tu servidor, no solo los del sistema operativo.
               </p>
-              <p class="text-white/50 text-xs mt-2">Lo que aprenderás: instalar Wazuh agent Linux · instalar Wazuh agent Windows · ossec.conf · registrar agente en manager · gestión masiva de agentes</p>
+              <p class="text-white/50 text-xs mt-2">Lo que aprenderás: agente Wazuh Ubuntu/Debian · ossec.conf Linux · localfile con wildcards · logs Apache/Nginx en Wazuh · logs PostgreSQL · monitorizar aplicaciones personalizadas</p>
             </div>
 
             <div class="rounded-xl p-5 border border-white/10" style="background: rgba(255,255,255,0.05);">
               <div class="flex items-center gap-3 mb-2">
                 <span class="text-accent-400 font-bold text-sm bg-accent-500/10 px-2 py-0.5 rounded">2.3</span>
-                <h4 class="text-white font-bold">Configuración de comunicación segura: certificados TLS y encriptación</h4>
+                <h4 class="text-white font-bold">Configuración de Grupos: gestionar múltiples agentes con agent.conf centralizado</h4>
               </div>
               <p class="text-white/70 text-sm leading-relaxed">
-                Toda comunicación entre agentes y manager debe ir cifrada. En este apartado configuramos la comunicación segura usando <strong class="text-white">certificados TLS</strong>: generación de la CA propia con Wazuh, firma de certificados para el manager y los agentes, y verificación de que el canal está cifrado. Explicamos también la autenticación mediante <strong class="text-white">clave compartida (pre-shared key)</strong> como alternativa para entornos simples, el cifrado del canal con AES-256, y cómo renovar certificados cuando caducan sin interrumpir el servicio. Un apartado fundamental para cualquier entorno de producción.
+                Cuando tienes muchos agentes, cambiar la configuración uno a uno es inviable. Los <strong class="text-white">grupos de agentes</strong> de Wazuh permiten distribuir configuraciones centralizadas desde el manager: creas un grupo (ej: "servidores-web", "workstations-windows", "produccion"), defines su <code class="text-accent-300 font-mono text-xs">agent.conf</code> con la configuración que aplica a todos los miembros, y Wazuh la distribuye automáticamente. Aprenderás a crear grupos, asignar agentes, verificar que la configuración se ha aplicado correctamente, y usar grupos anidados para configuraciones complejas. Esencial para cualquier entorno con más de 5 agentes.
               </p>
-              <p class="text-white/50 text-xs mt-2">Lo que aprenderás: TLS en Wazuh · certificados Wazuh · comunicación cifrada agente-manager · renovación de certificados · AES-256 Wazuh</p>
+              <p class="text-white/50 text-xs mt-2">Lo que aprenderás: grupos agentes Wazuh · agent.conf centralizado · crear grupos en Dashboard · asignar agentes a grupos · configuración centralizada Wazuh</p>
+            </div>
+
+            <div class="rounded-xl p-5 border border-white/10" style="background: rgba(255,255,255,0.05);">
+              <div class="flex items-center gap-3 mb-2">
+                <span class="text-accent-400 font-bold text-sm bg-accent-500/10 px-2 py-0.5 rounded">2.4</span>
+                <h4 class="text-white font-bold">Equipos sin agente: configurar Syslog Collector para NAS, routers y switches (1/2)</h4>
+              </div>
+              <p class="text-white/70 text-sm leading-relaxed">
+                No todos los dispositivos admiten instalar un agente: routers, switches, firewalls, NAS, cámaras IP y otros dispositivos de red solo pueden enviar logs vía <strong class="text-white">syslog</strong>. En esta primera parte configuramos Wazuh como receptor de syslog: habilitamos el listener de syslog en el manager, configuramos los dispositivos de red (Cisco, MikroTik, Ubiquiti, Synology NAS) para enviar sus logs a la IP del servidor Wazuh, y verificamos que los mensajes llegan correctamente. También vemos cómo organizar los logs recibidos para distinguir entre dispositivos y facilitar el análisis posterior.
+              </p>
+              <p class="text-white/50 text-xs mt-2">Lo que aprenderás: Wazuh syslog collector · logs sin agente · configurar router para enviar syslog · NAS Synology Wazuh · MikroTik Wazuh · syslog UDP/TCP</p>
+            </div>
+
+            <div class="rounded-xl p-5 border border-white/10" style="background: rgba(255,255,255,0.05);">
+              <div class="flex items-center gap-3 mb-2">
+                <span class="text-accent-400 font-bold text-sm bg-accent-500/10 px-2 py-0.5 rounded">2.5</span>
+                <h4 class="text-white font-bold">Equipos sin agente: organizar y visualizar logs de red en Wazuh (2/2)</h4>
+              </div>
+              <p class="text-white/70 text-sm leading-relaxed">
+                En la segunda parte, una vez que los logs de dispositivos de red llegan al manager, aprendemos a <strong class="text-white">organizarlos y hacerlos útiles</strong>. Vemos cómo identificar qué logs se están recibiendo y de qué dispositivos, cómo asegurarnos de que los decoders de Wazuh reconocen el formato de log de cada dispositivo (o cómo crear decoders propios si no existe uno), y cómo crear reglas específicas para los eventos más relevantes: intentos de acceso fallidos al router, cambios de configuración no autorizados, fallos de hardware en el NAS. El resultado: visibilidad total sobre tu red, no solo sobre los servidores con agente.
+              </p>
+              <p class="text-white/50 text-xs mt-2">Lo que aprenderás: decoders para logs de red · organizar syslog Wazuh · alertas router Wazuh · firewall logs en Wazuh · visualizar eventos de red en Dashboard</p>
             </div>
 
           </div>
@@ -538,7 +582,7 @@ const breadcrumbSchema = {
         <!-- Module 3 -->
         <details class="group bg-base-50 rounded-xl border-2 border-base-400 hover:border-accent-500 transition-all duration-300">
           <summary class="cursor-pointer px-6 py-5 flex items-center justify-between font-bold text-xl text-white hover:text-accent-300">
-            <span>🔍 Módulo 3: Monitorización de Sistemas con Wazuh</span>
+            <span>🔍 Módulo 3: Decoders, Reglas y Alertas</span>
             <svg class="w-6 h-6 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
             </svg>
@@ -548,34 +592,67 @@ const breadcrumbSchema = {
             <div class="rounded-xl p-5 border border-white/10" style="background: rgba(255,255,255,0.05);">
               <div class="flex items-center gap-3 mb-2">
                 <span class="text-accent-400 font-bold text-sm bg-accent-500/10 px-2 py-0.5 rounded">3.1</span>
-                <h4 class="text-white font-bold">Monitorización de logs en tiempo real: syslog, auth.log, Windows Event Log</h4>
+                <h4 class="text-white font-bold">¿Cómo procesa Wazuh un log? Flujo completo: predecoder → decoder → regla → alerta</h4>
               </div>
               <p class="text-white/70 text-sm leading-relaxed">
-                El análisis de logs es el núcleo de Wazuh. Aprenderás a configurar qué logs recopila cada agente: en Linux, los ficheros clave son <code class="text-accent-300 font-mono text-xs">/var/log/syslog</code>, <code class="text-accent-300 font-mono text-xs">/var/log/auth.log</code>, <code class="text-accent-300 font-mono text-xs">/var/log/secure</code> y los logs de aplicaciones como Apache, Nginx o MySQL. En Windows, configuramos la recopilación de <strong class="text-white">Windows Event Log</strong> (Security, System, Application) y los logs de PowerShell. Verás en tiempo real cómo aparecen alertas ante intentos de login fallidos, escalada de privilegios con <code class="text-accent-300 font-mono text-xs">sudo</code>, o accesos a horas inusuales.
+                Para crear reglas y decoders eficaces, primero hay que entender el pipeline interno de Wazuh. Cuando llega un log al manager, pasa por cuatro etapas: el <strong class="text-white">predecoder</strong> extrae el timestamp, hostname y programa; el <strong class="text-white">decoder</strong> aplica regex para extraer campos específicos (usuario, IP, acción); las <strong class="text-white">reglas</strong> evalúan los campos extraídos para decidir si generar una alerta; y la <strong class="text-white">alerta</strong> se almacena en el Indexer y puede disparar notificaciones. Entender este flujo evita horas de frustración al depurar por qué una regla no dispara o un decoder no extrae los campos correctos.
               </p>
-              <p class="text-white/50 text-xs mt-2">Lo que aprenderás: localfile Wazuh · monitorizar auth.log · Windows Event Log Wazuh · logs de aplicaciones · alertas en tiempo real</p>
+              <p class="text-white/50 text-xs mt-2">Lo que aprenderás: flujo de logs Wazuh · predecoder · decoder · reglas · alertas · depurar logs con wazuh-logtest · cómo procesa Wazuh un evento</p>
             </div>
 
             <div class="rounded-xl p-5 border border-white/10" style="background: rgba(255,255,255,0.05);">
               <div class="flex items-center gap-3 mb-2">
                 <span class="text-accent-400 font-bold text-sm bg-accent-500/10 px-2 py-0.5 rounded">3.2</span>
-                <h4 class="text-white font-bold">File Integrity Monitoring (FIM): detectar cambios no autorizados en archivos</h4>
+                <h4 class="text-white font-bold">Creación de decoders personalizados con regex: parsear cualquier tipo de log</h4>
               </div>
               <p class="text-white/70 text-sm leading-relaxed">
-                El <strong class="text-white">File Integrity Monitoring (FIM)</strong> de Wazuh responde a la pregunta: ¿alguien ha modificado un archivo crítico sin autorización? Configuramos la monitorización de directorios y archivos sensibles: ficheros de configuración del sistema, binarios críticos, claves SSH (<code class="text-accent-300 font-mono text-xs">authorized_keys</code>), bases de datos de usuarios (<code class="text-accent-300 font-mono text-xs">/etc/passwd</code>, <code class="text-accent-300 font-mono text-xs">/etc/shadow</code>) y carpetas de aplicaciones web. Wazuh detecta creación, modificación, eliminación y cambios de permisos, generando alertas inmediatas. Requisito directo del ENS y PCI-DSS para demostrar control de integridad.
+                Wazuh no puede analizar lo que no entiende. Si tienes logs de una aplicación propia, un ERP, un firewall poco conocido o cualquier herramienta con formato personalizado, necesitas un <strong class="text-white">decoder propio</strong>. Aprenderás a crear decoders en XML usando expresiones regulares para extraer campos clave de cualquier línea de log. El proceso completo: copiar una línea de log real, diseñar el regex con grupos de captura, definir los campos de salida (<code class="text-accent-300 font-mono text-xs">srcip</code>, <code class="text-accent-300 font-mono text-xs">dstip</code>, <code class="text-accent-300 font-mono text-xs">user</code>, <code class="text-accent-300 font-mono text-xs">action</code>...) y validarlo con <code class="text-accent-300 font-mono text-xs">wazuh-logtest</code> antes de ponerlo en producción.
               </p>
-              <p class="text-white/50 text-xs mt-2">Lo que aprenderás: FIM Wazuh configuración · syscheck · monitorizar /etc · FIM para ENS · detectar modificación de archivos · alertas de integridad</p>
+              <p class="text-white/50 text-xs mt-2">Lo que aprenderás: crear decoder Wazuh · local_decoders.xml · regex para logs · campos decoder Wazuh · wazuh-logtest · decoder para aplicaciones personalizadas</p>
             </div>
 
             <div class="rounded-xl p-5 border border-white/10" style="background: rgba(255,255,255,0.05);">
               <div class="flex items-center gap-3 mb-2">
                 <span class="text-accent-400 font-bold text-sm bg-accent-500/10 px-2 py-0.5 rounded">3.3</span>
-                <h4 class="text-white font-bold">Detección de rootkits, malware y procesos ocultos con Wazuh</h4>
+                <h4 class="text-white font-bold">Creación de reglas personalizadas: detectar accesos, usuarios y acciones concretas</h4>
               </div>
               <p class="text-white/70 text-sm leading-relaxed">
-                Wazuh incluye un módulo de <strong class="text-white">análisis de rootkits</strong> (<code class="text-accent-300 font-mono text-xs">rootcheck</code>) que escanea periódicamente el sistema operativo en busca de señales de compromiso: procesos ocultos, puertos ocultos, archivos sospechosos en ubicaciones del sistema, modificaciones de binarios del sistema y técnicas de evasión conocidas. Aprenderás a interpretar las alertas de rootcheck, a configurar la frecuencia de escaneo, y a combinarlo con el módulo de <strong class="text-white">gestión de vulnerabilidades</strong> de Wazuh para detectar software con CVEs conocidos instalado en tus servidores. Incluye un ejemplo real de detección de backdoor en entorno de laboratorio.
+                Con un decoder que extrae los campos correctamente, las <strong class="text-white">reglas personalizadas</strong> permiten detectar exactamente lo que necesitas. Aprenderás a crear reglas en XML para casos de uso concretos: alertar cuando un usuario específico accede a una carpeta sensible, cuando se producen más de 5 intentos de login fallidos en 2 minutos (ataque de fuerza bruta), cuando se escribe o borra un fichero crítico, o cuando una IP de un país específico intenta conectarse. También veremos las reglas de correlación (<code class="text-accent-300 font-mono text-xs">if_matched_sid</code>) para detectar patrones complejos que cruzan varios eventos.
               </p>
-              <p class="text-white/50 text-xs mt-2">Lo que aprenderás: rootcheck Wazuh · detectar rootkits Linux · análisis de vulnerabilidades Wazuh · CVE detection · procesos ocultos</p>
+              <p class="text-white/50 text-xs mt-2">Lo que aprenderás: reglas personalizadas Wazuh · local_rules.xml · detectar fuerza bruta SSH · alertas por usuario · reglas de correlación · if_matched_sid</p>
+            </div>
+
+            <div class="rounded-xl p-5 border border-white/10" style="background: rgba(255,255,255,0.05);">
+              <div class="flex items-center gap-3 mb-2">
+                <span class="text-accent-400 font-bold text-sm bg-accent-500/10 px-2 py-0.5 rounded">3.4</span>
+                <h4 class="text-white font-bold">Detectar instalaciones y desinstalaciones de software en Windows con reglas Wazuh</h4>
+              </div>
+              <p class="text-white/70 text-sm leading-relaxed">
+                Un uso crítico de Wazuh en entornos Windows corporativos: <strong class="text-white">saber cuándo se instala o desinstala software</strong> en los equipos de la organización sin autorización. Aprenderás a crear reglas que monitoricen el Event Log de Windows (Event ID 11707 para instalaciones, 11724 para desinstalaciones via MSI, y eventos del registro para instalaciones silenciosas) y generen alertas inmediatas. El resultado es una traza completa de qué software se ha instalado, en qué equipo, a qué hora y bajo qué usuario. Caso práctico incluido: detectar la instalación de un cliente de BitTorrent o una herramienta de hacking en un equipo corporativo.
+              </p>
+              <p class="text-white/50 text-xs mt-2">Lo que aprenderás: detectar instalaciones Windows Wazuh · Event ID 11707 · monitorizar software corporativo · alertas desinstalación · control de software Wazuh</p>
+            </div>
+
+            <div class="rounded-xl p-5 border border-white/10" style="background: rgba(255,255,255,0.05);">
+              <div class="flex items-center gap-3 mb-2">
+                <span class="text-accent-400 font-bold text-sm bg-accent-500/10 px-2 py-0.5 rounded">3.5</span>
+                <h4 class="text-white font-bold">Configurar alertas por email con Postfix y SMTP de Gmail o Microsoft 365</h4>
+              </div>
+              <p class="text-white/70 text-sm leading-relaxed">
+                Las alertas en el Dashboard están bien, pero si nadie las mira en tiempo real, no sirven de nada. Configuramos el envío de <strong class="text-white">alertas por email desde Wazuh</strong> usando <strong class="text-white">Postfix como relay SMTP</strong>, tanto con Gmail (usando contraseña de aplicación) como con Microsoft 365. Aprenderás a filtrar qué alertas generan email (por nivel de severidad, por regla específica o por grupo), a personalizar el asunto y cuerpo del mensaje para que sea informativo de un vistazo, y a configurar una dirección de destino distinta según el tipo de alerta (críticas al equipo de seguridad, informativas al administrador de sistemas). Sin dependencias de Slack ni servicios externos.
+              </p>
+              <p class="text-white/50 text-xs mt-2">Lo que aprenderás: Wazuh alertas por email · Postfix SMTP relay · Gmail Wazuh email · Microsoft 365 Wazuh · filtrar alertas por nivel · email personalizado</p>
+            </div>
+
+            <div class="rounded-xl p-5 border border-white/10" style="background: rgba(255,255,255,0.05);">
+              <div class="flex items-center gap-3 mb-2">
+                <span class="text-accent-400 font-bold text-sm bg-accent-500/10 px-2 py-0.5 rounded">3.6</span>
+                <h4 class="text-white font-bold">Caso práctico: decoders y reglas para logs de firewall FortiGate con alertas por horario</h4>
+              </div>
+              <p class="text-white/70 text-sm leading-relaxed">
+                El caso práctico final de este módulo integra todo lo aprendido: construiremos desde cero los <strong class="text-white">decoders y reglas para logs de un firewall FortiGate</strong>, uno de los firewalls más usados en empresas españolas. Los logs de FortiGate tienen un formato específico que Wazuh no parsea por defecto, así que crearemos los decoders, extraeremos campos como IP de origen, IP de destino, puerto, acción (accept/deny) y usuario. Después crearemos reglas para alertar ante eventos específicos y añadiremos una condición de <strong class="text-white">horario</strong>: la misma acción puede ser normal durante el horario laboral pero sospechosa a las 3 de la mañana.
+              </p>
+              <p class="text-white/50 text-xs mt-2">Lo que aprenderás: decoder FortiGate Wazuh · reglas firewall Wazuh · alertas por horario · logs de seguridad perimetral · FortiGate syslog · casos prácticos reales</p>
             </div>
 
           </div>
@@ -584,7 +661,7 @@ const breadcrumbSchema = {
         <!-- Module 4 -->
         <details class="group bg-base-50 rounded-xl border-2 border-base-400 hover:border-accent-500 transition-all duration-300">
           <summary class="cursor-pointer px-6 py-5 flex items-center justify-between font-bold text-xl text-white hover:text-accent-300">
-            <span>📝 Módulo 4: Reglas, Decoders y Alertas en Wazuh</span>
+            <span>📊 Módulo 4: Paneles y Visualización</span>
             <svg class="w-6 h-6 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
             </svg>
@@ -594,34 +671,56 @@ const breadcrumbSchema = {
             <div class="rounded-xl p-5 border border-white/10" style="background: rgba(255,255,255,0.05);">
               <div class="flex items-center gap-3 mb-2">
                 <span class="text-accent-400 font-bold text-sm bg-accent-500/10 px-2 py-0.5 rounded">4.1</span>
-                <h4 class="text-white font-bold">Estructura de reglas de Wazuh: sintaxis XML, niveles de severidad y grupos</h4>
+                <h4 class="text-white font-bold">Panel Configuration Assessment: verificar el endurecimiento de tus sistemas</h4>
               </div>
               <p class="text-white/70 text-sm leading-relaxed">
-                Las reglas de Wazuh son el motor de detección: definen qué patrones en los logs generan alertas y con qué nivel de severidad. Aprenderás la <strong class="text-white">sintaxis XML de las reglas</strong>, los campos principales (<code class="text-accent-300 font-mono text-xs">id</code>, <code class="text-accent-300 font-mono text-xs">level</code>, <code class="text-accent-300 font-mono text-xs">description</code>, <code class="text-accent-300 font-mono text-xs">match</code>, <code class="text-accent-300 font-mono text-xs">regex</code>, <code class="text-accent-300 font-mono text-xs">if_matched_sid</code>), y cómo funcionan los <strong class="text-white">niveles de severidad del 1 al 15</strong> (desde informativos hasta críticos). Verás cómo están organizadas las reglas por grupos (authentication, web, firewall, windows...) y cómo crear tus propias reglas locales sin modificar las del sistema para que sobrevivan a actualizaciones.
+                El panel de <strong class="text-white">Configuration Assessment (SCA)</strong> de Wazuh analiza si tus sistemas cumplen con las mejores prácticas de seguridad: ¿está desactivado el login de root por SSH? ¿Están actualizados los paquetes críticos? ¿Se usan contraseñas con longitud mínima? Wazuh compara la configuración real de cada agente contra políticas de referencia (CIS Benchmark para Linux y Windows, ENS) y muestra un porcentaje de cumplimiento con los controles que fallan y cómo corregirlos. Ideal para auditorías y para demostrar a clientes o a la dirección el nivel de seguridad de la infraestructura.
               </p>
-              <p class="text-white/50 text-xs mt-2">Lo que aprenderás: sintaxis reglas Wazuh · niveles de alerta · local_rules.xml · reglas personalizadas · grupos de reglas · regex en reglas</p>
+              <p class="text-white/50 text-xs mt-2">Lo que aprenderás: SCA Wazuh · Configuration Assessment · CIS Benchmark Wazuh · hardening Linux · puntuación cumplimiento · corregir controles fallidos</p>
             </div>
 
             <div class="rounded-xl p-5 border border-white/10" style="background: rgba(255,255,255,0.05);">
               <div class="flex items-center gap-3 mb-2">
                 <span class="text-accent-400 font-bold text-sm bg-accent-500/10 px-2 py-0.5 rounded">4.2</span>
-                <h4 class="text-white font-bold">Creación de decoders personalizados: parsear logs de cualquier aplicación</h4>
+                <h4 class="text-white font-bold">Panel Seguridad de Endpoints: File Integrity Monitoring y monitorización de certificados</h4>
               </div>
               <p class="text-white/70 text-sm leading-relaxed">
-                Los <strong class="text-white">decoders de Wazuh</strong> extraen campos estructurados de líneas de log sin formato. Sin un decoder correcto, Wazuh no puede analizar logs de aplicaciones personalizadas o de terceros. Aprenderás a crear decoders usando expresiones regulares para parsear logs de cualquier aplicación: ERP, CRM, aplicaciones propias, routers Mikrotik, firewalls pfSense, logs de Nginx con formato personalizado, etc. Verás el proceso completo: identificar el formato del log, diseñar el decoder, definir los campos extraídos (<code class="text-accent-300 font-mono text-xs">srcip</code>, <code class="text-accent-300 font-mono text-xs">dstip</code>, <code class="text-accent-300 font-mono text-xs">user</code>, <code class="text-accent-300 font-mono text-xs">action</code>...) y validarlo con la herramienta <code class="text-accent-300 font-mono text-xs">wazuh-logtest</code>.
+                El panel de <strong class="text-white">Endpoint Security</strong> agrupa las capacidades de monitorización de integridad de Wazuh. En esta lección, laboratorio práctico: configuramos el <strong class="text-white">File Integrity Monitoring (FIM)</strong> para monitorizar directorios críticos del sistema y de aplicaciones, y vemos en el Dashboard cómo aparecen los cambios en tiempo real. El caso práctico principal: monitorizar el directorio donde se almacenan los <strong class="text-white">certificados digitales</strong> de la empresa para detectar modificaciones, expiración o sustitución no autorizada — un requisito directo de <strong class="text-white">ISO 27001 y ENS</strong> para la gestión de activos criptográficos.
               </p>
-              <p class="text-white/50 text-xs mt-2">Lo que aprenderás: decoder Wazuh · local_decoder.xml · parsear logs personalizados · wazuh-logtest · regex para decoders · campos de decoders</p>
+              <p class="text-white/50 text-xs mt-2">Lo que aprenderás: FIM Wazuh Dashboard · syscheck configuración · monitorizar certificados digitales · ISO 27001 FIM · ENS integridad de archivos · alertas FIM en tiempo real</p>
             </div>
 
             <div class="rounded-xl p-5 border border-white/10" style="background: rgba(255,255,255,0.05);">
               <div class="flex items-center gap-3 mb-2">
                 <span class="text-accent-400 font-bold text-sm bg-accent-500/10 px-2 py-0.5 rounded">4.3</span>
-                <h4 class="text-white font-bold">Alertas y notificaciones: email, Slack, Microsoft Teams y webhooks</h4>
+                <h4 class="text-white font-bold">Panel Discover y Threat Hunting: investigar un ataque de fuerza bruta SSH paso a paso</h4>
               </div>
               <p class="text-white/70 text-sm leading-relaxed">
-                Detectar una amenaza no sirve de nada si nadie se entera. Configuramos el sistema de notificaciones de Wazuh para que las alertas lleguen al canal adecuado: <strong class="text-white">email</strong> (con SMTP propio o relay), <strong class="text-white">Slack</strong> (vía integración oficial), <strong class="text-white">Microsoft Teams</strong> (webhook) y notificaciones personalizadas mediante scripts. Aprenderás a filtrar qué alertas generan notificación según el nivel de severidad (ej: solo nivel ≥ 10), a crear plantillas de mensaje claras y accionables, y a usar la <strong class="text-white">respuesta activa</strong> de Wazuh para ejecutar scripts automáticos ante alertas concretas (bloquear IP con iptables, aislar un sistema comprometido, etc.).
+                El panel <strong class="text-white">Discover</strong> de Wazuh (basado en OpenSearch Dashboards) es la herramienta de Threat Hunting: permite buscar en millones de eventos con KQL, filtrar por cualquier campo y reconstruir la secuencia completa de un incidente. Caso práctico completo: detectamos un <strong class="text-white">ataque de fuerza bruta SSH</strong> en un servidor de producción. Comenzamos desde la alerta inicial, buscamos en Discover todos los intentos de acceso fallidos del mismo origen, identificamos si el atacante consiguió acceder, revisamos qué hizo tras el login y determinamos si el sistema fue comprometido. El flujo real de investigación de un SOC, aplicado en tu laboratorio.
               </p>
-              <p class="text-white/50 text-xs mt-2">Lo que aprenderás: alertas por email Wazuh · integración Slack Wazuh · Teams Wazuh · active response · bloquear IP automáticamente · webhooks</p>
+              <p class="text-white/50 text-xs mt-2">Lo que aprenderás: Threat Hunting Wazuh · Discover OpenSearch · KQL Wazuh · investigar ataque fuerza bruta · análisis forense Wazuh · respuesta a incidentes</p>
+            </div>
+
+            <div class="rounded-xl p-5 border border-white/10" style="background: rgba(255,255,255,0.05);">
+              <div class="flex items-center gap-3 mb-2">
+                <span class="text-accent-400 font-bold text-sm bg-accent-500/10 px-2 py-0.5 rounded">4.4</span>
+                <h4 class="text-white font-bold">Panel Vulnerability Detection: detectar CVEs en tus sistemas y cumplir ISO 27001 y ENS</h4>
+              </div>
+              <p class="text-white/70 text-sm leading-relaxed">
+                El módulo de <strong class="text-white">Vulnerability Detection</strong> de Wazuh escanea los paquetes instalados en cada agente y los cruza con la base de datos de CVEs (National Vulnerability Database) para identificar software con vulnerabilidades conocidas. En el Dashboard verás qué sistemas tienen vulnerabilidades críticas, cuáles son los CVEs con mayor impacto, y qué paquetes necesitan actualización prioritaria. Esto cubre directamente los controles <strong class="text-white">ISO 27001 A.8.8</strong> (gestión de vulnerabilidades técnicas) y <strong class="text-white">ENS op.exp.6</strong> (protección de la información durante el tratamiento) exigidos en auditorías de seguridad.
+              </p>
+              <p class="text-white/50 text-xs mt-2">Lo que aprenderás: Vulnerability Detection Wazuh · CVE en Wazuh · ISO 27001 A.8.8 · ENS op.exp.6 · gestión de vulnerabilidades · paquetes desactualizados con CVEs</p>
+            </div>
+
+            <div class="rounded-xl p-5 border border-white/10" style="background: rgba(255,255,255,0.05);">
+              <div class="flex items-center gap-3 mb-2">
+                <span class="text-accent-400 font-bold text-sm bg-accent-500/10 px-2 py-0.5 rounded">4.5</span>
+                <h4 class="text-white font-bold">Cómo crear tu dashboard personalizado en Wazuh para informes ejecutivos</h4>
+              </div>
+              <p class="text-white/70 text-sm leading-relaxed">
+                Los paneles por defecto de Wazuh son útiles para el análisis técnico, pero a veces necesitas un <strong class="text-white">dashboard a medida</strong>: un resumen ejecutivo para la dirección, un panel específico para un cliente, o una vista con solo los indicadores que más te importan. Aprenderás a usar el editor visual de OpenSearch Dashboards para crear visualizaciones propias (gráficos de barras, circulares, tablas, métricas numéricas, mapas de calor), combinarlas en un dashboard y configurar el rango temporal. El resultado: un panel personalizado que puedes compartir, exportar como PDF o mostrar en una pantalla de monitorización 24/7.
+              </p>
+              <p class="text-white/50 text-xs mt-2">Lo que aprenderás: crear dashboard Wazuh personalizado · visualizaciones OpenSearch · informe ejecutivo seguridad · exportar PDF Wazuh · pantalla monitorización NOC</p>
             </div>
 
           </div>
@@ -630,7 +729,7 @@ const breadcrumbSchema = {
         <!-- Module 5 -->
         <details class="group bg-base-50 rounded-xl border-2 border-base-400 hover:border-accent-500 transition-all duration-300">
           <summary class="cursor-pointer px-6 py-5 flex items-center justify-between font-bold text-xl text-white hover:text-accent-300">
-            <span>📊 Módulo 5: Dashboard, Visualización y Cumplimiento Normativo</span>
+            <span>🔗 Módulo 5: Integraciones</span>
             <svg class="w-6 h-6 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
             </svg>
@@ -640,34 +739,23 @@ const breadcrumbSchema = {
             <div class="rounded-xl p-5 border border-white/10" style="background: rgba(255,255,255,0.05);">
               <div class="flex items-center gap-3 mb-2">
                 <span class="text-accent-400 font-bold text-sm bg-accent-500/10 px-2 py-0.5 rounded">5.1</span>
-                <h4 class="text-white font-bold">Wazuh Dashboard (OpenSearch): navegación, configuración y personalización</h4>
+                <h4 class="text-white font-bold">Integración con VirusTotal: análisis automático de archivos sospechosos</h4>
               </div>
               <p class="text-white/70 text-sm leading-relaxed">
-                El <strong class="text-white">Wazuh Dashboard</strong>, basado en OpenSearch Dashboards (fork de Kibana), es la interfaz central para visualizar todo lo que ocurre en tu infraestructura. Recorremos todas las secciones clave: <em>Security Events</em> (eventos en tiempo real), <em>Threat Intelligence</em>, <em>Integrity Monitoring</em>, <em>Vulnerability Detection</em>, <em>Policy Monitoring</em> y los módulos de cumplimiento (PCI-DSS, GDPR, ENS). Aprenderás a configurar el acceso con usuarios y roles (RBAC), a personalizar la interfaz para tu organización, y a usar los filtros de búsqueda KQL para encontrar eventos específicos entre millones de registros en segundos.
+                Cuando el FIM de Wazuh detecta un archivo nuevo o modificado en un directorio sensible, puede enviarlo automáticamente a <strong class="text-white">VirusTotal</strong> para analizarlo contra más de 70 motores antivirus. Configuramos la integración oficial Wazuh-VirusTotal: obtención de la API key gratuita, configuración en <code class="text-accent-300 font-mono text-xs">ossec.conf</code>, y creación de reglas que generen alertas de alta severidad cuando VirusTotal detecta el archivo como malicioso. El resultado: detección automática de malware en tus servidores sin necesitar un antivirus instalado en cada máquina Linux. Perfecto para detectar webshells, backdoors o scripts maliciosos en servidores web.
               </p>
-              <p class="text-white/50 text-xs mt-2">Lo que aprenderás: Wazuh Dashboard tour · OpenSearch Dashboards · KQL búsqueda · RBAC usuarios Wazuh · configurar roles · índices de Wazuh</p>
+              <p class="text-white/50 text-xs mt-2">Lo que aprenderás: Wazuh VirusTotal integración · análisis automático malware · detectar webshells · API VirusTotal · FIM + antivirus · detección de backdoors Linux</p>
             </div>
 
             <div class="rounded-xl p-5 border border-white/10" style="background: rgba(255,255,255,0.05);">
               <div class="flex items-center gap-3 mb-2">
                 <span class="text-accent-400 font-bold text-sm bg-accent-500/10 px-2 py-0.5 rounded">5.2</span>
-                <h4 class="text-white font-bold">Visualización de datos de seguridad: gráficos, mapas de amenazas y dashboards propios</h4>
+                <h4 class="text-white font-bold">IA Local con Ollama: analizar logs de Wazuh con lenguaje natural sin enviar datos a la nube</h4>
               </div>
               <p class="text-white/70 text-sm leading-relaxed">
-                Los datos de seguridad son valiosos solo si se pueden interpretar rápidamente. Aprenderás a crear <strong class="text-white">visualizaciones personalizadas en Wazuh</strong>: gráficos de barras con intentos de autenticación fallida por hora, mapas geográficos de IPs atacantes, tablas dinámicas con los agentes más activos, y paneles de tendencias de alertas a lo largo del tiempo. Construiremos un <strong class="text-white">dashboard ejecutivo</strong> que puedas enseñar a dirección o a un cliente: resumen de estado de seguridad, alertas críticas de las últimas 24h, top 10 de IPs bloqueadas, y evolución semanal de eventos. Todo sin una línea de código.
+                La integración más avanzada del curso: conectar Wazuh con un <strong class="text-white">modelo de lenguaje local (LLM) como Llama 3 vía Ollama</strong> para poder hacer preguntas en lenguaje natural sobre los logs de seguridad. ¿Qué usuarios han tenido más intentos de login fallidos esta semana? ¿Hay algún patrón sospechoso en los accesos de esta IP? Todo respondido por la IA sin enviar ningún dato a OpenAI ni a la nube. Configuramos Ollama en el mismo servidor o en uno dedicado, construimos el pipeline de consulta, y vemos ejemplos reales de cómo la IA ayuda a priorizar alertas y detectar anomalías que pasarían desapercibidas con búsquedas manuales.
               </p>
-              <p class="text-white/50 text-xs mt-2">Lo que aprenderás: crear dashboard Wazuh · visualizaciones personalizadas · mapa de IPs · gráficos de alertas · informe ejecutivo seguridad · exportar visualizaciones</p>
-            </div>
-
-            <div class="rounded-xl p-5 border border-white/10" style="background: rgba(255,255,255,0.05);">
-              <div class="flex items-center gap-3 mb-2">
-                <span class="text-accent-400 font-bold text-sm bg-accent-500/10 px-2 py-0.5 rounded">5.3</span>
-                <h4 class="text-white font-bold">Cumplimiento normativo con Wazuh: ENS, PCI-DSS y GDPR — reportes y evidencias</h4>
-              </div>
-              <p class="text-white/70 text-sm leading-relaxed">
-                Este es el apartado más estratégico para empresas españolas: <strong class="text-white">¿cómo usar Wazuh para cumplir el ENS, PCI-DSS y el GDPR?</strong> Wazuh incluye módulos de cumplimiento normativo que mapean automáticamente los eventos detectados con los controles exigidos por cada normativa. Para el <strong class="text-white">ENS (Esquema Nacional de Seguridad)</strong>, veremos qué controles cubre Wazuh de forma automática (monitorización continua, gestión de accesos, integridad de sistemas) y cómo generar los informes de evidencia. Para <strong class="text-white">PCI-DSS</strong>, configuramos la monitorización de sistemas que procesan datos de tarjetas. Para <strong class="text-white">GDPR</strong>, activamos alertas ante accesos a datos personales. Incluye plantilla de informe descargable.
-              </p>
-              <p class="text-white/50 text-xs mt-2">Lo que aprenderás: Wazuh ENS España · Wazuh PCI-DSS · Wazuh GDPR · generar informe cumplimiento · evidencias auditoria · controles ENS con Wazuh</p>
+              <p class="text-white/50 text-xs mt-2">Lo que aprenderás: Wazuh con IA · Ollama Llama 3 · análisis logs con LLM · Threat Hunting con IA · IA local sin nube · consultas en lenguaje natural sobre logs</p>
             </div>
 
           </div>
