@@ -61,6 +61,7 @@ async function requestIndexing(auth, url) {
   return res.data;
 }
 
+
 async function main() {
   const args = process.argv.slice(2);
   const doAll = args.includes('--all');
