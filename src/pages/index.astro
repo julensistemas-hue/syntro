@@ -9,9 +9,51 @@ import Testimonial from "../components/global/Testimonial.astro";
 const title = "AI Security - Automatización IA y Ciberseguridad Wazuh | PyMEs España";
 const description = "Soluciones de IA empresarial: chatbots 24/7, gestión documental inteligente y ciberseguridad Wazuh/ENS. Automatiza tu PyME sin perder el toque humano.";
 const canonical = "https://aisecurity.es/";
+
+const schemaOrg = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "AI Security",
+  "url": "https://aisecurity.es",
+  "logo": "https://aisecurity.es/og-image.png",
+  "description": "Soluciones de inteligencia artificial y ciberseguridad Wazuh/ENS para PyMEs españolas. Chatbots, gestión documental, automatización de procesos e implementación de SIEM.",
+  "foundingDate": "2024",
+  "founder": {
+    "@type": "Person",
+    "jobTitle": "Fundador"
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "España"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "addressRegion": "Alicante",
+    "addressCountry": "ES"
+  },
+  "serviceType": [
+    "Implementación Wazuh",
+    "Cumplimiento ENS",
+    "Chatbot empresarial",
+    "Automatización de procesos con IA",
+    "Gestión documental inteligente",
+    "Administración de sistemas"
+  ],
+  "knowsAbout": [
+    "Wazuh SIEM",
+    "Esquema Nacional de Seguridad",
+    "Inteligencia Artificial empresarial",
+    "Ciberseguridad para PyMEs",
+    "Automatización con IA"
+  ],
+  "sameAs": [
+    "https://www.youtube.com/@Systems_Boy"
+  ]
+};
 ---
 
 <BaseLayout title={title} description={description} canonical={canonical}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schemaOrg)} />
   <AIHeroFloating />
   <ServicesSection />
   <WhyChooseUs />
