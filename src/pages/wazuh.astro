@@ -1240,71 +1240,76 @@ const canonical = "https://aisecurity.es/wazuh";
   -->
 
   <!-- FAQ Section -->
-  <section class="py-20 relative overflow-hidden" style="background-color:#0d1117;">
-    <div class="relative z-10">
-      <div class="max-w-4xl mx-auto px-8 md:px-12">
-        <div class="text-center mb-12">
-          <h2 id="faq" class="text-3xl md:text-4xl font-bold text-white mb-4">
-            Preguntas Frecuentes
-          </h2>
-          <p class="text-base-300">Todo lo que necesitas saber antes de implementar Wazuh</p>
-        </div>
+  <section class="py-20 relative overflow-hidden">
+    <div class="absolute inset-0">
+      <img src="/images/3409297.jpg" alt="Background" class="w-full h-full object-cover" />
+    </div>
+    <div class="absolute inset-0" style="background: rgba(5, 10, 25, 0.92);"></div>
+    <div class="relative z-10 max-w-4xl mx-auto px-8 md:px-12 lg:px-24">
+      <h2 id="faq" class="text-3xl md:text-4xl font-bold text-white text-center mb-4">Preguntas Frecuentes sobre Wazuh</h2>
+      <p class="text-white/70 text-center mb-12">Todo lo que necesitas saber antes de implementar Wazuh</p>
+      <div class="space-y-4">
 
-        <div class="space-y-4">
-          <details class="bg-base-800 rounded-xl shadow-md overflow-hidden border border-base-700">
-            <summary class="px-6 py-4 font-semibold text-white cursor-pointer hover:bg-base-700 transition-colors">
-              ¿Wazuh realmente cumple con el Esquema Nacional de Seguridad (ENS)?
-            </summary>
-            <div class="px-6 py-4 text-base-300 border-t border-base-700">
-              Sí. Wazuh proporciona las capacidades técnicas necesarias para cumplir múltiples controles ENS: registro de eventos (op.acc.5), gestión de incidentes (op.exp.8), copias de seguridad (mp.info.3), y más. Nuestra implementación incluye la configuración específica y documentación para auditorías ENS.
-            </div>
-          </details>
+        <details class="group bg-white/5 rounded-xl border border-white/10 hover:border-accent-500/50 transition-all duration-300">
+          <summary class="cursor-pointer px-6 py-5 flex items-center justify-between font-semibold text-lg text-white">
+            <span>¿Wazuh realmente cumple con el Esquema Nacional de Seguridad (ENS)?</span>
+            <svg class="w-5 h-5 transition-transform group-open:rotate-180 text-accent-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </summary>
+          <div class="px-6 pb-6 text-white/70 leading-relaxed">
+            Sí. Wazuh proporciona las capacidades técnicas necesarias para cumplir múltiples controles ENS: registro de eventos (op.acc.5), gestión de incidentes (op.exp.8), copias de seguridad (mp.info.3), y más. Nuestra implementación incluye la configuración específica y documentación para auditorías ENS.
+          </div>
+        </details>
 
-          <details class="bg-base-800 rounded-xl shadow-md overflow-hidden border border-base-700">
-            <summary class="px-6 py-4 font-semibold text-white cursor-pointer hover:bg-base-700 transition-colors">
-              ¿Cuánto tiempo tarda la implementación completa?
-            </summary>
-            <div class="px-6 py-4 text-base-300 border-t border-base-700">
-              Entre 4 y 6 semanas desde la auditoría inicial hasta el monitoreo completo. El tiempo exacto depende del número de servidores, complejidad de la infraestructura y requisitos específicos de cumplimiento.
-            </div>
-          </details>
+        <details class="group bg-white/5 rounded-xl border border-white/10 hover:border-accent-500/50 transition-all duration-300">
+          <summary class="cursor-pointer px-6 py-5 flex items-center justify-between font-semibold text-lg text-white">
+            <span>¿Cuánto tiempo tarda la implementación completa?</span>
+            <svg class="w-5 h-5 transition-transform group-open:rotate-180 text-accent-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </summary>
+          <div class="px-6 pb-6 text-white/70 leading-relaxed">
+            Entre 4 y 6 semanas desde la auditoría inicial hasta el monitoreo completo. El tiempo exacto depende del número de servidores, complejidad de la infraestructura y requisitos específicos de cumplimiento.
+          </div>
+        </details>
 
-          <details class="bg-base-800 rounded-xl shadow-md overflow-hidden border border-base-700">
-            <summary class="px-6 py-4 font-semibold text-white cursor-pointer hover:bg-base-700 transition-colors">
-              ¿Qué diferencia hay con soluciones como Splunk o QRadar?
-            </summary>
-            <div class="px-6 py-4 text-base-300 border-t border-base-700">
-              Wazuh ofrece capacidades similares (SIEM, detección de amenazas, cumplimiento) pero es 100% open source y sin costes de licencia. Esto significa ahorro de €15,000-50,000/año en licencias. Las soluciones comerciales pueden tener interfaces más pulidas, pero la funcionalidad core es comparable.
-            </div>
-          </details>
+        <details class="group bg-white/5 rounded-xl border border-white/10 hover:border-accent-500/50 transition-all duration-300">
+          <summary class="cursor-pointer px-6 py-5 flex items-center justify-between font-semibold text-lg text-white">
+            <span>¿Qué diferencia hay con soluciones como Splunk o QRadar?</span>
+            <svg class="w-5 h-5 transition-transform group-open:rotate-180 text-accent-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </summary>
+          <div class="px-6 pb-6 text-white/70 leading-relaxed">
+            Wazuh ofrece capacidades similares (SIEM, detección de amenazas, cumplimiento) pero es 100% open source y sin costes de licencia. Esto significa ahorro de €15,000-50,000/año en licencias. Las soluciones comerciales pueden tener interfaces más pulidas, pero la funcionalidad core es comparable.
+          </div>
+        </details>
 
-          <details class="bg-base-800 rounded-xl shadow-md overflow-hidden border border-base-700">
-            <summary class="px-6 py-4 font-semibold text-white cursor-pointer hover:bg-base-700 transition-colors">
-              ¿Incluye formación para nuestro equipo IT?
-            </summary>
-            <div class="px-6 py-4 text-base-300 border-t border-base-700">
-              Sí. Todos nuestros paquetes incluyen formación: 2 días en el paquete Básico y 5 días en el Completo. Cubrimos desde el uso diario hasta respuesta a incidentes y generación de informes de cumplimiento.
-            </div>
-          </details>
+        <details class="group bg-white/5 rounded-xl border border-white/10 hover:border-accent-500/50 transition-all duration-300">
+          <summary class="cursor-pointer px-6 py-5 flex items-center justify-between font-semibold text-lg text-white">
+            <span>¿Incluye formación para nuestro equipo IT?</span>
+            <svg class="w-5 h-5 transition-transform group-open:rotate-180 text-accent-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </summary>
+          <div class="px-6 pb-6 text-white/70 leading-relaxed">
+            Sí. Todos nuestros paquetes incluyen formación: 2 días en el paquete Básico y 5 días en el Completo. Cubrimos desde el uso diario hasta respuesta a incidentes y generación de informes de cumplimiento.
+          </div>
+        </details>
 
-          <details class="bg-base-800 rounded-xl shadow-md overflow-hidden border border-base-700">
-            <summary class="px-6 py-4 font-semibold text-white cursor-pointer hover:bg-base-700 transition-colors">
-              ¿Puedo implementar Wazuh yo mismo siguiendo vuestros tutoriales de YouTube?
-            </summary>
-            <div class="px-6 py-4 text-base-300 border-t border-base-700">
-              Absolutamente. Nuestros tutoriales están diseñados para que puedas hacerlo tú mismo. Contratarías nuestros servicios si: (1) No tienes tiempo para hacerlo, (2) Necesitas configuración ENS certificada para auditorías, (3) Quieres soporte profesional continuo, o (4) Tienes una infraestructura compleja que requiere experiencia especializada.
-            </div>
-          </details>
+        <details class="group bg-white/5 rounded-xl border border-white/10 hover:border-accent-500/50 transition-all duration-300">
+          <summary class="cursor-pointer px-6 py-5 flex items-center justify-between font-semibold text-lg text-white">
+            <span>¿Puedo implementar Wazuh yo mismo siguiendo vuestros tutoriales de YouTube?</span>
+            <svg class="w-5 h-5 transition-transform group-open:rotate-180 text-accent-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </summary>
+          <div class="px-6 pb-6 text-white/70 leading-relaxed">
+            Absolutamente. Nuestros tutoriales están diseñados para que puedas hacerlo tú mismo. Contratarías nuestros servicios si: (1) No tienes tiempo para hacerlo, (2) Necesitas configuración ENS certificada para auditorías, (3) Quieres soporte profesional continuo, o (4) Tienes una infraestructura compleja que requiere experiencia especializada.
+          </div>
+        </details>
 
-          <details class="bg-base-800 rounded-xl shadow-md overflow-hidden border border-base-700">
-            <summary class="px-6 py-4 font-semibold text-white cursor-pointer hover:bg-base-700 transition-colors">
-              ¿Qué pasa si ya tengo Wazuh instalado pero necesito ayuda?
-            </summary>
-            <div class="px-6 py-4 text-base-300 border-t border-base-700">
-              Podemos realizar una auditoría de tu instalación actual, identificar mejoras y optimizaciones, configurar cumplimiento ENS, o simplemente ofrecer soporte continuo. Contáctanos para evaluar tu caso específico.
-            </div>
-          </details>
-        </div>
+        <details class="group bg-white/5 rounded-xl border border-white/10 hover:border-accent-500/50 transition-all duration-300">
+          <summary class="cursor-pointer px-6 py-5 flex items-center justify-between font-semibold text-lg text-white">
+            <span>¿Qué pasa si ya tengo Wazuh instalado pero necesito ayuda?</span>
+            <svg class="w-5 h-5 transition-transform group-open:rotate-180 text-accent-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </summary>
+          <div class="px-6 pb-6 text-white/70 leading-relaxed">
+            Podemos realizar una auditoría de tu instalación actual, identificar mejoras y optimizaciones, configurar cumplimiento ENS, o simplemente ofrecer soporte continuo. Contáctanos para evaluar tu caso específico.
+          </div>
+        </details>
+
       </div>
     </div>
   </section>
