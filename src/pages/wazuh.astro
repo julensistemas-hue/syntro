@@ -11,179 +11,156 @@ const canonical = "https://aisecurity.es/wazuh";
 
 <WazuhLayout title={title} description={description} canonical={canonical}>
   <!-- Hero Section -->
-  <section class="relative py-20 overflow-hidden" data-page="wazuh">
-    <!-- Background Image -->
-    <div class="absolute inset-0">
-      <img src="/images/6107094.jpg" alt="Background" class="w-full h-full object-cover opacity-40" />
-    </div>
-    <!-- Overlay Gradient -->
-    <div class="absolute inset-0 bg-gradient-to-bl from-accent-500/60 via-blue-600/70 to-accent-500/60"></div>
+  <section class="relative min-h-screen flex items-center overflow-hidden" data-page="wazuh" style="background-color: #020817;">
+    <!-- Subtle grid pattern -->
+    <div class="absolute inset-0 opacity-20" style="background-image: linear-gradient(rgba(59,130,246,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(59,130,246,0.15) 1px, transparent 1px); background-size: 40px 40px;"></div>
+    <!-- Glow top-left -->
+    <div class="absolute -top-40 -left-40 w-96 h-96 rounded-full blur-3xl opacity-20" style="background: radial-gradient(circle, #3b82f6, transparent);"></div>
+    <!-- Glow bottom-right -->
+    <div class="absolute -bottom-40 -right-40 w-96 h-96 rounded-full blur-3xl opacity-15" style="background: radial-gradient(circle, #6366f1, transparent);"></div>
 
-    <!-- Content -->
-    <div class="relative z-10 max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+    <div class="relative z-10 w-full max-w-7xl mx-auto px-8 md:px-12 lg:px-24 py-24">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
+        <!-- Left: Text -->
         <div>
-        
-          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white">
-            Monitorización 24/7 con Wazuh
+          <!-- Badge -->
+          <div class="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full border text-sm font-medium" style="background: rgba(59,130,246,0.1); border-color: rgba(59,130,246,0.3); color: #93c5fd;">
+            <span class="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
+            SIEM Open Source · Certificado ENS · España
+          </div>
+
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white leading-tight">
+            Implementación<br/>
+            <span style="background: linear-gradient(135deg, #60a5fa, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Wazuh</span> para<br/>
+            tu empresa
           </h1>
-          <p class="text-xl text-white/90 mb-8 leading-relaxed">
-            Implementación profesional de Wazuh con especialización en ENS.<br>
-            Monitoreo 24/7, cumplimiento normativo certificado y soporte en tu horario.
+
+          <p class="text-lg mb-8 leading-relaxed" style="color: #94a3b8;">
+            Desplegamos Wazuh de forma profesional, configurado para cumplir el ENS y listo para detectar amenazas desde el primer día. Sin curva de aprendizaje para tu equipo.
           </p>
-          <div class="flex flex-col sm:flex-row gap-4">
-            <a
-              href="#demo"
-              class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold bg-accent-600 hover:bg-accent-700 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5"
-              style="color: #000000;"
-            >
+
+          <div class="flex flex-col sm:flex-row gap-4 mb-10">
+            <a href="#demo" class="inline-flex items-center justify-center gap-2 px-7 py-4 text-base font-semibold rounded-xl transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl" style="background: linear-gradient(135deg, #3b82f6, #6366f1); color: white; box-shadow: 0 4px 24px rgba(99,102,241,0.35);">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
               Ver Demo Interactiva
             </a>
-            <a
-              href="/contacto-migracion?plan=wazuh-consultoria"
-              class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-base-800 bg-base-50 hover:bg-accent-50 rounded-xl border-2 border-base-200 hover:border-accent-300 transition-all duration-200 shadow-sm hover:shadow-md"
-            >
+            <a href="/contacto-migracion?plan=wazuh-consultoria" class="inline-flex items-center justify-center gap-2 px-7 py-4 text-base font-semibold rounded-xl border transition-all duration-200 hover:-translate-y-0.5" style="border-color: rgba(255,255,255,0.15); color: white; background: rgba(255,255,255,0.05);">
               Solicitar Consulta Gratuita
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
             </a>
           </div>
 
-          <!-- Key Stats -->
-          <div class="grid grid-cols-3 gap-6 mt-12 pt-8 border-t border-white/30">
-            <div>
-              <div class="text-3xl font-bold text-white mb-1">24/7</div>
-              <div class="text-sm text-white/80 font-medium">Monitoreo continuo</div>
+          <!-- Stats -->
+          <div class="flex flex-wrap gap-4 mb-8">
+            <div class="flex items-center gap-2 px-4 py-2 rounded-lg" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);">
+              <span class="text-xl font-bold text-white">24/7</span>
+              <span class="text-sm" style="color:#94a3b8;">Monitoreo</span>
             </div>
-            <div>
-              <div class="text-3xl font-bold text-white mb-1">ENS</div>
-              <div class="text-sm text-white/80 font-medium">Cumplimiento certificado</div>
+            <div class="flex items-center gap-2 px-4 py-2 rounded-lg" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);">
+              <span class="text-xl font-bold text-white">ENS</span>
+              <span class="text-sm" style="color:#94a3b8;">Certificado</span>
             </div>
-            <div>
-              <div class="text-3xl font-bold text-white mb-1">100%</div>
-              <div class="text-sm text-white/80 font-medium">Open Source</div>
+            <div class="flex items-center gap-2 px-4 py-2 rounded-lg" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);">
+              <span class="text-xl font-bold text-white">100%</span>
+              <span class="text-sm" style="color:#94a3b8;">Open Source</span>
             </div>
           </div>
 
-          <!-- Course CTA - Compact with animation -->
-          <a href="/curso-wazuh" class="course-cta mt-6 flex items-center gap-3 p-3 bg-purple-700/70 hover:bg-purple-800/80 border border-purple-400/50 rounded-xl transition-all duration-200 group backdrop-blur-sm">
-            <div class="text-2xl animate-bounce-subtle">🎓</div>
-            <div class="flex-1">
-              <span class="text-white font-medium text-sm">¿Prefieres implementarlo tú mismo?</span>
-              <span class="text-purple-200 text-sm ml-1">Curso práctico por 50€</span>
+          <!-- Course CTA -->
+          <a href="/curso-wazuh" class="group inline-flex items-center gap-3 px-4 py-3 rounded-xl border transition-all duration-200" style="border-color: rgba(139,92,246,0.4); background: rgba(139,92,246,0.1);">
+            <span class="text-xl">🎓</span>
+            <div>
+              <span class="text-sm font-medium text-white">¿Prefieres aprenderlo tú?</span>
+              <span class="text-sm ml-1" style="color:#c4b5fd;">Curso práctico por 50€</span>
             </div>
-            <svg class="w-5 h-5 text-purple-300 group-hover:translate-x-1 transition-transform arrow-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
-            </svg>
+            <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" style="color:#c4b5fd;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
           </a>
         </div>
 
-        <!-- Dashboard Preview - Interactive -->
+        <!-- Right: Terminal-style SOC panel -->
         <div class="relative">
-          <div class="relative z-10 bg-base-50 rounded-2xl shadow-2xl border border-base-200 p-6 md:p-7">
-            <!-- Simulated Wazuh Dashboard -->
-            <div class="space-y-5">
-              <div class="flex items-center gap-3 pb-4 border-b border-base-200">
-                <div class="flex gap-2">
-                  <div class="w-3 h-3 bg-red-400 rounded-full" aria-hidden="true"></div>
-                  <div class="w-3 h-3 bg-yellow-400 rounded-full" aria-hidden="true"></div>
-                  <div class="w-3 h-3 bg-green-400 rounded-full" aria-hidden="true"></div>
+          <!-- Glow behind panel -->
+          <div class="absolute inset-0 rounded-2xl blur-2xl opacity-30" style="background: linear-gradient(135deg, rgba(59,130,246,0.3), rgba(99,102,241,0.3)); transform: scale(1.05);"></div>
+
+          <div class="relative rounded-2xl overflow-hidden border" style="background: #0d1117; border-color: rgba(255,255,255,0.1);">
+            <!-- Terminal header -->
+            <div class="flex items-center justify-between px-5 py-3 border-b" style="background: #161b22; border-color: rgba(255,255,255,0.08);">
+              <div class="flex items-center gap-2">
+                <div class="w-3 h-3 rounded-full" style="background:#ff5f57;"></div>
+                <div class="w-3 h-3 rounded-full" style="background:#febc2e;"></div>
+                <div class="w-3 h-3 rounded-full" style="background:#28c840;"></div>
+              </div>
+              <div class="flex items-center gap-2 text-xs font-mono" style="color:#8b949e;">
+                <div class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></div>
+                wazuh-manager · 3 agentes activos
+              </div>
+              <div class="text-xs font-mono" style="color:#8b949e;">SOC Live</div>
+            </div>
+
+            <!-- Alerts -->
+            <div class="p-5 space-y-3 font-mono text-sm">
+
+              <!-- Alert crítico -->
+              <div class="flex items-start gap-3 p-3 rounded-lg border-l-2" style="background: rgba(239,68,68,0.08); border-color: #ef4444;">
+                <div class="flex-shrink-0 w-6 h-6 rounded flex items-center justify-center text-xs font-bold mt-0.5" style="background: rgba(239,68,68,0.2); color: #f87171;">12</div>
+                <div class="flex-1 min-w-0">
+                  <div class="flex items-center gap-2 mb-1">
+                    <span class="text-xs font-bold uppercase tracking-wide" style="color:#f87171;">CRÍTICO</span>
+                    <span class="text-xs" style="color:#6b7280;">hace 2 min</span>
+                    <div class="w-1.5 h-1.5 rounded-full bg-red-400 animate-pulse ml-auto"></div>
+                  </div>
+                  <div class="text-white text-xs font-semibold">Intento acceso no autorizado (SSH brute force)</div>
+                  <div class="text-xs mt-0.5" style="color:#8b949e;">src: 45.142.212.61 → web-prod-01 · 15 intentos</div>
+                  <div class="text-xs mt-1" style="color:#4ade80;">↳ Bloqueado automáticamente</div>
                 </div>
-                <span class="text-sm font-semibold text-base-700 ml-2">Dashboard Wazuh - Monitoreo Activo</span>
               </div>
 
-              <div class="space-y-3">
-                <!-- Alert 1: Critical -->
-                <details class="group">
-                  <summary class="flex items-center gap-3 p-4 rounded-xl border-2 cursor-pointer transition-all hover:shadow-lg" style="background-color: #1F2937; border-color: #EF4444;">
-                    <div class="w-10 h-10 rounded-xl flex items-center justify-center text-white text-lg shadow-sm" style="background-color: #EF4444;">🚨</div>
-                    <div class="flex-1 min-w-0">
-                      <div class="text-sm font-bold text-white">Intento acceso no autorizado</div>
-                      <div class="text-xs text-gray-300 mt-0.5">15 intentos SSH desde IP sospechosa</div>
-                    </div>
-                    <div class="w-2.5 h-2.5 bg-red-400 rounded-full animate-pulse" aria-label="Crítico"></div>
-                    <svg class="w-4 h-4 text-gray-300 transition-transform group-open:rotate-180 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                    </svg>
-                  </summary>
-                  <div class="mt-2 ml-12 p-4 rounded-lg border-l-4" style="background-color: #374151; border-color: #EF4444;">
-                    <div class="text-sm font-bold text-white">Nivel 12 - Crítico</div>
-                    <div class="text-xs text-gray-300 mt-1">IP: 45.142.212.61 → Servidor: web-prod-01</div>
-                    <div class="text-xs text-gray-300">Acción: Bloqueado automáticamente por firewall</div>
+              <!-- Alert warning -->
+              <div class="flex items-start gap-3 p-3 rounded-lg border-l-2" style="background: rgba(245,158,11,0.08); border-color: #f59e0b;">
+                <div class="flex-shrink-0 w-6 h-6 rounded flex items-center justify-center text-xs font-bold mt-0.5" style="background: rgba(245,158,11,0.2); color: #fbbf24;">7</div>
+                <div class="flex-1 min-w-0">
+                  <div class="flex items-center gap-2 mb-1">
+                    <span class="text-xs font-bold uppercase tracking-wide" style="color:#fbbf24;">AVISO</span>
+                    <span class="text-xs" style="color:#6b7280;">hace 8 min</span>
                   </div>
-                </details>
-
-                <!-- Alert 2: Warning -->
-                <details class="group">
-                  <summary class="flex items-center gap-3 p-4 rounded-xl border-2 cursor-pointer transition-all hover:shadow-lg" style="background-color: #1F2937; border-color: #F59E0B;">
-                    <div class="w-10 h-10 rounded-xl flex items-center justify-center text-white text-lg shadow-sm" style="background-color: #F59E0B;">⚠️</div>
-                    <div class="flex-1 min-w-0">
-                      <div class="text-sm font-bold text-white">Cambio configuración firewall</div>
-                      <div class="text-xs text-gray-300 mt-0.5">Puerto 3306 abierto en fw-01</div>
-                    </div>
-                    <div class="w-2.5 h-2.5 rounded-full animate-pulse" aria-label="Advertencia" style="background-color: #F59E0B;"></div>
-                    <svg class="w-4 h-4 text-gray-300 transition-transform group-open:rotate-180 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                    </svg>
-                  </summary>
-                  <div class="mt-2 ml-12 p-4 rounded-lg border-l-4" style="background-color: #374151; border-color: #F59E0B;">
-                    <div class="text-sm font-bold text-white">Nivel 7 - Advertencia</div>
-                    <div class="text-xs text-gray-300 mt-1">Usuario: admin | Requiere revisión ENS</div>
-                  </div>
-                </details>
-
-                <!-- Alert 3: Info -->
-                <details class="group">
-                  <summary class="flex items-center gap-3 p-4 rounded-xl border-2 cursor-pointer transition-all hover:shadow-lg" style="background-color: #1F2937; border-color: #3B82F6;">
-                    <div class="w-10 h-10 rounded-xl flex items-center justify-center text-white text-lg shadow-sm" style="background-color: #3B82F6;">✅</div>
-                    <div class="flex-1 min-w-0">
-                      <div class="text-sm font-bold text-white">Actualización completada</div>
-                      <div class="text-xs text-gray-300 mt-0.5">23 paquetes actualizados en db-prod-02</div>
-                    </div>
-                    <div class="w-2.5 h-2.5 bg-green-400 rounded-full animate-pulse" aria-label="Activo"></div>
-                    <svg class="w-4 h-4 text-gray-300 transition-transform group-open:rotate-180 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                    </svg>
-                  </summary>
-                  <div class="mt-2 ml-12 p-4 rounded-lg border-l-4" style="background-color: #374151; border-color: #3B82F6;">
-                    <div class="text-sm font-bold text-white">Nivel 3 - Informativo</div>
-                    <div class="text-xs text-gray-300 mt-1">Parches de seguridad aplicados correctamente</div>
-                  </div>
-                </details>
-
-                <!-- Alert 4: Compliance -->
-                <details class="group">
-                  <summary class="flex items-center gap-3 p-4 rounded-xl border-2 cursor-pointer transition-all hover:shadow-lg" style="background-color: #1F2937; border-color: #8B5CF6;">
-                    <div class="w-10 h-10 rounded-xl flex items-center justify-center text-white text-lg shadow-sm" style="background-color: #8B5CF6;">📋</div>
-                    <div class="flex-1 min-w-0">
-                      <div class="text-sm font-bold text-white">Cumplimiento ENS</div>
-                      <div class="text-xs text-gray-300 mt-0.5">Auditoría semanal completada</div>
-                    </div>
-                    <div class="w-2.5 h-2.5 rounded-full animate-pulse" aria-label="Activo" style="background-color: #8B5CF6;"></div>
-                    <svg class="w-4 h-4 text-gray-300 transition-transform group-open:rotate-180 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                    </svg>
-                  </summary>
-                  <div class="mt-2 ml-12 p-4 rounded-lg border-l-4" style="background-color: #374151; border-color: #8B5CF6;">
-                    <div class="text-sm font-bold text-white">Estado: 96% Conforme</div>
-                    <div class="text-xs text-white mt-1">Marco Operacional: 98% | Protección: 95%</div>
-                  </div>
-                </details>
+                  <div class="text-white text-xs font-semibold">Cambio configuración firewall</div>
+                  <div class="text-xs mt-0.5" style="color:#8b949e;">Puerto 3306 abierto · fw-01 · user: admin</div>
+                </div>
               </div>
 
-              <div class="mt-6 p-5 bg-gradient-to-br from-accent-600 to-blue-600 rounded-xl text-white shadow-lg">
-                <div class="text-center">
-                  <div class="text-3xl md:text-4xl font-extrabold">24/7</div>
-                  <div class="text-sm font-medium opacity-90 mt-1">Monitoreo continuo de seguridad</div>
+              <!-- Alert info -->
+              <div class="flex items-start gap-3 p-3 rounded-lg border-l-2" style="background: rgba(59,130,246,0.08); border-color: #3b82f6;">
+                <div class="flex-shrink-0 w-6 h-6 rounded flex items-center justify-center text-xs font-bold mt-0.5" style="background: rgba(59,130,246,0.2); color: #60a5fa;">3</div>
+                <div class="flex-1 min-w-0">
+                  <div class="flex items-center gap-2 mb-1">
+                    <span class="text-xs font-bold uppercase tracking-wide" style="color:#60a5fa;">INFO</span>
+                    <span class="text-xs" style="color:#6b7280;">hace 23 min</span>
+                  </div>
+                  <div class="text-white text-xs font-semibold">Actualización de paquetes completada</div>
+                  <div class="text-xs mt-0.5" style="color:#8b949e;">23 paquetes · db-prod-02</div>
+                </div>
+              </div>
+
+              <!-- ENS Compliance bar -->
+              <div class="mt-4 p-4 rounded-xl border" style="background: rgba(99,102,241,0.08); border-color: rgba(99,102,241,0.25);">
+                <div class="flex items-center justify-between mb-3">
+                  <span class="text-xs font-semibold uppercase tracking-wide" style="color:#a5b4fc;">Cumplimiento ENS</span>
+                  <span class="text-sm font-bold" style="color:#a5b4fc;">96%</span>
+                </div>
+                <div class="w-full h-1.5 rounded-full" style="background: rgba(255,255,255,0.1);">
+                  <div class="h-full rounded-full" style="width:96%; background: linear-gradient(90deg, #6366f1, #818cf8);"></div>
+                </div>
+                <div class="flex justify-between mt-2 text-xs" style="color:#6b7280;">
+                  <span>Marco Operacional 98%</span>
+                  <span>Protección 95%</span>
                 </div>
               </div>
             </div>
           </div>
-
-          <!-- Decorative elements -->
-          <div class="absolute -top-6 -right-6 w-32 h-32 bg-accent-600/10 rounded-full blur-2xl" aria-hidden="true"></div>
-          <div class="absolute -bottom-8 -left-8 w-24 h-24 bg-blue-600/10 rounded-full blur-2xl" aria-hidden="true"></div>
         </div>
+
       </div>
-    </div>
     </div>
   </section>
 
