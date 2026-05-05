@@ -43,19 +43,18 @@ if (env.GOOGLE_SERVICE_ACCOUNT_JSON) {
 
 const analyticsData = google.analyticsdata({ version: 'v1beta', auth });
 
-// Rango: últimos 7 días (o todos los datos si se pasa --all)
 const isAll = process.argv.includes('--all');
-const dateRange = isAll
-  ? { startDate: '2020-01-01', endDate: 'today' }
-  : { startDate: '7daysAgo',  endDate: 'today' };
 const periodoLabel = isAll ? 'Todos los datos disponibles' : 'Últimos 7 días';
 
-async function query(dimensions, metrics, filters) {
+const dateRange     = isAll ? { startDate: '2020-01-01', endDate: 'today' } : { startDate: '7daysAgo',  endDate: 'today' };
+const dateRangePrev = isAll ? null : { startDate: '14daysAgo', endDate: '8daysAgo' };
+
+async function query(dimensions, metrics, filters, range) {
   try {
     const res = await analyticsData.properties.runReport({
       property: `properties/${PROPERTY_ID}`,
       requestBody: {
-        dateRanges: [dateRange],
+        dateRanges: [range || dateRange],
         dimensions: dimensions.map(n => ({ name: n })),
         metrics:    metrics.map(n => ({ name: n })),
         ...(filters ? { dimensionFilter: filters } : {}),
@@ -70,8 +69,40 @@ async function query(dimensions, metrics, filters) {
   }
 }
 
+// Totales simples (sin dimensiones)
+async function queryTotals(range) {
+  try {
+    const res = await analyticsData.properties.runReport({
+      property: `properties/${PROPERTY_ID}`,
+      requestBody: {
+        dateRanges: [range],
+        dimensions: [],
+        metrics: [{ name: 'sessions' }, { name: 'activeUsers' }, { name: 'screenPageViews' }],
+        limit: 1,
+      },
+    });
+    const t = res.data.rows?.[0]?.metricValues || [];
+    return {
+      sessions:  parseInt(t[0]?.value || '0'),
+      users:     parseInt(t[1]?.value || '0'),
+      pageviews: parseInt(t[2]?.value || '0'),
+    };
+  } catch (e) {
+    console.error('Error query totals:', e.message);
+    return { sessions: 0, users: 0, pageviews: 0 };
+  }
+}
+
+function delta(curr, prev) {
+  if (!prev || prev === 0) return '';
+  const pct = Math.round(((curr - prev) / prev) * 100);
+  if (pct === 0) return `<span style="color:#94a3b8;font-size:0.72rem;">= igual</span>`;
+  const up = pct > 0;
+  return `<span style="color:${up ? '#16a34a' : '#dc2626'};font-size:0.72rem;font-weight:600;">${up ? '▲' : '▼'} ${Math.abs(pct)}%</span>`;
+}
+
 function row(cols) {
-  return `<tr>${cols.map((c, i) => `<td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;${i===0?'color:#1e293b;':'color:#475569;text-align:right;'}">${c}</td>`).join('')}</tr>`;
+  return `<tr>${cols.map((c, i) => `<td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;${i === 0 ? 'color:#1e293b;' : 'color:#475569;text-align:right;'}">${c}</td>`).join('')}</tr>`;
 }
 
 function section(title, emoji, headers, rows) {
@@ -80,7 +111,7 @@ function section(title, emoji, headers, rows) {
   <div style="margin-bottom:32px;">
     <h3 style="color:#1e3a5f;margin:0 0 12px;font-size:1rem;">${emoji} ${title}</h3>
     <table style="width:100%;border-collapse:collapse;font-size:0.875rem;background:white;border-radius:8px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,0.06);">
-      <thead><tr>${headers.map(h => `<th style="padding:10px 12px;background:#f8fafc;color:#64748b;font-weight:600;text-align:${h===headers[0]?'left':'right'};font-size:0.8rem;text-transform:uppercase;letter-spacing:0.03em;">${h}</th>`).join('')}</tr></thead>
+      <thead><tr>${headers.map(h => `<th style="padding:10px 12px;background:#f8fafc;color:#64748b;font-weight:600;text-align:${h === headers[0] ? 'left' : 'right'};font-size:0.8rem;text-transform:uppercase;letter-spacing:0.03em;">${h}</th>`).join('')}</tr></thead>
       <tbody>${rows}</tbody>
     </table>
   </div>`;
@@ -89,9 +120,13 @@ function section(title, emoji, headers, rows) {
 async function buildReport() {
   console.log('📊 Consultando GA4...\n');
 
-  // 1. Top botones clicados
+  // Totales esta semana y semana anterior
+  const curr = await queryTotals(dateRange);
+  const prev = isAll ? null : await queryTotals(dateRangePrev);
+
+  // 1. Top botones clicados — con página de origen
   const clicks = await query(
-    ['customEvent:event_label', 'customEvent:event_category'],
+    ['customEvent:event_label', 'customEvent:event_category', 'pagePath'],
     ['eventCount'],
     { filter: { fieldName: 'eventName', stringFilter: { value: 'click_link' } } }
   );
@@ -103,16 +138,16 @@ async function buildReport() {
     { filter: { fieldName: 'eventName', stringFilter: { matchType: 'BEGINS_WITH', value: 'click' } } }
   );
 
-  // 3. Conversiones (leads)
+  // 3. Conversiones (leads) — con página de origen
   const conversions = await query(
-    ['customEvent:event_label', 'customEvent:page_path'],
+    ['customEvent:event_label', 'pagePath'],
     ['eventCount'],
     { filter: { fieldName: 'eventName', stringFilter: { value: 'conversion_click' } } }
   );
 
-  // 4. Formularios enviados
+  // 4. Formularios enviados — con página
   const forms = await query(
-    ['customEvent:event_label'],
+    ['customEvent:event_label', 'pagePath'],
     ['eventCount'],
     { filter: { fieldName: 'eventName', stringFilter: { value: 'form_submit' } } }
   );
@@ -120,65 +155,66 @@ async function buildReport() {
   // 5. Páginas más visitadas
   const pages = await query(['pagePath'], ['screenPageViews'], null);
 
-  // 6. Totales generales
-  const totals = await query([], ['sessions', 'activeUsers', 'screenPageViews']);
-  const t = totals[0]?.metricValues || [];
-  const sessions  = t[0]?.value || '0';
-  const users     = t[1]?.value || '0';
-  const pageviews = t[2]?.value || '0';
+  const now = new Date().toLocaleDateString('es-ES', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
 
-  // Construir HTML
-  const now = new Date().toLocaleDateString('es-ES', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
+  const kpiBlock = (icon, label, value, prevValue) => `
+    <div style="background:white;border-radius:10px;padding:16px;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,0.06);">
+      <div style="font-size:1.6rem;margin-bottom:4px;">${icon}</div>
+      <div style="font-size:1.5rem;font-weight:700;color:#1e293b;">${value.toLocaleString('es-ES')}</div>
+      ${prev ? `<div style="margin-top:2px;">${delta(value, prevValue)}</div>` : ''}
+      <div style="font-size:0.78rem;color:#94a3b8;margin-top:2px;">${label}</div>
+      ${prev ? `<div style="font-size:0.72rem;color:#cbd5e1;margin-top:1px;">sem. ant.: ${prevValue?.toLocaleString('es-ES') ?? '-'}</div>` : ''}
+    </div>`;
 
   const html = `
 <!DOCTYPE html>
 <html>
 <head><meta charset="UTF-8"></head>
 <body style="font-family:system-ui,sans-serif;background:#f1f5f9;margin:0;padding:24px;">
-<div style="max-width:640px;margin:0 auto;">
+<div style="max-width:660px;margin:0 auto;">
 
   <!-- Header -->
   <div style="background:linear-gradient(135deg,#1e3a5f,#2563eb);border-radius:12px;padding:28px 32px;margin-bottom:24px;">
     <h1 style="color:white;margin:0;font-size:1.4rem;">📊 Informe semanal GA4</h1>
     <p style="color:rgba(255,255,255,0.75);margin:6px 0 0;font-size:0.875rem;">AI Security · ${periodoLabel} · ${now}</p>
+    ${prev ? `<p style="color:rgba(255,255,255,0.5);margin:3px 0 0;font-size:0.78rem;">Comparativa con semana anterior (${dateRangePrev.startDate} → ${dateRangePrev.endDate})</p>` : ''}
   </div>
 
-  <!-- KPIs -->
+  <!-- KPIs con comparativa -->
   <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:28px;">
-    ${[['Sesiones', sessions, '🔄'], ['Usuarios', users, '👥'], ['Páginas vistas', pageviews, '👁️']].map(([label, val, icon]) => `
-    <div style="background:white;border-radius:10px;padding:16px;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,0.06);">
-      <div style="font-size:1.6rem;margin-bottom:4px;">${icon}</div>
-      <div style="font-size:1.5rem;font-weight:700;color:#1e293b;">${parseInt(val).toLocaleString('es-ES')}</div>
-      <div style="font-size:0.78rem;color:#94a3b8;margin-top:2px;">${label}</div>
-    </div>`).join('')}
+    ${kpiBlock('🔄', 'Sesiones',       curr.sessions,  prev?.sessions)}
+    ${kpiBlock('👥', 'Usuarios',       curr.users,     prev?.users)}
+    ${kpiBlock('👁️', 'Páginas vistas', curr.pageviews, prev?.pageviews)}
   </div>
 
   <!-- Conversiones -->
   ${section('Clicks de conversión (leads)', '🎯',
-    ['Botón / Enlace', 'Página', 'Clicks'],
+    ['Botón / Enlace', 'Página origen', 'Clicks'],
     conversions.map(r => row([
       r.dimensionValues[0].value || '(sin texto)',
       r.dimensionValues[1].value || '/',
-      r.metricValues[0].value
+      r.metricValues[0].value,
     ])).join('')
   )}
 
   <!-- Formularios -->
   ${section('Formularios enviados', '📋',
-    ['Formulario', 'Envíos'],
+    ['Formulario', 'Página', 'Envíos'],
     forms.map(r => row([
       r.dimensionValues[0].value || 'form',
-      r.metricValues[0].value
+      r.dimensionValues[1].value || '/',
+      r.metricValues[0].value,
     ])).join('')
   )}
 
-  <!-- Top botones -->
+  <!-- Top botones con página -->
   ${section('Top botones clicados', '🖱️',
-    ['Texto del botón', 'Categoría', 'Clicks'],
+    ['Texto del botón', 'Categoría', 'Página origen', 'Clicks'],
     clicks.map(r => row([
       r.dimensionValues[0].value || '(sin texto)',
       r.dimensionValues[1].value || '-',
-      r.metricValues[0].value
+      r.dimensionValues[2].value || '/',
+      r.metricValues[0].value,
     ])).join('')
   )}
 
@@ -187,7 +223,7 @@ async function buildReport() {
     ['Categoría', 'Total clicks'],
     byCategory.map(r => row([
       r.dimensionValues[0].value || '-',
-      r.metricValues[0].value
+      r.metricValues[0].value,
     ])).join('')
   )}
 
@@ -196,7 +232,7 @@ async function buildReport() {
     ['Página', 'Vistas'],
     pages.map(r => row([
       r.dimensionValues[0].value || '/',
-      r.metricValues[0].value
+      r.metricValues[0].value,
     ])).join('')
   )}
 
@@ -213,7 +249,7 @@ async function buildReport() {
 }
 
 async function sendEmail(html) {
-  const now = new Date().toLocaleDateString('es-ES', { day:'2-digit', month:'2-digit', year:'numeric' });
+  const now = new Date().toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' });
   const res = await fetch('https://api.resend.com/emails', {
     method: 'POST',
     headers: {
