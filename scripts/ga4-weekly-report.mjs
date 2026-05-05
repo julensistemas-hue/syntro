@@ -22,13 +22,24 @@ if (existsSync(envPath)) {
 const env = process.env;
 
 const PROPERTY_ID = '519124169';
-const PRIVATE_KEY = env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n');
 
-const auth = new google.auth.JWT({
-  email: env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-  key: PRIVATE_KEY,
-  scopes: ['https://www.googleapis.com/auth/analytics.readonly'],
-});
+// Soporte para JSON completo (GOOGLE_SERVICE_ACCOUNT_JSON) o campos separados
+let auth;
+if (env.GOOGLE_SERVICE_ACCOUNT_JSON) {
+  const sa = JSON.parse(env.GOOGLE_SERVICE_ACCOUNT_JSON);
+  auth = new google.auth.JWT({
+    email: sa.client_email,
+    key: sa.private_key,
+    scopes: ['https://www.googleapis.com/auth/analytics.readonly'],
+  });
+} else {
+  const PRIVATE_KEY = env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n');
+  auth = new google.auth.JWT({
+    email: env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
+    key: PRIVATE_KEY,
+    scopes: ['https://www.googleapis.com/auth/analytics.readonly'],
+  });
+}
 
 const analyticsData = google.analyticsdata({ version: 'v1beta', auth });
 
