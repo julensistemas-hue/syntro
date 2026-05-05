@@ -15,6 +15,14 @@ jobs:
         with:
           fetch-depth: 2
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Instalar googleapis
+        run: npm install googleapis --no-save
+
       - name: Detectar páginas cambiadas
         id: detect
         run: |
@@ -33,22 +41,33 @@ jobs:
           URLS="${URLS#,}"
           [ -z "$URLS" ] && echo "no_urls=true" >> $GITHUB_OUTPUT || { echo "urls=$URLS" >> $GITHUB_OUTPUT; echo "no_urls=false" >> $GITHUB_OUTPUT; }
 
-      - name: Ping sitemap a Google y Bing
+      - name: Enviar sitemap vía GSC API
+        if: steps.detect.outputs.no_urls != 'true'
+        env:
+          GOOGLE_CREDENTIALS_JSON: ${{ secrets.GOOGLE_CREDENTIALS_JSON }}
+        run: |
+          node -e "
+          const { google } = require('googleapis');
+          const creds = JSON.parse(Buffer.from(process.env.GOOGLE_CREDENTIALS_JSON, 'base64').toString());
+          const auth = new google.auth.GoogleAuth({ credentials: creds, scopes: ['https://www.googleapis.com/auth/webmasters'] });
+          auth.getClient().then(async client => {
+            const sc = google.searchconsole({ version: 'v1', auth: client });
+            await sc.sitemaps.submit({ siteUrl: 'sc-domain:aisecurity.es', feedpath: 'https://aisecurity.es/sitemap-index.xml' });
+            console.log('✅ Sitemap enviado a Google Search Console');
+          }).catch(e => { console.error('❌', e.message); process.exit(1); });
+          "
+
+      - name: Bing sitemap ping
         if: steps.detect.outputs.no_urls != 'true'
         run: |
-          echo "📡 Ping sitemap a Google..."
-          curl -s -o /dev/null -w "Google: %{http_code}\n" \
-            "https://www.google.com/ping?sitemap=https://aisecurity.es/sitemap-index.xml"
-
-          echo "📡 Ping sitemap a Bing..."
-          curl -s -o /dev/null -w "Bing: %{http_code}\n" \
-            "https://www.bing.com/ping?sitemap=https://aisecurity.es/sitemap-index.xml"
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" "https://www.bing.com/ping?sitemap=https://aisecurity.es/sitemap-index.xml")
+          echo "Bing ping: $STATUS"
 
       - name: Resumen
         if: steps.detect.outputs.no_urls != 'true'
         run: |
           echo "### Indexación notificada ✅" >> $GITHUB_STEP_SUMMARY
-          echo "**Sitemap ping enviado a Google y Bing**" >> $GITHUB_STEP_SUMMARY
+          echo "**GSC API sitemap submit + Bing ping**" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           IFS=',' read -ra URLS <<< "${{ steps.detect.outputs.urls }}"
           for url in "${URLS[@]}"; do echo "- $url" >> $GITHUB_STEP_SUMMARY; done
