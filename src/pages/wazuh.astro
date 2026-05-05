@@ -2,7 +2,6 @@
 import WazuhLayout from "../layouts/WazuhLayout.astro";
 // Force rebuild - 2025-12-02 - Fix 404 assets v2
 export const prerender = false; // Force SSR to bypass cache
-const buildTimestamp = new Date().toISOString();
 
 const title = "Wazuh España: Implementación, ENS y Soporte | AI Security";
 const description = "Implementamos Wazuh para PyMEs españolas: instalación, configuración para ENS, monitoreo de amenazas y formación del equipo. Servicio completo desde 0.";
@@ -11,180 +10,215 @@ const canonical = "https://aisecurity.es/wazuh";
 
 <WazuhLayout title={title} description={description} canonical={canonical}>
   <!-- Hero Section -->
-  <section class="relative overflow-hidden" data-page="wazuh" style="background-color: #020817; min-height: 100vh; display: flex; flex-direction: column; justify-content: center;">
+  <section class="relative overflow-hidden" data-page="wazuh" style="background-color: #020817;">
     <!-- Grid pattern -->
     <div class="absolute inset-0" style="background-image: linear-gradient(rgba(59,130,246,0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(59,130,246,0.12) 1px, transparent 1px); background-size: 40px 40px; opacity: 0.6;"></div>
     <!-- Glows -->
-    <div class="absolute rounded-full blur-3xl" style="width:600px;height:600px;top:-200px;left:-200px;background:radial-gradient(circle,rgba(59,130,246,0.18),transparent 70%);"></div>
-    <div class="absolute rounded-full blur-3xl" style="width:500px;height:500px;bottom:-150px;right:-100px;background:radial-gradient(circle,rgba(99,102,241,0.15),transparent 70%);"></div>
+    <div class="absolute rounded-full blur-3xl" style="width:700px;height:700px;top:-200px;left:50%;transform:translateX(-50%);background:radial-gradient(circle,rgba(59,130,246,0.14),transparent 70%);"></div>
 
-    <!-- Main: 2 cols — texto izq, globo der -->
-    <div class="relative z-10 w-full max-w-7xl mx-auto px-8 md:px-12 lg:px-24 pt-20 pb-10">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+    <div class="relative z-10 w-full max-w-6xl mx-auto px-8 md:px-12 pt-16 pb-4">
 
-        <!-- LEFT: texto -->
-        <div>
-          <!-- Badge -->
-          <div class="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full border text-sm font-medium" style="background: rgba(59,130,246,0.08); border-color: rgba(59,130,246,0.25); color: #93c5fd;">
-            <span class="w-2 h-2 rounded-full animate-pulse" style="background:#60a5fa;"></span>
-            SIEM Open Source · ENS · España
+      <!-- GLOBO centrado arriba -->
+      <div class="flex justify-center mb-6">
+        <div class="relative" style="width:480px;height:480px;">
+          <!-- Glow -->
+          <div class="absolute inset-0 rounded-full blur-3xl opacity-30" style="background:radial-gradient(circle,#3b82f6,transparent 65%);transform:scale(1.1);"></div>
+
+          <!-- SVG Globe con animateMotion (ataques viajan de origen a España) -->
+          <svg viewBox="-110 -110 220 220" style="width:100%;height:100%;overflow:visible;">
+            <defs>
+              <clipPath id="gc"><circle r="95"/></clipPath>
+              <radialGradient id="gf" cx="32%" cy="28%">
+                <stop offset="0%" stop-color="rgba(59,130,246,0.18)"/>
+                <stop offset="100%" stop-color="rgba(2,8,23,0.95)"/>
+              </radialGradient>
+              <!-- Rutas de ataque (curvas bezier hacia España en -8,-16) -->
+              <path id="p-ru" d="M 68,-54 Q 30,-98 -8,-16"/>
+              <path id="p-cn" d="M 82,-8  Q 48,-90 -8,-16"/>
+              <path id="p-us" d="M -84,-20 Q -50,-92 -8,-16"/>
+              <path id="p-br" d="M -32,65  Q -52,18  -8,-16"/>
+            </defs>
+
+            <!-- Fondo -->
+            <circle r="95" fill="url(#gf)"/>
+
+            <!-- Paralelos (latitud) -->
+            <g clip-path="url(#gc)" stroke="rgba(59,130,246,0.18)" stroke-width="0.5" fill="none">
+              <ellipse rx="95" ry="20"/>
+              <ellipse rx="95" ry="48"/>
+              <ellipse rx="95" ry="72"/>
+              <ellipse rx="95" ry="88"/>
+            </g>
+
+            <!-- Meridianos animados -->
+            <g clip-path="url(#gc)" fill="none" stroke-width="0.5">
+              <ellipse class="wg-m1" ry="95" stroke="rgba(59,130,246,0.25)"/>
+              <ellipse class="wg-m2" ry="95" stroke="rgba(99,102,241,0.2)"/>
+              <ellipse class="wg-m3" ry="95" stroke="rgba(59,130,246,0.15)"/>
+              <ellipse class="wg-m4" ry="95" stroke="rgba(139,92,246,0.12)"/>
+            </g>
+
+            <!-- Borde exterior -->
+            <circle r="95" fill="none" stroke="rgba(59,130,246,0.4)" stroke-width="1.2"/>
+
+            <!-- Rutas de ataque (trazos punteados estáticos) -->
+            <use href="#p-ru" fill="none" stroke="rgba(239,68,68,0.18)" stroke-width="0.8" stroke-dasharray="3,5"/>
+            <use href="#p-cn" fill="none" stroke="rgba(239,68,68,0.18)" stroke-width="0.8" stroke-dasharray="3,5"/>
+            <use href="#p-us" fill="none" stroke="rgba(245,158,11,0.18)" stroke-width="0.8" stroke-dasharray="3,5"/>
+            <use href="#p-br" fill="none" stroke="rgba(239,68,68,0.18)" stroke-width="0.8" stroke-dasharray="3,5"/>
+
+            <!-- ── ATAQUE RUSIA ── viaja 2.8s, pausa 4.2s, ciclo=7s -->
+            <circle r="4" fill="#ef4444" opacity="0">
+              <animateMotion id="ru-m" dur="2.8s" begin="0s;ru-m.end+4.2s" calcMode="spline" keySplines="0.4 0 0.2 1">
+                <mpath href="#p-ru"/>
+              </animateMotion>
+              <animate attributeName="opacity" dur="2.8s" begin="0s;ru-m.end+4.2s"
+                values="0;1;1;0" keyTimes="0;0.04;0.88;1"/>
+              <animate attributeName="r" dur="2.8s" begin="0s;ru-m.end+4.2s"
+                values="3;4;3" keyTimes="0;0.5;1"/>
+            </circle>
+            <!-- Flash bloqueado RU → España -->
+            <circle cx="-8" cy="-16" fill="none" stroke="#4ade80" stroke-width="2" opacity="0">
+              <animate attributeName="r" from="6" to="26" dur="0.7s"
+                begin="ru-m.end;ru-m.end+7s;ru-m.end+14s;ru-m.end+21s"/>
+              <animate attributeName="opacity" from="1" to="0" dur="0.7s"
+                begin="ru-m.end;ru-m.end+7s;ru-m.end+14s;ru-m.end+21s"/>
+            </circle>
+
+            <!-- ── ATAQUE CHINA ── desfase 1.75s -->
+            <circle r="3.5" fill="#ef4444" opacity="0">
+              <animateMotion id="cn-m" dur="2.8s" begin="1.75s;cn-m.end+4.2s" calcMode="spline" keySplines="0.4 0 0.2 1">
+                <mpath href="#p-cn"/>
+              </animateMotion>
+              <animate attributeName="opacity" dur="2.8s" begin="1.75s;cn-m.end+4.2s"
+                values="0;1;1;0" keyTimes="0;0.04;0.88;1"/>
+            </circle>
+            <circle cx="-8" cy="-16" fill="none" stroke="#4ade80" stroke-width="2" opacity="0">
+              <animate attributeName="r" from="6" to="26" dur="0.7s"
+                begin="cn-m.end;cn-m.end+7s;cn-m.end+14s"/>
+              <animate attributeName="opacity" from="1" to="0" dur="0.7s"
+                begin="cn-m.end;cn-m.end+7s;cn-m.end+14s"/>
+            </circle>
+
+            <!-- ── ATAQUE USA ── desfase 3.5s -->
+            <circle r="3.5" fill="#f59e0b" opacity="0">
+              <animateMotion id="us-m" dur="2.8s" begin="3.5s;us-m.end+4.2s" calcMode="spline" keySplines="0.4 0 0.2 1">
+                <mpath href="#p-us"/>
+              </animateMotion>
+              <animate attributeName="opacity" dur="2.8s" begin="3.5s;us-m.end+4.2s"
+                values="0;1;1;0" keyTimes="0;0.04;0.88;1"/>
+            </circle>
+            <circle cx="-8" cy="-16" fill="none" stroke="#4ade80" stroke-width="2" opacity="0">
+              <animate attributeName="r" from="6" to="26" dur="0.7s"
+                begin="us-m.end;us-m.end+7s;us-m.end+14s"/>
+              <animate attributeName="opacity" from="1" to="0" dur="0.7s"
+                begin="us-m.end;us-m.end+7s;us-m.end+14s"/>
+            </circle>
+
+            <!-- ── ATAQUE BRASIL ── desfase 5.25s -->
+            <circle r="3" fill="#ef4444" opacity="0">
+              <animateMotion id="br-m" dur="2.8s" begin="5.25s;br-m.end+4.2s" calcMode="spline" keySplines="0.4 0 0.2 1">
+                <mpath href="#p-br"/>
+              </animateMotion>
+              <animate attributeName="opacity" dur="2.8s" begin="5.25s;br-m.end+4.2s"
+                values="0;1;1;0" keyTimes="0;0.04;0.88;1"/>
+            </circle>
+            <circle cx="-8" cy="-16" fill="none" stroke="#4ade80" stroke-width="2" opacity="0">
+              <animate attributeName="r" from="6" to="26" dur="0.7s"
+                begin="br-m.end;br-m.end+7s;br-m.end+14s"/>
+              <animate attributeName="opacity" from="1" to="0" dur="0.7s"
+                begin="br-m.end;br-m.end+7s;br-m.end+14s"/>
+            </circle>
+
+            <!-- Puntos de origen (estáticos) -->
+            <circle cx="68"  cy="-54" r="3"   fill="rgba(239,68,68,0.7)"/>
+            <circle cx="82"  cy="-8"  r="2.5" fill="rgba(239,68,68,0.7)"/>
+            <circle cx="-84" cy="-20" r="2.5" fill="rgba(245,158,11,0.7)"/>
+            <circle cx="-32" cy="65"  r="2.5" fill="rgba(239,68,68,0.7)"/>
+
+            <!-- Labels países -->
+            <text x="68"  y="-59" text-anchor="middle" font-size="5.5" fill="rgba(239,68,68,0.8)" font-family="monospace">RU</text>
+            <text x="85"  y="-13" text-anchor="middle" font-size="5.5" fill="rgba(239,68,68,0.8)" font-family="monospace">CN</text>
+            <text x="-84" y="-25" text-anchor="middle" font-size="5.5" fill="rgba(245,158,11,0.8)" font-family="monospace">US</text>
+            <text x="-32" y="73"  text-anchor="middle" font-size="5.5" fill="rgba(239,68,68,0.8)" font-family="monospace">BR</text>
+
+            <!-- España — punto protegido -->
+            <circle cx="-8" cy="-16" r="6" fill="#4ade80" opacity="0.9"/>
+            <circle cx="-8" cy="-16" r="10" fill="none" stroke="rgba(74,222,128,0.35)" stroke-width="1.2"/>
+            <text x="-8" y="-22" text-anchor="middle" font-size="5" fill="#4ade80" font-family="monospace" font-weight="bold" letter-spacing="0.5">WAZUH</text>
+          </svg>
+
+          <!-- Notificaciones Wazuh que aparecen al bloquear -->
+          <!-- RU bloqueado: aparece en t≈2.8s, ciclo 7s -->
+          <div class="wg-notif wg-notif-ru absolute top-3 right-0 text-xs font-mono px-3 py-2 rounded-lg border" style="background:rgba(74,222,128,0.1);border-color:rgba(74,222,128,0.4);color:#4ade80;">
+            🛡️ BLOQUEADO · RU → ES
           </div>
-
-          <!-- Headline con Wazuh -->
-          <h1 class="font-bold text-white leading-tight mb-6" style="font-size: clamp(2.4rem, 5vw, 4rem); letter-spacing: -0.02em;">
-            <span style="background: linear-gradient(135deg, #60a5fa 0%, #818cf8 50%, #c084fc 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Wazuh</span><br/>
-            vigilando tu empresa<br/>
-            <span class="text-white">las 24 horas</span>
-          </h1>
-
-          <p class="text-lg mb-8 leading-relaxed" style="color:#94a3b8;">
-            Implementamos Wazuh listo para detectar amenazas desde el primer día, configurado para el ENS y sin que tu equipo tenga que aprender nada nuevo.
-          </p>
-
-          <!-- CTAs -->
-          <div class="flex flex-col sm:flex-row gap-4 mb-8">
-            <a href="#demo" class="inline-flex items-center justify-center gap-2 px-7 py-4 text-base font-semibold rounded-xl transition-all duration-200 hover:-translate-y-1" style="background: linear-gradient(135deg, #3b82f6, #6366f1); color: white; box-shadow: 0 4px 32px rgba(99,102,241,0.4);">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
-              Ver Demo Interactiva
-            </a>
-            <a href="/contacto-migracion?plan=wazuh-consultoria" class="inline-flex items-center justify-center gap-2 px-7 py-4 text-base font-semibold rounded-xl border transition-all duration-200 hover:-translate-y-1" style="border-color: rgba(255,255,255,0.12); color: white; background: rgba(255,255,255,0.04);">
-              Consulta Gratuita
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-            </a>
+          <!-- CN bloqueado: aparece en t≈4.55s -->
+          <div class="wg-notif wg-notif-cn absolute top-3 right-0 text-xs font-mono px-3 py-2 rounded-lg border" style="background:rgba(74,222,128,0.1);border-color:rgba(74,222,128,0.4);color:#4ade80;">
+            🛡️ BLOQUEADO · CN → ES
           </div>
-
-          <!-- Stats -->
-          <div class="flex flex-wrap gap-3 mb-8">
-            <div class="flex items-center gap-2 px-4 py-2 rounded-lg" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);">
-              <span class="text-lg font-bold text-white">24/7</span>
-              <span class="text-xs uppercase tracking-widest" style="color:#64748b;">Monitoreo</span>
-            </div>
-            <div class="flex items-center gap-2 px-4 py-2 rounded-lg" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);">
-              <span class="text-lg font-bold text-white">ENS</span>
-              <span class="text-xs uppercase tracking-widest" style="color:#64748b;">Certificado</span>
-            </div>
-            <div class="flex items-center gap-2 px-4 py-2 rounded-lg" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);">
-              <span class="text-lg font-bold text-white">€0</span>
-              <span class="text-xs uppercase tracking-widest" style="color:#64748b;">Licencias</span>
-            </div>
-            <div class="flex items-center gap-2 px-4 py-2 rounded-lg" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);">
-              <span class="text-lg font-bold text-white">100%</span>
-              <span class="text-xs uppercase tracking-widest" style="color:#64748b;">Open Source</span>
-            </div>
+          <!-- US bloqueado: aparece en t≈6.3s -->
+          <div class="wg-notif wg-notif-us absolute bottom-12 right-0 text-xs font-mono px-3 py-2 rounded-lg border" style="background:rgba(245,158,11,0.1);border-color:rgba(245,158,11,0.4);color:#fbbf24;">
+            ⚠️ INTERCEPTADO · US → ES
           </div>
+          <!-- BR bloqueado: aparece en t≈8.05s -->
+          <div class="wg-notif wg-notif-br absolute bottom-4 left-0 text-xs font-mono px-3 py-2 rounded-lg border" style="background:rgba(74,222,128,0.1);border-color:rgba(74,222,128,0.4);color:#4ade80;">
+            🛡️ BLOQUEADO · BR → ES
+          </div>
+        </div>
+      </div>
 
-          <!-- Course CTA -->
-          <a href="/curso-wazuh" class="group inline-flex items-center gap-3 px-5 py-3 rounded-xl border transition-all duration-200 hover:-translate-y-0.5" style="border-color:rgba(139,92,246,0.35);background:rgba(139,92,246,0.08);">
-            <span class="text-lg">🎓</span>
-            <span class="text-sm text-white font-medium">¿Prefieres aprenderlo tú?</span>
-            <span class="text-sm" style="color:#c4b5fd;">Curso práctico · 50€</span>
-            <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" style="color:#c4b5fd;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+      <!-- TEXTO debajo del globo — centrado -->
+      <div class="text-center max-w-3xl mx-auto mb-8">
+        <div class="inline-flex items-center gap-2 mb-4 px-4 py-2 rounded-full border text-sm font-medium" style="background:rgba(59,130,246,0.08);border-color:rgba(59,130,246,0.25);color:#93c5fd;">
+          <span class="w-2 h-2 rounded-full animate-pulse" style="background:#60a5fa;"></span>
+          SIEM Open Source · ENS · España
+        </div>
+        <h1 class="font-bold text-white leading-tight mb-4" style="font-size:clamp(2.2rem,4.5vw,3.5rem);letter-spacing:-0.02em;">
+          <span style="background:linear-gradient(135deg,#60a5fa 0%,#818cf8 50%,#c084fc 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Wazuh</span>
+          vigilando tu empresa las 24 horas
+        </h1>
+        <p class="text-lg mb-6 leading-relaxed" style="color:#94a3b8;">
+          Implementamos Wazuh listo para detectar y bloquear amenazas desde el primer día,<br class="hidden md:block"/> configurado para el ENS y sin curva de aprendizaje para tu equipo.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-6">
+          <a href="#demo" class="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-xl transition-all duration-200 hover:-translate-y-1" style="background:linear-gradient(135deg,#3b82f6,#6366f1);color:white;box-shadow:0 4px 32px rgba(99,102,241,0.4);">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+            Ver Demo Interactiva
+          </a>
+          <a href="/contacto-migracion?plan=wazuh-consultoria" class="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-xl border transition-all duration-200 hover:-translate-y-1" style="border-color:rgba(255,255,255,0.12);color:white;background:rgba(255,255,255,0.04);">
+            Consulta Gratuita
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
           </a>
         </div>
-
-        <!-- RIGHT: Globo animado -->
-        <div class="flex items-center justify-center">
-          <div class="globe-container relative" style="width:380px;height:380px;">
-            <!-- Glow behind globe -->
-            <div class="absolute inset-0 rounded-full blur-3xl" style="background:radial-gradient(circle,rgba(59,130,246,0.25),transparent 70%);transform:scale(1.2);"></div>
-
-            <!-- SVG Globe -->
-            <svg class="globe-svg" viewBox="-100 -100 200 200" style="width:100%;height:100%;overflow:visible;">
-              <!-- Clip to circle -->
-              <defs>
-                <clipPath id="globe-clip">
-                  <circle r="88"/>
-                </clipPath>
-                <radialGradient id="globe-fill" cx="35%" cy="35%">
-                  <stop offset="0%" stop-color="rgba(59,130,246,0.12)"/>
-                  <stop offset="100%" stop-color="rgba(2,8,23,0.8)"/>
-                </radialGradient>
-              </defs>
-
-              <!-- Base fill -->
-              <circle r="88" fill="url(#globe-fill)"/>
-
-              <!-- Latitude lines (estáticas) -->
-              <g clip-path="url(#globe-clip)" stroke="rgba(59,130,246,0.2)" stroke-width="0.6" fill="none">
-                <ellipse rx="88" ry="18"/>
-                <ellipse rx="88" ry="44"/>
-                <ellipse rx="88" ry="66"/>
-                <ellipse rx="88" ry="82"/>
-              </g>
-
-              <!-- Meridian lines animadas (simulan rotación) -->
-              <g clip-path="url(#globe-clip)" fill="none" stroke-width="0.6">
-                <ellipse class="wg-m1" ry="88" stroke="rgba(59,130,246,0.3)"/>
-                <ellipse class="wg-m2" ry="88" stroke="rgba(99,102,241,0.25)"/>
-                <ellipse class="wg-m3" ry="88" stroke="rgba(59,130,246,0.2)"/>
-                <ellipse class="wg-m4" ry="88" stroke="rgba(139,92,246,0.15)"/>
-              </g>
-
-              <!-- Outer circle -->
-              <circle r="88" fill="none" stroke="rgba(59,130,246,0.5)" stroke-width="1.2"/>
-
-              <!-- Attack dots + pings -->
-              <!-- Rusia/China -->
-              <circle class="wg-dot" cx="40" cy="-45" r="3" fill="#ef4444"/>
-              <circle class="wg-ping wg-ping-1" cx="40" cy="-45" r="3" fill="none" stroke="#ef4444" stroke-width="1.2"/>
-              <!-- EEUU -->
-              <circle class="wg-dot" cx="-55" cy="-25" r="2.5" fill="#f59e0b"/>
-              <circle class="wg-ping wg-ping-2" cx="-55" cy="-25" r="2.5" fill="none" stroke="#f59e0b" stroke-width="1"/>
-              <!-- Brasil -->
-              <circle class="wg-dot" cx="-30" cy="45" r="3" fill="#ef4444"/>
-              <circle class="wg-ping wg-ping-3" cx="-30" cy="45" r="3" fill="none" stroke="#ef4444" stroke-width="1.2"/>
-              <!-- Europa (España) -->
-              <circle cx="-5" cy="-20" r="4" fill="#4ade80"/>
-              <circle class="wg-ping wg-ping-4" cx="-5" cy="-20" r="4" fill="none" stroke="#4ade80" stroke-width="1.5"/>
-              <!-- Nigeria -->
-              <circle class="wg-dot" cx="10" cy="25" r="2" fill="#f59e0b"/>
-              <circle class="wg-ping wg-ping-5" cx="10" cy="25" r="2" fill="none" stroke="#f59e0b" stroke-width="1"/>
-              <!-- India -->
-              <circle class="wg-dot" cx="55" cy="15" r="2.5" fill="#ef4444"/>
-              <circle class="wg-ping wg-ping-1" cx="55" cy="15" r="2.5" fill="none" stroke="#ef4444" stroke-width="1"/>
-
-              <!-- Lines from attacks to Spain (centro) -->
-              <g stroke-dasharray="3 3" stroke-width="0.6" opacity="0.35">
-                <line x1="40" y1="-45" x2="-5" y2="-20" stroke="#ef4444"/>
-                <line x1="-55" y1="-25" x2="-5" y2="-20" stroke="#f59e0b"/>
-                <line x1="-30" y1="45" x2="-5" y2="-20" stroke="#ef4444"/>
-                <line x1="55" y1="15" x2="-5" y2="-20" stroke="#ef4444"/>
-              </g>
-
-              <!-- España label -->
-              <text x="-5" y="-26" text-anchor="middle" font-size="6" fill="#4ade80" font-family="monospace" font-weight="bold">ES</text>
-            </svg>
-
-            <!-- Floating alert badges around globe -->
-            <div class="absolute top-4 right-0 flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-mono animate-float-1" style="background:rgba(239,68,68,0.15);border:1px solid rgba(239,68,68,0.4);color:#f87171;">
-              <span class="w-1.5 h-1.5 rounded-full bg-red-400 animate-pulse"></span>
-              SSH brute force · RU
-            </div>
-            <div class="absolute bottom-8 right-2 flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-mono animate-float-2" style="background:rgba(245,158,11,0.15);border:1px solid rgba(245,158,11,0.4);color:#fbbf24;">
-              <span class="w-1.5 h-1.5 rounded-full" style="background:#fbbf24;"></span>
-              Port scan · CN
-            </div>
-            <div class="absolute bottom-16 left-0 flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-mono animate-float-3" style="background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.35);color:#4ade80;">
-              <span class="w-1.5 h-1.5 rounded-full bg-green-400"></span>
-              Bloqueado · ES ✓
-            </div>
-          </div>
+        <!-- Stats pills -->
+        <div class="flex flex-wrap gap-3 justify-center mb-6">
+          <span class="px-4 py-2 rounded-lg text-sm font-medium" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);color:#e2e8f0;">⏱ Monitoreo <strong>24/7</strong></span>
+          <span class="px-4 py-2 rounded-lg text-sm font-medium" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);color:#e2e8f0;">🏛 Certificado <strong>ENS</strong></span>
+          <span class="px-4 py-2 rounded-lg text-sm font-medium" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);color:#e2e8f0;">💰 <strong>€0</strong> en licencias</span>
+          <span class="px-4 py-2 rounded-lg text-sm font-medium" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);color:#e2e8f0;">🔓 <strong>100%</strong> Open Source</span>
         </div>
-
+        <!-- Course CTA -->
+        <a href="/curso-wazuh" class="group inline-flex items-center gap-3 px-5 py-3 rounded-xl border transition-all duration-200 hover:-translate-y-0.5" style="border-color:rgba(139,92,246,0.35);background:rgba(139,92,246,0.08);">
+          <span>🎓</span>
+          <span class="text-sm text-white font-medium">¿Prefieres aprenderlo tú?</span>
+          <span class="text-sm" style="color:#c4b5fd;">Curso práctico · 50€</span>
+          <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" style="color:#c4b5fd;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+        </a>
       </div>
 
       <!-- Ticker full-width -->
-      <div class="relative overflow-hidden rounded-xl border mt-10 py-3" style="background:rgba(255,255,255,0.02);border-color:rgba(255,255,255,0.07);">
+      <div class="relative overflow-hidden rounded-xl border py-3 mb-6" style="background:rgba(255,255,255,0.02);border-color:rgba(255,255,255,0.07);">
         <div class="absolute left-0 top-0 bottom-0 w-16 z-10" style="background:linear-gradient(90deg,#020817,transparent);"></div>
         <div class="absolute right-0 top-0 bottom-0 w-16 z-10" style="background:linear-gradient(270deg,#020817,transparent);"></div>
         <div class="flex gap-12 wazuh-ticker" style="width:max-content;padding:0 2rem;">
           <span class="flex items-center gap-2 text-sm whitespace-nowrap" style="color:#94a3b8;"><span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span><span style="color:#f87171;">CRÍTICO</span> SSH brute force bloqueado · 45.142.212.61 (RU)</span>
-          <span class="flex items-center gap-2 text-sm whitespace-nowrap" style="color:#94a3b8;"><span class="w-2 h-2 rounded-full bg-yellow-500"></span><span style="color:#fbbf24;">AVISO</span> Port scan detectado · 104.21.66.94 (CN)</span>
+          <span class="flex items-center gap-2 text-sm whitespace-nowrap" style="color:#94a3b8;"><span class="w-2 h-2 rounded-full bg-yellow-500"></span><span style="color:#fbbf24;">AVISO</span> Port scan · 104.21.66.94 (CN)</span>
           <span class="flex items-center gap-2 text-sm whitespace-nowrap" style="color:#94a3b8;"><span class="w-2 h-2 rounded-full bg-green-500"></span><span style="color:#4ade80;">ENS</span> Cumplimiento 96% · Auditoría completada</span>
           <span class="flex items-center gap-2 text-sm whitespace-nowrap" style="color:#94a3b8;"><span class="w-2 h-2 rounded-full bg-blue-500"></span><span style="color:#60a5fa;">INFO</span> 23 paquetes actualizados · db-prod-02</span>
           <span class="flex items-center gap-2 text-sm whitespace-nowrap" style="color:#94a3b8;"><span class="w-2 h-2 rounded-full bg-purple-500"></span><span style="color:#c084fc;">REGLA</span> Acceso fuera de horario · user: deploy (BR)</span>
           <span class="flex items-center gap-2 text-sm whitespace-nowrap" style="color:#94a3b8;"><span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span><span style="color:#f87171;">CRÍTICO</span> SSH brute force bloqueado · 45.142.212.61 (RU)</span>
-          <span class="flex items-center gap-2 text-sm whitespace-nowrap" style="color:#94a3b8;"><span class="w-2 h-2 rounded-full bg-yellow-500"></span><span style="color:#fbbf24;">AVISO</span> Port scan detectado · 104.21.66.94 (CN)</span>
+          <span class="flex items-center gap-2 text-sm whitespace-nowrap" style="color:#94a3b8;"><span class="w-2 h-2 rounded-full bg-yellow-500"></span><span style="color:#fbbf24;">AVISO</span> Port scan · 104.21.66.94 (CN)</span>
           <span class="flex items-center gap-2 text-sm whitespace-nowrap" style="color:#94a3b8;"><span class="w-2 h-2 rounded-full bg-green-500"></span><span style="color:#4ade80;">ENS</span> Cumplimiento 96% · Auditoría completada</span>
           <span class="flex items-center gap-2 text-sm whitespace-nowrap" style="color:#94a3b8;"><span class="w-2 h-2 rounded-full bg-blue-500"></span><span style="color:#60a5fa;">INFO</span> 23 paquetes actualizados · db-prod-02</span>
           <span class="flex items-center gap-2 text-sm whitespace-nowrap" style="color:#94a3b8;"><span class="w-2 h-2 rounded-full bg-purple-500"></span><span style="color:#c084fc;">REGLA</span> Acceso fuera de horario · user: deploy (BR)</span>
@@ -203,47 +237,55 @@ const canonical = "https://aisecurity.es/wazuh";
     .wazuh-ticker { animation: ticker-scroll 35s linear infinite; }
     .wazuh-ticker:hover { animation-play-state: paused; }
 
-    /* Meridians rotation */
-    @keyframes wg-spin-1 {
+    /* Meridianos girando */
+    @keyframes wg-spin {
       0%   { rx: 1px; }
-      25%  { rx: 88px; }
+      25%  { rx: 95px; }
       50%  { rx: 1px; }
-      75%  { rx: 88px; }
+      75%  { rx: 95px; }
       100% { rx: 1px; }
     }
-    .wg-m1 { animation: wg-spin-1 10s linear infinite; }
-    .wg-m2 { animation: wg-spin-1 10s linear infinite -2.5s; }
-    .wg-m3 { animation: wg-spin-1 10s linear infinite -5s; }
-    .wg-m4 { animation: wg-spin-1 10s linear infinite -7.5s; }
+    .wg-m1 { animation: wg-spin 12s linear infinite; }
+    .wg-m2 { animation: wg-spin 12s linear infinite -3s; }
+    .wg-m3 { animation: wg-spin 12s linear infinite -6s; }
+    .wg-m4 { animation: wg-spin 12s linear infinite -9s; }
 
-    /* Attack pings */
-    @keyframes wg-ping {
-      0%   { r: 3px; opacity: 0.9; }
-      100% { r: 14px; opacity: 0; }
+    /* Notificaciones de bloqueo sincronizadas con SVG animateMotion */
+    /* RU llega en t=2.8s, ciclo=7s */
+    @keyframes notif-ru {
+      0%,38%,100% { opacity:0; transform:translateY(-6px) scale(0.95); }
+      40%          { opacity:1; transform:translateY(0) scale(1); }
+      54%          { opacity:1; transform:translateY(0) scale(1); }
+      56%          { opacity:0; }
     }
-    .wg-ping { animation: wg-ping 2.5s ease-out infinite; }
-    .wg-ping-1 { animation-delay: 0s; }
-    .wg-ping-2 { animation-delay: 0.8s; }
-    .wg-ping-3 { animation-delay: 1.6s; }
-    .wg-ping-4 { animation-delay: 0.4s; animation-duration: 2s; }
-    .wg-ping-5 { animation-delay: 1.2s; }
+    .wg-notif-ru { animation: notif-ru 7s ease-in-out infinite; opacity:0; }
 
-    /* Floating badges */
-    @keyframes float-1 {
-      0%, 100% { transform: translateY(0px); }
-      50%       { transform: translateY(-8px); }
+    /* CN llega en t=4.55s → 4.55/7=65% */
+    @keyframes notif-cn {
+      0%,63%,100% { opacity:0; transform:translateY(-6px) scale(0.95); }
+      65%          { opacity:1; transform:translateY(0) scale(1); }
+      79%          { opacity:1; transform:translateY(0) scale(1); }
+      81%          { opacity:0; }
     }
-    @keyframes float-2 {
-      0%, 100% { transform: translateY(0px); }
-      50%       { transform: translateY(-6px); }
+    .wg-notif-cn { animation: notif-cn 7s ease-in-out infinite; opacity:0; }
+
+    /* US llega en t=6.3s → 6.3/7=90% */
+    @keyframes notif-us {
+      0%,88%,100% { opacity:0; transform:translateY(-6px) scale(0.95); }
+      90%          { opacity:1; transform:translateY(0) scale(1); }
+      98%          { opacity:1; transform:translateY(0) scale(1); }
+      100%         { opacity:0; }
     }
-    @keyframes float-3 {
-      0%, 100% { transform: translateY(0px); }
-      50%       { transform: translateY(-10px); }
+    .wg-notif-us { animation: notif-us 7s ease-in-out infinite; opacity:0; }
+
+    /* BR llega en t=8.05s → ciclo reinicia, 8.05-7=1.05s → 1.05/7=15% */
+    @keyframes notif-br {
+      0%,13%,100% { opacity:0; transform:translateY(-6px) scale(0.95); }
+      15%          { opacity:1; transform:translateY(0) scale(1); }
+      29%          { opacity:1; transform:translateY(0) scale(1); }
+      31%          { opacity:0; }
     }
-    .animate-float-1 { animation: float-1 4s ease-in-out infinite; }
-    .animate-float-2 { animation: float-2 5s ease-in-out infinite -1s; }
-    .animate-float-3 { animation: float-3 4.5s ease-in-out infinite -2s; }
+    .wg-notif-br { animation: notif-br 7s ease-in-out infinite; opacity:0; }
   </style>
 
   <!-- Pricing Section -->
@@ -1448,7 +1490,7 @@ const canonical = "https://aisecurity.es/wazuh";
         });
 
         // Show target content
-        const targetContent = document.getElementById(targetTab);
+        const targetContent = document.getElementById(targetTab!);
         if (targetContent) {
           targetContent.classList.remove('hidden');
         }

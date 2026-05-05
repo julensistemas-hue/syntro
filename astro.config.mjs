@@ -12,15 +12,14 @@ export default defineConfig({
       filter: (page) =>
         !page.includes('/login') &&
         !page.includes('/signup') &&
-        !page.includes('/akiwifi_old'),
-      customPages: [
-        'https://aisecurity.es/',
-        'https://aisecurity.es/wazuh',
-        'https://aisecurity.es/curso-wazuh',
-        'https://aisecurity.es/blog',
-        'https://aisecurity.es/blog/ia-threat-hunting-wazuh',
-        'https://aisecurity.es/reunion',
-      ],
+        !page.includes('/akiwifi_old') &&
+        !page.includes('/aula/') &&
+        !page.includes('/index-backup') &&
+        !page.includes('/test-ia') &&
+        !page.includes('/index3prueba') &&
+        !page.includes('/contacto-migracion') &&
+        !page.includes('/soporte-pago-exitoso') &&
+        !page.includes('/abrir-ticket'),
       changefreq: 'weekly',
       priority: 0.7,
       lastmod: new Date(),
