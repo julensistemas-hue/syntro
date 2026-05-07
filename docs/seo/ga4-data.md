@@ -1,55 +1,60 @@
 # Google Analytics 4 — aisecurity.es
-**Generado:** 7/5/2026, 6:56:25
-**Período:** 2026-05-03 → 2026-05-06 (3 días)
+**Generado:** 27/4/2026, 18:13:07
+**Período:** 2026-03-29 → 2026-04-26 (28 días)
 
 ## Resumen
-- Sesiones totales: **23**
-- Sesiones orgánicas: **6** (26.1% del total)
+- Sesiones totales: **116**
+- Sesiones orgánicas: **25** (21.6% del total)
 
 ## Canales de tráfico
 | Canal | Sesiones | Usuarios | Bounce | Conversiones |
 |-------|----------|----------|--------|--------------|
-| Direct | 9 | 5 | 0.0% | 43 |
-| Organic Search | 6 | 6 | 0.0% | 18 |
-| Unassigned | 5 | 5 | 100.0% | 19 |
-| Organic Video | 2 | 2 | 0.0% | 7 |
-| Organic Shopping | 1 | 1 | 100.0% | 1 |
+| Direct | 67 | 45 | 50.7% | 0 |
+| Organic Search | 25 | 12 | 40.0% | 0 |
+| Organic Video | 14 | 5 | 64.3% | 0 |
+| Organic Shopping | 8 | 1 | 37.5% | 0 |
+| Unassigned | 2 | 2 | 100.0% | 0 |
 
-## Top Páginas (3 días)
+## Top Páginas (28 días)
 | Página | Sesiones | Usuarios | Bounce | Duración media | vs anterior |
 |--------|----------|----------|--------|----------------|-------------|
-| /curso-wazuh | 12 | 8 | 16.7% | 3m 35s | 📈 +6 |
-| / | 9 | 6 | 33.3% | 9m 12s | 📈 +3 |
-| /soporte-tecnico | 4 | 2 | 25.0% | 0m 7s | 📈 +3 |
-| /servicios/atencion-llamadas | 3 | 2 | 33.3% | 6m 38s | 📈 +3 |
-| /abrir-ticket | 1 | 1 | 0.0% | 0m 5s | 📈 +1 |
-| /contacto-migracion | 1 | 1 | 0.0% | 0m 5s | 📈 +1 |
-| /servicios/chatbot | 1 | 1 | 100.0% | 0m 56s | 📈 +1 |
-| /servicios/desarrollo-web | 1 | 1 | 100.0% | 0m 0s | 📈 +1 |
-| /servicios/geo-posicionamiento | 1 | 1 | 0.0% | 0m 53s | ➡️ |
-| /servicios/gestor-citas | 1 | 1 | 100.0% | 0m 0s | ➡️ |
-| /servicios/gestor-documental | 1 | 1 | 0.0% | 0m 0s | ➡️ |
+| /curso-wazuh | 59 | 34 | 47.5% | 1m 57s | 📉 -127 |
+| / | 52 | 30 | 40.4% | 0m 45s | 📉 -88 |
+| /soporte-tecnico | 17 | 3 | 5.9% | 10m 11s | 📈 +10 |
+| /blog | 16 | 8 | 18.8% | 1m 42s | 📉 -6 |
+| /servicios/atencion-llamadas | 10 | 5 | 0.0% | 0m 7s | 📉 -7 |
+| /abrir-ticket | 8 | 3 | 0.0% | 6m 31s | 📈 +8 |
+| /reunion | 8 | 5 | 37.5% | 0m 39s | 📉 -8 |
+| /contacto-migracion | 7 | 2 | 14.3% | 0m 55s | 📈 +4 |
+| /servicios/geo-posicionamiento | 7 | 2 | 14.3% | 6m 35s | 📈 +7 |
+| /servicios/gestor-citas | 6 | 4 | 33.3% | 0m 11s | ➡️ |
+| /servicios/automatizacion | 4 | 3 | 0.0% | 0m 28s | 📈 +1 |
+| /servicios/gestor-documental | 4 | 3 | 0.0% | 0m 3s | 📉 -9 |
+| /servicios/desarrollo-web | 3 | 2 | 0.0% | 0m 13s | 📉 -9 |
+| /soporte-tecnico/benicarlo | 3 | 1 | 0.0% | 7m 57s | 📈 +3 |
+| /servicios/chatbot | 2 | 2 | 50.0% | 0m 7s | 📉 -1 |
 
 ## Eventos y conversiones
 | Evento | Disparos | Usuarios |
 |--------|----------|----------|
-| user_engagement | 39 | 13 |
-| click_button | 34 | 4 |
-| click_link | 24 | 3 |
-| session_start | 18 | 14 |
-| first_visit | 12 | 12 |
-| page_view | 12 | 4 |
-| scroll | 6 | 2 |
-| conversion_click | 1 | 1 |
+| page_view | 445 | 63 |
+| user_engagement | 268 | 51 |
+| session_start | 116 | 63 |
+| scroll | 62 | 11 |
+| first_visit | 61 | 60 |
+| form_start | 13 | 3 |
+| click | 1 | 1 |
 
 ## Países
-- **Spain**: 15 sesiones
-- **(not set)**: 1 sesiones
-- **France**: 1 sesiones
-- **Germany**: 1 sesiones
-- **Mexico**: 1 sesiones
-- **United Kingdom**: 1 sesiones
+- **Spain**: 74 sesiones
+- **Mexico**: 9 sesiones
+- **United States**: 9 sesiones
+- **Netherlands**: 5 sesiones
+- **Venezuela**: 4 sesiones
+- **Singapore**: 3 sesiones
+- **France**: 2 sesiones
+- **Peru**: 2 sesiones
 
 ## Dispositivos
-- **desktop**: 19 sesiones, bounce 15.8%
-- **mobile**: 1 sesiones, bounce 0.0%
+- **desktop**: 108 sesiones, bounce 48.1%
+- **mobile**: 8 sesiones, bounce 75.0%

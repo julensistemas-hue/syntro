@@ -402,7 +402,7 @@ try {
 
 // ─── send via Resend ─────────────────────────────────────────────────────────
 const subject = `📊 SEO+GA4 aisecurity.es — ${new Date().toLocaleDateString('es-ES')}`;
-const body = JSON.stringify({ from: 'AI Security SEO <onboarding@resend.dev>', to: [TO], subject, html });
+const body = JSON.stringify({ from: 'AI Security SEO <info@aisecurity.es>', to: [TO], subject, html });
 
 const req = https.request({
   hostname: 'api.resend.com', path: '/emails', method: 'POST',
