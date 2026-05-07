@@ -12,6 +12,13 @@
         "impressions": 1926,
         "ctr": 0.015,
         "position": 6.5
+      },
+      "lastIndexed": "2026-05-07",
+      "lastChecked": "2026-05-07",
+      "lastMetrics": {
+        "clicks": 3,
+        "ctr": 0.024793388429752067,
+        "position": 6.214876033057851
       }
     },
     {
@@ -26,6 +33,13 @@
         "impressions": 1716,
         "ctr": 0.009,
         "position": 6.2
+      },
+      "lastIndexed": "2026-05-07",
+      "lastChecked": "2026-05-07",
+      "lastMetrics": {
+        "clicks": 0,
+        "ctr": 0,
+        "position": 5.76595744680851
       }
     },
     {
@@ -40,6 +54,13 @@
         "impressions": 597,
         "ctr": 0.088,
         "position": 9.1
+      },
+      "lastIndexed": "2026-05-07",
+      "lastChecked": "2026-05-07",
+      "lastMetrics": {
+        "clicks": 1,
+        "ctr": 0.1,
+        "position": 5.7
       }
     }
   ]
