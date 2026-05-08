@@ -1,0 +1,219 @@
+{
+  "reports": [
+    {
+      "date": "2026-05-08T08:03:33.806Z",
+      "totals": {
+        "current": {
+          "clicks": 5,
+          "impressions": 162
+        },
+        "previous": {
+          "clicks": 4,
+          "impressions": 134
+        }
+      },
+      "topKeywords": [
+        {
+          "keyword": "instalar wazuh en ubuntu",
+          "clicks": 2,
+          "impressions": 13,
+          "ctr": 0.15384615384615385,
+          "position": 3.3846153846153846,
+          "prevClicks": 0,
+          "prevPosition": 4.333333333333334,
+          "isNew": false
+        },
+        {
+          "keyword": "instalar wazuh en ubuntu server",
+          "clicks": 2,
+          "impressions": 5,
+          "ctr": 0.4,
+          "position": 3.8,
+          "prevClicks": 0,
+          "prevPosition": 7,
+          "isNew": false
+        },
+        {
+          "keyword": "instalar wazuh en ubuntu 24.04",
+          "clicks": 1,
+          "impressions": 1,
+          "ctr": 1,
+          "position": 2,
+          "prevClicks": 1,
+          "prevPosition": 1,
+          "isNew": false
+        },
+        {
+          "keyword": "abrir correo corporativo",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 70,
+          "prevClicks": 0,
+          "prevPosition": null,
+          "isNew": true
+        },
+        {
+          "keyword": "administrador de wazuh",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 12,
+          "prevClicks": 0,
+          "prevPosition": 11.333333333333334,
+          "isNew": false
+        },
+        {
+          "keyword": "agendación de citas con asistentes virtuales",
+          "clicks": 0,
+          "impressions": 10,
+          "ctr": 0,
+          "position": 15.6,
+          "prevClicks": 0,
+          "prevPosition": 16.5,
+          "isNew": false
+        },
+        {
+          "keyword": "agente wazuh",
+          "clicks": 0,
+          "impressions": 3,
+          "ctr": 0,
+          "position": 8,
+          "prevClicks": 0,
+          "prevPosition": 7.2,
+          "isNew": false
+        },
+        {
+          "keyword": "agente wazuh windows",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 8,
+          "prevClicks": 0,
+          "prevPosition": null,
+          "isNew": true
+        },
+        {
+          "keyword": "agentes de wazuh",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 8,
+          "prevClicks": 0,
+          "prevPosition": 11.5,
+          "isNew": false
+        },
+        {
+          "keyword": "ai security",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 2,
+          "prevClicks": 1,
+          "prevPosition": 2.142857142857143,
+          "isNew": false
+        },
+        {
+          "keyword": "atencion al cliente con chatbot malaga",
+          "clicks": 0,
+          "impressions": 5,
+          "ctr": 0,
+          "position": 31.4,
+          "prevClicks": 0,
+          "prevPosition": 37,
+          "isNew": false
+        },
+        {
+          "keyword": "backup automático",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 27,
+          "prevClicks": 0,
+          "prevPosition": 26.5,
+          "isNew": false
+        },
+        {
+          "keyword": "blog tecnico",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 28,
+          "prevClicks": 0,
+          "prevPosition": null,
+          "isNew": true
+        },
+        {
+          "keyword": "búsqueda inteligente de documentos",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 15,
+          "prevClicks": 0,
+          "prevPosition": 15,
+          "isNew": false
+        },
+        {
+          "keyword": "chatbot ai atención al cliente",
+          "clicks": 0,
+          "impressions": 4,
+          "ctr": 0,
+          "position": 29,
+          "prevClicks": 0,
+          "prevPosition": 33,
+          "isNew": false
+        },
+        {
+          "keyword": "chatbot gestion de citas",
+          "clicks": 0,
+          "impressions": 7,
+          "ctr": 0,
+          "position": 24.571428571428573,
+          "prevClicks": 0,
+          "prevPosition": 25,
+          "isNew": false
+        },
+        {
+          "keyword": "chatbot reservas online",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 28,
+          "prevClicks": 0,
+          "prevPosition": 47.333333333333336,
+          "isNew": false
+        },
+        {
+          "keyword": "chatbot servicio al cliente malaga",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 34,
+          "prevClicks": 0,
+          "prevPosition": null,
+          "isNew": true
+        },
+        {
+          "keyword": "como abrir correo corporativo",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 75,
+          "prevClicks": 0,
+          "prevPosition": null,
+          "isNew": true
+        },
+        {
+          "keyword": "copias de seguridad automaticas",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 84,
+          "prevClicks": 0,
+          "prevPosition": null,
+          "isNew": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,92 +1,73 @@
-# Search Console Report — aisecurity.es
+# Search Console Data — aisecurity.es
+**Generado:** 8/5/2026, 8:03:33
+**Período actual:** 2026-05-02 → 2026-05-05
 
-**Generado:** 24/4/2026, 9:19:00  
-**Período:** 2026-01-21 → 2026-04-21  
-**Propiedad:** sc-domain:aisecurity.es
+## Totales (3 días)
+| | Actual | Anterior | Cambio |
+|--|--|--|--|
+| Clicks | 5 | 4 | +25.0% |
+| Impresiones | 162 | 134 | - |
 
-## Tendencia (últimos 30 días vs 30 días anteriores)
+## Top 15 Keywords (3 días)
+| Keyword | Clicks | Impresiones | CTR | Posición | vs anterior |
+|---------|--------|-------------|-----|----------|-------------|
+| instalar wazuh en ubuntu | 2 | 13 | 15.4% | 3.4 | 📈 +2 |
+| instalar wazuh en ubuntu server | 2 | 5 | 40.0% | 3.8 | 📈 +2 |
+| instalar wazuh en ubuntu 24.04 | 1 | 1 | 100.0% | 2.0 | ➡️ |
+| abrir correo corporativo | 0 | 1 | 0.0% | 70.0 | 🆕 nueva |
+| administrador de wazuh | 0 | 1 | 0.0% | 12.0 | ➡️ |
+| agendación de citas con asistentes virtuales | 0 | 10 | 0.0% | 15.6 | ➡️ |
+| agente wazuh | 0 | 3 | 0.0% | 8.0 | ➡️ |
+| agente wazuh windows | 0 | 1 | 0.0% | 8.0 | 🆕 nueva |
+| agentes de wazuh | 0 | 1 | 0.0% | 8.0 | ➡️ |
+| ai security | 0 | 1 | 0.0% | 2.0 | 📉 -1 |
+| atencion al cliente con chatbot malaga | 0 | 5 | 0.0% | 31.4 | ➡️ |
+| backup automático | 0 | 1 | 0.0% | 27.0 | ➡️ |
+| blog tecnico | 0 | 1 | 0.0% | 28.0 | 🆕 nueva |
+| búsqueda inteligente de documentos | 0 | 1 | 0.0% | 15.0 | ➡️ |
+| chatbot ai atención al cliente | 0 | 4 | 0.0% | 29.0 | ➡️ |
 
-| Métrica | Reciente | Anterior | Cambio |
-|---------|---------|---------|--------|
-| Clicks | 163 | 153 | ▲ 6.5% |
-| Impresiones | 9011 | 5205 | ▲ 73.1% |
+## Top Páginas (3 días)
+| Página | Clicks | CTR | Posición | vs anterior |
+|--------|--------|-----|----------|-------------|
+| /blog/como-instalar-wazuh-en-linux | 9 | 5.5% | 5.3 | ➡️ |
+| /blog/como-instalar-agente-wazuh-en-windows | 4 | 2.5% | 6.4 | 📈 +1 |
+| /curso-wazuh | 4 | 14.8% | 9.9 | 📈 +3 |
+| /wazuh | 3 | 10.7% | 12.5 | 📈 +3 |
+| /blog/configurar-alertas-correo-wazuh-postfix-gmail | 1 | 2.6% | 5.1 | ➡️ |
+| /blog/que-es-wazuh-para-que-sirve | 1 | 1.2% | 5.7 | ➡️ |
+| /servicios/atencion-llamadas | 1 | 3.7% | 25.6 | 📈 +1 |
+| / | 0 | 0.0% | 4.3 | 📉 -3 |
+| /blog | 0 | 0.0% | 16.9 | ➡️ |
+| /blog/backup-automatico-pymes-guia-completa/ | 0 | 0.0% | 32.3 | ➡️ |
+| /blog/ciberseguridad-basica-empleados-guia-completa | 0 | 0.0% | 6.0 | ➡️ |
+| /blog/como-instalar-agente-wazuh-en-linux | 0 | 0.0% | 5.3 | ➡️ |
 
-## Top 20 Keywords por Clicks
+## Oportunidades CTR (impresiones altas, clicks bajos)
+| Keyword | Impresiones | CTR | Posición |
+|---------|-------------|-----|----------|
+| agendación de citas con asistentes virtuales | 10 | 0.0% | 15.6 |
+| wazuh agent windows | 9 | 0.0% | 5.4 |
+| wazuh curso | 5 | 0.0% | 7.4 |
 
-| Keyword | Clicks | Impresiones | CTR | Posición |
-|---------|--------|-------------|-----|----------|
-| instalar wazuh en ubuntu 24.04 | 22 | 75 | 29.3% | 3.0 |
-| wazuh ens | 15 | 35 | 42.9% | 1.6 |
-| curso wazuh | 10 | 102 | 9.8% | 13.4 |
-| ai security | 7 | 158 | 4.4% | 11.1 |
-| curso de wazuh | 6 | 84 | 7.1% | 16.3 |
-| wazuh | 5 | 2048 | 0.2% | 8.1 |
-| wazuh ia | 5 | 56 | 8.9% | 6.4 |
-| instalar wazuh en ubuntu | 3 | 31 | 9.7% | 5.0 |
-| ia security | 2 | 24 | 8.3% | 12.1 |
-| wazuh curso | 2 | 79 | 2.5% | 18.7 |
-| wazuh elasticsearch | 2 | 21 | 9.5% | 6.1 |
-| wazuh español | 2 | 11 | 18.2% | 7.2 |
-| wazuh que es | 2 | 272 | 0.7% | 7.4 |
-| agente wazuh | 1 | 48 | 2.1% | 7.5 |
-| aisecurity | 1 | 8 | 12.5% | 2.3 |
-| elasticsearch wazuh | 1 | 7 | 14.3% | 6.3 |
-| instalar wazuh en ubuntu server | 1 | 20 | 5.0% | 5.5 |
-| instalar wazuh en windows | 1 | 30 | 3.3% | 11.0 |
-| install wazuh ubuntu | 1 | 4 | 25.0% | 4.8 |
-| que es wazuh | 1 | 125 | 0.8% | 9.5 |
+## Keywords cerca del Top 3 (posición 4-15)
+- **wazuh agent windows** — pos 5.4, 9 impresiones
+- **wazuh curso** — pos 7.4, 5 impresiones
+- **agente wazuh** — pos 8.0, 3 impresiones
+- **curso wazuh** — pos 6.3, 3 impresiones
+- **elasticsearch wazuh** — pos 5.7, 3 impresiones
+- **instalar wazuh** — pos 9.0, 3 impresiones
+- **wazuh** — pos 4.0, 3 impresiones
+- **wazuh windows** — pos 8.7, 3 impresiones
+- **instalar wazuh en windows** — pos 6.5, 2 impresiones
+- **kibana siem** — pos 10.0, 2 impresiones
 
-## Top Páginas por Clicks
-
-| Página | Clicks | Impresiones | CTR | Posición |
-|--------|--------|-------------|-----|----------|
-| /blog/como-instalar-wazuh-en-linux | 87 | 2003 | 4.3% | 5.6 |
-| /wazuh | 68 | 1061 | 6.4% | 11.6 |
-| /curso-wazuh | 53 | 597 | 8.9% | 9.1 |
-| /blog/ia-threat-hunting-wazuh | 38 | 719 | 5.3% | 6.6 |
-| /blog/como-instalar-agente-wazuh-en-windows | 29 | 1926 | 1.5% | 6.5 |
-| /blog/wazuh-elastic-security-configuracion-de-siem-completo | 20 | 1192 | 1.7% | 10.4 |
-| /blog/que-es-wazuh-para-que-sirve/ | 17 | 1716 | 1.0% | 6.2 |
-| / | 15 | 573 | 2.6% | 12.5 |
-| /blog/que-es-wazuh-para-que-sirve | 13 | 2733 | 0.5% | 7.0 |
-| /blog/como-monitorizar-tu-tenant-de-office365-registros-de-exchange-sharepoint | 9 | 459 | 2.0% | 8.7 |
-| /servicios/gestor-citas | 9 | 542 | 1.7% | 19.9 |
-| /blog/como-instalar-agente-wazuh-en-linux | 8 | 737 | 1.1% | 6.7 |
-| /blog/monitorizacion-de-contenedores-docker-con-wazuh/ | 8 | 127 | 6.3% | 4.4 |
-| /blog/configurar-alertas-correo-wazuh-postfix-gmail | 4 | 216 | 1.9% | 5.4 |
-| /servicios/atencion-llamadas | 3 | 250 | 1.2% | 16.3 |
-| /blog/ciberseguridad-basica-empleados-guia-completa | 2 | 173 | 1.2% | 10.5 |
-| /blog/configuracion-de-grupos-en-wazuh/ | 2 | 210 | 1.0% | 6.0 |
-| /blog/detectar-phishing-outlook-microsoft-guia-empleados/ | 2 | 297 | 0.7% | 8.1 |
-| /blog/detectar-instalaciones-software-windows-wazuh | 1 | 95 | 1.1% | 9.5 |
-| /blog/detectar-phishing-gmail-guia-empleados/ | 1 | 91 | 1.1% | 7.2 |
-
-## Keywords Objetivo del Proyecto
-
-| Keyword | Estado | Clicks | Impresiones | CTR | Posición |
-|---------|--------|--------|-------------|-----|----------|
-| soporte técnico informático | ❌ sin datos | - | - | - | - |
-| soporte técnico empresas | ❌ sin datos | - | - | - | - |
-| técnico informático pymes | ❌ sin datos | - | - | - | - |
-| wazuh implementación | ❌ sin datos | - | - | - | - |
-| wazuh ens | ✅ | 15 | 35 | 42.9% | 1.6 |
-| ciberseguridad empleados | ❌ sin datos | - | - | - | - |
-| test phishing empleados | ❌ sin datos | - | - | - | - |
-| chatbot empresas | ❌ sin datos | - | - | - | - |
-| automatización procesos pymes | ❌ sin datos | - | - | - | - |
-| soporte técnico madrid | ❌ sin datos | - | - | - | - |
-| soporte técnico barcelona | ❌ sin datos | - | - | - | - |
-| soporte técnico valencia | ❌ sin datos | - | - | - | - |
-
-## Oportunidades (alto impresiones, bajo CTR)
-
-_Keywords que aparecen mucho en Google pero pocos hacen click — mejorar título/descripción puede aumentar tráfico sin cambiar posición._
-
-| Keyword | Impresiones | CTR actual | Posición |
-|---------|-------------|------------|----------|
-| wazuh | 2048 | 0.2% | 8.1 |
-| wazuh curso | 79 | 2.5% | 18.7 |
-| wazuh que es | 272 | 0.7% | 7.4 |
-| que es wazuh | 125 | 0.8% | 9.5 |
-| consejos de ciberseguridad para empleados | 70 | 0% | 6.5 |
-
+## Keywords nuevas esta semana
+- **outlook corporativo** — 6 impresiones, pos 28.8
+- **correo corporativo outlook** — 2 impresiones, pos 15.5
+- **kibana siem** — 2 impresiones, pos 10.0
+- **monitoreo de docker** — 2 impresiones, pos 11.0
+- **outlook 365 correo corporativo** — 2 impresiones, pos 9.0
+- **recepcionista virtual con ia** — 2 impresiones, pos 26.5
+- **wazoo siem** — 2 impresiones, pos 5.0
+- **wazuh windows agent** — 2 impresiones, pos 5.5
