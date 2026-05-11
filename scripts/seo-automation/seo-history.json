@@ -214,6 +214,221 @@
           "isNew": true
         }
       ]
+    },
+    {
+      "date": "2026-05-11T07:36:28.245Z",
+      "totals": {
+        "current": {
+          "clicks": 6,
+          "impressions": 264
+        },
+        "previous": {
+          "clicks": 5,
+          "impressions": 162
+        }
+      },
+      "topKeywords": [
+        {
+          "keyword": "instalar wazuh en ubuntu server",
+          "clicks": 2,
+          "impressions": 6,
+          "ctr": 0.3333333333333333,
+          "position": 4.333333333333334,
+          "prevClicks": 2,
+          "prevPosition": 3.8,
+          "isNew": false
+        },
+        {
+          "keyword": "aisecurity",
+          "clicks": 1,
+          "impressions": 2,
+          "ctr": 0.5,
+          "position": 1,
+          "prevClicks": 0,
+          "prevPosition": null,
+          "isNew": true
+        },
+        {
+          "keyword": "instalar wazuh en ubuntu 24.04",
+          "clicks": 1,
+          "impressions": 1,
+          "ctr": 1,
+          "position": 2,
+          "prevClicks": 1,
+          "prevPosition": 2,
+          "isNew": false
+        },
+        {
+          "keyword": "wazuh ai",
+          "clicks": 1,
+          "impressions": 2,
+          "ctr": 0.5,
+          "position": 8.5,
+          "prevClicks": 0,
+          "prevPosition": null,
+          "isNew": true
+        },
+        {
+          "keyword": "wazuh monitor docker",
+          "clicks": 1,
+          "impressions": 1,
+          "ctr": 1,
+          "position": 9,
+          "prevClicks": 0,
+          "prevPosition": null,
+          "isNew": true
+        },
+        {
+          "keyword": "abrir correo corporativo",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 70,
+          "prevClicks": 0,
+          "prevPosition": 70,
+          "isNew": false
+        },
+        {
+          "keyword": "agendación de citas con asistentes virtuales",
+          "clicks": 0,
+          "impressions": 6,
+          "ctr": 0,
+          "position": 25.666666666666668,
+          "prevClicks": 0,
+          "prevPosition": 15.6,
+          "isNew": false
+        },
+        {
+          "keyword": "agent wazuh windows",
+          "clicks": 0,
+          "impressions": 2,
+          "ctr": 0,
+          "position": 4.5,
+          "prevClicks": 0,
+          "prevPosition": null,
+          "isNew": true
+        },
+        {
+          "keyword": "agente wazuh",
+          "clicks": 0,
+          "impressions": 3,
+          "ctr": 0,
+          "position": 7,
+          "prevClicks": 0,
+          "prevPosition": 8,
+          "isNew": false
+        },
+        {
+          "keyword": "agente wazuh windows",
+          "clicks": 0,
+          "impressions": 4,
+          "ctr": 0,
+          "position": 5.75,
+          "prevClicks": 0,
+          "prevPosition": 8,
+          "isNew": false
+        },
+        {
+          "keyword": "agentes de ia para automatizar agendamiento y cobros",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 11,
+          "prevClicks": 0,
+          "prevPosition": null,
+          "isNew": true
+        },
+        {
+          "keyword": "agentes de wazuh",
+          "clicks": 0,
+          "impressions": 2,
+          "ctr": 0,
+          "position": 12.5,
+          "prevClicks": 0,
+          "prevPosition": 8,
+          "isNew": false
+        },
+        {
+          "keyword": "atencion al cliente con chatbot malaga",
+          "clicks": 0,
+          "impressions": 3,
+          "ctr": 0,
+          "position": 37.333333333333336,
+          "prevClicks": 0,
+          "prevPosition": 31.4,
+          "isNew": false
+        },
+        {
+          "keyword": "automate backup",
+          "clicks": 0,
+          "impressions": 2,
+          "ctr": 0,
+          "position": 73,
+          "prevClicks": 0,
+          "prevPosition": null,
+          "isNew": true
+        },
+        {
+          "keyword": "automatisk backup",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 13,
+          "prevClicks": 0,
+          "prevPosition": null,
+          "isNew": true
+        },
+        {
+          "keyword": "automatizacion de citas",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 13,
+          "prevClicks": 0,
+          "prevPosition": null,
+          "isNew": true
+        },
+        {
+          "keyword": "automatizar citas por teléfono",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 12,
+          "prevClicks": 0,
+          "prevPosition": null,
+          "isNew": true
+        },
+        {
+          "keyword": "backup automatico",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 30,
+          "prevClicks": 0,
+          "prevPosition": null,
+          "isNew": true
+        },
+        {
+          "keyword": "backup automático",
+          "clicks": 0,
+          "impressions": 2,
+          "ctr": 0,
+          "position": 27,
+          "prevClicks": 0,
+          "prevPosition": 27,
+          "isNew": false
+        },
+        {
+          "keyword": "backup automã¡tico",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 6,
+          "prevClicks": 0,
+          "prevPosition": null,
+          "isNew": true
+        }
+      ]
     }
   ]
 }

@@ -1,194 +1,139 @@
 {
-  "generatedAt": "2026-05-08T08:03:39.560Z",
+  "generatedAt": "2026-05-11T07:36:35.000Z",
   "propertyId": "519124169",
   "period": {
-    "startDate": "2026-05-04",
-    "endDate": "2026-05-07"
+    "startDate": "2026-05-07",
+    "endDate": "2026-05-10"
   },
   "summary": {
-    "totalSessions": 26,
-    "organicSessions": 8,
-    "organicPct": "30.8"
+    "totalSessions": 15,
+    "organicSessions": 3,
+    "organicPct": "20.0"
   },
   "topPages": [
     {
       "page": "/curso-wazuh",
-      "sessions": 17,
-      "activeUsers": 11,
-      "bounceRate": 0.058823529411764705,
-      "avgDuration": 93.14188888235294,
-      "pageViews": 7,
-      "prevSessions": 7,
-      "sessionsDiff": 10
+      "sessions": 8,
+      "activeUsers": 5,
+      "bounceRate": 0.125,
+      "avgDuration": 73.329173875,
+      "pageViews": 2,
+      "prevSessions": 17,
+      "sessionsDiff": -9
     },
     {
       "page": "/",
-      "sessions": 12,
-      "activeUsers": 9,
+      "sessions": 6,
+      "activeUsers": 5,
       "bounceRate": 0,
-      "avgDuration": 123.36449075,
-      "pageViews": 8,
-      "prevSessions": 5,
-      "sessionsDiff": 7
+      "avgDuration": 53.644529500000004,
+      "pageViews": 1,
+      "prevSessions": 12,
+      "sessionsDiff": -6
     },
     {
-      "page": "/soporte-tecnico",
-      "sessions": 4,
-      "activeUsers": 2,
-      "bounceRate": 0,
-      "avgDuration": 51.632752,
-      "pageViews": 2,
-      "prevSessions": 2,
-      "sessionsDiff": 2
-    },
-    {
-      "page": "/servicios/atencion-llamadas",
+      "page": "/blog",
       "sessions": 3,
-      "activeUsers": 2,
+      "activeUsers": 3,
       "bounceRate": 0,
-      "avgDuration": 115.54663533333333,
-      "pageViews": 0,
-      "prevSessions": 1,
-      "sessionsDiff": 2
-    },
-    {
-      "page": "/abrir-ticket",
-      "sessions": 1,
-      "activeUsers": 1,
-      "bounceRate": 0,
-      "avgDuration": 5.342605,
-      "pageViews": 0,
-      "prevSessions": 1,
-      "sessionsDiff": 0
-    },
-    {
-      "page": "/contacto-migracion",
-      "sessions": 1,
-      "activeUsers": 1,
-      "bounceRate": 0,
-      "avgDuration": 5.025347,
-      "pageViews": 0,
-      "prevSessions": 1,
-      "sessionsDiff": 0
-    },
-    {
-      "page": "/servicios/chatbot",
-      "sessions": 1,
-      "activeUsers": 1,
-      "bounceRate": 0,
-      "avgDuration": 2.480519,
-      "pageViews": 0,
+      "avgDuration": 646.505943,
+      "pageViews": 2,
       "prevSessions": 0,
-      "sessionsDiff": 1
-    },
-    {
-      "page": "/servicios/desarrollo-web",
-      "sessions": 1,
-      "activeUsers": 1,
-      "bounceRate": 0,
-      "avgDuration": 7.745594,
-      "pageViews": 0,
-      "prevSessions": 0,
-      "sessionsDiff": 1
-    },
-    {
-      "page": "/servicios/geo-posicionamiento",
-      "sessions": 1,
-      "activeUsers": 1,
-      "bounceRate": 0,
-      "avgDuration": 52.72151,
-      "pageViews": 0,
-      "prevSessions": 1,
-      "sessionsDiff": 0
-    },
-    {
-      "page": "/servicios/gestor-citas",
-      "sessions": 1,
-      "activeUsers": 1,
-      "bounceRate": 0,
-      "avgDuration": 5.780221,
-      "pageViews": 0,
-      "prevSessions": 1,
-      "sessionsDiff": 0
+      "sessionsDiff": 3
     }
   ],
   "channels": [
     {
       "channel": "Direct",
-      "sessions": 13,
+      "sessions": 8,
       "activeUsers": 8,
       "bounceRate": 0,
-      "conversions": 78
+      "conversions": 27
     },
     {
       "channel": "Organic Search",
-      "sessions": 8,
-      "activeUsers": 7,
-      "bounceRate": 0.125,
-      "conversions": 25
+      "sessions": 3,
+      "activeUsers": 1,
+      "bounceRate": 0.3333333333333333,
+      "conversions": 6
     },
     {
       "channel": "Organic Video",
-      "sessions": 4,
-      "activeUsers": 3,
+      "sessions": 3,
+      "activeUsers": 1,
       "bounceRate": 0,
-      "conversions": 14
+      "conversions": 13
     },
     {
-      "channel": "Organic Shopping",
+      "channel": "Unassigned",
       "sessions": 1,
       "activeUsers": 1,
       "bounceRate": 0,
-      "conversions": 1
+      "conversions": 2
     }
   ],
   "events": [
     {
-      "event": "user_engagement",
-      "count": 52,
-      "users": 18
-    },
-    {
-      "event": "click_button",
-      "count": 48,
-      "users": 4
-    },
-    {
-      "event": "click_link",
-      "count": 29,
-      "users": 4
-    },
-    {
       "event": "session_start",
-      "count": 26,
-      "users": 19
+      "count": 15,
+      "users": 13
+    },
+    {
+      "event": "user_engagement",
+      "count": 15,
+      "users": 10
     },
     {
       "event": "first_visit",
-      "count": 17,
-      "users": 17
+      "count": 11,
+      "users": 11
     },
     {
       "event": "page_view",
-      "count": 17,
-      "users": 8
+      "count": 5,
+      "users": 4
+    },
+    {
+      "event": "click_button",
+      "count": 4,
+      "users": 2
+    },
+    {
+      "event": "click_link",
+      "count": 4,
+      "users": 3
     },
     {
       "event": "scroll",
-      "count": 5,
-      "users": 1
-    },
-    {
-      "event": "conversion_click",
-      "count": 1,
-      "users": 1
+      "count": 2,
+      "users": 2
     }
   ],
   "countries": [
     {
       "country": "Spain",
-      "sessions": 19,
-      "users": 12
+      "sessions": 5,
+      "users": 2
+    },
+    {
+      "country": "Paraguay",
+      "sessions": 2,
+      "users": 1
+    },
+    {
+      "country": "United States",
+      "sessions": 2,
+      "users": 2
+    },
+    {
+      "country": "(not set)",
+      "sessions": 1,
+      "users": 1
+    },
+    {
+      "country": "China",
+      "sessions": 1,
+      "users": 1
     },
     {
       "country": "Dominican Republic",
@@ -201,27 +146,7 @@
       "users": 1
     },
     {
-      "country": "Germany",
-      "sessions": 1,
-      "users": 1
-    },
-    {
       "country": "Mexico",
-      "sessions": 1,
-      "users": 1
-    },
-    {
-      "country": "Paraguay",
-      "sessions": 1,
-      "users": 1
-    },
-    {
-      "country": "United Kingdom",
-      "sessions": 1,
-      "users": 1
-    },
-    {
-      "country": "United States",
       "sessions": 1,
       "users": 1
     }
@@ -229,14 +154,14 @@
   "devices": [
     {
       "device": "desktop",
-      "sessions": 25,
-      "users": 18,
-      "bounceRate": 0.04
+      "sessions": 12,
+      "users": 8,
+      "bounceRate": 0.08333333333333333
     },
     {
       "device": "mobile",
-      "sessions": 1,
-      "users": 1,
+      "sessions": 3,
+      "users": 3,
       "bounceRate": 0
     }
   ]
