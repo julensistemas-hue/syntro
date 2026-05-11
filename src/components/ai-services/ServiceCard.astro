@@ -16,14 +16,14 @@ const buttonMap: Record<string, string> = {
   "Gestor Documental IA":      "Ver demo interactiva",
   "Gestor de Citas IA":        "Ver demo interactiva",
   "Atención de Llamadas IA":   "Ver demo interactiva",
-  "Automatización de Procesos":"Ver demo interactiva",
   "Wazuh & Ciberseguridad":    "Ver Wazuh",
   "Consultoría IA":            "Ver consultoría",
   "Diseño Web Profesional":    "Ver diseño web",
+  "Posicionamiento SEO y GEO": "Ver SEO y GEO",
   "Soporte Técnico IT":        "Ver soporte IT",
 };
 const buttonText = buttonMap[title] ?? "Ver servicio";
-const isConsultoria = !["Chatbot Inteligente","Gestor Documental IA","Gestor de Citas IA","Atención de Llamadas IA","Automatización de Procesos"].includes(title);
+const isConsultoria = !["Chatbot Inteligente","Gestor Documental IA","Gestor de Citas IA","Atención de Llamadas IA"].includes(title);
 ---
 
 <div
