@@ -1,73 +1,86 @@
 # Search Console Data — aisecurity.es
-**Generado:** 8/5/2026, 8:03:33
-**Período actual:** 2026-05-02 → 2026-05-05
+**Generado:** 11/5/2026, 7:36:28
+**Período actual:** 2026-05-05 → 2026-05-08
 
 ## Totales (3 días)
 | | Actual | Anterior | Cambio |
 |--|--|--|--|
-| Clicks | 5 | 4 | +25.0% |
-| Impresiones | 162 | 134 | - |
+| Clicks | 6 | 5 | +20.0% |
+| Impresiones | 264 | 162 | - |
 
 ## Top 15 Keywords (3 días)
 | Keyword | Clicks | Impresiones | CTR | Posición | vs anterior |
 |---------|--------|-------------|-----|----------|-------------|
-| instalar wazuh en ubuntu | 2 | 13 | 15.4% | 3.4 | 📈 +2 |
-| instalar wazuh en ubuntu server | 2 | 5 | 40.0% | 3.8 | 📈 +2 |
+| instalar wazuh en ubuntu server | 2 | 6 | 33.3% | 4.3 | ➡️ |
+| aisecurity | 1 | 2 | 50.0% | 1.0 | 🆕 nueva |
 | instalar wazuh en ubuntu 24.04 | 1 | 1 | 100.0% | 2.0 | ➡️ |
-| abrir correo corporativo | 0 | 1 | 0.0% | 70.0 | 🆕 nueva |
-| administrador de wazuh | 0 | 1 | 0.0% | 12.0 | ➡️ |
-| agendación de citas con asistentes virtuales | 0 | 10 | 0.0% | 15.6 | ➡️ |
-| agente wazuh | 0 | 3 | 0.0% | 8.0 | ➡️ |
-| agente wazuh windows | 0 | 1 | 0.0% | 8.0 | 🆕 nueva |
-| agentes de wazuh | 0 | 1 | 0.0% | 8.0 | ➡️ |
-| ai security | 0 | 1 | 0.0% | 2.0 | 📉 -1 |
-| atencion al cliente con chatbot malaga | 0 | 5 | 0.0% | 31.4 | ➡️ |
-| backup automático | 0 | 1 | 0.0% | 27.0 | ➡️ |
-| blog tecnico | 0 | 1 | 0.0% | 28.0 | 🆕 nueva |
-| búsqueda inteligente de documentos | 0 | 1 | 0.0% | 15.0 | ➡️ |
-| chatbot ai atención al cliente | 0 | 4 | 0.0% | 29.0 | ➡️ |
+| wazuh ai | 1 | 2 | 50.0% | 8.5 | 🆕 nueva |
+| wazuh monitor docker | 1 | 1 | 100.0% | 9.0 | 🆕 nueva |
+| abrir correo corporativo | 0 | 1 | 0.0% | 70.0 | ➡️ |
+| agendación de citas con asistentes virtuales | 0 | 6 | 0.0% | 25.7 | ➡️ |
+| agent wazuh windows | 0 | 2 | 0.0% | 4.5 | 🆕 nueva |
+| agente wazuh | 0 | 3 | 0.0% | 7.0 | ➡️ |
+| agente wazuh windows | 0 | 4 | 0.0% | 5.8 | ➡️ |
+| agentes de ia para automatizar agendamiento y cobros | 0 | 1 | 0.0% | 11.0 | 🆕 nueva |
+| agentes de wazuh | 0 | 2 | 0.0% | 12.5 | ➡️ |
+| atencion al cliente con chatbot malaga | 0 | 3 | 0.0% | 37.3 | ➡️ |
+| automate backup | 0 | 2 | 0.0% | 73.0 | 🆕 nueva |
+| automatisk backup | 0 | 1 | 0.0% | 13.0 | 🆕 nueva |
 
 ## Top Páginas (3 días)
 | Página | Clicks | CTR | Posición | vs anterior |
 |--------|--------|-----|----------|-------------|
-| /blog/como-instalar-wazuh-en-linux | 9 | 5.5% | 5.3 | ➡️ |
-| /blog/como-instalar-agente-wazuh-en-windows | 4 | 2.5% | 6.4 | 📈 +1 |
-| /curso-wazuh | 4 | 14.8% | 9.9 | 📈 +3 |
-| /wazuh | 3 | 10.7% | 12.5 | 📈 +3 |
-| /blog/configurar-alertas-correo-wazuh-postfix-gmail | 1 | 2.6% | 5.1 | ➡️ |
-| /blog/que-es-wazuh-para-que-sirve | 1 | 1.2% | 5.7 | ➡️ |
-| /servicios/atencion-llamadas | 1 | 3.7% | 25.6 | 📈 +1 |
-| / | 0 | 0.0% | 4.3 | 📉 -3 |
-| /blog | 0 | 0.0% | 16.9 | ➡️ |
-| /blog/backup-automatico-pymes-guia-completa/ | 0 | 0.0% | 32.3 | ➡️ |
-| /blog/ciberseguridad-basica-empleados-guia-completa | 0 | 0.0% | 6.0 | ➡️ |
-| /blog/como-instalar-agente-wazuh-en-linux | 0 | 0.0% | 5.3 | ➡️ |
+| /blog/como-instalar-wazuh-en-linux | 10 | 3.4% | 5.5 | 📈 +1 |
+| /curso-wazuh | 6 | 12.2% | 21.8 | 📈 +2 |
+| /blog/monitorizacion-de-contenedores-docker-con-wazuh | 4 | 8.7% | 10.4 | 📈 +4 |
+| /blog/que-es-wazuh-para-que-sirve | 4 | 2.7% | 6.0 | 📈 +3 |
+| /wazuh | 4 | 4.8% | 14.4 | 📈 +1 |
+| /blog/como-instalar-agente-wazuh-en-windows | 3 | 1.1% | 6.8 | 📉 -1 |
+| /blog/configurar-alertas-correo-wazuh-postfix-gmail | 3 | 3.1% | 5.3 | 📈 +2 |
+| /blog/configurar-correo-corporativo-outlook-movil/ | 2 | 1.2% | 10.3 | 📈 +2 |
+| /blog/ia-threat-hunting-wazuh | 2 | 5.3% | 6.0 | 📈 +2 |
+| / | 1 | 6.7% | 16.5 | 📈 +1 |
+| /blog/monitorizacion-de-contenedores-docker-con-wazuh/ | 1 | 7.7% | 6.2 | 📈 +1 |
+| /blog/tu-contrasena-mayuscula-numeros-hackeable | 1 | 20.0% | 6.6 | 📈 +1 |
 
 ## Oportunidades CTR (impresiones altas, clicks bajos)
 | Keyword | Impresiones | CTR | Posición |
 |---------|-------------|-----|----------|
-| agendación de citas con asistentes virtuales | 10 | 0.0% | 15.6 |
-| wazuh agent windows | 9 | 0.0% | 5.4 |
-| wazuh curso | 5 | 0.0% | 7.4 |
+| wazuh agent windows | 31 | 0.0% | 7.7 |
+| wazuh | 11 | 0.0% | 10.3 |
+| instalar wazuh en ubuntu | 9 | 0.0% | 2.8 |
+| chatbot gestion de citas | 7 | 0.0% | 15.7 |
+| monitorización de contenedores | 6 | 0.0% | 8.8 |
+| wazuh linux | 6 | 0.0% | 5.5 |
+| wazuh siem | 6 | 0.0% | 18.7 |
+| configurar correo corporativo en outlook android | 5 | 0.0% | 6.0 |
+| monitoreo de docker | 5 | 0.0% | 10.2 |
+| wazuh blog | 5 | 0.0% | 5.6 |
 
 ## Keywords cerca del Top 3 (posición 4-15)
-- **wazuh agent windows** — pos 5.4, 9 impresiones
-- **wazuh curso** — pos 7.4, 5 impresiones
-- **agente wazuh** — pos 8.0, 3 impresiones
-- **curso wazuh** — pos 6.3, 3 impresiones
-- **elasticsearch wazuh** — pos 5.7, 3 impresiones
-- **instalar wazuh** — pos 9.0, 3 impresiones
-- **wazuh** — pos 4.0, 3 impresiones
-- **wazuh windows** — pos 8.7, 3 impresiones
-- **instalar wazuh en windows** — pos 6.5, 2 impresiones
-- **kibana siem** — pos 10.0, 2 impresiones
+- **wazuh agent windows** — pos 7.7, 31 impresiones
+- **wazuh** — pos 10.3, 11 impresiones
+- **instalar wazuh en ubuntu server** — pos 4.3, 6 impresiones
+- **monitorización de contenedores** — pos 8.8, 6 impresiones
+- **wazuh linux** — pos 5.5, 6 impresiones
+- **configurar correo corporativo en outlook android** — pos 6.0, 5 impresiones
+- **monitoreo de docker** — pos 10.2, 5 impresiones
+- **wazuh blog** — pos 5.6, 5 impresiones
+- **agente wazuh windows** — pos 5.8, 4 impresiones
+- **wazuh agente** — pos 8.5, 4 impresiones
 
 ## Keywords nuevas esta semana
-- **outlook corporativo** — 6 impresiones, pos 28.8
-- **correo corporativo outlook** — 2 impresiones, pos 15.5
-- **kibana siem** — 2 impresiones, pos 10.0
-- **monitoreo de docker** — 2 impresiones, pos 11.0
-- **outlook 365 correo corporativo** — 2 impresiones, pos 9.0
-- **recepcionista virtual con ia** — 2 impresiones, pos 26.5
-- **wazoo siem** — 2 impresiones, pos 5.0
-- **wazuh windows agent** — 2 impresiones, pos 5.5
+- **monitorización de contenedores** — 6 impresiones, pos 8.8
+- **wazuh linux** — 6 impresiones, pos 5.5
+- **chatbot inteligente** — 5 impresiones, pos 37.2
+- **configurar correo corporativo en outlook android** — 5 impresiones, pos 6.0
+- **wazuh agente** — 4 impresiones, pos 8.5
+- **wazuh elastic** — 3 impresiones, pos 6.0
+- **aisecurity** — 2 impresiones, pos 1.0
+- **wazuh ai** — 2 impresiones, pos 8.5
+- **agent wazuh windows** — 2 impresiones, pos 4.5
+- **automate backup** — 2 impresiones, pos 73.0
+- **chatbot atencion al cliente malaga** — 2 impresiones, pos 30.0
+- **install wazuh server on ubuntu 24.04** — 2 impresiones, pos 7.0
+- **soporte informático linux** — 2 impresiones, pos 15.0
+- **wazuh debian** — 2 impresiones, pos 6.5

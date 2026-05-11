@@ -16,6 +16,8 @@
     "@tailwindcss/vite": "^4.1.10",
     "@types/nodemailer": "^7.0.4",
     "astro": "^5.12.6",
+    "googleapis": "^164.1.0",
+    "nodemailer": "^7.0.11",
     "shadcn": "^3.5.0",
     "tailwindcss": "^4.1.10"
   },
@@ -25,8 +27,6 @@
     "@supabase/supabase-js": "^2.95.3",
     "@vercel/analytics": "^1.5.0",
     "@vercel/speed-insights": "^1.2.0",
-    "googleapis": "^164.1.0",
-    "nodemailer": "^7.0.11",
     "resend": "^6.6.0",
     "stripe": "^20.3.1"
   }
