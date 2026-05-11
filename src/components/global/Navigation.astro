@@ -169,23 +169,20 @@ const currentPath = Astro.url.pathname;
                       <p class="text-sm font-semibold text-white/90 group-hover:text-white transition-colors">Gestor Documental IA</p>
                       <p class="text-xs mt-0.5" style="color: rgba(148,163,184,0.7);">Búsqueda semántica</p>
                     </a>
-                    <a href="/servicios/gestor-citas" @click="dropdownOpen = false"
-                      class="group block px-3 py-2.5 rounded-lg transition-all duration-150 hover:bg-white/5"
-                      style={currentPath === '/servicios/gestor-citas' ? 'background: rgba(99,102,241,0.15);' : ''}>
-                      <p class="text-sm font-semibold text-white/90 group-hover:text-white transition-colors">Gestor de Citas IA</p>
-                      <p class="text-xs mt-0.5" style="color: rgba(148,163,184,0.7);">Reservas automatizadas</p>
-                    </a>
-                    <a href="/servicios/automatizacion" @click="dropdownOpen = false"
-                      class="group block px-3 py-2.5 rounded-lg transition-all duration-150 hover:bg-white/5"
-                      style={currentPath === '/servicios/automatizacion' ? 'background: rgba(99,102,241,0.15);' : ''}>
-                      <p class="text-sm font-semibold text-white/90 group-hover:text-white transition-colors">Automatización RPA</p>
-                      <p class="text-xs mt-0.5" style="color: rgba(148,163,184,0.7);">Procesos repetitivos con IA</p>
-                    </a>
                     <a href="/servicios/atencion-llamadas" @click="dropdownOpen = false"
                       class="group block px-3 py-2.5 rounded-lg transition-all duration-150 hover:bg-white/5"
                       style={currentPath === '/servicios/atencion-llamadas' ? 'background: rgba(99,102,241,0.15);' : ''}>
                       <p class="text-sm font-semibold text-white/90 group-hover:text-white transition-colors">Atención de Llamadas IA</p>
                       <p class="text-xs mt-0.5" style="color: rgba(148,163,184,0.7);">Recepcionista virtual 24/7</p>
+                    </a>
+                    <a href="/consultoria-ia" @click="dropdownOpen = false"
+                      class="group block px-3 py-2.5 rounded-lg transition-all duration-150"
+                      style={currentPath === '/consultoria-ia' ? 'background: rgba(99,102,241,0.15);' : 'background: rgba(99,102,241,0.07); border: 1px solid rgba(99,102,241,0.2);'}>
+                      <div class="flex items-center gap-2">
+                        <p class="text-sm font-semibold text-white/90 group-hover:text-white transition-colors">Consultoría IA</p>
+                        <span class="text-[9px] font-bold px-1.5 py-0.5 rounded-full leading-none flex-shrink-0" style="background: rgba(99,102,241,0.3); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.5);">NUEVO</span>
+                      </div>
+                      <p class="text-xs mt-0.5" style="color: rgba(148,163,184,0.7);">IA por departamento · Formación</p>
                     </a>
                   </div>
                 </div>
@@ -209,12 +206,6 @@ const currentPath = Astro.url.pathname;
                       <p class="text-sm font-semibold text-white/90 group-hover:text-white transition-colors">Curso Wazuh Intensivo</p>
                       <p class="text-xs mt-0.5" style="color: rgba(148,163,184,0.7);">Formación práctica y certificada</p>
                     </a>
-                    <a href="/soporte-tecnico" @click="dropdownOpen = false"
-                      class="group block px-3 py-2.5 rounded-lg transition-all duration-150 hover:bg-white/5"
-                      style={currentPath === '/soporte-tecnico' ? 'background: rgba(239,68,68,0.12);' : ''}>
-                      <p class="text-sm font-semibold text-white/90 group-hover:text-white transition-colors">Ciberseguridad Empresarial</p>
-                      <p class="text-xs mt-0.5" style="color: rgba(148,163,184,0.7);">Auditorías y protección activa</p>
-                    </a>
                     <a href="/servicios/concienciacion" @click="dropdownOpen = false"
                       class="group block px-3 py-2.5 rounded-lg transition-all duration-150 hover:bg-white/5"
                       style={currentPath === '/servicios/concienciacion' ? 'background: rgba(239,68,68,0.12);' : 'background: rgba(251,146,60,0.06); border: 1px solid rgba(251,146,60,0.15);'}>
@@ -235,11 +226,6 @@ const currentPath = Astro.url.pathname;
                       class="group block px-3 py-2.5 rounded-lg hover:bg-white/5 transition-all duration-150">
                       <p class="text-sm font-semibold text-white/90 group-hover:text-white transition-colors">Soporte IT</p>
                       <p class="text-xs mt-0.5" style="color: rgba(148,163,184,0.7);">Linux y Windows Server</p>
-                    </a>
-                    <a href="/soporte-tecnico" @click="dropdownOpen = false"
-                      class="group block px-3 py-2.5 rounded-lg hover:bg-white/5 transition-all duration-150">
-                      <p class="text-sm font-semibold text-white/90 group-hover:text-white transition-colors">Copias de Seguridad</p>
-                      <p class="text-xs mt-0.5" style="color: rgba(148,163,184,0.7);">Veeam, Restic, Duplicati</p>
                     </a>
                     <a href="/servicios/desarrollo-web" @click="dropdownOpen = false"
                       class="group block px-3 py-2.5 rounded-lg hover:bg-white/5 transition-all duration-150"
