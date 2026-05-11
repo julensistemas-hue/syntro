@@ -1,7 +1,6 @@
 /**
- * Script 7-monthly: Fetch Search Console data — ventana mensual
+ * Script 7-monthly: Fetch Search Console data mensual (28 días)
  *
- * Obtiene últimos 30 días vs 30 días anteriores (con offset de 3 días por delay de GSC).
  * Output:
  *   - scripts/seo-automation/search-console-data-monthly.json
  *   - scripts/seo-automation/seo-history-monthly.json
@@ -34,7 +33,7 @@ function loadHistory() {
 }
 
 async function main() {
-  console.log('🔄 Fetching Search Console data (mensual)...\n');
+  console.log('🔄 Fetching Search Console data (mensual 28 días)...\n');
 
   let credentials;
   if (process.env.GOOGLE_CREDENTIALS_JSON) {
@@ -52,9 +51,9 @@ async function main() {
   if (!site) throw new Error('Propiedad aisecurity.es no encontrada');
   const siteUrl = site.siteUrl;
 
-  // Últimos 30 días vs 30 días anteriores (sin solapamiento)
-  const currentMonth = getDates(30);        // días 3–33 atrás
-  const previousMonth = getDates(30, 33);   // días 33–63 atrás
+  // Mes actual (últimos 28 días disponibles) vs mes anterior (28 días antes de esos)
+  const current28 = getDates(28);
+  const previous28 = getDates(28, 31);  // 28 días antes, sin solapar
 
   async function query(dates, dimensions, rowLimit = 100) {
     const res = await sc.searchanalytics.query({ siteUrl, requestBody: { ...dates, dimensions, rowLimit } });
@@ -62,10 +61,10 @@ async function main() {
   }
 
   const [kwCurrent, pagesCurrent, kwPrevious, pagesPrevious] = await Promise.all([
-    query(currentMonth, ['query'], 200),
-    query(currentMonth, ['page'], 50),
-    query(previousMonth, ['query'], 200),
-    query(previousMonth, ['page'], 50),
+    query(current28, ['query'], 100),
+    query(current28, ['page'], 50),
+    query(previous28, ['query'], 100),
+    query(previous28, ['page'], 50),
   ]);
 
   const prevKwMap = new Map(kwPrevious.map(r => [r.keys[0], r]));
@@ -77,9 +76,9 @@ async function main() {
   const data = {
     generatedAt: new Date().toISOString(),
     siteUrl,
-    period: currentMonth,
-    previousPeriod: previousMonth,
-    periodDays: 30,
+    period: current28,
+    previousPeriod: previous28,
+    periodDays: 28,
     totals: {
       current: { clicks: sumClicks(kwCurrent), impressions: sumImpressions(kwCurrent) },
       previous: { clicks: sumClicks(kwPrevious), impressions: sumImpressions(kwPrevious) },
@@ -89,7 +88,8 @@ async function main() {
       return {
         keyword: r.keys[0],
         clicks: r.clicks, impressions: r.impressions, ctr: r.ctr, position: r.position,
-        prevClicks: prev?.clicks || 0, prevPosition: prev?.position || null, isNew: !prev,
+        prevClicks: prev?.clicks || 0, prevImpressions: prev?.impressions || 0,
+        prevPosition: prev?.position || null, isNew: !prev,
       };
     }),
     topPages: pagesCurrent.map(r => {
@@ -97,8 +97,7 @@ async function main() {
       const prev = prevPageMap.get(r.keys[0]);
       return {
         page: slug, clicks: r.clicks, impressions: r.impressions, ctr: r.ctr, position: r.position,
-        prevClicks: prev?.clicks || 0,
-        prevPosition: prev?.position || null,
+        prevClicks: prev?.clicks || 0, prevImpressions: prev?.impressions || 0,
       };
     }),
     opportunities: kwCurrent
@@ -112,7 +111,7 @@ async function main() {
       .slice(0, 10)
       .map(r => ({ keyword: r.keys[0], clicks: r.clicks, impressions: r.impressions, ctr: r.ctr, position: r.position })),
     newKeywords: kwCurrent
-      .filter(r => !prevKwMap.has(r.keys[0]) && r.impressions >= 5)
+      .filter(r => !prevKwMap.has(r.keys[0]) && r.impressions >= 3)
       .sort((a, b) => b.impressions - a.impressions)
       .slice(0, 20)
       .map(r => ({ keyword: r.keys[0], clicks: r.clicks, impressions: r.impressions, position: r.position })),
@@ -121,14 +120,23 @@ async function main() {
   fs.writeFileSync(OUTPUT_JSON, JSON.stringify(data, null, 2));
   console.log('✅ search-console-data-monthly.json guardado');
 
-  // Historial mensual (máx. 12 meses)
   const history = loadHistory();
-  history.reports.push({ date: data.generatedAt, totals: data.totals, topKeywords: data.topKeywords.slice(0, 20) });
+  history.reports.push({
+    date: data.generatedAt,
+    period: data.period,
+    totals: data.totals,
+    topKeywords: data.topKeywords.slice(0, 20),
+  });
   if (history.reports.length > 12) history.reports = history.reports.slice(-12);
   fs.writeFileSync(HISTORY_FILE, JSON.stringify(history, null, 2));
   console.log('✅ seo-history-monthly.json actualizado');
 
-  console.log(`\n📊 Mensual: ${data.totals.current.clicks} clicks | ${data.totals.previous.clicks} clicks mes anterior | ${data.opportunities.length} oportunidades`);
+  const clicksDiff = data.totals.current.clicks - data.totals.previous.clicks;
+  const clicksPct = data.totals.previous.clicks > 0
+    ? ((clicksDiff / data.totals.previous.clicks) * 100).toFixed(1) : 'N/A';
+
+  console.log(`\n📊 Mes actual: ${data.totals.current.clicks} clicks | Mes anterior: ${data.totals.previous.clicks} clicks | Cambio: ${clicksDiff >= 0 ? '+' : ''}${clicksPct}%`);
+  console.log(`   ${data.opportunities.length} oportunidades CTR | ${data.newKeywords.length} keywords nuevas este mes`);
 }
 
 main().catch(err => { console.error('❌', err.message); process.exit(1); });

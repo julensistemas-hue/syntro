@@ -1,7 +1,6 @@
 /**
- * Script 8-monthly: Fetch Google Analytics 4 data — ventana mensual
+ * Script 8-monthly: Fetch Google Analytics 4 data mensual (28 días)
  *
- * Obtiene últimos 30 días vs 30 días anteriores.
  * Output:
  *   - scripts/seo-automation/ga4-data-monthly.json
  *
@@ -28,7 +27,7 @@ function getDates(daysBack, offsetDays = 1) {
 }
 
 async function main() {
-  console.log('🔄 Fetching GA4 data (mensual)...\n');
+  console.log('🔄 Fetching GA4 data (mensual 28 días)...\n');
 
   let credentials;
   if (process.env.GOOGLE_CREDENTIALS_JSON) {
@@ -44,9 +43,8 @@ async function main() {
   const authClient = await auth.getClient();
   const analyticsdata = google.analyticsdata({ version: 'v1beta', auth: authClient });
 
-  // 30 días vs 30 días anteriores (sin solapamiento)
-  const currentMonth = getDates(30);      // días 1–30 atrás
-  const previousMonth = getDates(30, 31); // días 31–60 atrás
+  const current28 = getDates(28);
+  const previous28 = getDates(28, 29);  // mes anterior sin solapar
 
   async function runReport(dateRange, dimensions, metrics, limit = 20, orderBy = null) {
     const body = {
@@ -64,15 +62,29 @@ async function main() {
   }
 
   const [topPagesRows, topPagesPrevRows, channelRows, eventRows, countryRows, deviceRows] = await Promise.all([
-    runReport(currentMonth, ['pagePath'], ['sessions', 'activeUsers', 'bounceRate', 'averageSessionDuration', 'screenPageViews'], 25, [{ metric: { metricName: 'sessions' }, desc: true }]),
-    runReport(previousMonth, ['pagePath'], ['sessions', 'activeUsers'], 25, [{ metric: { metricName: 'sessions' }, desc: true }]),
-    runReport(currentMonth, ['sessionDefaultChannelGroup'], ['sessions', 'activeUsers', 'bounceRate', 'conversions'], 10, [{ metric: { metricName: 'sessions' }, desc: true }]),
-    runReport(currentMonth, ['eventName'], ['eventCount', 'totalUsers'], 15, [{ metric: { metricName: 'eventCount' }, desc: true }]),
-    runReport(currentMonth, ['country'], ['sessions', 'activeUsers'], 8, [{ metric: { metricName: 'sessions' }, desc: true }]),
-    runReport(currentMonth, ['deviceCategory'], ['sessions', 'activeUsers', 'bounceRate'], 5, [{ metric: { metricName: 'sessions' }, desc: true }]),
+    runReport(current28, ['pagePath'],
+      ['sessions', 'activeUsers', 'bounceRate', 'averageSessionDuration', 'screenPageViews'],
+      25, [{ metric: { metricName: 'sessions' }, desc: true }]),
+    runReport(previous28, ['pagePath'],
+      ['sessions', 'activeUsers'], 25,
+      [{ metric: { metricName: 'sessions' }, desc: true }]),
+    runReport(current28, ['sessionDefaultChannelGroup'],
+      ['sessions', 'activeUsers', 'bounceRate', 'conversions'],
+      10, [{ metric: { metricName: 'sessions' }, desc: true }]),
+    runReport(current28, ['eventName'],
+      ['eventCount', 'totalUsers'], 15,
+      [{ metric: { metricName: 'eventCount' }, desc: true }]),
+    runReport(current28, ['country'],
+      ['sessions', 'activeUsers'], 8,
+      [{ metric: { metricName: 'sessions' }, desc: true }]),
+    runReport(current28, ['deviceCategory'],
+      ['sessions', 'activeUsers', 'bounceRate'], 5,
+      [{ metric: { metricName: 'sessions' }, desc: true }]),
   ]);
 
-  const prevPageMap = new Map(topPagesPrevRows.map(r => [r.dimensionValues[0].value, parseInt(r.metricValues[0].value)]));
+  const prevPageMap = new Map(
+    topPagesPrevRows.map(r => [r.dimensionValues[0].value, parseInt(r.metricValues[0].value)])
+  );
 
   const topPages = topPagesRows.map(r => {
     const page = r.dimensionValues[0].value;
@@ -118,21 +130,18 @@ async function main() {
   }));
 
   const totalSessions = channels.reduce((a, c) => a + c.sessions, 0);
-  const organicChannel = channels.find(c => c.channel === 'Organic Search') || { sessions: 0 };
-
-  // Totales mes anterior para comparativa global
-  const prevTotalChannels = await runReport(previousMonth, ['sessionDefaultChannelGroup'], ['sessions'], 10, [{ metric: { metricName: 'sessions' }, desc: true }]);
-  const prevTotalSessions = prevTotalChannels.reduce((a, r) => a + parseInt(r.metricValues[0].value), 0);
+  const totalUsers = channels.reduce((a, c) => a + c.activeUsers, 0);
+  const organicChannel = channels.find(c => c.channel === 'Organic Search') || { sessions: 0, activeUsers: 0 };
 
   const data = {
     generatedAt: new Date().toISOString(),
     propertyId: PROPERTY_ID,
-    period: currentMonth,
-    previousPeriod: previousMonth,
+    period: current28,
+    previousPeriod: previous28,
+    periodDays: 28,
     summary: {
       totalSessions,
-      prevTotalSessions,
-      sessionsDiff: totalSessions - prevTotalSessions,
+      totalUsers,
       organicSessions: organicChannel.sessions,
       organicPct: totalSessions > 0 ? ((organicChannel.sessions / totalSessions) * 100).toFixed(1) : '0',
     },
@@ -145,10 +154,14 @@ async function main() {
 
   fs.writeFileSync(OUTPUT_JSON, JSON.stringify(data, null, 2));
   console.log('✅ ga4-data-monthly.json guardado');
-  console.log(`\n📊 GA4 mensual: ${totalSessions} sesiones (vs ${prevTotalSessions} mes anterior) | ${data.summary.organicPct}% orgánico`);
+  console.log(`\n📊 GA4 mensual: ${totalSessions} sesiones | ${totalUsers} usuarios | ${data.summary.organicPct}% orgánico`);
 }
 
 main().catch(err => {
   console.error('❌', err.message);
+  if (err.message.includes('403') || err.message.includes('permission')) {
+    console.error('\n💡 Añade el service account como Lector en GA4:');
+    console.error('   analytics.google.com → Admin → Administración de acceso → + → seo-automation@julensistemas.iam.gserviceaccount.com');
+  }
   process.exit(1);
 });

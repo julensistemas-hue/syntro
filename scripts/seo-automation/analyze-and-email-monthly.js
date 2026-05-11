@@ -2,9 +2,9 @@
  * analyze-and-email-monthly.js
  *
  * Lee search-console-data-monthly.json + ga4-data-monthly.json,
- * genera informe mensual completo y lo envía por email vía Resend.
+ * genera análisis mensual narrativo y envía email HTML vía Resend.
  *
- * Uso: node scripts/seo-automation/analyze-and-email-monthly.js
+ * Uso: RESEND_API_KEY=re_xxx node scripts/seo-automation/analyze-and-email-monthly.js
  */
 
 const https = require('https');
@@ -13,13 +13,10 @@ const path = require('path');
 
 const GSC_FILE = path.join(__dirname, 'search-console-data-monthly.json');
 const GA4_FILE = path.join(__dirname, 'ga4-data-monthly.json');
-const CHANGES_FILE = path.join(__dirname, 'seo-changes.json');
-const AB_FILE = path.join(__dirname, 'ab-state.json');
 const HISTORY_FILE = path.join(__dirname, 'seo-history-monthly.json');
 const RESEND_API_KEY = process.env.RESEND_API_KEY || 're_YG4icTFX_BY8beBj8wNbrpDYCBQn2xPci';
 const TO = process.env.REPORT_EMAIL || 'julen.sistemas@gmail.com';
 
-// ─── helpers ────────────────────────────────────────────────────────────────
 const fmtPct = n => `${(n * 100).toFixed(1)}%`;
 const fmtDur = s => `${Math.floor(s / 60)}m ${Math.round(s % 60)}s`;
 
@@ -28,22 +25,20 @@ function loadJSON(file, fallback = null) {
   catch { return fallback; }
 }
 
-// ─── load data ──────────────────────────────────────────────────────────────
 const gsc = loadJSON(GSC_FILE);
 const ga4 = loadJSON(GA4_FILE);
-const changesLog = loadJSON(CHANGES_FILE, { changes: [] });
-const abState = loadJSON(AB_FILE, { currentVariations: {}, history: [] });
-const historyLog = loadJSON(HISTORY_FILE, { reports: [] });
+const history = loadJSON(HISTORY_FILE, { reports: [] });
 
-if (!gsc) { console.error('❌ No search-console-data-monthly.json'); process.exit(1); }
+if (!gsc) { console.error('❌ No search-console-data-monthly.json — ejecuta primero 7-fetch-monthly.js'); process.exit(1); }
 
-const date = new Date().toLocaleDateString('es-ES', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+const date = new Date().toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' });
+const month = new Date().toLocaleDateString('es-ES', { year: 'numeric', month: 'long' });
 const periodStart = gsc.period?.startDate || '';
 const periodEnd = gsc.period?.endDate || '';
 const prevStart = gsc.previousPeriod?.startDate || '';
 const prevEnd = gsc.previousPeriod?.endDate || '';
 
-// ─── KPIs ───────────────────────────────────────────────────────────────────
+// ─── KPIs ────────────────────────────────────────────────────────────────────
 const cur = gsc.totals?.current || { clicks: 0, impressions: 0 };
 const prev = gsc.totals?.previous || { clicks: 0, impressions: 0 };
 const clicksDiff = cur.clicks - prev.clicks;
@@ -51,19 +46,77 @@ const clicksPct = prev.clicks > 0 ? ((clicksDiff / prev.clicks) * 100).toFixed(1
 const impDiff = cur.impressions - prev.impressions;
 const impPct = prev.impressions > 0 ? ((impDiff / prev.impressions) * 100).toFixed(1) : '0';
 
-const topOpps = (gsc.opportunities || []).slice(0, 8);
-const nearTop = (gsc.nearTop || []).slice(0, 8);
-const newKw = (gsc.newKeywords || []).slice(0, 12);
-const topKw = (gsc.topKeywords || []).slice(0, 15);
-const topPages = (gsc.topPages || []).slice(0, 10);
-
 const ga4TopPages = ga4 ? (ga4.topPages || []) : [];
 const channels = ga4 ? (ga4.channels || []) : [];
 const events = ga4 ? (ga4.events || []) : [];
-const formStarts = events.find(e => e.event === 'form_start')?.count || 0;
 const organic = channels.find(c => c.channel === 'Organic Search');
+const formStarts = events.find(e => e.event === 'form_start')?.count || 0;
+const formSubmits = events.find(e => e.event === 'form_submit')?.count || 0;
 
-// ─── HTML helpers ────────────────────────────────────────────────────────────
+// ─── trend histórico (últimos 6 meses del historial) ─────────────────────────
+const recentHistory = (history.reports || []).slice(-6);
+const trendHtml = recentHistory.length >= 2 ? (() => {
+  const rows = recentHistory.map(r => {
+    const d = new Date(r.date).toLocaleDateString('es-ES', { month: 'short', year: '2-digit' });
+    return `<tr style="border-bottom:1px solid #e8eaed">
+      <td style="padding:6px 10px;font-size:12px">${d}</td>
+      <td style="padding:6px 10px;font-size:12px;text-align:center">${r.totals?.current?.clicks || 0}</td>
+      <td style="padding:6px 10px;font-size:12px;text-align:center">${r.totals?.current?.impressions || 0}</td>
+    </tr>`;
+  }).join('');
+  return `
+  <div style="background:white;padding:20px 28px;border-left:4px solid #34a853;border-right:1px solid #e8eaed;margin-top:8px">
+    <h2 style="margin:0 0 12px;font-size:15px;color:#34a853">📈 Tendencia histórica (últimos meses)</h2>
+    <table style="border-collapse:collapse;font-size:12px">
+      <tr style="background:#f8f9fa">
+        <th style="padding:7px 10px;font-size:11px;font-weight:600;color:#555;text-align:left">Mes</th>
+        <th style="padding:7px 10px;font-size:11px;font-weight:600;color:#555;text-align:center">Clicks</th>
+        <th style="padding:7px 10px;font-size:11px;font-weight:600;color:#555;text-align:center">Impresiones</th>
+      </tr>
+      <tbody>${rows}</tbody>
+    </table>
+  </div>`;
+})() : '';
+
+// ─── top keywords con análisis de movimiento ─────────────────────────────────
+const topKw = (gsc.topKeywords || []).slice(0, 15);
+const topPages = (gsc.topPages || []).slice(0, 10);
+const topOpps = (gsc.opportunities || []).slice(0, 8);
+const nearTop = (gsc.nearTop || []).slice(0, 8);
+const newKw = (gsc.newKeywords || []).slice(0, 15);
+
+// Keywords que más crecieron
+const kwGrowth = (gsc.topKeywords || [])
+  .filter(k => !k.isNew && k.prevClicks > 0 && k.clicks > k.prevClicks)
+  .map(k => ({ ...k, growth: k.clicks - k.prevClicks, growthPct: ((k.clicks - k.prevClicks) / k.prevClicks * 100).toFixed(0) }))
+  .sort((a, b) => b.growth - a.growth)
+  .slice(0, 5);
+
+// Keywords que cayeron
+const kwDeclines = (gsc.topKeywords || [])
+  .filter(k => !k.isNew && k.prevClicks > 2 && k.clicks < k.prevClicks)
+  .map(k => ({ ...k, drop: k.prevClicks - k.clicks }))
+  .sort((a, b) => b.drop - a.drop)
+  .slice(0, 5);
+
+// ─── cross-insights GSC × GA4 ────────────────────────────────────────────────
+const crossInsights = [];
+if (ga4) {
+  for (const gscPage of topPages) {
+    const slug = gscPage.page.replace('https://aisecurity.es', '') || '/';
+    const ga4Page = ga4TopPages.find(p => p.page === slug);
+    if (ga4Page) {
+      if (ga4Page.bounceRate > 0.65 && gscPage.clicks > 10) {
+        crossInsights.push({ type: 'high-bounce', page: slug, clicks: gscPage.clicks, bounce: ga4Page.bounceRate, dur: ga4Page.avgDuration });
+      }
+      if (ga4Page.avgDuration > 300 && gscPage.ctr < 0.03) {
+        crossInsights.push({ type: 'low-ctr-engaged', page: slug, clicks: gscPage.clicks, ctr: gscPage.ctr, dur: ga4Page.avgDuration });
+      }
+    }
+  }
+}
+
+// ─── HTML helpers ─────────────────────────────────────────────────────────────
 function kpiCard(label, value, sub, trend, trendColor) {
   return `
     <div style="flex:1;min-width:130px;background:#f8f9fa;border-radius:8px;padding:16px;text-align:center">
@@ -86,257 +139,142 @@ function tableHead(...headers) {
   ).join('')}</tr>`;
 }
 
-// ─── Tendencia histórica mensual ─────────────────────────────────────────────
-let historyHtml = '';
-const recentReports = (historyLog.reports || []).slice(-12).reverse();
-if (recentReports.length >= 2) {
-  const rows = recentReports.map((r, i) => {
-    const monthDate = new Date(r.date).toLocaleDateString('es-ES', { month: 'long', year: 'numeric' });
-    const clicks = r.totals?.current?.clicks ?? 0;
-    const impr = r.totals?.current?.impressions ?? 0;
-    const prevReport = recentReports[i + 1];
-    const prevClicks = prevReport?.totals?.current?.clicks ?? null;
-    const clicksDiff = prevClicks !== null ? clicks - prevClicks : null;
-    const pct = (prevClicks && prevClicks > 0 && clicksDiff !== null)
-      ? ` (${clicksDiff >= 0 ? '+' : ''}${((clicksDiff / prevClicks) * 100).toFixed(1)}%)`
-      : '';
-    const trend = clicksDiff === null ? '—'
-      : clicksDiff > 0 ? `<span style="color:#0a7c42">▲ +${clicksDiff}${pct}</span>`
-      : clicksDiff < 0 ? `<span style="color:#c5221f">▼ ${clicksDiff}${pct}</span>`
-      : '<span style="color:#666">→ 0</span>';
-    const isCurrentMonth = i === 0;
-    const rowStyle = isCurrentMonth ? 'background:#f0f7ff;font-weight:600' : '';
-    return `<tr style="border-bottom:1px solid #e8eaed;${rowStyle}">
-      <td style="padding:7px 10px;font-size:12px">${isCurrentMonth ? '📅 Este mes' : monthDate}</td>
-      <td style="padding:7px 10px;font-size:12px;text-align:center">${clicks}</td>
-      <td style="padding:7px 10px;font-size:12px;text-align:center">${impr.toLocaleString('es-ES')}</td>
-      <td style="padding:7px 10px;font-size:12px;text-align:center">${trend}</td>
-    </tr>`;
-  }).join('');
-
-  historyHtml = `
-  <div style="background:white;padding:20px 28px;border-left:4px solid #0a7c42;border-right:1px solid #e8eaed;margin-top:8px">
-    <h2 style="margin:0 0 4px;font-size:15px;color:#0a7c42">📈 Evolución mensual (últimos 12 meses)</h2>
-    <p style="margin:0 0 14px;font-size:11px;color:#666">Clicks GSC mes a mes — % de variación respecto al mes anterior</p>
-    <table style="width:100%;border-collapse:collapse;font-size:12px">
-      <tr style="background:#f8f9fa">
-        <th style="padding:8px 10px;font-size:11px;font-weight:600;color:#555;text-align:left">Mes</th>
-        <th style="padding:8px 10px;font-size:11px;font-weight:600;color:#555;text-align:center">Clicks</th>
-        <th style="padding:8px 10px;font-size:11px;font-weight:600;color:#555;text-align:center">Impr.</th>
-        <th style="padding:8px 10px;font-size:11px;font-weight:600;color:#555;text-align:center">vs mes anterior</th>
-      </tr>
-      <tbody>${rows}</tbody>
-    </table>
-  </div>`;
-}
-
-// ─── Seguimiento de cambios SEO ──────────────────────────────────────────────
-function evaluateChanges() {
-  const results = [];
-  for (const change of changesLog.changes || []) {
-    const slug = change.page.startsWith('/') ? change.page : '/' + change.page;
-    const current = (gsc.topPages || []).find(p => {
-      const pageSlug = p.page.replace('https://aisecurity.es', '') || '/';
-      return pageSlug === slug || p.page === slug;
-    });
-    if (!current || !change.snapshot) {
-      results.push({ ...change, status: 'no-data', current: null });
-      continue;
-    }
-    const clicksDelta = current.clicks - (change.snapshot.clicks || 0);
-    const ctrDelta = current.ctr - (change.snapshot.ctr || 0);
-    const posDelta = (change.snapshot.position || 0) - current.position;
-    let status = 'neutral';
-    if (ctrDelta > 0.005 || clicksDelta > 5 || posDelta > 0.5) status = 'improved';
-    else if (ctrDelta < -0.005 || clicksDelta < -10 || posDelta < -1) status = 'declined';
-    results.push({ ...change, status, current: { clicks: current.clicks, ctr: current.ctr, position: current.position }, delta: { clicks: clicksDelta, ctr: ctrDelta, position: posDelta } });
-  }
-  return results;
-}
-
-const changeResults = evaluateChanges();
-let changeTrackingHtml = '';
-if (changeResults.length > 0) {
-  const statusIcon = s => s === 'improved' ? '✅' : s === 'declined' ? '❌' : s === 'no-data' ? '⏳' : '➡️';
-  const statusColor = s => s === 'improved' ? '#0a7c42' : s === 'declined' ? '#c5221f' : '#666';
-  const statusLabel = s => s === 'improved' ? 'Mejoró' : s === 'declined' ? 'Empeoró' : s === 'no-data' ? 'Sin datos' : 'Sin cambio';
-  const rows = changeResults.map(c => {
-    const color = statusColor(c.status);
-    const snapInfo = c.snapshot ? `CTR ${(c.snapshot.ctr*100).toFixed(1)}% · Pos ${c.snapshot.position?.toFixed(1)} · ${c.snapshot.clicks} clicks` : '—';
-    const curInfo = c.current ? `CTR ${(c.current.ctr*100).toFixed(1)}% · Pos ${c.current.position?.toFixed(1)} · ${c.current.clicks} clicks` : '—';
-    const deltaInfo = c.delta ? [
-      c.delta.clicks !== 0 ? `${c.delta.clicks > 0 ? '+' : ''}${c.delta.clicks} clicks` : '',
-      c.delta.ctr !== 0 ? `CTR ${c.delta.ctr > 0 ? '+' : ''}${(c.delta.ctr*100).toFixed(1)}pp` : '',
-      c.delta.position !== 0 ? `Pos ${c.delta.position > 0 ? '▲' : '▼'}${Math.abs(c.delta.position).toFixed(1)}` : '',
-    ].filter(Boolean).join(' · ') || '—' : '—';
-    return `<tr style="border-bottom:1px solid #e8eaed">
-      <td style="padding:10px;font-size:12px;max-width:200px">
-        <div style="font-weight:600;color:#333">${c.page}</div>
-        <div style="color:#888;font-size:11px;margin-top:2px">${c.description}</div>
-        <div style="color:#aaa;font-size:10px;margin-top:2px">${c.date}</div>
-      </td>
-      <td style="padding:10px;font-size:11px;color:#666;text-align:center">${snapInfo}</td>
-      <td style="padding:10px;font-size:11px;text-align:center;color:#333">${curInfo}</td>
-      <td style="padding:10px;font-size:12px;text-align:center;font-weight:600;color:${color}">${deltaInfo}</td>
-      <td style="padding:10px;font-size:12px;text-align:center;color:${color}">${statusIcon(c.status)} ${statusLabel(c.status)}</td>
-    </tr>`;
-  }).join('');
-  changeTrackingHtml = `
-  <div style="background:white;padding:20px 28px;border-left:4px solid #fbbc04;border-right:1px solid #e8eaed;margin-top:8px">
-    <h2 style="margin:0 0 6px;font-size:15px;color:#333">📋 Seguimiento de cambios (vista mensual)</h2>
-    <p style="margin:0 0 14px;font-size:11px;color:#666">Impacto acumulado de cambios aplicados — comparado con el snapshot inicial</p>
-    <table style="width:100%;border-collapse:collapse;font-size:12px">
-      <tr style="background:#f8f9fa">
-        <th style="padding:8px 10px;font-size:11px;font-weight:600;color:#555;text-align:left">Cambio</th>
-        <th style="padding:8px 10px;font-size:11px;font-weight:600;color:#555;text-align:center">Antes</th>
-        <th style="padding:8px 10px;font-size:11px;font-weight:600;color:#555;text-align:center">Ahora (30d)</th>
-        <th style="padding:8px 10px;font-size:11px;font-weight:600;color:#555;text-align:center">Δ</th>
-        <th style="padding:8px 10px;font-size:11px;font-weight:600;color:#555;text-align:center">Estado</th>
-      </tr>
-      <tbody>${rows}</tbody>
-    </table>
-  </div>`;
-}
-
-// ─── A/B test section ────────────────────────────────────────────────────────
-let abHtml = '';
-const abSlugs = Object.keys(abState.currentVariations || {});
-if (abSlugs.length > 0) {
-  const lastRotation = abState.history?.length > 0 ? abState.history[abState.history.length - 1] : null;
-  const lastRotationDate = lastRotation
-    ? new Date(lastRotation.timestamp).toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' })
-    : '—';
-  const rows = abSlugs.map(slug => {
-    const variation = abState.currentVariations[slug];
-    const varNum = (variation.titleIndex || 0) + 1;
-    const rotEntry = lastRotation?.rotations?.find(r => r.slug === slug);
-    const activeTitle = rotEntry ? rotEntry.newTitle : slug;
-    const fullUrl = `https://aisecurity.es/blog/${slug}`;
-    const gscPage = (gsc.topPages || []).find(p => p.page === fullUrl || p.page === `/blog/${slug}`);
-    const clicks = gscPage ? gscPage.clicks : 0;
-    const impressions = gscPage ? gscPage.impressions : 0;
-    const ctr = gscPage ? (gscPage.ctr * 100).toFixed(1) + '%' : '—';
-    const pos = gscPage ? Number(gscPage.position).toFixed(1) : '—';
-    const ctrColor = gscPage && gscPage.ctr > 0.04 ? '#0a7c42' : gscPage && gscPage.ctr > 0.02 ? '#f59e0b' : '#c5221f';
-    return `<tr style="border-bottom:1px solid #e8eaed">
-      <td style="padding:9px 10px;font-size:11px;max-width:200px">
-        <div style="font-weight:600;color:#333;font-size:10px">/blog/${slug}</div>
-        <div style="color:#555;font-size:11px;margin-top:3px;font-style:italic">"${activeTitle}"</div>
-      </td>
-      <td style="padding:9px 10px;text-align:center;font-size:12px;font-weight:700;color:#1a73e8">v${varNum}</td>
-      <td style="padding:9px 10px;text-align:center;font-size:12px">${clicks}</td>
-      <td style="padding:9px 10px;text-align:center;font-size:12px">${impressions}</td>
-      <td style="padding:9px 10px;text-align:center;font-size:12px;font-weight:600;color:${ctrColor}">${ctr}</td>
-      <td style="padding:9px 10px;text-align:center;font-size:12px">${pos}</td>
-    </tr>`;
-  }).join('');
-  abHtml = `
-  <div style="background:white;padding:20px 28px;border-left:4px solid #7c3aed;border-right:1px solid #e8eaed;margin-top:8px">
-    <h2 style="margin:0 0 4px;font-size:15px;color:#7c3aed">🔀 Test A/B — Resultados mensuales</h2>
-    <p style="margin:0 0 14px;font-size:11px;color:#666">Última rotación: ${lastRotationDate} · Datos acumulados 30 días</p>
-    <table style="width:100%;border-collapse:collapse;font-size:12px">
-      <tr style="background:#f8f9fa">
-        <th style="padding:8px 10px;font-size:11px;font-weight:600;color:#555;text-align:left">Página / Título activo</th>
-        <th style="padding:8px 10px;font-size:11px;font-weight:600;color:#555;text-align:center">Var.</th>
-        <th style="padding:8px 10px;font-size:11px;font-weight:600;color:#555;text-align:center">Clicks</th>
-        <th style="padding:8px 10px;font-size:11px;font-weight:600;color:#555;text-align:center">Impr.</th>
-        <th style="padding:8px 10px;font-size:11px;font-weight:600;color:#555;text-align:center">CTR</th>
-        <th style="padding:8px 10px;font-size:11px;font-weight:600;color:#555;text-align:center">Pos.</th>
-      </tr>
-      <tbody>${rows}</tbody>
-    </table>
-  </div>`;
-}
-
-// ─── Canales GA4 ─────────────────────────────────────────────────────────────
-let channelsHtml = '';
-if (channels.length > 0) {
-  const sessTotal = channels.reduce((a, c) => a + c.sessions, 0);
-  const rows = channels.map(c => {
-    const pct = sessTotal > 0 ? ((c.sessions / sessTotal) * 100).toFixed(1) : '0';
-    return tableRow(c.channel, `${c.sessions} (${pct}%)`, c.activeUsers, fmtPct(c.bounceRate));
-  }).join('');
-  channelsHtml = `
-  <div style="background:white;padding:20px 28px;border-left:1px solid #e8eaed;border-right:1px solid #e8eaed;margin-top:8px">
-    <h2 style="margin:0 0 12px;font-size:15px;color:#1a73e8">📡 Canales de tráfico — 30 días (GA4)</h2>
-    <table style="width:100%;border-collapse:collapse;font-size:12px">
-      ${tableHead('Canal', 'Sesiones (%)', 'Usuarios', 'Bounce')}
-      <tbody>${rows}</tbody>
-    </table>
-  </div>`;
-}
-
-// ─── Tablas principales ───────────────────────────────────────────────────────
 const kwRows = topKw.map(k => {
-  const t = k.isNew ? '<span style="color:#1a73e8">🆕</span>'
-    : k.clicks > k.prevClicks ? `<span style="color:#0a7c42">▲</span>`
-    : k.clicks < k.prevClicks ? `<span style="color:#c5221f">▼</span>` : '→';
-  return tableRow(k.keyword, k.clicks, k.impressions, `${(k.ctr*100).toFixed(1)}%`, k.position.toFixed(1), t);
+  const trend = k.isNew ? '<span style="color:#1a73e8">🆕</span>'
+    : k.clicks > (k.prevClicks || 0) ? `<span style="color:#0a7c42">▲ +${k.clicks - k.prevClicks}</span>`
+    : k.clicks < (k.prevClicks || 0) ? `<span style="color:#c5221f">▼ ${k.clicks - k.prevClicks}</span>` : '→';
+  const posTrend = k.prevPosition
+    ? (k.position < k.prevPosition ? `<span style="color:#0a7c42">▲${(k.prevPosition - k.position).toFixed(1)}</span>`
+       : k.position > k.prevPosition ? `<span style="color:#c5221f">▼${(k.position - k.prevPosition).toFixed(1)}</span>` : '→')
+    : '—';
+  return tableRow(k.keyword, k.clicks, k.impressions, `${(k.ctr * 100).toFixed(1)}%`, k.position.toFixed(1), trend, posTrend);
 }).join('');
 
 const pageRows = topPages.map(p => {
-  const ga4p = ga4TopPages.find(x => x.page === p.page);
+  const slug = p.page.replace('https://aisecurity.es', '') || '/';
+  const ga4p = ga4TopPages.find(x => x.page === slug);
   const bounceCell = ga4p ? fmtPct(ga4p.bounceRate) : '—';
   const durCell = ga4p ? fmtDur(ga4p.avgDuration) : '—';
-  const t = p.clicks > p.prevClicks ? `<span style="color:#0a7c42">▲ +${p.clicks - p.prevClicks}</span>`
+  const trend = p.clicks > p.prevClicks ? `<span style="color:#0a7c42">▲ +${p.clicks - p.prevClicks}</span>`
     : p.clicks < p.prevClicks ? `<span style="color:#c5221f">▼ ${p.clicks - p.prevClicks}</span>` : '→';
-  return tableRow(p.page, p.clicks, `${(p.ctr*100).toFixed(1)}%`, bounceCell, durCell, t);
+  return tableRow(slug, p.clicks, `${(p.ctr * 100).toFixed(1)}%`, bounceCell, durCell, trend);
 }).join('');
 
 const oppRows = topOpps.map(o =>
-  tableRow(o.keyword, o.impressions, `${(o.ctr*100).toFixed(1)}%`, o.position.toFixed(1))
+  tableRow(o.keyword, o.impressions, `${(o.ctr * 100).toFixed(1)}%`, o.position.toFixed(1))
 ).join('');
 
 const nearTopRows = nearTop.map(k =>
-  tableRow(k.keyword, Number(k.position).toFixed(1), k.impressions, k.clicks)
+  tableRow(k.keyword, k.position.toFixed(1), k.impressions, k.clicks)
 ).join('');
 
-// ─── Build HTML ───────────────────────────────────────────────────────────────
+// Keywords que crecieron
+const growthHtml = kwGrowth.length > 0 ? `
+  <div style="background:white;padding:20px 28px;border-left:4px solid #0a7c42;border-right:1px solid #e8eaed;margin-top:8px">
+    <h2 style="margin:0 0 12px;font-size:15px;color:#0a7c42">🚀 Keywords con mayor crecimiento este mes</h2>
+    <table style="width:100%;border-collapse:collapse;font-size:12px">
+      ${tableHead('Keyword', 'Clicks este mes', 'Clicks mes ant.', 'Crecimiento')}
+      <tbody>${kwGrowth.map(k => tableRow(k.keyword, k.clicks, k.prevClicks, `<span style="color:#0a7c42">+${k.growth} (+${k.growthPct}%)</span>`)).join('')}</tbody>
+    </table>
+  </div>` : '';
+
+// Keywords que cayeron
+const declinesHtml = kwDeclines.length > 0 ? `
+  <div style="background:white;padding:20px 28px;border-left:4px solid #fbbc04;border-right:1px solid #e8eaed;margin-top:8px">
+    <h2 style="margin:0 0 12px;font-size:15px;color:#b06000">⚠️ Keywords con bajada de tráfico</h2>
+    <table style="width:100%;border-collapse:collapse;font-size:12px">
+      ${tableHead('Keyword', 'Clicks este mes', 'Clicks mes ant.', 'Caída')}
+      <tbody>${kwDeclines.map(k => tableRow(k.keyword, k.clicks, k.prevClicks, `<span style="color:#c5221f">-${k.drop}</span>`)).join('')}</tbody>
+    </table>
+  </div>` : '';
+
+// Cross-insights
+const crossHtml = crossInsights.length > 0 ? `
+  <div style="background:white;padding:20px 28px;border-left:1px solid #e8eaed;border-right:1px solid #e8eaed;margin-top:8px">
+    <h2 style="margin:0 0 12px;font-size:15px;color:#1a73e8">🔀 Insights GSC × GA4</h2>
+    <ul style="margin:0;padding-left:20px;font-size:13px;line-height:1.6">
+      ${crossInsights.map(c => {
+        if (c.type === 'high-bounce') return `<li style="margin:6px 0"><strong>${c.page}</strong>: ${c.clicks} clicks desde Google pero bounce rate ${fmtPct(c.bounce)} y ${fmtDur(c.dur)} media → el contenido no cumple la expectativa, revisar H1 y primer párrafo</li>`;
+        if (c.type === 'low-ctr-engaged') return `<li style="margin:6px 0"><strong>${c.page}</strong>: CTR bajo (${fmtPct(c.ctr)}) pero ${fmtDur(c.dur)} de duración → los que llegan se quedan, mejorar title/meta para atraer más</li>`;
+        return '';
+      }).join('')}
+    </ul>
+  </div>` : '';
+
+// GA4 canales
+const channelsHtml = channels.length > 0 ? `
+  <div style="background:white;padding:20px 28px;border-left:1px solid #e8eaed;border-right:1px solid #e8eaed;margin-top:8px">
+    <h2 style="margin:0 0 12px;font-size:15px;color:#1a73e8">📡 Canales de tráfico — 28 días (GA4)</h2>
+    <table style="width:100%;border-collapse:collapse;font-size:12px">
+      ${tableHead('Canal', 'Sesiones', 'Usuarios', 'Bounce', 'Conversiones')}
+      <tbody>${channels.map(c => tableRow(c.channel, c.sessions, c.activeUsers, fmtPct(c.bounceRate), c.conversions)).join('')}</tbody>
+    </table>
+  </div>` : '';
+
+// ─── resumen ejecutivo narrativo ──────────────────────────────────────────────
+const clicksTrend = clicksDiff > 0 ? `creció un <strong style="color:#0a7c42">+${clicksPct}%</strong>` : clicksDiff < 0 ? `bajó un <strong style="color:#c5221f">${clicksPct}%</strong>` : 'se mantuvo estable';
+const impTrend = impDiff > 0 ? `subió un <strong style="color:#0a7c42">+${impPct}%</strong>` : impDiff < 0 ? `bajó un <strong style="color:#c5221f">${impPct}%</strong>` : 'se mantuvo';
+const organicSummary = ga4 ? `El tráfico orgánico representa <strong>${ga4.summary.organicPct}%</strong> de las ${ga4.summary.totalSessions} sesiones totales en GA4.` : '';
+const formSummary = formStarts > 0 ? `Se registraron <strong>${formStarts} inicios de formulario</strong>${formSubmits > 0 ? ` y <strong>${formSubmits} envíos</strong>` : ''} durante el mes.` : '';
+
+const execSummaryHtml = `
+  <div style="background:#e8f0fe;padding:20px 28px;border-left:4px solid #1a73e8;border-right:1px solid #e8eaed;margin-top:8px;border-radius:4px">
+    <h2 style="margin:0 0 10px;font-size:15px;color:#1a73e8">📝 Resumen ejecutivo — ${month}</h2>
+    <p style="margin:0 0 8px;font-size:13px;line-height:1.7;color:#333">
+      Durante los últimos 28 días, el tráfico de búsqueda ${clicksTrend} respecto al mes anterior
+      (${cur.clicks} vs ${prev.clicks} clicks). Las impresiones ${impTrend} (${cur.impressions.toLocaleString('es-ES')} vs ${prev.impressions.toLocaleString('es-ES')}).
+      ${organicSummary}
+    </p>
+    ${newKw.length > 0 ? `<p style="margin:0 0 8px;font-size:13px;line-height:1.7;color:#333">Se detectaron <strong>${newKw.length} keywords nuevas</strong> este mes, con ${topOpps.length} oportunidades de mejora de CTR identificadas.</p>` : ''}
+    ${formSummary ? `<p style="margin:0;font-size:13px;line-height:1.7;color:#333">${formSummary}</p>` : ''}
+  </div>`;
+
+// ─── build final HTML ─────────────────────────────────────────────────────────
 const html = `<!DOCTYPE html>
 <html lang="es">
-<head><meta charset="UTF-8"><title>Informe SEO Mensual — aisecurity.es</title></head>
+<head><meta charset="UTF-8"><title>Informe SEO Mensual aisecurity.es — ${month}</title></head>
 <body style="margin:0;padding:0;background:#f4f6f9;font-family:Arial,sans-serif;color:#333">
-<div style="max-width:700px;margin:0 auto;padding:20px">
+<div style="max-width:720px;margin:0 auto;padding:20px">
 
-  <div style="background:#0f4c81;border-radius:12px 12px 0 0;padding:22px 28px;color:white">
-    <div style="font-size:11px;opacity:0.7;margin-bottom:6px;text-transform:uppercase;letter-spacing:1px">Informe Mensual</div>
-    <h1 style="margin:0;font-size:20px;font-weight:700">📊 Análisis SEO Mensual — aisecurity.es</h1>
-    <p style="margin:6px 0 0;opacity:0.9;font-size:13px">${date}</p>
-    <p style="margin:4px 0 0;opacity:0.7;font-size:11px">Período actual: ${periodStart} → ${periodEnd} &nbsp;|&nbsp; Anterior: ${prevStart} → ${prevEnd}</p>
+  <div style="background:linear-gradient(135deg,#1a73e8,#0d47a1);border-radius:12px 12px 0 0;padding:24px 28px;color:white">
+    <h1 style="margin:0;font-size:22px;font-weight:700">📊 Informe SEO Mensual — aisecurity.es</h1>
+    <p style="margin:6px 0 0;opacity:0.9;font-size:13px">${date} &nbsp;|&nbsp; Período: ${periodStart} → ${periodEnd}</p>
+    <p style="margin:4px 0 0;opacity:0.7;font-size:11px">Comparado con: ${prevStart} → ${prevEnd}</p>
   </div>
 
   <div style="background:white;padding:20px 28px;border-left:1px solid #e8eaed;border-right:1px solid #e8eaed">
-    <h2 style="margin:0 0 14px;font-size:15px;color:#0f4c81">KPIs — últimos 30 días vs 30 días anteriores</h2>
+    <h2 style="margin:0 0 14px;font-size:15px;color:#1a73e8">KPIs mensual — 28 días vs mes anterior</h2>
     <div style="display:flex;gap:12px;flex-wrap:wrap">
-      ${kpiCard('Clicks GSC', cur.clicks, `vs ${prev.clicks} mes anterior`,
+      ${kpiCard('Clicks GSC', cur.clicks, `vs ${prev.clicks} anterior`,
         `${clicksDiff >= 0 ? '▲' : '▼'} ${clicksDiff >= 0 ? '+' : ''}${clicksPct}%`,
         clicksDiff >= 0 ? '#0a7c42' : '#c5221f')}
       ${kpiCard('Impresiones', cur.impressions.toLocaleString('es-ES'), `vs ${prev.impressions.toLocaleString('es-ES')}`,
         `${impDiff >= 0 ? '▲' : '▼'} ${impDiff >= 0 ? '+' : ''}${impPct}%`,
         impDiff >= 0 ? '#0a7c42' : '#c5221f')}
-      ${ga4 ? kpiCard('Sesiones GA4', ga4.summary.totalSessions,
-        `vs ${ga4.summary.prevTotalSessions} mes anterior`,
-        ga4.summary.sessionsDiff >= 0 ? `▲ +${ga4.summary.sessionsDiff}` : `▼ ${ga4.summary.sessionsDiff}`,
-        ga4.summary.sessionsDiff >= 0 ? '#0a7c42' : '#c5221f') : ''}
-      ${ga4 ? kpiCard('Tráfico orgánico', `${ga4.summary.organicPct}%`, 'del total GA4', '', '') : ''}
-      ${kpiCard('Oport. CTR', gsc.opportunities?.length || 0, '>20 impr, CTR <4%', '', '')}
-      ${formStarts ? kpiCard('Form starts', formStarts, 'GA4 — 30 días', '', '#0f4c81') : ''}
+      ${ga4 ? kpiCard('Sesiones GA4', ga4.summary.totalSessions, `${ga4.summary.organicPct}% orgánico`, '', '') : ''}
+      ${ga4 ? kpiCard('Usuarios únicos', ga4.summary.totalUsers || '—', '28 días', '', '') : ''}
+      ${kpiCard('Opor. CTR', gsc.opportunities?.length || 0, 'alto impresión, bajo CTR', '', '')}
+      ${kpiCard('Kw nuevas', newKw.length, 'detectadas este mes', '', '#1a73e8')}
+      ${formStarts ? kpiCard('Form starts', formStarts, formSubmits ? `${formSubmits} enviados` : 'GA4', '', '#1a73e8') : ''}
     </div>
   </div>
 
-  ${historyHtml}
-  ${changeTrackingHtml}
+  ${execSummaryHtml}
+  ${trendHtml}
+  ${growthHtml}
+  ${declinesHtml}
+  ${crossHtml}
 
   <div style="background:white;padding:20px 28px;border-left:1px solid #e8eaed;border-right:1px solid #e8eaed;margin-top:8px">
-    <h2 style="margin:0 0 12px;font-size:15px;color:#0f4c81">🔑 Top Keywords — 30 días</h2>
+    <h2 style="margin:0 0 12px;font-size:15px;color:#1a73e8">🔑 Top Keywords — 28 días</h2>
     <table style="width:100%;border-collapse:collapse;font-size:12px">
-      ${tableHead('Keyword', 'Clicks', 'Impr.', 'CTR', 'Pos.', 'Tend.')}
+      ${tableHead('Keyword', 'Clicks', 'Impr.', 'CTR', 'Pos.', 'Δ Clicks', 'Δ Pos.')}
       <tbody>${kwRows}</tbody>
     </table>
   </div>
 
   <div style="background:white;padding:20px 28px;border-left:1px solid #e8eaed;border-right:1px solid #e8eaed;margin-top:8px">
-    <h2 style="margin:0 0 12px;font-size:15px;color:#0f4c81">📄 Top Páginas — 30 días</h2>
+    <h2 style="margin:0 0 12px;font-size:15px;color:#1a73e8">📄 Top Páginas (GSC + GA4) — 28 días</h2>
     <table style="width:100%;border-collapse:collapse;font-size:12px">
       ${tableHead('Página', 'Clicks', 'CTR', 'Bounce', 'Duración', 'Tend.')}
       <tbody>${pageRows}</tbody>
@@ -345,7 +283,7 @@ const html = `<!DOCTYPE html>
 
   ${oppRows ? `
   <div style="background:white;padding:20px 28px;border-left:1px solid #e8eaed;border-right:1px solid #e8eaed;margin-top:8px">
-    <h2 style="margin:0 0 6px;font-size:15px;color:#0f4c81">⚡ Oportunidades CTR — 30 días</h2>
+    <h2 style="margin:0 0 6px;font-size:15px;color:#1a73e8">⚡ Oportunidades CTR</h2>
     <p style="margin:0 0 12px;font-size:11px;color:#666">Alta visibilidad, bajo CTR — mejorar title/meta puede doblar el tráfico</p>
     <table style="width:100%;border-collapse:collapse;font-size:12px">
       ${tableHead('Keyword', 'Impr.', 'CTR', 'Pos.')}
@@ -355,7 +293,7 @@ const html = `<!DOCTYPE html>
 
   ${nearTopRows ? `
   <div style="background:white;padding:20px 28px;border-left:1px solid #e8eaed;border-right:1px solid #e8eaed;margin-top:8px">
-    <h2 style="margin:0 0 6px;font-size:15px;color:#0f4c81">🎯 Keywords cerca del Top 3 (pos 4-15)</h2>
+    <h2 style="margin:0 0 6px;font-size:15px;color:#1a73e8">🎯 Keywords cerca del Top 3 (pos 4-15)</h2>
     <table style="width:100%;border-collapse:collapse;font-size:12px">
       ${tableHead('Keyword', 'Pos.', 'Impr.', 'Clicks')}
       <tbody>${nearTopRows}</tbody>
@@ -364,13 +302,12 @@ const html = `<!DOCTYPE html>
 
   ${newKw.length ? `
   <div style="background:white;padding:20px 28px;border-left:1px solid #e8eaed;border-right:1px solid #e8eaed;margin-top:8px">
-    <h2 style="margin:0 0 10px;font-size:15px;color:#0f4c81">🆕 Keywords nuevas este mes</h2>
-    <ul style="margin:0;padding-left:18px;font-size:12px">
+    <h2 style="margin:0 0 10px;font-size:15px;color:#1a73e8">🆕 Keywords nuevas este mes (${newKw.length})</h2>
+    <ul style="margin:0;padding-left:18px;font-size:12px;columns:2;gap:20px">
       ${newKw.map(k => `<li style="margin:4px 0"><strong>${k.keyword}</strong> — ${k.impressions} impr, pos ${k.position.toFixed(1)}</li>`).join('')}
     </ul>
   </div>` : ''}
 
-  ${abHtml}
   ${channelsHtml}
 
   <div style="background:#f8f9fa;border:1px solid #e8eaed;border-radius:0 0 12px 12px;padding:14px 28px;text-align:center;margin-top:0">
@@ -381,13 +318,22 @@ const html = `<!DOCTYPE html>
 </body>
 </html>`;
 
-// ─── Send via Resend ──────────────────────────────────────────────────────────
-const subject = `📊 [MENSUAL] SEO aisecurity.es — ${new Date().toLocaleDateString('es-ES', { month: 'long', year: 'numeric' })}`;
-const body = JSON.stringify({ from: 'AI Security SEO <info@aisecurity.es>', to: [TO], subject, html });
+// ─── send via Resend ──────────────────────────────────────────────────────────
+const subject = `📊 Informe SEO Mensual aisecurity.es — ${month}`;
+const body = JSON.stringify({
+  from: 'AI Security SEO <info@aisecurity.es>',
+  to: [TO],
+  subject,
+  html,
+});
 
 const req = https.request({
   hostname: 'api.resend.com', path: '/emails', method: 'POST',
-  headers: { 'Authorization': `Bearer ${RESEND_API_KEY}`, 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(body) },
+  headers: {
+    'Authorization': `Bearer ${RESEND_API_KEY}`,
+    'Content-Type': 'application/json',
+    'Content-Length': Buffer.byteLength(body),
+  },
 }, res => {
   let data = '';
   res.on('data', c => data += c);
