@@ -189,86 +189,125 @@ const isWazuh = tags.some((t: string) => t.toLowerCase() === 'wazuh');
     <Analytics />
     <SpeedInsights />
 
-    <!-- ══ POPUP CURSO WAZUH (solo en artículos Wazuh) ══ -->
+    <!-- ══ OVERLAY + POPUP CURSO WAZUH (solo en artículos Wazuh) ══ -->
     {isWazuh && (
-      <div id="wazuh-course-popup" aria-hidden="true" style="
-        position:fixed;bottom:1.5rem;right:1.5rem;
-        z-index:9998;
-        width:min(340px,calc(100vw - 2rem));
-        background:linear-gradient(135deg,#0a1628 0%,#0f1e3a 60%,#0a1628 100%);
-        border:1px solid rgba(59,130,246,0.35);
-        border-radius:16px;
-        box-shadow:0 0 0 1px rgba(59,130,246,0.08),0 20px 60px rgba(0,0,0,0.6),0 0 40px rgba(59,130,246,0.08);
-        padding:0;
-        overflow:hidden;
-        opacity:0;
-        transform:translateY(24px) scale(0.95);
-        pointer-events:none;
-        transition:opacity 0.4s ease,transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
-      ">
-        <!-- Barra superior de color -->
-        <div style="height:3px;background:linear-gradient(90deg,#3b82f6,#818cf8,#a78bfa);"></div>
+      <>
+        <!-- Overlay oscuro de fondo -->
+        <div id="wazuh-popup-overlay" aria-hidden="true" style="
+          position:fixed;inset:0;
+          z-index:9997;
+          background:rgba(0,0,0,0.65);
+          backdrop-filter:blur(3px);
+          -webkit-backdrop-filter:blur(3px);
+          opacity:0;
+          pointer-events:none;
+          transition:opacity 0.35s ease;
+        "></div>
 
-        <div style="padding:1.1rem 1.2rem 1.2rem;">
-          <!-- Header -->
-          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:10px;">
-            <div style="display:flex;align-items:center;gap:10px;">
-              <!-- Icono escudo -->
-              <div style="width:38px;height:38px;border-radius:10px;background:rgba(59,130,246,0.15);border:1px solid rgba(59,130,246,0.25);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-                <svg width="20" height="20" fill="none" stroke="#60a5fa" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+        <!-- Popup centrado -->
+        <div id="wazuh-course-popup" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Curso Wazuh disponible" style="
+          position:fixed;
+          top:50%;left:50%;
+          transform:translate(-50%,-50%) scale(0.92);
+          z-index:9998;
+          width:min(480px,calc(100vw - 2rem));
+          background:linear-gradient(145deg,#070f20 0%,#0d1a38 55%,#080f22 100%);
+          border:1px solid rgba(59,130,246,0.4);
+          border-radius:20px;
+          box-shadow:
+            0 0 0 1px rgba(59,130,246,0.1),
+            0 30px 80px rgba(0,0,0,0.75),
+            0 0 60px rgba(59,130,246,0.12),
+            inset 0 1px 0 rgba(255,255,255,0.04);
+          padding:0;
+          overflow:hidden;
+          opacity:0;
+          pointer-events:none;
+          transition:opacity 0.4s ease,transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+        ">
+          <!-- Barra superior degradado animado -->
+          <div style="height:4px;background:linear-gradient(90deg,#2563eb,#818cf8,#a78bfa,#818cf8,#2563eb);background-size:200%;animation:wazuhBar 3s linear infinite;"></div>
+
+          <div style="padding:1.6rem 1.8rem 1.8rem;">
+            <!-- Header -->
+            <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:14px;">
+              <div style="display:flex;align-items:center;gap:14px;">
+                <!-- Icono escudo grande -->
+                <div style="
+                  width:52px;height:52px;border-radius:14px;flex-shrink:0;
+                  background:linear-gradient(135deg,rgba(37,99,235,0.25),rgba(129,140,248,0.15));
+                  border:1px solid rgba(59,130,246,0.35);
+                  display:flex;align-items:center;justify-content:center;
+                  box-shadow:0 0 20px rgba(59,130,246,0.2);
+                ">
+                  <svg width="26" height="26" fill="none" stroke="#60a5fa" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                  </svg>
+                </div>
+                <div>
+                  <p style="font-size:0.65rem;font-weight:700;color:#60a5fa;letter-spacing:0.14em;text-transform:uppercase;margin:0 0 4px;">Nuevo curso disponible</p>
+                  <p style="font-size:1.15rem;font-weight:900;color:white;margin:0;line-height:1.2;letter-spacing:-0.01em;">Curso Wazuh en español</p>
+                </div>
+              </div>
+              <!-- Botón cerrar -->
+              <button id="wazuh-popup-close" aria-label="Cerrar popup" style="
+                background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.1);
+                color:rgba(255,255,255,0.55);
+                width:30px;height:30px;border-radius:50%;cursor:pointer;
+                display:flex;align-items:center;justify-content:center;
+                font-size:0.85rem;flex-shrink:0;
+                transition:background 0.2s,color 0.2s,border-color 0.2s;
+              " onmouseover="this.style.background='rgba(255,255,255,0.15)';this.style.color='white'" onmouseout="this.style.background='rgba(255,255,255,0.08)';this.style.color='rgba(255,255,255,0.55)'">✕</button>
+            </div>
+
+            <!-- Descripción -->
+            <p style="font-size:0.875rem;color:rgba(255,255,255,0.7);line-height:1.6;margin:0 0 14px;">
+              Instalación completa, agentes Windows/Linux, reglas personalizadas y cumplimiento del <strong style="color:rgba(255,255,255,0.9);">ENS</strong>. Todo desde cero, sin experiencia previa necesaria.
+            </p>
+
+            <!-- Pills de contenido -->
+            <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px;">
+              <span style="font-size:0.7rem;font-weight:600;padding:4px 10px;border-radius:20px;background:rgba(59,130,246,0.12);border:1px solid rgba(59,130,246,0.28);color:#93c5fd;">Instalación</span>
+              <span style="font-size:0.7rem;font-weight:600;padding:4px 10px;border-radius:20px;background:rgba(167,139,250,0.12);border:1px solid rgba(167,139,250,0.28);color:#c4b5fd;">Reglas personalizadas</span>
+              <span style="font-size:0.7rem;font-weight:600;padding:4px 10px;border-radius:20px;background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.22);color:#86efac;">Cumplimiento ENS</span>
+              <span style="font-size:0.7rem;font-weight:600;padding:4px 10px;border-radius:20px;background:rgba(251,191,36,0.1);border:1px solid rgba(251,191,36,0.22);color:#fde68a;">Acceso permanente</span>
+            </div>
+
+            <!-- Divisor -->
+            <div style="height:1px;background:rgba(59,130,246,0.15);margin-bottom:18px;"></div>
+
+            <!-- Precio + CTA -->
+            <div style="display:flex;align-items:center;gap:14px;">
+              <div style="flex-shrink:0;text-align:center;">
+                <div style="font-size:2rem;font-weight:900;color:white;line-height:1;">50€</div>
+                <div style="font-size:0.65rem;color:rgba(255,255,255,0.4);margin-top:2px;white-space:nowrap;">pago único · acceso de por vida</div>
+              </div>
+              <a id="wazuh-popup-cta" href="/curso-wazuh" style="
+                flex:1;display:flex;align-items:center;justify-content:center;gap:8px;
+                padding:13px 18px;border-radius:12px;
+                background:linear-gradient(135deg,#2563eb 0%,#1d4ed8 100%);
+                color:white;font-size:0.9rem;font-weight:700;
+                text-decoration:none;
+                transition:opacity 0.2s,transform 0.15s,box-shadow 0.2s;
+                box-shadow:0 6px 20px rgba(37,99,235,0.45);
+                letter-spacing:0.01em;
+              " onmouseover="this.style.opacity='0.92';this.style.transform='scale(1.02)';this.style.boxShadow='0 8px 28px rgba(37,99,235,0.6)'" onmouseout="this.style.opacity='1';this.style.transform='scale(1)';this.style.boxShadow='0 6px 20px rgba(37,99,235,0.45)'">
+                Ver el curso
+                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/>
                 </svg>
-              </div>
-              <div>
-                <p style="font-size:0.65rem;font-weight:700;color:#60a5fa;letter-spacing:0.12em;text-transform:uppercase;margin:0 0 2px;">Curso disponible</p>
-                <p style="font-size:0.95rem;font-weight:800;color:white;margin:0;line-height:1.2;">Curso Wazuh en español</p>
-              </div>
+              </a>
             </div>
-            <!-- Botón cerrar -->
-            <button id="wazuh-popup-close" aria-label="Cerrar" style="
-              background:rgba(255,255,255,0.07);border:none;color:rgba(255,255,255,0.5);
-              width:26px;height:26px;border-radius:50%;cursor:pointer;
-              display:flex;align-items:center;justify-content:center;
-              font-size:0.8rem;flex-shrink:0;transition:background 0.2s,color 0.2s;
-            ">✕</button>
-          </div>
-
-          <!-- Descripción -->
-          <p style="font-size:0.8rem;color:rgba(255,255,255,0.65);line-height:1.5;margin:0 0 10px;">
-            Instalación completa, agentes Windows/Linux, reglas personalizadas y cumplimiento del <strong style="color:rgba(255,255,255,0.85);">ENS</strong>. Todo desde cero.
-          </p>
-
-          <!-- Pills de contenido -->
-          <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:12px;">
-            <span style="font-size:0.65rem;font-weight:600;padding:3px 8px;border-radius:20px;background:rgba(59,130,246,0.12);border:1px solid rgba(59,130,246,0.25);color:#93c5fd;">Instalación</span>
-            <span style="font-size:0.65rem;font-weight:600;padding:3px 8px;border-radius:20px;background:rgba(167,139,250,0.12);border:1px solid rgba(167,139,250,0.25);color:#c4b5fd;">Reglas personalizadas</span>
-            <span style="font-size:0.65rem;font-weight:600;padding:3px 8px;border-radius:20px;background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.2);color:#86efac;">ENS</span>
-            <span style="font-size:0.65rem;font-weight:600;padding:3px 8px;border-radius:20px;background:rgba(251,191,36,0.1);border:1px solid rgba(251,191,36,0.2);color:#fde68a;">Acceso permanente</span>
-          </div>
-
-          <!-- Precio + CTA -->
-          <div style="display:flex;align-items:center;gap:10px;">
-            <div style="flex-shrink:0;">
-              <span id="wazuh-popup-price" style="font-size:1.4rem;font-weight:900;color:white;">50€</span>
-              <span style="font-size:0.7rem;color:rgba(255,255,255,0.4);margin-left:4px;">pago único</span>
-            </div>
-            <a href="/curso-wazuh" style="
-              flex:1;display:flex;align-items:center;justify-content:center;gap:6px;
-              padding:9px 14px;border-radius:10px;
-              background:linear-gradient(135deg,#2563eb,#1d4ed8);
-              color:white;font-size:0.8rem;font-weight:700;
-              text-decoration:none;
-              transition:opacity 0.2s,transform 0.15s;
-              box-shadow:0 4px 16px rgba(37,99,235,0.4);
-            " onmouseover="this.style.opacity='0.9';this.style.transform='scale(1.02)'" onmouseout="this.style.opacity='1';this.style.transform='scale(1)'">
-              Ver el curso
-              <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/>
-              </svg>
-            </a>
           </div>
         </div>
-      </div>
+
+        <style is:inline>
+          @keyframes wazuhBar {
+            0%   { background-position: 0% center; }
+            100% { background-position: 200% center; }
+          }
+        </style>
+      </>
     )}
 
     <!-- JS popup Wazuh -->
@@ -278,35 +317,63 @@ const isWazuh = tags.some((t: string) => t.toLowerCase() === 'wazuh');
           var STORAGE_KEY = 'wazuh-popup-dismissed';
           if (localStorage.getItem(STORAGE_KEY)) return;
 
-          var popup = document.getElementById('wazuh-course-popup');
+          var overlay = document.getElementById('wazuh-popup-overlay');
+          var popup   = document.getElementById('wazuh-course-popup');
           var closeBtn = document.getElementById('wazuh-popup-close');
+          var cta      = document.getElementById('wazuh-popup-cta');
           if (!popup) return;
 
+          function sendGA(action) {
+            if (typeof gtag === 'function') {
+              gtag('event', action, {
+                event_category: 'wazuh_curso_popup',
+                event_label: document.title,
+                page_path: window.location.pathname,
+              });
+            }
+          }
+
           function showPopup() {
+            if (overlay) { overlay.style.opacity = '1'; overlay.style.pointerEvents = 'all'; }
             popup.style.opacity = '1';
-            popup.style.transform = 'translateY(0) scale(1)';
+            popup.style.transform = 'translate(-50%,-50%) scale(1)';
             popup.style.pointerEvents = 'all';
             popup.setAttribute('aria-hidden', 'false');
+            sendGA('popup_shown');
           }
 
           function hidePopup() {
+            if (overlay) { overlay.style.opacity = '0'; overlay.style.pointerEvents = 'none'; }
             popup.style.opacity = '0';
-            popup.style.transform = 'translateY(24px) scale(0.95)';
+            popup.style.transform = 'translate(-50%,-50%) scale(0.92)';
             popup.style.pointerEvents = 'none';
             popup.setAttribute('aria-hidden', 'true');
             localStorage.setItem(STORAGE_KEY, '1');
           }
 
+          // Mostrar tras 4 s
           setTimeout(showPopup, 4000);
 
+          // Cerrar con X
           if (closeBtn) {
-            closeBtn.addEventListener('click', hidePopup);
+            closeBtn.addEventListener('click', function () {
+              sendGA('popup_closed');
+              hidePopup();
+            });
           }
 
-          // Cerrar también al hacer click en el CTA (ya van al curso, no molesta)
-          var cta = popup.querySelector('a[href="/curso-wazuh"]');
+          // Cerrar overlay al hacer clic fuera
+          if (overlay) {
+            overlay.addEventListener('click', function () {
+              sendGA('popup_closed_overlay');
+              hidePopup();
+            });
+          }
+
+          // Tracking del CTA
           if (cta) {
             cta.addEventListener('click', function () {
+              sendGA('popup_cta_click');
               localStorage.setItem(STORAGE_KEY, '1');
             });
           }
