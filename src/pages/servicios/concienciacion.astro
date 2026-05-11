@@ -1,0 +1,461 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "Concienciación en Ciberseguridad para Empresas | Test de Phishing | AI Security";
+const description = "Forma a tus empleados contra ataques de phishing y ingeniería social. Simulaciones reales, test interactivo gratuito y formación a medida para PyMEs españolas.";
+const canonical = "https://aisecurity.es/servicios/concienciacion";
+---
+
+<BaseLayout title={title} description={description} canonical={canonical}>
+
+  <!-- HERO -->
+  <section class="relative overflow-hidden py-20" style="background: linear-gradient(135deg, #07111f 0%, #0d1628 55%, #111827 100%);">
+    <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(ellipse at 30% 40%, rgba(239,68,68,0.12) 0%, transparent 60%), radial-gradient(ellipse at 70% 60%, rgba(251,146,60,0.08) 0%, transparent 55%);"></div>
+    <div class="relative max-w-5xl mx-auto px-6 text-center">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-medium mb-6" style="background:rgba(239,68,68,0.15);border:1px solid rgba(239,68,68,0.3);color:#fca5a5;">
+        <span class="w-2 h-2 rounded-full bg-red-400 animate-pulse"></span>
+        El 91% de los ciberataques empiezan con un email
+      </div>
+      <h1 class="text-4xl sm:text-5xl font-bold text-white mb-5 leading-tight">
+        ¿Tus empleados detectarían<br/>
+        <span style="background:linear-gradient(90deg,#f87171,#fb923c);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">un ataque de phishing?</span>
+      </h1>
+      <p class="text-gray-400 text-lg max-w-2xl mx-auto mb-8">
+        Formamos a tu equipo con simulaciones reales para que identifiquen amenazas antes de que sea tarde. Sin tecnicismos, sin teoría vacía — formación práctica que funciona.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-3 justify-center">
+        <a href="#test" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-semibold transition-all hover:-translate-y-0.5" style="background:linear-gradient(135deg,#ef4444,#dc2626);box-shadow:0 4px 24px rgba(239,68,68,0.35);color:#ffffff;">
+          Haz el test gratuito
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" transform="rotate(-90 12 12)"/></svg>
+        </a>
+        <a href="/contacto-migracion?plan=concienciacion" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-semibold transition-all hover:-translate-y-0.5" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);color:#e2e8f0;">
+          Solicitar simulación para mi empresa
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section style="background:#080f1a; border-top:1px solid rgba(255,255,255,0.05); border-bottom:1px solid rgba(255,255,255,0.05);">
+    <div class="max-w-5xl mx-auto px-6 py-10 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+      <div>
+        <div class="text-3xl font-bold text-red-400">91%</div>
+        <div class="text-sm text-gray-500 mt-1">de ataques vía email</div>
+      </div>
+      <div>
+        <div class="text-3xl font-bold text-orange-400">€4.400</div>
+        <div class="text-sm text-gray-500 mt-1">coste medio por incidente PyME</div>
+      </div>
+      <div>
+        <div class="text-3xl font-bold text-yellow-400">72h</div>
+        <div class="text-sm text-gray-500 mt-1">tiempo medio para detectarlo</div>
+      </div>
+      <div>
+        <div class="text-3xl font-bold text-green-400">−70%</div>
+        <div class="text-sm text-gray-500 mt-1">clicks en phishing tras formación</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEST INTERACTIVO -->
+  <section id="test" class="py-20" style="background:linear-gradient(180deg,#080f1a 0%,#0a1220 100%);">
+    <div class="max-w-3xl mx-auto px-6">
+      <div class="text-center mb-10">
+        <span class="text-xs font-bold uppercase tracking-widest text-orange-400 mb-3 block">Test gratuito</span>
+        <h2 class="text-3xl font-bold text-white mb-3">¿Detectarías estos emails?</h2>
+        <p class="text-gray-400">Analiza cada email y decide: ¿phishing o legítimo? Igual que lo haría un empleado en su bandeja de entrada.</p>
+      </div>
+
+      <!-- Test container -->
+      <div id="quiz-container">
+
+        <!-- Progreso -->
+        <div class="flex items-center justify-between mb-4 text-sm text-gray-500">
+          <span id="q-counter">Pregunta 1 de 5</span>
+          <div class="flex gap-1" id="q-dots">
+            <span class="w-2.5 h-2.5 rounded-full bg-orange-400"></span>
+            <span class="w-2.5 h-2.5 rounded-full" style="background:rgba(255,255,255,0.12)"></span>
+            <span class="w-2.5 h-2.5 rounded-full" style="background:rgba(255,255,255,0.12)"></span>
+            <span class="w-2.5 h-2.5 rounded-full" style="background:rgba(255,255,255,0.12)"></span>
+            <span class="w-2.5 h-2.5 rounded-full" style="background:rgba(255,255,255,0.12)"></span>
+          </div>
+        </div>
+
+        <!-- Email simulado -->
+        <div id="email-card" class="rounded-2xl overflow-hidden mb-5" style="background:#0d1828;border:1px solid rgba(255,255,255,0.08);box-shadow:0 8px 40px rgba(0,0,0,0.5);">
+          <!-- Barra de cliente de correo -->
+          <div class="px-5 py-3 flex items-center gap-3" style="background:#080f1a;border-bottom:1px solid rgba(255,255,255,0.06);">
+            <div class="flex gap-1.5">
+              <span class="w-3 h-3 rounded-full bg-red-500 opacity-60"></span>
+              <span class="w-3 h-3 rounded-full bg-yellow-500 opacity-60"></span>
+              <span class="w-3 h-3 rounded-full bg-green-500 opacity-60"></span>
+            </div>
+            <span class="text-xs text-gray-500 font-mono">Bandeja de entrada</span>
+          </div>
+          <!-- Cabecera email -->
+          <div class="px-6 pt-5 pb-4" style="border-bottom:1px solid rgba(255,255,255,0.06);">
+            <div class="flex items-start justify-between gap-4 mb-3">
+              <div>
+                <span class="text-xs text-gray-500">De: </span>
+                <span id="email-from" class="text-sm font-mono text-gray-300"></span>
+              </div>
+              <span id="email-time" class="text-xs text-gray-600 flex-shrink-0"></span>
+            </div>
+            <div class="mb-1">
+              <span class="text-xs text-gray-500">Asunto: </span>
+              <span id="email-subject" class="text-sm font-semibold text-white"></span>
+            </div>
+          </div>
+          <!-- Cuerpo email -->
+          <div class="px-6 py-5">
+            <p id="email-body" class="text-sm text-gray-300 leading-relaxed whitespace-pre-line"></p>
+            <div id="email-link-wrap" class="mt-4 hidden">
+              <span id="email-link" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium cursor-default" style="background:rgba(59,130,246,0.15);border:1px solid rgba(59,130,246,0.25);color:#93c5fd;">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>
+                <span id="email-link-text"></span>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Botones respuesta -->
+        <div id="answer-btns" class="grid grid-cols-2 gap-3 mb-5">
+          <button onclick="answer(false)" class="py-3.5 rounded-xl font-semibold text-sm transition-all hover:-translate-y-0.5 hover:shadow-lg" style="background:rgba(239,68,68,0.12);border:1px solid rgba(239,68,68,0.25);color:#fca5a5;">
+            🎣 Es phishing
+          </button>
+          <button onclick="answer(true)" class="py-3.5 rounded-xl font-semibold text-sm transition-all hover:-translate-y-0.5 hover:shadow-lg" style="background:rgba(52,211,153,0.1);border:1px solid rgba(52,211,153,0.22);color:#6ee7b7;">
+            ✅ Es legítimo
+          </button>
+        </div>
+
+        <!-- Feedback (oculto hasta respuesta) -->
+        <div id="feedback-box" class="hidden rounded-xl px-5 py-4 mb-5 text-sm leading-relaxed"></div>
+
+        <!-- Botón siguiente -->
+        <button id="next-btn" onclick="nextQuestion()" class="hidden w-full py-3 rounded-xl font-semibold text-white transition-all" style="background:linear-gradient(135deg,#1d4ed8,#4f46e5);">
+          Siguiente pregunta →
+        </button>
+      </div>
+
+      <!-- Resultado final (oculto) -->
+      <div id="quiz-result" class="hidden text-center">
+        <div id="result-emoji" class="text-6xl mb-4"></div>
+        <h3 id="result-title" class="text-2xl font-bold text-white mb-2"></h3>
+        <p id="result-desc" class="text-gray-400 mb-3"></p>
+        <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full text-lg font-bold mb-8" id="result-score-badge"></div>
+        <div class="rounded-xl p-6 mb-8 text-left" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);">
+          <p class="text-sm font-semibold text-white mb-2">Lo que este test demuestra:</p>
+          <ul class="text-sm text-gray-400 space-y-1.5 list-none">
+            <li>• Si tú como responsable tienes dudas, imagina qué pasa con el empleado menos técnico</li>
+            <li>• Un solo clic en un phishing puede costar miles de euros o una brecha de datos</li>
+            <li>• La formación reduce un 70% los incidentes por ingeniería social</li>
+          </ul>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-3 justify-center">
+          <a href="/contacto-migracion?plan=concienciacion" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-semibold text-white" style="background:linear-gradient(135deg,#ef4444,#dc2626);box-shadow:0 4px 20px rgba(239,68,68,0.3);">
+            Solicitar simulación para mi empresa
+          </a>
+          <button onclick="restartQuiz()" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-semibold transition-all" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:#e2e8f0;">
+            Repetir test
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CÓMO FUNCIONA EL SERVICIO -->
+  <section class="py-20" style="background:#060c16;">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="text-center mb-14">
+        <span class="text-xs font-bold uppercase tracking-widest text-red-400 mb-3 block">El servicio</span>
+        <h2 class="text-3xl font-bold text-white mb-3">Cómo formamos a tu equipo</h2>
+        <p class="text-gray-400 max-w-xl mx-auto">Sin teoría aburrida. Usamos ataques reales adaptados a tu sector para que el aprendizaje sea inmediato.</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="rounded-2xl p-6" style="background:rgba(239,68,68,0.07);border:1px solid rgba(239,68,68,0.15);">
+          <div class="text-3xl mb-4">🎣</div>
+          <h3 class="text-white font-bold text-lg mb-2">1. Simulación de phishing</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">Enviamos emails de phishing realistas a tu equipo (sin que lo sepan) y medimos quién hace clic, quién introduce credenciales y quién reporta correctamente.</p>
+        </div>
+        <div class="rounded-2xl p-6" style="background:rgba(251,146,60,0.07);border:1px solid rgba(251,146,60,0.15);">
+          <div class="text-3xl mb-4">📊</div>
+          <h3 class="text-white font-bold text-lg mb-2">2. Informe de vulnerabilidad</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">Recibes un informe detallado por departamento: tasa de clics, credenciales introducidas, tiempo de reacción y comparativa con el sector.</p>
+        </div>
+        <div class="rounded-2xl p-6" style="background:rgba(52,211,153,0.06);border:1px solid rgba(52,211,153,0.14);">
+          <div class="text-3xl mb-4">🎓</div>
+          <h3 class="text-white font-bold text-lg mb-2">3. Formación personalizada</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">Taller de 2h (presencial u online) adaptado a los fallos detectados. Casos reales de tu sector, señales de alerta y protocolo de respuesta.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUÉ INCLUYE -->
+  <section class="py-20" style="background:#080f1a;">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-widest text-orange-400 mb-3 block">Qué incluye</span>
+          <h2 class="text-3xl font-bold text-white mb-5">Todo lo que necesitas<br/>para proteger a tu equipo</h2>
+          <div class="space-y-4">
+            {[
+              { icon: "📧", text: "Campañas de phishing simulado personalizadas por sector" },
+              { icon: "📱", text: "Smishing (SMS) y vishing (llamadas) opcionales" },
+              { icon: "📈", text: "Dashboard con métricas en tiempo real por empleado" },
+              { icon: "🎓", text: "Formación práctica con ejemplos reales de tu sector" },
+              { icon: "📋", text: "Política de seguridad para empleados (documento editable)" },
+              { icon: "🔁", text: "Seguimiento trimestral para medir la mejora" },
+              { icon: "✅", text: "Válido para auditorías ENS e ISO 27001" },
+            ].map(item => (
+              <div class="flex items-start gap-3">
+                <span class="text-xl flex-shrink-0">{item.icon}</span>
+                <span class="text-gray-300 text-sm leading-relaxed">{item.text}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div class="rounded-2xl p-7" style="background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.15);">
+          <div class="text-4xl mb-4">🚨</div>
+          <h3 class="text-white font-bold text-xl mb-3">¿Por qué es urgente?</h3>
+          <p class="text-gray-400 text-sm leading-relaxed mb-4">Las PyMEs son el objetivo preferido porque tienen sistemas de seguridad más débiles. El 60% cierra en los 6 meses siguientes a un ciberataque grave.</p>
+          <p class="text-gray-400 text-sm leading-relaxed mb-4">Y lo más irónico: el firewall más caro no sirve de nada si un empleado entrega sus credenciales voluntariamente.</p>
+          <a href="/blog/contrasenas-seguras-empleados-guia-completa" class="inline-flex items-center gap-2 text-sm text-orange-400 hover:text-orange-300 transition-colors mb-5">
+            <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+            Guía: Contraseñas seguras para empleados →
+          </a>
+          <a href="/contacto-migracion?plan=concienciacion" class="flex items-center gap-2 text-sm font-semibold text-red-400 hover:text-red-300 transition-colors">
+            Consulta gratuita sin compromiso
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="py-16 text-center" style="background:linear-gradient(135deg,#0f0505 0%,#1a0808 50%,#0f0505 100%);border-top:1px solid rgba(239,68,68,0.15);">
+    <div class="max-w-2xl mx-auto px-6">
+      <h2 class="text-3xl font-bold text-white mb-3">Ponlo a prueba antes de que lo haga un atacante</h2>
+      <p class="text-gray-400 mb-8">Primera simulación de phishing gratis para empresas de hasta 10 empleados. Sin compromiso.</p>
+      <a href="/contacto-migracion?plan=concienciacion" class="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold text-lg transition-all hover:-translate-y-1 hover:shadow-2xl" style="background:linear-gradient(135deg,#ef4444,#dc2626);box-shadow:0 6px 30px rgba(239,68,68,0.4);color:#ffffff;">
+        Quiero la simulación gratuita
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+      </a>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<script>
+const questions = [
+  {
+    from: "soporte@microsoft-seguridad.com",
+    time: "Hoy, 09:14",
+    subject: "Acción requerida: Tu cuenta Microsoft será suspendida en 24h",
+    body: `Estimado usuario,
+
+Hemos detectado actividad inusual en tu cuenta Microsoft 365. Para evitar la suspensión de tu cuenta y perder acceso a tus archivos, debes verificar tu identidad en las próximas 24 horas.
+
+Haz clic en el enlace de abajo para confirmar tu identidad:`,
+    link: "https://microsoft-accounts-verify.net/confirm",
+    linkText: "Verificar mi cuenta ahora →",
+    isLegit: false,
+    clues: ["El dominio remitente es 'microsoft-seguridad.com', no 'microsoft.com'", "El enlace apunta a 'microsoft-accounts-verify.net', dominio falso", "El tono de urgencia ('24 horas', 'suspensión') es una táctica clásica de phishing"],
+    explanation: "Este es un phishing clásico. Microsoft nunca te contactará desde un dominio distinto a @microsoft.com, y nunca amenaza con suspensiones urgentes por email.",
+  },
+  {
+    from: "noreply@amazon.es",
+    time: "Ayer, 16:42",
+    subject: "Tu pedido #114-8823741 ha sido enviado",
+    body: `Hola,
+
+Tu pedido ha sido enviado y llegará el martes 14 de mayo.
+
+Pedido: Auriculares Sony WH-1000XM5
+Dirección: Calle Mayor 23, Madrid
+
+Número de seguimiento: ES7823941ES
+Transportista: Correos Express
+
+Puedes seguir tu envío desde tu cuenta de Amazon.`,
+    link: null,
+    linkText: "",
+    isLegit: true,
+    clues: ["El dominio es @amazon.es (legítimo)", "No pide credenciales ni datos personales", "Tiene información específica del pedido (número, producto, dirección)"],
+    explanation: "Este es un email legítimo de confirmación de pedido. No solicita ninguna acción urgente, viene del dominio correcto y contiene información específica del pedido.",
+  },
+  {
+    from: "RRHH-nominas@empresa-grupo.net",
+    time: "Hoy, 08:01",
+    subject: "URGENTE: Actualiza tu cuenta bancaria para la nómina de este mes",
+    body: `Estimado empleado,
+
+Por motivos de actualización del sistema de nóminas, necesitamos que actualices tu número de cuenta bancaria antes del viernes para garantizar el pago del salario de este mes.
+
+Introduce tus datos en el formulario adjunto o responde a este email con:
+- IBAN completo
+- Nombre del banco
+- Nombre del titular`,
+    link: null,
+    linkText: "",
+    isLegit: false,
+    clues: ["Pide datos bancarios por email, algo que RRHH nunca hace", "El dominio 'empresa-grupo.net' es genérico y sospechoso", "La urgencia ('antes del viernes') presiona para actuar sin pensar"],
+    explanation: "Phishing de 'actualización de nómina', muy común en empresas. RRHH nunca solicita datos bancarios por email. Si recibes esto, llama directamente a RRHH para confirmarlo.",
+  },
+  {
+    from: "security@google.com",
+    time: "Hace 3 días",
+    subject: "Nuevo inicio de sesión en tu cuenta de Google",
+    body: `Hemos detectado un nuevo inicio de sesión en tu cuenta Google.
+
+Dispositivo: iPhone 14 Pro
+Ubicación: Madrid, España
+Hora: 14 de mayo, 11:23
+
+Si eres tú, no necesitas hacer nada.
+
+Si no reconoces esta actividad, protege tu cuenta de inmediato cambiando tu contraseña.`,
+    link: "https://myaccount.google.com/security",
+    linkText: "Revisar actividad de seguridad →",
+    isLegit: true,
+    clues: ["Remite desde @google.com (dominio legítimo)", "El enlace apunta a myaccount.google.com", "No pide credenciales — solo informativo con opción de revisar"],
+    explanation: "Este es un email legítimo de alerta de seguridad de Google. El dominio remitente y el enlace son correctos, y no solicita contraseñas ni datos sensibles directamente.",
+  },
+  {
+    from: "facturacion@correos-notificacion.es",
+    time: "Hoy, 11:55",
+    subject: "Tu paquete está retenido. Paga 1,99€ para recibirlo",
+    body: `Estimado cliente,
+
+Tu paquete con referencia CP-2024-88213 está retenido en nuestra oficina debido a gastos de aduana pendientes.
+
+Para liberar tu envío y recibirlo en 24-48h, abona la tarifa de gestión de 1,99€ haciendo clic en el enlace de abajo.
+
+Si no realizas el pago en 72 horas, el paquete será devuelto al remitente.`,
+    link: "https://correos-entrega.com/pago/CP-2024-88213",
+    linkText: "Pagar 1,99€ y recibir mi paquete →",
+    isLegit: false,
+    clues: ["Correos nunca cobra gastos de aduana por email con link de pago", "El dominio es 'correos-notificacion.es', no 'correos.es'", "El enlace apunta a 'correos-entrega.com', dominio falso"],
+    explanation: "El 'phishing de paquete retenido' es uno de los más extendidos en España. Aunque el importe es pequeño (para que no desconfíes), el objetivo es robar los datos de tu tarjeta.",
+  },
+];
+
+let current = 0;
+let score = 0;
+let answered = false;
+
+function loadQuestion() {
+  const q = questions[current];
+  answered = false;
+
+  (document.getElementById('q-counter') as HTMLElement).textContent = `Pregunta ${current + 1} de ${questions.length}`;
+
+  // Dots
+  const dots = document.querySelectorAll<HTMLElement>('#q-dots span');
+  dots.forEach((d, i) => {
+    d.style.background = i < current ? '#ef4444' : i === current ? '#fb923c' : 'rgba(255,255,255,0.12)';
+  });
+
+  (document.getElementById('email-from') as HTMLElement).textContent = q.from;
+  (document.getElementById('email-time') as HTMLElement).textContent = q.time;
+  (document.getElementById('email-subject') as HTMLElement).textContent = q.subject;
+  (document.getElementById('email-body') as HTMLElement).textContent = q.body;
+
+  const linkWrap = document.getElementById('email-link-wrap') as HTMLElement;
+  if (q.link) {
+    linkWrap.classList.remove('hidden');
+    (document.getElementById('email-link-text') as HTMLElement).textContent = q.linkText;
+  } else {
+    linkWrap.classList.add('hidden');
+  }
+
+  const fb = document.getElementById('feedback-box') as HTMLElement;
+  fb.classList.add('hidden');
+  fb.className = 'hidden rounded-xl px-5 py-4 mb-5 text-sm leading-relaxed';
+
+  const nextBtn = document.getElementById('next-btn') as HTMLElement;
+  nextBtn.classList.add('hidden');
+
+  const btns = document.getElementById('answer-btns') as HTMLElement;
+  btns.classList.remove('hidden');
+}
+
+(window as any).answer = function(isLegit: boolean) {
+  if (answered) return;
+  answered = true;
+  const q = questions[current];
+  const correct = isLegit === q.isLegit;
+  if (correct) score++;
+
+  const btns = document.getElementById('answer-btns') as HTMLElement;
+  btns.classList.add('hidden');
+
+  const fb = document.getElementById('feedback-box') as HTMLElement;
+  const cluesList = q.clues.map(c => `<li class="mt-1.5">• ${c}</li>`).join('');
+
+  if (correct) {
+    fb.className = 'rounded-xl px-5 py-4 mb-5 text-sm leading-relaxed';
+    fb.style.cssText = 'background:rgba(52,211,153,0.08);border:1px solid rgba(52,211,153,0.2);';
+    fb.innerHTML = `<div class="font-bold text-green-400 mb-2">✅ Correcto</div><p class="text-gray-300 mb-3">${q.explanation}</p><ul class="text-gray-400">${cluesList}</ul>`;
+  } else {
+    fb.className = 'rounded-xl px-5 py-4 mb-5 text-sm leading-relaxed';
+    fb.style.cssText = 'background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.2);';
+    fb.innerHTML = `<div class="font-bold text-red-400 mb-2">❌ Incorrecto</div><p class="text-gray-300 mb-3">${q.explanation}</p><ul class="text-gray-400">${cluesList}</ul>`;
+  }
+  fb.classList.remove('hidden');
+
+  const nextBtn = document.getElementById('next-btn') as HTMLElement;
+  nextBtn.textContent = current < questions.length - 1 ? 'Siguiente pregunta →' : 'Ver mi resultado →';
+  nextBtn.classList.remove('hidden');
+};
+
+(window as any).nextQuestion = function() {
+  current++;
+  if (current >= questions.length) {
+    showResult();
+  } else {
+    loadQuestion();
+  }
+};
+
+function showResult() {
+  (document.getElementById('quiz-container') as HTMLElement).classList.add('hidden');
+  const result = document.getElementById('quiz-result') as HTMLElement;
+  result.classList.remove('hidden');
+
+  const pct = Math.round((score / questions.length) * 100);
+  const emoji = pct >= 80 ? '🏆' : pct >= 60 ? '🤔' : '⚠️';
+  const title = pct >= 80 ? '¡Buen ojo!' : pct >= 60 ? 'Nivel medio' : 'Tu equipo está en riesgo';
+  const desc = pct >= 80
+    ? `Has detectado ${score} de ${questions.length} emails correctamente. Tienes buen criterio, pero tus empleados también deben tenerlo.`
+    : pct >= 60
+    ? `Has acertado ${score} de ${questions.length}. Hay margen de mejora — y un atacante solo necesita que falle una vez.`
+    : `Solo ${score} de ${questions.length} correctos. Este resultado es más común de lo que parece. Un taller de concienciación marcaría la diferencia.`;
+
+  const badgeStyle = pct >= 80
+    ? 'background:rgba(52,211,153,0.15);color:#6ee7b7;border:1px solid rgba(52,211,153,0.3);'
+    : pct >= 60
+    ? 'background:rgba(251,146,60,0.15);color:#fb923c;border:1px solid rgba(251,146,60,0.3);'
+    : 'background:rgba(239,68,68,0.15);color:#fca5a5;border:1px solid rgba(239,68,68,0.3);';
+
+  (document.getElementById('result-emoji') as HTMLElement).textContent = emoji;
+  (document.getElementById('result-title') as HTMLElement).textContent = title;
+  (document.getElementById('result-desc') as HTMLElement).textContent = desc;
+  const badge = document.getElementById('result-score-badge') as HTMLElement;
+  badge.textContent = `${score}/${questions.length} correctos — ${pct}%`;
+  badge.style.cssText = badgeStyle;
+}
+
+(window as any).restartQuiz = function() {
+  current = 0;
+  score = 0;
+  (document.getElementById('quiz-result') as HTMLElement).classList.add('hidden');
+  (document.getElementById('quiz-container') as HTMLElement).classList.remove('hidden');
+  loadQuestion();
+};
+
+// Iniciar
+loadQuestion();
+</script>

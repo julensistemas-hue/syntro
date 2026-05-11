@@ -1,0 +1,114 @@
+---
+// NeuralBackground — canvas fijo para toda la página index
+// z-index: -1 → detrás de todo, sin interferir con nada
+---
+
+<canvas id="neural-bg-canvas" aria-hidden="true"></canvas>
+
+<style>
+  #neural-bg-canvas {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    pointer-events: none;
+  }
+</style>
+
+<!-- El canvas provee el fondo oscuro de la home; las secciones mantienen sus propios fondos -->
+<style is:global>
+  body.has-neural-bg {
+    background-color: #05070f !important;
+  }
+</style>
+
+<script>
+(function () {
+  const canvas = document.getElementById('neural-bg-canvas') as HTMLCanvasElement;
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d')!;
+
+  const isMobile = window.innerWidth < 768;
+  const COUNT    = isMobile ? 30 : 60;
+  const MAX_DIST = isMobile ? 120 : 160;
+  const SPEED    = 0.22;
+
+  function resize() {
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize, { passive: true });
+
+  interface P { x:number; y:number; vx:number; vy:number; r:number; alpha:number; ci:number; }
+
+  const COLORS = ['88,166,255','129,140,248','167,139,250','52,211,153'];
+
+  const pts: P[] = Array.from({ length: COUNT }, (_, i) => ({
+    x:     Math.random() * canvas.width,
+    y:     Math.random() * canvas.height,
+    vx:    (Math.random() - 0.5) * SPEED,
+    vy:    (Math.random() - 0.5) * SPEED,
+    r:     Math.random() * 1.4 + 0.6,
+    alpha: Math.random() * 0.35 + 0.15,
+    ci:    i % 4,
+  }));
+
+  let raf: number;
+  let running = false;
+
+  function draw() {
+    // Fondo oscuro muy sutil — se ve en secciones sin fondo propio
+    ctx.fillStyle = 'rgba(5,7,15,1)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    for (const p of pts) {
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0 || p.x > canvas.width)  p.vx *= -1;
+      if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+    }
+
+    // Líneas
+    for (let i = 0; i < pts.length; i++) {
+      for (let j = i + 1; j < pts.length; j++) {
+        const a = pts[i], b = pts[j];
+        const dx = a.x - b.x, dy = a.y - b.y;
+        const d  = Math.sqrt(dx * dx + dy * dy);
+        if (d < MAX_DIST) {
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(b.x, b.y);
+          ctx.strokeStyle = `rgba(99,102,241,${(1 - d / MAX_DIST) * 0.15})`;
+          ctx.lineWidth = 0.6;
+          ctx.stroke();
+        }
+      }
+    }
+
+    // Puntos
+    for (const p of pts) {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${COLORS[p.ci]},${p.alpha})`;
+      ctx.fill();
+    }
+
+    raf = requestAnimationFrame(draw);
+  }
+
+  // Marcar body para que el canvas provea el fondo
+  document.body.classList.add('has-neural-bg');
+
+  window.addEventListener('load', () => {
+    setTimeout(() => { running = true; draw(); }, 800);
+  });
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) { cancelAnimationFrame(raf); running = false; }
+    else if (!running)   { running = true; draw(); }
+  });
+})();
+</script>

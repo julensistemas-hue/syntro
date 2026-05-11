@@ -144,13 +144,17 @@ Contacto: info@aisecurity.es
 `;
 
     // Enviar confirmación al usuario
-    await resend.emails.send({
+    const userEmailResult = await resend.emails.send({
       from: 'AI Security <info@aisecurity.es>',
       to: email,
       subject: 'Inscripcion Curso Wazuh - Confirmacion',
       html: userEmailHtml,
       text: userTextFallback,
     });
+
+    if (userEmailResult.error) {
+      console.error('Error enviando email al usuario:', userEmailResult.error);
+    }
 
     // Email HTML para admin
     const adminEmailHtml = `
@@ -205,7 +209,7 @@ Email: ${email}
 Fecha: ${new Date().toLocaleString('es-ES')}
 `;
 
-    await resend.emails.send({
+    const adminEmailResult = await resend.emails.send({
       from: 'AI Security <info@aisecurity.es>',
       to: 'info@aisecurity.es',
       replyTo: email,
@@ -213,6 +217,10 @@ Fecha: ${new Date().toLocaleString('es-ES')}
       html: adminEmailHtml,
       text: adminTextFallback,
     });
+
+    if (adminEmailResult.error) {
+      console.error('Error enviando email al admin:', adminEmailResult.error);
+    }
 
     return new Response(
       JSON.stringify({
