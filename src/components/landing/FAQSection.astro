@@ -1,0 +1,120 @@
+---
+const faqs = [
+  {
+    question: "¿Qué es un chatbot inteligente y para qué sirve en una empresa?",
+    answer: "Un chatbot inteligente es un asistente virtual con IA que atiende a tus clientes de forma automática las 24 horas, los 7 días de la semana. Se integra con tu web, WhatsApp o Telegram, consulta tu base de datos en tiempo real y solo deriva a un agente humano cuando es necesario. Reduce hasta un 80% las consultas repetitivas y elimina tiempos de espera.",
+  },
+  {
+    question: "¿En cuánto tiempo se implementa una solución de IA en mi empresa?",
+    answer: "Depende del servicio. Un chatbot básico puede estar en producción en 2-3 semanas. Un gestor documental con búsqueda semántica requiere entre 3 y 6 semanas según el volumen de documentos. La atención de llamadas IA suele estar lista en 2-4 semanas. Empezamos siempre con una consulta gratuita para darte un plazo exacto.",
+  },
+  {
+    question: "¿Necesito conocimientos técnicos para usar vuestros servicios de IA?",
+    answer: "No. Nos encargamos de toda la parte técnica: configuración, integración con tus sistemas actuales y mantenimiento. Además, incluimos formación completa para tu equipo y soporte continuo. Tú solo tienes que usarlo.",
+  },
+  {
+    question: "¿Qué es el gestor documental con inteligencia artificial?",
+    answer: "Es un sistema que permite buscar información dentro de todos tus documentos corporativos (contratos, manuales, facturas, políticas internas) usando lenguaje natural. En lugar de navegar carpetas durante 10-15 minutos, haces una pregunta y la IA localiza la respuesta en segundos. Funciona con PDFs, Word, Excel y cualquier formato habitual.",
+  },
+  {
+    question: "¿Podéis integrar la IA con mi ERP o CRM actual?",
+    answer: "Sí. Usamos tecnología de integración directa para conectar la IA con tus sistemas existentes: SAP, Holded, Salesforce, HubSpot, A3, Sage u otros. La IA puede consultar y actualizar datos en tiempo real, sin duplicar procesos ni cambiar lo que ya funciona.",
+  },
+  {
+    question: "¿En qué consiste la consultoría de IA y consultoría IT?",
+    answer: "La consultoría incluye análisis de tus procesos actuales, identificación de qué tareas automatizar con IA, diseño de la solución más adecuada para tu sector y presupuesto detallado sin compromiso. También ofrecemos consultoría IT general: infraestructura, soporte técnico, servidores y modernización de sistemas internos. La primera reunión es completamente gratuita.",
+  },
+  {
+    question: "¿La atención de llamadas con IA funciona bien en español?",
+    answer: "Sí. Nuestro sistema de recepcionista virtual está optimizado para español peninsular. Entiende acentos, interrupciones y lenguaje coloquial. Puede gestionar citas, responder preguntas frecuentes, tomar mensajes y derivar llamadas según el motivo de consulta, sin que el cliente note que habla con una IA.",
+  },
+  {
+    question: "¿Cuánto cuesta implantar IA en mi empresa?",
+    answer: "Los precios varían según el servicio y la complejidad de la integración con tus sistemas. Un chatbot básico parte desde 800€ de implementación, con mantenimiento mensual opcional. La gestión de citas IA y el gestor documental tienen rangos similares. Ofrecemos presupuesto gratuito y personalizado para cada proyecto, sin sorpresas.",
+  },
+];
+
+const schemaFaq = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(f => ({
+    "@type": "Question",
+    "name": f.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": f.answer,
+    }
+  }))
+};
+---
+
+<script is:inline type="application/ld+json" set:html={JSON.stringify(schemaFaq)} />
+
+<section class="py-24 lg:py-32" style="background:#020817;">
+  <!-- Grid de fondo sutil -->
+  <div class="absolute inset-0 pointer-events-none" style="background-image:linear-gradient(rgba(59,130,246,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(59,130,246,0.06) 1px,transparent 1px);background-size:40px 40px;"></div>
+
+  <div class="relative max-w-4xl mx-auto px-6 md:px-12">
+    <div class="text-center mb-16">
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold mb-6 border" style="background:rgba(59,130,246,0.1);border-color:rgba(59,130,246,0.25);color:#60a5fa;">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+        Preguntas frecuentes
+      </div>
+      <h2 class="text-3xl md:text-4xl font-extrabold mb-4 tracking-tight" style="color:#f0f6ff;">
+        Todo lo que necesitas saber sobre la IA para tu empresa
+      </h2>
+      <p class="text-lg max-w-2xl mx-auto" style="color:rgba(240,246,255,0.6);">
+        Respondemos las dudas más habituales de las PyMEs españolas antes de dar el paso a la automatización con IA.
+      </p>
+    </div>
+
+    <div class="space-y-3">
+      {faqs.map((faq, i) => (
+        <details class="faq-item group" style="background:rgba(255,255,255,0.03);border:1px solid rgba(59,130,246,0.15);border-radius:14px;overflow:hidden;">
+          <summary class="flex items-center justify-between gap-4 px-6 py-5 cursor-pointer list-none select-none" style="color:#f0f6ff;">
+            <span class="font-semibold text-base leading-snug" style="font-size:clamp(0.9rem,1.8vw,1.05rem);">{faq.question}</span>
+            <svg class="faq-chevron w-5 h-5 flex-shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color:#60a5fa;" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </summary>
+          <div class="px-6 pb-5" style="color:rgba(240,246,255,0.72);font-size:0.93rem;line-height:1.7;border-top:1px solid rgba(59,130,246,0.1);padding-top:14px;">
+            {faq.answer}
+          </div>
+        </details>
+      ))}
+    </div>
+
+    <!-- CTA al final -->
+    <div class="text-center mt-14">
+      <p class="mb-4 text-sm" style="color:rgba(240,246,255,0.5);">¿Tienes alguna duda que no está aquí?</p>
+      <a href="/reunion" style="
+        display:inline-flex;align-items:center;gap:8px;
+        padding:12px 24px;border-radius:12px;
+        background:linear-gradient(135deg,#2563eb,#1d4ed8);
+        color:white;font-size:0.9rem;font-weight:700;
+        text-decoration:none;
+        box-shadow:0 6px 20px rgba(37,99,235,0.35);
+        transition:opacity 0.2s,transform 0.15s;
+      " onmouseover="this.style.opacity='0.9';this.style.transform='translateY(-2px)'" onmouseout="this.style.opacity='1';this.style.transform='translateY(0)'">
+        Consulta gratuita sin compromiso
+        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  details.faq-item[open] summary {
+    color: #93c5fd;
+  }
+  details.faq-item[open] .faq-chevron {
+    transform: rotate(180deg);
+  }
+  details.faq-item summary:hover {
+    background: rgba(59,130,246,0.05);
+  }
+</style>

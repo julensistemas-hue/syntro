@@ -4,10 +4,11 @@ import AIHeroFloating from "../components/landing/AIHeroFloating.astro";
 import ServicesSection from "../components/ai-services/ServicesSection.astro";
 import WhyChooseUs from "../components/landing/WhyChooseUs.astro";
 import HowItWorks from "../components/landing/HowItWorks.astro";
+import FAQSection from "../components/landing/FAQSection.astro";
 import Testimonial from "../components/global/Testimonial.astro";
 
-const title = "AI Security - Automatización IA y Ciberseguridad Wazuh | PyMEs España";
-const description = "Soluciones de IA empresarial: chatbots 24/7, gestión documental inteligente y ciberseguridad Wazuh/ENS. Automatiza tu PyME sin perder el toque humano.";
+const title = "Automatización con IA y Consultoría IT para PyMEs en España | AI Security";
+const description = "Chatbot inteligente, gestor documental IA, atención de llamadas y gestión de citas automatizada para PyMEs españolas. Consultoría IT y primera consulta gratuita.";
 const canonical = "https://aisecurity.es/";
 
 const schemaOrg = {
@@ -16,11 +17,11 @@ const schemaOrg = {
   "name": "AI Security",
   "url": "https://aisecurity.es",
   "logo": "https://aisecurity.es/og-image.png",
-  "description": "Soluciones de inteligencia artificial y ciberseguridad Wazuh/ENS para PyMEs españolas. Chatbots, gestión documental, automatización de procesos e implementación de SIEM.",
+  "description": "Soluciones de automatización con inteligencia artificial y consultoría IT para PyMEs españolas. Chatbot empresarial, gestor documental, atención de llamadas IA, gestión de citas automatizada, Wazuh SIEM y cumplimiento ENS.",
   "foundingDate": "2024",
   "founder": {
     "@type": "Person",
-    "jobTitle": "Fundador"
+    "jobTitle": "Consultor IA y Administrador de Sistemas"
   },
   "areaServed": {
     "@type": "Country",
@@ -28,23 +29,25 @@ const schemaOrg = {
   },
   "address": {
     "@type": "PostalAddress",
-    "addressRegion": "Alicante",
     "addressCountry": "ES"
   },
   "serviceType": [
-    "Implementación Wazuh",
-    "Cumplimiento ENS",
-    "Chatbot empresarial",
+    "Chatbot inteligente para empresas",
+    "Gestor documental con IA",
+    "Atención de llamadas con IA",
+    "Gestor de citas automatizado",
     "Automatización de procesos con IA",
-    "Gestión documental inteligente",
-    "Administración de sistemas"
+    "Consultoría IT para PyMEs",
+    "Implementación Wazuh SIEM",
+    "Cumplimiento ENS"
   ],
   "knowsAbout": [
+    "Automatización con inteligencia artificial",
+    "Chatbot empresarial",
+    "Gestor documental IA",
+    "Consultoría IT PyMEs España",
     "Wazuh SIEM",
-    "Esquema Nacional de Seguridad",
-    "Inteligencia Artificial empresarial",
-    "Ciberseguridad para PyMEs",
-    "Automatización con IA"
+    "Esquema Nacional de Seguridad"
   ],
   "sameAs": [
     "https://www.youtube.com/@Systems_Boy"
@@ -58,5 +61,6 @@ const schemaOrg = {
   <ServicesSection />
   <WhyChooseUs />
   <HowItWorks />
+  <FAQSection />
   <Testimonial />
 </BaseLayout>
