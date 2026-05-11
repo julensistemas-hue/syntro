@@ -1,70 +1,82 @@
 ---
-import OptimizedImage from "../../layouts/utilities/OptimizedImage.astro";
 ---
 
-<section class="relative bg-gradient-to-br from-accent-600 via-blue-600 to-accent-700 py-24 lg:py-32 text-white overflow-hidden">
-  <!-- Background Pattern -->
-  <div class="absolute inset-0 opacity-10" aria-hidden="true">
-    <svg class="w-full h-full" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <pattern id="testimonials-grid" width="20" height="20" patternUnits="userSpaceOnUse">
-          <circle cx="10" cy="10" r="1" fill="white"/>
-        </pattern>
-      </defs>
-      <rect width="100" height="100" fill="url(#testimonials-grid)" />
-    </svg>
-  </div>
+<section class="relative py-24 lg:py-32 overflow-hidden" style="background:#020817;">
+  <!-- Grid de fondo -->
+  <div class="absolute inset-0 pointer-events-none" style="background-image:linear-gradient(rgba(59,130,246,0.12) 1px,transparent 1px),linear-gradient(90deg,rgba(59,130,246,0.12) 1px,transparent 1px);background-size:40px 40px;opacity:0.6;"></div>
+  <!-- Gradiente radial azulado -->
+  <div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(37,99,235,0.15) 0%,transparent 70%);"></div>
 
   <div class="relative px-8 mx-auto md:px-12 lg:px-24 max-w-7xl">
-    <div class="text-center max-w-2xl mx-auto lg:text-balance">
-      <div class="inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm text-white rounded-full text-sm font-semibold mb-6 border border-base-400">
+    <div class="text-center max-w-2xl mx-auto lg:text-balance mb-12">
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold mb-6 border" style="background:rgba(59,130,246,0.12);border-color:rgba(59,130,246,0.3);color:#60a5fa;">
         <span aria-hidden="true">🚀</span>
         TESTIMONIOS
       </div>
-      <h2
-        class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-6 tracking-tight">
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-6 tracking-tight" style="color:#f0f6ff;">
         Lo que dicen nuestros clientes
       </h2>
-      <p class="text-lg md:text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
+      <p class="text-lg md:text-xl max-w-3xl mx-auto leading-relaxed" style="color:rgba(240,246,255,0.7);">
         Casos reales de empresas que han mejorado su operativa con IA.
       </p>
     </div>
 
-    <div class="grid gap-6 mt-12 sm:grid-cols-2 lg:grid-cols-3">
-      <div class="bg-base-50/95 backdrop-blur-sm text-base-900 p-8 rounded-2xl hover:bg-base-50 transition-all duration-300 hover:-translate-y-2 shadow-lg hover:shadow-2xl group">
-        <div class="w-12 h-12 rounded-full mb-4 bg-accent-100 flex items-center justify-center text-2xl transition-transform duration-300 group-hover:scale-110">
-          👤
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <!-- Testimonio 1 -->
+      <div class="p-8 rounded-2xl transition-all duration-300 hover:-translate-y-2 group" style="background:rgba(255,255,255,0.04);border:1px solid rgba(59,130,246,0.18);backdrop-filter:blur(8px);">
+        <div class="flex gap-1 mb-4">
+          {[1,2,3,4,5].map(() => (
+            <svg class="w-4 h-4" fill="#fbbf24" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          ))}
         </div>
-        <p class="text-base text-base-700 font-medium leading-relaxed">
+        <p class="text-base font-medium leading-relaxed mb-6" style="color:rgba(240,246,255,0.8);">
           "El chatbot nos ha quitado mucha carga de trabajo repetitivo. Ahora el equipo puede dedicarse a casos que realmente requieren atención personalizada."
         </p>
-        <p class="text-sm text-base-600 mt-4 font-semibold">
-          — Laura Martínez, Responsable de Atención al Cliente
-        </p>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full flex items-center justify-center text-xl flex-shrink-0" style="background:rgba(59,130,246,0.15);border:1px solid rgba(59,130,246,0.25);">👤</div>
+          <div>
+            <p class="text-sm font-bold" style="color:#f0f6ff;">Laura Martínez</p>
+            <p class="text-xs" style="color:rgba(240,246,255,0.5);">Responsable de Atención al Cliente</p>
+          </div>
+        </div>
       </div>
 
-      <div class="bg-base-50/95 backdrop-blur-sm text-base-900 p-8 rounded-2xl hover:bg-base-50 transition-all duration-300 hover:-translate-y-2 shadow-lg hover:shadow-2xl group">
-        <div class="w-12 h-12 rounded-full mb-4 bg-blue-100 flex items-center justify-center text-2xl transition-transform duration-300 group-hover:scale-110">
-          👤
+      <!-- Testimonio 2 -->
+      <div class="p-8 rounded-2xl transition-all duration-300 hover:-translate-y-2 group" style="background:rgba(255,255,255,0.04);border:1px solid rgba(59,130,246,0.18);backdrop-filter:blur(8px);">
+        <div class="flex gap-1 mb-4">
+          {[1,2,3,4,5].map(() => (
+            <svg class="w-4 h-4" fill="#fbbf24" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          ))}
         </div>
-        <p class="text-base text-base-700 font-medium leading-relaxed">
+        <p class="text-base font-medium leading-relaxed mb-6" style="color:rgba(240,246,255,0.8);">
           "La gestión de citas era un caos. Desde que implementamos el sistema, tenemos menos llamadas y los clientes pueden reservar 24/7."
         </p>
-        <p class="text-sm text-base-600 mt-4 font-semibold">
-          — Javier López, Propietario de Clínica Dental
-        </p>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full flex items-center justify-center text-xl flex-shrink-0" style="background:rgba(129,140,248,0.15);border:1px solid rgba(129,140,248,0.25);">👤</div>
+          <div>
+            <p class="text-sm font-bold" style="color:#f0f6ff;">Javier López</p>
+            <p class="text-xs" style="color:rgba(240,246,255,0.5);">Propietario de Clínica Dental</p>
+          </div>
+        </div>
       </div>
 
-      <div class="bg-base-50/95 backdrop-blur-sm text-base-900 p-8 rounded-2xl hover:bg-base-50 transition-all duration-300 hover:-translate-y-2 shadow-lg hover:shadow-2xl group">
-        <div class="w-12 h-12 rounded-full mb-4 bg-green-100 flex items-center justify-center text-2xl transition-transform duration-300 group-hover:scale-110">
-          👤
+      <!-- Testimonio 3 -->
+      <div class="p-8 rounded-2xl transition-all duration-300 hover:-translate-y-2 group" style="background:rgba(255,255,255,0.04);border:1px solid rgba(59,130,246,0.18);backdrop-filter:blur(8px);">
+        <div class="flex gap-1 mb-4">
+          {[1,2,3,4,5].map(() => (
+            <svg class="w-4 h-4" fill="#fbbf24" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          ))}
         </div>
-        <p class="text-base text-base-700 font-medium leading-relaxed">
+        <p class="text-base font-medium leading-relaxed mb-6" style="color:rgba(240,246,255,0.8);">
           "Buscar documentos en carpetas compartidas nos llevaba horas. Ahora encontramos cualquier información en segundos. Simple pero efectivo."
         </p>
-        <p class="text-sm text-base-600 mt-4 font-semibold">
-          — Ana Ruiz, Coordinadora de Proyectos
-        </p>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full flex items-center justify-center text-xl flex-shrink-0" style="background:rgba(74,222,128,0.12);border:1px solid rgba(74,222,128,0.22);">👤</div>
+          <div>
+            <p class="text-sm font-bold" style="color:#f0f6ff;">Ana Ruiz</p>
+            <p class="text-xs" style="color:rgba(240,246,255,0.5);">Coordinadora de Proyectos</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>

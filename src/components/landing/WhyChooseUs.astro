@@ -1,60 +1,53 @@
-<section class="relative bg-gradient-to-br from-accent-600 via-blue-600 to-accent-700 py-24 lg:py-32 text-white overflow-hidden">
-  <!-- Background Pattern -->
-  <div class="absolute inset-0 opacity-10" aria-hidden="true">
-    <svg class="w-full h-full" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <pattern id="tech-grid" width="20" height="20" patternUnits="userSpaceOnUse">
-          <circle cx="10" cy="10" r="1" fill="white"/>
-        </pattern>
-      </defs>
-      <rect width="100" height="100" fill="url(#tech-grid)" />
-    </svg>
-  </div>
+<section class="relative py-24 lg:py-32 text-white overflow-hidden" style="background:#020817;">
+  <!-- Grid de fondo — igual que hero -->
+  <div class="absolute inset-0 pointer-events-none" style="background-image:linear-gradient(rgba(59,130,246,0.12) 1px,transparent 1px),linear-gradient(90deg,rgba(59,130,246,0.12) 1px,transparent 1px);background-size:40px 40px;opacity:0.6;"></div>
+  <!-- Gradiente radial central azulado -->
+  <div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(ellipse 90% 70% at 50% 50%,rgba(37,99,235,0.18) 0%,transparent 70%);"></div>
 
   <div class="relative max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
     <div class="text-center mb-16">
-      <div class="inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm text-white rounded-full text-sm font-semibold mb-6 border border-base-400">
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold mb-6 border" style="background:rgba(59,130,246,0.12);border-color:rgba(59,130,246,0.3);color:#60a5fa;">
         <span aria-hidden="true">⚡</span>
         Tecnología de Vanguardia
       </div>
-      <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-6 tracking-tight">
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-6 tracking-tight" style="color:#f0f6ff;">
         Tecnología IA real para empresas españolas
       </h2>
-      <p class="text-lg md:text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
+      <p class="text-lg md:text-xl max-w-3xl mx-auto leading-relaxed" style="color:rgba(240,246,255,0.7);">
         Usamos los modelos más capaces del mercado — GPT-4, Claude y RAG personalizado — para construir soluciones de IA que se integran con los sistemas que ya tienes en tu empresa.
       </p>
     </div>
 
     <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       <div
-        class="bg-base-50/95 backdrop-blur-sm text-base-900 p-8 rounded-2xl hover:bg-base-50 transition-all duration-300 hover:-translate-y-2 shadow-lg hover:shadow-2xl group">
+        class="p-8 rounded-2xl transition-all duration-300 hover:-translate-y-2 group" style="background:rgba(255,255,255,0.04);border:1px solid rgba(59,130,246,0.18);backdrop-filter:blur(8px);">
         <div class="mb-5 text-4xl transition-transform duration-300 group-hover:scale-110" aria-hidden="true">
           🤖
         </div>
-        <h3 class="text-xl font-bold mb-3 text-base-900">GPT-4 & Claude</h3>
-        <p class="text-base text-base-600 leading-relaxed">
+        <h3 class="text-xl font-bold mb-3" style="color:#f0f6ff;">GPT-4 & Claude</h3>
+        <p class="text-base leading-relaxed" style="color:rgba(240,246,255,0.65);">
           Modelos de lenguaje de última generación para conversaciones naturales y comprensión avanzada.
         </p>
       </div>
 
       <div
-        class="bg-base-50/95 backdrop-blur-sm text-base-900 p-8 rounded-2xl hover:bg-base-50 transition-all duration-300 hover:-translate-y-2 shadow-lg hover:shadow-2xl group">
+        class="p-8 rounded-2xl transition-all duration-300 hover:-translate-y-2 group" style="background:rgba(255,255,255,0.04);border:1px solid rgba(59,130,246,0.18);backdrop-filter:blur(8px);">
         <div class="mb-5 text-4xl transition-transform duration-300 group-hover:scale-110" aria-hidden="true">
           🔗
         </div>
-        <h3 class="text-xl font-bold mb-3 text-base-900">MCP Personalizado</h3>
-        <p class="text-base text-base-600 leading-relaxed">
+        <h3 class="text-xl font-bold mb-3" style="color:#f0f6ff;">MCP Personalizado</h3>
+        <p class="text-base leading-relaxed" style="color:rgba(240,246,255,0.65);">
           Integración directa con tu ERP, CRM o cualquier sistema empresarial mediante Model Context Protocol.
         </p>
       </div>
 
       <div
-        class="bg-base-50/95 backdrop-blur-sm text-base-900 p-8 rounded-2xl hover:bg-base-50 transition-all duration-300 hover:-translate-y-2 shadow-lg hover:shadow-2xl group">
+        class="p-8 rounded-2xl transition-all duration-300 hover:-translate-y-2 group" style="background:rgba(255,255,255,0.04);border:1px solid rgba(59,130,246,0.18);backdrop-filter:blur(8px);">
         <div class="mb-5 text-4xl transition-transform duration-300 group-hover:scale-110" aria-hidden="true">
           ⚡
         </div>
-        <h3 class="text-xl font-bold mb-3 text-base-900">Automatización RAG</h3>
-        <p class="text-base text-base-600 leading-relaxed">
+        <h3 class="text-xl font-bold mb-3" style="color:#f0f6ff;">Automatización RAG</h3>
+        <p class="text-base leading-relaxed" style="color:rgba(240,246,255,0.65);">
           Retrieval Augmented Generation para respuestas precisas basadas en tu documentación empresarial.
         </p>
       </div>
