@@ -41,7 +41,7 @@
         <div class="flex-1 min-w-0">
           <p class="text-xs font-bold mb-1 flex items-center gap-1.5" style="color:#4ade80;text-transform:uppercase;letter-spacing:0.1em;">
             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-            Solución
+            <span id="solution-label"></span>
           </p>
           <p id="solution-text" class="font-semibold leading-snug" style="color:#f1f5f9;font-size:clamp(0.85rem,1.5vw,1rem);"></p>
         </div>
@@ -285,12 +285,13 @@
 <script>
 // ─── Typewriter ───────────────────────────────────────────────────────────
 (function () {
-  const el         = document.getElementById('typewriter-text')!;
-  const solBox     = document.getElementById('solution-box')!;
-  const solText    = document.getElementById('solution-text')!;
-  const solIcon    = document.getElementById('solution-icon')!;
-  const solIconWrap= document.getElementById('solution-icon-wrap')!;
-  const solLink    = document.getElementById('solution-link') as HTMLAnchorElement;
+  const el          = document.getElementById('typewriter-text')!;
+  const solBox      = document.getElementById('solution-box')!;
+  const solText     = document.getElementById('solution-text')!;
+  const solLabel    = document.getElementById('solution-label')!;
+  const solIcon     = document.getElementById('solution-icon')!;
+  const solIconWrap = document.getElementById('solution-icon-wrap')!;
+  const solLink     = document.getElementById('solution-link') as HTMLAnchorElement;
 
   // Busca el botón "Servicios" del nav para origen de la bolita
   function getServiciosPos(): { x: number; y: number } {
@@ -309,55 +310,62 @@
     problem:  string;
     color:    string;
     solution: string;
+    label:    string;
     icon:     string;
     href:     string;
   }
 
   const SLIDES: Slide[] = [
-    // 1ª — llamadas (antes la 6)
+    // 1ª — llamadas
     {
       problem:  'Recibes 80 llamadas al día y se pierden fuera de horario...',
       color:    '#818cf8',
+      label:    'Llamada IA',
       solution: 'La recepcionista IA atiende, filtra y agenda sin descanso.',
       icon:     'M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z',
       href:     '/servicios/atencion-llamadas',
     },
-    // 2ª — contrato/carpetas (antes la 3)
+    // 2ª — contrato/carpetas
     {
       problem:  'Buscas ese contrato entre 200 carpetas y 3 años de archivos...',
       color:    '#a78bfa',
+      label:    'Gestor Documental',
       solution: 'El gestor documental IA lo encuentra en 0.3 segundos.',
       icon:     'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2',
       href:     '/servicios/gestor-documental',
     },
-    // 3ª — servidor/brecha (antes la 2)
+    // 3ª — servidor/brecha
     {
       problem:  'Tu servidor tiene una brecha que nadie ha detectado...',
       color:    '#f85149',
+      label:    'Wazuh',
       solution: 'Wazuh monitoriza 24/7 y alerta en tiempo real de cualquier amenaza.',
       icon:     'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z',
       href:     '/wazuh',
     },
-    // 4ª — emails (antes la 1)
+    // 4ª — emails
     {
       problem:  'Llevas 3h al día respondiendo los mismos emails...',
       color:    '#f0883e',
+      label:    'Chatbot IA',
       solution: 'Un chatbot IA los responde automáticamente al instante.',
       icon:     'M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z',
       href:     '/servicios/chatbot',
     },
-    // 5ª — ENS (antes la 5)
+    // 5ª — ENS
     {
       problem:  'No sabes si tu empresa cumple el ENS y te la juegas...',
       color:    '#3fb950',
+      label:    'Wazuh ENS',
       solution: 'Auditamos y configuramos Wazuh para cumplimiento ENS completo.',
       icon:     'M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z',
       href:     '/wazuh',
     },
-    // 6ª — citas (la que queda, antes la 4)
+    // 6ª — citas
     {
       problem:  'Tu equipo pierde horas gestionando citas y confirmaciones...',
       color:    '#60a5fa',
+      label:    'Gestor de Citas',
       solution: 'La IA gestiona tu agenda, confirma y recuerda automáticamente.',
       icon:     'M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z',
       href:     '/servicios/gestor-citas',
@@ -413,8 +421,9 @@
 
     // Preparar contenido y colores
     setIcon(slide.icon, slide.color);
-    solText.textContent = slide.solution;
-    solLink.href = slide.href;
+    solLabel.textContent = slide.label;
+    solText.textContent  = slide.solution;
+    solLink.href         = slide.href;
     glow.style.background = `radial-gradient(ellipse at center,rgba(${hexToRgb(slide.color)},0.35),transparent 70%)`;
 
     // ── 1. Bolita desde el botón "Servicios" del nav ─────────────
