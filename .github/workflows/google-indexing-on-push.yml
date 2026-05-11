@@ -48,7 +48,9 @@ jobs:
         run: |
           node -e "
           const { google } = require('googleapis');
-          const creds = JSON.parse(Buffer.from(process.env.GOOGLE_CREDENTIALS_JSON, 'base64').toString());
+          const raw = process.env.GOOGLE_CREDENTIALS_JSON;
+          let creds;
+          try { creds = JSON.parse(raw); } catch(e) { creds = JSON.parse(Buffer.from(raw, 'base64').toString()); }
           const auth = new google.auth.GoogleAuth({ credentials: creds, scopes: ['https://www.googleapis.com/auth/webmasters'] });
           auth.getClient().then(async client => {
             const sc = google.searchconsole({ version: 'v1', auth: client });
