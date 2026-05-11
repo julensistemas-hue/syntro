@@ -52,9 +52,9 @@ async function main() {
   const authClient = await auth.getClient();
   const analyticsdata = google.analyticsdata({ version: 'v1beta', auth: authClient });
 
-  // 3 días vs 3 días anteriores (trigger 2x/semana)
-  const current28 = getDates(3);      // nombre mantenido por compatibilidad con el resto del código
-  const previous28 = getDates(3, 4);  // los 3 días anteriores (offsetDays=4 para no solapar)
+  // 7 días vs 7 días anteriores (trigger semanal, lunes 06:00)
+  const current28 = getDates(7);      // últimos 7 días disponibles (ventana semanal)
+  const previous28 = getDates(7, 8);  // los 7 días anteriores sin solapamiento
 
   async function runReport(dateRange, dimensions, metrics, limit = 20, orderBy = null) {
     const body = {

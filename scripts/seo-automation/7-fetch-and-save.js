@@ -57,8 +57,8 @@ async function main() {
 
   // Últimos 3 días vs 3 días anteriores (el trigger corre 2x/semana)
   // GSC tiene delay de ~3 días, por eso offsetDays=3 por defecto
-  const current3 = getDates(3);          // últimos 3 días disponibles
-  const previous3 = getDates(3, 6);      // los 3 días anteriores a esos
+  const current3 = getDates(7);          // últimos 7 días disponibles (ventana semanal)
+  const previous3 = getDates(7, 10);     // los 7 días anteriores sin solapamiento
   const current90 = getDates(90);        // tendencia larga para detectar nuevas keywords
 
   async function query(dates, dimensions, rowLimit = 100) {
@@ -84,7 +84,7 @@ async function main() {
     generatedAt: new Date().toISOString(),
     siteUrl,
     period: current3,
-    periodDays: 3,
+    periodDays: 7,
     totals: {
       current: { clicks: sumClicks(kwCurrent), impressions: sumImpressions(kwCurrent) },
       previous: { clicks: sumClicks(kwPrevious), impressions: sumImpressions(kwPrevious) },

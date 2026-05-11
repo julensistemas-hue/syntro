@@ -18,6 +18,7 @@ const GSC_FILE = path.join(__dirname, 'search-console-data.json');
 const GA4_FILE = path.join(__dirname, 'ga4-data.json');
 const CHANGES_FILE = path.join(__dirname, 'seo-changes.json');
 const AB_FILE = path.join(__dirname, 'ab-state.json');
+const HISTORY_FILE = path.join(__dirname, 'seo-history.json');
 const RESEND_API_KEY = process.env.RESEND_API_KEY || 're_YG4icTFX_BY8beBj8wNbrpDYCBQn2xPci';
 const TO = process.env.REPORT_EMAIL || 'julen.sistemas@gmail.com';
 
@@ -37,6 +38,7 @@ const gsc = loadJSON(GSC_FILE);
 const ga4 = loadJSON(GA4_FILE);
 const changesLog = loadJSON(CHANGES_FILE, { changes: [] });
 const abState = loadJSON(AB_FILE, { currentVariations: {}, history: [] });
+const historyLog = loadJSON(HISTORY_FILE, { reports: [] });
 
 if (!gsc) { console.error('❌ No search-console-data.json'); process.exit(1); }
 
@@ -261,6 +263,47 @@ if (bestEngaged.length > 0) {
   </div>`;
 }
 
+// ─── Historical trend section ───────────────────────────────────────────────
+let historyHtml = '';
+const recentReports = (historyLog.reports || []).slice(-8).reverse(); // últimas 8 semanas, más reciente primero
+if (recentReports.length >= 2) {
+  const rows = recentReports.map((r, i) => {
+    const weekDate = new Date(r.date).toLocaleDateString('es-ES', { day: 'numeric', month: 'short' });
+    const clicks = r.totals?.current?.clicks ?? 0;
+    const impr = r.totals?.current?.impressions ?? 0;
+    const prevReport = recentReports[i + 1];
+    const prevClicks = prevReport?.totals?.current?.clicks ?? null;
+    const clicksDiff = prevClicks !== null ? clicks - prevClicks : null;
+    const trend = clicksDiff === null ? '—'
+      : clicksDiff > 0 ? `<span style="color:#0a7c42">▲ +${clicksDiff}</span>`
+      : clicksDiff < 0 ? `<span style="color:#c5221f">▼ ${clicksDiff}</span>`
+      : '<span style="color:#666">→ 0</span>';
+    const isCurrentWeek = i === 0;
+    const rowStyle = isCurrentWeek ? 'background:#f0f7ff;font-weight:600' : '';
+    return `<tr style="border-bottom:1px solid #e8eaed;${rowStyle}">
+      <td style="padding:7px 10px;font-size:12px">${isCurrentWeek ? '📅 Esta semana' : weekDate}</td>
+      <td style="padding:7px 10px;font-size:12px;text-align:center">${clicks}</td>
+      <td style="padding:7px 10px;font-size:12px;text-align:center">${impr.toLocaleString('es-ES')}</td>
+      <td style="padding:7px 10px;font-size:12px;text-align:center">${trend}</td>
+    </tr>`;
+  }).join('');
+
+  historyHtml = `
+  <div style="background:white;padding:20px 28px;border-left:4px solid #0a7c42;border-right:1px solid #e8eaed;margin-top:8px">
+    <h2 style="margin:0 0 4px;font-size:15px;color:#0a7c42">📈 Tendencia histórica (últimas semanas)</h2>
+    <p style="margin:0 0 14px;font-size:11px;color:#666">Evolución de clicks semana a semana — tendencia vs semana anterior</p>
+    <table style="width:100%;border-collapse:collapse;font-size:12px">
+      <tr style="background:#f8f9fa">
+        <th style="padding:8px 10px;font-size:11px;font-weight:600;color:#555;text-align:left">Semana</th>
+        <th style="padding:8px 10px;font-size:11px;font-weight:600;color:#555;text-align:center">Clicks</th>
+        <th style="padding:8px 10px;font-size:11px;font-weight:600;color:#555;text-align:center">Impr.</th>
+        <th style="padding:8px 10px;font-size:11px;font-weight:600;color:#555;text-align:center">vs anterior</th>
+      </tr>
+      <tbody>${rows}</tbody>
+    </table>
+  </div>`;
+}
+
 // ─── A/B test section ───────────────────────────────────────────────────────
 let abHtml = '';
 const abSlugs = Object.keys(abState.currentVariations || {});
@@ -368,7 +411,7 @@ const html = `<!DOCTYPE html>
   </div>
 
   <div style="background:white;padding:20px 28px;border-left:1px solid #e8eaed;border-right:1px solid #e8eaed">
-    <h2 style="margin:0 0 14px;font-size:15px;color:#1a73e8">KPIs — últimos 3 días vs 3 días anteriores</h2>
+    <h2 style="margin:0 0 14px;font-size:15px;color:#1a73e8">KPIs — últimos 7 días vs 7 días anteriores</h2>
     <div style="display:flex;gap:12px;flex-wrap:wrap">
       ${kpiCard('Clicks GSC', cur.clicks,
         `vs ${prev.clicks} anterior`,
@@ -385,6 +428,7 @@ const html = `<!DOCTYPE html>
     </div>
   </div>
 
+  ${historyHtml}
   ${changeTrackingHtml}
   ${crossHtml}
   ${engagedHtml}
