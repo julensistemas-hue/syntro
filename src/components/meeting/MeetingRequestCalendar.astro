@@ -1,183 +1,197 @@
 ---
-// Meeting request component with visual calendar
+// Meeting request component — dark theme (mismo estilo que /wazuh)
 ---
 
-<section class="pt-12 pb-20 bg-base-25">
-  <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
-    <div class="text-center mb-12">
-      <h1 class="text-4xl md:text-5xl font-bold text-base-900 mb-6">
-        <span class="text-[#0052cc]">Agenda tu Reunión</span>
+<section class="relative min-h-screen py-20 pb-24 overflow-hidden" style="background:#020817;">
+  <!-- Grid de fondo -->
+  <div class="absolute inset-0 pointer-events-none" style="background-image:linear-gradient(rgba(59,130,246,0.12) 1px,transparent 1px),linear-gradient(90deg,rgba(59,130,246,0.12) 1px,transparent 1px);background-size:40px 40px;opacity:0.6;"></div>
+  <!-- Gradiente radial -->
+  <div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(ellipse 80% 60% at 50% 20%,rgba(37,99,235,0.15) 0%,transparent 65%);"></div>
+
+  <div class="relative max-w-6xl mx-auto px-6 md:px-10">
+
+    <!-- Header -->
+    <div class="text-center mb-14">
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold mb-6 border" style="background:rgba(59,130,246,0.1);border-color:rgba(59,130,246,0.28);color:#60a5fa;">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+        </svg>
+        Consulta gratuita · Sin compromiso
+      </div>
+      <h1 class="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight" style="color:#f0f6ff;">
+        Agenda tu reunión
       </h1>
-      <p class="text-xl text-base-600 max-w-3xl mx-auto">
-        Selecciona fecha y hora para tu consulta gratuita. Te enviaremos un enlace de Google Meet.
+      <p class="text-lg max-w-2xl mx-auto" style="color:rgba(240,246,255,0.65);">
+        Analizamos tu caso, evaluamos la viabilidad y te proponemos soluciones de IA o ciberseguridad personalizadas. 1 hora, sin coste.
       </p>
     </div>
 
     <!-- Alert Container -->
     <div id="alert-container" class="max-w-5xl mx-auto mb-6 hidden"></div>
 
-    <!-- Two Column Layout -->
-    <div class="max-w-6xl mx-auto">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <!-- Calendar View -->
-        <div class="bg-base-50 rounded-2xl shadow-xl overflow-hidden border border-base-200">
-          <div class="bg-gradient-to-r from-[#0052cc] to-blue-600 px-6 py-4 text-white">
-            <h3 class="text-lg font-semibold">Selecciona Fecha y Hora</h3>
-            <p class="text-sm opacity-90">Las reuniones duran 1 hora</p>
+    <!-- Grid principal -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+      <!-- ═══ Calendario ═══ -->
+      <div class="rounded-2xl overflow-hidden" style="background:rgba(255,255,255,0.03);border:1px solid rgba(59,130,246,0.2);backdrop-filter:blur(12px);">
+        <!-- Header card -->
+        <div class="px-6 py-4 flex items-center gap-3" style="background:rgba(37,99,235,0.15);border-bottom:1px solid rgba(59,130,246,0.2);">
+          <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background:rgba(59,130,246,0.2);">
+            <svg class="w-4 h-4" fill="none" stroke="#60a5fa" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+            </svg>
+          </div>
+          <div>
+            <h3 class="text-sm font-bold" style="color:#f0f6ff;">Selecciona fecha y hora</h3>
+            <p class="text-xs" style="color:rgba(240,246,255,0.5);">Las reuniones duran 1 hora</p>
+          </div>
+        </div>
+
+        <div class="p-6">
+          <!-- Calendar Header -->
+          <div class="flex items-center justify-between mb-6">
+            <button id="prev-month" class="p-2 rounded-lg transition-colors" style="color:rgba(240,246,255,0.6);" onmouseover="this.style.background='rgba(59,130,246,0.1)'" onmouseout="this.style.background='transparent'">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+              </svg>
+            </button>
+            <h4 id="calendar-month" class="text-base font-bold" style="color:#f0f6ff;">Cargando...</h4>
+            <button id="next-month" class="p-2 rounded-lg transition-colors" style="color:rgba(240,246,255,0.6);" onmouseover="this.style.background='rgba(59,130,246,0.1)'" onmouseout="this.style.background='transparent'">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+              </svg>
+            </button>
           </div>
 
-          <div class="p-6">
-            <!-- Calendar Header -->
-            <div class="flex items-center justify-between mb-6">
-              <button id="prev-month" class="p-2 hover:bg-base-100 rounded-lg transition-colors">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-                </svg>
-              </button>
-              <h4 id="calendar-month" class="text-lg font-semibold text-base-900">Loading...</h4>
-              <button id="next-month" class="p-2 hover:bg-base-100 rounded-lg transition-colors">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                </svg>
-              </button>
+          <!-- Day Headers -->
+          <div class="grid grid-cols-7 gap-1 mb-3">
+            {['L','M','X','J','V','S','D'].map(d => (
+              <div class="text-center text-xs font-semibold" style="color:rgba(96,165,250,0.7);">{d}</div>
+            ))}
+          </div>
+
+          <!-- Calendar Grid -->
+          <div class="grid grid-cols-7 gap-1 mb-6" id="calendar-grid"></div>
+
+          <!-- Time Slots -->
+          <div class="pt-5" style="border-top:1px solid rgba(59,130,246,0.15);">
+            <h5 class="text-xs font-bold uppercase tracking-wider mb-3" style="color:#60a5fa;">Horarios disponibles</h5>
+
+            <div id="time-slots-loading" class="text-center py-6">
+              <p class="text-sm" style="color:rgba(240,246,255,0.4);">Selecciona un día para ver horarios</p>
             </div>
 
-            <!-- Day Headers -->
-            <div class="grid grid-cols-7 gap-2 mb-4">
-              <div class="text-center text-sm font-medium text-base-500">L</div>
-              <div class="text-center text-sm font-medium text-base-500">M</div>
-              <div class="text-center text-sm font-medium text-base-500">X</div>
-              <div class="text-center text-sm font-medium text-base-500">J</div>
-              <div class="text-center text-sm font-medium text-base-500">V</div>
-              <div class="text-center text-sm font-medium text-base-500">S</div>
-              <div class="text-center text-sm font-medium text-base-500">D</div>
-            </div>
-
-            <!-- Calendar Grid -->
-            <div class="grid grid-cols-7 gap-2 mb-6" id="calendar-grid">
-              <!-- Days will be generated by JavaScript -->
-            </div>
-
-            <!-- Time Slots -->
-            <div class="pt-6 border-t border-base-200">
-              <h5 class="text-sm font-semibold text-base-900 mb-3">Horarios disponibles</h5>
-
-              <div id="time-slots-loading" class="text-center py-8">
-                <p class="text-sm text-base-500">Selecciona un día para ver horarios disponibles</p>
+            <div id="time-slots-container" class="hidden">
+              <div id="time-slots-spinner" class="text-center py-4">
+                <div class="inline-flex items-center gap-2" style="color:#60a5fa;">
+                  <svg class="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                  <span class="text-sm">Verificando disponibilidad...</span>
+                </div>
               </div>
-
-              <div id="time-slots-container" class="hidden">
-                <div id="time-slots-spinner" class="text-center py-4">
-                  <div class="inline-flex items-center gap-2 text-accent-600">
-                    <svg class="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                    </svg>
-                    <span class="text-sm">Verificando disponibilidad...</span>
-                  </div>
-                </div>
-
-                <div id="time-slots-grid" class="hidden grid grid-cols-2 gap-3">
-                  <!-- Time slots will be populated here -->
-                </div>
-
-                <div id="time-slots-error" class="hidden text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg p-3">
-                  No hay horarios disponibles para este día
-                </div>
+              <div id="time-slots-grid" class="hidden grid grid-cols-2 gap-2"></div>
+              <div id="time-slots-error" class="hidden text-sm rounded-lg p-3" style="color:#fca5a5;background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.2);">
+                No hay horarios disponibles para este día
               </div>
             </div>
           </div>
         </div>
+      </div>
 
-        <!-- Booking Form -->
-        <div class="bg-base-50 rounded-2xl shadow-xl overflow-hidden border border-base-200">
-          <div class="bg-gradient-to-r from-blue-600 to-purple-600 px-6 py-4 text-white">
-            <h3 class="text-lg font-semibold">Tus Datos</h3>
-            <p class="text-sm opacity-90">Completa la información para confirmar</p>
+      <!-- ═══ Formulario ═══ -->
+      <div class="rounded-2xl overflow-hidden" style="background:rgba(255,255,255,0.03);border:1px solid rgba(59,130,246,0.2);backdrop-filter:blur(12px);">
+        <!-- Header card -->
+        <div class="px-6 py-4 flex items-center gap-3" style="background:rgba(129,140,248,0.12);border-bottom:1px solid rgba(129,140,248,0.2);">
+          <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background:rgba(129,140,248,0.2);">
+            <svg class="w-4 h-4" fill="none" stroke="#a5b4fc" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+            </svg>
+          </div>
+          <div>
+            <h3 class="text-sm font-bold" style="color:#f0f6ff;">Tus datos</h3>
+            <p class="text-xs" style="color:rgba(240,246,255,0.5);">Completa la información para confirmar</p>
+          </div>
+        </div>
+
+        <div class="p-6">
+          <!-- Selected slot indicator -->
+          <div id="selected-slot-indicator" class="hidden mb-5 p-3 rounded-lg flex items-center gap-2" style="background:rgba(74,222,128,0.08);border:1px solid rgba(74,222,128,0.2);">
+            <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="#4ade80" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+            </svg>
+            <span id="selected-slot-text" class="text-sm font-medium" style="color:#4ade80;"></span>
           </div>
 
-          <div class="p-6">
-            <!-- Selected slot indicator -->
-            <div id="selected-slot-indicator" class="hidden mb-6 p-4 bg-green-50 border border-green-200 rounded-lg">
-              <div class="flex items-center gap-2 text-green-800 text-sm font-medium">
-                <svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                </svg>
-                <span id="selected-slot-text"></span>
-              </div>
+          <form id="meeting-form" class="space-y-4" method="POST">
+            <div>
+              <label class="block text-xs font-semibold uppercase tracking-wider mb-2" style="color:rgba(240,246,255,0.5);">Nombre completo *</label>
+              <input type="text" name="nombre" required
+                class="w-full px-4 py-3 rounded-xl text-sm font-medium outline-none transition-all"
+                style="background:rgba(255,255,255,0.05);border:1px solid rgba(59,130,246,0.2);color:#f0f6ff;"
+                placeholder="Ej: Juan García López"
+                onfocus="this.style.borderColor='rgba(59,130,246,0.6)';this.style.boxShadow='0 0 0 3px rgba(59,130,246,0.1)'"
+                onblur="this.style.borderColor='rgba(59,130,246,0.2)';this.style.boxShadow='none'"
+              />
             </div>
 
-            <form id="meeting-form" class="space-y-4" method="POST">
-              <div>
-                <label class="block text-sm font-medium text-base-700 mb-2">Nombre completo *</label>
-                <input
-                  type="text"
-                  name="nombre"
-                  required
-                  class="w-full px-4 py-3 border border-base-300 rounded-lg focus:ring-2 focus:ring-[#0052cc] focus:border-[#0052cc] bg-base-25"
-                  placeholder="Ej: Juan García López"
-                />
-              </div>
+            <div>
+              <label class="block text-xs font-semibold uppercase tracking-wider mb-2" style="color:rgba(240,246,255,0.5);">Email *</label>
+              <input type="email" name="email" required
+                class="w-full px-4 py-3 rounded-xl text-sm font-medium outline-none transition-all"
+                style="background:rgba(255,255,255,0.05);border:1px solid rgba(59,130,246,0.2);color:#f0f6ff;"
+                placeholder="tu@empresa.com"
+                onfocus="this.style.borderColor='rgba(59,130,246,0.6)';this.style.boxShadow='0 0 0 3px rgba(59,130,246,0.1)'"
+                onblur="this.style.borderColor='rgba(59,130,246,0.2)';this.style.boxShadow='none'"
+              />
+            </div>
 
-              <div>
-                <label class="block text-sm font-medium text-base-700 mb-2">Email *</label>
-                <input
-                  type="email"
-                  name="email"
-                  required
-                  class="w-full px-4 py-3 border border-base-300 rounded-lg focus:ring-2 focus:ring-[#0052cc] focus:border-[#0052cc] bg-base-25"
-                  placeholder="tu@empresa.com"
-                />
-              </div>
+            <div>
+              <label class="block text-xs font-semibold uppercase tracking-wider mb-2" style="color:rgba(240,246,255,0.5);">Teléfono *</label>
+              <input type="tel" name="telefono" required
+                class="w-full px-4 py-3 rounded-xl text-sm font-medium outline-none transition-all"
+                style="background:rgba(255,255,255,0.05);border:1px solid rgba(59,130,246,0.2);color:#f0f6ff;"
+                placeholder="+34 600 000 000"
+                onfocus="this.style.borderColor='rgba(59,130,246,0.6)';this.style.boxShadow='0 0 0 3px rgba(59,130,246,0.1)'"
+                onblur="this.style.borderColor='rgba(59,130,246,0.2)';this.style.boxShadow='none'"
+              />
+            </div>
 
-              <div>
-                <label class="block text-sm font-medium text-base-700 mb-2">Teléfono *</label>
-                <input
-                  type="tel"
-                  name="telefono"
-                  required
-                  class="w-full px-4 py-3 border border-base-300 rounded-lg focus:ring-2 focus:ring-[#0052cc] focus:border-[#0052cc] bg-base-25"
-                  placeholder="+34 600 000 000"
-                />
-              </div>
+            <div>
+              <label class="block text-xs font-semibold uppercase tracking-wider mb-2" style="color:rgba(240,246,255,0.5);">¿Qué necesitas? *</label>
+              <textarea name="mensaje" rows="4" required
+                class="w-full px-4 py-3 rounded-xl text-sm font-medium outline-none transition-all resize-none"
+                style="background:rgba(255,255,255,0.05);border:1px solid rgba(59,130,246,0.2);color:#f0f6ff;"
+                placeholder="Ej: Necesito implementar un chatbot para mi tienda online..."
+                onfocus="this.style.borderColor='rgba(59,130,246,0.6)';this.style.boxShadow='0 0 0 3px rgba(59,130,246,0.1)'"
+                onblur="this.style.borderColor='rgba(59,130,246,0.2)';this.style.boxShadow='none'"
+              ></textarea>
+            </div>
 
-              <div>
-                <label class="block text-sm font-medium text-base-700 mb-2">Cuéntanos qué necesitas *</label>
-                <textarea
-                  name="mensaje"
-                  rows="4"
-                  required
-                  class="w-full px-4 py-3 border border-base-300 rounded-lg focus:ring-2 focus:ring-[#0052cc] focus:border-[#0052cc] bg-base-25"
-                  placeholder="Ejemplo: Necesito implementar un chatbot para mi tienda online..."
-                ></textarea>
-              </div>
+            <input type="hidden" name="selectedDate" id="selectedDateInput" value="" />
+            <input type="hidden" name="selectedTime" id="selectedTimeInput" value="" />
 
-              <!-- Hidden fields for selected date/time -->
-              <input type="hidden" name="selectedDate" id="selectedDateInput" value="" />
-              <input type="hidden" name="selectedTime" id="selectedTimeInput" value="" />
+            <button type="submit" id="submit-button"
+              class="w-full px-6 py-4 rounded-xl font-bold text-sm transition-all"
+              style="background:linear-gradient(135deg,#2563eb,#1d4ed8);color:white;box-shadow:0 6px 20px rgba(37,99,235,0.4);"
+              onmouseover="this.style.opacity='0.92';this.style.transform='translateY(-1px)'"
+              onmouseout="this.style.opacity='1';this.style.transform='translateY(0)'">
+              <span id="button-text">Confirmar reunión</span>
+              <span id="button-loading" class="hidden">Agendando...</span>
+            </button>
 
-              <button
-                type="submit"
-                id="submit-button"
-                class="w-full px-6 py-4 bg-gradient-to-r from-[#0052cc] to-blue-600 text-white rounded-xl font-semibold hover:from-[#003d99] hover:to-blue-700 transition-all duration-200 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                <span id="button-text">Confirmar Reunión</span>
-                <span id="button-loading" class="hidden">Agendando...</span>
-              </button>
+            <p class="text-xs text-center" style="color:rgba(240,246,255,0.3);">
+              Al enviar, nos autorizas a contactarte sobre nuestros servicios.
+            </p>
+          </form>
 
-              <p class="text-sm text-base-500 text-center">
-                Al enviar este formulario, nos autorizas a contactarte sobre nuestros servicios.
-              </p>
-            </form>
-
-            <!-- Success message -->
-            <div id="booking-success" class="hidden space-y-4">
-              <!-- Success Badge -->
-              <div class="bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-2xl p-6 text-center shadow-xl">
-                <div class="text-6xl mb-3">✅</div>
-                <h4 class="text-2xl font-bold mb-2">¡Reunión Confirmada!</h4>
-                <p style="color: white;" id="confirmed-date-time" class="text-green-100 text-lg font-medium"></p>
-              </div>
+          <!-- Success message -->
+          <div id="booking-success" class="hidden space-y-4">
+            <div class="rounded-2xl p-6 text-center" style="background:linear-gradient(135deg,rgba(34,197,94,0.15),rgba(16,185,129,0.1));border:1px solid rgba(74,222,128,0.3);">
+              <div class="text-5xl mb-3">✅</div>
+              <h4 class="text-xl font-bold mb-2" style="color:#f0f6ff;">¡Reunión confirmada!</h4>
+              <p id="confirmed-date-time" class="text-sm font-medium" style="color:#4ade80;"></p>
             </div>
           </div>
         </div>
@@ -185,39 +199,53 @@
     </div>
 
     <!-- Info cards -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 max-w-6xl mx-auto">
-      <div class="bg-base-50 rounded-xl p-6 text-center border border-base-200">
-        <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-3 shadow-lg">
-          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
+      <div class="rounded-xl p-5 flex items-center gap-4" style="background:rgba(255,255,255,0.03);border:1px solid rgba(59,130,246,0.15);">
+        <div class="w-10 h-10 rounded-xl flex-shrink-0 flex items-center justify-center" style="background:rgba(74,222,128,0.12);border:1px solid rgba(74,222,128,0.22);">
+          <svg class="w-5 h-5" fill="none" stroke="#4ade80" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
           </svg>
         </div>
-        <h3 class="font-semibold text-base-900 mb-2">Confirmación Inmediata</h3>
-        <p class="text-sm text-base-600">Recibirás la confirmación por email y una invitación de calendario</p>
+        <div>
+          <p class="text-sm font-bold" style="color:#f0f6ff;">Confirmación inmediata</p>
+          <p class="text-xs" style="color:rgba(240,246,255,0.5);">Email + invitación de calendario</p>
+        </div>
       </div>
 
-      <div class="bg-base-50 rounded-xl p-6 text-center border border-base-200">
-        <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-3 shadow-lg">
-          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+      <div class="rounded-xl p-5 flex items-center gap-4" style="background:rgba(255,255,255,0.03);border:1px solid rgba(59,130,246,0.15);">
+        <div class="w-10 h-10 rounded-xl flex-shrink-0 flex items-center justify-center" style="background:rgba(59,130,246,0.12);border:1px solid rgba(59,130,246,0.22);">
+          <svg class="w-5 h-5" fill="none" stroke="#60a5fa" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
           </svg>
         </div>
-        <h3 class="font-semibold text-base-900 mb-2">Reunión Online</h3>
-        <p class="text-sm text-base-600">Videollamada desde donde estés, sin desplazamientos</p>
+        <div>
+          <p class="text-sm font-bold" style="color:#f0f6ff;">Reunión online</p>
+          <p class="text-xs" style="color:rgba(240,246,255,0.5);">Videollamada desde donde estés</p>
+        </div>
       </div>
 
-      <div class="bg-base-50 rounded-xl p-6 text-center border border-base-200">
-        <div class="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-3 shadow-lg">
-          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+      <div class="rounded-xl p-5 flex items-center gap-4" style="background:rgba(255,255,255,0.03);border:1px solid rgba(59,130,246,0.15);">
+        <div class="w-10 h-10 rounded-xl flex-shrink-0 flex items-center justify-center" style="background:rgba(129,140,248,0.12);border:1px solid rgba(129,140,248,0.22);">
+          <svg class="w-5 h-5" fill="none" stroke="#a5b4fc" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
           </svg>
         </div>
-        <h3 class="font-semibold text-base-900 mb-2">1 Hora de Consulta</h3>
-        <p class="text-sm text-base-600">Tiempo suficiente para analizar tu proyecto en detalle</p>
+        <div>
+          <p class="text-sm font-bold" style="color:#f0f6ff;">1 hora de consulta</p>
+          <p class="text-xs" style="color:rgba(240,246,255,0.5);">Análisis detallado de tu proyecto</p>
+        </div>
       </div>
     </div>
+
   </div>
 </section>
+
+<style>
+  /* Placeholder color en inputs oscuros */
+  input::placeholder, textarea::placeholder {
+    color: rgba(240,246,255,0.25);
+  }
+</style>
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
@@ -262,14 +290,11 @@
       const today = new Date();
       today.setHours(0, 0, 0, 0);
 
-      // Add empty cells for days before month starts (Monday = 0)
       const offset = firstDay === 0 ? 6 : firstDay - 1;
       for (let i = 0; i < offset; i++) {
-        const emptyDay = document.createElement('div');
-        calendarGrid.appendChild(emptyDay);
+        calendarGrid.appendChild(document.createElement('div'));
       }
 
-      // Add days
       for (let day = 1; day <= daysInMonth; day++) {
         const date = new Date(currentYear, currentMonth, day);
         date.setHours(0, 0, 0, 0);
@@ -277,21 +302,40 @@
         const dayButton = document.createElement('button');
         dayButton.type = 'button';
         dayButton.textContent = day.toString();
-        dayButton.className = 'aspect-square p-2 rounded-lg text-sm font-medium transition-all';
 
         const isPast = date < today;
         const isToday = date.getTime() === today.getTime();
         const isSelected = selectedDate && date.getTime() === selectedDate.getTime();
 
+        dayButton.style.cssText = `
+          aspect-ratio:1;padding:6px 2px;border-radius:8px;font-size:0.8rem;
+          font-weight:600;transition:all 0.15s;width:100%;
+        `;
+
         if (isPast) {
-          dayButton.className += ' text-base-400 cursor-not-allowed';
+          dayButton.style.color = 'rgba(240,246,255,0.2)';
+          dayButton.style.cursor = 'not-allowed';
           dayButton.disabled = true;
         } else if (isSelected) {
-          dayButton.className += ' bg-[#0052cc] text-white';
+          dayButton.style.background = '#2563eb';
+          dayButton.style.color = 'white';
+          dayButton.style.boxShadow = '0 0 12px rgba(37,99,235,0.5)';
         } else if (isToday) {
-          dayButton.className += ' bg-accent-100 text-accent-700 hover:bg-accent-200';
+          dayButton.style.background = 'rgba(59,130,246,0.18)';
+          dayButton.style.color = '#60a5fa';
+          dayButton.style.border = '1px solid rgba(59,130,246,0.4)';
         } else {
-          dayButton.className += ' text-base-700 hover:bg-blue-50 hover:text-[#0052cc]';
+          dayButton.style.color = 'rgba(240,246,255,0.75)';
+          dayButton.addEventListener('mouseover', () => {
+            dayButton.style.background = 'rgba(59,130,246,0.1)';
+            dayButton.style.color = '#93c5fd';
+          });
+          dayButton.addEventListener('mouseout', () => {
+            if (!isSelected) {
+              dayButton.style.background = 'transparent';
+              dayButton.style.color = 'rgba(240,246,255,0.75)';
+            }
+          });
         }
 
         if (!isPast) {
@@ -308,9 +352,8 @@
       selectedTimeInput.value = '';
       selectedDateInput.value = date.toISOString().split('T')[0];
 
-      generateCalendar(); // Refresh to show selection
+      generateCalendar();
 
-      // Hide initial message, show spinner
       timeSlotsLoading.classList.add('hidden');
       timeSlotsContainer.classList.remove('hidden');
       timeSlotsSpinner.classList.remove('hidden');
@@ -326,7 +369,6 @@
         });
 
         const data = await response.json();
-
         timeSlotsSpinner.classList.add('hidden');
 
         if (!response.ok || data.availableSlots.length === 0) {
@@ -334,14 +376,30 @@
           return;
         }
 
-        // Populate time slots
         timeSlotsGrid.innerHTML = '';
         data.availableSlots.forEach((slot: string) => {
           const button = document.createElement('button');
           button.type = 'button';
-          button.className = 'px-4 py-3 border-2 border-base-300 rounded-lg hover:border-[#0052cc] hover:bg-blue-50 transition-all text-sm font-medium';
           button.textContent = slot;
-
+          button.style.cssText = `
+            padding:10px 8px;border-radius:10px;font-size:0.8rem;font-weight:600;
+            transition:all 0.15s;
+            background:rgba(255,255,255,0.04);
+            border:1px solid rgba(59,130,246,0.2);
+            color:rgba(240,246,255,0.75);
+          `;
+          button.addEventListener('mouseover', () => {
+            button.style.borderColor = 'rgba(59,130,246,0.6)';
+            button.style.background = 'rgba(59,130,246,0.1)';
+            button.style.color = '#93c5fd';
+          });
+          button.addEventListener('mouseout', () => {
+            if (selectedTime !== slot) {
+              button.style.borderColor = 'rgba(59,130,246,0.2)';
+              button.style.background = 'rgba(255,255,255,0.04)';
+              button.style.color = 'rgba(240,246,255,0.75)';
+            }
+          });
           button.addEventListener('click', () => selectTimeSlot(slot, button));
           timeSlotsGrid.appendChild(button);
         });
@@ -356,17 +414,22 @@
     }
 
     function selectTimeSlot(time: string, button: HTMLButtonElement) {
-      // Remove previous selection
-      timeSlotsGrid.querySelectorAll('button').forEach(btn => {
-        btn.className = 'px-4 py-3 border-2 border-base-300 rounded-lg hover:border-[#0052cc] hover:bg-blue-50 transition-all text-sm font-medium';
+      timeSlotsGrid.querySelectorAll('button').forEach((btn: Element) => {
+        const b = btn as HTMLButtonElement;
+        b.style.borderColor = 'rgba(59,130,246,0.2)';
+        b.style.background = 'rgba(255,255,255,0.04)';
+        b.style.color = 'rgba(240,246,255,0.75)';
+        b.style.boxShadow = 'none';
       });
 
-      // Add selection
-      button.className = 'px-4 py-3 border-2 border-[#0052cc] bg-blue-50 rounded-lg text-[#0052cc] font-semibold';
+      button.style.borderColor = '#2563eb';
+      button.style.background = 'rgba(37,99,235,0.2)';
+      button.style.color = '#93c5fd';
+      button.style.boxShadow = '0 0 10px rgba(37,99,235,0.3)';
+
       selectedTime = time;
       selectedTimeInput.value = time;
 
-      // Update indicator
       if (selectedDate) {
         const dateStr = `${selectedDate.getDate()} de ${monthNames[selectedDate.getMonth()]}`;
         selectedSlotText.textContent = `Reunión: ${dateStr} a las ${time}h`;
@@ -376,28 +439,20 @@
 
     prevMonthBtn.addEventListener('click', () => {
       currentMonth--;
-      if (currentMonth < 0) {
-        currentMonth = 11;
-        currentYear--;
-      }
+      if (currentMonth < 0) { currentMonth = 11; currentYear--; }
       generateCalendar();
     });
 
     nextMonthBtn.addEventListener('click', () => {
       currentMonth++;
-      if (currentMonth > 11) {
-        currentMonth = 0;
-        currentYear++;
-      }
+      if (currentMonth > 11) { currentMonth = 0; currentYear++; }
       generateCalendar();
     });
 
     function showAlert(message: string, type: 'success' | 'error') {
-      alertContainer.className = `max-w-5xl mx-auto mb-6 p-4 rounded-lg ${
-        type === 'success'
-          ? 'bg-green-50 border border-green-200 text-green-800'
-          : 'bg-red-50 border border-red-200 text-red-800'
-      }`;
+      alertContainer.style.cssText = type === 'success'
+        ? 'background:rgba(74,222,128,0.08);border:1px solid rgba(74,222,128,0.25);color:#4ade80;padding:12px 16px;border-radius:12px;'
+        : 'background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.25);color:#fca5a5;padding:12px 16px;border-radius:12px;';
       alertContainer.innerHTML = message;
       alertContainer.classList.remove('hidden');
       alertContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -405,6 +460,7 @@
 
     function setLoading(loading: boolean) {
       submitButton.disabled = loading;
+      submitButton.style.opacity = loading ? '0.6' : '1';
       if (loading) {
         buttonText.classList.add('hidden');
         buttonLoading.classList.remove('hidden');
@@ -438,13 +494,11 @@
           meetingForm.classList.add('hidden');
           bookingSuccess.classList.remove('hidden');
 
-          // Show confirmed date and time
           if (selectedDate && selectedTime) {
             const dateStr = `${selectedDate.getDate()} de ${monthNames[selectedDate.getMonth()]} de ${selectedDate.getFullYear()}`;
             confirmedDateTime.textContent = `${dateStr} a las ${selectedTime}h (1 hora)`;
           }
 
-          // Scroll to success message
           bookingSuccess.scrollIntoView({ behavior: 'smooth', block: 'start' });
         } else {
           showAlert(data.error || 'Ha ocurrido un error. Por favor, inténtalo de nuevo.', 'error');
