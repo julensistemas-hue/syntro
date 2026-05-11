@@ -11,9 +11,14 @@ interface Props {
 const { title, description, icon, features, href, featured = false } = Astro.props;
 
 // Texto del botón según el tipo de servicio
-const sinDemo = ["Consultoría IA", "Soporte Técnico IT", "Posicionamiento SEO y GEO", "Diseño Web Profesional"].includes(title);
-const buttonText = sinDemo ? "Solicitar información" : "Ver Demo Interactiva";
-const isConsultoria = sinDemo; // reutilizado para el icono del botón
+const conDemo = ["Chatbot Inteligente", "Gestor Documental IA", "Gestor de Citas IA", "Atención de Llamadas IA", "Automatización de Procesos"].includes(title);
+const conInfo  = ["Consultoría IA", "Diseño Web Profesional"].includes(title);
+const conWazuh = title === "Wazuh & Ciberseguridad";
+const buttonText = conDemo   ? "Ver demo interactiva"
+                 : conInfo   ? "Solicitar información"
+                 : conWazuh  ? "Ver Wazuh"
+                 : "Ver servicio"; // Soporte Técnico IT, etc.
+const isConsultoria = !conDemo; // reutilizado para el icono del botón
 ---
 
 <div
