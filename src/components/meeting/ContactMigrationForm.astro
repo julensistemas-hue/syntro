@@ -1,135 +1,145 @@
 ---
-// Contact form for WordPress migration inquiries
+// Contact form for migration/service inquiries — dark theme (mismo estilo que /wazuh)
 ---
 
-<section class="pt-10 pb-20 bg-base-25">
-  <div class="max-w-4xl mx-auto px-8 md:px-12 lg:px-24">
+<section class="relative min-h-screen py-20 pb-24 overflow-hidden" style="background:#020817;">
+  <!-- Grid de fondo -->
+  <div class="absolute inset-0 pointer-events-none" style="background-image:linear-gradient(rgba(59,130,246,0.12) 1px,transparent 1px),linear-gradient(90deg,rgba(59,130,246,0.12) 1px,transparent 1px);background-size:40px 40px;opacity:0.6;"></div>
+  <!-- Gradiente radial -->
+  <div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(ellipse 80% 60% at 50% 20%,rgba(37,99,235,0.15) 0%,transparent 65%);"></div>
+
+  <div class="relative max-w-2xl mx-auto px-6 md:px-10">
+
+    <!-- Header -->
     <div class="text-center mb-12">
-      <h1 class="text-4xl md:text-5xl font-bold text-base-900 mb-6">
-        <span class="text-[#0052cc]">Solicita Información de tu Proyecto</span>
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold mb-6 border" style="background:rgba(59,130,246,0.1);border-color:rgba(59,130,246,0.28);color:#60a5fa;">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+        </svg>
+        Respuesta en menos de 24h
+      </div>
+      <h1 class="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight" style="color:#f0f6ff;">
+        Solicita información de tu proyecto
       </h1>
-      <p class="text-xl text-base-600 max-w-3xl mx-auto">
-        Completa el formulario y te responderemos en menos de 24 horas con más detalles sobre tu proyecto.
+      <p class="text-lg max-w-xl mx-auto" style="color:rgba(240,246,255,0.65);">
+        Completa el formulario y te responderemos con un análisis gratuito y estimación de coste para tu proyecto.
       </p>
     </div>
 
     <!-- Alert Container -->
     <div id="alert-container" class="mb-6 hidden"></div>
 
-    <!-- Form Container -->
-    <div class="bg-base-50 rounded-2xl shadow-xl overflow-hidden border border-base-200">
-      <div class="bg-gradient-to-r from-[#0052cc] to-blue-600 px-6 py-4 text-white">
-        <h3 class="text-lg font-semibold">Cuéntanos sobre tu proyecto</h3>
-        <p class="text-sm opacity-90">Todos los campos son obligatorios</p>
+    <!-- Card formulario -->
+    <div class="rounded-2xl overflow-hidden" style="background:rgba(255,255,255,0.03);border:1px solid rgba(59,130,246,0.2);backdrop-filter:blur(12px);">
+
+      <!-- Header card -->
+      <div class="px-6 py-4 flex items-center gap-3" style="background:rgba(37,99,235,0.15);border-bottom:1px solid rgba(59,130,246,0.2);">
+        <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background:rgba(59,130,246,0.2);">
+          <svg class="w-4 h-4" fill="none" stroke="#60a5fa" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+          </svg>
+        </div>
+        <div>
+          <h3 class="text-sm font-bold" style="color:#f0f6ff;">Cuéntanos sobre tu proyecto</h3>
+          <p class="text-xs" style="color:rgba(240,246,255,0.5);">Los campos marcados con * son obligatorios</p>
+        </div>
       </div>
 
-      <div class="p-8">
-        <form id="migration-contact-form" class="space-y-6">
-          <!-- Plan Selected (Hidden, populated from URL) -->
-          <input type="hidden" id="plan-selected" name="plan" value="">
+      <div class="p-7">
+        <!-- Plan seleccionado -->
+        <div id="plan-display" class="hidden mb-6 p-3 rounded-xl flex items-center gap-3" style="background:rgba(59,130,246,0.08);border:1px solid rgba(59,130,246,0.25);">
+          <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="#60a5fa" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+          </svg>
+          <p class="text-sm" style="color:rgba(240,246,255,0.7);">
+            Servicio seleccionado: <span id="plan-name" class="font-bold" style="color:#93c5fd;"></span>
+          </p>
+        </div>
 
-          <!-- Plan Display -->
-          <div id="plan-display" class="bg-base-50 border-2 border-blue-500 rounded-lg p-4 hidden">
-            <p class="text-sm text-base-800">
-              <strong>Servicio/Plan seleccionado:</strong> <span id="plan-name" class="italic font-semibold text-blue-600"></span>
-            </p>
-          </div>
+        <form id="migration-contact-form" class="space-y-5">
+          <input type="hidden" id="plan-selected" name="plan" value="">
 
           <!-- Nombre -->
           <div>
-            <label for="nombre" class="block text-sm font-medium text-base-700 mb-2">
-              Nombre *
-            </label>
-            <input
-              type="text"
-              id="nombre"
-              name="nombre"
-              required
-              class="w-full px-4 py-3 border border-base-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-accent-500 transition-colors"
+            <label class="block text-xs font-semibold uppercase tracking-wider mb-2" style="color:rgba(240,246,255,0.5);">Nombre *</label>
+            <input type="text" id="nombre" name="nombre" required
+              class="w-full px-4 py-3 rounded-xl text-sm font-medium outline-none transition-all"
+              style="background:rgba(255,255,255,0.05);border:1px solid rgba(59,130,246,0.2);color:#f0f6ff;"
               placeholder="Tu nombre"
+              onfocus="this.style.borderColor='rgba(59,130,246,0.6)';this.style.boxShadow='0 0 0 3px rgba(59,130,246,0.1)'"
+              onblur="this.style.borderColor='rgba(59,130,246,0.2)';this.style.boxShadow='none'"
             />
           </div>
 
           <!-- Empresa -->
           <div>
-            <label for="empresa" class="block text-sm font-medium text-base-700 mb-2">
-              Empresa (opcional)
-            </label>
-            <input
-              type="text"
-              id="empresa"
-              name="empresa"
-              class="w-full px-4 py-3 border border-base-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-accent-500 transition-colors"
+            <label class="block text-xs font-semibold uppercase tracking-wider mb-2" style="color:rgba(240,246,255,0.5);">Empresa (opcional)</label>
+            <input type="text" id="empresa" name="empresa"
+              class="w-full px-4 py-3 rounded-xl text-sm font-medium outline-none transition-all"
+              style="background:rgba(255,255,255,0.05);border:1px solid rgba(59,130,246,0.2);color:#f0f6ff;"
               placeholder="Nombre de tu empresa"
+              onfocus="this.style.borderColor='rgba(59,130,246,0.6)';this.style.boxShadow='0 0 0 3px rgba(59,130,246,0.1)'"
+              onblur="this.style.borderColor='rgba(59,130,246,0.2)';this.style.boxShadow='none'"
             />
           </div>
 
           <!-- Email -->
           <div>
-            <label for="email" class="block text-sm font-medium text-base-700 mb-2">
-              Email (opcional)
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              class="w-full px-4 py-3 border border-base-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-accent-500 transition-colors"
+            <label class="block text-xs font-semibold uppercase tracking-wider mb-2" style="color:rgba(240,246,255,0.5);">Email (opcional)</label>
+            <input type="email" id="email" name="email"
+              class="w-full px-4 py-3 rounded-xl text-sm font-medium outline-none transition-all"
+              style="background:rgba(255,255,255,0.05);border:1px solid rgba(59,130,246,0.2);color:#f0f6ff;"
               placeholder="tu@email.com"
+              onfocus="this.style.borderColor='rgba(59,130,246,0.6)';this.style.boxShadow='0 0 0 3px rgba(59,130,246,0.1)'"
+              onblur="this.style.borderColor='rgba(59,130,246,0.2)';this.style.boxShadow='none'"
             />
           </div>
 
-          <!-- Phone -->
+          <!-- Teléfono -->
           <div>
-            <label for="telefono" class="block text-sm font-medium text-base-700 mb-2">
-              Teléfono *
-            </label>
-            <input
-              type="tel"
-              id="telefono"
-              name="telefono"
-              required
-              class="w-full px-4 py-3 border border-base-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-accent-500 transition-colors"
+            <label class="block text-xs font-semibold uppercase tracking-wider mb-2" style="color:rgba(240,246,255,0.5);">Teléfono *</label>
+            <input type="tel" id="telefono" name="telefono" required
+              class="w-full px-4 py-3 rounded-xl text-sm font-medium outline-none transition-all"
+              style="background:rgba(255,255,255,0.05);border:1px solid rgba(59,130,246,0.2);color:#f0f6ff;"
               placeholder="+34 600 000 000"
+              onfocus="this.style.borderColor='rgba(59,130,246,0.6)';this.style.boxShadow='0 0 0 3px rgba(59,130,246,0.1)'"
+              onblur="this.style.borderColor='rgba(59,130,246,0.2)';this.style.boxShadow='none'"
             />
           </div>
 
-          <!-- Current WordPress URL (optional, only for migration projects) -->
+          <!-- URL WordPress (condicional) -->
           <div id="wordpress-url-field" class="hidden">
-            <label for="wordpress-url" class="block text-sm font-medium text-base-700 mb-2">
-              URL de tu WordPress actual (opcional)
-            </label>
-            <input
-              type="url"
-              id="wordpress-url"
-              name="wordpress_url"
-              class="w-full px-4 py-3 bg-white border border-base-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-accent-500 transition-colors text-base-900"
+            <label class="block text-xs font-semibold uppercase tracking-wider mb-2" style="color:rgba(240,246,255,0.5);">URL de tu WordPress actual (opcional)</label>
+            <input type="url" id="wordpress-url" name="wordpress_url"
+              class="w-full px-4 py-3 rounded-xl text-sm font-medium outline-none transition-all"
+              style="background:rgba(255,255,255,0.05);border:1px solid rgba(59,130,246,0.2);color:#f0f6ff;"
               placeholder="https://tuweb.com"
+              onfocus="this.style.borderColor='rgba(59,130,246,0.6)';this.style.boxShadow='0 0 0 3px rgba(59,130,246,0.1)'"
+              onblur="this.style.borderColor='rgba(59,130,246,0.2)';this.style.boxShadow='none'"
             />
           </div>
 
-          <!-- Message -->
+          <!-- Mensaje -->
           <div>
-            <label for="mensaje" class="block text-sm font-medium text-base-700 mb-2">
-              Mensaje adicional (opcional)
-            </label>
-            <textarea
-              id="mensaje"
-              name="mensaje"
-              rows="4"
-              class="w-full px-4 py-3 border border-base-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-accent-500 transition-colors resize-none"
+            <label class="block text-xs font-semibold uppercase tracking-wider mb-2" style="color:rgba(240,246,255,0.5);">Mensaje adicional (opcional)</label>
+            <textarea id="mensaje" name="mensaje" rows="4"
+              class="w-full px-4 py-3 rounded-xl text-sm font-medium outline-none transition-all resize-none"
+              style="background:rgba(255,255,255,0.05);border:1px solid rgba(59,130,246,0.2);color:#f0f6ff;"
               placeholder="Cuéntanos sobre tu proyecto, páginas actuales, funcionalidades especiales..."
+              onfocus="this.style.borderColor='rgba(59,130,246,0.6)';this.style.boxShadow='0 0 0 3px rgba(59,130,246,0.1)'"
+              onblur="this.style.borderColor='rgba(59,130,246,0.2)';this.style.boxShadow='none'"
             ></textarea>
           </div>
 
-          <!-- Submit Button -->
-          <button
-            type="submit"
-            id="submit-btn"
-            class="w-full bg-gradient-to-r from-[#0052cc] to-blue-600 hover:from-[#0041a3] hover:to-blue-700 text-white font-semibold py-4 px-8 rounded-lg transition-all duration-200 transform hover:scale-[1.02] shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            <span id="btn-text">Enviar Solicitud</span>
-            <span id="btn-spinner" class="hidden">
-              <svg class="animate-spin inline-block h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <!-- Submit -->
+          <button type="submit" id="submit-btn"
+            class="w-full px-6 py-4 rounded-xl font-bold text-sm transition-all"
+            style="background:linear-gradient(135deg,#2563eb,#1d4ed8);color:white;box-shadow:0 6px 20px rgba(37,99,235,0.4);"
+            onmouseover="this.style.opacity='0.92';this.style.transform='translateY(-1px)'"
+            onmouseout="this.style.opacity='1';this.style.transform='translateY(0)'">
+            <span id="btn-text">Enviar solicitud</span>
+            <span id="btn-spinner" class="hidden inline-flex items-center gap-2">
+              <svg class="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                 <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
               </svg>
@@ -138,21 +148,47 @@
           </button>
         </form>
 
-        <!-- Success Message (Hidden by default) - Outside form so it stays visible -->
+        <!-- Success -->
         <div id="success-message" class="hidden mt-6">
-          <div class="p-6 rounded-lg border-l-4 text-center" style="background-color: #374151; border-color: #8B5CF6;">
-            <div class="text-6xl mb-3">✅</div>
-            <h4 class="text-2xl font-bold mb-2 text-white">¡Solicitud Enviada!</h4>
-            <p class="text-lg text-white font-semibold">Te responderemos en menos de 24 horas.</p>
+          <div class="rounded-2xl p-6 text-center" style="background:linear-gradient(135deg,rgba(34,197,94,0.12),rgba(16,185,129,0.08));border:1px solid rgba(74,222,128,0.28);">
+            <div class="text-5xl mb-3">✅</div>
+            <h4 class="text-xl font-bold mb-2" style="color:#f0f6ff;">¡Solicitud enviada!</h4>
+            <p class="text-sm font-medium" style="color:#4ade80;">Te responderemos en menos de 24 horas.</p>
           </div>
         </div>
       </div>
     </div>
+
+    <!-- Info pills debajo -->
+    <div class="flex flex-wrap justify-center gap-4 mt-8">
+      <div class="flex items-center gap-2 text-sm" style="color:rgba(240,246,255,0.5);">
+        <svg class="w-4 h-4" fill="none" stroke="#4ade80" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+        </svg>
+        Análisis gratuito
+      </div>
+      <div class="flex items-center gap-2 text-sm" style="color:rgba(240,246,255,0.5);">
+        <svg class="w-4 h-4" fill="none" stroke="#60a5fa" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+        Respuesta en &lt;24h
+      </div>
+      <div class="flex items-center gap-2 text-sm" style="color:rgba(240,246,255,0.5);">
+        <svg class="w-4 h-4" fill="none" stroke="#a5b4fc" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/>
+        </svg>
+        Sin compromiso
+      </div>
+    </div>
+
   </div>
 </section>
 
+<style>
+  input::placeholder, textarea::placeholder { color: rgba(240,246,255,0.25); }
+</style>
+
 <script>
-  // Get plan from URL query parameter
   const urlParams = new URLSearchParams(window.location.search);
   const plan = urlParams.get('plan');
 
@@ -165,26 +201,20 @@
     if (planDisplay && planName) {
       planDisplay.classList.remove('hidden');
 
-      // Map plan codes to display names
       const planNames: { [key: string]: string } = {
-        // Migración WordPress
         'landing': 'Landing Page (450€)',
         'corporativa': 'Web Corporativa (800€)',
         'personalizada': 'Página Personalizada (1,000€ - 2,000€)',
-
-        // Wazuh / Ciberseguridad
         'wazuh-implementacion': 'Implementación Wazuh',
         'wazuh-basico': 'Wazuh Básico',
         'wazuh-empresarial': 'Wazuh Empresarial',
         'wazuh-avanzado': 'Wazuh Avanzado',
         'wazuh-consultoria': 'Consultoría Wazuh',
         'wazuh-soporte': 'Soporte Wazuh',
-
-        // Otros servicios
         'consultoria-ia': 'Consultoría IA',
         'desarrollo-web': 'Desarrollo Web',
         'automatizacion': 'Automatización de Procesos',
-        'concienciacion': 'Concienciación en Ciberseguridad — Simulación de phishing y formación',
+        'concienciacion': 'Concienciación en Ciberseguridad',
         'chatbot': 'Chatbot Inteligente IA',
         'gestor-documental': 'Gestor Documental IA',
         'gestor-citas': 'Gestor de Citas IA',
@@ -193,17 +223,13 @@
 
       planName.textContent = planNames[plan] || plan;
 
-      // Show WordPress URL field only for migration plans
       const wordpressUrlField = document.getElementById('wordpress-url-field');
-      const migrationPlans = ['landing', 'corporativa', 'personalizada'];
-
-      if (wordpressUrlField && migrationPlans.includes(plan)) {
+      if (wordpressUrlField && ['landing', 'corporativa', 'personalizada'].includes(plan)) {
         wordpressUrlField.classList.remove('hidden');
       }
     }
   }
 
-  // Form submission
   const form = document.getElementById('migration-contact-form') as HTMLFormElement;
   const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
   const btnText = document.getElementById('btn-text');
@@ -213,32 +239,21 @@
 
   function showAlert(message: string, type: 'success' | 'error' = 'success') {
     if (!alertContainer) return;
-
-    const bgColor = type === 'success' ? 'bg-green-50 border-green-200 text-green-800' : 'bg-red-50 border-red-200 text-red-800';
-    const icon = type === 'success' ? '✅' : '❌';
-
-    alertContainer.innerHTML = `
-      <div class="${bgColor} border rounded-lg p-4">
-        <p class="text-sm font-medium">${icon} ${message}</p>
-      </div>
-    `;
+    alertContainer.style.cssText = type === 'success'
+      ? 'background:rgba(74,222,128,0.08);border:1px solid rgba(74,222,128,0.25);color:#4ade80;padding:12px 16px;border-radius:12px;'
+      : 'background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.25);color:#fca5a5;padding:12px 16px;border-radius:12px;';
+    alertContainer.innerHTML = `<p class="text-sm font-medium">${message}</p>`;
     alertContainer.classList.remove('hidden');
-
-    // Auto-hide after 5 seconds
-    setTimeout(() => {
-      alertContainer.classList.add('hidden');
-    }, 5000);
+    setTimeout(() => alertContainer.classList.add('hidden'), 5000);
   }
 
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    // Disable button and show spinner
-    if (submitBtn) submitBtn.disabled = true;
+    if (submitBtn) { submitBtn.disabled = true; submitBtn.style.opacity = '0.6'; }
     if (btnText) btnText.classList.add('hidden');
     if (btnSpinner) btnSpinner.classList.remove('hidden');
 
-    // Get form data
     const formData = new FormData(form);
     const data = {
       nombre: formData.get('nombre'),
@@ -253,30 +268,25 @@
     try {
       const response = await fetch('/api/send-migration-contact', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
       });
 
       const result = await response.json();
 
       if (response.ok) {
-        // Hide form and show success message
         form.classList.add('hidden');
-        if (successMessage) successMessage.classList.remove('hidden');
-
-        // Scroll to success message
-        successMessage?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        if (successMessage) {
+          successMessage.classList.remove('hidden');
+          successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
       } else {
         throw new Error(result.error || 'Error al enviar el formulario');
       }
     } catch (error) {
       console.error('Error:', error);
-      showAlert('Error al enviar la solicitud. Por favor, inténtalo de nuevo.', 'error');
-
-      // Re-enable button
-      if (submitBtn) submitBtn.disabled = false;
+      showAlert('❌ Error al enviar la solicitud. Por favor, inténtalo de nuevo.', 'error');
+      if (submitBtn) { submitBtn.disabled = false; submitBtn.style.opacity = '1'; }
       if (btnText) btnText.classList.remove('hidden');
       if (btnSpinner) btnSpinner.classList.add('hidden');
     }
