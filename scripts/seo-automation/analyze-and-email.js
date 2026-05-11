@@ -17,6 +17,7 @@ const path = require('path');
 const GSC_FILE = path.join(__dirname, 'search-console-data.json');
 const GA4_FILE = path.join(__dirname, 'ga4-data.json');
 const CHANGES_FILE = path.join(__dirname, 'seo-changes.json');
+const AB_FILE = path.join(__dirname, 'ab-state.json');
 const RESEND_API_KEY = process.env.RESEND_API_KEY || 're_YG4icTFX_BY8beBj8wNbrpDYCBQn2xPci';
 const TO = process.env.REPORT_EMAIL || 'julen.sistemas@gmail.com';
 
@@ -35,6 +36,7 @@ function loadJSON(file, fallback = null) {
 const gsc = loadJSON(GSC_FILE);
 const ga4 = loadJSON(GA4_FILE);
 const changesLog = loadJSON(CHANGES_FILE, { changes: [] });
+const abState = loadJSON(AB_FILE, { currentVariations: {}, history: [] });
 
 if (!gsc) { console.error('❌ No search-console-data.json'); process.exit(1); }
 
@@ -259,6 +261,69 @@ if (bestEngaged.length > 0) {
   </div>`;
 }
 
+// ─── A/B test section ───────────────────────────────────────────────────────
+let abHtml = '';
+const abSlugs = Object.keys(abState.currentVariations || {});
+if (abSlugs.length > 0) {
+  // Para cada slug, buscar la última rotación en el historial para obtener el título activo
+  const lastRotation = abState.history && abState.history.length > 0
+    ? abState.history[abState.history.length - 1]
+    : null;
+  const lastRotationDate = lastRotation
+    ? new Date(lastRotation.timestamp).toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' })
+    : '—';
+
+  const rows = abSlugs.map(slug => {
+    const variation = abState.currentVariations[slug];
+    const varNum = (variation.titleIndex || 0) + 1;
+
+    // Título activo desde el último historial
+    const rotEntry = lastRotation && lastRotation.rotations
+      ? lastRotation.rotations.find(r => r.slug === slug)
+      : null;
+    const activeTitle = rotEntry ? rotEntry.newTitle : slug;
+
+    // Métricas actuales en GSC
+    const fullUrl = `https://aisecurity.es/blog/${slug}`;
+    const gscPage = (gsc.topPages || []).find(p => p.page === fullUrl || p.page === `/blog/${slug}`);
+    const clicks = gscPage ? gscPage.clicks : 0;
+    const impressions = gscPage ? gscPage.impressions : 0;
+    const ctr = gscPage ? (gscPage.ctr * 100).toFixed(1) + '%' : '—';
+    const pos = gscPage ? Number(gscPage.position).toFixed(1) : '—';
+    const ctrColor = gscPage && gscPage.ctr > 0.04 ? '#0a7c42' : gscPage && gscPage.ctr > 0.02 ? '#f59e0b' : '#c5221f';
+
+    return `
+    <tr style="border-bottom:1px solid #e8eaed">
+      <td style="padding:9px 10px;font-size:11px;max-width:200px">
+        <div style="font-weight:600;color:#333;font-size:10px">/blog/${slug}</div>
+        <div style="color:#555;font-size:11px;margin-top:3px;font-style:italic">"${activeTitle}"</div>
+      </td>
+      <td style="padding:9px 10px;text-align:center;font-size:12px;font-weight:700;color:#1a73e8">v${varNum}</td>
+      <td style="padding:9px 10px;text-align:center;font-size:12px">${clicks}</td>
+      <td style="padding:9px 10px;text-align:center;font-size:12px">${impressions}</td>
+      <td style="padding:9px 10px;text-align:center;font-size:12px;font-weight:600;color:${ctrColor}">${ctr}</td>
+      <td style="padding:9px 10px;text-align:center;font-size:12px">${pos}</td>
+    </tr>`;
+  }).join('');
+
+  abHtml = `
+  <div style="background:white;padding:20px 28px;border-left:4px solid #7c3aed;border-right:1px solid #e8eaed;margin-top:8px">
+    <h2 style="margin:0 0 4px;font-size:15px;color:#7c3aed">🔀 Test A/B — Títulos y Descripciones</h2>
+    <p style="margin:0 0 14px;font-size:11px;color:#666">Última rotación: ${lastRotationDate} · CTR &lt;2% = 🔴 · 2-4% = 🟡 · &gt;4% = 🟢</p>
+    <table style="width:100%;border-collapse:collapse;font-size:12px">
+      <tr style="background:#f8f9fa">
+        <th style="padding:8px 10px;font-size:11px;font-weight:600;color:#555;text-align:left">Página / Título activo</th>
+        <th style="padding:8px 10px;font-size:11px;font-weight:600;color:#555;text-align:center">Var.</th>
+        <th style="padding:8px 10px;font-size:11px;font-weight:600;color:#555;text-align:center">Clicks</th>
+        <th style="padding:8px 10px;font-size:11px;font-weight:600;color:#555;text-align:center">Impr.</th>
+        <th style="padding:8px 10px;font-size:11px;font-weight:600;color:#555;text-align:center">CTR</th>
+        <th style="padding:8px 10px;font-size:11px;font-weight:600;color:#555;text-align:center">Pos.</th>
+      </tr>
+      <tbody>${rows}</tbody>
+    </table>
+  </div>`;
+}
+
 // GA4 channels
 let channelsHtml = '';
 if (channels.length > 0) {
@@ -367,6 +432,7 @@ const html = `<!DOCTYPE html>
     </ul>
   </div>` : ''}
 
+  ${abHtml}
   ${channelsHtml}
   ${notesHtml}
 
