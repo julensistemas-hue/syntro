@@ -1,0 +1,2672 @@
+{
+  "generatedAt": "2026-05-11T15:10:49.484Z",
+  "siteUrl": "sc-domain:aisecurity.es",
+  "period": {
+    "startDate": "2026-04-08",
+    "endDate": "2026-05-08"
+  },
+  "previousPeriod": {
+    "startDate": "2026-03-09",
+    "endDate": "2026-04-08"
+  },
+  "periodDays": 30,
+  "totals": {
+    "current": {
+      "clicks": 45,
+      "impressions": 2656
+    },
+    "previous": {
+      "clicks": 42,
+      "impressions": 2231
+    }
+  },
+  "topKeywords": [
+    {
+      "keyword": "instalar wazuh en ubuntu 24.04",
+      "clicks": 14,
+      "impressions": 31,
+      "ctr": 0.45161290322580644,
+      "position": 2.3870967741935485,
+      "prevClicks": 11,
+      "prevPosition": 2.9142857142857146,
+      "isNew": false
+    },
+    {
+      "keyword": "wazuh ens",
+      "clicks": 4,
+      "impressions": 9,
+      "ctr": 0.4444444444444444,
+      "position": 1,
+      "prevClicks": 5,
+      "prevPosition": 1.0833333333333333,
+      "isNew": false
+    },
+    {
+      "keyword": "instalar wazuh en ubuntu",
+      "clicks": 3,
+      "impressions": 46,
+      "ctr": 0.06521739130434782,
+      "position": 4.5,
+      "prevClicks": 3,
+      "prevPosition": 4.833333333333334,
+      "isNew": false
+    },
+    {
+      "keyword": "instalar wazuh en ubuntu server",
+      "clicks": 3,
+      "impressions": 23,
+      "ctr": 0.13043478260869565,
+      "position": 5.260869565217392,
+      "prevClicks": 1,
+      "prevPosition": 5.142857142857143,
+      "isNew": false
+    },
+    {
+      "keyword": "aisecurity",
+      "clicks": 2,
+      "impressions": 3,
+      "ctr": 0.6666666666666666,
+      "position": 1,
+      "prevClicks": 0,
+      "prevPosition": 2.428571428571429,
+      "isNew": false
+    },
+    {
+      "keyword": "install wazuh ubuntu 24.04",
+      "clicks": 2,
+      "impressions": 6,
+      "ctr": 0.3333333333333333,
+      "position": 4,
+      "prevClicks": 0,
+      "prevPosition": 1,
+      "isNew": false
+    },
+    {
+      "keyword": "wazuh ia",
+      "clicks": 2,
+      "impressions": 21,
+      "ctr": 0.09523809523809523,
+      "position": 3.761904761904762,
+      "prevClicks": 4,
+      "prevPosition": 3.2666666666666666,
+      "isNew": false
+    },
+    {
+      "keyword": "wazuh que es",
+      "clicks": 2,
+      "impressions": 119,
+      "ctr": 0.01680672268907563,
+      "position": 8.705882352941178,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "agente wazuh",
+      "clicks": 1,
+      "impressions": 38,
+      "ctr": 0.02631578947368421,
+      "position": 7.578947368421052,
+      "prevClicks": 0,
+      "prevPosition": 7.448275862068965,
+      "isNew": false
+    },
+    {
+      "keyword": "ai security",
+      "clicks": 1,
+      "impressions": 36,
+      "ctr": 0.027777777777777776,
+      "position": 6.166666666666667,
+      "prevClicks": 4,
+      "prevPosition": 5.637931034482759,
+      "isNew": false
+    },
+    {
+      "keyword": "instalar wazuh en windows",
+      "clicks": 1,
+      "impressions": 24,
+      "ctr": 0.041666666666666664,
+      "position": 7,
+      "prevClicks": 1,
+      "prevPosition": 5.684210526315789,
+      "isNew": false
+    },
+    {
+      "keyword": "install wazuh ubuntu",
+      "clicks": 1,
+      "impressions": 8,
+      "ctr": 0.125,
+      "position": 5.625,
+      "prevClicks": 0,
+      "prevPosition": 6.5,
+      "isNew": false
+    },
+    {
+      "keyword": "que es wazuh",
+      "clicks": 1,
+      "impressions": 60,
+      "ctr": 0.016666666666666666,
+      "position": 10.95,
+      "prevClicks": 0,
+      "prevPosition": 7.7317073170731705,
+      "isNew": false
+    },
+    {
+      "keyword": "wazuh",
+      "clicks": 1,
+      "impressions": 1121,
+      "ctr": 0.0008920606601248885,
+      "position": 7.818911685994648,
+      "prevClicks": 4,
+      "prevPosition": 7.35102533172497,
+      "isNew": false
+    },
+    {
+      "keyword": "wazuh agent windows",
+      "clicks": 1,
+      "impressions": 76,
+      "ctr": 0.013157894736842105,
+      "position": 6.828947368421052,
+      "prevClicks": 0,
+      "prevPosition": 6.555555555555555,
+      "isNew": false
+    },
+    {
+      "keyword": "wazuh ai",
+      "clicks": 1,
+      "impressions": 9,
+      "ctr": 0.1111111111111111,
+      "position": 7.888888888888889,
+      "prevClicks": 0,
+      "prevPosition": 7,
+      "isNew": false
+    },
+    {
+      "keyword": "wazuh curso",
+      "clicks": 1,
+      "impressions": 18,
+      "ctr": 0.05555555555555555,
+      "position": 10.555555555555555,
+      "prevClicks": 0,
+      "prevPosition": 3.6470588235294117,
+      "isNew": false
+    },
+    {
+      "keyword": "wazuh elastic",
+      "clicks": 1,
+      "impressions": 8,
+      "ctr": 0.125,
+      "position": 4.875,
+      "prevClicks": 0,
+      "prevPosition": 5.833333333333333,
+      "isNew": false
+    },
+    {
+      "keyword": "wazuh elasticsearch",
+      "clicks": 1,
+      "impressions": 9,
+      "ctr": 0.1111111111111111,
+      "position": 3.6666666666666665,
+      "prevClicks": 1,
+      "prevPosition": 2,
+      "isNew": false
+    },
+    {
+      "keyword": "wazuh iso 27001",
+      "clicks": 1,
+      "impressions": 1,
+      "ctr": 1,
+      "position": 9,
+      "prevClicks": 0,
+      "prevPosition": 10,
+      "isNew": false
+    },
+    {
+      "keyword": "wazuh monitor docker",
+      "clicks": 1,
+      "impressions": 1,
+      "ctr": 1,
+      "position": 9,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "abrir correo corporativo",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 70,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "administrador de wazuh",
+      "clicks": 0,
+      "impressions": 8,
+      "ctr": 0,
+      "position": 11.125,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "advertencia de seguridad de internet outlook 2019",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 43,
+      "prevClicks": 0,
+      "prevPosition": 43,
+      "isNew": false
+    },
+    {
+      "keyword": "agendación de citas con asistentes virtuales",
+      "clicks": 0,
+      "impressions": 43,
+      "ctr": 0,
+      "position": 16.930232558139537,
+      "prevClicks": 0,
+      "prevPosition": 9.885714285714286,
+      "isNew": false
+    },
+    {
+      "keyword": "agent wazuh",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 9,
+      "prevClicks": 0,
+      "prevPosition": 7.333333333333333,
+      "isNew": false
+    },
+    {
+      "keyword": "agent wazuh windows",
+      "clicks": 0,
+      "impressions": 4,
+      "ctr": 0,
+      "position": 4.75,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "agente wazuh windows",
+      "clicks": 0,
+      "impressions": 10,
+      "ctr": 0,
+      "position": 6.1,
+      "prevClicks": 0,
+      "prevPosition": 5.615384615384615,
+      "isNew": false
+    },
+    {
+      "keyword": "agentes de ia para automatizar agendamiento y cobros",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 11,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "agentes de wazuh",
+      "clicks": 0,
+      "impressions": 12,
+      "ctr": 0,
+      "position": 10.75,
+      "prevClicks": 0,
+      "prevPosition": 14.625,
+      "isNew": false
+    },
+    {
+      "keyword": "ai backup",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 12,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "ai sec",
+      "clicks": 0,
+      "impressions": 4,
+      "ctr": 0,
+      "position": 4.75,
+      "prevClicks": 0,
+      "prevPosition": 4.5,
+      "isNew": false
+    },
+    {
+      "keyword": "ai secure",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 12,
+      "prevClicks": 0,
+      "prevPosition": 8,
+      "isNew": false
+    },
+    {
+      "keyword": "ai securiti",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 4,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "al security",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 2,
+      "prevClicks": 0,
+      "prevPosition": 2,
+      "isNew": false
+    },
+    {
+      "keyword": "atencion al cliente con chatbot malaga",
+      "clicks": 0,
+      "impressions": 18,
+      "ctr": 0,
+      "position": 35.77777777777778,
+      "prevClicks": 0,
+      "prevPosition": 32.45454545454545,
+      "isNew": false
+    },
+    {
+      "keyword": "automate backup",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 73,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "automatisk backup",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 13.5,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "automatizacion de citas",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 13,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "automatizar citas por teléfono",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 12,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "backup automatico",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 30,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "backup automático",
+      "clicks": 0,
+      "impressions": 4,
+      "ctr": 0,
+      "position": 26.75,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "backup automã¡tico",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 5,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "backup para empresas",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 85.5,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "blog tecnico",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 28,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "blog wazuh",
+      "clicks": 0,
+      "impressions": 7,
+      "ctr": 0,
+      "position": 5.428571428571429,
+      "prevClicks": 0,
+      "prevPosition": 7.555555555555555,
+      "isNew": false
+    },
+    {
+      "keyword": "boton de phishing en outlook",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 1,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "búsqueda inteligente de documentos",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 15.5,
+      "prevClicks": 0,
+      "prevPosition": 19,
+      "isNew": false
+    },
+    {
+      "keyword": "chatbot ai atención al cliente",
+      "clicks": 0,
+      "impressions": 32,
+      "ctr": 0,
+      "position": 30.125,
+      "prevClicks": 0,
+      "prevPosition": 19.048780487804876,
+      "isNew": false
+    },
+    {
+      "keyword": "chatbot atencion al cliente malaga",
+      "clicks": 0,
+      "impressions": 4,
+      "ctr": 0,
+      "position": 32,
+      "prevClicks": 0,
+      "prevPosition": 30.923076923076923,
+      "isNew": false
+    },
+    {
+      "keyword": "chatbot gestion de citas",
+      "clicks": 0,
+      "impressions": 56,
+      "ctr": 0,
+      "position": 25.089285714285715,
+      "prevClicks": 0,
+      "prevPosition": 27.555555555555557,
+      "isNew": false
+    },
+    {
+      "keyword": "chatbot inteligente",
+      "clicks": 0,
+      "impressions": 5,
+      "ctr": 0,
+      "position": 37.2,
+      "prevClicks": 0,
+      "prevPosition": 18.666666666666668,
+      "isNew": false
+    },
+    {
+      "keyword": "chatbot para atencion al cliente granada",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 24,
+      "prevClicks": 0,
+      "prevPosition": 17.161290322580644,
+      "isNew": false
+    },
+    {
+      "keyword": "chatbot para atencion al cliente malaga",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 66,
+      "prevClicks": 0,
+      "prevPosition": 35.88235294117647,
+      "isNew": false
+    },
+    {
+      "keyword": "chatbot reservas online",
+      "clicks": 0,
+      "impressions": 30,
+      "ctr": 0,
+      "position": 30.6,
+      "prevClicks": 0,
+      "prevPosition": 46,
+      "isNew": false
+    },
+    {
+      "keyword": "chatbot servicio al cliente malaga",
+      "clicks": 0,
+      "impressions": 15,
+      "ctr": 0,
+      "position": 34.86666666666667,
+      "prevClicks": 0,
+      "prevPosition": 24.115384615384617,
+      "isNew": false
+    },
+    {
+      "keyword": "ciberseguridad para empleados",
+      "clicks": 0,
+      "impressions": 54,
+      "ctr": 0,
+      "position": 19.59259259259259,
+      "prevClicks": 0,
+      "prevPosition": 43.5,
+      "isNew": false
+    },
+    {
+      "keyword": "citas con ia",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 11,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "como abrir correo corporativo",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 75,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "como instalar wazuh",
+      "clicks": 0,
+      "impressions": 4,
+      "ctr": 0,
+      "position": 7.75,
+      "prevClicks": 0,
+      "prevPosition": 7,
+      "isNew": false
+    },
+    {
+      "keyword": "como saber si un correo de microsoft es real",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 9,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "configurar correo corporativo en outlook android",
+      "clicks": 0,
+      "impressions": 5,
+      "ctr": 0,
+      "position": 6,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "configurar correo corporativo outlook en celular",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 10,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "consejos de ciberseguridad para empleados",
+      "clicks": 0,
+      "impressions": 77,
+      "ctr": 0,
+      "position": 6.402597402597403,
+      "prevClicks": 0,
+      "prevPosition": 11.333333333333334,
+      "isNew": false
+    },
+    {
+      "keyword": "consultor de citas digitales",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 9,
+      "prevClicks": 0,
+      "prevPosition": 10,
+      "isNew": false
+    },
+    {
+      "keyword": "contraseñas seguras empresas",
+      "clicks": 0,
+      "impressions": 6,
+      "ctr": 0,
+      "position": 25.666666666666668,
+      "prevClicks": 0,
+      "prevPosition": 40.8235294117647,
+      "isNew": false
+    },
+    {
+      "keyword": "copias de seguridad automaticas",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 84,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "correo corporativo con outlook",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 26,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "correo corporativo en outlook",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 47.5,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "correo corporativo microsoft",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 39,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "correo corporativo outlook",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 15.5,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "correo de microsoft falso",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 1,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "correo empresa outlook",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 30,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "correo outlook corporativo",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 35,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "curso de wazuh",
+      "clicks": 0,
+      "impressions": 15,
+      "ctr": 0,
+      "position": 9.2,
+      "prevClicks": 0,
+      "prevPosition": 23.095238095238095,
+      "isNew": false
+    },
+    {
+      "keyword": "curso sistema siem",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 17,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "curso wazuh",
+      "clicks": 0,
+      "impressions": 17,
+      "ctr": 0,
+      "position": 13.470588235294118,
+      "prevClicks": 2,
+      "prevPosition": 4.708333333333334,
+      "isNew": false
+    },
+    {
+      "keyword": "cyber partners vall d uixó",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 9,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "descargar wazuh",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 20,
+      "prevClicks": 0,
+      "prevPosition": 10.5,
+      "isNew": false
+    },
+    {
+      "keyword": "elasticsearch wazuh",
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 5.666666666666667,
+      "prevClicks": 0,
+      "prevPosition": 7,
+      "isNew": false
+    },
+    {
+      "keyword": "gestionar citas con agente ia",
+      "clicks": 0,
+      "impressions": 60,
+      "ctr": 0,
+      "position": 43.11666666666667,
+      "prevClicks": 0,
+      "prevPosition": 73.03846153846153,
+      "isNew": false
+    },
+    {
+      "keyword": "gestionar reservas con ia",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 71,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "gestor citas",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 4,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "gestor de citas",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 23,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "gestoria moncofa",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 63,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "gmail phishing",
+      "clicks": 0,
+      "impressions": 5,
+      "ctr": 0,
+      "position": 10,
+      "prevClicks": 0,
+      "prevPosition": 9,
+      "isNew": false
+    },
+    {
+      "keyword": "gmail phising",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 10,
+      "prevClicks": 0,
+      "prevPosition": 7,
+      "isNew": false
+    },
+    {
+      "keyword": "hay cursos",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 8,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "how to install wazuh on ubuntu",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 5,
+      "prevClicks": 0,
+      "prevPosition": 6,
+      "isNew": false
+    },
+    {
+      "keyword": "ia para agendar citas",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 89,
+      "prevClicks": 0,
+      "prevPosition": 13,
+      "isNew": false
+    },
+    {
+      "keyword": "ia para confirmación de citas",
+      "clicks": 0,
+      "impressions": 8,
+      "ctr": 0,
+      "position": 21.75,
+      "prevClicks": 0,
+      "prevPosition": 12,
+      "isNew": false
+    },
+    {
+      "keyword": "ia sec",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 1,
+      "prevClicks": 0,
+      "prevPosition": 4.75,
+      "isNew": false
+    },
+    {
+      "keyword": "ia security",
+      "clicks": 0,
+      "impressions": 4,
+      "ctr": 0,
+      "position": 16,
+      "prevClicks": 0,
+      "prevPosition": 7.181818181818182,
+      "isNew": false
+    },
+    {
+      "keyword": "instalacion de wazuh",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 10,
+      "prevClicks": 0,
+      "prevPosition": 9.5,
+      "isNew": false
+    },
+    {
+      "keyword": "instalar wazuh",
+      "clicks": 0,
+      "impressions": 15,
+      "ctr": 0,
+      "position": 8.533333333333333,
+      "prevClicks": 0,
+      "prevPosition": 7.6,
+      "isNew": false
+    },
+    {
+      "keyword": "install wazuh agent on ubuntu",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 10,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "install wazuh agent ubuntu",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 9,
+      "prevClicks": 0,
+      "prevPosition": 7,
+      "isNew": false
+    },
+    {
+      "keyword": "install wazuh agent ubuntu 24.04",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 5,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "install wazuh linux",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 7,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "install wazuh manager ubuntu",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 4,
+      "prevClicks": 0,
+      "prevPosition": 5,
+      "isNew": false
+    },
+    {
+      "keyword": "install wazuh on linux",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 9,
+      "prevClicks": 0,
+      "prevPosition": 9,
+      "isNew": false
+    },
+    {
+      "keyword": "install wazuh on ubuntu",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 6,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "install wazuh server on ubuntu 24.04",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 7,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "install wazuh ubuntu server",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 23,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "installing wazuh on ubuntu",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 6,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "kibana siem",
+      "clicks": 0,
+      "impressions": 5,
+      "ctr": 0,
+      "position": 8.6,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "kibana wazuh",
+      "clicks": 0,
+      "impressions": 4,
+      "ctr": 0,
+      "position": 8,
+      "prevClicks": 0,
+      "prevPosition": 9.5,
+      "isNew": false
+    },
+    {
+      "keyword": "linux wazuh",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 8,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "maewazxoyiuhiq",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 2,
+      "prevClicks": 0,
+      "prevPosition": 3,
+      "isNew": false
+    },
+    {
+      "keyword": "mantenimiento informático",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 9,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "microsoft correo corporativo",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 31,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "monitoreo de docker",
+      "clicks": 0,
+      "impressions": 5,
+      "ctr": 0,
+      "position": 10.2,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "monitorización citaciones ia tenerife",
+      "clicks": 0,
+      "impressions": 13,
+      "ctr": 0,
+      "position": 16.23076923076923,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "monitorización de contenedores",
+      "clicks": 0,
+      "impressions": 6,
+      "ctr": 0,
+      "position": 8.833333333333332,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "office 365 correo corporativo",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 31,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "office 365 wazuh",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 17,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "ollama",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 2,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "outlook 365 correo corporativo",
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 9.333333333333334,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "outlook corporativo",
+      "clicks": 0,
+      "impressions": 10,
+      "ctr": 0,
+      "position": 31.6,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "outlook correo corporativo",
+      "clicks": 0,
+      "impressions": 4,
+      "ctr": 0,
+      "position": 21.75,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "outlook correu corporatiu",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 20,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "outlook phising",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 10,
+      "prevClicks": 0,
+      "prevPosition": 9,
+      "isNew": false
+    },
+    {
+      "keyword": "para que sirve wazuh",
+      "clicks": 0,
+      "impressions": 6,
+      "ctr": 0,
+      "position": 4.833333333333334,
+      "prevClicks": 0,
+      "prevPosition": 4,
+      "isNew": false
+    },
+    {
+      "keyword": "phishing en outlook",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 1,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "phishing hotmail",
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 43.666666666666664,
+      "prevClicks": 0,
+      "prevPosition": 37.6,
+      "isNew": false
+    },
+    {
+      "keyword": "phishing microsoft email",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 11.5,
+      "prevClicks": 0,
+      "prevPosition": 12,
+      "isNew": false
+    },
+    {
+      "keyword": "phishing outlook",
+      "clicks": 0,
+      "impressions": 4,
+      "ctr": 0,
+      "position": 6,
+      "prevClicks": 0,
+      "prevPosition": 10.363636363636363,
+      "isNew": false
+    },
+    {
+      "keyword": "phishing outlook email",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 7,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "proteger datos con wazuh",
+      "clicks": 0,
+      "impressions": 6,
+      "ctr": 0,
+      "position": 13.166666666666666,
+      "prevClicks": 0,
+      "prevPosition": 17.25,
+      "isNew": false
+    },
+    {
+      "keyword": "puerto wazuh",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 1,
+      "prevClicks": 0,
+      "prevPosition": 11.5,
+      "isNew": false
+    },
+    {
+      "keyword": "que es wazu",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 1,
+      "prevClicks": 0,
+      "prevPosition": 10.5,
+      "isNew": false
+    },
+    {
+      "keyword": "que es wazuh y para que sirve",
+      "clicks": 0,
+      "impressions": 21,
+      "ctr": 0,
+      "position": 7.619047619047619,
+      "prevClicks": 0,
+      "prevPosition": 4.611111111111111,
+      "isNew": false
+    },
+    {
+      "keyword": "que hace wazuh",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 8.5,
+      "prevClicks": 0,
+      "prevPosition": 6.75,
+      "isNew": false
+    },
+    {
+      "keyword": "qué es wazuh",
+      "clicks": 0,
+      "impressions": 5,
+      "ctr": 0,
+      "position": 5.8,
+      "prevClicks": 0,
+      "prevPosition": 5.333333333333333,
+      "isNew": false
+    },
+    {
+      "keyword": "recepcionista ia",
+      "clicks": 0,
+      "impressions": 17,
+      "ctr": 0,
+      "position": 58.1764705882353,
+      "prevClicks": 1,
+      "prevPosition": 25.2,
+      "isNew": false
+    },
+    {
+      "keyword": "recepcionista virtual con ia",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 26.5,
+      "prevClicks": 0,
+      "prevPosition": 16,
+      "isNew": false
+    },
+    {
+      "keyword": "recepcionista virtual ia",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 7,
+      "prevClicks": 0,
+      "prevPosition": 9.5,
+      "isNew": false
+    },
+    {
+      "keyword": "remitente no verificado outlook",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 9.5,
+      "prevClicks": 0,
+      "prevPosition": 11,
+      "isNew": false
+    },
+    {
+      "keyword": "reportar phishing outlook",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 26,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "scam de hotmail",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 29.5,
+      "prevClicks": 0,
+      "prevPosition": 32.66666666666667,
+      "isNew": false
+    },
+    {
+      "keyword": "security ai",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 71,
+      "prevClicks": 0,
+      "prevPosition": 11.875,
+      "isNew": false
+    },
+    {
+      "keyword": "security ia",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 10,
+      "prevClicks": 0,
+      "prevPosition": 5.333333333333333,
+      "isNew": false
+    },
+    {
+      "keyword": "seguridad de datos con wazuh",
+      "clicks": 0,
+      "impressions": 11,
+      "ctr": 0,
+      "position": 10.545454545454545,
+      "prevClicks": 0,
+      "prevPosition": 14.25,
+      "isNew": false
+    },
+    {
+      "keyword": "seguridad de gmail",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 2,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "sentry mba",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 59,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "servidor smtp gmail",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 1,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "siem (wazuh)",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 10,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "siem elastic",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 27,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "siem elasticsearch",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 13,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "siem kibana",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 9,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "siem wazuh",
+      "clicks": 0,
+      "impressions": 47,
+      "ctr": 0,
+      "position": 9.382978723404255,
+      "prevClicks": 0,
+      "prevPosition": 7.857142857142857,
+      "isNew": false
+    },
+    {
+      "keyword": "sistema automático de copias de seguridad",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 38,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "site:.es \"auditoría semanal\"",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 5,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "software wazuh",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 7,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "soluciones de automatización de seguridad",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 25,
+      "prevClicks": 0,
+      "prevPosition": 95,
+      "isNew": false
+    },
+    {
+      "keyword": "soporte ciberseguridad",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 62.5,
+      "prevClicks": 0,
+      "prevPosition": 82,
+      "isNew": false
+    },
+    {
+      "keyword": "soporte informático linux",
+      "clicks": 0,
+      "impressions": 6,
+      "ctr": 0,
+      "position": 19,
+      "prevClicks": 0,
+      "prevPosition": 11.25,
+      "isNew": false
+    },
+    {
+      "keyword": "soporte it pymes sevilla",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 44,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "soporte técnico para antivirus empresarial",
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 92.33333333333333,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "threat hunting wazuh",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 5,
+      "prevClicks": 0,
+      "prevPosition": 6.333333333333333,
+      "isNew": false
+    },
+    {
+      "keyword": "threat intelligence wazuh",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 7,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "tracy ai",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 7,
+      "prevClicks": 0,
+      "prevPosition": 7,
+      "isNew": false
+    },
+    {
+      "keyword": "técnico informático remoto",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 50,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "ubuntu install wazuh",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 6,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "ubuntu wazuh",
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 5.333333333333333,
+      "prevClicks": 0,
+      "prevPosition": 5.6,
+      "isNew": false
+    },
+    {
+      "keyword": "veeam",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 38,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "waazuh",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 7,
+      "prevClicks": 0,
+      "prevPosition": 8,
+      "isNew": false
+    },
+    {
+      "keyword": "wafuh",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 6,
+      "prevClicks": 0,
+      "prevPosition": 7,
+      "isNew": false
+    },
+    {
+      "keyword": "wahuh",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 8,
+      "prevClicks": 0,
+      "prevPosition": 7,
+      "isNew": false
+    },
+    {
+      "keyword": "wahuz",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 7,
+      "prevClicks": 0,
+      "prevPosition": 8,
+      "isNew": false
+    },
+    {
+      "keyword": "wahza",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 8,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "wahzu",
+      "clicks": 0,
+      "impressions": 4,
+      "ctr": 0,
+      "position": 6.5,
+      "prevClicks": 0,
+      "prevPosition": 6.666666666666667,
+      "isNew": false
+    },
+    {
+      "keyword": "wahzuh",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 8,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "wasuh",
+      "clicks": 0,
+      "impressions": 7,
+      "ctr": 0,
+      "position": 6,
+      "prevClicks": 0,
+      "prevPosition": 6.444444444444445,
+      "isNew": false
+    },
+    {
+      "keyword": "wauzh",
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 7.666666666666667,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "waxuh",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 2,
+      "prevClicks": 0,
+      "prevPosition": 5,
+      "isNew": false
+    },
+    {
+      "keyword": "wazah",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 8,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "wazhu",
+      "clicks": 0,
+      "impressions": 31,
+      "ctr": 0,
+      "position": 7.903225806451613,
+      "prevClicks": 0,
+      "prevPosition": 7.12,
+      "isNew": false
+    },
+    {
+      "keyword": "wazhu siem",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 7,
+      "prevClicks": 0,
+      "prevPosition": 1,
+      "isNew": false
+    },
+    {
+      "keyword": "wazhuh",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 8,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "wazoo siem",
+      "clicks": 0,
+      "impressions": 4,
+      "ctr": 0,
+      "position": 3,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "wazu ciberseguridad",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 7,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "wazu edr",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 2,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "wazu siem",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 9,
+      "prevClicks": 0,
+      "prevPosition": 11,
+      "isNew": false
+    },
+    {
+      "keyword": "wazuch",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 8,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "wazug",
+      "clicks": 0,
+      "impressions": 6,
+      "ctr": 0,
+      "position": 8,
+      "prevClicks": 0,
+      "prevPosition": 8,
+      "isNew": false
+    },
+    {
+      "keyword": "wazuh 1514",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 9,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "wazuh 2fa",
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 9.333333333333334,
+      "prevClicks": 0,
+      "prevPosition": 2,
+      "isNew": false
+    },
+    {
+      "keyword": "wazuh agent",
+      "clicks": 0,
+      "impressions": 20,
+      "ctr": 0,
+      "position": 8.45,
+      "prevClicks": 0,
+      "prevPosition": 8.242424242424242,
+      "isNew": false
+    },
+    {
+      "keyword": "wazuh agent for windows",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 6,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "wazuh agent para que serve",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 1,
+      "prevClicks": 0,
+      "prevPosition": 1,
+      "isNew": false
+    },
+    {
+      "keyword": "wazuh agent para que sirve",
+      "clicks": 0,
+      "impressions": 4,
+      "ctr": 0,
+      "position": 4.75,
+      "prevClicks": 0,
+      "prevPosition": 2.75,
+      "isNew": false
+    },
+    {
+      "keyword": "wazuh agent que es",
+      "clicks": 0,
+      "impressions": 11,
+      "ctr": 0,
+      "position": 10.090909090909092,
+      "prevClicks": 0,
+      "prevPosition": 7.68,
+      "isNew": false
+    },
+    {
+      "keyword": "wazuh agent ubuntu",
+      "clicks": 0,
+      "impressions": 4,
+      "ctr": 0,
+      "position": 6,
+      "prevClicks": 0,
+      "prevPosition": 9,
+      "isNew": false
+    },
+    {
+      "keyword": "wazuh agente",
+      "clicks": 0,
+      "impressions": 8,
+      "ctr": 0,
+      "position": 6.875,
+      "prevClicks": 0,
+      "prevPosition": 7,
+      "isNew": false
+    },
+    {
+      "keyword": "wazuh blog",
+      "clicks": 0,
+      "impressions": 24,
+      "ctr": 0,
+      "position": 5.916666666666667,
+      "prevClicks": 0,
+      "prevPosition": 6,
+      "isNew": false
+    },
+    {
+      "keyword": "wazuh blogs",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 4,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "wazuh como funciona",
+      "clicks": 0,
+      "impressions": 6,
+      "ctr": 0,
+      "position": 7.166666666666667,
+      "prevClicks": 0,
+      "prevPosition": 5.333333333333333,
+      "isNew": false
+    },
+    {
+      "keyword": "wazuh debian",
+      "clicks": 0,
+      "impressions": 4,
+      "ctr": 0,
+      "position": 5.5,
+      "prevClicks": 0,
+      "prevPosition": 5.5,
+      "isNew": false
+    },
+    {
+      "keyword": "wazuh descargar",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 11,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    }
+  ],
+  "topPages": [
+    {
+      "page": "/blog/como-instalar-wazuh-en-linux",
+      "clicks": 74,
+      "impressions": 1645,
+      "ctr": 0.044984802431610946,
+      "position": 5.218237082066869,
+      "prevClicks": 41,
+      "prevPosition": 5.684538653366584
+    },
+    {
+      "page": "/blog/como-instalar-agente-wazuh-en-windows",
+      "clicks": 21,
+      "impressions": 1507,
+      "ctr": 0.013934970139349702,
+      "position": 6.262110152621101,
+      "prevClicks": 18,
+      "prevPosition": 6.827344434706398
+    },
+    {
+      "page": "/blog/que-es-wazuh-para-que-sirve",
+      "clicks": 17,
+      "impressions": 2385,
+      "ctr": 0.007127882599580713,
+      "position": 6.79329140461216,
+      "prevClicks": 5,
+      "prevPosition": 7.038245219347582
+    },
+    {
+      "page": "/wazuh",
+      "clicks": 17,
+      "impressions": 307,
+      "ctr": 0.05537459283387622,
+      "position": 13.029315960912053,
+      "prevClicks": 20,
+      "prevPosition": 9.603305785123966
+    },
+    {
+      "page": "/blog/ia-threat-hunting-wazuh",
+      "clicks": 15,
+      "impressions": 352,
+      "ctr": 0.04261363636363636,
+      "position": 5.556818181818182,
+      "prevClicks": 20,
+      "prevPosition": 5.831715210355987
+    },
+    {
+      "page": "/curso-wazuh",
+      "clicks": 13,
+      "impressions": 149,
+      "ctr": 0.087248322147651,
+      "position": 13.832214765100671,
+      "prevClicks": 16,
+      "prevPosition": 7.410596026490066
+    },
+    {
+      "page": "/blog/configurar-alertas-correo-wazuh-postfix-gmail",
+      "clicks": 7,
+      "impressions": 340,
+      "ctr": 0.020588235294117647,
+      "position": 5.514705882352941,
+      "prevClicks": 3,
+      "prevPosition": 5.1866666666666665
+    },
+    {
+      "page": "/",
+      "clicks": 5,
+      "impressions": 155,
+      "ctr": 0.03225806451612903,
+      "position": 9.709677419354838,
+      "prevClicks": 5,
+      "prevPosition": 10.2
+    },
+    {
+      "page": "/blog/como-instalar-agente-wazuh-en-linux",
+      "clicks": 5,
+      "impressions": 292,
+      "ctr": 0.017123287671232876,
+      "position": 5.410958904109589,
+      "prevClicks": 4,
+      "prevPosition": 6.875
+    },
+    {
+      "page": "/blog/wazuh-elastic-security-configuracion-de-siem-completo",
+      "clicks": 5,
+      "impressions": 656,
+      "ctr": 0.007621951219512195,
+      "position": 7.853658536585366,
+      "prevClicks": 11,
+      "prevPosition": 9.703804347826088
+    },
+    {
+      "page": "/blog/monitorizacion-de-contenedores-docker-con-wazuh",
+      "clicks": 4,
+      "impressions": 46,
+      "ctr": 0.08695652173913043,
+      "position": 10.41304347826087,
+      "prevClicks": 0,
+      "prevPosition": null
+    },
+    {
+      "page": "/blog/monitorizacion-de-contenedores-docker-con-wazuh/",
+      "clicks": 3,
+      "impressions": 65,
+      "ctr": 0.046153846153846156,
+      "position": 4.815384615384616,
+      "prevClicks": 6,
+      "prevPosition": 3.7209302325581395
+    },
+    {
+      "page": "/servicios/gestor-citas",
+      "clicks": 3,
+      "impressions": 385,
+      "ctr": 0.007792207792207792,
+      "position": 22.675324675324674,
+      "prevClicks": 5,
+      "prevPosition": 22.367021276595743
+    },
+    {
+      "page": "/blog/ciberseguridad-basica-empleados-guia-completa",
+      "clicks": 2,
+      "impressions": 192,
+      "ctr": 0.010416666666666666,
+      "position": 10.015625,
+      "prevClicks": 0,
+      "prevPosition": 17.25
+    },
+    {
+      "page": "/blog/configurar-correo-corporativo-outlook-movil/",
+      "clicks": 2,
+      "impressions": 184,
+      "ctr": 0.010869565217391304,
+      "position": 10.434782608695652,
+      "prevClicks": 0,
+      "prevPosition": null
+    },
+    {
+      "page": "/blog/detectar-phishing-outlook-microsoft-guia-empleados",
+      "clicks": 2,
+      "impressions": 548,
+      "ctr": 0.0036496350364963502,
+      "position": 7.737226277372263,
+      "prevClicks": 0,
+      "prevPosition": 6.89375
+    },
+    {
+      "page": "/blog",
+      "clicks": 1,
+      "impressions": 71,
+      "ctr": 0.014084507042253521,
+      "position": 9.014084507042254,
+      "prevClicks": 0,
+      "prevPosition": 19.203125
+    },
+    {
+      "page": "/blog/como-monitorizar-tu-tenant-de-office365-registros-de-exchange-sharepoint",
+      "clicks": 1,
+      "impressions": 98,
+      "ctr": 0.01020408163265306,
+      "position": 5.63265306122449,
+      "prevClicks": 4,
+      "prevPosition": 9.745562130177515
+    },
+    {
+      "page": "/blog/configuracion-de-grupos-en-wazuh/",
+      "clicks": 1,
+      "impressions": 136,
+      "ctr": 0.007352941176470588,
+      "position": 7,
+      "prevClicks": 1,
+      "prevPosition": 6.732673267326732
+    },
+    {
+      "page": "/blog/tu-contrasena-mayuscula-numeros-hackeable",
+      "clicks": 1,
+      "impressions": 46,
+      "ctr": 0.021739130434782608,
+      "position": 6.326086956521739,
+      "prevClicks": 0,
+      "prevPosition": 5.8
+    },
+    {
+      "page": "/servicios/atencion-llamadas",
+      "clicks": 1,
+      "impressions": 63,
+      "ctr": 0.015873015873015872,
+      "position": 24.53968253968254,
+      "prevClicks": 1,
+      "prevPosition": 13.439252336448599
+    },
+    {
+      "page": "/soporte-tecnico",
+      "clicks": 1,
+      "impressions": 13,
+      "ctr": 0.07692307692307693,
+      "position": 23.384615384615383,
+      "prevClicks": 0,
+      "prevPosition": 37.63333333333333
+    },
+    {
+      "page": "/abrir-ticket/",
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 3,
+      "prevClicks": 0,
+      "prevPosition": null
+    },
+    {
+      "page": "/blog/backup-automatico-pymes-guia-completa/",
+      "clicks": 0,
+      "impressions": 28,
+      "ctr": 0,
+      "position": 25.178571428571427,
+      "prevClicks": 0,
+      "prevPosition": null
+    },
+    {
+      "page": "/blog/contrasenas-seguras-empleados-guia-completa",
+      "clicks": 0,
+      "impressions": 22,
+      "ctr": 0,
+      "position": 12.318181818181818,
+      "prevClicks": 0,
+      "prevPosition": 23.685714285714287
+    },
+    {
+      "page": "/blog/detectar-instalaciones-software-windows-wazuh",
+      "clicks": 0,
+      "impressions": 26,
+      "ctr": 0,
+      "position": 7.1923076923076925,
+      "prevClicks": 1,
+      "prevPosition": 9.655555555555555
+    },
+    {
+      "page": "/blog/detectar-phishing-gmail-guia-empleados",
+      "clicks": 0,
+      "impressions": 101,
+      "ctr": 0,
+      "position": 6.089108910891089,
+      "prevClicks": 0,
+      "prevPosition": 9
+    },
+    {
+      "page": "/blog/detectar-phishing-gmail-guia-empleados/",
+      "clicks": 0,
+      "impressions": 13,
+      "ctr": 0,
+      "position": 6.6923076923076925,
+      "prevClicks": 1,
+      "prevPosition": 7.258426966292135
+    },
+    {
+      "page": "/blog/investigar-ataque-ssh-wazuh-discover",
+      "clicks": 0,
+      "impressions": 20,
+      "ctr": 0,
+      "position": 6.15,
+      "prevClicks": 0,
+      "prevPosition": 5.276595744680851
+    },
+    {
+      "page": "/blog/que-es-wazuh-para-que-sirve/",
+      "clicks": 0,
+      "impressions": 27,
+      "ctr": 0,
+      "position": 1.925925925925926,
+      "prevClicks": 8,
+      "prevPosition": 5.848205128205128
+    },
+    {
+      "page": "/contacto",
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 7,
+      "prevClicks": 0,
+      "prevPosition": 11
+    },
+    {
+      "page": "/faq",
+      "clicks": 0,
+      "impressions": 5,
+      "ctr": 0,
+      "position": 7,
+      "prevClicks": 0,
+      "prevPosition": 6
+    },
+    {
+      "page": "/reunion",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 5,
+      "prevClicks": 0,
+      "prevPosition": 7.8
+    },
+    {
+      "page": "/servicios/automatizacion",
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 4,
+      "prevClicks": 0,
+      "prevPosition": 14.714285714285714
+    },
+    {
+      "page": "/servicios/chatbot",
+      "clicks": 0,
+      "impressions": 104,
+      "ctr": 0,
+      "position": 28.567307692307693,
+      "prevClicks": 0,
+      "prevPosition": 24.49310344827586
+    },
+    {
+      "page": "/servicios/gestor-documental",
+      "clicks": 0,
+      "impressions": 10,
+      "ctr": 0,
+      "position": 9.2,
+      "prevClicks": 0,
+      "prevPosition": 8.105263157894736
+    },
+    {
+      "page": "/soporte-tecnico/alcala-de-xivert",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 50,
+      "prevClicks": 0,
+      "prevPosition": null
+    },
+    {
+      "page": "/soporte-tecnico/almassora",
+      "clicks": 0,
+      "impressions": 9,
+      "ctr": 0,
+      "position": 17.444444444444443,
+      "prevClicks": 0,
+      "prevPosition": null
+    },
+    {
+      "page": "/soporte-tecnico/benicarlo",
+      "clicks": 0,
+      "impressions": 10,
+      "ctr": 0,
+      "position": 63.2,
+      "prevClicks": 0,
+      "prevPosition": null
+    },
+    {
+      "page": "/soporte-tecnico/betxi",
+      "clicks": 0,
+      "impressions": 6,
+      "ctr": 0,
+      "position": 3.6666666666666665,
+      "prevClicks": 0,
+      "prevPosition": null
+    },
+    {
+      "page": "/soporte-tecnico/burriana",
+      "clicks": 0,
+      "impressions": 9,
+      "ctr": 0,
+      "position": 23.11111111111111,
+      "prevClicks": 0,
+      "prevPosition": null
+    },
+    {
+      "page": "/soporte-tecnico/cabanes",
+      "clicks": 0,
+      "impressions": 6,
+      "ctr": 0,
+      "position": 15.833333333333334,
+      "prevClicks": 0,
+      "prevPosition": null
+    },
+    {
+      "page": "/soporte-tecnico/calig",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 4,
+      "prevClicks": 0,
+      "prevPosition": null
+    },
+    {
+      "page": "/soporte-tecnico/la-vall-duixo",
+      "clicks": 0,
+      "impressions": 4,
+      "ctr": 0,
+      "position": 9.5,
+      "prevClicks": 0,
+      "prevPosition": null
+    },
+    {
+      "page": "/soporte-tecnico/moncofa",
+      "clicks": 0,
+      "impressions": 9,
+      "ctr": 0,
+      "position": 24.555555555555557,
+      "prevClicks": 0,
+      "prevPosition": null
+    },
+    {
+      "page": "/soporte-tecnico/oropesa-del-mar",
+      "clicks": 0,
+      "impressions": 5,
+      "ctr": 0,
+      "position": 66.2,
+      "prevClicks": 0,
+      "prevPosition": null
+    },
+    {
+      "page": "/soporte-tecnico/segorbe",
+      "clicks": 0,
+      "impressions": 8,
+      "ctr": 0,
+      "position": 20.875,
+      "prevClicks": 0,
+      "prevPosition": null
+    }
+  ],
+  "opportunities": [
+    {
+      "keyword": "wazuh",
+      "clicks": 1,
+      "impressions": 1121,
+      "ctr": 0.0008920606601248885,
+      "position": 7.818911685994648
+    },
+    {
+      "keyword": "wazuh que es",
+      "clicks": 2,
+      "impressions": 119,
+      "ctr": 0.01680672268907563,
+      "position": 8.705882352941178
+    },
+    {
+      "keyword": "consejos de ciberseguridad para empleados",
+      "clicks": 0,
+      "impressions": 77,
+      "ctr": 0,
+      "position": 6.402597402597403
+    },
+    {
+      "keyword": "wazuh agent windows",
+      "clicks": 1,
+      "impressions": 76,
+      "ctr": 0.013157894736842105,
+      "position": 6.828947368421052
+    },
+    {
+      "keyword": "que es wazuh",
+      "clicks": 1,
+      "impressions": 60,
+      "ctr": 0.016666666666666666,
+      "position": 10.95
+    },
+    {
+      "keyword": "ciberseguridad para empleados",
+      "clicks": 0,
+      "impressions": 54,
+      "ctr": 0,
+      "position": 19.59259259259259
+    },
+    {
+      "keyword": "siem wazuh",
+      "clicks": 0,
+      "impressions": 47,
+      "ctr": 0,
+      "position": 9.382978723404255
+    },
+    {
+      "keyword": "agendación de citas con asistentes virtuales",
+      "clicks": 0,
+      "impressions": 43,
+      "ctr": 0,
+      "position": 16.930232558139537
+    },
+    {
+      "keyword": "agente wazuh",
+      "clicks": 1,
+      "impressions": 38,
+      "ctr": 0.02631578947368421,
+      "position": 7.578947368421052
+    },
+    {
+      "keyword": "ai security",
+      "clicks": 1,
+      "impressions": 36,
+      "ctr": 0.027777777777777776,
+      "position": 6.166666666666667
+    },
+    {
+      "keyword": "wazhu",
+      "clicks": 0,
+      "impressions": 31,
+      "ctr": 0,
+      "position": 7.903225806451613
+    },
+    {
+      "keyword": "wazuh blog",
+      "clicks": 0,
+      "impressions": 24,
+      "ctr": 0,
+      "position": 5.916666666666667
+    },
+    {
+      "keyword": "que es wazuh y para que sirve",
+      "clicks": 0,
+      "impressions": 21,
+      "ctr": 0,
+      "position": 7.619047619047619
+    },
+    {
+      "keyword": "wazuh agent",
+      "clicks": 0,
+      "impressions": 20,
+      "ctr": 0,
+      "position": 8.45
+    }
+  ],
+  "nearTop": [
+    {
+      "keyword": "wazuh",
+      "clicks": 1,
+      "impressions": 1121,
+      "ctr": 0.0008920606601248885,
+      "position": 7.818911685994648
+    },
+    {
+      "keyword": "wazuh que es",
+      "clicks": 2,
+      "impressions": 119,
+      "ctr": 0.01680672268907563,
+      "position": 8.705882352941178
+    },
+    {
+      "keyword": "consejos de ciberseguridad para empleados",
+      "clicks": 0,
+      "impressions": 77,
+      "ctr": 0,
+      "position": 6.402597402597403
+    },
+    {
+      "keyword": "wazuh agent windows",
+      "clicks": 1,
+      "impressions": 76,
+      "ctr": 0.013157894736842105,
+      "position": 6.828947368421052
+    },
+    {
+      "keyword": "que es wazuh",
+      "clicks": 1,
+      "impressions": 60,
+      "ctr": 0.016666666666666666,
+      "position": 10.95
+    },
+    {
+      "keyword": "siem wazuh",
+      "clicks": 0,
+      "impressions": 47,
+      "ctr": 0,
+      "position": 9.382978723404255
+    },
+    {
+      "keyword": "instalar wazuh en ubuntu",
+      "clicks": 3,
+      "impressions": 46,
+      "ctr": 0.06521739130434782,
+      "position": 4.5
+    },
+    {
+      "keyword": "agente wazuh",
+      "clicks": 1,
+      "impressions": 38,
+      "ctr": 0.02631578947368421,
+      "position": 7.578947368421052
+    },
+    {
+      "keyword": "ai security",
+      "clicks": 1,
+      "impressions": 36,
+      "ctr": 0.027777777777777776,
+      "position": 6.166666666666667
+    },
+    {
+      "keyword": "wazhu",
+      "clicks": 0,
+      "impressions": 31,
+      "ctr": 0,
+      "position": 7.903225806451613
+    }
+  ],
+  "newKeywords": [
+    {
+      "keyword": "wazuh que es",
+      "clicks": 2,
+      "impressions": 119,
+      "position": 8.705882352941178
+    },
+    {
+      "keyword": "monitorización citaciones ia tenerife",
+      "clicks": 0,
+      "impressions": 13,
+      "position": 16.23076923076923
+    },
+    {
+      "keyword": "outlook corporativo",
+      "clicks": 0,
+      "impressions": 10,
+      "position": 31.6
+    },
+    {
+      "keyword": "administrador de wazuh",
+      "clicks": 0,
+      "impressions": 8,
+      "position": 11.125
+    },
+    {
+      "keyword": "monitorización de contenedores",
+      "clicks": 0,
+      "impressions": 6,
+      "position": 8.833333333333332
+    },
+    {
+      "keyword": "configurar correo corporativo en outlook android",
+      "clicks": 0,
+      "impressions": 5,
+      "position": 6
+    },
+    {
+      "keyword": "kibana siem",
+      "clicks": 0,
+      "impressions": 5,
+      "position": 8.6
+    },
+    {
+      "keyword": "monitoreo de docker",
+      "clicks": 0,
+      "impressions": 5,
+      "position": 10.2
+    }
+  ]
+}
