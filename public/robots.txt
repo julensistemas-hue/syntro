@@ -10,8 +10,8 @@ Crawl-delay: 1
 Sitemap: https://aisecurity.es/sitemap-index.xml
 Sitemap: https://aisecurity.es/sitemap-0.xml
 
-# Preferencias de uso de contenido por agentes IA (Content Signals)
+# Preferencias de uso de contenido por agentes IA
 # ai-train=no   → No permitir uso para entrenar modelos de IA
 # search=yes    → Permitir indexación en búsquedas IA (ChatGPT, Perplexity, Claude...)
 # ai-input=yes  → Permitir uso como contexto en respuestas de agentes IA
-Content-Signal: ai-train=no, search=yes, ai-input=yes
+# Nota: Content-Signal no es una directiva estándar de robots.txt

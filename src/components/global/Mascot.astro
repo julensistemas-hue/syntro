@@ -80,7 +80,7 @@
 
 
 <!-- ══ POPUP CHAT ══ -->
-<div id="mascot-popup" aria-hidden="true">
+<div id="mascot-popup" aria-hidden="true" inert>
   <div id="popup-header">
     <div style="display:flex;align-items:center;gap:10px;">
       <div id="popup-avatar">🤖</div>
@@ -453,13 +453,17 @@
   // ── Abrir / cerrar popup ──
   widget.addEventListener('click', () => {
     popup.classList.toggle('open');
-    popup.setAttribute('aria-hidden', popup.classList.contains('open') ? 'false' : 'true');
+    const isOpen = popup.classList.contains('open');
+    popup.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
+    if (isOpen) { popup.removeAttribute('inert'); } else { popup.setAttribute('inert', ''); }
     resetSleep();
   });
   widget.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') widget.click(); });
   closeBtn.addEventListener('click', e => {
     e.stopPropagation();
     popup.classList.remove('open');
+    popup.setAttribute('aria-hidden', 'true');
+    popup.setAttribute('inert', '');
   });
 
   // Convierte menciones de rutas (/contacto, /wazuh…) en <a> clicables
