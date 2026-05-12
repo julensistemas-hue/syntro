@@ -214,6 +214,245 @@
           "isNew": false
         }
       ]
+    },
+    {
+      "date": "2026-05-12T06:37:13.558Z",
+      "period": {
+        "startDate": "2026-04-11",
+        "endDate": "2026-05-09"
+      },
+      "totals": {
+        "current": {
+          "clicks": 38,
+          "impressions": 1784
+        },
+        "previous": {
+          "clicks": 44,
+          "impressions": 1957
+        }
+      },
+      "topKeywords": [
+        {
+          "keyword": "instalar wazuh en ubuntu 24.04",
+          "clicks": 11,
+          "impressions": 23,
+          "ctr": 0.4782608695652174,
+          "position": 2.0869565217391304,
+          "prevClicks": 14,
+          "prevImpressions": 42,
+          "prevPosition": 2.9523809523809526,
+          "isNew": false
+        },
+        {
+          "keyword": "instalar wazuh en ubuntu server",
+          "clicks": 3,
+          "impressions": 21,
+          "ctr": 0.14285714285714285,
+          "position": 5.0476190476190474,
+          "prevClicks": 1,
+          "prevImpressions": 9,
+          "prevPosition": 5.666666666666667,
+          "isNew": false
+        },
+        {
+          "keyword": "wazuh ens",
+          "clicks": 3,
+          "impressions": 8,
+          "ctr": 0.375,
+          "position": 1,
+          "prevClicks": 4,
+          "prevImpressions": 8,
+          "prevPosition": 1.125,
+          "isNew": false
+        },
+        {
+          "keyword": "aisecurity",
+          "clicks": 2,
+          "impressions": 3,
+          "ctr": 0.6666666666666666,
+          "position": 1,
+          "prevClicks": 0,
+          "prevImpressions": 7,
+          "prevPosition": 2.428571428571429,
+          "isNew": false
+        },
+        {
+          "keyword": "instalar wazuh en ubuntu",
+          "clicks": 2,
+          "impressions": 44,
+          "ctr": 0.045454545454545456,
+          "position": 4.5,
+          "prevClicks": 3,
+          "prevImpressions": 19,
+          "prevPosition": 4.473684210526316,
+          "isNew": false
+        },
+        {
+          "keyword": "install wazuh ubuntu 24.04",
+          "clicks": 2,
+          "impressions": 6,
+          "ctr": 0.3333333333333333,
+          "position": 4,
+          "prevClicks": 0,
+          "prevImpressions": 1,
+          "prevPosition": 1,
+          "isNew": false
+        },
+        {
+          "keyword": "wazuh que es",
+          "clicks": 2,
+          "impressions": 91,
+          "ctr": 0.02197802197802198,
+          "position": 8.978021978021978,
+          "prevClicks": 0,
+          "prevImpressions": 0,
+          "prevPosition": null,
+          "isNew": true
+        },
+        {
+          "keyword": "agente wazuh",
+          "clicks": 1,
+          "impressions": 34,
+          "ctr": 0.029411764705882353,
+          "position": 7.676470588235294,
+          "prevClicks": 0,
+          "prevImpressions": 29,
+          "prevPosition": 7.724137931034483,
+          "isNew": false
+        },
+        {
+          "keyword": "ai security",
+          "clicks": 1,
+          "impressions": 33,
+          "ctr": 0.030303030303030304,
+          "position": 6.545454545454546,
+          "prevClicks": 4,
+          "prevImpressions": 41,
+          "prevPosition": 5.560975609756097,
+          "isNew": false
+        },
+        {
+          "keyword": "instalar wazuh en windows",
+          "clicks": 1,
+          "impressions": 22,
+          "ctr": 0.045454545454545456,
+          "position": 6.7727272727272725,
+          "prevClicks": 1,
+          "prevImpressions": 13,
+          "prevPosition": 5.461538461538462,
+          "isNew": false
+        },
+        {
+          "keyword": "install wazuh ubuntu",
+          "clicks": 1,
+          "impressions": 8,
+          "ctr": 0.125,
+          "position": 5.625,
+          "prevClicks": 0,
+          "prevImpressions": 2,
+          "prevPosition": 6.5,
+          "isNew": false
+        },
+        {
+          "keyword": "wazuh",
+          "clicks": 1,
+          "impressions": 838,
+          "ctr": 0.0011933174224343676,
+          "position": 7.984486873508353,
+          "prevClicks": 4,
+          "prevImpressions": 1055,
+          "prevPosition": 7.1753554502369665,
+          "isNew": false
+        },
+        {
+          "keyword": "wazuh agent windows",
+          "clicks": 1,
+          "impressions": 72,
+          "ctr": 0.013888888888888888,
+          "position": 6.944444444444445,
+          "prevClicks": 0,
+          "prevImpressions": 0,
+          "prevPosition": null,
+          "isNew": true
+        },
+        {
+          "keyword": "wazuh ai",
+          "clicks": 1,
+          "impressions": 7,
+          "ctr": 0.14285714285714285,
+          "position": 8.285714285714285,
+          "prevClicks": 0,
+          "prevImpressions": 0,
+          "prevPosition": null,
+          "isNew": true
+        },
+        {
+          "keyword": "wazuh curso",
+          "clicks": 1,
+          "impressions": 13,
+          "ctr": 0.07692307692307693,
+          "position": 10.076923076923077,
+          "prevClicks": 0,
+          "prevImpressions": 0,
+          "prevPosition": null,
+          "isNew": true
+        },
+        {
+          "keyword": "wazuh elastic",
+          "clicks": 1,
+          "impressions": 7,
+          "ctr": 0.14285714285714285,
+          "position": 4.428571428571429,
+          "prevClicks": 0,
+          "prevImpressions": 0,
+          "prevPosition": null,
+          "isNew": true
+        },
+        {
+          "keyword": "wazuh elasticsearch",
+          "clicks": 1,
+          "impressions": 9,
+          "ctr": 0.1111111111111111,
+          "position": 3.6666666666666665,
+          "prevClicks": 1,
+          "prevImpressions": 1,
+          "prevPosition": 2,
+          "isNew": false
+        },
+        {
+          "keyword": "wazuh ia",
+          "clicks": 1,
+          "impressions": 17,
+          "ctr": 0.058823529411764705,
+          "position": 4.294117647058823,
+          "prevClicks": 4,
+          "prevImpressions": 17,
+          "prevPosition": 2.9411764705882355,
+          "isNew": false
+        },
+        {
+          "keyword": "wazuh iso 27001",
+          "clicks": 1,
+          "impressions": 1,
+          "ctr": 1,
+          "position": 9,
+          "prevClicks": 0,
+          "prevImpressions": 0,
+          "prevPosition": null,
+          "isNew": true
+        },
+        {
+          "keyword": "wazuh monitor docker",
+          "clicks": 1,
+          "impressions": 1,
+          "ctr": 1,
+          "position": 9,
+          "prevClicks": 0,
+          "prevImpressions": 0,
+          "prevPosition": null,
+          "isNew": true
+        }
+      ]
     }
   ]
 }
