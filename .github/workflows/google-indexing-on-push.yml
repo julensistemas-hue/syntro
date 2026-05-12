@@ -41,22 +41,34 @@ jobs:
           URLS="${URLS#,}"
           [ -z "$URLS" ] && echo "no_urls=true" >> $GITHUB_OUTPUT || { echo "urls=$URLS" >> $GITHUB_OUTPUT; echo "no_urls=false" >> $GITHUB_OUTPUT; }
 
-      - name: Enviar sitemap vía GSC API
+      - name: Escribir credenciales Google
         if: steps.detect.outputs.no_urls != 'true'
         env:
           GOOGLE_CREDENTIALS_JSON: ${{ secrets.GOOGLE_CREDENTIALS_JSON }}
         run: |
-          # Re-encode to base64 in shell (avoids newline/escaping issues in JSON string values)
-          CREDS_B64=$(printf '%s' "$GOOGLE_CREDENTIALS_JSON" | base64 -w 0)
-          CREDS_B64="$CREDS_B64" node -e "
+          python3 -c "
+          import os, json, base64
+          raw = os.environ['GOOGLE_CREDENTIALS_JSON']
+          try:
+              json.loads(raw)
+              open('/tmp/gcreds.json','w').write(raw)
+          except Exception:
+              open('/tmp/gcreds.json','wb').write(base64.b64decode(raw))
+          print('Credenciales OK')
+          "
+
+      - name: Enviar sitemap vía GSC API
+        if: steps.detect.outputs.no_urls != 'true'
+        run: |
+          node -e "
           const { google } = require('googleapis');
-          const creds = JSON.parse(Buffer.from(process.env.CREDS_B64, 'base64').toString('utf8'));
+          const creds = JSON.parse(require('fs').readFileSync('/tmp/gcreds.json','utf8'));
           const auth = new google.auth.GoogleAuth({ credentials: creds, scopes: ['https://www.googleapis.com/auth/webmasters'] });
           auth.getClient().then(async client => {
             const sc = google.searchconsole({ version: 'v1', auth: client });
             await sc.sitemaps.submit({ siteUrl: 'sc-domain:aisecurity.es', feedpath: 'https://aisecurity.es/sitemap-index.xml' });
-            console.log('✅ Sitemap enviado a Google Search Console');
-          }).catch(e => { console.error('❌', e.message); process.exit(1); });
+            console.log('Sitemap enviado a Google Search Console');
+          }).catch(e => { console.error('ERROR:', e.message); process.exit(1); });
           "
 
       - name: Bing sitemap ping
