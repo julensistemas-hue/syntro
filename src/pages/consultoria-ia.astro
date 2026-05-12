@@ -1,0 +1,489 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const title = "Consultoría IA para Empresas - Herramientas de Inteligencia Artificial | AI Security";
+const description = "Analizamos tu empresa departamento a departamento y te implementamos las mejores herramientas de IA del mercado. Ahorra costes, multiplica la productividad. Formación incluida.";
+const canonical = "https://aisecurity.es/consultoria-ia";
+
+const departamentos = [
+  {
+    id: "comunicacion",
+    nombre: "Comunicación",
+    icon: "🎨",
+    color: "#8b5cf6",
+    resumen: "Genera contenido visual, vídeos y creatividades con IA generativa",
+    descripcion: "Transforma la producción de contenido visual de tu equipo. Con estas herramientas, crear imágenes profesionales, vídeos de producto o creatividades para redes sociales pasa de horas a minutos.",
+    herramientas: [
+      { nombre: "Midjourney", uso: "Imágenes y creatividades profesionales por prompt" },
+      { nombre: "Runway ML", uso: "Vídeos generados y editados con IA" },
+      { nombre: "HeyGen", uso: "Avatares de vídeo con voz natural en español" },
+      { nombre: "Canva AI", uso: "Diseño asistido, fondo automático, redimensionado inteligente" },
+      { nombre: "Adobe Firefly", uso: "Generación de imágenes integrada en suite Adobe" },
+      { nombre: "Sora (OpenAI)", uso: "Generación de vídeo de alta calidad desde texto" },
+    ],
+    ahorro: "Reduce hasta un 70% el tiempo de producción de contenido visual"
+  },
+  {
+    id: "comercial",
+    nombre: "Comercial & SEO",
+    icon: "📊",
+    color: "#f59e0b",
+    resumen: "Analítica automática, SEO con IA y seguimiento de oportunidades",
+    descripcion: "Automatiza el análisis de tu presencia online. Scripts que recogen datos de Google Search Console y Analytics cada semana, generan informes y detectan oportunidades de negocio sin intervención manual.",
+    herramientas: [
+      { nombre: "GSC + GA4 Automation", uso: "Scripts propios que analizan tu web semanalmente con IA" },
+      { nombre: "Semrush AI", uso: "Investigación de keywords y análisis de competencia" },
+      { nombre: "n8n + LLM", uso: "Flujos automáticos de seguimiento de leads y CRM" },
+      { nombre: "Clay", uso: "Enriquecimiento de contactos y prospección automatizada" },
+      { nombre: "Instantly AI", uso: "Campañas de email outbound personalizadas con IA" },
+    ],
+    ahorro: "Informes semanales automáticos sin dedicar horas a exportar datos"
+  },
+  {
+    id: "callcenter",
+    nombre: "Call Center & Soporte",
+    icon: "📞",
+    color: "#10b981",
+    resumen: "Atención telefónica y chat con IA que nunca descansa",
+    descripcion: "Implementamos recepcionistas virtuales y chatbots que gestionan el 80% de las consultas habituales. Voz natural en español, integración con tu CRM y derivación a agente humano cuando es necesario.",
+    herramientas: [
+      { nombre: "Atención Llamadas IA", uso: "Recepcionista virtual 24/7 con voz natural en español" },
+      { nombre: "Chatbot Empresarial IA", uso: "Chat con acceso a tu base de datos y ERP en tiempo real" },
+      { nombre: "ElevenLabs", uso: "Voces IA ultra-realistas en español para agentes telefónicos" },
+      { nombre: "Vapi", uso: "Infraestructura de voz IA con bajo coste por minuto" },
+      { nombre: "Intercom AI", uso: "Soporte omnicanal con resolución automática de tickets" },
+    ],
+    ahorro: "Atiende el 80% de consultas comunes sin coste de personal adicional"
+  },
+  {
+    id: "proyectos",
+    nombre: "Gestión de Proyectos",
+    icon: "📋",
+    color: "#3b82f6",
+    resumen: "IA integrada en tu herramienta de proyectos para acelerar entregas",
+    descripcion: "Conectamos tu gestor de proyectos con IA para generar tareas automáticamente, resumir el estado del sprint, detectar bloqueos y mantener al equipo informado sin reuniones extra.",
+    herramientas: [
+      { nombre: "Jira + Atlassian Intelligence", uso: "Creación automática de subtareas, resumen de issues" },
+      { nombre: "Linear", uso: "Gestión de proyectos moderno con IA incorporada" },
+      { nombre: "Notion AI", uso: "Documentación de proyectos y wikis que se actualizan solas" },
+      { nombre: "n8n", uso: "Automatiza flujos entre herramientas: notificaciones, asignaciones y reportes sin intervención manual" },
+    ],
+    ahorro: "Reduce el tiempo de planificación y reporting hasta un 50%"
+  },
+  {
+    id: "administracion",
+    nombre: "Administración",
+    icon: "🧾",
+    color: "#ef4444",
+    resumen: "Facturas, presupuestos y contabilidad gestionados de forma automática",
+    descripcion: "Automatizamos la captura de facturas de proveedores, la generación de presupuestos y el seguimiento de pagos. Tu equipo administrativo deja de hacer trabajo repetitivo y se centra en lo que importa.",
+    herramientas: [
+      { nombre: "Mindee", uso: "OCR inteligente que extrae datos de facturas y recibos" },
+      { nombre: "Rossum", uso: "Procesamiento automático de documentos contables" },
+      { nombre: "n8n + ChatGPT", uso: "Flujos que clasifican, registran y notifican facturas entrantes" },
+      { nombre: "Holded AI", uso: "Contabilidad y facturación con sugerencias automáticas" },
+      { nombre: "Sage Copilot", uso: "Asistente IA integrado en ERP Sage para pymes" },
+    ],
+    ahorro: "Procesa facturas en segundos en vez de 5-10 minutos por documento"
+  },
+  {
+    id: "desarrollo",
+    nombre: "Desarrollo",
+    icon: "💻",
+    color: "#06b6d4",
+    resumen: "Acelera tu equipo de desarrollo con IA en cada paso del ciclo",
+    descripcion: "Desde la generación de código hasta la documentación automática y los pipelines de CI/CD. Configuramos las herramientas correctas con el contexto de tu proyecto para que todos los devs trabajen igual de rápido.",
+    herramientas: [
+      { nombre: "Claude Code", uso: "Agente de desarrollo que lee tu repo y ejecuta tareas completas" },
+      { nombre: "GitHub Copilot", uso: "Autocompletado de código en tiempo real en el IDE" },
+      { nombre: "GitHub Actions + IA", uso: "Pipelines que generan tests, detectan bugs y despliegan automáticamente" },
+      { nombre: "OpenCode + Skills compartidas", uso: "Contexto del proyecto compartido entre todos los devs del equipo, siempre actualizado" },
+    ],
+    ahorro: "Multiplica por 2-3x la velocidad de entrega de features"
+  },
+  {
+    id: "devops",
+    nombre: "DevOps",
+    icon: "⚙️",
+    color: "#f97316",
+    resumen: "Infraestructura como código y automatización de despliegues con IA",
+    descripcion: "Automatizamos la gestión de infraestructura, los despliegues y la monitorización. La IA detecta anomalías antes de que sean incidencias y propone soluciones de escalado automáticamente.",
+    herramientas: [
+      { nombre: "Ansible + IA", uso: "Playbooks generados automáticamente para configuración de servidores" },
+      { nombre: "Terraform / Pulumi AI", uso: "Infraestructura como código con asistente de configuración" },
+      { nombre: "Kubernetes + K8sGPT", uso: "Diagnóstico automático de errores en clústeres K8s" },
+      { nombre: "GitHub Actions", uso: "CI/CD pipelines con revisión automática de código y seguridad" },
+      { nombre: "Datadog AI", uso: "Monitorización con detección de anomalías y alertas inteligentes" },
+    ],
+    ahorro: "Despliegues sin downtime y resolución de incidencias hasta 3x más rápida"
+  },
+  {
+    id: "sistemas",
+    nombre: "Sistemas",
+    icon: "🖥️",
+    color: "#84cc16",
+    resumen: "Administración de sistemas con documentación automática y seguridad IA",
+    descripcion: "Cada cambio en un servidor queda documentado automáticamente en tu wiki. La seguridad se monitoriza en tiempo real con Wazuh y las automatizaciones reducen las tareas manuales repetitivas del departamento.",
+    herramientas: [
+      { nombre: "Wazuh", uso: "SIEM open-source: detección de amenazas y cumplimiento ENS" },
+      { nombre: "WARP (Cloudflare)", uso: "Red privada segura para el equipo, con filtrado DNS y zero-trust" },
+      { nombre: "Netdata", uso: "Monitorización en tiempo real de servidores con IA predictiva" },
+      { nombre: "Ansible + LLM", uso: "Automatiza tareas repetitivas de administración por lenguaje natural" },
+      { nombre: "Wiki.js / Confluence AI", uso: "Cada cambio en producción genera documentación automática en la wiki" },
+    ],
+    ahorro: "Documenta cambios automáticamente y reduce incidencias por errores humanos"
+  },
+];
+---
+
+<BaseLayout title={title} description={description} canonical={canonical}>
+
+  <!-- HERO -->
+  <section class="relative overflow-hidden" style="background: linear-gradient(135deg, #0a0d1a 0%, #0f1628 50%, #0a0d1a 100%); padding: 80px 0 60px;">
+    <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(circle at 20% 50%, #4f7cff 0%, transparent 50%), radial-gradient(circle at 80% 50%, #8b5cf6 0%, transparent 50%);"></div>
+    <div class="max-w-6xl mx-auto px-6 text-center relative z-10">
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium mb-6" style="background: rgba(79,124,255,0.15); border: 1px solid rgba(79,124,255,0.3); color: #7da4ff;">
+        <span>🤖</span> Consultoría de Inteligencia Artificial
+      </div>
+      <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight" style="color: #fff;">
+        IA aplicada a tu empresa,<br/>
+        <span style="background: linear-gradient(90deg, #4f7cff, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">departamento a departamento</span>
+      </h1>
+      <p class="text-xl max-w-3xl mx-auto mb-8" style="color: #94a3b8; line-height: 1.7;">
+        Analizamos tu empresa, entendemos cómo trabajáis y os implementamos las mejores herramientas de IA del mercado. Siempre actualizados. Con formación para tu equipo incluida.
+      </p>
+      <div class="flex flex-wrap gap-4 justify-center">
+        <a href="/presupuesto?plan=Consultoria-IA"
+          class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all"
+          style="background: linear-gradient(135deg, #4f7cff, #7c3aed); color: #ffffff;">
+          Solicitar consulta gratuita →
+        </a>
+        <a href="/consultoria-it"
+          class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all"
+          style="background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15); color: #cbd5e1;">
+          ¿Necesitas Consultoría IT? →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIAGRAMA INTERACTIVO -->
+  <section style="background: #0a0d1a; padding: 80px 0;">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold mb-3" style="color: #e2e8f0;">
+          ¿Qué IA puede usar cada departamento?
+        </h2>
+        <p style="color: #64748b; font-size: 1.05rem;">Selecciona un departamento para ver las herramientas y el ahorro estimado</p>
+      </div>
+
+      <!-- Diagram + Panel layout -->
+      <div class="flex flex-col xl:flex-row gap-8 items-start justify-center">
+
+        <!-- Diagram + descripción debajo -->
+        <div id="diagram-container" style="flex-shrink: 0; display: flex; flex-direction: column; gap: 16px;">
+          <svg id="diagram-svg" width="560" height="560" viewBox="0 0 560 560" style="display: block; margin: 0 auto;">
+            <g id="lines"></g>
+            <g id="center-node">
+              <circle cx="280" cy="280" r="62" fill="#1a1d27" stroke="#4f7cff" stroke-width="2"/>
+              <circle cx="280" cy="280" r="56" fill="#0f1628" stroke="#4f7cff" stroke-width="1" opacity="0.5"/>
+              <text x="280" y="272" text-anchor="middle" fill="#e2e8f0" font-size="14" font-weight="700">Tu</text>
+              <text x="280" y="290" text-anchor="middle" fill="#e2e8f0" font-size="14" font-weight="700">Empresa</text>
+              <text x="280" y="308" text-anchor="middle" fill="#4f7cff" font-size="10">+ IA</text>
+            </g>
+            <g id="nodes"></g>
+          </svg>
+          <!-- Descripción del departamento — debajo del diagrama -->
+          <div id="desc-box" style="display: none; padding: 16px 18px; border-radius: 12px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); max-width: 560px;">
+            <p id="panel-desc" style="color: #94a3b8; font-size: 0.9rem; line-height: 1.7; margin: 0;"></p>
+          </div>
+        </div>
+
+        <!-- Info Panel — solo herramientas -->
+        <div id="info-panel" style="flex: 1; min-width: 300px; max-width: 480px; position: sticky; top: 24px;">
+          <div id="panel-default" style="background: #1a1d27; border: 1px solid #2a2d3a; border-radius: 16px; padding: 32px; text-align: center;">
+            <div style="font-size: 48px; margin-bottom: 16px; opacity: 0.4;">👆</div>
+            <p style="color: #64748b; font-size: 1rem;">Haz clic en cualquier departamento del diagrama para ver las herramientas de IA recomendadas</p>
+          </div>
+          <div id="panel-active" style="display: none; background: #1a1d27; border-radius: 16px; overflow: hidden; min-height: 560px;">
+            <div id="panel-header" style="padding: 20px 24px; display: flex; align-items: center; gap: 12px;">
+              <span id="panel-icon" style="font-size: 28px;"></span>
+              <div>
+                <h3 id="panel-title" style="font-size: 1.2rem; font-weight: 700; color: #e2e8f0; margin-bottom: 4px;"></h3>
+                <p id="panel-resumen" style="font-size: 0.85rem; color: #94a3b8;"></p>
+              </div>
+            </div>
+            <div style="padding: 0 24px;">
+              <p style="font-size: 0.75rem; font-weight: 600; color: #4f7cff; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px; margin-top: 16px;">Herramientas recomendadas</p>
+              <div id="panel-tools" style="display: flex; flex-direction: column; gap: 8px;"></div>
+            </div>
+            <div id="panel-ahorro" style="margin: 16px 24px 20px; padding: 12px 16px; border-radius: 10px; font-size: 0.85rem; font-weight: 600; background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.2); color: #86efac;"></div>
+            <div style="padding: 0 24px 24px;">
+              <a href="/presupuesto?plan=Consultoria-IA" style="display: block; text-align: center; background: linear-gradient(135deg, #4f7cff, #7c3aed); color: #ffffff; border-radius: 10px; padding: 12px; font-size: 0.9rem; font-weight: 600; text-decoration: none;">
+                Quiero implementar esto →
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESO DE TRABAJO -->
+  <section style="background: #0f1117; padding: 80px 0; border-top: 1px solid #1e2130;">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold mb-4" style="color: #e2e8f0;">Cómo trabajamos contigo</h2>
+        <p style="color: #64748b;">Sin humo. Sin herramientas genéricas. Con resultados medibles.</p>
+      </div>
+      <div class="grid md:grid-cols-4 gap-6">
+        {[
+          { paso: "01", titulo: "Diagnóstico", desc: "Nos reunimos con tu equipo, entendemos qué herramientas usáis, cómo es el día a día y dónde se pierde más tiempo.", icon: "🔍" },
+          { paso: "02", titulo: "Propuesta", desc: "Diseñamos un plan específico para tu empresa: qué herramientas implementar, en qué orden y con qué inversión.", icon: "📐" },
+          { paso: "03", titulo: "Implementación", desc: "Configuramos cada herramienta en vuestro entorno real, con pruebas y ajustes hasta que funciona exactamente como necesitáis.", icon: "🛠️" },
+          { paso: "04", titulo: "Formación", desc: "Formamos a los trabajadores que usarán cada herramienta. Con guías, sesiones prácticas y soporte post-implantación.", icon: "🎓" },
+        ].map(item => (
+          <div style="text-align: center;">
+            <div style="font-size: 32px; margin-bottom: 12px;">{item.icon}</div>
+            <div style="font-size: 0.75rem; font-weight: 700; color: #4f7cff; letter-spacing: 0.1em; margin-bottom: 6px;">PASO {item.paso}</div>
+            <h3 style="font-size: 1rem; font-weight: 700; color: #e2e8f0; margin-bottom: 8px;">{item.titulo}</h3>
+            <p style="color: #64748b; font-size: 0.875rem; line-height: 1.6;">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- DIFERENCIADOR (penúltima sección) -->
+  <section style="background: #0a0d1a; padding: 60px 0; border-top: 1px solid #1e2130;">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="rounded-2xl p-6" style="background: #1a1d27; border: 1px solid #2a2d3a;">
+          <div class="text-3xl mb-3">🔄</div>
+          <h3 class="font-bold text-lg mb-2" style="color: #e2e8f0;">Siempre con las mejores herramientas</h3>
+          <p style="color: #64748b; line-height: 1.6;">El ecosistema IA cambia cada semana. Nos encargamos de estar al día y recomendarte solo lo que ya ha demostrado funcionar en entornos empresariales reales.</p>
+        </div>
+        <div class="rounded-2xl p-6" style="background: #1a1d27; border: 1px solid #2a2d3a;">
+          <div class="text-3xl mb-3">🎯</div>
+          <h3 class="font-bold text-lg mb-2" style="color: #e2e8f0;">Implementación personalizada</h3>
+          <p style="color: #64748b; line-height: 1.6;">No vendemos herramientas genéricas. Nos sentamos con tu equipo, entendemos vuestro día a día y proponemos exactamente qué implementar y cómo integrarlo en vuestros procesos actuales.</p>
+        </div>
+        <div class="rounded-2xl p-6" style="background: #1a1d27; border: 1px solid #2a2d3a;">
+          <div class="text-3xl mb-3">🎓</div>
+          <h3 class="font-bold text-lg mb-2" style="color: #e2e8f0;">Formación real del equipo</h3>
+          <p style="color: #64748b; line-height: 1.6;">La herramienta más cara no sirve de nada si nadie la usa bien. Formamos a tus trabajadores para que saquen el máximo partido desde el primer día.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CROSS-LINK A CONSULTORÍA IT -->
+  <section style="background: #0f1117; padding: 60px 0; border-top: 1px solid #1e2130;">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="rounded-2xl p-8 flex flex-col md:flex-row items-center gap-6" style="background: linear-gradient(135deg, #0f1628, #1a1d27); border: 1px solid #2a3a6a;">
+        <div style="flex: 1;">
+          <div class="text-sm font-semibold mb-2" style="color: #7da4ff; letter-spacing: 0.08em;">TAMBIÉN OFRECEMOS</div>
+          <h3 class="text-2xl font-bold mb-3" style="color: #e2e8f0;">Consultoría IT</h3>
+          <p style="color: #64748b; line-height: 1.6;">
+            La IA funciona sobre una infraestructura sólida. Si tu empresa también necesita mejorar servidores, seguridad, redes o sistemas, nuestro servicio de Consultoría IT lo cubre todo.
+          </p>
+        </div>
+        <div style="flex-shrink: 0;">
+          <a href="/consultoria-it"
+            class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all"
+            style="background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.2); color: #e2e8f0; text-decoration: none; white-space: nowrap;">
+            Ver Consultoría IT →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section style="background: linear-gradient(135deg, #0f1628, #1a0a2e); padding: 80px 0; border-top: 1px solid #1e2130;">
+    <div class="max-w-3xl mx-auto px-6 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4" style="color: #fff;">¿Listo para ver qué IA puede hacer por tu empresa?</h2>
+      <p class="text-lg mb-8" style="color: #94a3b8;">Primera consulta gratuita. Sin compromiso. Te decimos honestamente qué tiene sentido implementar en tu caso.</p>
+      <a href="/presupuesto?plan=Consultoria-IA"
+        class="inline-flex items-center gap-3 px-8 py-4 rounded-xl font-bold text-lg transition-all"
+        style="background: linear-gradient(135deg, #4f7cff, #7c3aed); color: #ffffff;">
+        Solicitar consulta gratuita
+      </a>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<script define:vars={{ departamentos }} is:inline>
+  const SVG_SIZE = 560;
+  const CENTER = SVG_SIZE / 2;
+  const ORBIT_RADIUS = 200;
+  const NODE_RADIUS = 46;
+
+  const linesGroup = document.getElementById('lines');
+  const nodesGroup = document.getElementById('nodes');
+  const panelDefault = document.getElementById('panel-default');
+  const panelActive = document.getElementById('panel-active');
+  const panelHeader = document.getElementById('panel-header');
+  const panelIcon = document.getElementById('panel-icon');
+  const panelTitle = document.getElementById('panel-title');
+  const panelResumen = document.getElementById('panel-resumen');
+  const descBox = document.getElementById('desc-box');
+  const panelDesc = document.getElementById('panel-desc');
+  const panelTools = document.getElementById('panel-tools');
+  const panelAhorro = document.getElementById('panel-ahorro');
+
+  let activeId = null;
+
+  function getPos(index, total) {
+    const angle = (index / total) * 2 * Math.PI - Math.PI / 2;
+    return {
+      x: CENTER + ORBIT_RADIUS * Math.cos(angle),
+      y: CENTER + ORBIT_RADIUS * Math.sin(angle),
+    };
+  }
+
+  // Draw lines
+  departamentos.forEach((dep, i) => {
+    const pos = getPos(i, departamentos.length);
+    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    line.setAttribute('x1', CENTER);
+    line.setAttribute('y1', CENTER);
+    line.setAttribute('x2', pos.x);
+    line.setAttribute('y2', pos.y);
+    line.setAttribute('stroke', dep.color);
+    line.setAttribute('stroke-width', '1.5');
+    line.setAttribute('opacity', '0.3');
+    line.id = `line-${dep.id}`;
+    linesGroup.appendChild(line);
+  });
+
+  // Draw nodes
+  departamentos.forEach((dep, i) => {
+    const pos = getPos(i, departamentos.length);
+    const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    g.setAttribute('cursor', 'pointer');
+    g.id = `node-${dep.id}`;
+
+    const bg = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    bg.setAttribute('cx', pos.x);
+    bg.setAttribute('cy', pos.y);
+    bg.setAttribute('r', NODE_RADIUS);
+    bg.setAttribute('fill', '#1a1d27');
+    bg.setAttribute('stroke', dep.color);
+    bg.setAttribute('stroke-width', '1.5');
+    bg.setAttribute('opacity', '0.8');
+    bg.id = `bg-${dep.id}`;
+
+    const icon = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    icon.setAttribute('x', pos.x);
+    icon.setAttribute('y', pos.y - 8);
+    icon.setAttribute('text-anchor', 'middle');
+    icon.setAttribute('dominant-baseline', 'middle');
+    icon.setAttribute('font-size', '20');
+    icon.textContent = dep.icon;
+
+    const words = dep.nombre.split(' & ');
+    if (words.length > 1) {
+      const t1 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      t1.setAttribute('x', pos.x); t1.setAttribute('y', pos.y + 10);
+      t1.setAttribute('text-anchor', 'middle'); t1.setAttribute('fill', '#cbd5e1');
+      t1.setAttribute('font-size', '9'); t1.setAttribute('font-weight', '600');
+      t1.textContent = words[0];
+      const t2 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      t2.setAttribute('x', pos.x); t2.setAttribute('y', pos.y + 22);
+      t2.setAttribute('text-anchor', 'middle'); t2.setAttribute('fill', '#4f7cff');
+      t2.setAttribute('font-size', '8'); t2.setAttribute('font-weight', '600');
+      t2.textContent = '& ' + words[1];
+      g.appendChild(bg); g.appendChild(icon); g.appendChild(t1); g.appendChild(t2);
+    } else {
+      const nameWords = dep.nombre.split(' ');
+      if (nameWords.length > 2) {
+        const t1 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        t1.setAttribute('x', pos.x); t1.setAttribute('y', pos.y + 10);
+        t1.setAttribute('text-anchor', 'middle'); t1.setAttribute('fill', '#cbd5e1');
+        t1.setAttribute('font-size', '9'); t1.setAttribute('font-weight', '600');
+        t1.textContent = nameWords.slice(0, 2).join(' ');
+        const t2 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        t2.setAttribute('x', pos.x); t2.setAttribute('y', pos.y + 22);
+        t2.setAttribute('text-anchor', 'middle'); t2.setAttribute('fill', '#cbd5e1');
+        t2.setAttribute('font-size', '9'); t2.setAttribute('font-weight', '600');
+        t2.textContent = nameWords.slice(2).join(' ');
+        g.appendChild(bg); g.appendChild(icon); g.appendChild(t1); g.appendChild(t2);
+      } else {
+        const name = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        name.setAttribute('x', pos.x); name.setAttribute('y', pos.y + 16);
+        name.setAttribute('text-anchor', 'middle'); name.setAttribute('fill', '#cbd5e1');
+        name.setAttribute('font-size', '9.5'); name.setAttribute('font-weight', '600');
+        name.textContent = dep.nombre;
+        g.appendChild(bg); g.appendChild(icon); g.appendChild(name);
+      }
+    }
+
+    g.addEventListener('click', () => selectDep(dep.id));
+    g.addEventListener('mouseenter', () => {
+      if (activeId !== dep.id) { bg.setAttribute('opacity', '1'); bg.setAttribute('stroke-width', '2'); }
+    });
+    g.addEventListener('mouseleave', () => {
+      if (activeId !== dep.id) { bg.setAttribute('opacity', '0.8'); bg.setAttribute('stroke-width', '1.5'); }
+    });
+
+    nodesGroup.appendChild(g);
+  });
+
+  function selectDep(id) {
+    activeId = id;
+    const dep = departamentos.find(d => d.id === id);
+    if (!dep) return;
+
+    departamentos.forEach(d => {
+      const bg = document.getElementById(`bg-${d.id}`);
+      const line = document.getElementById(`line-${d.id}`);
+      if (bg) { bg.setAttribute('opacity', '0.8'); bg.setAttribute('stroke-width', '1.5'); bg.setAttribute('fill', '#1a1d27'); }
+      if (line) { line.setAttribute('opacity', '0.3'); line.setAttribute('stroke-width', '1.5'); }
+    });
+
+    const activeBg = document.getElementById(`bg-${id}`);
+    const activeLine = document.getElementById(`line-${id}`);
+    if (activeBg) {
+      activeBg.setAttribute('opacity', '1');
+      activeBg.setAttribute('stroke-width', '3');
+      activeBg.setAttribute('fill', dep.color + '22');
+    }
+    if (activeLine) { activeLine.setAttribute('opacity', '0.8'); activeLine.setAttribute('stroke-width', '2.5'); }
+
+    panelDefault.style.display = 'none';
+    panelActive.style.display = 'block';
+    descBox.style.display = 'block';
+    descBox.style.borderColor = `${dep.color}30`;
+    panelActive.style.border = `1px solid ${dep.color}40`;
+    panelHeader.style.background = `${dep.color}18`;
+    panelHeader.style.borderBottom = `1px solid ${dep.color}30`;
+    panelIcon.textContent = dep.icon;
+    panelTitle.textContent = dep.nombre;
+    panelTitle.style.color = dep.color;
+    panelResumen.textContent = dep.resumen;
+    panelDesc.textContent = dep.descripcion;
+
+    panelTools.innerHTML = '';
+    dep.herramientas.forEach(h => {
+      const item = document.createElement('div');
+      item.style.cssText = `background: rgba(255,255,255,0.04); border-radius: 8px; padding: 10px 12px; border-left: 3px solid ${dep.color};`;
+      item.innerHTML = `
+        <div style="font-size: 0.85rem; font-weight: 600; color: #e2e8f0; margin-bottom: 2px;">${h.nombre}</div>
+        <div style="font-size: 0.78rem; color: #64748b;">${h.uso}</div>
+      `;
+      panelTools.appendChild(item);
+    });
+
+    panelAhorro.textContent = '💡 ' + dep.ahorro;
+  }
+
+  // Activar "Desarrollo" por defecto al cargar
+  document.addEventListener('DOMContentLoaded', () => selectDep('desarrollo'));
+  // Fallback por si DOMContentLoaded ya pasó
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    selectDep('desarrollo');
+  }
+</script>

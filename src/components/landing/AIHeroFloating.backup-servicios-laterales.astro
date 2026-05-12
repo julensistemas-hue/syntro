@@ -1,0 +1,694 @@
+---
+// AIHeroFloating — Red neuronal + servicios laterales clicables
+// Izquierda: títulos Ciberseguridad | Centro: Chat | Derecha: títulos IA
+---
+
+<section class="relative min-h-screen overflow-hidden" style="background:#05070f;">
+
+  <canvas id="neural-canvas" class="absolute inset-0 w-full h-full" aria-hidden="true"></canvas>
+
+  <div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(59,130,246,0.07) 0%,transparent 70%)"></div>
+  <div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(ellipse 60% 40% at 50% 100%,rgba(99,102,241,0.05) 0%,transparent 70%)"></div>
+  <div class="scan-line absolute w-full pointer-events-none" aria-hidden="true"></div>
+
+  <!-- Layout: Izq | Centro | Der -->
+  <div class="relative min-h-screen flex items-center justify-center gap-4 xl:gap-8 px-4 lg:px-6" style="z-index:10;">
+
+    <!-- ═══════════════════════════
+         IZQUIERDA — Ciberseguridad
+    ═══════════════════════════ -->
+    <div class="side-list hidden lg:flex flex-col gap-1" style="width:220px;flex-shrink:0;">
+      <div class="side-list-label flex items-center gap-2 mb-3">
+        <div class="pulse-dot" style="background:#f85149;box-shadow:0 0 6px #f85149;"></div>
+        <span style="color:#8b949e;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;">Ciberseguridad</span>
+      </div>
+
+      {[
+        { id:'wazuh-alerts',   label:'Wazuh — Alertas SIEM',        color:'#f85149', rgb:'248,81,73',    href:'/wazuh',  featured: false },
+        { id:'ens-compliance', label:'ENS · Cumplimiento Normativo', color:'#3fb950', rgb:'63,185,80',    href:'/wazuh',  featured: false },
+        { id:'net-monitor',    label:'Monitor de Red',               color:'#58a6ff', rgb:'88,166,255',   href:'/wazuh',  featured: false },
+        { id:'seo-ranking',    label:'Posicionamiento Web',          color:'#f0883e', rgb:'240,136,62',   href:'/blog',   featured: true  },
+      ].map(s => (
+        <button
+          class={`service-btn service-btn-left group flex items-center gap-3 px-3 rounded-xl text-left transition-all w-full ${s.featured ? 'py-3' : 'py-2.5'}`}
+          data-card={s.id}
+          data-href={s.href}
+          style={s.featured
+            ? `--btn-color:rgba(240,136,62,0.7);--btn-border:rgba(240,136,62,0.35);background:rgba(240,136,62,0.07);`
+            : `--btn-color:rgba(${s.rgb},0.7);--btn-border:rgba(${s.rgb},0.35);`}
+        >
+          <div class="service-dot flex-shrink-0" style={`width:7px;height:7px;border-radius:50%;background:${s.color};box-shadow:0 0 0px ${s.color};transition:box-shadow 0.3s;`}></div>
+          <div class="flex-1 min-w-0">
+            <span class="service-label font-medium transition-colors block" style={`color:${s.featured ? '#f0883e' : '#4b5563'};font-size:${s.featured ? '13px' : '13px'};`}>{s.label}</span>
+            {s.featured && <span style="color:#6e7681;font-size:10px;">SEO · Analytics · SEM</span>}
+          </div>
+          {s.featured
+            ? <span style="background:rgba(240,136,62,0.15);color:#f0883e;font-size:9px;font-weight:700;padding:2px 6px;border-radius:4px;flex-shrink:0;">TOP</span>
+            : <svg class="service-arrow ml-auto w-3.5 h-3.5 flex-shrink-0 opacity-0 transition-all -translate-x-1" style="color:#4b5563;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+              </svg>
+          }
+        </button>
+      ))}
+    </div>
+
+    <!-- ═══════════════════════════
+         CENTRO — Chat hero
+    ═══════════════════════════ -->
+    <div class="hero-box w-full max-w-2xl mx-auto rounded-3xl p-8 md:p-12 flex-shrink-0"
+      style="z-index:10;background:rgba(5,7,15,0.85);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border:1px solid rgba(59,130,246,0.18);box-shadow:0 0 0 1px rgba(59,130,246,0.05),0 32px 80px -16px rgba(0,0,0,0.8),0 0 60px rgba(59,130,246,0.06),inset 0 1px 0 rgba(255,255,255,0.05);">
+
+      <div class="flex justify-center mb-5">
+        <span class="hero-badge inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold" style="background:rgba(59,130,246,0.12);border:1px solid rgba(59,130,246,0.25);color:#93c5fd;letter-spacing:0.05em;">
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75" style="background:#3b82f6;"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2" style="background:#60a5fa;"></span>
+          </span>
+          IA + CIBERSEGURIDAD PARA PYMES
+        </span>
+      </div>
+
+      <h1 class="hero-title text-3xl sm:text-4xl font-bold leading-tight tracking-tight mb-4 text-center" style="color:#f0f6ff;">
+        Automatiza lo que se repite.
+        <span class="block mt-1" style="background:linear-gradient(90deg,#60a5fa 0%,#818cf8 50%,#a78bfa 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">
+          Protege lo que importa.
+        </span>
+      </h1>
+
+      <p class="hero-subtitle text-base mb-7 max-w-md mx-auto text-center" style="color:#94a3b8;">
+        IA para ahorrar tiempo en lo que se repite. Wazuh y sistemas para blindar lo que no puedes permitirte perder.
+      </p>
+
+      <div class="hero-input-container">
+        <form id="chat-form">
+          <div class="chat-input-wrapper rounded-2xl px-2 py-1.5 transition-all" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);">
+            <div id="chat-response" class="hidden px-3 py-3">
+              <div id="chat-response-text" class="text-sm leading-relaxed" style="color:#e2e8f0;"></div>
+              <div id="email-contact" class="mt-3 pt-3" style="border-top:1px solid rgba(255,255,255,0.08);">
+                <p class="text-xs mb-2" style="color:#94a3b8;">¿Quieres que te respondamos con más detalle?</p>
+                <div id="email-input-row" class="flex items-center gap-2">
+                  <input type="email" id="email-input" placeholder="Tu email..." class="flex-1 bg-transparent px-3 py-1.5 text-sm focus:outline-none rounded-lg" style="color:#f0f6ff;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);" />
+                  <button type="button" id="email-send" class="px-3 py-1.5 text-xs font-medium text-white rounded-lg" style="background:#2563eb;">Enviar</button>
+                </div>
+                <p id="email-success" class="hidden text-xs mt-2" style="color:#4ade80;">Recibido. Te contestaremos lo antes posible.</p>
+                <p id="email-error" class="hidden text-xs mt-2" style="color:#f87171;">Error. Prueba en info@aisecurity.es</p>
+              </div>
+              <button type="button" id="chat-back" class="mt-3 flex items-center gap-1.5 text-xs" style="color:#60a5fa;">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+                Nueva pregunta
+              </button>
+            </div>
+            <div id="chat-input-row" class="flex items-center">
+              <input type="text" id="chat-input" placeholder="Pregunta sobre nuestros servicios..." class="flex-1 bg-transparent px-3 py-2.5 focus:outline-none text-sm" style="color:#f0f6ff;" />
+              <button type="submit" class="p-2.5 rounded-xl flex items-center justify-center" style="background:#2563eb;color:white;">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
+              </button>
+            </div>
+            <div id="chat-typing" class="hidden px-3 py-3">
+              <div class="flex gap-1.5 items-center">
+                <div class="w-1.5 h-1.5 rounded-full animate-bounce" style="background:#60a5fa;animation-delay:0ms"></div>
+                <div class="w-1.5 h-1.5 rounded-full animate-bounce" style="background:#60a5fa;animation-delay:150ms"></div>
+                <div class="w-1.5 h-1.5 rounded-full animate-bounce" style="background:#60a5fa;animation-delay:300ms"></div>
+                <span class="text-xs ml-2" style="color:#64748b;">Pensando...</span>
+              </div>
+            </div>
+          </div>
+        </form>
+
+        <div id="quick-buttons" class="flex flex-wrap gap-2 mt-4 justify-center">
+          <button class="quick-question flex items-center gap-1.5 px-3 py-1.5 text-xs rounded-full transition-all" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);color:#94a3b8;">
+            <svg class="w-3.5 h-3.5 flex-shrink-0" style="color:#60a5fa;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+            ¿Cuánto cuesta una web?
+          </button>
+          <button class="quick-question flex items-center gap-1.5 px-3 py-1.5 text-xs rounded-full transition-all" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);color:#94a3b8;">
+            <svg class="w-3.5 h-3.5 flex-shrink-0" style="color:#4ade80;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            ¿Qué puedo automatizar?
+          </button>
+          <button class="quick-question flex items-center gap-1.5 px-3 py-1.5 text-xs rounded-full transition-all" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);color:#94a3b8;">
+            <svg class="w-3.5 h-3.5 flex-shrink-0" style="color:#a78bfa;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+            ¿Qué es Wazuh?
+          </button>
+        </div>
+      </div>
+
+      <div class="hero-stats flex items-center justify-center gap-5 mt-7 pt-6" style="border-top:1px solid rgba(255,255,255,0.06);">
+        <div class="text-center">
+          <div class="text-base font-bold" style="color:#60a5fa;">24/7</div>
+          <div class="text-xs" style="color:#475569;">Disponibilidad</div>
+        </div>
+        <div style="width:1px;height:24px;background:rgba(255,255,255,0.07);"></div>
+        <div class="text-center">
+          <div class="text-base font-bold" style="color:#a78bfa;">Wazuh/ENS</div>
+          <div class="text-xs" style="color:#475569;">Ciberseguridad</div>
+        </div>
+        <div style="width:1px;height:24px;background:rgba(255,255,255,0.07);"></div>
+        <div class="text-center">
+          <div class="text-base font-bold" style="color:#4ade80;">PyMEs ES</div>
+          <div class="text-xs" style="color:#475569;">Nuestro foco</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════
+         DERECHA — Automatización IA
+    ═══════════════════════════ -->
+    <div class="side-list hidden lg:flex flex-col gap-1" style="width:220px;flex-shrink:0;">
+      <div class="side-list-label flex items-center gap-2 mb-3 justify-end">
+        <span style="color:#8b949e;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;">Automatización IA</span>
+        <div class="pulse-dot" style="background:#818cf8;box-shadow:0 0 6px #818cf8;"></div>
+      </div>
+
+      {[
+        { id:'chatbot',      label:'Chatbot Inteligente 24/7',   color:'#818cf8', rgb:'129,140,248', href:'/servicios/chatbot' },
+        { id:'automation',   label:'Automatización de Procesos', color:'#34d399', rgb:'52,211,153',  href:'/servicios/automatizacion' },
+        { id:'receptionist', label:'Recepcionista IA',           color:'#a78bfa', rgb:'167,139,250', href:'/servicios/atencion-llamadas' },
+        { id:'calendar',     label:'Gestor de Citas IA',         color:'#60a5fa', rgb:'96,165,250',  href:'/servicios/gestor-citas' },
+        { id:'docmanager',   label:'Gestor Documental IA',       color:'#f0883e', rgb:'240,136,62',  href:'/servicios/gestor-documental' },
+        { id:'webdev',       label:'Desarrollo Web',             color:'#38bdf8', rgb:'56,189,248',  href:'/servicios/desarrollo-web' },
+      ].map(s => (
+        <button
+          class="service-btn service-btn-right group flex items-center gap-3 px-3 py-2.5 rounded-xl text-left transition-all w-full"
+          data-card={s.id}
+          data-href={s.href}
+          style={`--btn-color:rgba(${s.rgb},0.7);--btn-border:rgba(${s.rgb},0.35);`}
+        >
+          <svg class="service-arrow mr-auto w-3.5 h-3.5 flex-shrink-0 opacity-0 transition-all translate-x-1" style="color:#4b5563;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+          </svg>
+          <span class="service-label text-sm font-medium transition-colors flex-1" style="color:#4b5563;">{s.label}</span>
+          <div class="service-dot flex-shrink-0" style={`width:7px;height:7px;border-radius:50%;background:${s.color};box-shadow:0 0 0px ${s.color};transition:box-shadow 0.3s;`}></div>
+        </button>
+      ))}
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════
+       PANEL FLOTANTE de detalle (se muestra al hacer clic)
+  ═══════════════════════════ -->
+  <div id="service-panel" class="hidden fixed pointer-events-auto" style="z-index:50;top:50%;transform:translateY(-50%);">
+    <div id="service-panel-inner" style="width:280px;border-radius:16px;overflow:hidden;box-shadow:0 25px 60px -12px rgba(0,0,0,0.8),0 0 40px rgba(59,130,246,0.12);">
+      <!-- El contenido se inyecta por JS -->
+    </div>
+    <button id="service-panel-close" class="absolute flex items-center justify-center w-7 h-7 rounded-full" style="top:-10px;right:-10px;background:rgba(30,30,50,0.95);border:1px solid rgba(255,255,255,0.12);color:#9ca3af;">
+      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+  </div>
+
+  <!-- Overlay para cerrar el panel -->
+  <div id="panel-overlay" class="hidden fixed inset-0" style="z-index:40;"></div>
+
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2" style="z-index:20;">
+    <div class="flex flex-col items-center gap-2 animate-bounce" style="color:#475569;">
+      <span class="text-xs font-medium">Descubre más</span>
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes scanLine {
+    0%   { top:-2px;opacity:0; }
+    5%   { opacity:0.4; }
+    95%  { opacity:0.1; }
+    100% { top:100%;opacity:0; }
+  }
+  .scan-line {
+    height:1px;
+    background:linear-gradient(90deg,transparent 0%,rgba(59,130,246,0.6) 30%,rgba(99,102,241,0.8) 50%,rgba(59,130,246,0.6) 70%,transparent 100%);
+    animation:scanLine 8s linear infinite 2s;
+    z-index:3;opacity:0;
+  }
+
+  .pulse-dot {
+    width:6px;height:6px;border-radius:50%;flex-shrink:0;
+    animation:pulseDot 2.5s ease-in-out infinite;
+  }
+  @keyframes pulseDot {
+    0%,100% { opacity:1;transform:scale(1); }
+    50%     { opacity:0.6;transform:scale(1.3); }
+  }
+
+  /* Botones de servicio — border controlado siempre por CSS, no inline */
+  .service-btn {
+    border: 1px solid var(--btn-border, transparent) !important;
+    background: transparent;
+    transition: background 0.2s ease, border-color 0.2s ease;
+  }
+  .service-btn:hover {
+    background: rgba(255,255,255,0.04) !important;
+    --btn-border: var(--btn-color);
+  }
+  .service-btn:hover .service-label { color:#c9d1d9 !important; }
+  .service-btn:hover .service-dot   { box-shadow:0 0 8px var(--btn-color,#fff) !important; }
+  .service-btn:hover .service-arrow { opacity:1 !important;transform:translateX(0) !important; }
+
+  .service-btn.active {
+    background:rgba(255,255,255,0.06) !important;
+    --btn-border: var(--btn-color);
+  }
+  .service-btn.active .service-label { color:#f0f6ff !important; font-weight:600; }
+  .service-btn.active .service-arrow { opacity:1 !important;transform:translateX(0) !important; }
+
+  /* Panel flotante */
+  #service-panel {
+    transition:opacity 0.2s ease,transform 0.2s ease;
+  }
+  #service-panel.panel-enter {
+    animation:panelIn 0.25s ease-out both;
+  }
+  @keyframes panelIn {
+    from { opacity:0;transform:translateY(-50%) scale(0.95); }
+    to   { opacity:1;transform:translateY(-50%) scale(1); }
+  }
+
+  /* Hero fade in */
+  .hero-badge          { animation:fadeInUp 0.6s ease-out both; }
+  .hero-title          { animation:fadeInUp 0.7s ease-out 0.1s both; }
+  .hero-subtitle       { animation:fadeInUp 0.7s ease-out 0.2s both; }
+  .hero-input-container { animation:fadeInUp 0.7s ease-out 0.3s both; }
+  .hero-stats          { animation:fadeInUp 0.7s ease-out 0.45s both; }
+  .side-list           { animation:fadeInUp 0.8s ease-out 0.2s both; }
+
+  @keyframes fadeInUp {
+    from { opacity:0;transform:translateY(16px); }
+    to   { opacity:1;transform:translateY(0); }
+  }
+
+  .chat-input-wrapper:focus-within {
+    background:rgba(255,255,255,0.06) !important;
+    border-color:rgba(59,130,246,0.4) !important;
+    box-shadow:0 0 24px rgba(59,130,246,0.1);
+  }
+  .quick-question:hover {
+    background:rgba(255,255,255,0.08) !important;
+    border-color:rgba(255,255,255,0.15) !important;
+    color:#e2e8f0 !important;
+  }
+</style>
+
+<script>
+// ─── Contenido de los paneles ─────────────────────────────────────────────
+const PANEL_CONTENT: Record<string, { html: string; side: 'left'|'right' }> = {
+  'wazuh-alerts': {
+    side: 'left',
+    html: `<div style="background:#0d1117;padding:16px;font-family:system-ui,sans-serif;">
+      <div style="display:flex;align-items:center;gap:7px;margin-bottom:10px;">
+        <div style="width:7px;height:7px;background:#f85149;border-radius:50%;box-shadow:0 0 5px #f85149;flex-shrink:0;"></div>
+        <span style="color:#e6edf3;font-size:12px;font-weight:600;">Wazuh — Alertas en vivo</span>
+        <span style="margin-left:auto;background:rgba(248,81,73,0.15);color:#f85149;font-size:10px;padding:1px 7px;border-radius:4px;font-weight:700;">3 críticas</span>
+      </div>
+      <div style="background:rgba(248,81,73,0.07);border-left:3px solid #f85149;padding:7px 9px;margin-bottom:5px;border-radius:0 4px 4px 0;">
+        <div style="color:#f85149;font-size:10px;font-weight:700;">CRÍTICO · Nivel 15</div>
+        <div style="color:#c9d1d9;font-size:11px;margin-top:1px;">Brute force SSH — 192.168.1.45</div>
+        <div style="color:#6e7681;font-size:10px;margin-top:1px;">hace 2 min · agent-prod-01</div>
+      </div>
+      <div style="background:rgba(240,136,62,0.07);border-left:3px solid #f0883e;padding:7px 9px;margin-bottom:5px;border-radius:0 4px 4px 0;">
+        <div style="color:#f0883e;font-size:10px;font-weight:700;">ALTO · Nivel 12</div>
+        <div style="color:#c9d1d9;font-size:11px;margin-top:1px;">Modificación en /etc/passwd</div>
+        <div style="color:#6e7681;font-size:10px;margin-top:1px;">hace 8 min · agent-web-02</div>
+      </div>
+      <div style="display:flex;gap:6px;margin-top:10px;">
+        <div style="flex:1;background:rgba(255,255,255,0.04);border-radius:6px;padding:6px;text-align:center;"><div style="color:#f85149;font-size:15px;font-weight:700;">247</div><div style="color:#6e7681;font-size:9px;">alertas hoy</div></div>
+        <div style="flex:1;background:rgba(255,255,255,0.04);border-radius:6px;padding:6px;text-align:center;"><div style="color:#3fb950;font-size:15px;font-weight:700;">12</div><div style="color:#6e7681;font-size:9px;">agentes</div></div>
+        <div style="flex:1;background:rgba(255,255,255,0.04);border-radius:6px;padding:6px;text-align:center;"><div style="color:#58a6ff;font-size:15px;font-weight:700;">99.8%</div><div style="color:#6e7681;font-size:9px;">uptime</div></div>
+      </div>
+    </div>`
+  },
+  'ens-compliance': {
+    side: 'left',
+    html: `<div style="background:#0d1117;padding:16px;font-family:system-ui,sans-serif;">
+      <div style="display:flex;align-items:center;gap:7px;margin-bottom:12px;">
+        <div style="width:7px;height:7px;background:#3fb950;border-radius:50%;box-shadow:0 0 5px #3fb950;flex-shrink:0;"></div>
+        <span style="color:#e6edf3;font-size:12px;font-weight:600;">ENS · Nivel MEDIO</span>
+        <span style="margin-left:auto;background:rgba(63,185,80,0.15);color:#3fb950;font-size:10px;padding:1px 7px;border-radius:4px;font-weight:700;">89%</span>
+      </div>
+      ${[['Control de Acceso',94],['Gestión de Logs',88],['Cifrado de Datos',100],['Detección Intrus.',91]].map(([l,p])=>`
+      <div style="margin-bottom:7px;">
+        <div style="display:flex;justify-content:space-between;margin-bottom:2px;">
+          <span style="color:#8b949e;font-size:10px;">${l}</span>
+          <span style="font-size:10px;font-weight:700;color:${Number(p)>=90?'#3fb950':'#f0883e'};">${p}%</span>
+        </div>
+        <div style="background:rgba(255,255,255,0.06);border-radius:4px;height:4px;overflow:hidden;">
+          <div style="height:100%;border-radius:4px;width:${p}%;background:${Number(p)>=90?'linear-gradient(90deg,#238636,#3fb950)':'linear-gradient(90deg,#9e6a03,#f0883e)'};"></div>
+        </div>
+      </div>`).join('')}
+    </div>`
+  },
+  'net-monitor': {
+    side: 'left',
+    html: `<div style="background:#0d1117;padding:16px;font-family:system-ui,sans-serif;">
+      <div style="display:flex;align-items:center;gap:7px;margin-bottom:12px;">
+        <div style="width:7px;height:7px;background:#58a6ff;border-radius:50%;box-shadow:0 0 5px #58a6ff;flex-shrink:0;"></div>
+        <span style="color:#e6edf3;font-size:12px;font-weight:600;">Monitor de Red</span>
+      </div>
+      ${[['192.168.1.0/24','Limpio','#3fb950',24],['10.0.0.0/8','Escaneando','#f0883e',12],['DMZ — Ext.','Alerta','#f85149',3]].map(([ip,st,c,h])=>`
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:7px;padding:7px 9px;background:rgba(255,255,255,0.04);border-radius:7px;">
+        <div style="width:8px;height:8px;border-radius:50%;background:${c};box-shadow:0 0 5px ${c};flex-shrink:0;"></div>
+        <div style="flex:1;"><div style="color:#c9d1d9;font-size:10px;font-weight:600;">${ip}</div><div style="font-size:10px;color:${c};">${st}</div></div>
+        <span style="color:#6e7681;font-size:10px;">${h} hosts</span>
+      </div>`).join('')}
+      <div style="margin-top:6px;padding:7px;background:rgba(88,166,255,0.07);border-radius:7px;text-align:center;">
+        <span style="color:#58a6ff;font-size:11px;font-weight:600;">39 hosts monitorizados</span>
+      </div>
+    </div>`
+  },
+  'seo-ranking': {
+    side: 'left',
+    html: `<div style="background:#0d1117;padding:16px;font-family:system-ui,sans-serif;">
+      <div style="display:flex;align-items:center;gap:7px;margin-bottom:12px;">
+        <div style="width:7px;height:7px;background:#f0883e;border-radius:50%;box-shadow:0 0 5px #f0883e;flex-shrink:0;"></div>
+        <span style="color:#e6edf3;font-size:12px;font-weight:600;">Posicionamiento SEO</span>
+        <span style="margin-left:auto;color:#3fb950;font-size:10px;font-weight:600;">+12 pos.</span>
+      </div>
+      ${[['wazuh para empresas',2,'1.2K'],['implementar wazuh españa',4,'880'],['chatbot ia pymes',7,'2.4K'],['esquema nacional seguridad',11,'3.1K'],['automatizacion empresas ia',14,'1.8K']].map(([kw,pos,vol])=>`
+      <div style="display:flex;align-items:center;gap:7px;margin-bottom:6px;">
+        <div style="width:22px;height:22px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0;background:${Number(pos)<=3?'rgba(63,185,80,0.15)':Number(pos)<=10?'rgba(88,166,255,0.15)':'rgba(255,255,255,0.06)'};color:${Number(pos)<=3?'#3fb950':Number(pos)<=10?'#58a6ff':'#8b949e'};">${pos}</div>
+        <div style="flex:1;min-width:0;"><div style="color:#c9d1d9;font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${kw}</div><div style="color:#6e7681;font-size:9px;">${vol} búsq./mes</div></div>
+        <span style="color:${Number(pos)<=10?'#3fb950':'#8b949e'};font-size:11px;">${Number(pos)<=10?'↑':'→'}</span>
+      </div>`).join('')}
+    </div>`
+  },
+  'chatbot': {
+    side: 'right',
+    html: `<div style="background:#111827;padding:16px;font-family:system-ui,sans-serif;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+        <div style="width:26px;height:26px;background:linear-gradient(135deg,#3b82f6,#6366f1);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="13" height="13" viewBox="0 0 24 24" fill="white"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg></div>
+        <div><div style="color:#f9fafb;font-size:12px;font-weight:600;">Chatbot IA</div><div style="color:#22c55e;font-size:10px;">● En línea 24/7</div></div>
+      </div>
+      <div style="background:rgba(255,255,255,0.05);border-radius:8px 8px 8px 2px;padding:7px 9px;margin-bottom:6px;max-width:88%;"><div style="color:#d1d5db;font-size:11px;">¿Cuál es el estado de mi pedido #4821?</div></div>
+      <div style="background:linear-gradient(135deg,rgba(59,130,246,0.15),rgba(99,102,241,0.15));border:1px solid rgba(99,102,241,0.2);border-radius:8px 8px 2px 8px;padding:7px 9px;margin-bottom:10px;max-width:88%;margin-left:auto;"><div style="color:#e5e7eb;font-size:11px;">Tu pedido está en tránsito — llegará mañana antes de las 14h.</div></div>
+      <div style="display:flex;gap:5px;">
+        <div style="flex:1;background:rgba(255,255,255,0.04);border-radius:6px;padding:5px;text-align:center;"><div style="color:#818cf8;font-size:13px;font-weight:700;">94%</div><div style="color:#6b7280;font-size:9px;">resueltas</div></div>
+        <div style="flex:1;background:rgba(255,255,255,0.04);border-radius:6px;padding:5px;text-align:center;"><div style="color:#3fb950;font-size:13px;font-weight:700;">80+</div><div style="color:#6b7280;font-size:9px;">chats/día</div></div>
+        <div style="flex:1;background:rgba(255,255,255,0.04);border-radius:6px;padding:5px;text-align:center;"><div style="color:#60a5fa;font-size:13px;font-weight:700;">24/7</div><div style="color:#6b7280;font-size:9px;">activo</div></div>
+      </div>
+    </div>`
+  },
+  'automation': {
+    side: 'right',
+    html: `<div style="background:#0d1117;padding:16px;font-family:system-ui,sans-serif;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+        <span style="color:#e6edf3;font-size:12px;font-weight:600;">Automatización IA</span>
+        <span style="background:rgba(52,211,153,0.12);color:#34d399;font-size:10px;padding:1px 7px;border-radius:4px;font-weight:700;">Activo</span>
+      </div>
+      ${[['Respuesta emails','18h/mes','#60a5fa',90],['Generación facturas','12h/mes','#a78bfa',72],['Informes semanales','8h/mes','#34d399',55],['Alta proveedores','6h/mes','#f0883e',42]].map(([n,s,c,w])=>`
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:7px;">
+        <div style="width:3px;height:28px;background:${c};border-radius:2px;flex-shrink:0;"></div>
+        <div style="flex:1;min-width:0;"><div style="color:#c9d1d9;font-size:10px;margin-bottom:2px;">${n}</div><div style="background:rgba(255,255,255,0.05);border-radius:3px;height:3px;overflow:hidden;"><div style="height:100%;border-radius:3px;background:${c};width:${w}%;"></div></div></div>
+        <span style="color:${c};font-size:10px;font-weight:700;flex-shrink:0;">${s}</span>
+      </div>`).join('')}
+      <div style="margin-top:8px;background:rgba(96,165,250,0.08);border-radius:6px;padding:7px;text-align:center;">
+        <span style="color:#60a5fa;font-size:14px;font-weight:700;">44h/mes</span><span style="color:#6e7681;font-size:10px;"> ahorradas</span>
+      </div>
+    </div>`
+  },
+  'receptionist': {
+    side: 'right',
+    html: `<div style="background:#111827;padding:16px;font-family:system-ui,sans-serif;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+        <div style="width:26px;height:26px;background:linear-gradient(135deg,#6366f1,#8b5cf6);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="13" height="13" viewBox="0 0 24 24" fill="white"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></div>
+        <div><div style="color:#f9fafb;font-size:12px;font-weight:600;">Recepcionista IA</div><div style="color:#22c55e;font-size:10px;">● Atendiendo llamadas</div></div>
+      </div>
+      <div style="background:rgba(255,255,255,0.04);border-radius:8px;padding:8px;margin-bottom:8px;">
+        <div style="color:#9ca3af;font-size:9px;margin-bottom:5px;text-transform:uppercase;letter-spacing:0.05em;">Transcripción activa — 01:47</div>
+        <div style="color:#a78bfa;font-size:10px;margin-bottom:3px;">CLIENTE:</div>
+        <div style="color:#e5e7eb;font-size:11px;margin-bottom:5px;">"Quería pedir cita para esta semana"</div>
+        <div style="color:#60a5fa;font-size:10px;margin-bottom:3px;">ASISTENTE IA:</div>
+        <div style="color:#e5e7eb;font-size:11px;">"Tengo el miércoles a las 10h o jueves a las 16h. ¿Cuál le viene mejor?"</div>
+      </div>
+      <div style="display:flex;gap:5px;">
+        <div style="flex:1;background:rgba(255,255,255,0.04);border-radius:6px;padding:5px;text-align:center;"><div style="color:#60a5fa;font-size:13px;font-weight:700;">23</div><div style="color:#6b7280;font-size:9px;">hoy</div></div>
+        <div style="flex:1;background:rgba(255,255,255,0.04);border-radius:6px;padding:5px;text-align:center;"><div style="color:#3fb950;font-size:13px;font-weight:700;">96%</div><div style="color:#6b7280;font-size:9px;">resueltas</div></div>
+        <div style="flex:1;background:rgba(255,255,255,0.04);border-radius:6px;padding:5px;text-align:center;"><div style="color:#f0883e;font-size:13px;font-weight:700;">4</div><div style="color:#6b7280;font-size:9px;">derivadas</div></div>
+      </div>
+    </div>`
+  },
+  'calendar': {
+    side: 'right',
+    html: `<div style="background:#111827;padding:16px;font-family:system-ui,sans-serif;">
+      <div style="display:flex;align-items:center;gap:7px;margin-bottom:10px;">
+        <div style="width:7px;height:7px;background:#60a5fa;border-radius:50%;box-shadow:0 0 5px #60a5fa;flex-shrink:0;"></div>
+        <span style="color:#f9fafb;font-size:12px;font-weight:600;">Gestor de Citas IA</span>
+        <span style="margin-left:auto;color:#6b7280;font-size:11px;">Mayo 2025</span>
+      </div>
+      <div style="background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.25);border-radius:8px;padding:8px;margin-bottom:6px;display:flex;align-items:center;gap:8px;">
+        <div style="width:4px;height:32px;background:#3b82f6;border-radius:2px;flex-shrink:0;"></div>
+        <div><div style="color:#e5e7eb;font-size:11px;font-weight:600;">Consulta Wazuh — Empresa Logística</div><div style="color:#60a5fa;font-size:10px;">Mié 7 Mayo · 10:00 — confirmada</div></div>
+      </div>
+      <div style="background:rgba(167,139,250,0.1);border:1px solid rgba(167,139,250,0.25);border-radius:8px;padding:8px;display:flex;align-items:center;gap:8px;">
+        <div style="width:4px;height:32px;background:#a78bfa;border-radius:2px;flex-shrink:0;"></div>
+        <div><div style="color:#e5e7eb;font-size:11px;font-weight:600;">Demo Chatbot — Clínica Dental</div><div style="color:#a78bfa;font-size:10px;">Jue 8 Mayo · 16:30 — pendiente</div></div>
+      </div>
+    </div>`
+  },
+  'docmanager': {
+    side: 'right',
+    html: `<div style="background:#111827;padding:16px;font-family:system-ui,sans-serif;">
+      <div style="display:flex;align-items:center;gap:7px;margin-bottom:10px;">
+        <div style="width:7px;height:7px;background:#f0883e;border-radius:50%;box-shadow:0 0 5px #f0883e;flex-shrink:0;"></div>
+        <span style="color:#f9fafb;font-size:12px;font-weight:600;">Gestor Documental IA</span>
+      </div>
+      <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:6px 10px;margin-bottom:10px;display:flex;align-items:center;gap:6px;">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <span style="color:#6b7280;font-size:11px;">política vacaciones 2025...</span>
+      </div>
+      ${[['Política_Vacaciones_2025.pdf','Sección 3 — Días adicionales','0.3s'],['Manual_RRHH_v4.docx','Capítulo 7 — Permisos retribuidos','0.5s'],['Convenio_Colectivo.pdf','Art. 24 — Descanso anual','0.7s']].map(([f,s,t])=>`
+      <div style="display:flex;align-items:flex-start;gap:7px;margin-bottom:7px;padding:7px;background:rgba(255,255,255,0.03);border-radius:6px;border:1px solid rgba(255,255,255,0.06);">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="#ef4444" style="margin-top:1px;flex-shrink:0;"><path d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+        <div style="flex:1;min-width:0;"><div style="color:#e5e7eb;font-size:10px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${f}</div><div style="color:#6b7280;font-size:10px;">${s}</div></div>
+        <span style="color:#3fb950;font-size:9px;flex-shrink:0;">${t}</span>
+      </div>`).join('')}
+    </div>`
+  },
+  'webdev': {
+    side: 'right',
+    html: `<div style="background:#0c1929;padding:16px;font-family:system-ui,sans-serif;">
+      <div style="display:flex;align-items:center;gap:7px;margin-bottom:12px;">
+        <div style="width:7px;height:7px;background:#38bdf8;border-radius:50%;box-shadow:0 0 5px #38bdf8;flex-shrink:0;"></div>
+        <span style="color:#f0f6ff;font-size:12px;font-weight:600;">Desarrollo Web</span>
+      </div>
+      ${[['Landing pages optimizadas','Diseño + SEO técnico'],['Webs corporativas','CMS, blog, multiidioma'],['Tiendas online','WooCommerce / Shopify'],['Microservicios & APIs','Integraciones ERP/CRM']].map(([t,d])=>`
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:7px;padding:8px;background:rgba(56,189,248,0.06);border-radius:7px;border:1px solid rgba(56,189,248,0.12);">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2" style="flex-shrink:0;"><path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+        <div><div style="color:#e0f2fe;font-size:11px;font-weight:600;">${t}</div><div style="color:#64748b;font-size:10px;">${d}</div></div>
+      </div>`).join('')}
+      <div style="margin-top:8px;padding:8px;background:rgba(56,189,248,0.08);border-radius:7px;display:flex;align-items:center;justify-content:space-between;">
+        <span style="color:#38bdf8;font-size:11px;font-weight:600;">Presupuesto sin compromiso</span>
+        <span style="color:#0ea5e9;font-size:11px;">Gratis</span>
+      </div>
+    </div>`
+  },
+};
+
+// ─── Lógica del panel ─────────────────────────────────────────────────────
+const panel       = document.getElementById('service-panel')!;
+const panelInner  = document.getElementById('service-panel-inner')!;
+const panelClose  = document.getElementById('service-panel-close')!;
+const overlay     = document.getElementById('panel-overlay')!;
+let activeBtn: HTMLElement | null = null;
+
+function openPanel(btn: HTMLElement) {
+  const id   = btn.dataset.card!;
+  const data = PANEL_CONTENT[id];
+  if (!data) return;
+
+  // Posición horizontal según lado
+  const isLeft = data.side === 'left';
+  panel.style.left  = isLeft ? 'auto' : '';
+  panel.style.right = isLeft ? '' : 'auto';
+
+  // Posicionar junto al botón pulsado
+  const rect = btn.getBoundingClientRect();
+  const margin = 12;
+
+  if (isLeft) {
+    panel.style.left = (rect.right + margin) + 'px';
+    panel.style.right = 'auto';
+  } else {
+    panel.style.right = (window.innerWidth - rect.left + margin) + 'px';
+    panel.style.left = 'auto';
+  }
+
+  // Inyectar contenido + botón de navegación al servicio
+  const href = btn.dataset.href || '/';
+  panelInner.innerHTML = data.html + `
+    <a href="${href}" style="display:flex;align-items:center;justify-content:center;gap:6px;width:100%;padding:9px;font-size:12px;font-weight:600;color:#60a5fa;text-decoration:none;background:rgba(96,165,250,0.07);border-top:1px solid rgba(255,255,255,0.06);transition:background 0.2s;"
+       onmouseover="this.style.background='rgba(96,165,250,0.14)'" onmouseout="this.style.background='rgba(96,165,250,0.07)'">
+      Ver servicio completo
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+    </a>`;
+  panel.classList.remove('hidden');
+  panel.classList.remove('panel-enter');
+  void panel.offsetWidth; // reflow
+  panel.classList.add('panel-enter');
+
+  overlay.classList.remove('hidden');
+
+  // Marcar activo
+  activeBtn?.classList.remove('active');
+  btn.classList.add('active');
+  activeBtn = btn;
+}
+
+function closePanel() {
+  panel.classList.add('hidden');
+  overlay.classList.add('hidden');
+  activeBtn?.classList.remove('active');
+  activeBtn = null;
+}
+
+document.querySelectorAll<HTMLElement>('.service-btn').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (btn === activeBtn) { closePanel(); return; }
+    openPanel(btn);
+  });
+});
+
+panelClose.addEventListener('click', closePanel);
+overlay.addEventListener('click', closePanel);
+
+// ─── Canvas partículas ────────────────────────────────────────────────────
+(function () {
+  const canvas = document.getElementById('neural-canvas') as HTMLCanvasElement;
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d')!;
+  const isMobile = window.innerWidth < 768;
+  const COUNT    = isMobile ? 35 : 70;
+  const MAX_DIST = isMobile ? 110 : 150;
+  const SPEED    = 0.3;
+
+  function resize() { canvas.width=canvas.offsetWidth; canvas.height=canvas.offsetHeight; }
+  resize();
+  window.addEventListener('resize', resize, { passive:true });
+
+  interface P { x:number;y:number;vx:number;vy:number;r:number;alpha:number; }
+  const pts: P[] = Array.from({length:COUNT}, ()=>({
+    x:Math.random()*canvas.width, y:Math.random()*canvas.height,
+    vx:(Math.random()-0.5)*SPEED, vy:(Math.random()-0.5)*SPEED,
+    r:Math.random()*1.8+0.8,     alpha:Math.random()*0.45+0.25,
+  }));
+  const COLORS=['59,130,246','99,102,241','167,139,250','52,211,153'];
+  let raf:number, running=false;
+
+  function draw() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    for(const p of pts){
+      p.x+=p.vx; p.y+=p.vy;
+      if(p.x<0||p.x>canvas.width) p.vx*=-1;
+      if(p.y<0||p.y>canvas.height) p.vy*=-1;
+    }
+    for(let i=0;i<pts.length;i++) for(let j=i+1;j<pts.length;j++){
+      const a=pts[i],b=pts[j],dx=a.x-b.x,dy=a.y-b.y,d=Math.sqrt(dx*dx+dy*dy);
+      if(d<MAX_DIST){ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.strokeStyle=`rgba(99,102,241,${(1-d/MAX_DIST)*0.2})`;ctx.lineWidth=0.7;ctx.stroke();}
+    }
+    pts.forEach((p,i)=>{ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=`rgba(${COLORS[i%COLORS.length]},${p.alpha})`;ctx.fill();});
+    raf=requestAnimationFrame(draw);
+  }
+  window.addEventListener('load',()=>{setTimeout(()=>{running=true;draw();},400);});
+  document.addEventListener('visibilitychange',()=>{
+    if(document.hidden){cancelAnimationFrame(raf);running=false;}
+    else if(!running){running=true;draw();}
+  });
+})();
+
+// ─── Chat inline ──────────────────────────────────────────────────────────
+const chatForm=document.getElementById('chat-form');
+const chatInput=document.getElementById('chat-input') as HTMLInputElement;
+const chatInputRow=document.getElementById('chat-input-row');
+const chatResponse=document.getElementById('chat-response');
+const chatResponseText=document.getElementById('chat-response-text');
+const chatTyping=document.getElementById('chat-typing');
+const chatBack=document.getElementById('chat-back');
+const quickButtons=document.getElementById('quick-buttons');
+const quickQuestions=document.querySelectorAll('.quick-question');
+const emailInput=document.getElementById('email-input') as HTMLInputElement;
+const emailSend=document.getElementById('email-send');
+const emailSuccess=document.getElementById('email-success');
+const emailError=document.getElementById('email-error');
+const emailInputRow=document.getElementById('email-input-row');
+let lastQuestion='',lastReply='';
+
+function showInput(){chatInputRow!.classList.remove('hidden');chatTyping!.classList.add('hidden');chatResponse!.classList.add('hidden');quickButtons!.classList.remove('hidden');chatInput.value='';chatInput.focus();emailInput.value='';emailInputRow!.classList.remove('hidden');emailSuccess!.classList.add('hidden');emailError!.classList.add('hidden');(document.querySelector('#email-contact p:first-child') as HTMLElement)?.classList.remove('hidden');}
+function showTyping(){chatInputRow!.classList.add('hidden');chatTyping!.classList.remove('hidden');chatResponse!.classList.add('hidden');quickButtons!.classList.add('hidden');}
+function linkifyPaths(t:string){return t.replace(/(\/(?:contacto-migracion|contacto|reunion|wazuh|curso-wazuh|blog|servicios\/chatbot|servicios\/gestor-documental|servicios\/gestor-citas|servicios\/atencion-llamadas|servicios\/automatizacion|servicios\/desarrollo-web))/g,'<a href="$1" style="color:#60a5fa;text-decoration:underline;cursor:pointer;">$1</a>');}
+function showResponse(text:string){chatInputRow!.classList.add('hidden');chatTyping!.classList.add('hidden');chatResponse!.classList.remove('hidden');chatResponseText!.innerHTML=linkifyPaths(text);quickButtons!.classList.add('hidden');}
+
+async function sendMessage(msg:string){
+  lastQuestion=msg;showTyping();
+  try{const r=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:msg})});
+    if(r.ok){const d=await r.json();lastReply=d.reply;showResponse(d.reply);}
+    else showResponse('Lo siento, hubo un error. Contacta en info@aisecurity.es');
+  }catch{showResponse('Error de conexión. Intenta de nuevo.');}
+}
+chatForm?.addEventListener('submit',e=>{e.preventDefault();const m=chatInput?.value.trim();if(m)sendMessage(m);});
+quickQuestions.forEach(btn=>btn.addEventListener('click',()=>{const q=btn.textContent?.trim();if(q)sendMessage(q);}));
+chatBack?.addEventListener('click',()=>showInput());
+emailSend?.addEventListener('click',async()=>{
+  const email=emailInput.value.trim();
+  if(!email||!email.includes('@')){emailInput.style.borderColor='rgba(239,68,68,0.5)';setTimeout(()=>{emailInput.style.borderColor='rgba(255,255,255,0.1)';},2000);return;}
+  emailSend.textContent='...';(emailSend as HTMLButtonElement).disabled=true;
+  try{const res=await fetch('/api/chat-email',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,question:lastQuestion,reply:lastReply})});
+    if(res.ok){emailInputRow!.classList.add('hidden');(document.querySelector('#email-contact p:first-child') as HTMLElement)?.classList.add('hidden');emailSuccess!.classList.remove('hidden');}
+    else emailError!.classList.remove('hidden');
+  }catch{emailError!.classList.remove('hidden');}
+  finally{emailSend.textContent='Enviar';(emailSend as HTMLButtonElement).disabled=false;}
+});
+emailInput?.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();emailSend?.click();}});
+
+// ─── Animación: iluminación cíclica de servicios ─────────────────────────
+// Cada 2.5s ilumina aleatoriamente 1-2 botones de servicio con su color
+(function () {
+  const btns = Array.from(document.querySelectorAll<HTMLElement>('.service-btn'));
+  if (!btns.length) return;
+
+  // Extraer el color de cada punto (del service-dot inline style)
+  function getDotColor(btn: HTMLElement): string {
+    const dot = btn.querySelector<HTMLElement>('.service-dot');
+    if (!dot) return '#60a5fa';
+    const bg = dot.style.background;
+    return bg || '#60a5fa';
+  }
+
+  function glowBtn(btn: HTMLElement) {
+    // No iluminar el que está activo (ya tiene su propio estilo)
+    if (btn === activeBtn) return;
+    const color = getDotColor(btn);
+    const label = btn.querySelector<HTMLElement>('.service-label');
+    const dot   = btn.querySelector<HTMLElement>('.service-dot');
+    const arrow = btn.querySelector<HTMLElement>('.service-arrow');
+
+    // Aplicar glow
+    btn.style.background    = `rgba(255,255,255,0.05)`;
+    btn.style.borderColor   = `${color}cc`;
+    if (label) label.style.color = '#c9d1d9';
+    if (dot)   dot.style.boxShadow = `0 0 10px ${color}`;
+    if (arrow) { arrow.style.opacity = '1'; arrow.style.transform = 'translateX(0)'; }
+
+    // Apagar tras 1.8s
+    setTimeout(() => {
+      if (btn === activeBtn) return;
+      btn.style.background  = '';
+      btn.style.borderColor = '';
+      if (label) label.style.color = '';
+      if (dot)   dot.style.boxShadow = '';
+      if (arrow) { arrow.style.opacity = ''; arrow.style.transform = ''; }
+    }, 1800);
+  }
+
+  // Elegir un botón aleatorio que no esté activo
+  function pickRandom(): HTMLElement {
+    const candidates = btns.filter(b => b !== activeBtn);
+    return candidates[Math.floor(Math.random() * candidates.length)];
+  }
+
+  // Ciclo: cada 2.5s ilumina uno, a veces dos (25% de probabilidad)
+  setInterval(() => {
+    glowBtn(pickRandom());
+    if (Math.random() < 0.25) {
+      setTimeout(() => glowBtn(pickRandom()), 400);
+    }
+  }, 2500);
+})();
+</script>

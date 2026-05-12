@@ -120,22 +120,22 @@ const services = [
 ];
 ---
 
-<section id="servicios" class="py-24 lg:py-32 bg-gradient-to-b from-base-50 to-base-100">
-  <div class="max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
+<section id="servicios" class="py-24 lg:py-32" style="background: linear-gradient(180deg, #0d1120 0%, #111827 100%);">
+  <div class="max-w-7xl mx-auto px-4 md:px-8 lg:px-14">
     <div class="text-center mb-20">
-      <div class="inline-flex items-center gap-2 px-4 py-2 bg-accent-100/80 text-accent-700 rounded-full text-sm font-semibold mb-6 border border-accent-200/50">
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold mb-6 border" style="background: rgba(79,124,255,0.1); border-color: rgba(79,124,255,0.25); color: #7da4ff;">
         <span aria-hidden="true">✨</span>
         Nuestros Servicios
       </div>
-      <h2 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-base-900 mb-6 tracking-tight">
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 tracking-tight" style="color: #e2e8f0;">
         Servicios de <span class="gradient-text">Inteligencia Artificial</span>
       </h2>
-      <p class="text-lg md:text-xl text-base-600 max-w-3xl mx-auto leading-relaxed">
+      <p class="text-lg md:text-xl max-w-3xl mx-auto leading-relaxed" style="color: #64748b;">
         Soluciones de automatización con IA para PyMEs españolas: chatbot inteligente, gestor documental, atención de llamadas, gestión de citas y consultoría IT. Sin conocimientos técnicos previos.
       </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
       {services.map((service) => (
         <ServiceCard
           title={service.title}
@@ -152,7 +152,7 @@ const services = [
       <a
         href="/reunion"
         class="group inline-flex items-center justify-center px-8 py-4 text-lg font-semibold bg-accent-600 hover:bg-accent-700 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-1"
-        style="color: #000000;"
+        style="color: #ffffff;"
       >
         Solicitar Consulta Gratuita
         <svg class="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">

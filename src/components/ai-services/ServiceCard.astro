@@ -28,7 +28,7 @@ const isConsultoria = !["Chatbot Inteligente","Gestor Documental IA","Gestor de 
 
 <div
   class={`
-    relative p-8 rounded-2xl border-2 transition-all duration-300 bg-base-50 group
+    relative p-8 rounded-2xl border-2 transition-all duration-300 bg-base-50 group flex flex-col h-full
     ${featured
       ? 'border-accent-300 shadow-lg hover:shadow-2xl hover:border-accent-400 hover:-translate-y-2'
       : 'border-base-200 hover:border-accent-300 hover:shadow-xl hover:-translate-y-1'
@@ -57,7 +57,7 @@ const isConsultoria = !["Chatbot Inteligente","Gestor Documental IA","Gestor de 
 
   <p class="text-base-600 mb-6 leading-relaxed">{description}</p>
 
-  <ul class="space-y-3 mb-8">
+  <ul class="space-y-3 mb-8 flex-1">
     {features.map((feature) => (
       <li class="flex items-start gap-3">
         <svg class="w-5 h-5 text-accent-600 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">

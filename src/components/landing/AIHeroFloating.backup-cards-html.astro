@@ -1,0 +1,671 @@
+---
+// 8 tarjetas HTML/CSS (sin imágenes) × 1 sola oleada = 8 elementos animados
+// Antes: 14 imágenes × 2 oleadas = 28 elementos + 3.2MB de imágenes
+const cards = [
+  { id: 1, x: -40, y: -40, rotateY: -15, finalScale: 0.45, href: '/wazuh',                        label: 'Wazuh SIEM' },
+  { id: 2, x:  40, y: -40, rotateY:  15, finalScale: 0.45, href: '/servicios/chatbot',             label: 'Chatbot IA' },
+  { id: 3, x: -62, y: -32, rotateY: -10, finalScale: 0.32, href: '/wazuh',                        label: 'ENS Compliance' },
+  { id: 4, x:  62, y: -32, rotateY:  10, finalScale: 0.32, href: '/servicios/gestor-documental',  label: 'Gestor Documental' },
+  { id: 5, x: -55, y:  -5, rotateY: -20, finalScale: 0.48, href: '/servicios/automatizacion',     label: 'Automatización IA' },
+  { id: 6, x:  55, y:  -5, rotateY:  20, finalScale: 0.48, href: '/servicios/atencion-llamadas',  label: 'Recepcionista IA' },
+  { id: 7, x: -42, y:  38, rotateY: -14, finalScale: 0.40, href: '/wazuh',                        label: 'Monitor de Red' },
+  { id: 8, x:  42, y:  38, rotateY:  14, finalScale: 0.40, href: '/servicios/gestor-citas',       label: 'Gestor de Citas' },
+];
+---
+
+<section class="relative min-h-screen overflow-hidden" style="background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #0f0f1a 100%);">
+  <!-- Background Image: cargada lazy, decorativa -->
+  <div class="absolute inset-0">
+    <img src="/images/6107094.jpg" alt="" class="w-full h-full object-cover opacity-10" aria-hidden="true" loading="lazy" />
+  </div>
+
+  <!-- Floating Cards Container -->
+  <div class="floating-cards-container absolute inset-0" style="z-index:5;perspective:1200px;">
+    {cards.map((card) => (
+      <div
+        class="floating-card absolute rounded-xl overflow-hidden"
+        data-href={card.href}
+        style={`left:50%;top:50%;--final-x:${card.x}vw;--final-y:${card.y}vh;--final-ry:${card.rotateY}deg;--final-scale:${card.finalScale};width:300px;box-shadow:0 25px 50px -12px rgba(0,0,0,0.6),0 0 40px rgba(59,130,246,0.15);border:1px solid rgba(255,255,255,0.12);`}
+      >
+        {/* Card 1 — Wazuh Alertas en vivo */}
+        {card.id === 1 && (
+          <div style="background:#0d1117;padding:14px;width:300px;font-family:system-ui,sans-serif;">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,0.08)">
+              <div style="width:8px;height:8px;background:#f85149;border-radius:50%;box-shadow:0 0 6px #f85149"></div>
+              <span style="color:#e6edf3;font-size:12px;font-weight:600">Wazuh — Alertas en vivo</span>
+              <span style="margin-left:auto;background:rgba(248,81,73,0.15);color:#f85149;font-size:10px;padding:2px 7px;border-radius:4px;font-weight:600">3 críticas</span>
+            </div>
+            <div style="background:rgba(248,81,73,0.08);border-left:3px solid #f85149;padding:8px 10px;margin-bottom:6px;border-radius:0 4px 4px 0">
+              <div style="color:#f85149;font-size:10px;font-weight:700;margin-bottom:2px">CRITICO · Nivel 15</div>
+              <div style="color:#e6edf3;font-size:11px">Brute force SSH — 192.168.1.45</div>
+              <div style="color:#8b949e;font-size:10px;margin-top:2px">hace 2 min · agent-prod-01</div>
+            </div>
+            <div style="background:rgba(255,165,0,0.08);border-left:3px solid #f0883e;padding:8px 10px;margin-bottom:6px;border-radius:0 4px 4px 0">
+              <div style="color:#f0883e;font-size:10px;font-weight:700;margin-bottom:2px">ALTO · Nivel 12</div>
+              <div style="color:#e6edf3;font-size:11px">Modificación en /etc/passwd</div>
+              <div style="color:#8b949e;font-size:10px;margin-top:2px">hace 8 min · agent-web-02</div>
+            </div>
+            <div style="background:rgba(35,197,94,0.08);border-left:3px solid #3fb950;padding:8px 10px;border-radius:0 4px 4px 0">
+              <div style="color:#3fb950;font-size:10px;font-weight:700;margin-bottom:2px">INFO · Nivel 3</div>
+              <div style="color:#e6edf3;font-size:11px">Nuevo agente conectado correctamente</div>
+              <div style="color:#8b949e;font-size:10px;margin-top:2px">hace 1h · agent-bkp-03</div>
+            </div>
+            <div style="margin-top:10px;display:flex;gap:10px">
+              <div style="flex:1;background:rgba(255,255,255,0.04);border-radius:6px;padding:8px;text-align:center">
+                <div style="color:#f85149;font-size:16px;font-weight:700">247</div>
+                <div style="color:#8b949e;font-size:10px">alertas hoy</div>
+              </div>
+              <div style="flex:1;background:rgba(255,255,255,0.04);border-radius:6px;padding:8px;text-align:center">
+                <div style="color:#3fb950;font-size:16px;font-weight:700">12</div>
+                <div style="color:#8b949e;font-size:10px">agentes activos</div>
+              </div>
+              <div style="flex:1;background:rgba(255,255,255,0.04);border-radius:6px;padding:8px;text-align:center">
+                <div style="color:#58a6ff;font-size:16px;font-weight:700">99.8%</div>
+                <div style="color:#8b949e;font-size:10px">uptime</div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Card 2 — Chatbot IA */}
+        {card.id === 2 && (
+          <div style="background:#111827;padding:14px;width:300px;font-family:system-ui,sans-serif;">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,0.08)">
+              <div style="width:30px;height:30px;background:linear-gradient(135deg,#3b82f6,#6366f1);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+              </div>
+              <div>
+                <div style="color:#f9fafb;font-size:12px;font-weight:600">Asistente IA</div>
+                <div style="color:#22c55e;font-size:10px;display:flex;align-items:center;gap:4px"><span style="width:5px;height:5px;background:#22c55e;border-radius:50%;display:inline-block"></span>En línea 24/7</div>
+              </div>
+            </div>
+            <div style="background:rgba(255,255,255,0.05);border-radius:10px 10px 10px 2px;padding:8px 10px;margin-bottom:8px;max-width:85%">
+              <div style="color:#d1d5db;font-size:11px">Hola, ¿necesitáis ayuda con la gestión de pedidos de clientes?</div>
+            </div>
+            <div style="background:linear-gradient(135deg,rgba(59,130,246,0.2),rgba(99,102,241,0.2));border:1px solid rgba(59,130,246,0.3);border-radius:10px 10px 2px 10px;padding:8px 10px;margin-bottom:8px;max-width:85%;margin-left:auto">
+              <div style="color:#e5e7eb;font-size:11px">Sí, recibimos 80 consultas/día sobre estado de pedidos</div>
+            </div>
+            <div style="background:rgba(255,255,255,0.05);border-radius:10px 10px 10px 2px;padding:8px 10px;margin-bottom:8px;max-width:85%">
+              <div style="color:#d1d5db;font-size:11px">Puedo automatizar el 90% de esas consultas conectándome a vuestro ERP. ¿Empezamos con una demo?</div>
+            </div>
+            <div style="display:flex;gap:6px;margin-top:4px">
+              <button style="background:rgba(59,130,246,0.15);border:1px solid rgba(59,130,246,0.3);color:#60a5fa;font-size:10px;padding:4px 10px;border-radius:20px;cursor:pointer">Ver demo</button>
+              <button style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:#9ca3af;font-size:10px;padding:4px 10px;border-radius:20px;cursor:pointer">Más info</button>
+            </div>
+          </div>
+        )}
+
+        {/* Card 3 — ENS Compliance */}
+        {card.id === 3 && (
+          <div style="background:#0d1117;padding:14px;width:300px;font-family:system-ui,sans-serif;">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
+              <div style="width:8px;height:8px;background:#3fb950;border-radius:50%;box-shadow:0 0 6px #3fb950"></div>
+              <span style="color:#e6edf3;font-size:12px;font-weight:600">ENS — Cumplimiento Normativo</span>
+            </div>
+            {[
+              { cat: 'Control de Acceso', pct: 94 },
+              { cat: 'Gestión de Logs', pct: 88 },
+              { cat: 'Cifrado de Datos', pct: 100 },
+              { cat: 'Parcheo de Sistemas', pct: 76 },
+              { cat: 'Detección de Intrusiones', pct: 91 },
+            ].map(item => (
+              <div style="margin-bottom:8px">
+                <div style="display:flex;justify-content:space-between;margin-bottom:3px">
+                  <span style="color:#c9d1d9;font-size:10px">{item.cat}</span>
+                  <span style={`font-size:10px;font-weight:700;color:${item.pct >= 90 ? '#3fb950' : item.pct >= 75 ? '#f0883e' : '#f85149'}`}>{item.pct}%</span>
+                </div>
+                <div style="background:rgba(255,255,255,0.06);border-radius:4px;height:5px;overflow:hidden">
+                  <div style={`height:100%;border-radius:4px;width:${item.pct}%;background:${item.pct >= 90 ? 'linear-gradient(90deg,#238636,#3fb950)' : item.pct >= 75 ? 'linear-gradient(90deg,#9e6a03,#f0883e)' : 'linear-gradient(90deg,#8b1a1a,#f85149)'}`}></div>
+                </div>
+              </div>
+            ))}
+            <div style="margin-top:10px;background:rgba(63,185,80,0.08);border:1px solid rgba(63,185,80,0.2);border-radius:6px;padding:8px;display:flex;align-items:center;gap:8px">
+              <span style="color:#3fb950;font-size:18px;font-weight:700">89%</span>
+              <div>
+                <div style="color:#3fb950;font-size:10px;font-weight:600">Nivel MEDIO — Conforme</div>
+                <div style="color:#8b949e;font-size:10px">4 controles pendientes</div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Card 4 — Gestor Documental */}
+        {card.id === 4 && (
+          <div style="background:#111827;padding:14px;width:300px;font-family:system-ui,sans-serif;">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,0.08)">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#60a5fa"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+              <span style="color:#f9fafb;font-size:12px;font-weight:600">Gestor Documental IA</span>
+            </div>
+            <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:7px 10px;margin-bottom:10px;display:flex;align-items:center;gap:6px">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+              <span style="color:#9ca3af;font-size:11px">política vacaciones 2025...</span>
+            </div>
+            {[
+              { file: 'Política_Vacaciones_2025.pdf', section: 'Sección 3 — Días adicionales', time: '0.3s' },
+              { file: 'Manual_RRHH_v4.docx',         section: 'Capítulo 7 — Permisos retribuidos', time: '0.5s' },
+              { file: 'Convenio_Colectivo.pdf',       section: 'Art. 24 — Descanso anual',        time: '0.7s' },
+            ].map(r => (
+              <div style="display:flex;align-items:flex-start;gap:8px;margin-bottom:8px;padding:8px;background:rgba(255,255,255,0.03);border-radius:6px;border:1px solid rgba(255,255,255,0.06)">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="#ef4444" style="margin-top:1px;flex-shrink:0"><path d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+                <div style="flex:1;min-width:0">
+                  <div style="color:#e5e7eb;font-size:10px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{r.file}</div>
+                  <div style="color:#6b7280;font-size:10px">{r.section}</div>
+                </div>
+                <span style="color:#3fb950;font-size:9px;flex-shrink:0">{r.time}</span>
+              </div>
+            ))}
+            <div style="color:#6b7280;font-size:10px;text-align:right;margin-top:2px">3 resultados · búsqueda semántica</div>
+          </div>
+        )}
+
+        {/* Card 5 — Automatización IA */}
+        {card.id === 5 && (
+          <div style="background:#0d1117;padding:14px;width:300px;font-family:system-ui,sans-serif;">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+              <span style="color:#e6edf3;font-size:12px;font-weight:600">Automatización IA</span>
+              <span style="background:rgba(63,185,80,0.15);color:#3fb950;font-size:10px;padding:2px 8px;border-radius:4px;font-weight:600">Activo</span>
+            </div>
+            {[
+              { name: 'Respuesta emails clientes', saved: '18h/mes',  color: '#58a6ff' },
+              { name: 'Generación facturas',       saved: '12h/mes',  color: '#a78bfa' },
+              { name: 'Informes de rendimiento',   saved: '8h/mes',   color: '#34d399' },
+              { name: 'Alta de proveedores',       saved: '6h/mes',   color: '#f0883e' },
+            ].map(t => (
+              <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;padding:8px;background:rgba(255,255,255,0.04);border-radius:6px">
+                <div style={`width:3px;height:32px;background:${t.color};border-radius:2px;flex-shrink:0`}></div>
+                <div style="flex:1">
+                  <div style="color:#c9d1d9;font-size:11px">{t.name}</div>
+                  <div style="display:flex;align-items:center;gap:4px;margin-top:2px">
+                    <div style="flex:1;background:rgba(255,255,255,0.06);border-radius:3px;height:3px">
+                      <div style={`height:100%;border-radius:3px;background:${t.color};width:${t.name.includes('email') ? 90 : t.name.includes('factura') ? 75 : t.name.includes('inform') ? 60 : 45}%`}></div>
+                    </div>
+                  </div>
+                </div>
+                <span style={`color:${t.color};font-size:10px;font-weight:700;flex-shrink:0`}>{t.saved}</span>
+              </div>
+            ))}
+            <div style="margin-top:8px;background:rgba(88,166,255,0.08);border-radius:6px;padding:8px;text-align:center">
+              <span style="color:#58a6ff;font-size:14px;font-weight:700">44h/mes</span>
+              <span style="color:#8b949e;font-size:10px"> ahorradas en total</span>
+            </div>
+          </div>
+        )}
+
+        {/* Card 6 — Recepcionista IA */}
+        {card.id === 6 && (
+          <div style="background:#111827;padding:14px;width:300px;font-family:system-ui,sans-serif;">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,0.08)">
+              <div style="width:30px;height:30px;background:linear-gradient(135deg,#6366f1,#8b5cf6);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="white"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+              </div>
+              <div>
+                <div style="color:#f9fafb;font-size:12px;font-weight:600">Recepcionista IA</div>
+                <div style="color:#22c55e;font-size:10px;display:flex;align-items:center;gap:4px"><span style="width:5px;height:5px;background:#22c55e;border-radius:50%;display:inline-block"></span>Atendiendo llamadas</div>
+              </div>
+              <div style="margin-left:auto;background:rgba(99,102,241,0.15);border:1px solid rgba(99,102,241,0.3);border-radius:6px;padding:4px 8px">
+                <div style="color:#a78bfa;font-size:10px;font-weight:600">Llamada activa</div>
+                <div style="color:#6b7280;font-size:10px;text-align:right">02:34</div>
+              </div>
+            </div>
+            <div style="background:rgba(255,255,255,0.04);border-radius:8px;padding:8px;margin-bottom:8px">
+              <div style="color:#9ca3af;font-size:10px;margin-bottom:6px">Transcripción en tiempo real</div>
+              <div style="color:#a78bfa;font-size:10px;margin-bottom:4px">CLIENTE:</div>
+              <div style="color:#e5e7eb;font-size:11px;margin-bottom:6px">"Quería pedir cita para revisión del vehículo esta semana"</div>
+              <div style="color:#60a5fa;font-size:10px;margin-bottom:4px">ASISTENTE IA:</div>
+              <div style="color:#e5e7eb;font-size:11px">"Claro, tengo disponibilidad el miércoles a las 10h o jueves a las 16h. ¿Cuál le viene mejor?"</div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px">
+              <div style="background:rgba(255,255,255,0.04);border-radius:6px;padding:6px;text-align:center">
+                <div style="color:#60a5fa;font-size:14px;font-weight:700">23</div>
+                <div style="color:#6b7280;font-size:9px">llamadas hoy</div>
+              </div>
+              <div style="background:rgba(255,255,255,0.04);border-radius:6px;padding:6px;text-align:center">
+                <div style="color:#3fb950;font-size:14px;font-weight:700">96%</div>
+                <div style="color:#6b7280;font-size:9px">resueltas</div>
+              </div>
+              <div style="background:rgba(255,255,255,0.04);border-radius:6px;padding:6px;text-align:center">
+                <div style="color:#f0883e;font-size:14px;font-weight:700">4</div>
+                <div style="color:#6b7280;font-size:9px">derivadas</div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Card 7 — Monitor de Red / SEO */}
+        {card.id === 7 && (
+          <div style="background:#0d1117;padding:14px;width:300px;font-family:system-ui,sans-serif;">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
+              <div style="width:8px;height:8px;background:#58a6ff;border-radius:50%;box-shadow:0 0 6px #58a6ff"></div>
+              <span style="color:#e6edf3;font-size:12px;font-weight:600">Posicionamiento SEO</span>
+              <span style="margin-left:auto;color:#3fb950;font-size:10px;font-weight:600">+12 pos. este mes</span>
+            </div>
+            {[
+              { kw: 'wazuh para empresas',           pos: 2,  vol: '1.2K', trend: 'up' },
+              { kw: 'implementar wazuh españa',      pos: 4,  vol: '880',  trend: 'up' },
+              { kw: 'chatbot ia pymes',              pos: 7,  vol: '2.4K', trend: 'up' },
+              { kw: 'esquema nacional seguridad',    pos: 11, vol: '3.1K', trend: 'same' },
+              { kw: 'automatizacion empresas ia',    pos: 14, vol: '1.8K', trend: 'up' },
+            ].map(k => (
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:7px">
+                <div style={`width:24px;height:24px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;background:${k.pos <= 3 ? 'rgba(63,185,80,0.15)' : k.pos <= 10 ? 'rgba(88,166,255,0.15)' : 'rgba(255,255,255,0.06)'};color:${k.pos <= 3 ? '#3fb950' : k.pos <= 10 ? '#58a6ff' : '#8b949e'}`}>{k.pos}</div>
+                <div style="flex:1;min-width:0">
+                  <div style="color:#c9d1d9;font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{k.kw}</div>
+                  <div style="color:#8b949e;font-size:9px">{k.vol} búsq./mes</div>
+                </div>
+                {k.trend === 'up' && <span style="color:#3fb950;font-size:12px">↑</span>}
+                {k.trend === 'same' && <span style="color:#8b949e;font-size:12px">→</span>}
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* Card 8 — Gestor de Citas */}
+        {card.id === 8 && (
+          <div style="background:#111827;padding:14px;width:300px;font-family:system-ui,sans-serif;">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,0.08)">
+              <span style="color:#f9fafb;font-size:12px;font-weight:600">Gestor de Citas IA</span>
+              <span style="color:#9ca3af;font-size:11px">Mayo 2025</span>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px;margin-bottom:10px;text-align:center">
+              {['L','M','X','J','V','S','D'].map(d => <span style="color:#6b7280;font-size:9px;padding:2px 0">{d}</span>)}
+              {['','','','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31'].map((d, i) => (
+                <span style={`font-size:10px;padding:3px 1px;border-radius:4px;${d === '7' ? 'background:#3b82f6;color:white;font-weight:700' : d === '14' || d === '21' ? 'background:rgba(59,130,246,0.2);color:#60a5fa' : 'color:#9ca3af'}`}>{d}</span>
+              ))}
+            </div>
+            <div style="background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.25);border-radius:8px;padding:8px;margin-bottom:6px;display:flex;align-items:center;gap:8px">
+              <div style="width:4px;height:32px;background:#3b82f6;border-radius:2px;flex-shrink:0"></div>
+              <div>
+                <div style="color:#e5e7eb;font-size:11px;font-weight:600">Consulta Wazuh — Empresa Logística</div>
+                <div style="color:#60a5fa;font-size:10px">Mié 7 Mayo · 10:00 — confirmada</div>
+              </div>
+            </div>
+            <div style="background:rgba(167,139,250,0.1);border:1px solid rgba(167,139,250,0.25);border-radius:8px;padding:8px;display:flex;align-items:center;gap:8px">
+              <div style="width:4px;height:32px;background:#a78bfa;border-radius:2px;flex-shrink:0"></div>
+              <div>
+                <div style="color:#e5e7eb;font-size:11px;font-weight:600">Demo Chatbot — Clínica Dental</div>
+                <div style="color:#a78bfa;font-size:10px">Jue 8 Mayo · 16:30 — pendiente</div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        <span class="card-label">{card.label}</span>
+      </div>
+    ))}
+  </div>
+
+  <!-- Central Content Box -->
+  <div class="relative min-h-screen flex items-center justify-center px-4 sm:px-6" style="opacity:90%;z-index:10;pointer-events:none;">
+    <div class="hero-box w-full max-w-2xl mx-auto rounded-3xl p-8 md:p-12" style="pointer-events:auto;background:rgba(10,10,18,0.87);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,0.08);box-shadow:0 0 80px rgba(0,0,0,0.6),0 0 40px rgba(59,130,246,0.08);">
+      <h1 class="hero-title text-3xl sm:text-4xl md:text-5xl font-bold leading-tight tracking-tight mb-4 text-center text-white">
+        Automatiza tu negocio con
+        <span class="block mt-1 bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent">
+          Inteligencia Artificial
+        </span>
+      </h1>
+
+      <p class="hero-subtitle text-base md:text-lg mb-8 max-w-xl mx-auto text-center text-gray-300">
+        Cuéntanos qué quieres automatizar en tu empresa, qué tienes en mente, y te decimos cómo podemos ayudarte.
+      </p>
+
+      <div class="hero-input-container">
+        <form id="chat-form" class="relative">
+          <div class="chat-input-wrapper rounded-2xl px-2 py-1.5 transition-all" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);">
+            <div id="chat-response" class="hidden px-3 py-3">
+              <div id="chat-response-text" class="text-sm text-gray-200 leading-relaxed"></div>
+              <div id="email-contact" class="mt-3 pt-3" style="border-top:1px solid rgba(255,255,255,0.08);">
+                <p class="text-xs text-gray-400 mb-2">¿Quieres que te respondamos con más detalle?</p>
+                <div id="email-input-row" class="flex items-center gap-2">
+                  <input type="email" id="email-input" placeholder="Tu email..." class="flex-1 bg-transparent px-3 py-1.5 text-sm text-white placeholder-gray-500 focus:outline-none rounded-lg" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);" />
+                  <button type="button" id="email-send" class="px-3 py-1.5 text-xs font-medium text-white rounded-lg transition-colors" style="background:#2563eb;">Enviar</button>
+                </div>
+                <p id="email-success" class="hidden text-xs text-green-400 mt-2">Recibido. Te contestaremos lo antes posible.</p>
+                <p id="email-error" class="hidden text-xs text-red-400 mt-2">Error al enviar. Prueba en info@aisecurity.es</p>
+              </div>
+              <button type="button" id="chat-back" class="mt-3 flex items-center gap-1.5 text-xs text-blue-400 hover:text-blue-300 transition-colors">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                Nueva pregunta
+              </button>
+            </div>
+            <div id="chat-input-row" class="flex items-center">
+              <input type="text" id="chat-input" placeholder="Pregunta sobre nuestros servicios de IA..." class="flex-1 bg-transparent px-3 py-2.5 text-white placeholder-gray-500 focus:outline-none text-base" />
+              <button type="submit" id="chat-submit" class="p-2.5 bg-blue-600 hover:bg-blue-500 text-white rounded-xl transition-colors flex items-center justify-center">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
+              </button>
+            </div>
+            <div id="chat-typing" class="hidden px-3 py-3">
+              <div class="flex gap-1.5 items-center">
+                <div class="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style="animation-delay:0ms"></div>
+                <div class="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style="animation-delay:150ms"></div>
+                <div class="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style="animation-delay:300ms"></div>
+                <span class="text-xs text-gray-500 ml-2">Pensando...</span>
+              </div>
+            </div>
+          </div>
+        </form>
+
+        <div id="quick-buttons" class="flex flex-wrap gap-2 mt-5 justify-center">
+          <button class="quick-question flex items-center gap-2 px-4 py-2 text-sm rounded-full text-gray-300 transition-all hover:text-white" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);">
+            <svg class="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+            ¿Cuánto cuesta crear una página web nueva?
+          </button>
+          <button class="quick-question flex items-center gap-2 px-4 py-2 text-sm rounded-full text-gray-300 transition-all hover:text-white" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);">
+            <svg class="w-4 h-4 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            ¿Qué podría automatizar en mi empresa?
+          </button>
+          <button class="quick-question flex items-center gap-2 px-4 py-2 text-sm rounded-full text-gray-300 transition-all hover:text-white" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);">
+            <svg class="w-4 h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+            ¿Qué es Wazuh?
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll Indicator -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2" style="z-index:20;">
+    <div class="flex flex-col items-center gap-2 text-gray-400 animate-bounce">
+      <span class="text-xs font-medium">Descubre más</span>
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+    </div>
+  </div>
+</section>
+
+<style>
+  /*
+   * OPTIMIZACIONES PageSpeed:
+   * - Sin filter:blur() en keyframes (era muy caro en GPU)
+   * - will-change solo transform + opacity (antes incluía filter)
+   * - 8 elementos animados (antes 28 = 14 imgs × 2 oleadas)
+   * - 0 imágenes (antes 3.2MB)
+   * - animation-play-state:paused por defecto; JS lo arranca tras LCP
+   */
+  @keyframes expandToward {
+    0%   { opacity:0; transform:translate(-50%,-50%) translateX(0vw) translateY(0vh) rotateY(0deg) scale(0.05); }
+    3%   { opacity:0.4; transform:translate(-50%,-50%) translateX(calc(var(--final-x)*0.03)) translateY(calc(var(--final-y)*0.03)) rotateY(calc(var(--final-ry)*0.03)) scale(0.08); }
+    20%  { opacity:0.7; transform:translate(-50%,-50%) translateX(calc(var(--final-x)*0.2)) translateY(calc(var(--final-y)*0.2)) rotateY(calc(var(--final-ry)*0.2)) scale(0.25); }
+    40%  { opacity:0.9; transform:translate(-50%,-50%) translateX(calc(var(--final-x)*0.4)) translateY(calc(var(--final-y)*0.4)) rotateY(calc(var(--final-ry)*0.4)) scale(0.45); }
+    60%  { opacity:0.8; transform:translate(-50%,-50%) translateX(calc(var(--final-x)*0.6)) translateY(calc(var(--final-y)*0.6)) rotateY(calc(var(--final-ry)*0.6)) scale(0.65); }
+    80%  { opacity:0.5; transform:translate(-50%,-50%) translateX(calc(var(--final-x)*0.8)) translateY(calc(var(--final-y)*0.8)) rotateY(calc(var(--final-ry)*0.8)) scale(0.9); }
+    95%  { opacity:0.1; transform:translate(-50%,-50%) translateX(calc(var(--final-x)*0.97)) translateY(calc(var(--final-y)*0.97)) rotateY(calc(var(--final-ry)*0.97)) scale(1.1); }
+    100% { opacity:0;   transform:translate(-50%,-50%) translateX(calc(var(--final-x)*1.05)) translateY(calc(var(--final-y)*1.05)) rotateY(var(--final-ry)) scale(1.2); }
+  }
+
+  .floating-card {
+    will-change: transform, opacity;
+    animation: expandToward 15s linear infinite;
+    animation-play-state: paused; /* JS lo activa tras LCP */
+    opacity: 0;
+    cursor: pointer;
+    pointer-events: auto;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+
+  .floating-card.paused {
+    animation-play-state: paused !important;
+    box-shadow: 0 25px 60px -12px rgba(59,130,246,0.3), 0 0 50px rgba(59,130,246,0.2) !important;
+    border-color: rgba(99,102,241,0.4) !important;
+  }
+
+  .floating-card.expanded {
+    animation: none !important;
+    opacity: 1 !important;
+    box-shadow: 0 25px 60px -12px rgba(59,130,246,0.4), 0 0 60px rgba(59,130,246,0.25) !important;
+    border-color: rgba(99,102,241,0.5) !important;
+    z-index: 50;
+    transition: transform 0.4s ease, box-shadow 0.3s ease, border-color 0.3s ease, opacity 0.2s ease;
+  }
+
+  .card-label {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    color: white;
+    background: linear-gradient(180deg, rgba(10,10,30,0.85) 0%, rgba(30,30,80,0.95) 100%);
+    opacity: 0;
+    transform: translateY(100%);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    letter-spacing: 0.02em;
+  }
+
+  .floating-card.paused .card-label,
+  .floating-card.expanded .card-label {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Hero fade in */
+  .hero-title   { animation: fadeInUp 0.8s ease-out both; }
+  .hero-subtitle { animation: fadeInUp 0.8s ease-out 0.15s both; }
+  .hero-input-container { animation: fadeInUp 0.8s ease-out 0.3s both; }
+
+  @keyframes fadeInUp {
+    from { opacity:0; transform:translateY(20px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+
+  .chat-input-wrapper:focus-within {
+    background: rgba(255,255,255,0.08) !important;
+    border-color: rgba(59,130,246,0.5) !important;
+    box-shadow: 0 0 20px rgba(59,130,246,0.15);
+  }
+
+  .quick-question:hover {
+    background: rgba(255,255,255,0.1) !important;
+    border-color: rgba(255,255,255,0.2) !important;
+  }
+
+  @media (max-width: 768px) {
+    .floating-card { width: 220px !important; }
+    .floating-cards-container { opacity: 0.5; }
+  }
+
+  @media (max-width: 640px) {
+    .floating-card { width: 160px !important; }
+    .floating-cards-container { opacity: 0.35; }
+    .quick-question { padding: 0.5rem 0.75rem; font-size: 0.75rem; }
+    .quick-question svg { width: 0.875rem; height: 0.875rem; }
+  }
+</style>
+
+<script>
+  // Arrancar animación solo después de que el LCP haya pintado (~600ms)
+  // así las tarjetas no compiten con el contenido principal en el critical path
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      document.querySelectorAll<HTMLElement>('.floating-card').forEach((card, i) => {
+        // Stagger de 1.2s entre cada tarjeta para que no salgan todas a la vez
+        card.style.animationDelay = `${i * 1.2}s`;
+        card.style.animationPlayState = 'running';
+      });
+    }, 600);
+  });
+
+  // Chat inline
+  const chatForm = document.getElementById('chat-form');
+  const chatInput = document.getElementById('chat-input') as HTMLInputElement;
+  const chatInputRow = document.getElementById('chat-input-row');
+  const chatResponse = document.getElementById('chat-response');
+  const chatResponseText = document.getElementById('chat-response-text');
+  const chatTyping = document.getElementById('chat-typing');
+  const chatBack = document.getElementById('chat-back');
+  const quickButtons = document.getElementById('quick-buttons');
+  const quickQuestions = document.querySelectorAll('.quick-question');
+  const emailInput = document.getElementById('email-input') as HTMLInputElement;
+  const emailSend = document.getElementById('email-send');
+  const emailSuccess = document.getElementById('email-success');
+  const emailError = document.getElementById('email-error');
+  const emailInputRow = document.getElementById('email-input-row');
+
+  let lastQuestion = '';
+  let lastReply = '';
+
+  function showInput() {
+    chatInputRow!.classList.remove('hidden');
+    chatTyping!.classList.add('hidden');
+    chatResponse!.classList.add('hidden');
+    quickButtons!.classList.remove('hidden');
+    chatInput.value = '';
+    chatInput.focus();
+    emailInput.value = '';
+    emailInputRow!.classList.remove('hidden');
+    emailSuccess!.classList.add('hidden');
+    emailError!.classList.add('hidden');
+    (document.querySelector('#email-contact p:first-child') as HTMLElement)?.classList.remove('hidden');
+  }
+
+  function showTyping() {
+    chatInputRow!.classList.add('hidden');
+    chatTyping!.classList.remove('hidden');
+    chatResponse!.classList.add('hidden');
+    quickButtons!.classList.add('hidden');
+  }
+
+  function linkifyPaths(text: string): string {
+    return text.replace(/(\/(?:contacto-migracion|contacto|reunion|wazuh|curso-wazuh|blog|servicios\/chatbot|servicios\/gestor-documental|servicios\/gestor-citas|servicios\/atencion-llamadas|servicios\/automatizacion|servicios\/desarrollo-web))/g,
+      '<a href="$1" style="color:#60a5fa;text-decoration:underline;cursor:pointer;">$1</a>'
+    );
+  }
+
+  function showResponse(text: string) {
+    chatInputRow!.classList.add('hidden');
+    chatTyping!.classList.add('hidden');
+    chatResponse!.classList.remove('hidden');
+    chatResponseText!.innerHTML = linkifyPaths(text);
+    quickButtons!.classList.add('hidden');
+  }
+
+  async function sendMessage(message: string) {
+    lastQuestion = message;
+    showTyping();
+    try {
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message })
+      });
+      if (response.ok) {
+        const data = await response.json();
+        lastReply = data.reply;
+        showResponse(data.reply);
+      } else {
+        showResponse('Lo siento, hubo un error. Contacta con nosotros en info@aisecurity.es');
+      }
+    } catch {
+      showResponse('Error de conexión. Intenta de nuevo.');
+    }
+  }
+
+  chatForm?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const message = chatInput?.value.trim();
+    if (message) sendMessage(message);
+  });
+
+  quickQuestions.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const question = btn.textContent?.trim();
+      if (question) sendMessage(question);
+    });
+  });
+
+  chatBack?.addEventListener('click', () => showInput());
+
+  emailSend?.addEventListener('click', async () => {
+    const email = emailInput.value.trim();
+    if (!email || !email.includes('@')) {
+      emailInput.style.borderColor = 'rgba(239,68,68,0.5)';
+      setTimeout(() => { emailInput.style.borderColor = 'rgba(255,255,255,0.1)'; }, 2000);
+      return;
+    }
+    emailSend.textContent = '...';
+    (emailSend as HTMLButtonElement).disabled = true;
+    try {
+      const res = await fetch('/api/chat-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, question: lastQuestion, reply: lastReply })
+      });
+      if (res.ok) {
+        emailInputRow!.classList.add('hidden');
+        (document.querySelector('#email-contact p:first-child') as HTMLElement)?.classList.add('hidden');
+        emailSuccess!.classList.remove('hidden');
+      } else {
+        emailError!.classList.remove('hidden');
+      }
+    } catch {
+      emailError!.classList.remove('hidden');
+    } finally {
+      emailSend.textContent = 'Enviar';
+      (emailSend as HTMLButtonElement).disabled = false;
+    }
+  });
+
+  emailInput?.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') { e.preventDefault(); emailSend?.click(); }
+  });
+
+  // Floating cards: hover = pause, click = expand/navigate
+  const floatingCards = document.querySelectorAll<HTMLElement>('.floating-card');
+  let expandedCard: HTMLElement | null = null;
+  let expandedPosX = 0;
+  let expandedPosY = 0;
+
+  function pauseAllCards() {
+    floatingCards.forEach(c => { if (c !== expandedCard) c.classList.add('paused'); });
+  }
+
+  function resumeAllCards() {
+    floatingCards.forEach(c => c.classList.remove('paused'));
+  }
+
+  function collapseExpanded() {
+    if (!expandedCard) return;
+    const el = expandedCard;
+    el.style.transform = `translate(${expandedPosX}px, ${expandedPosY}px) scale(1)`;
+    setTimeout(() => {
+      el.classList.remove('expanded');
+      el.style.transform = '';
+    }, 400);
+    expandedCard = null;
+    resumeAllCards();
+  }
+
+  floatingCards.forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      if (!expandedCard && !el.classList.contains('expanded')) el.classList.add('paused');
+    });
+    el.addEventListener('mouseleave', () => {
+      if (!expandedCard) el.classList.remove('paused');
+    });
+    el.addEventListener('click', () => {
+      if (el.classList.contains('expanded')) {
+        const href = el.dataset.href;
+        if (href) window.location.href = href;
+        return;
+      }
+      collapseExpanded();
+      const matrix = new DOMMatrix(getComputedStyle(el).transform);
+      expandedPosX = matrix.m41;
+      expandedPosY = matrix.m42;
+      pauseAllCards();
+      el.classList.remove('paused');
+      el.style.transform = `translate(${expandedPosX}px, ${expandedPosY}px) scale(1)`;
+      el.classList.add('expanded');
+      requestAnimationFrame(() => {
+        el.style.transform = `translate(${expandedPosX}px, ${expandedPosY}px) rotateY(0deg) scale(1.25)`;
+      });
+      expandedCard = el;
+    });
+  });
+
+  document.addEventListener('click', (e) => {
+    if (expandedCard && !expandedCard.contains(e.target as Node)) collapseExpanded();
+  });
+</script>

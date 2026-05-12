@@ -1,0 +1,12 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ContactMigrationForm from "../components/meeting/ContactMigrationForm.astro";
+
+const title = "Solicita Presupuesto - IA, Web y Ciberseguridad | AI Security";
+const description = "Solicita información o presupuesto para cualquiera de nuestros servicios: IA, diseño web, ciberseguridad Wazuh, soporte IT. Respuesta en menos de 24h.";
+const canonical = "https://aisecurity.es/presupuesto";
+---
+
+<BaseLayout title={title} description={description} canonical={canonical}>
+  <ContactMigrationForm />
+</BaseLayout>

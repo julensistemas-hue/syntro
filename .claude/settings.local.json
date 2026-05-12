@@ -37,7 +37,11 @@
       "Bash(git restore:*)",
       "Bash(git checkout:*)",
       "Bash(timeout 15 pnpm dev:*)",
-      "Bash(timeout 12 pnpm dev:*)"
+      "Bash(timeout 12 pnpm dev:*)",
+      "Bash(wc -l /c/Users/Jul/Documents/Project/aisecurity.es/web/syntro/scripts/seo-automation/*.js)",
+      "Bash(python -c \"import sys,json; users=json.load\\(sys.stdin\\).get\\('users',[]\\); [print\\(u['id'], u['email']\\) for u in users]\")",
+      "Bash(vercel logs:*)",
+      "Bash(xargs sed:*)"
     ],
     "deny": [],
     "ask": []

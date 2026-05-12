@@ -1,0 +1,394 @@
+---
+// AIHeroFloating — Terminal animado
+// Líneas de terminal que se tipean solas: Wazuh, IA, sistemas
+---
+
+<section class="relative min-h-screen overflow-hidden flex flex-col" style="background:#05070f;">
+
+  <!-- Scanline CSS sutil -->
+  <div class="scan-line absolute w-full pointer-events-none" aria-hidden="true"></div>
+
+  <!-- Grid de fondo tipo terminal -->
+  <div class="absolute inset-0 pointer-events-none" style="background-image:linear-gradient(rgba(59,130,246,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(59,130,246,0.03) 1px,transparent 1px);background-size:40px 40px;"></div>
+
+  <!-- Gradiente central para dar foco -->
+  <div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(ellipse 70% 70% at 50% 50%,transparent 30%,rgba(5,7,15,0.8) 100%);"></div>
+
+  <div class="relative flex-1 flex flex-col lg:flex-row items-center justify-center gap-8 px-4 py-16 lg:px-12 max-w-7xl mx-auto w-full" style="z-index:10;">
+
+    <!-- ═══════════════════════════
+         TERMINAL — izquierda
+    ═══════════════════════════ -->
+    <div class="terminal-window w-full lg:w-1/2 max-w-xl flex-shrink-0" style="border-radius:14px;overflow:hidden;box-shadow:0 0 0 1px rgba(59,130,246,0.15),0 32px 80px -16px rgba(0,0,0,0.8),0 0 60px rgba(59,130,246,0.06);">
+
+      <!-- Barra de título terminal -->
+      <div class="flex items-center gap-2 px-4 py-3" style="background:#0d1117;border-bottom:1px solid rgba(255,255,255,0.06);">
+        <div style="width:12px;height:12px;border-radius:50%;background:#f85149;"></div>
+        <div style="width:12px;height:12px;border-radius:50%;background:#f0883e;"></div>
+        <div style="width:12px;height:12px;border-radius:50%;background:#3fb950;"></div>
+        <span style="margin-left:8px;color:#6e7681;font-size:12px;font-family:monospace;">aisecurity — bash — 80×24</span>
+        <div style="margin-left:auto;display:flex;gap:6px;">
+          <div style="width:6px;height:6px;border-radius:50%;background:#3fb950;box-shadow:0 0 6px #3fb950;"></div>
+          <span style="color:#3fb950;font-size:10px;font-family:monospace;">LIVE</span>
+        </div>
+      </div>
+
+      <!-- Cuerpo del terminal -->
+      <div id="terminal-body" style="background:#0a0c14;padding:20px;font-family:'Courier New',Courier,monospace;font-size:13px;line-height:1.7;min-height:340px;max-height:420px;overflow:hidden;">
+        <!-- Las líneas se inyectan por JS -->
+        <span id="terminal-cursor" style="display:inline-block;width:8px;height:14px;background:#60a5fa;vertical-align:middle;animation:blink 1s step-end infinite;"></span>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════
+         CHAT — derecha
+    ═══════════════════════════ -->
+    <div class="hero-box w-full lg:w-1/2 max-w-lg rounded-3xl p-7 md:p-9"
+      style="background:rgba(5,7,15,0.88);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border:1px solid rgba(59,130,246,0.18);box-shadow:0 0 0 1px rgba(59,130,246,0.05),0 32px 80px -16px rgba(0,0,0,0.8),0 0 60px rgba(59,130,246,0.06),inset 0 1px 0 rgba(255,255,255,0.05);">
+
+      <!-- Badge -->
+      <div class="flex justify-center mb-5">
+        <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold" style="background:rgba(59,130,246,0.12);border:1px solid rgba(59,130,246,0.25);color:#93c5fd;letter-spacing:0.05em;">
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75" style="background:#3b82f6;"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2" style="background:#60a5fa;"></span>
+          </span>
+          IA + CIBERSEGURIDAD PARA PYMES
+        </span>
+      </div>
+
+      <h1 class="hero-title text-3xl sm:text-4xl font-bold leading-tight tracking-tight mb-4 text-center" style="color:#f0f6ff;">
+        Automatiza lo que se repite.
+        <span class="block mt-1" style="background:linear-gradient(90deg,#60a5fa 0%,#818cf8 50%,#a78bfa 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">
+          Protege lo que importa.
+        </span>
+      </h1>
+
+      <p class="hero-subtitle text-sm mb-7 max-w-md mx-auto text-center" style="color:#94a3b8;">
+        IA para ahorrar tiempo en lo que se repite. Wazuh y sistemas para blindar lo que no puedes permitirte perder.
+      </p>
+
+      <!-- Chat -->
+      <div class="hero-input-container">
+        <form id="chat-form">
+          <div class="chat-input-wrapper rounded-2xl px-2 py-1.5 transition-all" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);">
+            <div id="chat-response" class="hidden px-3 py-3">
+              <div id="chat-response-text" class="text-sm leading-relaxed" style="color:#e2e8f0;"></div>
+              <div id="email-contact" class="mt-3 pt-3" style="border-top:1px solid rgba(255,255,255,0.08);">
+                <p class="text-xs mb-2" style="color:#94a3b8;">¿Quieres que te respondamos con más detalle?</p>
+                <div id="email-input-row" class="flex items-center gap-2">
+                  <input type="email" id="email-input" placeholder="Tu email..." class="flex-1 bg-transparent px-3 py-1.5 text-sm focus:outline-none rounded-lg" style="color:#f0f6ff;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);" />
+                  <button type="button" id="email-send" class="px-3 py-1.5 text-xs font-medium text-white rounded-lg" style="background:#2563eb;">Enviar</button>
+                </div>
+                <p id="email-success" class="hidden text-xs mt-2" style="color:#4ade80;">Recibido. Te contestaremos lo antes posible.</p>
+                <p id="email-error" class="hidden text-xs mt-2" style="color:#f87171;">Error. Prueba en info@aisecurity.es</p>
+              </div>
+              <button type="button" id="chat-back" class="mt-3 flex items-center gap-1.5 text-xs" style="color:#60a5fa;">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+                Nueva pregunta
+              </button>
+            </div>
+            <div id="chat-input-row" class="flex items-center">
+              <input type="text" id="chat-input" placeholder="Pregunta sobre nuestros servicios..." class="flex-1 bg-transparent px-3 py-2.5 focus:outline-none text-sm" style="color:#f0f6ff;" />
+              <button type="submit" class="p-2.5 rounded-xl flex items-center justify-center" style="background:#2563eb;color:white;">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
+              </button>
+            </div>
+            <div id="chat-typing" class="hidden px-3 py-3">
+              <div class="flex gap-1.5 items-center">
+                <div class="w-1.5 h-1.5 rounded-full animate-bounce" style="background:#60a5fa;animation-delay:0ms"></div>
+                <div class="w-1.5 h-1.5 rounded-full animate-bounce" style="background:#60a5fa;animation-delay:150ms"></div>
+                <div class="w-1.5 h-1.5 rounded-full animate-bounce" style="background:#60a5fa;animation-delay:300ms"></div>
+                <span class="text-xs ml-2" style="color:#64748b;">Pensando...</span>
+              </div>
+            </div>
+          </div>
+        </form>
+
+        <div id="quick-buttons" class="flex flex-wrap gap-2 mt-4 justify-center">
+          <button class="quick-question flex items-center gap-1.5 px-3 py-1.5 text-xs rounded-full transition-all" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);color:#94a3b8;">
+            <svg class="w-3.5 h-3.5 flex-shrink-0" style="color:#60a5fa;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+            ¿Cuánto cuesta una web?
+          </button>
+          <button class="quick-question flex items-center gap-1.5 px-3 py-1.5 text-xs rounded-full transition-all" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);color:#94a3b8;">
+            <svg class="w-3.5 h-3.5 flex-shrink-0" style="color:#4ade80;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            ¿Qué puedo automatizar?
+          </button>
+          <button class="quick-question flex items-center gap-1.5 px-3 py-1.5 text-xs rounded-full transition-all" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);color:#94a3b8;">
+            <svg class="w-3.5 h-3.5 flex-shrink-0" style="color:#a78bfa;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+            ¿Qué es Wazuh?
+          </button>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="flex items-center justify-center gap-5 mt-7 pt-6" style="border-top:1px solid rgba(255,255,255,0.06);">
+        <div class="text-center">
+          <div class="text-base font-bold" style="color:#60a5fa;">24/7</div>
+          <div class="text-xs" style="color:#475569;">Disponibilidad</div>
+        </div>
+        <div style="width:1px;height:24px;background:rgba(255,255,255,0.07);"></div>
+        <div class="text-center">
+          <div class="text-base font-bold" style="color:#a78bfa;">Wazuh/ENS</div>
+          <div class="text-xs" style="color:#475569;">Ciberseguridad</div>
+        </div>
+        <div style="width:1px;height:24px;background:rgba(255,255,255,0.07);"></div>
+        <div class="text-center">
+          <div class="text-base font-bold" style="color:#4ade80;">PyMEs ES</div>
+          <div class="text-xs" style="color:#475569;">Nuestro foco</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-6 left-1/2 -translate-x-1/2" style="z-index:20;">
+    <div class="flex flex-col items-center gap-1 animate-bounce" style="color:#475569;">
+      <span class="text-xs">Descubre más</span>
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes blink {
+    0%,100% { opacity:1; }
+    50%     { opacity:0; }
+  }
+
+  @keyframes scanLine {
+    0%   { top:-2px;opacity:0; }
+    5%   { opacity:0.3; }
+    95%  { opacity:0.05; }
+    100% { top:100%;opacity:0; }
+  }
+  .scan-line {
+    height:1px;
+    background:linear-gradient(90deg,transparent 0%,rgba(59,130,246,0.5) 30%,rgba(99,102,241,0.7) 50%,rgba(59,130,246,0.5) 70%,transparent 100%);
+    animation:scanLine 10s linear infinite 3s;
+    z-index:3;opacity:0;
+  }
+
+  .hero-title          { animation:fadeInUp 0.7s ease-out both; }
+  .hero-subtitle       { animation:fadeInUp 0.7s ease-out 0.1s both; }
+  .hero-input-container { animation:fadeInUp 0.7s ease-out 0.2s both; }
+  .terminal-window     { animation:fadeInUp 0.7s ease-out 0.05s both; }
+
+  @keyframes fadeInUp {
+    from { opacity:0;transform:translateY(16px); }
+    to   { opacity:1;transform:translateY(0); }
+  }
+
+  .chat-input-wrapper:focus-within {
+    background:rgba(255,255,255,0.06) !important;
+    border-color:rgba(59,130,246,0.4) !important;
+    box-shadow:0 0 24px rgba(59,130,246,0.1);
+  }
+  .quick-question:hover {
+    background:rgba(255,255,255,0.08) !important;
+    border-color:rgba(255,255,255,0.15) !important;
+    color:#e2e8f0 !important;
+  }
+</style>
+
+<script>
+// ─── Terminal animado ─────────────────────────────────────────────────────
+(function () {
+  const body   = document.getElementById('terminal-body')!;
+  const cursor = document.getElementById('terminal-cursor')!;
+
+  // Secuencias del terminal: cada bloque es un "momento" diferente
+  // color: 'cmd' azul | 'ok' verde | 'warn' naranja | 'err' rojo | 'info' gris | 'ai' púrpura
+  const SEQUENCES = [
+    // Arranque del sistema
+    { text: '$ systemctl status wazuh-manager',           color: 'cmd',  delay: 0 },
+    { text: '● wazuh-manager.service — Wazuh Manager',   color: 'ok',   delay: 60 },
+    { text: '   Active: active (running) since 09:14:02', color: 'info', delay: 40 },
+    { text: '',                                            color: 'info', delay: 20 },
+    // Alerta Wazuh en vivo
+    { text: '$ wazuh-logtest --live',                     color: 'cmd',  delay: 0 },
+    { text: '[ALERT] Rule 5710 fired (SSH brute force)',  color: 'err',  delay: 50 },
+    { text: '  Src IP: 185.220.101.45  | Agent: web-01',  color: 'warn', delay: 40 },
+    { text: '  Nivel: 10 | Grupo: authentication_failed', color: 'warn', delay: 40 },
+    { text: '[ACTION] IP bloqueada automáticamente ✓',    color: 'ok',   delay: 60 },
+    { text: '',                                            color: 'info', delay: 20 },
+    // Automatización IA de emails
+    { text: '$ python3 ai_email_bot.py --run',            color: 'cmd',  delay: 0 },
+    { text: '[IA] Leyendo bandeja de entrada...',         color: 'ai',   delay: 50 },
+    { text: '[IA] 23 emails procesados',                  color: 'ai',   delay: 40 },
+    { text: '[IA] 21 respondidos automáticamente ✓',      color: 'ok',   delay: 40 },
+    { text: '[IA] 2 derivados a soporte humano →',        color: 'warn', delay: 40 },
+    { text: '[IA] Tiempo ahorrado hoy: 2h 47min',         color: 'ok',   delay: 60 },
+    { text: '',                                            color: 'info', delay: 20 },
+    // Cumplimiento ENS
+    { text: '$ ens-check --nivel medio --report',         color: 'cmd',  delay: 0 },
+    { text: '[ENS] Analizando 73 controles...',           color: 'info', delay: 50 },
+    { text: '[ENS] Control acceso:      ████████░░ 89%',  color: 'ok',   delay: 40 },
+    { text: '[ENS] Gestión de logs:     ███████░░░ 76%',  color: 'warn', delay: 40 },
+    { text: '[ENS] Cifrado de datos:    ██████████ 100%', color: 'ok',   delay: 40 },
+    { text: '[ENS] Resultado: CONFORME — 3 mejoras →',    color: 'ok',   delay: 60 },
+    { text: '',                                            color: 'info', delay: 20 },
+    // Gestor documental
+    { text: '$ ai-docs search "vacaciones 2025"',         color: 'cmd',  delay: 0 },
+    { text: '[IA] Búsqueda semántica en 1.240 docs...',   color: 'ai',   delay: 50 },
+    { text: '[IA] Política_Vacaciones_2025.pdf — §3',     color: 'ok',   delay: 40 },
+    { text: '[IA] Manual_RRHH_v4.docx — Cap. 7',         color: 'ok',   delay: 40 },
+    { text: '[IA] Resultado en 0.3s (antes: 15 min)',     color: 'ok',   delay: 60 },
+  ];
+
+  const COLORS: Record<string, string> = {
+    cmd:  '#60a5fa',
+    ok:   '#3fb950',
+    warn: '#f0883e',
+    err:  '#f85149',
+    info: '#6e7681',
+    ai:   '#a78bfa',
+  };
+
+  const MAX_LINES = 18;
+  const lines: HTMLElement[] = [];
+
+  function addLine(text: string, color: string) {
+    const el = document.createElement('div');
+    el.style.color = COLORS[color] || '#c9d1d9';
+    el.style.whiteSpace = 'pre';
+    el.textContent = text;
+    // Insertar antes del cursor
+    body.insertBefore(el, cursor);
+    lines.push(el);
+    // Scroll al fondo
+    body.scrollTop = body.scrollHeight;
+    // Limitar líneas visibles
+    if (lines.length > MAX_LINES) {
+      const old = lines.shift()!;
+      old.remove();
+    }
+  }
+
+  // Tipear una línea caracter a caracter
+  function typeLine(text: string, color: string, speed = 28): Promise<void> {
+    return new Promise(resolve => {
+      if (text === '') { addLine('', 'info'); resolve(); return; }
+      const el = document.createElement('div');
+      el.style.color = COLORS[color] || '#c9d1d9';
+      el.style.whiteSpace = 'pre';
+      body.insertBefore(el, cursor);
+      lines.push(el);
+      if (lines.length > MAX_LINES) { lines.shift()!.remove(); }
+
+      let i = 0;
+      function next() {
+        if (i < text.length) {
+          el.textContent = text.slice(0, ++i);
+          body.scrollTop = body.scrollHeight;
+          setTimeout(next, speed + Math.random() * 20);
+        } else {
+          resolve();
+        }
+      }
+      next();
+    });
+  }
+
+  async function runSequence() {
+    for (const line of SEQUENCES) {
+      // Pausa entre bloques (línea vacía)
+      if (line.text === '') {
+        await new Promise(r => setTimeout(r, 400));
+        addLine('', 'info');
+        continue;
+      }
+      // Pausa antes de cada línea (simula tiempo real)
+      await new Promise(r => setTimeout(r, line.delay * 10 + 200));
+      // Los comandos (cmd) se tipean más despacio, el output rápido
+      const speed = line.color === 'cmd' ? 35 : 18;
+      await typeLine(line.text, line.color, speed);
+    }
+    // Cuando termina, esperar 3s y volver a empezar
+    await new Promise(r => setTimeout(r, 3000));
+    // Limpiar
+    lines.forEach(l => l.remove());
+    lines.length = 0;
+    runSequence();
+  }
+
+  // Arrancar después del LCP
+  window.addEventListener('load', () => {
+    setTimeout(runSequence, 600);
+  });
+})();
+
+// ─── Chat inline ──────────────────────────────────────────────────────────
+const chatForm       = document.getElementById('chat-form');
+const chatInput      = document.getElementById('chat-input')    as HTMLInputElement;
+const chatInputRow   = document.getElementById('chat-input-row');
+const chatResponse   = document.getElementById('chat-response');
+const chatResponseText = document.getElementById('chat-response-text');
+const chatTyping     = document.getElementById('chat-typing');
+const chatBack       = document.getElementById('chat-back');
+const quickButtons   = document.getElementById('quick-buttons');
+const quickQuestions = document.querySelectorAll('.quick-question');
+const emailInput     = document.getElementById('email-input')   as HTMLInputElement;
+const emailSend      = document.getElementById('email-send');
+const emailSuccess   = document.getElementById('email-success');
+const emailError     = document.getElementById('email-error');
+const emailInputRow  = document.getElementById('email-input-row');
+
+let lastQuestion='', lastReply='';
+
+function showInput() {
+  chatInputRow!.classList.remove('hidden');
+  chatTyping!.classList.add('hidden');
+  chatResponse!.classList.add('hidden');
+  quickButtons!.classList.remove('hidden');
+  chatInput.value='';
+  chatInput.focus();
+  emailInput.value='';
+  emailInputRow!.classList.remove('hidden');
+  emailSuccess!.classList.add('hidden');
+  emailError!.classList.add('hidden');
+  (document.querySelector('#email-contact p:first-child') as HTMLElement)?.classList.remove('hidden');
+}
+function showTyping() {
+  chatInputRow!.classList.add('hidden');
+  chatTyping!.classList.remove('hidden');
+  chatResponse!.classList.add('hidden');
+  quickButtons!.classList.add('hidden');
+}
+function linkifyPaths(t: string) {
+  return t.replace(/(\/(?:contacto-migracion|contacto|reunion|wazuh|curso-wazuh|blog|servicios\/chatbot|servicios\/gestor-documental|servicios\/gestor-citas|servicios\/atencion-llamadas|servicios\/automatizacion|servicios\/desarrollo-web))/g,
+    '<a href="$1" style="color:#60a5fa;text-decoration:underline;cursor:pointer;">$1</a>');
+}
+function showResponse(text: string) {
+  chatInputRow!.classList.add('hidden');
+  chatTyping!.classList.add('hidden');
+  chatResponse!.classList.remove('hidden');
+  chatResponseText!.innerHTML = linkifyPaths(text);
+  quickButtons!.classList.add('hidden');
+}
+async function sendMessage(msg: string) {
+  lastQuestion = msg; showTyping();
+  try {
+    const r = await fetch('/api/chat', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ message:msg }) });
+    if (r.ok) { const d = await r.json(); lastReply = d.reply; showResponse(d.reply); }
+    else showResponse('Lo siento, hubo un error. Contacta en info@aisecurity.es');
+  } catch { showResponse('Error de conexión. Intenta de nuevo.'); }
+}
+
+chatForm?.addEventListener('submit', e => { e.preventDefault(); const m = chatInput?.value.trim(); if (m) sendMessage(m); });
+quickQuestions.forEach(btn => btn.addEventListener('click', () => { const q = btn.textContent?.trim(); if (q) sendMessage(q); }));
+chatBack?.addEventListener('click', () => showInput());
+
+emailSend?.addEventListener('click', async () => {
+  const email = emailInput.value.trim();
+  if (!email || !email.includes('@')) { emailInput.style.borderColor='rgba(239,68,68,0.5)'; setTimeout(()=>{ emailInput.style.borderColor='rgba(255,255,255,0.1)'; },2000); return; }
+  emailSend.textContent = '...'; (emailSend as HTMLButtonElement).disabled = true;
+  try {
+    const res = await fetch('/api/chat-email', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ email, question:lastQuestion, reply:lastReply }) });
+    if (res.ok) { emailInputRow!.classList.add('hidden'); (document.querySelector('#email-contact p:first-child') as HTMLElement)?.classList.add('hidden'); emailSuccess!.classList.remove('hidden'); }
+    else emailError!.classList.remove('hidden');
+  } catch { emailError!.classList.remove('hidden'); }
+  finally { emailSend.textContent = 'Enviar'; (emailSend as HTMLButtonElement).disabled = false; }
+});
+emailInput?.addEventListener('keydown', e => { if (e.key==='Enter') { e.preventDefault(); emailSend?.click(); } });
+</script>

@@ -1,0 +1,1148 @@
+---
+---
+
+<section class="city-hero relative overflow-hidden" style="background:linear-gradient(180deg,#04080f 0%,#07111f 55%,#0a1628 100%); width:100vw; margin-left:calc(-50vw + 50%); display:flex; flex-direction:column;">
+
+  <div class="star-field absolute inset-0" style="z-index:0;pointer-events:none;"></div>
+
+  <!-- TOP TEXT -->
+  <div class="relative text-center px-6 pt-14 pb-2" style="z-index:20;">
+    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-medium mb-4" style="background:rgba(124,58,237,.18);border:1px solid rgba(124,58,237,.35);color:#c4b5fd;">
+      <span class="w-2 h-2 rounded-full bg-purple-400 animate-pulse"></span>
+      El camino completo para tu empresa
+    </div>
+    <h1 class="text-4xl sm:text-5xl font-bold text-white mb-3 leading-tight">
+      Más segura. Más eficiente.
+      <span style="background:linear-gradient(90deg,#38bdf8,#a78bfa,#34d399,#fb923c);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;"> Más rentable.</span>
+    </h1>
+    <p class="text-gray-400 text-sm max-w-lg mx-auto">Sigue el camino de tu empresa — desde la base hasta crecer online. Haz clic en cada fase.</p>
+  </div>
+
+  <!-- CITY WRAPPER — contains chart (behind), SVG, panels above buildings, canvas -->
+  <div class="relative w-full city-wrapper" style="z-index:10; isolation:isolate;">
+
+    <!-- METRICS CHART — z-index:2, behind the SVG (DOM order: first = behind) -->
+    <div id="metrics-panel" class="metrics-panel">
+      <div class="metrics-header">
+        <span class="metrics-title">📈 Evolución</span>
+        <span id="metrics-phase-label" class="metrics-phase-tag">Inicio</span>
+      </div>
+      <div class="chart-wrap">
+        <svg id="chart-svg" viewBox="0 0 260 110" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+          <line x1="36" y1="10" x2="36" y2="90"  stroke="#1e2a3a" stroke-width="1"/>
+          <line x1="36" y1="10" x2="252" y2="10" stroke="#1e2a3a" stroke-width="0.8" stroke-dasharray="3,4"/>
+          <line x1="36" y1="34" x2="252" y2="34" stroke="#1e2a3a" stroke-width="0.8" stroke-dasharray="3,4"/>
+          <line x1="36" y1="57" x2="252" y2="57" stroke="#1e2a3a" stroke-width="0.8" stroke-dasharray="3,4"/>
+          <line x1="36" y1="80" x2="252" y2="80" stroke="#1e2a3a" stroke-width="0.8" stroke-dasharray="3,4"/>
+          <line x1="36" y1="90" x2="252" y2="90" stroke="#1e2a3a" stroke-width="1"/>
+          <text x="30" y="13"  text-anchor="end" fill="#3d5068" font-size="7" font-family="Inter,sans-serif">100%</text>
+          <text x="30" y="37"  text-anchor="end" fill="#3d5068" font-size="7" font-family="Inter,sans-serif">75%</text>
+          <text x="30" y="60"  text-anchor="end" fill="#3d5068" font-size="7" font-family="Inter,sans-serif">50%</text>
+          <text x="30" y="83"  text-anchor="end" fill="#3d5068" font-size="7" font-family="Inter,sans-serif">25%</text>
+          <text x="72"  y="102" text-anchor="middle" fill="#3d5068" font-size="6.5" font-family="Inter,sans-serif">F0</text>
+          <text x="116" y="102" text-anchor="middle" fill="#3d5068" font-size="6.5" font-family="Inter,sans-serif">F1</text>
+          <text x="184" y="102" text-anchor="middle" fill="#3d5068" font-size="6.5" font-family="Inter,sans-serif">F2</text>
+          <text x="244" y="102" text-anchor="middle" fill="#3d5068" font-size="6.5" font-family="Inter,sans-serif">F3</text>
+          <line x1="72"  y1="88" x2="72"  y2="93" stroke="#3d5068" stroke-width="1"/>
+          <line x1="116" y1="88" x2="116" y2="93" stroke="#3d5068" stroke-width="1"/>
+          <line x1="184" y1="88" x2="184" y2="93" stroke="#3d5068" stroke-width="1"/>
+          <line x1="244" y1="88" x2="244" y2="93" stroke="#3d5068" stroke-width="1"/>
+          <path id="area-seg"  d="" fill="#7c3aed" opacity="0.08"/>
+          <path id="area-prod" d="" fill="#34d399" opacity="0.08"/>
+          <path id="area-ing"  d="" fill="#fbbf24" opacity="0.08"/>
+          <polyline id="line-seg"  points="" fill="none" stroke="#a78bfa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <polyline id="line-prod" points="" fill="none" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <polyline id="line-ing"  points="" fill="none" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle id="dot-seg"  cx="0" cy="0" r="3.5" fill="#a78bfa" stroke="#1a0a2e" stroke-width="1.5"/>
+          <circle id="dot-prod" cx="0" cy="0" r="3.5" fill="#34d399" stroke="#041a10" stroke-width="1.5"/>
+          <circle id="dot-ing"  cx="0" cy="0" r="3.5" fill="#fbbf24" stroke="#1c1200" stroke-width="1.5"/>
+        </svg>
+      </div>
+      <div class="metrics-legend">
+        <div class="legend-item"><span style="background:#a78bfa;"></span>Seguridad</div>
+        <div class="legend-item"><span style="background:#34d399;"></span>Productividad</div>
+        <div class="legend-item"><span style="background:#fbbf24;"></span>Ingresos</div>
+      </div>
+      <div class="kpi-row">
+        <div class="kpi-item" id="kpi-seg"><div class="kpi-val" style="color:#a78bfa;" id="kpi-seg-val">10%</div><div class="kpi-lbl">Seg.</div></div>
+        <div class="kpi-item" id="kpi-prod"><div class="kpi-val" style="color:#34d399;" id="kpi-prod-val">15%</div><div class="kpi-lbl">Prod.</div></div>
+        <div class="kpi-item" id="kpi-ing"><div class="kpi-val" style="color:#fbbf24;" id="kpi-ing-val">10%</div><div class="kpi-lbl">Ingresos</div></div>
+      </div>
+    </div>
+
+    <!-- Flying icon canvas — above SVG, below panels -->
+    <canvas id="fly-canvas" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:15;"></canvas>
+
+    <!-- SERVICE PANELS — always visible above buildings, animated when active -->
+    <!-- Positioned by % matching SVG building centers (x/1440*100) -->
+    <!-- IT: 200/1440=13.9%, Ciber: 570/1440=39.6%, IA: 970/1440=67.4%, SEO: 1280/1440=88.9% -->
+    <div id="panel-ciber" class="svc-panel" data-dept="ciber" style="left:28%; --pc:#a78bfa;">
+      <div class="svc-phase" style="--pc:#a78bfa;">F1 · Ciberseguridad</div>
+      <div class="svc-links">
+        <a href="/wazuh">🛡️ Wazuh SIEM</a>
+        <a href="/curso-wazuh">🎓 Curso Wazuh</a>
+        <a href="/wazuh">📋 Cumplimiento ENS</a>
+        <a href="/wazuh">📡 Monitoreo 24/7</a>
+      </div>
+    </div>
+
+    <div id="panel-ia" class="svc-panel" data-dept="ia" style="left:57%; --pc:#34d399;">
+      <div class="svc-phase" style="--pc:#34d399;">F2 · IA Productividad</div>
+      <div class="svc-links">
+        <a href="/servicios/chatbot">💬 Chatbot IA 24/7</a>
+        <a href="/servicios/automatizacion">⚙️ Automatización</a>
+        <a href="/servicios/gestor-documental">📄 Gestor documental</a>
+        <a href="/servicios/atencion-llamadas">📞 Recepcionista virtual</a>
+      </div>
+    </div>
+
+    <div id="panel-seo" class="svc-panel" data-dept="seo" style="left:84%; --pc:#fb923c;">
+      <div class="svc-phase" style="--pc:#fb923c;">F3 · SEO &amp; Publicidad</div>
+      <div class="svc-links">
+        <a href="/blog">🔍 SEO en Google</a>
+        <a href="/blog">📍 SEO local &amp; GEO</a>
+        <a href="/servicios/automatizacion">✉️ Email marketing</a>
+        <a href="/blog">📊 Analítica GA4</a>
+      </div>
+    </div>
+
+    <!-- CITY SVG -->
+    <svg id="city-svg" viewBox="0 0 1440 490" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMax meet" style="width:100%;display:block;position:relative;z-index:10;">
+      <defs>
+        <filter id="glow"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        <filter id="glow-sm"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        <linearGradient id="road-g" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#0d1520"/><stop offset="50%" stop-color="#141e2e"/><stop offset="100%" stop-color="#0d1520"/>
+        </linearGradient>
+        <!-- Milestone glow gradients -->
+        <radialGradient id="glow-blue" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.15"/>
+          <stop offset="100%" stop-color="#38bdf8" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="glow-purple" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#a78bfa" stop-opacity="0.18"/>
+          <stop offset="100%" stop-color="#a78bfa" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="glow-green" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#34d399" stop-opacity="0.15"/>
+          <stop offset="100%" stop-color="#34d399" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="glow-orange" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#fb923c" stop-opacity="0.18"/>
+          <stop offset="100%" stop-color="#fb923c" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+
+      <!-- Horizon glow -->
+      <rect x="0" y="360" width="1440" height="60" fill="url(#road-g)" opacity="0.4"/>
+
+      <!-- GROUND -->
+      <rect x="0" y="400" width="1440" height="90" fill="#080f1a"/>
+
+      <!-- ROAD -->
+      <rect x="0" y="408" width="1440" height="54" fill="url(#road-g)"/>
+      <line x1="0" y1="410" x2="1440" y2="410" stroke="#1a2a3a" stroke-width="1.5"/>
+      <line x1="0" y1="458" x2="1440" y2="458" stroke="#1a2a3a" stroke-width="1.5"/>
+      <!-- Center line dashes -->
+      <line x1="0" y1="435" x2="1440" y2="435" stroke="#1e2e40" stroke-width="1.5" stroke-dasharray="36,28"/>
+      <!-- Sidewalk -->
+      <rect x="0" y="400" width="1440" height="10" fill="#0e1a28"/>
+
+      <!-- Ambient ground glows under buildings -->
+      <ellipse cx="570"  cy="415" rx="140" ry="28" fill="url(#glow-purple)" opacity="0.7"/>
+      <ellipse cx="970"  cy="415" rx="155" ry="30" fill="url(#glow-green)"  opacity="0.7"/>
+      <ellipse cx="1280" cy="415" rx="165" ry="32" fill="url(#glow-orange)" opacity="0.7"/>
+
+      <!-- ========================= -->
+      <!-- FASE 1: CIBERSEGURIDAD (medium) -->
+      <!-- ========================= -->
+      <g class="iso-building" id="bld-ciber" data-dept="ciber" style="cursor:pointer;">
+        <ellipse cx="570" cy="406" rx="108" ry="16" fill="rgba(0,0,0,0.45)"/>
+        <!-- Body -->
+        <polygon points="462,350 570,308 678,350 570,392" fill="#150e30"/>
+        <polygon points="462,255 462,350 570,392 570,297" fill="#0d0920"/>
+        <polygon points="678,255 678,350 570,392 570,297" fill="#120c2a"/>
+        <polygon points="462,255 570,213 678,255 570,297" fill="#1a1040"/>
+        <polygon points="462,255 570,213 678,255 570,297" fill="none" stroke="#7c3aed" stroke-width="1.5" opacity="0.8"/>
+        <!-- Windows left (3 rows) -->
+        <polygon points="474,295 498,282 498,272 474,285" fill="#c4b5fd" opacity="0.75"/>
+        <polygon points="512,277 536,264 536,254 512,267" fill="#fbbf24" opacity="0.7"/>
+        <polygon points="550,259 574,246 574,236 550,249" fill="#c4b5fd" opacity="0.8"/>
+        <polygon points="474,313 498,300 498,290 474,303" fill="#fef3c7" opacity="0.6"/>
+        <polygon points="512,295 536,282 536,272 512,285" fill="#c4b5fd" opacity="0.7"/>
+        <polygon points="550,277 574,264 574,254 550,267" fill="#fbbf24" opacity="0.75"/>
+        <polygon points="474,331 498,318 498,308 474,321" fill="#c4b5fd" opacity="0.65"/>
+        <polygon points="512,313 536,300 536,290 512,303" fill="#fef3c7" opacity="0.7"/>
+        <!-- Windows right -->
+        <polygon points="584,246 608,259 608,249 584,236" fill="#c4b5fd" opacity="0.8"/>
+        <polygon points="622,259 646,272 646,262 622,249" fill="#fbbf24" opacity="0.7"/>
+        <polygon points="660,272 684,285 684,275 660,262" fill="#c4b5fd" opacity="0.75"/>
+        <polygon points="584,264 608,277 608,267 584,254" fill="#fef3c7" opacity="0.6"/>
+        <polygon points="622,277 646,290 646,280 622,267" fill="#c4b5fd" opacity="0.8"/>
+        <polygon points="660,290 684,303 684,293 660,280" fill="#fbbf24" opacity="0.7"/>
+        <polygon points="584,282 608,295 608,285 584,272" fill="#c4b5fd" opacity="0.65"/>
+        <polygon points="622,295 646,308 646,298 622,285" fill="#fef3c7" opacity="0.75"/>
+        <polygon points="660,308 684,321 684,311 660,298" fill="#c4b5fd" opacity="0.8"/>
+        <!-- Shield on roof -->
+        <path d="M559,248 L570,235 L581,248 L581,268 C581,276 570,282 570,282 C570,282 559,276 559,268 Z" fill="#1e0f4e" stroke="#a78bfa" stroke-width="1.5"/>
+        <path d="M565,256 L570,251 L575,256 L575,267 C575,270 570,272 570,272 C570,272 565,270 565,267 Z" fill="#7c3aed"/>
+        <!-- Antennas -->
+        <line x1="548" y1="213" x2="548" y2="177" stroke="#334155" stroke-width="1.5"/>
+        <line x1="570" y1="213" x2="570" y2="168" stroke="#334155" stroke-width="2"/>
+        <line x1="592" y1="213" x2="592" y2="177" stroke="#334155" stroke-width="1.5"/>
+        <circle cx="570" cy="166" r="4.5" fill="#a855f7" class="blink"/>
+        <circle cx="548" cy="175" r="2.5" fill="#ef4444" class="blink-slow"/>
+        <circle cx="592" cy="175" r="2.5" fill="#ef4444" class="blink-slow"/>
+        <!-- Radar -->
+        <ellipse cx="554" cy="214" rx="13" ry="6" fill="none" stroke="#4b5563" stroke-width="1.5" transform="rotate(-22,554,214)"/>
+        <line x1="554" y1="214" x2="545" y2="208" stroke="#4b5563" stroke-width="1"/>
+      </g>
+      <!-- Label 1 -->
+      <g class="bld-label">
+        <rect x="470" y="132" width="200" height="42" fill="rgba(10,8,28,0.9)" rx="8" stroke="#7c3aed" stroke-width="1.2"/>
+        <text x="570" y="148" text-anchor="middle" fill="#a78bfa" font-size="10" font-weight="700" font-family="Inter,sans-serif" letter-spacing="2">FASE 1</text>
+        <text x="570" y="165" text-anchor="middle" fill="#e2e8f0" font-size="14" font-weight="800" font-family="Inter,sans-serif">Ciberseguridad</text>
+      </g>
+      <line x1="570" y1="174" x2="570" y2="213" stroke="#7c3aed" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
+
+      <!-- ========================= -->
+      <!-- FASE 2: IA PRODUCTIVIDAD (tall) -->
+      <!-- ========================= -->
+      <g class="iso-building" id="bld-ia" data-dept="ia" style="cursor:pointer;">
+        <ellipse cx="970" cy="405" rx="120" ry="17" fill="rgba(0,0,0,0.45)"/>
+        <polygon points="850,348 970,300 1090,348 970,396" fill="#071e14"/>
+        <!-- Left taller -->
+        <polygon points="850,225 850,348 970,396 970,273" fill="#051510"/>
+        <polygon points="1090,225 1090,348 970,396 970,273" fill="#07181a"/>
+        <polygon points="850,225 970,177 1090,225 970,273" fill="#0a2218"/>
+        <polygon points="850,225 970,177 1090,225 970,273" fill="none" stroke="#34d399" stroke-width="1.5" opacity="0.85"/>
+        <!-- Windows left (4 rows) -->
+        <polygon points="864,278 890,264 890,253 864,267" fill="#6ee7b7" opacity="0.8"/>
+        <polygon points="904,260 930,246 930,235 904,249" fill="#fbbf24" opacity="0.7"/>
+        <polygon points="944,242 970,228 970,217 944,231" fill="#6ee7b7" opacity="0.85"/>
+        <polygon points="864,297 890,283 890,272 864,286" fill="#fef3c7" opacity="0.6"/>
+        <polygon points="904,279 930,265 930,254 904,268" fill="#6ee7b7" opacity="0.75"/>
+        <polygon points="944,261 970,247 970,236 944,250" fill="#fbbf24" opacity="0.8"/>
+        <polygon points="864,316 890,302 890,291 864,305" fill="#6ee7b7" opacity="0.65"/>
+        <polygon points="904,298 930,284 930,273 904,287" fill="#fef3c7" opacity="0.75"/>
+        <polygon points="944,280 970,266 970,255 944,269" fill="#6ee7b7" opacity="0.7"/>
+        <polygon points="864,335 890,321 890,310 864,324" fill="#fbbf24" opacity="0.6"/>
+        <polygon points="904,317 930,303 930,292 904,306" fill="#6ee7b7" opacity="0.8"/>
+        <!-- Windows right (4 rows) -->
+        <polygon points="984,228 1010,242 1010,231 984,217" fill="#6ee7b7" opacity="0.85"/>
+        <polygon points="1024,242 1050,256 1050,245 1024,231" fill="#fbbf24" opacity="0.7"/>
+        <polygon points="1064,256 1090,270 1090,259 1064,245" fill="#6ee7b7" opacity="0.8"/>
+        <polygon points="984,247 1010,261 1010,250 984,236" fill="#fef3c7" opacity="0.6"/>
+        <polygon points="1024,261 1050,275 1050,264 1024,250" fill="#6ee7b7" opacity="0.75"/>
+        <polygon points="1064,275 1090,289 1090,278 1064,264" fill="#fbbf24" opacity="0.8"/>
+        <polygon points="984,266 1010,280 1010,269 984,255" fill="#6ee7b7" opacity="0.65"/>
+        <polygon points="1024,280 1050,294 1050,283 1024,269" fill="#fef3c7" opacity="0.75"/>
+        <polygon points="1064,294 1090,308 1090,297 1064,283" fill="#6ee7b7" opacity="0.7"/>
+        <polygon points="984,285 1010,299 1010,288 984,274" fill="#fbbf24" opacity="0.6"/>
+        <polygon points="1024,299 1050,313 1050,302 1024,288" fill="#6ee7b7" opacity="0.8"/>
+        <!-- Brain/neural net on roof -->
+        <circle cx="970" cy="208" r="22" fill="#041a10" stroke="#34d399" stroke-width="1.5" opacity="0.9"/>
+        <circle cx="970" cy="208" r="13" fill="none" stroke="#6ee7b7" stroke-width="0.8" opacity="0.5"/>
+        <circle cx="961" cy="203" r="3" fill="#34d399"/><circle cx="979" cy="203" r="3" fill="#34d399"/>
+        <circle cx="961" cy="213" r="3" fill="#34d399"/><circle cx="979" cy="213" r="3" fill="#34d399"/>
+        <circle cx="970" cy="208" r="3.5" fill="#86efac"/>
+        <line x1="961" y1="203" x2="970" y2="208" stroke="#34d399" stroke-width="1" opacity="0.6"/>
+        <line x1="979" y1="203" x2="970" y2="208" stroke="#34d399" stroke-width="1" opacity="0.6"/>
+        <line x1="961" y1="213" x2="970" y2="208" stroke="#34d399" stroke-width="1" opacity="0.6"/>
+        <line x1="979" y1="213" x2="970" y2="208" stroke="#34d399" stroke-width="1" opacity="0.6"/>
+        <line x1="961" y1="203" x2="961" y2="213" stroke="#34d399" stroke-width="0.8" opacity="0.35"/>
+        <line x1="979" y1="203" x2="979" y2="213" stroke="#34d399" stroke-width="0.8" opacity="0.35"/>
+        <!-- Antennas -->
+        <line x1="946" y1="177" x2="946" y2="143" stroke="#334155" stroke-width="1.5"/>
+        <line x1="970" y1="177" x2="970" y2="132" stroke="#334155" stroke-width="2"/>
+        <line x1="994" y1="177" x2="994" y2="143" stroke="#334155" stroke-width="1.5"/>
+        <circle cx="970" cy="130" r="5" fill="#34d399" class="blink-green"/>
+        <circle cx="946" cy="141" r="2.5" fill="#34d399" class="blink-slow"/>
+        <circle cx="994" cy="141" r="2.5" fill="#34d399" class="blink-slow"/>
+      </g>
+      <!-- Label 2 -->
+      <g class="bld-label">
+        <rect x="870" y="96" width="200" height="42" fill="rgba(4,14,8,0.9)" rx="8" stroke="#34d399" stroke-width="1.2"/>
+        <text x="970" y="112" text-anchor="middle" fill="#34d399" font-size="10" font-weight="700" font-family="Inter,sans-serif" letter-spacing="2">FASE 2</text>
+        <text x="970" y="129" text-anchor="middle" fill="#e2e8f0" font-size="14" font-weight="800" font-family="Inter,sans-serif">IA Productividad</text>
+      </g>
+      <line x1="970" y1="138" x2="970" y2="177" stroke="#34d399" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
+
+      <!-- ========================= -->
+      <!-- FASE 3: SEO & PUBLICIDAD (tallest, vibrant) -->
+      <!-- ========================= -->
+      <g class="iso-building" id="bld-seo" data-dept="seo" style="cursor:pointer;">
+        <ellipse cx="1280" cy="403" rx="130" ry="18" fill="rgba(0,0,0,0.45)"/>
+        <polygon points="1150,345 1280,292 1410,345 1280,398" fill="#1c1005"/>
+        <!-- Tallest building -->
+        <polygon points="1150,195 1150,345 1280,398 1280,248" fill="#140c04"/>
+        <polygon points="1410,195 1410,345 1280,398 1280,248" fill="#1a1006"/>
+        <polygon points="1150,195 1280,142 1410,195 1280,248" fill="#221508"/>
+        <polygon points="1150,195 1280,142 1410,195 1280,248" fill="none" stroke="#fb923c" stroke-width="1.8" opacity="0.9"/>
+        <!-- Windows left (5 rows) -->
+        <polygon points="1164,242 1192,227 1192,215 1164,230" fill="#fed7aa" opacity="0.8"/>
+        <polygon points="1206,224 1234,209 1234,197 1206,212" fill="#fbbf24" opacity="0.75"/>
+        <polygon points="1248,206 1276,191 1276,179 1248,194" fill="#fed7aa" opacity="0.85"/>
+        <polygon points="1164,262 1192,247 1192,235 1164,250" fill="#fef3c7" opacity="0.65"/>
+        <polygon points="1206,244 1234,229 1234,217 1206,232" fill="#fed7aa" opacity="0.8"/>
+        <polygon points="1248,226 1276,211 1276,199 1248,214" fill="#fbbf24" opacity="0.7"/>
+        <polygon points="1164,282 1192,267 1192,255 1164,270" fill="#fed7aa" opacity="0.7"/>
+        <polygon points="1206,264 1234,249 1234,237 1206,252" fill="#fef3c7" opacity="0.75"/>
+        <polygon points="1248,246 1276,231 1276,219 1248,234" fill="#fed7aa" opacity="0.8"/>
+        <polygon points="1164,302 1192,287 1192,275 1164,290" fill="#fbbf24" opacity="0.65"/>
+        <polygon points="1206,284 1234,269 1234,257 1206,272" fill="#fed7aa" opacity="0.7"/>
+        <polygon points="1248,266 1276,251 1276,239 1248,254" fill="#fef3c7" opacity="0.6"/>
+        <polygon points="1164,322 1192,307 1192,295 1164,310" fill="#fed7aa" opacity="0.75"/>
+        <polygon points="1206,304 1234,289 1234,277 1206,292" fill="#fbbf24" opacity="0.8"/>
+        <!-- Windows right (5 rows) -->
+        <polygon points="1294,179 1322,194 1322,182 1294,167" fill="#fed7aa" opacity="0.85"/>
+        <polygon points="1336,194 1364,209 1364,197 1336,182" fill="#fbbf24" opacity="0.75"/>
+        <polygon points="1378,209 1406,224 1406,212 1378,197" fill="#fed7aa" opacity="0.8"/>
+        <polygon points="1294,199 1322,214 1322,202 1294,187" fill="#fef3c7" opacity="0.65"/>
+        <polygon points="1336,214 1364,229 1364,217 1336,202" fill="#fed7aa" opacity="0.8"/>
+        <polygon points="1378,229 1406,244 1406,232 1378,217" fill="#fbbf24" opacity="0.7"/>
+        <polygon points="1294,219 1322,234 1322,222 1294,207" fill="#fed7aa" opacity="0.7"/>
+        <polygon points="1336,234 1364,249 1364,237 1336,222" fill="#fef3c7" opacity="0.75"/>
+        <polygon points="1378,249 1406,264 1406,252 1378,237" fill="#fed7aa" opacity="0.8"/>
+        <polygon points="1294,239 1322,254 1322,242 1294,227" fill="#fbbf24" opacity="0.65"/>
+        <polygon points="1336,254 1364,269 1364,257 1336,242" fill="#fed7aa" opacity="0.7"/>
+        <polygon points="1378,269 1406,284 1406,272 1378,257" fill="#fef3c7" opacity="0.6"/>
+        <polygon points="1294,259 1322,274 1322,262 1294,247" fill="#fed7aa" opacity="0.75"/>
+        <polygon points="1336,274 1364,289 1364,277 1336,262" fill="#fbbf24" opacity="0.8"/>
+        <!-- Rocket / SEO icon on roof -->
+        <g transform="translate(1280,166) rotate(-30)">
+          <path d="M0,-20 C-6,-10 -8,0 -8,10 L8,10 C8,0 6,-10 0,-20Z" fill="#1a0a04" stroke="#fb923c" stroke-width="1.5"/>
+          <ellipse cx="0" cy="10" rx="5" ry="3" fill="#fb923c" opacity="0.8"/>
+          <ellipse cx="0" cy="-14" rx="3" ry="3" fill="#fef3c7" opacity="0.9"/>
+          <!-- Exhaust flame -->
+          <path d="M-4,10 Q0,22 4,10" fill="#fbbf24" opacity="0.7" class="flame-anim"/>
+        </g>
+        <!-- Billboard on side -->
+        <rect x="1415" y="300" width="22" height="3" fill="#334155"/>
+        <rect x="1420" y="245" width="3" height="58" fill="#334155"/>
+        <rect x="1405" y="220" width="36" height="28" fill="#0f0a02" rx="3" stroke="#fb923c" stroke-width="1"/>
+        <text x="1423" y="232" text-anchor="middle" fill="#fb923c" font-size="6" font-weight="700" font-family="Inter,sans-serif">#1</text>
+        <text x="1423" y="241" text-anchor="middle" fill="#fed7aa" font-size="5" font-family="Inter,sans-serif">Google</text>
+        <!-- Antennas -->
+        <line x1="1252" y1="142" x2="1252" y2="105" stroke="#334155" stroke-width="1.5"/>
+        <line x1="1280" y1="142" x2="1280" y2="96" stroke="#334155" stroke-width="2"/>
+        <line x1="1308" y1="142" x2="1308" y2="105" stroke="#334155" stroke-width="1.5"/>
+        <circle cx="1280" cy="94" r="5.5" fill="#fb923c" class="blink"/>
+        <circle cx="1252" cy="103" r="2.5" fill="#fb923c" class="blink-slow"/>
+        <circle cx="1308" cy="103" r="2.5" fill="#fb923c" class="blink-slow"/>
+      </g>
+      <!-- Label 3 -->
+      <g class="bld-label">
+        <rect x="1180" y="60" width="200" height="42" fill="rgba(14,8,2,0.9)" rx="8" stroke="#fb923c" stroke-width="1.2"/>
+        <text x="1280" y="76" text-anchor="middle" fill="#fb923c" font-size="10" font-weight="700" font-family="Inter,sans-serif" letter-spacing="2">FASE 3</text>
+        <text x="1280" y="93" text-anchor="middle" fill="#e2e8f0" font-size="13" font-weight="800" font-family="Inter,sans-serif">SEO &amp; Publicidad</text>
+      </g>
+      <line x1="1280" y1="102" x2="1280" y2="142" stroke="#fb923c" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
+
+      <!-- =============================== -->
+      <!-- TREES & PROPS -->
+      <!-- =============================== -->
+      <!-- Between 1 and 2 -->
+      <g transform="translate(780,400)"><rect x="-3" y="-20" width="6" height="20" fill="#3d1f08"/><ellipse cx="0" cy="-24" rx="16" ry="20" fill="#0d3a1a"/><ellipse cx="0" cy="-30" rx="10" ry="14" fill="#0f4a20"/></g>
+      <g transform="translate(820,404)"><rect x="-2" y="-14" width="5" height="14" fill="#3d1f08"/><ellipse cx="0" cy="-17" rx="12" ry="15" fill="#0d3a1a"/></g>
+      <!-- Between 2 and 3 -->
+      <g transform="translate(1120,402)"><rect x="-3" y="-18" width="6" height="18" fill="#3d1f08"/><ellipse cx="0" cy="-22" rx="15" ry="18" fill="#0d3a1a"/><ellipse cx="0" cy="-28" rx="9" ry="12" fill="#0f4a20"/></g>
+
+      <!-- Lampposts -->
+      <g transform="translate(730,400)"><line x1="0" y1="0" x2="0" y2="-50" stroke="#1e2a3a" stroke-width="3"/><path d="M0,-50 Q10,-58 16,-48" fill="none" stroke="#2a3a4e" stroke-width="2"/><circle cx="16" cy="-48" r="5.5" fill="#fef08a" opacity="0.8" filter="url(#glow-sm)"/></g>
+      <g transform="translate(1100,400)"><line x1="0" y1="0" x2="0" y2="-50" stroke="#1e2a3a" stroke-width="3"/><path d="M0,-50 Q10,-58 16,-48" fill="none" stroke="#2a3a4e" stroke-width="2"/><circle cx="16" cy="-48" r="5.5" fill="#fef08a" opacity="0.8" filter="url(#glow-sm)"/></g>
+
+      <!-- =============================== -->
+      <!-- WALKER — person that evolves -->
+      <!-- =============================== -->
+      <g id="walker" style="pointer-events:none;">
+        <!-- Shadow -->
+        <ellipse cx="0" cy="2" rx="10" ry="3.5" fill="rgba(0,0,0,0.5)"/>
+        <!-- Legs -->
+        <rect id="leg-l" x="-5.5" y="0" width="4.5" height="13" fill="#1e3a5f" rx="1.5"/>
+        <rect id="leg-r" x="1" y="0" width="4.5" height="13" fill="#1e3a5f" rx="1.5"/>
+        <!-- Body / suit jacket -->
+        <rect x="-8" y="-16" width="16" height="18" fill="#1d4ed8" rx="2.5"/>
+        <!-- Tie -->
+        <polygon points="0,-16 -2,-8 0,-5 2,-8" fill="#f59e0b"/>
+        <!-- Left arm -->
+        <rect x="-14" y="-15" width="6" height="11" fill="#1d4ed8" rx="1.5"/>
+        <!-- Right arm — changes with badges -->
+        <rect x="8" y="-15" width="6" height="11" fill="#1d4ed8" rx="1.5"/>
+        <!-- Head -->
+        <circle cx="0" cy="-24" r="9" fill="#fcd34d"/>
+        <!-- Eyes -->
+        <circle cx="-3.5" cy="-25" r="1.5" fill="#1e293b"/>
+        <circle cx="3.5" cy="-25" r="1.5" fill="#1e293b"/>
+        <!-- Smile (default) -->
+        <path id="person-smile" d="M-4,-21 Q0,-18 4,-21" fill="none" stroke="#92400e" stroke-width="1.2" stroke-linecap="round"/>
+        <!-- Hair -->
+        <path d="M-8,-28 Q0,-36 8,-28 Q8,-33 -8,-33 Z" fill="#78350f"/>
+
+        <!-- BRIEFCASE (always visible, base) -->
+        <g id="item-briefcase" transform="translate(-18,-9)">
+          <rect x="-6" y="-4" width="12" height="9" fill="#92400e" rx="1.5"/>
+          <rect x="-3" y="-6" width="6" height="3" fill="none" stroke="#92400e" stroke-width="1.5" rx="1"/>
+          <line x1="-6" y1="-1" x2="6" y2="-1" stroke="#7c350a" stroke-width="0.8"/>
+        </g>
+
+        <!-- BADGE: SHIELD — appears after Fase 1 -->
+        <g id="badge-shield" opacity="0" transform="translate(16,-20)">
+          <circle cx="0" cy="0" r="9" fill="#1a0a2e" stroke="#a78bfa" stroke-width="1.5"/>
+          <path d="M0,-6 C-4,-2 -4,4 0,6 C4,4 4,-2 0,-6Z" fill="#7c3aed" opacity="0.9"/>
+          <path d="M-2,0 L-0.5,2 L3,-2" stroke="white" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+        </g>
+
+        <!-- BADGE: GEAR/IA — appears after Fase 2 -->
+        <g id="badge-gear" opacity="0" transform="translate(16,-8)">
+          <circle cx="0" cy="0" r="9" fill="#041a10" stroke="#34d399" stroke-width="1.5"/>
+          <circle cx="0" cy="0" r="4" fill="none" stroke="#34d399" stroke-width="1.5"/>
+          <circle cx="0" cy="0" r="1.5" fill="#34d399"/>
+          <!-- Gear teeth -->
+          <rect x="-1.2" y="-6.5" width="2.4" height="3" fill="#34d399" rx="0.5"/>
+          <rect x="-1.2" y="3.5" width="2.4" height="3" fill="#34d399" rx="0.5"/>
+          <rect x="-6.5" y="-1.2" width="3" height="2.4" fill="#34d399" rx="0.5"/>
+          <rect x="3.5" y="-1.2" width="3" height="2.4" fill="#34d399" rx="0.5"/>
+        </g>
+
+        <!-- BADGE: ROCKET — appears after Fase 3 -->
+        <g id="badge-rocket" opacity="0" transform="translate(28,-16)">
+          <circle cx="0" cy="0" r="9" fill="#140c02" stroke="#fb923c" stroke-width="1.5"/>
+          <path d="M0,-6 C-2,-2 -2,2 0,5 C2,2 2,-2 0,-6Z" fill="#fb923c"/>
+          <circle cx="0" cy="-4" r="1.5" fill="#fef3c7"/>
+          <path d="M-2,4 Q0,9 2,4" fill="#fbbf24" opacity="0.8"/>
+        </g>
+
+        <!-- STAR / SUCCESS aura — appears at the end -->
+        <g id="aura-success" opacity="0">
+          <circle cx="0" cy="-12" r="26" fill="none" stroke="#fbbf24" stroke-width="1" opacity="0.3" stroke-dasharray="3,4"/>
+          <text x="0" y="-42" text-anchor="middle" font-size="14">⭐</text>
+        </g>
+
+        <!-- Think bubble -->
+        <g id="think-bubble" opacity="0">
+          <circle cx="14" cy="-34" r="3" fill="rgba(255,255,255,.08)" stroke="rgba(255,255,255,.25)" stroke-width="1"/>
+          <circle cx="22" cy="-43" r="5" fill="rgba(255,255,255,.08)" stroke="rgba(255,255,255,.25)" stroke-width="1"/>
+          <circle cx="32" cy="-55" r="9" fill="rgba(255,255,255,.1)" stroke="rgba(255,255,255,.25)" stroke-width="1"/>
+          <text id="think-icon" x="32" y="-51" text-anchor="middle" font-size="10">💻</text>
+        </g>
+      </g>
+
+      <!-- Background walker 2 (smaller) -->
+      <g id="walker2" style="pointer-events:none;opacity:.4;">
+        <ellipse cx="0" cy="0" rx="5" ry="2" fill="rgba(0,0,0,0.3)"/>
+        <rect x="-4" y="-10" width="8" height="11" fill="#7c3aed" rx="1.5"/>
+        <circle cx="0" cy="-15" r="5" fill="#f9a8d4"/>
+      </g>
+      <!-- Background walker 3 (opposite direction) -->
+      <g id="walker3" style="pointer-events:none;opacity:.35;">
+        <ellipse cx="0" cy="0" rx="5" ry="2" fill="rgba(0,0,0,0.3)"/>
+        <rect x="-4" y="-10" width="8" height="11" fill="#059669" rx="1.5"/>
+        <circle cx="0" cy="-15" r="5" fill="#6ee7b7"/>
+      </g>
+    </svg>
+  </div><!-- /city-wrapper -->
+
+  <!-- CTA -->
+  <div class="relative text-center px-4 py-8" style="z-index:20;">
+    <a href="/reunion" class="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-semibold text-white transition-all hover:-translate-y-1 hover:shadow-2xl text-base" style="background:linear-gradient(135deg,#2563eb,#7c3aed);box-shadow:0 4px 28px rgba(37,99,235,.4);">
+      Empieza el camino — Consulta gratuita
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+    </a>
+  </div>
+</section>
+
+<style>
+.star-field {
+  background-image:
+    radial-gradient(1px 1px at 5% 6%,rgba(255,255,255,.8) 0%,transparent 100%),
+    radial-gradient(1px 1px at 14% 3%,rgba(255,255,255,.5) 0%,transparent 100%),
+    radial-gradient(1.5px 1.5px at 24% 10%,rgba(255,255,255,.9) 0%,transparent 100%),
+    radial-gradient(1px 1px at 37% 5%,rgba(255,255,255,.4) 0%,transparent 100%),
+    radial-gradient(1px 1px at 49% 2%,rgba(255,255,255,.7) 0%,transparent 100%),
+    radial-gradient(1px 1px at 61% 8%,rgba(255,255,255,.5) 0%,transparent 100%),
+    radial-gradient(1.5px 1.5px at 73% 4%,rgba(255,255,255,.8) 0%,transparent 100%),
+    radial-gradient(1px 1px at 86% 7%,rgba(255,255,255,.4) 0%,transparent 100%),
+    radial-gradient(1px 1px at 93% 14%,rgba(255,255,255,.6) 0%,transparent 100%),
+    radial-gradient(1px 1px at 10% 22%,rgba(255,255,255,.3) 0%,transparent 100%),
+    radial-gradient(1px 1px at 44% 18%,rgba(255,255,255,.5) 0%,transparent 100%),
+    radial-gradient(1px 1px at 78% 20%,rgba(255,255,255,.35) 0%,transparent 100%),
+    radial-gradient(1px 1px at 55% 28%,rgba(255,255,255,.25) 0%,transparent 100%);
+}
+
+/* Blinks */
+.blink       { animation: blk  1.6s ease-in-out infinite; }
+.blink-slow  { animation: blk  2.8s ease-in-out infinite; animation-delay:.9s; }
+.blink-green { animation: blkG 2s   ease-in-out infinite; }
+@keyframes blk  { 0%,44%,100%{opacity:1}48%,96%{opacity:.04} }
+@keyframes blkG { 0%,40%,100%{opacity:1}44%,90%{opacity:.1}  }
+
+/* Flame */
+.flame-anim { animation: flame .4s ease-in-out infinite alternate; }
+@keyframes flame { from{opacity:.5;transform:scaleY(.8)} to{opacity:1;transform:scaleY(1.2)} }
+
+/* Buildings */
+.iso-building { transition: filter .2s ease; }
+.iso-building:hover { filter: drop-shadow(0 0 22px rgba(255,255,255,.22)) brightness(1.16) !important; }
+.iso-building.active { filter: drop-shadow(0 0 32px rgba(99,102,241,.55)) brightness(1.28) !important; }
+.bld-label { pointer-events:none; }
+
+/* ===== WALKER JOURNEY — 36s cycle =====
+   Starts at Fase 1 (Ciber). F0 skipped unless clicked.
+    Fase 1 (Ciber, x≈570):  0%–  → stops 10%–20%  = 3.6s–7.2s
+    Fase 2 (IA,    x≈970): 20%   → stops 38%–48%  = 13.7s–17.3s
+    Fase 3 (SEO,   x≈1280):48%   → stops 62%–72%  = 22.3s–25.9s
+    Walk off + reset: 72%–100%
+*/
+#walker { animation: wJourney 36s linear infinite; }
+@keyframes wJourney {
+  0%   { transform: translate(-30px,  428px); }   /* entra desde fuera */
+  6%   { transform: translate(440px,  428px); }
+  10%  { transform: translate(570px,  428px); }
+  20%  { transform: translate(570px,  428px); }   /* stop Ciber */
+  35%  { transform: translate(940px,  428px); }
+  38%  { transform: translate(970px,  428px); }
+  48%  { transform: translate(970px,  428px); }   /* stop IA */
+  60%  { transform: translate(1250px, 428px); }
+  62%  { transform: translate(1280px, 428px); }
+  72%  { transform: translate(1280px, 428px); }   /* stop SEO */
+  88%  { transform: translate(1490px, 428px); }
+  89%  { transform: translate(330px,  428px); }   /* instant reset */
+  100% { transform: translate(330px,  428px); }
+}
+
+/* Leg walk */
+#leg-l { animation: legW .38s ease-in-out infinite alternate; transform-origin: top center; }
+#leg-r { animation: legW .38s ease-in-out infinite alternate reverse; transform-origin: top center; }
+@keyframes legW { from{transform:rotate(-24deg)} to{transform:rotate(24deg)} }
+
+/* Think bubble — synced to 36s */
+#think-bubble { animation: thinkSync 36s linear infinite; }
+@keyframes thinkSync {
+  0%,9%    { opacity:0; }
+  11%,19%  { opacity:1; }
+  21%,37%  { opacity:0; }
+  39%,47%  { opacity:1; }
+  49%,61%  { opacity:0; }
+  63%,71%  { opacity:1; }
+  73%,100% { opacity:0; }
+}
+
+/* Badges — appear when walker leaves each building
+   shield after Ciber stop (20%), gear after IA stop (48%), rocket after SEO (72%) */
+#badge-shield  { animation: bdgShield 36s linear infinite; }
+@keyframes bdgShield {
+  0%,19%  { opacity:0; transform:translate(16px,-20px) scale(.2); }
+  22%     { opacity:1; transform:translate(16px,-20px) scale(1.3); }
+  25%     { transform:translate(16px,-20px) scale(1); }
+  88%     { opacity:1; transform:translate(16px,-20px) scale(1); }
+  89%     { opacity:0; transform:translate(16px,-20px) scale(.2); }
+  100%    { opacity:0; }
+}
+#badge-gear   { animation: bdgGear 36s linear infinite; }
+@keyframes bdgGear {
+  0%,47%  { opacity:0; transform:translate(16px,-8px) scale(.2); }
+  50%     { opacity:1; transform:translate(16px,-8px) scale(1.3); }
+  53%     { transform:translate(16px,-8px) scale(1); }
+  88%     { opacity:1; transform:translate(16px,-8px) scale(1); }
+  89%     { opacity:0; transform:translate(16px,-8px) scale(.2); }
+  100%    { opacity:0; }
+}
+#badge-rocket { animation: bdgRocket 36s linear infinite; }
+@keyframes bdgRocket {
+  0%,71%  { opacity:0; transform:translate(28px,-16px) scale(.2); }
+  74%     { opacity:1; transform:translate(28px,-16px) scale(1.3); }
+  77%     { transform:translate(28px,-16px) scale(1); }
+  88%     { opacity:1; transform:translate(28px,-16px) scale(1); }
+  89%     { opacity:0; transform:translate(28px,-16px) scale(.2); }
+  100%    { opacity:0; }
+}
+
+/* Success aura */
+#aura-success { animation: auraAppear 36s linear infinite; }
+@keyframes auraAppear {
+  0%,74%  { opacity:0; }
+  78%,86% { opacity:1; }
+  89%     { opacity:0; }
+  100%    { opacity:0; }
+}
+
+/* Background walkers */
+#walker2 { animation: w2 26s linear infinite; animation-delay:-10s; }
+@keyframes w2 { 0%{transform:translate(-40px,433px) scale(.58);opacity:0} 5%{opacity:.4} 92%{opacity:.4} 100%{transform:translate(1490px,433px) scale(.58);opacity:0} }
+#walker3 { animation: w3 32s linear infinite; animation-delay:-4s; }
+@keyframes w3 { 0%{transform:translate(1490px,440px) scale(.52) scaleX(-1);opacity:0} 5%{opacity:.35} 92%{opacity:.35} 100%{transform:translate(-40px,440px) scale(.52) scaleX(-1);opacity:0} }
+
+/* ===== CITY WRAPPER ===== */
+.city-wrapper {
+  padding-top: 160px; /* space for panels above buildings */
+}
+
+/* ===== SERVICE PANELS (always visible, above buildings) ===== */
+.svc-panel {
+  position: absolute;
+  top: 4px;
+  transform: translateX(-50%);
+  width: 190px;
+  background: rgba(6,10,22,0.72);
+  border: 1px solid color-mix(in srgb, var(--pc, #94a3b8) 28%, transparent);
+  border-radius: 12px;
+  padding: 10px 12px;
+  backdrop-filter: blur(12px);
+  z-index: 20;
+  opacity: 0.82;
+  box-shadow: 0 0 14px color-mix(in srgb, var(--pc, transparent) 12%, transparent), 0 4px 18px rgba(0,0,0,0.45);
+  transition: opacity .3s ease, border-color .3s ease, box-shadow .3s ease, transform .3s ease;
+  pointer-events: auto;
+}
+.svc-panel:hover {
+  opacity: 1;
+  border-color: color-mix(in srgb, var(--pc, white) 50%, transparent);
+  box-shadow: 0 0 22px color-mix(in srgb, var(--pc, transparent) 22%, transparent), 0 6px 24px rgba(0,0,0,0.5);
+  transform: translateX(-50%) translateY(-2px);
+}
+/* Active state: máximo brillo + pulso de glow sincronizado con el muñeco */
+.svc-panel.active {
+  opacity: 1 !important;
+  border-color: var(--pc, rgba(255,255,255,0.5)) !important;
+  transform: translateX(-50%) translateY(-5px) scale(1.04) !important;
+  animation: panelPulse 2s ease-in-out infinite;
+}
+@keyframes panelPulse {
+  0%, 100% {
+    box-shadow: 0 0 18px color-mix(in srgb, var(--pc, white) 30%, transparent),
+                0 8px 32px rgba(0,0,0,0.55);
+  }
+  50% {
+    box-shadow: 0 0 42px color-mix(in srgb, var(--pc, white) 55%, transparent),
+                0 0 80px color-mix(in srgb, var(--pc, white) 15%, transparent),
+                0 8px 32px rgba(0,0,0,0.55);
+  }
+}
+.svc-phase {
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--pc, #94a3b8);
+  margin-bottom: 7px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+.tag-done {
+  font-size: 8px;
+  background: rgba(56,189,248,0.15);
+  color: #38bdf8;
+  padding: 1px 5px;
+  border-radius: 10px;
+  margin-left: 3px;
+}
+.svc-links {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.svc-links a {
+  font-size: 10.5px;
+  color: #b8c5d6;
+  text-decoration: none;
+  padding: 3px 5px;
+  border-radius: 6px;
+  transition: color .15s, background .15s;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.svc-links a:hover { color: #e2e8f0; background: rgba(255,255,255,0.07); }
+/* Active panel: links bien visibles */
+.svc-panel.active .svc-links a { color: #e2e8f0; }
+.svc-panel.active .svc-links a:hover { color: #fff; background: rgba(255,255,255,0.1); }
+
+.panel-phase-tag {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--c);
+  margin-bottom: 6px;
+}
+.tag-done {
+  font-size: 9px;
+  background: rgba(56,189,248,.12);
+  color: #38bdf8;
+  padding: 2px 6px;
+  border-radius: 20px;
+  margin-left: 6px;
+  font-weight: 600;
+}
+.panel-title {
+  font-size: 17px;
+  font-weight: 800;
+  margin-bottom: 4px;
+  line-height: 1.2;
+}
+.panel-desc {
+  color: #64748b;
+  font-size: 11.5px;
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+.panel-services { display:flex; flex-direction:column; gap:5px; }
+
+.svc {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: rgba(255,255,255,.03);
+  border: 1px solid rgba(255,255,255,.07);
+  text-decoration: none;
+  transition: background .18s, border-color .18s, transform .12s;
+  cursor: pointer;
+}
+.svc:hover { background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.14); transform:translateX(3px); }
+.svc > span:first-child { font-size:17px; flex-shrink:0; }
+.svc div { flex:1; }
+.svc b   { display:block; color:#f1f5f9; font-size:12px; font-weight:600; }
+.svc em  { display:block; color:#64748b; font-size:10.5px; font-style:normal; }
+.svc .arrow { color:#374151; font-size:14px; transition:color .15s; }
+.svc:hover .arrow { color:#94a3b8; }
+
+.panel-close {
+  position:absolute; top:12px; right:13px;
+  background:none; border:none; color:#4b5563;
+  font-size:20px; cursor:pointer; padding:2px 5px;
+  border-radius:4px; transition:color .15s, background .15s; line-height:1;
+}
+.panel-close:hover { color:#e2e8f0; background:rgba(255,255,255,.07); }
+
+h1, .inline-flex { animation: fiu .7s ease both; }
+@keyframes fiu { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+
+/* ===== METRICS PANEL — inside city-wrapper, behind SVG via DOM order (z-index:2) ===== */
+.metrics-panel {
+  position: absolute;
+  bottom: 60px;          /* sits in lower-right of city area, behind the SVG */
+  right: 12px;
+  width: 240px;
+  background: rgba(4,7,16,0.45);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 14px;
+  padding: 12px 14px 10px;
+  z-index: 2;            /* behind SVG (z-index:10) and panels (z-index:20) */
+  pointer-events: none;
+}
+.metrics-panel.dimmed { opacity: 0.25; transition: opacity .3s; }
+.metrics-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.metrics-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: #94a3b8;
+  letter-spacing: .04em;
+}
+.metrics-phase-tag {
+  font-size: 9.5px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 20px;
+  background: rgba(56,189,248,0.12);
+  color: #38bdf8;
+  border: 1px solid rgba(56,189,248,0.25);
+  transition: background .4s, color .4s, border-color .4s;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+.chart-wrap {
+  margin-bottom: 8px;
+}
+.metrics-legend {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10px;
+  color: #64748b;
+}
+.legend-item span {
+  width: 18px;
+  height: 2.5px;
+  border-radius: 2px;
+  display: block;
+}
+.kpi-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 6px;
+}
+.kpi-item {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 8px;
+  padding: 7px 8px;
+  text-align: center;
+}
+.kpi-val {
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1.1;
+  transition: all .5s ease;
+}
+.kpi-lbl {
+  font-size: 9px;
+  color: #4b5563;
+  margin-top: 2px;
+}
+.kpi-item.highlight {
+  border-color: rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.06);
+}
+
+@media (max-width: 640px) {
+  .metrics-panel {
+    position: relative;
+    top: auto; right: auto;
+    width: calc(100% - 32px);
+    margin: 0 16px 12px;
+  }
+}
+</style>
+
+<script>
+// =====================================================================
+// CITY HERO — full controller
+// =====================================================================
+
+const CYCLE = 36000;
+const stops = [
+  { dept: 'ciber', from: 0.10, to: 0.20, icon: '🛡️', chartPhase: 2 },
+  { dept: 'ia',    from: 0.38, to: 0.48, icon: '🤖', chartPhase: 3 },
+  { dept: 'seo',   from: 0.62, to: 0.72, icon: '🚀', chartPhase: 4 },
+];
+const bldIcons: Record<string, string> = { ciber: '🛡️', ia: '🤖', seo: '🚀' };
+
+// ======================
+// PANELS (always visible, highlight active)
+// ======================
+const svcs = document.querySelectorAll<HTMLElement>('.svc-panel');
+let activePanel: string | null = null;
+
+function activatePanel(id: string) {
+  svcs.forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.iso-building').forEach(b => b.classList.remove('active'));
+  const el = document.getElementById(`panel-${id}`);
+  el?.classList.add('active');
+  document.getElementById(`bld-${id}`)?.classList.add('active');
+  activePanel = id;
+  // Set --pc on panel so border glow matches dept color
+  const colors: Record<string,string> = { ciber:'#a78bfa', ia:'#34d399', seo:'#fb923c' };
+  if (el && colors[id]) el.style.setProperty('--pc', colors[id]);
+}
+
+function deactivateAll() {
+  svcs.forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.iso-building').forEach(b => b.classList.remove('active'));
+  activePanel = null;
+}
+
+document.querySelectorAll('.iso-building').forEach(b => {
+  b.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const dept = (b as HTMLElement).dataset.dept!;
+    autoMode = false;
+    activatePanel(dept);
+    const phase = deptToPhase[dept];
+    if (phase) updateChart(phase);
+    fireFlyIcon(dept);
+  });
+});
+document.addEventListener('click', (e) => {
+  if (!(e.target as Element).closest('.iso-building') && !(e.target as Element).closest('.svc-panel')) {
+    deactivateAll();
+  }
+});
+
+// ======================
+// AUTO WALKER SYNC
+// ======================
+let autoMode = true;
+let lastStop: string | null = null;
+const thinkIconEl = document.getElementById('think-icon');
+const loadTime = Date.now();
+
+function walkerTick() {
+  if (!autoMode) { requestAnimationFrame(walkerTick); return; }
+  const pct = ((Date.now() - loadTime) % CYCLE) / CYCLE;
+  const current = stops.find(s => pct >= s.from && pct < s.to) ?? null;
+
+  if (current) {
+    if (thinkIconEl) thinkIconEl.textContent = current.icon;
+    if (lastStop !== current.dept) {
+      activatePanel(current.dept);
+      updateChart(current.chartPhase);
+      fireFlyIcon(current.dept);
+      lastStop = current.dept;
+    }
+  } else {
+    if (lastStop !== null) { deactivateAll(); lastStop = null; }
+  }
+  requestAnimationFrame(walkerTick);
+}
+requestAnimationFrame(walkerTick);
+
+// ======================
+// FLYING ICON ANIMATION
+// ======================
+const canvas = document.getElementById('fly-canvas') as HTMLCanvasElement;
+const ctx = canvas?.getContext('2d');
+
+interface FlyParticle {
+  emoji: string;
+  x: number; y: number;       // current pos (canvas px)
+  tx: number; ty: number;     // target (walker pos)
+  t: number;                  // 0→1 progress
+  size: number;
+  done: boolean;
+  trail: Array<{x:number;y:number;a:number}>;
+  // control point for arc
+  cx: number; cy: number;
+}
+
+const flyParticles: FlyParticle[] = [];
+const svg = document.getElementById('city-svg') as SVGSVGElement;
+
+function getWalkerCanvasPos(): { x: number; y: number } {
+  const svgRect  = svg.getBoundingClientRect();
+  const canRect  = canvas.getBoundingClientRect();
+  const pct = ((Date.now() - loadTime) % CYCLE) / CYCLE;
+
+  // Interpolate walker SVG x based on CSS keyframes
+  // Rough linear approximation of walker position
+  let svgX = -30;
+  if (pct < 0.06)       svgX = -30 + (pct / 0.06) * (440 - (-30));
+  else if (pct < 0.10)  svgX = 440 + ((pct - 0.06) / 0.04) * (570 - 440);
+  else if (pct < 0.20)  svgX = 570;
+  else if (pct < 0.38)  svgX = 570 + ((pct - 0.20) / 0.18) * (940 - 570);
+  else if (pct < 0.48)  svgX = 970;
+  else if (pct < 0.62)  svgX = 970 + ((pct - 0.48) / 0.14) * (1250 - 970);
+  else if (pct < 0.72)  svgX = 1280;
+  else                  svgX = 1280 + ((pct - 0.72) / 0.17) * (1490 - 1280);
+
+  const scaleX = svgRect.width / 1440;
+  const scaleY = svgRect.height / 490;
+  const svgY   = 428; // walker road y
+
+  return {
+    x: svgRect.left - canRect.left + svgX * scaleX,
+    y: svgRect.top  - canRect.top  + svgY * scaleY - 30,
+  };
+}
+
+function getBuildingCanvasPos(dept: string): { x: number; y: number } {
+  const svgRect = svg.getBoundingClientRect();
+  const canRect = canvas.getBoundingClientRect();
+  const scaleX  = svgRect.width / 1440;
+  const scaleY  = svgRect.height / 490;
+
+  // Approximate top-center of each building
+  const tops: Record<string, { x: number; y: number }> = {
+    it:    { x: 200,  y: 265 },
+    ciber: { x: 570,  y: 213 },
+    ia:    { x: 970,  y: 177 },
+    seo:   { x: 1280, y: 142 },
+  };
+  const p = tops[dept] || { x: 570, y: 250 };
+  return {
+    x: svgRect.left - canRect.left + p.x * scaleX,
+    y: svgRect.top  - canRect.top  + p.y * scaleY,
+  };
+}
+
+function fireFlyIcon(dept: string) {
+  if (!ctx || !canvas) return;
+  const icon  = bldIcons[dept];
+  if (!icon) return;
+
+  const from = getBuildingCanvasPos(dept);
+  const to   = getWalkerCanvasPos();
+
+  // Arc control point: goes up and toward target
+  const cpx = (from.x + to.x) / 2;
+  const cpy = Math.min(from.y, to.y) - 80;
+
+  flyParticles.push({
+    emoji: icon,
+    x: from.x, y: from.y,
+    tx: to.x,  ty: to.y,
+    cx: cpx,   cy: cpy,
+    t: 0,
+    size: 28,
+    done: false,
+    trail: [],
+  });
+}
+
+function resizeCanvas() {
+  if (!canvas) return;
+  const rect = canvas.parentElement!.getBoundingClientRect();
+  canvas.width  = rect.width;
+  canvas.height = rect.height;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+function lerp(a: number, b: number, t: number) { return a + (b - a) * t; }
+function easeInOut(t: number) { return t < .5 ? 2*t*t : -1+(4-2*t)*t; }
+
+function flyTick() {
+  if (!ctx || !canvas) { requestAnimationFrame(flyTick); return; }
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  for (const p of flyParticles) {
+    if (p.done) continue;
+    p.t = Math.min(p.t + 0.010, 1);
+    const e = easeInOut(p.t);
+
+    // Quadratic bezier
+    const bx = (1-e)*(1-e)*p.x + 2*(1-e)*e*p.cx + e*e*p.tx;
+    const by = (1-e)*(1-e)*p.y + 2*(1-e)*e*p.cy + e*e*p.ty;
+
+    // Trail
+    p.trail.push({ x: bx, y: by, a: 1 - e });
+    if (p.trail.length > 12) p.trail.shift();
+
+    // Draw trail
+    for (let i = 0; i < p.trail.length; i++) {
+      const pt = p.trail[i];
+      const alpha = (i / p.trail.length) * pt.a * 0.5;
+      ctx.globalAlpha = alpha;
+      ctx.font = `${p.size * 0.6}px serif`;
+      ctx.fillText(p.emoji, pt.x - 8, pt.y + 8);
+    }
+
+    // Draw icon
+    const scale = p.t < 0.8 ? 1 : 1 + (1 - p.t) * 2; // small pop at end
+    ctx.globalAlpha = p.t < 0.85 ? 1 : 1 - (p.t - 0.85) / 0.15;
+    ctx.font = `${p.size * scale}px serif`;
+    ctx.fillText(p.emoji, bx - p.size * scale / 2, by + p.size * scale / 2);
+
+    // Sparkle ring at arrival
+    if (p.t > 0.92) {
+      ctx.globalAlpha = (1 - p.t) * 4;
+      ctx.strokeStyle = '#fbbf24';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.arc(p.tx, p.ty, (p.t - 0.92) * 200, 0, Math.PI * 2);
+      ctx.stroke();
+    }
+
+    ctx.globalAlpha = 1;
+    if (p.t >= 1) p.done = true;
+  }
+
+  // Remove done
+  for (let i = flyParticles.length - 1; i >= 0; i--) {
+    if (flyParticles[i].done) flyParticles.splice(i, 1);
+  }
+
+  requestAnimationFrame(flyTick);
+}
+requestAnimationFrame(flyTick);
+
+// ======================
+// METRICS CHART
+// ======================
+const metricData = {
+  // [phase0_start, after_it, after_ciber, after_ia, after_seo]
+  seg:  [10, 22, 82, 88, 92],
+  prod: [15, 28, 40, 78, 88],
+  ing:  [10, 18, 32, 58, 94],
+};
+const chartX    = [36, 72, 116, 184, 244];
+const toY       = (v: number) => 90 - (v / 100) * 80;
+const deptToPhase: Record<string, number> = { ciber: 2, ia: 3, seo: 4 };
+
+const phaseLabels  = ['Inicio', 'IT', 'Ciberseguridad', 'IA', 'SEO'];
+const phaseColors  = ['#38bdf8','#38bdf8','#a78bfa','#34d399','#fb923c'];
+const phaseBgs     = ['rgba(56,189,248,.12)','rgba(56,189,248,.12)','rgba(167,139,250,.14)','rgba(52,211,153,.12)','rgba(251,146,60,.14)'];
+const phaseBorders = ['rgba(56,189,248,.25)','rgba(56,189,248,.25)','rgba(167,139,250,.3)','rgba(52,211,153,.25)','rgba(251,146,60,.3)'];
+
+const lineSeg  = document.getElementById('line-seg')  as SVGPolylineElement;
+const lineProd = document.getElementById('line-prod') as SVGPolylineElement;
+const lineIng  = document.getElementById('line-ing')  as SVGPolylineElement;
+const areaSeg  = document.getElementById('area-seg')  as SVGPathElement;
+const areaProd = document.getElementById('area-prod') as SVGPathElement;
+const areaIng  = document.getElementById('area-ing')  as SVGPathElement;
+const dotSeg   = document.getElementById('dot-seg')   as SVGCircleElement;
+const dotProd  = document.getElementById('dot-prod')  as SVGCircleElement;
+const dotIng   = document.getElementById('dot-ing')   as SVGCircleElement;
+const phaseTagEl = document.getElementById('metrics-phase-label')!;
+const kpiSegVal  = document.getElementById('kpi-seg-val')!;
+const kpiProdVal = document.getElementById('kpi-prod-val')!;
+const kpiIngVal  = document.getElementById('kpi-ing-val')!;
+
+let currentChartPhase = 0;
+
+function buildPts(data: number[], n: number) {
+  return chartX.slice(0,n+1).map((x,i) => `${x},${toY(data[i]).toFixed(1)}`).join(' ');
+}
+function buildArea(data: number[], n: number) {
+  const pts = chartX.slice(0,n+1).map((x,i) => `${x},${toY(data[i]).toFixed(1)}`);
+  return `M${pts.join(' L')} L${chartX[n]},90 L36,90 Z`;
+}
+function animKpi(el: HTMLElement, from: number, to: number) {
+  const t0 = performance.now();
+  const fn = (now: number) => {
+    const e = 1 - Math.pow(1 - Math.min((now-t0)/900,1), 3);
+    el.textContent = Math.round(from+(to-from)*e)+'%';
+    if (e < 1) requestAnimationFrame(fn);
+  };
+  requestAnimationFrame(fn);
+}
+
+function updateChart(phase: number) {
+  if (phase === currentChartPhase) return;
+  const prev = currentChartPhase;
+  currentChartPhase = phase;
+
+  lineSeg.setAttribute('points', buildPts(metricData.seg, phase));
+  lineProd.setAttribute('points',buildPts(metricData.prod,phase));
+  lineIng.setAttribute('points', buildPts(metricData.ing, phase));
+  areaSeg.setAttribute('d',  buildArea(metricData.seg,  phase));
+  areaProd.setAttribute('d', buildArea(metricData.prod, phase));
+  areaIng.setAttribute('d',  buildArea(metricData.ing,  phase));
+  dotSeg.setAttribute('cx',  String(chartX[phase])); dotSeg.setAttribute('cy',  toY(metricData.seg[phase]).toFixed(1));
+  dotProd.setAttribute('cx', String(chartX[phase])); dotProd.setAttribute('cy', toY(metricData.prod[phase]).toFixed(1));
+  dotIng.setAttribute('cx',  String(chartX[phase])); dotIng.setAttribute('cy',  toY(metricData.ing[phase]).toFixed(1));
+
+  phaseTagEl.textContent     = phaseLabels[phase];
+  phaseTagEl.style.color     = phaseColors[phase];
+  phaseTagEl.style.background= phaseBgs[phase];
+  phaseTagEl.style.borderColor=phaseBorders[phase];
+
+  animKpi(kpiSegVal,  metricData.seg[prev],  metricData.seg[phase]);
+  animKpi(kpiProdVal, metricData.prod[prev], metricData.prod[phase]);
+  animKpi(kpiIngVal,  metricData.ing[prev],  metricData.ing[phase]);
+
+  document.querySelectorAll('.kpi-item').forEach(k=>k.classList.remove('highlight'));
+  const diffs = [
+    Math.abs(metricData.seg[phase]-metricData.seg[prev]),
+    Math.abs(metricData.prod[phase]-metricData.prod[prev]),
+    Math.abs(metricData.ing[phase]-metricData.ing[prev]),
+  ];
+  const ids = ['kpi-seg','kpi-prod','kpi-ing'];
+  document.getElementById(ids[diffs.indexOf(Math.max(...diffs))])?.classList.add('highlight');
+}
+
+// Init
+updateChart(0);
+</script>
