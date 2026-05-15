@@ -1,0 +1,188 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const title = "Consultoría IA para Empresas en Castellón | AI Security";
+const description = "Implementamos herramientas de inteligencia artificial en empresas de Castellón. Automatización, chatbots, gestión documental y formación al equipo. Primera consulta gratuita.";
+const canonical = "https://aisecurity.es/consultoria-ia-castellon";
+
+const sectores = [
+  { icon: "🏺", nombre: "Cerámica y azulejos", uso: "Automatización de pedidos, catálogos digitales y atención a distribuidores 24/7" },
+  { icon: "🏭", nombre: "Industria química", uso: "Gestión documental técnica, informes automáticos y cumplimiento normativo" },
+  { icon: "🍊", nombre: "Agroalimentación", uso: "Trazabilidad automática, comunicación con clientes y gestión de temporadas" },
+  { icon: "🏗️", nombre: "Construcción", uso: "Presupuestos automáticos, gestión de proyectos y documentación de obra" },
+  { icon: "🚢", nombre: "Puerto y logística", uso: "Automatización de gestiones portuarias, seguimiento de envíos y comunicación" },
+  { icon: "⚖️", nombre: "Servicios profesionales", uso: "Informes automáticos, contratos inteligentes y atención al cliente IA" },
+];
+---
+
+<BaseLayout title={title} description={description} canonical={canonical}>
+
+  <!-- Schema.org LocalBusiness -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "AI Security — Consultoría IA Castellón",
+    "description": "Consultoría de inteligencia artificial para empresas en Castellón. Implementación de herramientas IA, automatización de procesos y formación.",
+    "url": "https://aisecurity.es/consultoria-ia-castellon",
+    "areaServed": [
+      { "@type": "City", "name": "Castellón de la Plana" },
+      { "@type": "AdministrativeArea", "name": "Castellón" },
+      { "@type": "AdministrativeArea", "name": "Comunitat Valenciana" }
+    ],
+    "serviceType": "Consultoría de Inteligencia Artificial",
+    "provider": {
+      "@type": "Organization",
+      "name": "AI Security",
+      "url": "https://aisecurity.es"
+    }
+  })} />
+
+  <!-- HERO -->
+  <section class="relative overflow-hidden" style="background: linear-gradient(135deg, #0a0d1a 0%, #0f1628 50%, #0a0d1a 100%); padding: 80px 0 60px;">
+    <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(circle at 20% 50%, #4f7cff 0%, transparent 50%), radial-gradient(circle at 80% 50%, #8b5cf6 0%, transparent 50%);"></div>
+    <div class="max-w-5xl mx-auto px-6 text-center relative z-10">
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium mb-6" style="background: rgba(79,124,255,0.15); border: 1px solid rgba(79,124,255,0.3); color: #7da4ff;">
+        <span>📍</span> Consultoría IA · Castellón
+      </div>
+      <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight" style="color: #fff;">
+        Consultoría de IA para empresas<br/>
+        <span style="background: linear-gradient(90deg, #4f7cff, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">en Castellón</span>
+      </h1>
+      <p class="text-lg max-w-3xl mx-auto mb-8" style="color: #94a3b8; line-height: 1.7;">
+        Desde la industria cerámica hasta el sector servicios, implementamos las herramientas de IA que realmente mejoran el día a día de tu empresa en Castellón. Con análisis previo, configuración personalizada y formación del equipo.
+      </p>
+      <div class="flex flex-wrap gap-4 justify-center">
+        <a href="/presupuesto?plan=Consultoria-IA-Castellon"
+          class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all"
+          style="background: linear-gradient(135deg, #4f7cff, #7c3aed); color: #ffffff;">
+          Consulta gratuita en Castellón →
+        </a>
+        <a href="/consultoria-ia"
+          class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold"
+          style="background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15); color: #cbd5e1;">
+          Ver todos los servicios IA →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTORES CASTELLÓN -->
+  <section style="background: #0a0d1a; padding: 80px 0;">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold mb-3" style="color: #e2e8f0;">
+          Sectores en Castellón donde implementamos IA
+        </h2>
+        <p style="color: #64748b;">Castellón tiene una industria potente y diversa. La IA encaja especialmente bien en los sectores más intensivos en documentación y procesos repetitivos.</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-5">
+        {sectores.map(s => (
+          <div class="rounded-xl p-5" style="background: #1a1d27; border: 1px solid #2a2d3a;">
+            <div style="font-size: 28px; margin-bottom: 10px;">{s.icon}</div>
+            <h3 style="font-size: 1rem; font-weight: 700; color: #e2e8f0; margin-bottom: 6px;">{s.nombre}</h3>
+            <p style="color: #64748b; font-size: 0.875rem; line-height: 1.6;">{s.uso}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- QUÉ IMPLEMENTAMOS -->
+  <section style="background: #0f1117; padding: 80px 0; border-top: 1px solid #1e2130;">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold mb-3" style="color: #e2e8f0;">¿Qué IA implementamos en tu empresa?</h2>
+        <p style="color: #64748b;">Herramientas reales con resultados medibles desde el primer mes.</p>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6">
+        {[
+          { icon: "💬", titulo: "Chatbot empresarial IA", desc: "Atiende el 80% de las consultas habituales de tus clientes de forma automática, 24 horas al día. Ideal para empresas del sector cerámico con distribuidores en múltiples países.", ahorro: "Atención multiidioma sin coste adicional de personal" },
+          { icon: "⚙️", titulo: "Automatización de procesos", desc: "Elimina tareas repetitivas: procesado de pedidos, albaranes, emails de seguimiento, actualización de ERP. Todo automático.", ahorro: "Ahorra entre 10 y 40 horas/mes por departamento" },
+          { icon: "📄", titulo: "Gestor documental IA", desc: "Encuentra fichas técnicas, certificados de calidad, manuales y contratos en segundos mediante búsqueda semántica. Especialmente útil en empresas con gran volumen de documentación técnica.", ahorro: "Reduce de 10-15 min a segundos la búsqueda de información" },
+          { icon: "📞", titulo: "Recepcionista virtual IA", desc: "Atiende llamadas con voz natural en español, gestiona citas, responde preguntas frecuentes y deriva a agente humano cuando es necesario.", ahorro: "Disponible 24/7 sin coste de personal adicional" },
+          { icon: "📊", titulo: "Informes automáticos", desc: "Genera informes de ventas, producción o calidad automáticamente cada semana. Los datos de tus herramientas analizados y enviados a tu email sin intervención manual.", ahorro: "Informes listos sin dedicar horas a exportar datos" },
+          { icon: "🤖", titulo: "Asistentes IA para el equipo", desc: "Configuramos asistentes IA con el contexto de tu empresa para que todo el equipo trabaje más rápido: respuestas a clientes, redacción de ofertas, análisis de datos.", ahorro: "Multiplica la productividad de cada empleado" },
+        ].map(item => (
+          <div class="rounded-xl p-6" style="background: #1a1d27; border: 1px solid #2a2d3a;">
+            <div style="font-size: 28px; margin-bottom: 12px;">{item.icon}</div>
+            <h3 style="font-size: 1.05rem; font-weight: 700; color: #e2e8f0; margin-bottom: 8px;">{item.titulo}</h3>
+            <p style="color: #64748b; font-size: 0.875rem; line-height: 1.6; margin-bottom: 10px;">{item.desc}</p>
+            <div style="font-size: 0.8rem; font-weight: 600; color: #86efac; background: rgba(34,197,94,0.08); border: 1px solid rgba(34,197,94,0.2); padding: 6px 10px; border-radius: 8px;">💡 {item.ahorro}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CÓMO TRABAJAMOS -->
+  <section style="background: #0a0d1a; padding: 80px 0; border-top: 1px solid #1e2130;">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold mb-4" style="color: #e2e8f0;">Cómo trabajamos con empresas en Castellón</h2>
+        <p style="color: #64748b;">Sin humo. Sin herramientas genéricas. Con resultados medibles.</p>
+      </div>
+      <div class="grid md:grid-cols-4 gap-6">
+        {[
+          { paso: "01", titulo: "Diagnóstico", desc: "Reunión presencial en Castellón o videoconferencia. Analizamos procesos, herramientas actuales y dónde se pierde más tiempo.", icon: "🔍" },
+          { paso: "02", titulo: "Propuesta", desc: "Plan concreto: qué implementar, en qué orden y con qué inversión. Sin sorpresas ni letra pequeña.", icon: "📐" },
+          { paso: "03", titulo: "Implementación", desc: "Configuramos cada herramienta en vuestro entorno real con pruebas y ajustes hasta que funciona exactamente como necesitáis.", icon: "🛠️" },
+          { paso: "04", titulo: "Formación", desc: "Formamos a tu equipo. Sesiones prácticas adaptadas al nivel de cada persona, guías y soporte post-implantación.", icon: "🎓" },
+        ].map(item => (
+          <div style="text-align: center;">
+            <div style="font-size: 32px; margin-bottom: 12px;">{item.icon}</div>
+            <div style="font-size: 0.75rem; font-weight: 700; color: #4f7cff; letter-spacing: 0.1em; margin-bottom: 6px;">PASO {item.paso}</div>
+            <h3 style="font-size: 1rem; font-weight: 700; color: #e2e8f0; margin-bottom: 8px;">{item.titulo}</h3>
+            <p style="color: #64748b; font-size: 0.875rem; line-height: 1.6;">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section style="background: #0f1117; padding: 80px 0; border-top: 1px solid #1e2130;">
+    <div class="max-w-3xl mx-auto px-6">
+      <h2 class="text-3xl font-bold mb-10 text-center" style="color: #e2e8f0;">Preguntas frecuentes</h2>
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        {[
+          { q: "¿Tenéis experiencia con empresas del sector cerámico en Castellón?", a: "Sí. La gestión documental técnica, la automatización de pedidos y la atención a distribuidores internacionales son casos de uso habituales en el sector cerámico." },
+          { q: "¿Es necesario tener un departamento IT en la empresa?", a: "No. Nos encargamos de toda la parte técnica. Solo necesitamos acceso a las herramientas que ya usáis (ERP, email, CRM) para integrar las soluciones de IA." },
+          { q: "¿Cuánto tarda en verse un retorno de la inversión?", a: "Depende de la solución. Un flujo de automatización de facturas o pedidos suele amortizarse en el primer mes. Soluciones más complejas como chatbots o gestores documentales, en 2-4 meses." },
+          { q: "¿Hacéis visitas presenciales en Castellón?", a: "Sí. Podemos desplazarnos a Castellón para la reunión de diagnóstico y las formaciones, o hacerlo en remoto según preferencia." },
+          { q: "¿Funcionan estas herramientas en castellano y valenciano?", a: "Sí. Configuramos los chatbots y asistentes en los idiomas que necesite tu empresa, incluyendo valenciano para empresas que trabajen con la administración pública local." },
+        ].map(item => (
+          <div style="background: #1a1d27; border: 1px solid #2a2d3a; border-radius: 12px; padding: 20px 24px;">
+            <h3 style="font-size: 0.95rem; font-weight: 700; color: #e2e8f0; margin-bottom: 8px;">{item.q}</h3>
+            <p style="color: #64748b; font-size: 0.875rem; line-height: 1.7; margin: 0;">{item.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- LINKS OTRAS CIUDADES -->
+  <section style="background: #0a0d1a; padding: 40px 0; border-top: 1px solid #1e2130;">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <p style="color: #64748b; font-size: 0.875rem; margin-bottom: 16px;">También ofrecemos consultoría IA en otras provincias de la Comunitat Valenciana:</p>
+      <div class="flex flex-wrap gap-3 justify-center">
+        <a href="/consultoria-ia-valencia" style="padding: 8px 18px; border-radius: 8px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #94a3b8; font-size: 0.875rem; text-decoration: none;">Valencia →</a>
+        <a href="/consultoria-ia-alicante" style="padding: 8px 18px; border-radius: 8px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #94a3b8; font-size: 0.875rem; text-decoration: none;">Alicante →</a>
+        <a href="/consultoria-ia" style="padding: 8px 18px; border-radius: 8px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #94a3b8; font-size: 0.875rem; text-decoration: none;">Ver todos los servicios IA →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section style="background: linear-gradient(135deg, #0f1628, #1a0a2e); padding: 80px 0; border-top: 1px solid #1e2130;">
+    <div class="max-w-3xl mx-auto px-6 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4" style="color: #fff;">¿Tu empresa en Castellón lista para usar IA?</h2>
+      <p class="text-lg mb-8" style="color: #94a3b8;">Primera consulta gratuita. Te decimos con honestidad qué tiene sentido implementar en tu caso y qué no.</p>
+      <a href="/presupuesto?plan=Consultoria-IA-Castellon"
+        class="inline-flex items-center gap-3 px-8 py-4 rounded-xl font-bold text-lg transition-all"
+        style="background: linear-gradient(135deg, #4f7cff, #7c3aed); color: #ffffff;">
+        Solicitar consulta gratuita en Castellón
+      </a>
+    </div>
+  </section>
+
+</BaseLayout>

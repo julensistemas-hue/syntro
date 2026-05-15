@@ -1,0 +1,188 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const title = "Consultoría IA para Empresas en Alicante | AI Security";
+const description = "Implementamos herramientas de inteligencia artificial en empresas de Alicante. Automatización, chatbots, atención al cliente IA y formación. Primera consulta gratuita.";
+const canonical = "https://aisecurity.es/consultoria-ia-alicante";
+
+const sectores = [
+  { icon: "🏨", nombre: "Turismo y hostelería", uso: "Recepcionista virtual, gestión de reservas automática y atención al cliente 24/7 en varios idiomas" },
+  { icon: "👟", nombre: "Calzado y textil", uso: "Automatización de pedidos, catálogos digitales y comunicación con distribuidores internacionales" },
+  { icon: "🏗️", nombre: "Construcción e inmobiliaria", uso: "Gestión documental, presupuestos automáticos y atención a clientes potenciales" },
+  { icon: "🍽️", nombre: "Restauración y ocio", uso: "Chatbots de reservas, gestión de reseñas y automatización de comunicaciones" },
+  { icon: "🌱", nombre: "Agroalimentación", uso: "Trazabilidad, informes automáticos de producción y atención a distribuidores" },
+  { icon: "⚖️", nombre: "Servicios profesionales", uso: "Automatización de informes, gestión documental y atención al cliente IA" },
+];
+---
+
+<BaseLayout title={title} description={description} canonical={canonical}>
+
+  <!-- Schema.org LocalBusiness -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "AI Security — Consultoría IA Alicante",
+    "description": "Consultoría de inteligencia artificial para empresas en Alicante. Implementación de herramientas IA, automatización de procesos y formación.",
+    "url": "https://aisecurity.es/consultoria-ia-alicante",
+    "areaServed": [
+      { "@type": "City", "name": "Alicante" },
+      { "@type": "AdministrativeArea", "name": "Alicante" },
+      { "@type": "AdministrativeArea", "name": "Comunitat Valenciana" }
+    ],
+    "serviceType": "Consultoría de Inteligencia Artificial",
+    "provider": {
+      "@type": "Organization",
+      "name": "AI Security",
+      "url": "https://aisecurity.es"
+    }
+  })} />
+
+  <!-- HERO -->
+  <section class="relative overflow-hidden" style="background: linear-gradient(135deg, #0a0d1a 0%, #0f1628 50%, #0a0d1a 100%); padding: 80px 0 60px;">
+    <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(circle at 20% 50%, #4f7cff 0%, transparent 50%), radial-gradient(circle at 80% 50%, #8b5cf6 0%, transparent 50%);"></div>
+    <div class="max-w-5xl mx-auto px-6 text-center relative z-10">
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium mb-6" style="background: rgba(79,124,255,0.15); border: 1px solid rgba(79,124,255,0.3); color: #7da4ff;">
+        <span>📍</span> Consultoría IA · Alicante
+      </div>
+      <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight" style="color: #fff;">
+        Consultoría de IA para empresas<br/>
+        <span style="background: linear-gradient(90deg, #4f7cff, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">en Alicante</span>
+      </h1>
+      <p class="text-lg max-w-3xl mx-auto mb-8" style="color: #94a3b8; line-height: 1.7;">
+        Del sector turístico al calzado, pasando por la construcción y los servicios. Implementamos la IA que tu empresa en Alicante necesita para trabajar mejor, con menos tareas repetitivas y más tiempo para lo que importa.
+      </p>
+      <div class="flex flex-wrap gap-4 justify-center">
+        <a href="/presupuesto?plan=Consultoria-IA-Alicante"
+          class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all"
+          style="background: linear-gradient(135deg, #4f7cff, #7c3aed); color: #ffffff;">
+          Consulta gratuita en Alicante →
+        </a>
+        <a href="/consultoria-ia"
+          class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold"
+          style="background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15); color: #cbd5e1;">
+          Ver todos los servicios IA →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTORES ALICANTE -->
+  <section style="background: #0a0d1a; padding: 80px 0;">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold mb-3" style="color: #e2e8f0;">
+          Sectores en Alicante donde implementamos IA
+        </h2>
+        <p style="color: #64748b;">Alicante combina un sector turístico potente con una industria diversa. La IA tiene aplicaciones concretas en todos ellos.</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-5">
+        {sectores.map(s => (
+          <div class="rounded-xl p-5" style="background: #1a1d27; border: 1px solid #2a2d3a;">
+            <div style="font-size: 28px; margin-bottom: 10px;">{s.icon}</div>
+            <h3 style="font-size: 1rem; font-weight: 700; color: #e2e8f0; margin-bottom: 6px;">{s.nombre}</h3>
+            <p style="color: #64748b; font-size: 0.875rem; line-height: 1.6;">{s.uso}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- QUÉ IMPLEMENTAMOS -->
+  <section style="background: #0f1117; padding: 80px 0; border-top: 1px solid #1e2130;">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold mb-3" style="color: #e2e8f0;">¿Qué IA implementamos en tu empresa?</h2>
+        <p style="color: #64748b;">Herramientas reales con resultados medibles desde el primer mes.</p>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6">
+        {[
+          { icon: "💬", titulo: "Chatbot empresarial IA", desc: "Atiende el 80% de las consultas habituales en varios idiomas, 24 horas al día. Especialmente útil en el sector turístico de Alicante con clientes internacionales.", ahorro: "Atención multiidioma sin coste adicional de personal" },
+          { icon: "⚙️", titulo: "Automatización de procesos", desc: "Elimina tareas repetitivas: reservas, confirmaciones, facturas, actualizaciones de disponibilidad. Todo automático con integraciones a tu software actual.", ahorro: "Ahorra entre 10 y 40 horas/mes por departamento" },
+          { icon: "📞", titulo: "Recepcionista virtual IA", desc: "Atiende llamadas con voz natural en español e inglés, gestiona reservas, responde preguntas frecuentes y deriva a persona humana cuando es necesario.", ahorro: "Disponible 24/7 sin coste de personal adicional" },
+          { icon: "📄", titulo: "Gestor documental IA", desc: "Encuentra contratos, licencias, manuales y documentación interna en segundos. Búsqueda semántica en toda la documentación de tu empresa.", ahorro: "Reduce de 10-15 min a segundos la búsqueda de información" },
+          { icon: "📊", titulo: "Analítica e informes automáticos", desc: "Datos de ocupación, ventas o producción analizados automáticamente cada semana y enviados a tu email. Sin exportar ni copiar datos a mano.", ahorro: "Decisiones basadas en datos sin trabajo extra" },
+          { icon: "🤖", titulo: "Asistentes IA para el equipo", desc: "Configuramos asistentes con el contexto de tu empresa: respuestas a clientes, redacción de presupuestos, gestión de reseñas online, análisis de temporada.", ahorro: "Multiplica la productividad de cada empleado" },
+        ].map(item => (
+          <div class="rounded-xl p-6" style="background: #1a1d27; border: 1px solid #2a2d3a;">
+            <div style="font-size: 28px; margin-bottom: 12px;">{item.icon}</div>
+            <h3 style="font-size: 1.05rem; font-weight: 700; color: #e2e8f0; margin-bottom: 8px;">{item.titulo}</h3>
+            <p style="color: #64748b; font-size: 0.875rem; line-height: 1.6; margin-bottom: 10px;">{item.desc}</p>
+            <div style="font-size: 0.8rem; font-weight: 600; color: #86efac; background: rgba(34,197,94,0.08); border: 1px solid rgba(34,197,94,0.2); padding: 6px 10px; border-radius: 8px;">💡 {item.ahorro}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CÓMO TRABAJAMOS -->
+  <section style="background: #0a0d1a; padding: 80px 0; border-top: 1px solid #1e2130;">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold mb-4" style="color: #e2e8f0;">Cómo trabajamos con empresas en Alicante</h2>
+        <p style="color: #64748b;">Sin humo. Sin herramientas genéricas. Con resultados medibles.</p>
+      </div>
+      <div class="grid md:grid-cols-4 gap-6">
+        {[
+          { paso: "01", titulo: "Diagnóstico", desc: "Reunión presencial en Alicante o videoconferencia. Analizamos tu empresa, herramientas actuales y dónde tiene más sentido aplicar IA.", icon: "🔍" },
+          { paso: "02", titulo: "Propuesta", desc: "Plan concreto con qué implementar, en qué orden y con qué inversión. Sin sorpresas ni compromiso previo.", icon: "📐" },
+          { paso: "03", titulo: "Implementación", desc: "Configuramos cada solución en vuestro entorno real. Probamos hasta que funciona exactamente como necesitáis.", icon: "🛠️" },
+          { paso: "04", titulo: "Formación", desc: "Formamos a tu equipo en Alicante. Sesiones prácticas, guías en castellano y soporte post-implantación.", icon: "🎓" },
+        ].map(item => (
+          <div style="text-align: center;">
+            <div style="font-size: 32px; margin-bottom: 12px;">{item.icon}</div>
+            <div style="font-size: 0.75rem; font-weight: 700; color: #4f7cff; letter-spacing: 0.1em; margin-bottom: 6px;">PASO {item.paso}</div>
+            <h3 style="font-size: 1rem; font-weight: 700; color: #e2e8f0; margin-bottom: 8px;">{item.titulo}</h3>
+            <p style="color: #64748b; font-size: 0.875rem; line-height: 1.6;">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section style="background: #0f1117; padding: 80px 0; border-top: 1px solid #1e2130;">
+    <div class="max-w-3xl mx-auto px-6">
+      <h2 class="text-3xl font-bold mb-10 text-center" style="color: #e2e8f0;">Preguntas frecuentes</h2>
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        {[
+          { q: "¿Funcionan los chatbots en inglés para el sector turístico?", a: "Sí. Configuramos chatbots y recepcionistas virtuales en los idiomas que necesites: español, inglés, francés, alemán... Especialmente útil para hoteles, restaurantes y empresas turísticas de Alicante." },
+          { q: "¿Es necesario cambiar el software que ya usamos?", a: "No. Integramos la IA con las herramientas que ya tenéis: PMS hotelero, ERP, CRM, email. No hace falta cambiar nada, añadimos la capa de automatización por encima." },
+          { q: "¿Cuánto tarda en verse el retorno de la inversión?", a: "En el sector turístico, un chatbot de reservas o una recepcionista virtual suelen amortizarse en la primera temporada alta. En otros sectores, generalmente en 1-3 meses." },
+          { q: "¿Hacéis visitas presenciales en Alicante?", a: "Sí. Podemos desplazarnos a Alicante para reuniones, demostraciones o formaciones, o hacerlo en remoto si lo prefieres." },
+          { q: "¿Trabajáis con empresas pequeñas o solo grandes empresas?", a: "La mayoría de nuestros clientes son PyMEs de 5 a 150 empleados. Adaptamos siempre la propuesta al tamaño y presupuesto de cada empresa." },
+        ].map(item => (
+          <div style="background: #1a1d27; border: 1px solid #2a2d3a; border-radius: 12px; padding: 20px 24px;">
+            <h3 style="font-size: 0.95rem; font-weight: 700; color: #e2e8f0; margin-bottom: 8px;">{item.q}</h3>
+            <p style="color: #64748b; font-size: 0.875rem; line-height: 1.7; margin: 0;">{item.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- LINKS OTRAS CIUDADES -->
+  <section style="background: #0a0d1a; padding: 40px 0; border-top: 1px solid #1e2130;">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <p style="color: #64748b; font-size: 0.875rem; margin-bottom: 16px;">También ofrecemos consultoría IA en otras provincias de la Comunitat Valenciana:</p>
+      <div class="flex flex-wrap gap-3 justify-center">
+        <a href="/consultoria-ia-valencia" style="padding: 8px 18px; border-radius: 8px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #94a3b8; font-size: 0.875rem; text-decoration: none;">Valencia →</a>
+        <a href="/consultoria-ia-castellon" style="padding: 8px 18px; border-radius: 8px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #94a3b8; font-size: 0.875rem; text-decoration: none;">Castellón →</a>
+        <a href="/consultoria-ia" style="padding: 8px 18px; border-radius: 8px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #94a3b8; font-size: 0.875rem; text-decoration: none;">Ver todos los servicios IA →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section style="background: linear-gradient(135deg, #0f1628, #1a0a2e); padding: 80px 0; border-top: 1px solid #1e2130;">
+    <div class="max-w-3xl mx-auto px-6 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4" style="color: #fff;">¿Tu empresa en Alicante lista para usar IA?</h2>
+      <p class="text-lg mb-8" style="color: #94a3b8;">Primera consulta gratuita. Te decimos con honestidad qué tiene sentido implementar en tu caso y qué no.</p>
+      <a href="/presupuesto?plan=Consultoria-IA-Alicante"
+        class="inline-flex items-center gap-3 px-8 py-4 rounded-xl font-bold text-lg transition-all"
+        style="background: linear-gradient(135deg, #4f7cff, #7c3aed); color: #ffffff;">
+        Solicitar consulta gratuita en Alicante
+      </a>
+    </div>
+  </section>
+
+</BaseLayout>
