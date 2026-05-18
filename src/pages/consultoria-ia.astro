@@ -10,7 +10,7 @@ const departamentos = [
     id: "comunicacion",
     nombre: "Comunicación",
     icon: "🎨",
-    color: "#8b5cf6",
+    color: "#84cc16",
     resumen: "Genera contenido visual, vídeos y creatividades con IA generativa",
     descripcion: "Transforma la producción de contenido visual de tu equipo. Crear imágenes profesionales, vídeos de producto o creatividades para redes sociales pasa de horas a minutos.",
     objetivos: [
@@ -136,7 +136,7 @@ const departamentos = [
     id: "sistemas",
     nombre: "Sistemas",
     icon: "🖥️",
-    color: "#84cc16",
+    color: "#8b5cf6",
     resumen: "Administración de sistemas con documentación automática y seguridad IA",
     descripcion: "Cada cambio en un servidor queda documentado automáticamente. La seguridad se monitoriza en tiempo real con Wazuh y las automatizaciones reducen las tareas repetitivas.",
     objetivos: [
@@ -191,7 +191,7 @@ const departamentos = [
         <h2 class="text-3xl md:text-4xl font-bold mb-3" style="color: #e2e8f0;">
           ¿Qué IA puede usar cada departamento?
         </h2>
-        <p style="color: #64748b; font-size: 1.05rem;">Selecciona un departamento para ver las herramientas y el ahorro estimado</p>
+        <p style="color: #64748b; font-size: 1.05rem; max-width: 480px; margin: 0 auto;">Selecciona un departamento para ver las herramientas y el ahorro estimado</p>
       </div>
 
       <!-- Diagram + Panel layout -->
@@ -210,10 +210,6 @@ const departamentos = [
             </g>
             <g id="nodes"></g>
           </svg>
-          <!-- Descripción del departamento — debajo del diagrama -->
-          <div id="desc-box" style="display: none; padding: 16px 18px; border-radius: 12px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); max-width: 560px;">
-            <p id="panel-desc" style="color: #94a3b8; font-size: 0.9rem; line-height: 1.7; margin: 0;"></p>
-          </div>
         </div>
 
         <!-- Info Panel — solo herramientas -->
@@ -232,7 +228,7 @@ const departamentos = [
             </div>
             <!-- OBJETIVOS -->
             <div style="padding: 0 24px 4px;">
-              <p style="font-size: 0.75rem; font-weight: 600; color: #a78bfa; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; margin-top: 4px;">Qué gana tu empresa</p>
+              <p style="font-size: 0.75rem; font-weight: 600; color: #a78bfa; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; margin-top: 16px;">Qué gana tu empresa</p>
               <div id="panel-objetivos" style="display: flex; flex-direction: column; gap: 6px;"></div>
             </div>
             <div style="padding: 0 24px;">
@@ -251,14 +247,14 @@ const departamentos = [
     </div>
   </section>
 
-  <!-- PROCESO DE TRABAJO -->
+  <!-- PROCESO DE TRABAJO + DIFERENCIADOR -->
   <section style="background: #0f1117; padding: 80px 0; border-top: 1px solid #1e2130;">
     <div class="max-w-5xl mx-auto px-6">
       <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold mb-4" style="color: #e2e8f0;">Cómo trabajamos contigo</h2>
-        <p style="color: #64748b;">Sin humo. Sin herramientas genéricas. Con resultados medibles.</p>
+        <h2 class="text-3xl font-bold mb-3" style="color: #e2e8f0;">Cómo trabajamos contigo</h2>
+        <p style="color: #64748b; max-width: 480px; margin: 0 auto;">Sin humo. Sin herramientas genéricas. Con resultados medibles.</p>
       </div>
-      <div class="grid md:grid-cols-4 gap-6">
+      <div class="grid md:grid-cols-4 gap-6 mb-16">
         {[
           { paso: "01", titulo: "Diagnóstico", desc: "Nos reunimos con tu equipo, entendemos qué herramientas usáis, cómo es el día a día y dónde se pierde más tiempo.", icon: "🔍" },
           { paso: "02", titulo: "Propuesta", desc: "Diseñamos un plan específico para tu empresa: qué herramientas implementar, en qué orden y con qué inversión.", icon: "📐" },
@@ -273,12 +269,6 @@ const departamentos = [
           </div>
         ))}
       </div>
-    </div>
-  </section>
-
-  <!-- DIFERENCIADOR (penúltima sección) -->
-  <section style="background: #0a0d1a; padding: 60px 0; border-top: 1px solid #1e2130;">
-    <div class="max-w-6xl mx-auto px-6">
       <div class="grid md:grid-cols-3 gap-6">
         <div class="rounded-2xl p-6" style="background: #1a1d27; border: 1px solid #2a2d3a;">
           <div class="text-3xl mb-3">🔄</div>
@@ -326,6 +316,53 @@ const departamentos = [
     </div>
   </section>
 
+  <!-- FAQ -->
+  <section style="background: #0a0d1a; padding: 80px 0; border-top: 1px solid #1e2130;">
+    <div class="max-w-3xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold mb-3" style="color: #e2e8f0;">Preguntas frecuentes</h2>
+        <p style="color: #64748b; max-width: 480px; margin: 0 auto;">Lo que suelen preguntarnos antes de empezar.</p>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        {[
+          {
+            q: "¿Necesito tener conocimientos técnicos para trabajar con vosotros?",
+            a: "No. Nos encargamos de toda la parte técnica: configuración, integración con tus herramientas actuales y puesta en marcha. Tu equipo solo necesita aprender a usar las soluciones, que es precisamente lo que cubrimos en la formación."
+          },
+          {
+            q: "¿Cuánto tarda en implementarse una solución de IA?",
+            a: "Depende de la complejidad. Un chatbot básico o un flujo de automatización puede estar funcionando en 2-3 semanas. Una implementación completa por departamentos puede llevar 2-3 meses. En la propuesta siempre indicamos plazos concretos."
+          },
+          {
+            q: "¿Trabajáis con empresas pequeñas o solo con grandes corporaciones?",
+            a: "La mayoría de nuestros clientes son PyMEs de 10 a 150 empleados. Adaptamos la propuesta y la inversión al tamaño real de cada empresa. No tiene sentido instalar un sistema complejo donde no se va a aprovechar."
+          },
+          {
+            q: "¿Qué pasa si una herramienta de IA deja de funcionar o queda obsoleta?",
+            a: "El ecosistema IA cambia constantemente. Por eso ofrecemos mantenimiento y revisión periódica. Si una herramienta queda obsoleta o aparece una mejor alternativa, te lo comunicamos y gestionamos la transición."
+          },
+          {
+            q: "¿Tengo que cambiar el software que ya uso en mi empresa?",
+            a: "No necesariamente. Integramos las soluciones de IA con las herramientas que ya tenéis: ERP, CRM, email, Google Workspace, etc. El objetivo es añadir automatización por encima de lo que ya funciona, no reemplazar todo."
+          },
+          {
+            q: "¿Cuándo se nota el retorno de la inversión?",
+            a: "Depende de la solución. Un flujo de automatización de facturas o emails suele amortizarse en el primer mes. Soluciones más completas como gestores documentales o chatbots integrados con ERP, en 2-4 meses. En la propuesta siempre incluimos una estimación de ahorro mensual."
+          },
+          {
+            q: "¿La consultoría incluye formación para mi equipo?",
+            a: "Sí, siempre. No entregamos una herramienta y desaparecemos. Formamos a las personas que la van a usar con sesiones prácticas adaptadas a su nivel, guías de uso y soporte durante el periodo de adaptación."
+          },
+        ].map(item => (
+          <div style="background: #1a1d27; border: 1px solid #2a2d3a; border-radius: 12px; padding: 20px 24px;">
+            <h3 style="font-size: 0.95rem; font-weight: 700; color: #e2e8f0; margin-bottom: 8px;">{item.q}</h3>
+            <p style="color: #64748b; font-size: 0.875rem; line-height: 1.7; margin: 0;">{item.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <!-- CTA FINAL -->
   <section style="background: linear-gradient(135deg, #0f1628, #1a0a2e); padding: 80px 0; border-top: 1px solid #1e2130;">
     <div class="max-w-3xl mx-auto px-6 text-center">
@@ -355,8 +392,6 @@ const departamentos = [
   const panelIcon = document.getElementById('panel-icon');
   const panelTitle = document.getElementById('panel-title');
   const panelResumen = document.getElementById('panel-resumen');
-  const descBox = document.getElementById('desc-box');
-  const panelDesc = document.getElementById('panel-desc');
   const panelTools = document.getElementById('panel-tools');
   let activeId = null;
 
@@ -479,8 +514,6 @@ const departamentos = [
 
     panelDefault.style.display = 'none';
     panelActive.style.display = 'block';
-    descBox.style.display = 'block';
-    descBox.style.borderColor = `${dep.color}30`;
     panelActive.style.border = `1px solid ${dep.color}40`;
     panelHeader.style.background = `${dep.color}18`;
     panelHeader.style.borderBottom = `1px solid ${dep.color}30`;
@@ -488,7 +521,6 @@ const departamentos = [
     panelTitle.textContent = dep.nombre;
     panelTitle.style.color = dep.color;
     panelResumen.textContent = dep.resumen;
-    panelDesc.textContent = dep.descripcion;
 
     // Objetivos
     const panelObjetivos = document.getElementById('panel-objetivos');
