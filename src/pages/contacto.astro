@@ -4,135 +4,201 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <BaseLayout
   title="Contacto — AI Security"
-  description="Escríbenos para cualquier consulta sobre servicios de IA o ciberseguridad."
+  description="Escríbenos para cualquier consulta sobre servicios de IA o ciberseguridad. Respuesta en menos de 24h."
   canonical="https://aisecurity.es/contacto"
 >
-  <section style="min-height:100vh;background:linear-gradient(180deg,#05070f 0%,#0d1120 60%,#111827 100%);display:flex;align-items:center;justify-content:center;padding:80px 24px;">
-    <div style="width:100%;max-width:520px;">
+  <section class="relative min-h-screen py-20 pb-24 overflow-hidden" style="background:#020817;">
+    <!-- Grid de fondo -->
+    <div class="absolute inset-0 pointer-events-none" style="background-image:linear-gradient(rgba(59,130,246,0.12) 1px,transparent 1px),linear-gradient(90deg,rgba(59,130,246,0.12) 1px,transparent 1px);background-size:40px 40px;opacity:0.6;"></div>
+    <!-- Gradiente radial -->
+    <div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(ellipse 80% 60% at 50% 20%,rgba(37,99,235,0.15) 0%,transparent 65%);"></div>
 
-      <!-- Cabecera -->
-      <div style="text-align:center;margin-bottom:40px;">
-        <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(59,130,246,0.12);border:1px solid rgba(59,130,246,0.25);border-radius:100px;padding:6px 16px;margin-bottom:20px;">
-          <div style="width:6px;height:6px;border-radius:50%;background:#3b82f6;"></div>
-          <span style="font-size:0.7rem;font-weight:700;color:#60a5fa;letter-spacing:0.1em;text-transform:uppercase;">Contacto</span>
+    <div class="relative max-w-2xl mx-auto px-6 md:px-10">
+
+      <!-- Header -->
+      <div class="text-center mb-12">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold mb-6 border" style="background:rgba(59,130,246,0.1);border-color:rgba(59,130,246,0.28);color:#60a5fa;">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+          </svg>
+          Respuesta en menos de 24h
         </div>
-        <h1 style="color:#f1f5f9;font-size:clamp(1.75rem,4vw,2.5rem);font-weight:700;margin:0 0 12px;line-height:1.2;">¿Hablamos?</h1>
-        <p style="color:#94a3b8;font-size:1rem;margin:0;">Cuéntanos en qué podemos ayudarte. Te respondemos en menos de 24h.</p>
+        <h1 class="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight" style="color:#f0f6ff;">
+          ¿Hablamos?
+        </h1>
+        <p class="text-lg max-w-xl mx-auto" style="color:rgba(240,246,255,0.65);">
+          Cuéntanos en qué podemos ayudarte y te respondemos con una propuesta sin compromiso.
+        </p>
       </div>
 
-      <!-- Formulario -->
-      <form id="contact-form" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:32px;display:flex;flex-direction:column;gap:20px;">
+      <!-- Alert Container -->
+      <div id="alert-container" class="mb-6 hidden"></div>
 
-        <div>
-          <label for="email" style="display:block;font-size:0.875rem;font-weight:500;color:#cbd5e1;margin-bottom:8px;">
-            Email <span style="color:#f87171;">*</span>
-          </label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            required
-            placeholder="tu@empresa.com"
-            style="width:100%;box-sizing:border-box;padding:12px 16px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:8px;color:#f1f5f9;font-size:1rem;outline:none;transition:border-color 0.2s;"
-            onfocus="this.style.borderColor='#3b82f6'"
-            onblur="this.style.borderColor='rgba(255,255,255,0.12)'"
-          />
+      <!-- Card formulario -->
+      <div class="rounded-2xl overflow-hidden" style="background:rgba(255,255,255,0.03);border:1px solid rgba(59,130,246,0.2);backdrop-filter:blur(12px);">
+
+        <!-- Header card -->
+        <div class="px-6 py-4 flex items-center gap-3" style="background:rgba(37,99,235,0.15);border-bottom:1px solid rgba(59,130,246,0.2);">
+          <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background:rgba(59,130,246,0.2);">
+            <svg class="w-4 h-4" fill="none" stroke="#60a5fa" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/>
+            </svg>
+          </div>
+          <div>
+            <h3 class="text-sm font-bold" style="color:#f0f6ff;">Envíanos un mensaje</h3>
+            <p class="text-xs" style="color:rgba(240,246,255,0.5);">El email es obligatorio para poder responderte</p>
+          </div>
         </div>
 
-        <div>
-          <label for="nombre" style="display:block;font-size:0.875rem;font-weight:500;color:#cbd5e1;margin-bottom:8px;">Nombre</label>
-          <input
-            type="text"
-            id="nombre"
-            name="nombre"
-            placeholder="Tu nombre"
-            style="width:100%;box-sizing:border-box;padding:12px 16px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:8px;color:#f1f5f9;font-size:1rem;outline:none;transition:border-color 0.2s;"
-            onfocus="this.style.borderColor='#3b82f6'"
-            onblur="this.style.borderColor='rgba(255,255,255,0.12)'"
-          />
+        <div class="p-7">
+          <form id="contact-form" class="space-y-5">
+
+            <!-- Email -->
+            <div>
+              <label class="block text-xs font-semibold uppercase tracking-wider mb-2" style="color:rgba(240,246,255,0.5);">Email *</label>
+              <input type="email" id="email" name="email" required
+                class="w-full px-4 py-3 rounded-xl text-sm font-medium outline-none transition-all"
+                style="background:rgba(255,255,255,0.05);border:1px solid rgba(59,130,246,0.2);color:#f0f6ff;"
+                placeholder="tu@empresa.com"
+                onfocus="this.style.borderColor='rgba(59,130,246,0.6)';this.style.boxShadow='0 0 0 3px rgba(59,130,246,0.1)'"
+                onblur="this.style.borderColor='rgba(59,130,246,0.2)';this.style.boxShadow='none'"
+              />
+            </div>
+
+            <!-- Nombre -->
+            <div>
+              <label class="block text-xs font-semibold uppercase tracking-wider mb-2" style="color:rgba(240,246,255,0.5);">Nombre (opcional)</label>
+              <input type="text" id="nombre" name="nombre"
+                class="w-full px-4 py-3 rounded-xl text-sm font-medium outline-none transition-all"
+                style="background:rgba(255,255,255,0.05);border:1px solid rgba(59,130,246,0.2);color:#f0f6ff;"
+                placeholder="Tu nombre"
+                onfocus="this.style.borderColor='rgba(59,130,246,0.6)';this.style.boxShadow='0 0 0 3px rgba(59,130,246,0.1)'"
+                onblur="this.style.borderColor='rgba(59,130,246,0.2)';this.style.boxShadow='none'"
+              />
+            </div>
+
+            <!-- Mensaje -->
+            <div>
+              <label class="block text-xs font-semibold uppercase tracking-wider mb-2" style="color:rgba(240,246,255,0.5);">Mensaje (opcional)</label>
+              <textarea id="mensaje" name="mensaje" rows="4"
+                class="w-full px-4 py-3 rounded-xl text-sm font-medium outline-none transition-all resize-none"
+                style="background:rgba(255,255,255,0.05);border:1px solid rgba(59,130,246,0.2);color:#f0f6ff;"
+                placeholder="¿En qué podemos ayudarte?"
+                onfocus="this.style.borderColor='rgba(59,130,246,0.6)';this.style.boxShadow='0 0 0 3px rgba(59,130,246,0.1)'"
+                onblur="this.style.borderColor='rgba(59,130,246,0.2)';this.style.boxShadow='none'"
+              ></textarea>
+            </div>
+
+            <!-- Submit -->
+            <button type="submit" id="submit-btn"
+              class="w-full px-6 py-4 rounded-xl font-bold text-sm transition-all"
+              style="background:linear-gradient(135deg,#2563eb,#1d4ed8);color:white;box-shadow:0 6px 20px rgba(37,99,235,0.4);"
+              onmouseover="this.style.opacity='0.92';this.style.transform='translateY(-1px)'"
+              onmouseout="this.style.opacity='1';this.style.transform='translateY(0)'">
+              <span id="btn-text">Enviar mensaje</span>
+              <span id="btn-spinner" class="hidden inline-flex items-center gap-2">
+                <svg class="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Enviando...
+              </span>
+            </button>
+          </form>
+
+          <!-- Success -->
+          <div id="success-message" class="hidden mt-6">
+            <div class="rounded-2xl p-6 text-center" style="background:linear-gradient(135deg,rgba(34,197,94,0.12),rgba(16,185,129,0.08));border:1px solid rgba(74,222,128,0.28);">
+              <div class="text-5xl mb-3">✅</div>
+              <h4 class="text-xl font-bold mb-2" style="color:#f0f6ff;">¡Mensaje enviado!</h4>
+              <p class="text-sm font-medium" style="color:#4ade80;">Te responderemos en menos de 24 horas.</p>
+            </div>
+          </div>
         </div>
+      </div>
 
-        <div>
-          <label for="mensaje" style="display:block;font-size:0.875rem;font-weight:500;color:#cbd5e1;margin-bottom:8px;">Mensaje</label>
-          <textarea
-            id="mensaje"
-            name="mensaje"
-            rows="4"
-            placeholder="¿En qué podemos ayudarte?"
-            style="width:100%;box-sizing:border-box;padding:12px 16px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:8px;color:#f1f5f9;font-size:1rem;outline:none;resize:vertical;transition:border-color 0.2s;font-family:inherit;"
-            onfocus="this.style.borderColor='#3b82f6'"
-            onblur="this.style.borderColor='rgba(255,255,255,0.12)'"
-          ></textarea>
+      <!-- Info pills debajo -->
+      <div class="flex flex-wrap justify-center gap-4 mt-8">
+        <div class="flex items-center gap-2 text-sm" style="color:rgba(240,246,255,0.5);">
+          <svg class="w-4 h-4" fill="none" stroke="#4ade80" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+          </svg>
+          Consulta gratuita
         </div>
-
-        <!-- Estado de envío -->
-        <div id="form-status" style="display:none;padding:12px 16px;border-radius:8px;font-size:0.875rem;text-align:center;"></div>
-
-        <button
-          type="submit"
-          id="submit-btn"
-          style="width:100%;padding:14px;background:linear-gradient(135deg,#3b82f6,#2563eb);border:none;border-radius:8px;color:#fff;font-size:1rem;font-weight:600;cursor:pointer;transition:opacity 0.2s;"
-          onmouseover="this.style.opacity='0.9'"
-          onmouseout="this.style.opacity='1'"
-        >
-          Enviar mensaje
-        </button>
-      </form>
-
-      <!-- Info adicional -->
-      <div style="text-align:center;margin-top:24px;display:flex;justify-content:center;gap:32px;flex-wrap:wrap;">
-        <a href="mailto:info@aisecurity.es" style="color:#60a5fa;font-size:0.875rem;text-decoration:none;">info@aisecurity.es</a>
-        <a href="/presupuesto" style="color:#60a5fa;font-size:0.875rem;text-decoration:none;">Solicitar presupuesto →</a>
+        <div class="flex items-center gap-2 text-sm" style="color:rgba(240,246,255,0.5);">
+          <svg class="w-4 h-4" fill="none" stroke="#60a5fa" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+          Respuesta en &lt;24h
+        </div>
+        <div class="flex items-center gap-2 text-sm" style="color:rgba(240,246,255,0.5);">
+          <svg class="w-4 h-4" fill="none" stroke="#a5b4fc" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/>
+          </svg>
+          Sin compromiso
+        </div>
       </div>
 
     </div>
   </section>
-</BaseLayout>
 
-<script>
-  const form = document.getElementById('contact-form') as HTMLFormElement;
-  const btn = document.getElementById('submit-btn') as HTMLButtonElement;
-  const status = document.getElementById('form-status') as HTMLDivElement;
+  <style>
+    input::placeholder, textarea::placeholder { color: rgba(240,246,255,0.25); }
+  </style>
 
-  form?.addEventListener('submit', async (e) => {
-    e.preventDefault();
+  <script>
+    const form = document.getElementById('contact-form') as HTMLFormElement;
+    const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+    const btnText = document.getElementById('btn-text');
+    const btnSpinner = document.getElementById('btn-spinner');
+    const successMessage = document.getElementById('success-message');
+    const alertContainer = document.getElementById('alert-container');
 
-    const email = (document.getElementById('email') as HTMLInputElement).value.trim();
-    const nombre = (document.getElementById('nombre') as HTMLInputElement).value.trim();
-    const mensaje = (document.getElementById('mensaje') as HTMLTextAreaElement).value.trim();
-
-    btn.disabled = true;
-    btn.textContent = 'Enviando...';
-    status.style.display = 'none';
-
-    try {
-      const res = await fetch('/api/send-contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, nombre, mensaje }),
-      });
-
-      const data = await res.json();
-
-      if (res.ok) {
-        status.style.display = 'block';
-        status.style.background = 'rgba(34,197,94,0.15)';
-        status.style.border = '1px solid rgba(34,197,94,0.3)';
-        status.style.color = '#86efac';
-        status.textContent = '✅ Mensaje enviado. Te respondemos pronto.';
-        form.reset();
-      } else {
-        throw new Error(data.error || 'Error al enviar');
-      }
-    } catch (err: any) {
-      status.style.display = 'block';
-      status.style.background = 'rgba(239,68,68,0.15)';
-      status.style.border = '1px solid rgba(239,68,68,0.3)';
-      status.style.color = '#fca5a5';
-      status.textContent = '❌ ' + (err.message || 'Error al enviar. Inténtalo de nuevo.');
-    } finally {
-      btn.disabled = false;
-      btn.textContent = 'Enviar mensaje';
+    function showAlert(message: string, type: 'success' | 'error' = 'error') {
+      if (!alertContainer) return;
+      alertContainer.style.cssText = type === 'success'
+        ? 'background:rgba(74,222,128,0.08);border:1px solid rgba(74,222,128,0.25);color:#4ade80;padding:12px 16px;border-radius:12px;'
+        : 'background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.25);color:#fca5a5;padding:12px 16px;border-radius:12px;';
+      alertContainer.innerHTML = `<p style="font-size:0.875rem;font-weight:500;margin:0;">${message}</p>`;
+      alertContainer.classList.remove('hidden');
+      setTimeout(() => alertContainer.classList.add('hidden'), 5000);
     }
-  });
-</script>
+
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      if (submitBtn) { submitBtn.disabled = true; submitBtn.style.opacity = '0.6'; }
+      if (btnText) btnText.classList.add('hidden');
+      if (btnSpinner) btnSpinner.classList.remove('hidden');
+
+      const email = (document.getElementById('email') as HTMLInputElement).value.trim();
+      const nombre = (document.getElementById('nombre') as HTMLInputElement).value.trim();
+      const mensaje = (document.getElementById('mensaje') as HTMLTextAreaElement).value.trim();
+
+      try {
+        const response = await fetch('/api/send-contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, nombre, mensaje }),
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+          form.classList.add('hidden');
+          if (successMessage) {
+            successMessage.classList.remove('hidden');
+            successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        } else {
+          throw new Error(result.error || 'Error al enviar el formulario');
+        }
+      } catch (error: any) {
+        showAlert('❌ ' + (error.message || 'Error al enviar. Inténtalo de nuevo.'));
+        if (submitBtn) { submitBtn.disabled = false; submitBtn.style.opacity = '1'; }
+        if (btnText) btnText.classList.remove('hidden');
+        if (btnSpinner) btnSpinner.classList.add('hidden');
+      }
+    });
+  </script>
+</BaseLayout>
