@@ -122,20 +122,119 @@ const services = [
 
 <section id="servicios" class="py-24 lg:py-32" style="background: linear-gradient(180deg, #0d1120 0%, #111827 100%);">
   <div class="max-w-7xl mx-auto px-4 md:px-8 lg:px-14">
-    <div class="text-center mb-20">
-      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold mb-6 border" style="background: rgba(79,124,255,0.1); border-color: rgba(79,124,255,0.25); color: #7da4ff;">
-        <span aria-hidden="true">✨</span>
-        Nuestros Servicios
+
+    <!-- Header con globo -->
+    <div class="flex flex-col lg:flex-row items-center gap-10 mb-20">
+
+      <!-- Globo terráqueo -->
+      <div class="flex-shrink-0 flex flex-col items-center">
+        <div class="relative" style="width:clamp(240px,30vw,360px);height:clamp(240px,30vw,360px);">
+          <!-- Glow -->
+          <div class="absolute inset-0 rounded-full blur-3xl opacity-25" style="background:radial-gradient(circle,#3b82f6,transparent 65%);transform:scale(1.1);"></div>
+
+          <svg viewBox="-110 -110 220 220" style="width:100%;height:100%;overflow:visible;">
+            <defs>
+              <clipPath id="ss-gc"><circle r="95"/></clipPath>
+              <radialGradient id="ss-gf" cx="32%" cy="28%">
+                <stop offset="0%" stop-color="rgba(59,130,246,0.18)"/>
+                <stop offset="100%" stop-color="rgba(2,8,23,0.95)"/>
+              </radialGradient>
+              <path id="ss-p-ru" d="M 68,-54 Q 30,-98 -8,-16"/>
+              <path id="ss-p-cn" d="M 82,-8  Q 48,-90 -8,-16"/>
+              <path id="ss-p-us" d="M -84,-20 Q -50,-92 -8,-16"/>
+              <path id="ss-p-br" d="M -32,65  Q -52,18  -8,-16"/>
+            </defs>
+            <circle r="95" fill="url(#ss-gf)"/>
+            <g clip-path="url(#ss-gc)" stroke="rgba(59,130,246,0.12)" stroke-width="0.5" fill="none">
+              <ellipse rx="95" ry="20"/><ellipse rx="95" ry="48"/><ellipse rx="95" ry="72"/><ellipse rx="95" ry="88"/>
+            </g>
+            <g clip-path="url(#ss-gc)" fill="none" stroke-width="0.5">
+              <ellipse class="ss-m1" ry="95" stroke="rgba(59,130,246,0.15)"/>
+              <ellipse class="ss-m2" ry="95" stroke="rgba(99,102,241,0.12)"/>
+              <ellipse class="ss-m3" ry="95" stroke="rgba(59,130,246,0.1)"/>
+              <ellipse class="ss-m4" ry="95" stroke="rgba(139,92,246,0.08)"/>
+            </g>
+            <g class="ss-continents" clip-path="url(#ss-gc)" fill="rgba(20,50,110,0.82)" stroke="rgba(96,165,250,0.9)" stroke-width="1" stroke-linejoin="round">
+              <path d="M -15,-10 L -12,-8 L -10,-30 L -13,-37 L -4,-58 L 13,-75 L 13,-63 L 11,-50 L 6,-42 L 13,-24 L 9,-8 Z"/>
+              <path d="M -12,-7 L 16,-16 L 26,14 L 22,55 L 10,70 L -5,70 L -15,40 L -20,10 Z"/>
+              <path d="M 16,-10 L 25,-30 L 45,-62 L 88,-62 L 92,-35 L 88,14 L 68,22 L 42,20 L 35,8 L 28,-14 Z"/>
+              <path d="M -35,-70 L -50,-65 L -90,-55 L -92,-25 L -68,-2 L -50,-2 L -32,-25 L -40,-52 Z"/>
+              <path d="M -62,-2 L -33,-2 L -20,30 L -35,75 L -52,70 L -68,25 Z"/>
+              <path d="M 50,28 L 88,20 L 90,50 L 60,54 L 48,42 Z"/>
+            </g>
+            <circle r="95" fill="none" stroke="rgba(59,130,246,0.4)" stroke-width="1.2"/>
+            <use href="#ss-p-ru" fill="none" stroke="rgba(239,68,68,0.18)" stroke-width="0.8" stroke-dasharray="3,5"/>
+            <use href="#ss-p-cn" fill="none" stroke="rgba(239,68,68,0.18)" stroke-width="0.8" stroke-dasharray="3,5"/>
+            <use href="#ss-p-us" fill="none" stroke="rgba(245,158,11,0.18)" stroke-width="0.8" stroke-dasharray="3,5"/>
+            <use href="#ss-p-br" fill="none" stroke="rgba(239,68,68,0.18)" stroke-width="0.8" stroke-dasharray="3,5"/>
+            <circle r="4" fill="#ef4444" opacity="0">
+              <animateMotion id="ss-ru-m" dur="2.8s" begin="0s;ss-ru-m.end+4.2s" calcMode="spline" keySplines="0.4 0 0.2 1"><mpath href="#ss-p-ru"/></animateMotion>
+              <animate attributeName="opacity" dur="2.8s" begin="0s;ss-ru-m.end+4.2s" values="0;1;1;0" keyTimes="0;0.04;0.88;1"/>
+            </circle>
+            <circle cx="-8" cy="-16" fill="none" stroke="#4ade80" stroke-width="2" opacity="0">
+              <animate attributeName="r" from="6" to="26" dur="0.7s" begin="ss-ru-m.end;ss-ru-m.end+7s"/>
+              <animate attributeName="opacity" from="1" to="0" dur="0.7s" begin="ss-ru-m.end;ss-ru-m.end+7s"/>
+            </circle>
+            <circle r="3.5" fill="#ef4444" opacity="0">
+              <animateMotion id="ss-cn-m" dur="2.8s" begin="1.75s;ss-cn-m.end+4.2s" calcMode="spline" keySplines="0.4 0 0.2 1"><mpath href="#ss-p-cn"/></animateMotion>
+              <animate attributeName="opacity" dur="2.8s" begin="1.75s;ss-cn-m.end+4.2s" values="0;1;1;0" keyTimes="0;0.04;0.88;1"/>
+            </circle>
+            <circle cx="-8" cy="-16" fill="none" stroke="#4ade80" stroke-width="2" opacity="0">
+              <animate attributeName="r" from="6" to="26" dur="0.7s" begin="ss-cn-m.end;ss-cn-m.end+7s"/>
+              <animate attributeName="opacity" from="1" to="0" dur="0.7s" begin="ss-cn-m.end;ss-cn-m.end+7s"/>
+            </circle>
+            <circle r="3.5" fill="#f59e0b" opacity="0">
+              <animateMotion id="ss-us-m" dur="2.8s" begin="3.5s;ss-us-m.end+4.2s" calcMode="spline" keySplines="0.4 0 0.2 1"><mpath href="#ss-p-us"/></animateMotion>
+              <animate attributeName="opacity" dur="2.8s" begin="3.5s;ss-us-m.end+4.2s" values="0;1;1;0" keyTimes="0;0.04;0.88;1"/>
+            </circle>
+            <circle cx="-8" cy="-16" fill="none" stroke="#4ade80" stroke-width="2" opacity="0">
+              <animate attributeName="r" from="6" to="26" dur="0.7s" begin="ss-us-m.end;ss-us-m.end+7s"/>
+              <animate attributeName="opacity" from="1" to="0" dur="0.7s" begin="ss-us-m.end;ss-us-m.end+7s"/>
+            </circle>
+            <circle r="3" fill="#ef4444" opacity="0">
+              <animateMotion id="ss-br-m" dur="2.8s" begin="5.25s;ss-br-m.end+4.2s" calcMode="spline" keySplines="0.4 0 0.2 1"><mpath href="#ss-p-br"/></animateMotion>
+              <animate attributeName="opacity" dur="2.8s" begin="5.25s;ss-br-m.end+4.2s" values="0;1;1;0" keyTimes="0;0.04;0.88;1"/>
+            </circle>
+            <circle cx="-8" cy="-16" fill="none" stroke="#4ade80" stroke-width="2" opacity="0">
+              <animate attributeName="r" from="6" to="26" dur="0.7s" begin="ss-br-m.end;ss-br-m.end+7s"/>
+              <animate attributeName="opacity" from="1" to="0" dur="0.7s" begin="ss-br-m.end;ss-br-m.end+7s"/>
+            </circle>
+            <circle cx="68"  cy="-54" r="3"   fill="rgba(239,68,68,0.7)"/>
+            <circle cx="82"  cy="-8"  r="2.5" fill="rgba(239,68,68,0.7)"/>
+            <circle cx="-84" cy="-20" r="2.5" fill="rgba(245,158,11,0.7)"/>
+            <circle cx="-32" cy="65"  r="2.5" fill="rgba(239,68,68,0.7)"/>
+            <text x="68"  y="-59" text-anchor="middle" font-size="5.5" fill="rgba(239,68,68,0.8)" font-family="monospace">RU</text>
+            <text x="85"  y="-13" text-anchor="middle" font-size="5.5" fill="rgba(239,68,68,0.8)" font-family="monospace">CN</text>
+            <text x="-84" y="-25" text-anchor="middle" font-size="5.5" fill="rgba(245,158,11,0.8)" font-family="monospace">US</text>
+            <text x="-32" y="73"  text-anchor="middle" font-size="5.5" fill="rgba(239,68,68,0.8)" font-family="monospace">BR</text>
+            <circle cx="-8" cy="-16" r="6" fill="#4ade80" opacity="0.9"/>
+            <circle cx="-8" cy="-16" r="10" fill="none" stroke="rgba(74,222,128,0.35)" stroke-width="1.2"/>
+            <text x="-8" y="-22" text-anchor="middle" font-size="5" fill="#4ade80" font-family="monospace" font-weight="bold" letter-spacing="0.5">AI SEC</text>
+          </svg>
+
+          <div class="ss-notif ss-notif-ru absolute top-3 right-0 text-xs font-mono px-3 py-2 rounded-lg border" style="background:rgba(74,222,128,0.1);border-color:rgba(74,222,128,0.4);color:#4ade80;">📞 Llamada gestionada · IA</div>
+          <div class="ss-notif ss-notif-cn absolute top-3 right-0 text-xs font-mono px-3 py-2 rounded-lg border" style="background:rgba(96,165,250,0.1);border-color:rgba(96,165,250,0.4);color:#60a5fa;">📧 Correo enviado · automático</div>
+          <div class="ss-notif ss-notif-us absolute bottom-12 right-0 text-xs font-mono px-3 py-2 rounded-lg border" style="background:rgba(167,139,250,0.1);border-color:rgba(167,139,250,0.4);color:#a78bfa;">📅 Cita confirmada · +1 reserva</div>
+          <div class="ss-notif ss-notif-br absolute bottom-4 left-0 text-xs font-mono px-3 py-2 rounded-lg border" style="background:rgba(74,222,128,0.1);border-color:rgba(74,222,128,0.4);color:#4ade80;">📄 Documento procesado · 0.3s</div>
+        </div>
       </div>
-      <h2 class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 tracking-tight" style="color: #e2e8f0;">
-        Servicios de <span class="gradient-text">Inteligencia Artificial</span>
-      </h2>
-      <p class="text-lg md:text-xl max-w-3xl mx-auto leading-relaxed" style="color: #64748b;">
-        Soluciones de automatización con IA para PyMEs españolas: chatbot inteligente, gestor documental, atención de llamadas, gestión de citas y consultoría IT. Sin conocimientos técnicos previos.
-      </p>
+
+      <!-- Texto -->
+      <div class="flex-1 text-center lg:text-left">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold mb-6 border" style="background: rgba(79,124,255,0.1); border-color: rgba(79,124,255,0.25); color: #7da4ff;">
+          <span aria-hidden="true">✨</span>
+          Nuestros Servicios
+        </div>
+        <h2 class="text-4xl md:text-5xl font-extrabold mb-6 tracking-tight" style="color: #e2e8f0;">
+          Servicios de <span class="gradient-text">Inteligencia Artificial</span>
+        </h2>
+        <p class="text-lg max-w-2xl leading-relaxed" style="color: #64748b;">
+          Soluciones de automatización con IA para PyMEs españolas: chatbot inteligente, gestor documental, atención de llamadas, gestión de citas y consultoría IT. Sin conocimientos técnicos previos.
+        </p>
+      </div>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 items-stretch">
       {services.map((service) => (
         <ServiceCard
           title={service.title}
@@ -148,11 +247,11 @@ const services = [
       ))}
     </div>
 
-    <div class="text-center mt-20">
+    <div class="text-center mt-16">
       <a
         href="/reunion"
-        class="group inline-flex items-center justify-center px-8 py-4 text-lg font-semibold bg-accent-600 hover:bg-accent-700 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-1"
-        style="color: #ffffff;"
+        class="group inline-flex items-center justify-center px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-200 hover:-translate-y-1"
+        style="background:linear-gradient(135deg,#2563eb,#1d4ed8);color:white;box-shadow:0 6px 20px rgba(37,99,235,0.35);" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'"
       >
         Solicitar Consulta Gratuita
         <svg class="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -163,3 +262,62 @@ const services = [
     </div>
   </div>
 </section>
+
+<style>
+  .gradient-text {
+    background: linear-gradient(135deg, #60a5fa 0%, #818cf8 50%, #c084fc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  @keyframes ss-continent-pulse {
+    0%, 100% { opacity: 0.75; }
+    50%       { opacity: 1; }
+  }
+  .ss-continents { animation: ss-continent-pulse 4s ease-in-out infinite; }
+
+  @keyframes ss-spin {
+    0%   { rx: 1px; }
+    25%  { rx: 95px; }
+    50%  { rx: 1px; }
+    75%  { rx: 95px; }
+    100% { rx: 1px; }
+  }
+  .ss-m1 { animation: ss-spin 12s linear infinite; }
+  .ss-m2 { animation: ss-spin 12s linear infinite -3s; }
+  .ss-m3 { animation: ss-spin 12s linear infinite -6s; }
+  .ss-m4 { animation: ss-spin 12s linear infinite -9s; }
+
+  .ss-notif { opacity: 0; }
+
+  @keyframes ss-notif-ru {
+    0%,38%,100% { opacity:0; transform:translateY(-6px) scale(0.95); }
+    40%          { opacity:1; transform:translateY(0) scale(1); }
+    56%          { opacity:1; }
+    58%          { opacity:0; }
+  }
+  .ss-notif-ru { animation: ss-notif-ru 7s ease-in-out infinite; }
+
+  @keyframes ss-notif-cn {
+    0%,63%,100% { opacity:0; transform:translateY(-6px) scale(0.95); }
+    65%          { opacity:1; transform:translateY(0) scale(1); }
+    81%          { opacity:1; }
+    83%          { opacity:0; }
+  }
+  .ss-notif-cn { animation: ss-notif-cn 7s ease-in-out infinite; }
+
+  @keyframes ss-notif-us {
+    0%,88%,100% { opacity:0; transform:translateY(-6px) scale(0.95); }
+    90%          { opacity:1; transform:translateY(0) scale(1); }
+    100%         { opacity:0; }
+  }
+  .ss-notif-us { animation: ss-notif-us 7s ease-in-out infinite; }
+
+  @keyframes ss-notif-br {
+    0%,13%,100% { opacity:0; transform:translateY(-6px) scale(0.95); }
+    15%          { opacity:1; transform:translateY(0) scale(1); }
+    31%          { opacity:1; }
+    33%          { opacity:0; }
+  }
+  .ss-notif-br { animation: ss-notif-br 7s ease-in-out infinite; }
+</style>

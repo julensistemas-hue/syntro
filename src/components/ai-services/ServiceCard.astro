@@ -28,7 +28,7 @@ const isConsultoria = !["Chatbot Inteligente","Gestor Documental IA","Gestor de 
 
 <div
   class={`
-    relative p-8 rounded-2xl border-2 transition-all duration-300 bg-base-50 group flex flex-col h-full
+    relative p-6 rounded-2xl border-2 transition-all duration-300 bg-base-50 group flex flex-col h-full
     ${featured
       ? 'border-accent-300 shadow-lg hover:shadow-2xl hover:border-accent-400 hover:-translate-y-2'
       : 'border-base-200 hover:border-accent-300 hover:shadow-xl hover:-translate-y-1'
@@ -43,21 +43,21 @@ const isConsultoria = !["Chatbot Inteligente","Gestor Documental IA","Gestor de 
     </div>
   )}
 
-  <div class="flex items-start gap-4 mb-6">
+  <div class="flex items-start gap-3 mb-4">
     <div class={`
-      w-14 h-14 rounded-xl flex items-center justify-center text-3xl flex-shrink-0 shadow-md transition-transform duration-300 group-hover:scale-110
+      w-11 h-11 rounded-xl flex items-center justify-center text-2xl flex-shrink-0 shadow-md transition-transform duration-300 group-hover:scale-110
       ${featured ? 'bg-gradient-to-br from-accent-600 to-blue-600' : 'bg-accent-100'}
     `}>
       {featured ? <span class="filter drop-shadow-sm">{icon}</span> : icon}
     </div>
     <div class="flex-1 min-w-0">
-      <h3 class="text-xl font-bold text-base-900 mb-2">{title}</h3>
+      <h3 class="text-lg font-bold text-base-900 mb-1">{title}</h3>
     </div>
   </div>
 
-  <p class="text-base-600 mb-6 leading-relaxed">{description}</p>
+  <p class="text-sm text-base-600 mb-4 leading-relaxed">{description}</p>
 
-  <ul class="space-y-3 mb-8 flex-1">
+  <ul class="space-y-2 mb-6 flex-1">
     {features.map((feature) => (
       <li class="flex items-start gap-3">
         <svg class="w-5 h-5 text-accent-600 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
@@ -71,7 +71,7 @@ const isConsultoria = !["Chatbot Inteligente","Gestor Documental IA","Gestor de 
   <a
     href={href}
     class={`
-      inline-flex items-center justify-center w-full px-6 py-3.5 rounded-xl font-semibold text-sm transition-all duration-200
+      inline-flex items-center justify-center w-full px-5 py-3 rounded-xl font-semibold text-sm transition-all duration-200
       ${featured
         ? 'bg-gradient-to-r from-accent-600 to-blue-600 text-white shadow-lg hover:shadow-xl hover:-translate-y-0.5 hover:from-accent-700 hover:to-blue-700'
         : 'bg-base-100 text-base-900 hover:bg-accent-600 border-2 border-base-200 hover:border-accent-600 shadow-sm hover:shadow-md service-card-button'
