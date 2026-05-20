@@ -44,16 +44,13 @@ jobs:
       - name: Escribir credenciales Google
         if: steps.detect.outputs.no_urls != 'true'
         env:
-          GOOGLE_CREDENTIALS_JSON: ${{ secrets.GOOGLE_CREDENTIALS_JSON }}
+          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
         run: |
           python3 -c "
-          import os, json, base64
-          raw = os.environ['GOOGLE_CREDENTIALS_JSON']
-          try:
-              json.loads(raw)
-              open('/tmp/gcreds.json','w').write(raw)
-          except Exception:
-              open('/tmp/gcreds.json','wb').write(base64.b64decode(raw))
+          import os, json
+          raw = os.environ['GOOGLE_SERVICE_ACCOUNT_JSON']
+          json.loads(raw)  # valida que es JSON correcto
+          open('/tmp/gcreds.json','w').write(raw)
           print('Credenciales OK')
           "
 
