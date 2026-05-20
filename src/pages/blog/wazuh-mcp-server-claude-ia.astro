@@ -1,0 +1,208 @@
+---
+import BlogLayout from "../../layouts/BlogLayout.astro";
+---
+
+<BlogLayout
+  title="Wazuh MCP Server: Pregunta y Actúa sobre tu SIEM con Claude IA"
+  description="Conecta Wazuh con Claude mediante MCP. Pregunta en lenguaje natural sobre alertas y vulnerabilidades, y ejecuta acciones como aislar servidores o matar procesos directamente desde Claude Code."
+  publishDate="2026-05-20"
+  author="AI Security"
+  readTime="10 min"
+  tags={["Wazuh", "Claude", "MCP", "IA", "SIEM", "Ciberseguridad", "Integraciones"]}
+  canonical="https://aisecurity.es/blog/wazuh-mcp-server-claude-ia">
+
+  <h2>¿Qué es el Wazuh MCP Server?</h2>
+
+  <p>
+    El <strong>Model Context Protocol (MCP)</strong> es el estándar que usan herramientas como Claude para conectarse con servicios externos. El <strong>Wazuh MCP Server</strong> es un servidor open-source que expone la API de Wazuh como herramientas que Claude puede invocar directamente.
+  </p>
+
+  <p>
+    El resultado: puedes abrir Claude Code y <strong>preguntar y actuar</strong> sobre tu infraestructura en lenguaje natural. Sin recordar comandos de API, sin abrir el dashboard. Ejemplos reales:
+  </p>
+
+  <ul>
+    <li><em>"¿Qué alertas críticas tengo hoy?"</em></li>
+    <li><em>"¿Qué vulnerabilidades críticas hay sin parchear?"</em></li>
+    <li><em>"Aísla de la red a este servidor"</em></li>
+    <li><em>"Mata el proceso SSH en todos los servidores Apache"</em></li>
+  </ul>
+
+  <p>
+    Claude consulta Wazuh en tiempo real y puede ejecutar respuestas activas directamente. No es solo monitorización — es <strong>respuesta a incidentes asistida por IA</strong>.
+  </p>
+
+  <!-- Video del curso bloqueado -->
+  <div class="my-8">
+    <div class="relative w-full rounded-xl overflow-hidden" style="border: 2px solid #2d3748;">
+      <div class="relative" style="padding-bottom: 56.25%;">
+        <img
+          src="https://img.youtube.com/vi/aK8CHYIjxxo/maxresdefault.jpg"
+          alt="Video: Wazuh MCP Server con Claude"
+          class="absolute inset-0 w-full h-full object-cover"
+          style="filter: blur(2px) brightness(0.4);"
+        />
+        <div class="absolute inset-0 flex items-center justify-center" style="background: linear-gradient(135deg, rgba(0,101,255,0.2) 0%, rgba(0,0,0,0.7) 100%);">
+          <div class="text-center">
+            <div class="w-20 h-20 mx-auto mb-4 rounded-full flex items-center justify-center" style="background-color: rgba(255,255,255,0.1); border: 2px solid rgba(255,255,255,0.2);">
+              <svg class="w-10 h-10" style="color: rgba(255,255,255,0.5);" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/>
+              </svg>
+            </div>
+            <div class="mb-2">
+              <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-medium" style="background-color: rgba(245, 158, 11, 0.2); color: #fbbf24;">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                </svg>
+                Contenido del curso
+              </span>
+            </div>
+            <h3 class="text-xl font-bold mb-2" style="color: #ffffff;">Wazuh MCP Server: Pregunta y Actúa con Claude</h3>
+            <p class="text-sm mb-4" style="color: #9ca3af;">15 minutos · Instalación completa y demo en vivo</p>
+            <a
+              href="/curso-wazuh"
+              class="inline-flex items-center gap-2 px-6 py-3 font-semibold rounded-lg transition-all hover:scale-105"
+              style="background: linear-gradient(135deg, #0065ff 0%, #0052cc 100%); color: #ffffff;">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+              </svg>
+              Ver en el Curso Wazuh
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="text-center text-base-600 mt-3 text-sm">
+      Accede al video completo con el curso de Wazuh en aisecurity.es
+    </p>
+  </div>
+
+  <h2>Paso 1 — Clonar el repositorio</h2>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">git clone https://github.com/gensecaihq/Wazuh-MCP-Server.git
+cd Wazuh-MCP-Server</code></pre>
+
+  <h2>Paso 2 — Obtener las credenciales de Wazuh</h2>
+
+  <p>
+    Las credenciales se generan automáticamente durante la instalación de Wazuh. Ejecuta este comando <strong>desde el directorio donde instalaste Wazuh</strong>:
+  </p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">cat wazuh-install-files/wazuh-passwords.txt</code></pre>
+
+  <p>Necesitarás cuatro valores:</p>
+  <ul>
+    <li><code>wazuh-api-user</code> y <code>wazuh-api-pass</code> → credenciales de la API REST de Wazuh (puerto 55000)</li>
+    <li><code>wazuh-indexer-user</code> y <code>wazuh-indexer-pass</code> → credenciales del indexador OpenSearch (puerto 9200)</li>
+  </ul>
+
+  <h2>Paso 3 — Configurar el fichero .env</h2>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">cp .env-example .env</code></pre>
+
+  <p>Edita el <code>.env</code> con tus datos:</p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">WAZUH_HOST=https://TU_IP_WAZUH
+WAZUH_USER=wazuh
+WAZUH_PASS=TU_WAZUH_API_PASS
+WAZUH_PORT=55000
+
+WAZUH_INDEXER_HOST=TU_IP_WAZUH
+WAZUH_INDEXER_PORT=9200
+WAZUH_INDEXER_USER=admin
+WAZUH_INDEXER_PASS=TU_INDEXER_PASS
+
+AUTH_MODE=bearer
+WAZUH_VERIFY_SSL=false</code></pre>
+
+  <h3>AUTH_MODE: bearer vs none</h3>
+  <ul>
+    <li><strong>bearer</strong>: El servidor genera tokens JWT con expiración. Recomendado siempre, incluso en entornos locales.</li>
+    <li><strong>none</strong>: Sin autenticación. Solo aceptable para pruebas en red completamente aislada. Nunca en producción.</li>
+  </ul>
+
+  <h3>WAZUH_VERIFY_SSL</h3>
+  <p>
+    Wazuh instala por defecto un certificado SSL <strong>autofirmado</strong>, lo que hace que la verificación falle. Con <code>false</code> desactivamos esa verificación para poder conectar. Si en tu entorno tienes un certificado válido (firmado por CA), cámbialo a <code>true</code>.
+  </p>
+
+  <h2>Paso 4 — Arrancar el servidor</h2>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">docker compose up -d</code></pre>
+
+  <h2>Paso 5 — Obtener la API Key</h2>
+
+  <p>Revisa los logs del contenedor para encontrar la API key generada al arrancar:</p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">docker compose logs</code></pre>
+
+  <p>Busca una línea con el formato:</p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #7dd3fc;">wazuh_XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</code></pre>
+
+  <h2>Paso 6 — Obtener el Access Token</h2>
+
+  <p>Con la API key, solicita un token de acceso JWT:</p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">curl -s -X POST http://TU_IP:3000/auth/token \
+    -H "Content-Type: application/json" \
+    -d '&#123;"api_key": "wazuh_TU_API_KEY"&#125;'</code></pre>
+
+  <p>La respuesta incluirá el <code>access_token</code> que usarás en el siguiente paso.</p>
+
+  <h2>Paso 7 — Registrar el servidor MCP en Claude Code</h2>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">claude mcp add --transport http wazuh http://TU_IP:3000/mcp \
+    -H "Authorization: Bearer TU_ACCESS_TOKEN"</code></pre>
+
+  <p>
+    A partir de aquí, Claude tiene acceso completo a tu Wazuh. Puedes preguntarle en lenguaje natural sobre el estado de tus agentes, alertas recientes, vulnerabilidades detectadas y mucho más, sin necesidad de recordar ningún comando de la API.
+  </p>
+
+  <h2>Resumen</h2>
+
+  <div style="background: linear-gradient(135deg, #1a1f2e 0%, #0f1419 100%); border: 1px solid #2d3748; border-radius: 12px; padding: 24px; margin: 24px 0;">
+    <table style="width: 100%; border-collapse: collapse; color: #e5e7eb;">
+      <tr style="border-bottom: 1px solid #2d3748;">
+        <td style="padding: 12px; font-weight: bold; color: #60a5fa;">Paso</td>
+        <td style="padding: 12px; font-weight: bold; color: #60a5fa;">Comando</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #2d3748;">
+        <td style="padding: 12px;">Clonar repo</td>
+        <td style="padding: 12px;"><code>git clone https://github.com/gensecaihq/Wazuh-MCP-Server.git</code></td>
+      </tr>
+      <tr style="border-bottom: 1px solid #2d3748;">
+        <td style="padding: 12px;">Ver credenciales</td>
+        <td style="padding: 12px;"><code>cat wazuh-install-files/wazuh-passwords.txt</code></td>
+      </tr>
+      <tr style="border-bottom: 1px solid #2d3748;">
+        <td style="padding: 12px;">Configurar</td>
+        <td style="padding: 12px;"><code>cp .env-example .env</code> + editar</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #2d3748;">
+        <td style="padding: 12px;">Arrancar</td>
+        <td style="padding: 12px;"><code>docker compose up -d</code></td>
+      </tr>
+      <tr style="border-bottom: 1px solid #2d3748;">
+        <td style="padding: 12px;">API Key</td>
+        <td style="padding: 12px;"><code>docker compose logs</code></td>
+      </tr>
+      <tr style="border-bottom: 1px solid #2d3748;">
+        <td style="padding: 12px;">Access Token</td>
+        <td style="padding: 12px;"><code>curl -X POST .../auth/token</code></td>
+      </tr>
+      <tr>
+        <td style="padding: 12px;">Conectar Claude</td>
+        <td style="padding: 12px;"><code>claude mcp add --transport http wazuh ...</code></td>
+      </tr>
+    </table>
+  </div>
+
+  <h2>Próximos pasos</h2>
+
+  <p>
+    Esta integración es parte del módulo de <strong>Integraciones</strong> del curso de Wazuh. Si quieres dominar Wazuh desde la instalación hasta casos avanzados como este, accede al <a href="/curso-wazuh">curso completo en aisecurity.es/curso-wazuh</a>.
+  </p>
+
+</BlogLayout>
