@@ -111,7 +111,7 @@ Wazuh / Ciberseguridad:
 - Completo (hasta 50 servidores): 1,999-3,999€ pago único de implementación + 10 horas formación + dashboards ejecutivos + 90 días soporte
 - Wazuh Gestionado (hosting incluido): 200€/mes — alojamos el servidor Wazuh en nuestra infraestructura, sin que el cliente necesite hardware propio; incluye instalación, backups diarios, actualizaciones, soporte prioritario e informes mensuales. Listo en 48h.
 - Los precios varían según la complejidad de la infraestructura
-- Curso Wazuh: 50€
+- Curso Wazuh: 50€ — pago disponible en EUR, USD y otras divisas internacionales (el sistema convierte automáticamente al pagar)
 
 Desarrollo Web:
 - Landing Page (1-3 páginas): 399€ — diseño personalizado, PageSpeed 95+, hosting 1 año incluido, SSL, responsive, entrega 5-7 días
