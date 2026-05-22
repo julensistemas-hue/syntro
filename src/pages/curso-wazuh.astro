@@ -195,6 +195,7 @@ const breadcrumbSchema = {
               </div>
 
               <p class="text-center text-white/30 text-xs mt-6">🔒 Pago seguro · Acceso inmediato · Sin suscripción</p>
+              <p class="text-center text-white/25 text-xs mt-2">💱 Pago disponible en EUR, USD y otras divisas</p>
             </div>
           </div>
         </div>
@@ -273,7 +274,7 @@ const breadcrumbSchema = {
     <div class="absolute top-0 inset-x-0 h-40 pointer-events-none" style="background:linear-gradient(to bottom,rgba(59,130,246,0.06),transparent);"></div>
 
     <!-- Content -->
-    <div class="relative z-10 max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
+    <div class="relative z-10 max-w-7xl mx-auto px-4 md:px-12 lg:px-24">
       <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-6">
         Aprende Haciendo: <span style="background:linear-gradient(135deg,#60a5fa,#818cf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Monitorización Real</span> de Entornos Empresariales
       </h2>
@@ -300,22 +301,22 @@ const breadcrumbSchema = {
           <!-- Screenshot Carousel -->
           <div class="bg-white rounded-b-xl overflow-hidden">
             <!-- Tab Navigation -->
-            <div class="flex bg-gray-100 border-b border-gray-200">
+            <div class="flex bg-gray-100 border-b border-gray-200 overflow-x-auto">
               <button
                 data-tab="tab1"
-                class="wazuh-tab active flex-1 px-4 py-3 text-sm font-medium text-blue-600 border-b-2 border-blue-600 transition-colors"
+                class="wazuh-tab active flex-1 whitespace-nowrap px-2 md:px-4 py-3 text-xs md:text-sm font-medium text-blue-600 border-b-2 border-blue-600 transition-colors"
                 onclick="switchTab('tab1')">
                 Overview Dashboard
               </button>
               <button
                 data-tab="tab2"
-                class="wazuh-tab flex-1 px-4 py-3 text-sm font-medium text-gray-600 hover:text-blue-600 border-b-2 border-transparent transition-colors"
+                class="wazuh-tab flex-1 whitespace-nowrap px-2 md:px-4 py-3 text-xs md:text-sm font-medium text-gray-600 hover:text-blue-600 border-b-2 border-transparent transition-colors"
                 onclick="switchTab('tab2')">
                 Security Events
               </button>
               <button
                 data-tab="tab3"
-                class="wazuh-tab flex-1 px-4 py-3 text-sm font-medium text-gray-600 hover:text-blue-600 border-b-2 border-transparent transition-colors"
+                class="wazuh-tab flex-1 whitespace-nowrap px-2 md:px-4 py-3 text-xs md:text-sm font-medium text-gray-600 hover:text-blue-600 border-b-2 border-transparent transition-colors"
                 onclick="switchTab('tab3')">
                 Threat Detection
               </button>
@@ -390,7 +391,7 @@ const breadcrumbSchema = {
 
   <!-- Course Content Section -->
   <section id="temario" class="cg-grid py-20 relative overflow-hidden" style="background:#020817;">
-    <div class="relative z-10 max-w-5xl mx-auto px-8 md:px-12 lg:px-24">
+    <div class="relative z-10 max-w-5xl mx-auto px-4 md:px-12 lg:px-24">
       <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-12">
         <span style="background:linear-gradient(135deg,#a78bfa,#60a5fa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Contenido Detallado</span> del Curso
       </h2>
@@ -399,8 +400,8 @@ const breadcrumbSchema = {
 
         <!-- Module 1 -->
         <details class="group rounded-xl border border-white/10 hover:border-white/20 transition-all duration-300" style="background:rgba(255,255,255,0.04);">
-          <summary class="cursor-pointer px-6 py-5 flex items-center justify-between font-bold text-xl text-white hover:text-white/80">
-            <span>📚 Módulo 1: Introducción a Wazuh</span>
+          <summary class="cursor-pointer px-6 py-5 flex items-center justify-between font-bold text-base md:text-xl text-white hover:text-white/80">
+            <span class="flex-1 min-w-0 pr-4">📚 Módulo 1: Introducción a Wazuh</span>
             <svg class="w-6 h-6 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
             </svg>
@@ -467,8 +468,8 @@ const breadcrumbSchema = {
 
         <!-- Module 2 -->
         <details class="group rounded-xl border border-white/10 hover:border-white/20 transition-all duration-300" style="background:rgba(255,255,255,0.04);">
-          <summary class="cursor-pointer px-6 py-5 flex items-center justify-between font-bold text-xl text-white hover:text-white/80">
-            <span>⚙️ Módulo 2: Configuración de Agentes</span>
+          <summary class="cursor-pointer px-6 py-5 flex items-center justify-between font-bold text-base md:text-xl text-white hover:text-white/80">
+            <span class="flex-1 min-w-0 pr-4">⚙️ Módulo 2: Configuración de Agentes</span>
             <svg class="w-6 h-6 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
             </svg>
@@ -535,8 +536,8 @@ const breadcrumbSchema = {
 
         <!-- Module 3 -->
         <details class="group rounded-xl border border-white/10 hover:border-white/20 transition-all duration-300" style="background:rgba(255,255,255,0.04);">
-          <summary class="cursor-pointer px-6 py-5 flex items-center justify-between font-bold text-xl text-white hover:text-white/80">
-            <span>🔍 Módulo 3: Decoders, Reglas y Alertas</span>
+          <summary class="cursor-pointer px-6 py-5 flex items-center justify-between font-bold text-base md:text-xl text-white hover:text-white/80">
+            <span class="flex-1 min-w-0 pr-4">🔍 Módulo 3: Decoders, Reglas y Alertas</span>
             <svg class="w-6 h-6 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
             </svg>
@@ -614,8 +615,8 @@ const breadcrumbSchema = {
 
         <!-- Module 4 -->
         <details class="group rounded-xl border border-white/10 hover:border-white/20 transition-all duration-300" style="background:rgba(255,255,255,0.04);">
-          <summary class="cursor-pointer px-6 py-5 flex items-center justify-between font-bold text-xl text-white hover:text-white/80">
-            <span>📊 Módulo 4: Paneles y Visualización</span>
+          <summary class="cursor-pointer px-6 py-5 flex items-center justify-between font-bold text-base md:text-xl text-white hover:text-white/80">
+            <span class="flex-1 min-w-0 pr-4">📊 Módulo 4: Paneles y Visualización</span>
             <svg class="w-6 h-6 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
             </svg>
@@ -682,8 +683,8 @@ const breadcrumbSchema = {
 
         <!-- Module 5 -->
         <details class="group rounded-xl border border-white/10 hover:border-white/20 transition-all duration-300" style="background:rgba(255,255,255,0.04);">
-          <summary class="cursor-pointer px-6 py-5 flex items-center justify-between font-bold text-xl text-white hover:text-white/80">
-            <span>🔗 Módulo 5: Integraciones</span>
+          <summary class="cursor-pointer px-6 py-5 flex items-center justify-between font-bold text-base md:text-xl text-white hover:text-white/80">
+            <span class="flex-1 min-w-0 pr-4">🔗 Módulo 5: Integraciones</span>
             <svg class="w-6 h-6 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
             </svg>
@@ -729,7 +730,7 @@ const breadcrumbSchema = {
 
   <!-- ¿Qué es Wazuh? Section - SEO informacional -->
   <section class="cg-grid py-20 relative overflow-hidden" style="background:#0f1a30;">
-    <div class="relative z-10 max-w-5xl mx-auto px-8 md:px-12 lg:px-24">
+    <div class="relative z-10 max-w-5xl mx-auto px-4 md:px-12 lg:px-24">
       <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-6">
         ¿Qué es Wazuh y <span style="background:linear-gradient(135deg,#60a5fa,#818cf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">para qué sirve</span>?
       </h2>
@@ -778,7 +779,7 @@ const breadcrumbSchema = {
 
   <!-- Para quién es este curso -->
   <section class="cg-grid py-20 relative overflow-hidden" style="background:#020817;">
-    <div class="relative z-10 max-w-5xl mx-auto px-8 md:px-12 lg:px-24">
+    <div class="relative z-10 max-w-5xl mx-auto px-4 md:px-12 lg:px-24">
       <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-4">
         ¿Para quién es <span style="background:linear-gradient(135deg,#a78bfa,#60a5fa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">este curso</span>?
       </h2>
@@ -828,15 +829,15 @@ const breadcrumbSchema = {
 
   <!-- FAQ Section - clave para snippets destacados -->
   <section class="cg-grid py-20 relative overflow-hidden" style="background:#0f1a30;">
-    <div class="relative z-10 max-w-4xl mx-auto px-8 md:px-12 lg:px-24">
+    <div class="relative z-10 max-w-4xl mx-auto px-4 md:px-12 lg:px-24">
       <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-4">
         Preguntas Frecuentes sobre <span style="background:linear-gradient(135deg,#60a5fa,#818cf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Wazuh</span>
       </h2>
       <p class="text-white/70 text-center mb-12">Las dudas más habituales resueltas</p>
       <div class="space-y-4">
         <details class="group rounded-xl border border-white/10 hover:border-white/20 group-open:border-white/30 transition-all duration-300" style="background:rgba(255,255,255,0.04);">
-          <summary class="cursor-pointer px-6 py-5 flex items-center justify-between font-semibold text-lg text-white">
-            <span>¿Qué es Wazuh exactamente?</span>
+          <summary class="cursor-pointer px-6 py-5 flex items-center justify-between font-semibold text-base md:text-lg text-white">
+            <span class="flex-1 min-w-0 pr-4">¿Qué es Wazuh exactamente?</span>
             <svg class="w-5 h-5 transition-transform group-open:rotate-180 text-accent-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
           </summary>
           <div class="px-6 pb-6 text-white/70 leading-relaxed">
@@ -844,8 +845,8 @@ const breadcrumbSchema = {
           </div>
         </details>
         <details class="group rounded-xl border border-white/10 hover:border-white/20 group-open:border-white/30 transition-all duration-300" style="background:rgba(255,255,255,0.04);">
-          <summary class="cursor-pointer px-6 py-5 flex items-center justify-between font-semibold text-lg text-white">
-            <span>¿Necesito conocimientos previos para aprender Wazuh?</span>
+          <summary class="cursor-pointer px-6 py-5 flex items-center justify-between font-semibold text-base md:text-lg text-white">
+            <span class="flex-1 min-w-0 pr-4">¿Necesito conocimientos previos para aprender Wazuh?</span>
             <svg class="w-5 h-5 transition-transform group-open:rotate-180 text-accent-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
           </summary>
           <div class="px-6 pb-6 text-white/70 leading-relaxed">
@@ -853,8 +854,8 @@ const breadcrumbSchema = {
           </div>
         </details>
         <details class="group rounded-xl border border-white/10 hover:border-white/20 group-open:border-white/30 transition-all duration-300" style="background:rgba(255,255,255,0.04);">
-          <summary class="cursor-pointer px-6 py-5 flex items-center justify-between font-semibold text-lg text-white">
-            <span>¿Cómo se instala Wazuh?</span>
+          <summary class="cursor-pointer px-6 py-5 flex items-center justify-between font-semibold text-base md:text-lg text-white">
+            <span class="flex-1 min-w-0 pr-4">¿Cómo se instala Wazuh?</span>
             <svg class="w-5 h-5 transition-transform group-open:rotate-180 text-accent-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
           </summary>
           <div class="px-6 pb-6 text-white/70 leading-relaxed">
@@ -862,8 +863,8 @@ const breadcrumbSchema = {
           </div>
         </details>
         <details class="group rounded-xl border border-white/10 hover:border-white/20 group-open:border-white/30 transition-all duration-300" style="background:rgba(255,255,255,0.04);">
-          <summary class="cursor-pointer px-6 py-5 flex items-center justify-between font-semibold text-lg text-white">
-            <span>¿Wazuh sirve para cumplir el Esquema Nacional de Seguridad (ENS)?</span>
+          <summary class="cursor-pointer px-6 py-5 flex items-center justify-between font-semibold text-base md:text-lg text-white">
+            <span class="flex-1 min-w-0 pr-4">¿Wazuh sirve para cumplir el Esquema Nacional de Seguridad (ENS)?</span>
             <svg class="w-5 h-5 transition-transform group-open:rotate-180 text-accent-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
           </summary>
           <div class="px-6 pb-6 text-white/70 leading-relaxed">
@@ -871,8 +872,8 @@ const breadcrumbSchema = {
           </div>
         </details>
         <details class="group rounded-xl border border-white/10 hover:border-white/20 group-open:border-white/30 transition-all duration-300" style="background:rgba(255,255,255,0.04);">
-          <summary class="cursor-pointer px-6 py-5 flex items-center justify-between font-semibold text-lg text-white">
-            <span>¿Qué diferencia hay entre Wazuh Manager, Agent e Indexer?</span>
+          <summary class="cursor-pointer px-6 py-5 flex items-center justify-between font-semibold text-base md:text-lg text-white">
+            <span class="flex-1 min-w-0 pr-4">¿Qué diferencia hay entre Wazuh Manager, Agent e Indexer?</span>
             <svg class="w-5 h-5 transition-transform group-open:rotate-180 text-accent-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
           </summary>
           <div class="px-6 pb-6 text-white/70 leading-relaxed">
@@ -880,8 +881,8 @@ const breadcrumbSchema = {
           </div>
         </details>
         <details class="group rounded-xl border border-white/10 hover:border-white/20 group-open:border-white/30 transition-all duration-300" style="background:rgba(255,255,255,0.04);">
-          <summary class="cursor-pointer px-6 py-5 flex items-center justify-between font-semibold text-lg text-white">
-            <span>¿Cuánto cuesta Wazuh?</span>
+          <summary class="cursor-pointer px-6 py-5 flex items-center justify-between font-semibold text-base md:text-lg text-white">
+            <span class="flex-1 min-w-0 pr-4">¿Cuánto cuesta Wazuh?</span>
             <svg class="w-5 h-5 transition-transform group-open:rotate-180 text-accent-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
           </summary>
           <div class="px-6 pb-6 text-white/70 leading-relaxed">
@@ -889,8 +890,8 @@ const breadcrumbSchema = {
           </div>
         </details>
         <details class="group rounded-xl border border-white/10 hover:border-white/20 group-open:border-white/30 transition-all duration-300" style="background:rgba(255,255,255,0.04);">
-          <summary class="cursor-pointer px-6 py-5 flex items-center justify-between font-semibold text-lg text-white">
-            <span>¿El curso incluye actualizaciones cuando Wazuh saca nuevas versiones?</span>
+          <summary class="cursor-pointer px-6 py-5 flex items-center justify-between font-semibold text-base md:text-lg text-white">
+            <span class="flex-1 min-w-0 pr-4">¿El curso incluye actualizaciones cuando Wazuh saca nuevas versiones?</span>
             <svg class="w-5 h-5 transition-transform group-open:rotate-180 text-accent-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
           </summary>
           <div class="px-6 pb-6 text-white/70 leading-relaxed">
@@ -911,7 +912,7 @@ const breadcrumbSchema = {
 
   <!-- Additional Information Section -->
   <section class="cg-grid py-20 relative overflow-hidden" style="background:#020817;">
-    <div class="relative z-10 max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
+    <div class="relative z-10 max-w-7xl mx-auto px-4 md:px-12 lg:px-24">
       <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-12">
         <span style="background:linear-gradient(135deg,#a78bfa,#60a5fa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Información</span> del Curso
       </h2>
@@ -951,7 +952,7 @@ const breadcrumbSchema = {
 
   <!-- Final CTA Section -->
   <section id="inscripcion" class="cg-grid py-20 relative overflow-hidden" style="background:#0f1a30;">
-    <div class="relative z-10 max-w-4xl mx-auto px-8 md:px-12 text-center">
+    <div class="relative z-10 max-w-4xl mx-auto px-4 md:px-12 text-center">
       <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
         ¡Empieza tu formación en <span style="background:linear-gradient(135deg,#60a5fa,#818cf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Wazuh</span> hoy!
       </h2>
@@ -979,6 +980,7 @@ const breadcrumbSchema = {
           </a>
         </div>
         <p class="text-white/60 text-xs mt-4 text-center">🔒 Pago seguro · Acceso inmediato · Sin suscripción mensual</p>
+        <p class="text-white/40 text-xs mt-2 text-center">💱 Pago disponible en EUR, USD y otras divisas</p>
         <p class="text-white/70 text-sm mt-4 text-center">¿Dudas? Escríbenos a <a href="mailto:info@aisecurity.es" class="text-white underline">info@aisecurity.es</a></p>
       </div>
     </div>
