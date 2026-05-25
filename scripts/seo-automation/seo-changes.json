@@ -13,13 +13,13 @@
         "ctr": 0.015,
         "position": 6.5
       },
-      "lastChecked": "2026-05-18",
+      "lastChecked": "2026-05-25",
       "lastMetrics": {
-        "clicks": 7,
-        "ctr": 0.015659955257270694,
-        "position": 6.049217002237136
+        "clicks": 9,
+        "ctr": 0.022113022113022112,
+        "position": 5.921375921375922
       },
-      "lastIndexed": "2026-05-18"
+      "lastIndexed": "2026-05-25"
     },
     {
       "id": "2026-04-30-02",
@@ -34,13 +34,13 @@
         "ctr": 0.009,
         "position": 6.2
       },
-      "lastChecked": "2026-05-18",
+      "lastChecked": "2026-05-25",
       "lastMetrics": {
         "clicks": 5,
-        "ctr": 0.006297229219143577,
-        "position": 6.993702770780857
+        "ctr": 0.00536480686695279,
+        "position": 6.628755364806867
       },
-      "lastIndexed": "2026-05-18"
+      "lastIndexed": "2026-05-25"
     },
     {
       "id": "2026-04-30-03",
@@ -55,13 +55,13 @@
         "ctr": 0.088,
         "position": 9.1
       },
-      "lastChecked": "2026-05-18",
+      "lastChecked": "2026-05-25",
       "lastMetrics": {
-        "clicks": 3,
-        "ctr": 0.041666666666666664,
-        "position": 17.47222222222222
+        "clicks": 5,
+        "ctr": 0.07246376811594203,
+        "position": 10.695652173913043
       },
-      "lastIndexed": "2026-05-18"
+      "lastIndexed": "2026-05-25"
     }
   ]
 }
