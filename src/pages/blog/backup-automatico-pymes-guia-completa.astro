@@ -13,6 +13,10 @@ import BlogLayout from "../../layouts/BlogLayout.astro";
   canonical="https://aisecurity.es/blog/backup-automatico-pymes-guia-completa">
 
   <p>
+    Una PyME puede implementar un sistema de backup automático y fiable siguiendo la <strong>regla 3-2-1</strong>: 3 copias de los datos, en 2 soportes distintos, con 1 fuera de las instalaciones. Herramientas como Veeam (gratis hasta 10 usuarios) o Restic con Backblaze B2 permiten hacerlo por menos de 30€/mes.
+  </p>
+
+  <p>
     El 60% de las pequeñas empresas que sufren una pérdida de datos importante cierran en los 6 meses siguientes. No porque no puedan recuperarse técnicamente, sino porque el coste en tiempo, trabajo rehecho y confianza de clientes perdida es demasiado alto.
   </p>
 
@@ -33,7 +37,7 @@ import BlogLayout from "../../layouts/BlogLayout.astro";
     <li><strong>Robo o incendio</strong>: Si el backup está en el mismo edificio que el equipo principal, no te protege de este escenario.</li>
   </ul>
 
-  <h2>La regla 3-2-1 (el estándar que usan los profesionales)</h2>
+  <h2>¿Qué es la regla 3-2-1 y por qué usarla?</h2>
 
   <p>
     Cualquier estrategia de backup seria sigue esta regla:
@@ -49,9 +53,9 @@ import BlogLayout from "../../layouts/BlogLayout.astro";
     Esto puede sonar a complejidad innecesaria, pero en la práctica se implementa con herramientas automáticas y no requiere ninguna intervención diaria una vez configurado.
   </p>
 
-  <h2>Opciones según el tamaño de la empresa</h2>
+  <h2>¿Qué solución de backup elegir según el tamaño de la empresa?</h2>
 
-  <h3>Empresa pequeña (1-10 empleados, trabajo en local o en cloud)</h3>
+  <h3>¿Qué backup usar para una empresa pequeña de 1-10 empleados?</h3>
 
   <p>
     Si usáis principalmente <strong>Microsoft 365 o Google Workspace</strong>, gran parte de vuestros datos ya están en la nube. Pero ojo: eso no es un backup. Microsoft y Google guardan tus datos, pero si un empleado borra algo o un ransomware cifra los archivos de OneDrive sincronizados, el problema se replica en la nube.
@@ -61,7 +65,7 @@ import BlogLayout from "../../layouts/BlogLayout.astro";
     <p class="m-0 text-base-800"><strong>Solución económica:</strong> Veeam Backup for Microsoft 365 (versión gratuita para hasta 10 usuarios) hace backup de Exchange, SharePoint y OneDrive a un disco local o NAS. Configuración de 2-3 horas, luego es completamente automático.</p>
   </div>
 
-  <h3>Empresa mediana (10-50 empleados, servidor de ficheros)</h3>
+  <h3>¿Qué backup usar para una empresa mediana de 10-50 empleados con servidor?</h3>
 
   <p>
     Si tenéis un servidor Windows o NAS con los documentos de la empresa, necesitáis una solución más robusta:
@@ -73,7 +77,7 @@ import BlogLayout from "../../layouts/BlogLayout.astro";
     <li><strong>Acronis Cyber Protect</strong>: Todo en uno (backup + antivirus). Más caro pero simplifica la gestión.</li>
   </ul>
 
-  <h2>Cuánto cuesta un sistema de backup bien montado</h2>
+  <h2>¿Cuánto cuesta un sistema de backup bien montado?</h2>
 
   <p>
     Para orientarte:
@@ -89,7 +93,7 @@ import BlogLayout from "../../layouts/BlogLayout.astro";
     A esto hay que sumarle el coste de configuración inicial (normalmente 3-8 horas de técnico una sola vez) y mantenimiento puntual.
   </p>
 
-  <h2>Lo que muchas empresas hacen mal</h2>
+  <h2>¿Qué errores cometen muchas empresas con el backup?</h2>
 
   <p>
     Tener un backup no es suficiente si cometes estos errores:
@@ -102,7 +106,7 @@ import BlogLayout from "../../layouts/BlogLayout.astro";
     <li><strong>Retención demasiado corta</strong>: Si solo guardas 7 días de historial y un ransomware pasa desapercibido 10 días, no tienes recuperación limpia.</li>
   </ul>
 
-  <h2>Por dónde empezar mañana</h2>
+  <h2>¿Por dónde empezar a montar el backup mañana mismo?</h2>
 
   <p>
     Si ahora mismo no tienes ningún sistema de backup automático:

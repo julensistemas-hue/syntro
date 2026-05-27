@@ -12,13 +12,15 @@ import BlogLayout from "../../layouts/BlogLayout.astro";
   canonical="https://aisecurity.es/blog/como-monitorizar-tu-tenant-de-office365-registros-de-exchange-sharepoint">
 
 <div>
-<h2>Monitorización Avanzada de Office 365 con Wazuh: Detección de Amenazas en Tiempo Real</h2>
+<p>Para monitorizar Office 365 con Wazuh, registra una aplicación en Azure AD con permisos de lectura de logs, configura el módulo <code>office365</code> en el Wazuh Manager con tus credenciales y crea reglas personalizadas para detectar accesos desde países no permitidos, inicios de sesión masivos fallidos y eliminaciones de archivos en SharePoint.</p>
+
+<h2>¿Cómo monitorizar Office 365 con Wazuh en tiempo real?</h2>
 <p>La migración a la nube con Office 365 ha traído flexibilidad, pero también nuevos vectores de ataque. Sin una monitorización centralizada, eventos críticos como accesos anómalos desde el extranjero, intentos de inicio de sesión masivos o borrado de ficheros en SharePoint pasan desapercibidos. La solución es integrar los logs de Office 365, Exchange y SharePoint en Wazuh, transformando datos dispersos en alertas accionables contra phishing, compromisos de cuenta y pérdida de datos.</p>
 
-<h2>Caso de uso empresarial: Detección de una campaña de phishing dirigida</h2>
+<h2>¿Cuál es el caso de uso real de integrar Office 365 con Wazuh?</h2>
 <p>Una empresa con sede en España notó actividad extraña en su SharePoint. Tras investigar con Wazuh, descubrieron que una cuenta de usuario había sido comprometida mediante un correo de phishing. El atacante, desde una IP en un país sin operaciones, accedió a la cuenta y eliminó en masa documentos críticos de una biblioteca de SharePoint. Gracias a las reglas personalizadas, el SOC recibió una alerta en minutos, pudiendo revocar el acceso, revertir la eliminación y contener la amenaza antes de que se propagara.</p>
 
-<h2>Requisitos previos</h2>
+<h2>¿Qué requisitos necesitas para monitorizar Office 365 con Wazuh?</h2>
 <ul>
 <li>Tenant de Office 365 con permisos de administrador global o de seguridad.</li>
 <li>Wazuh Manager (versión 4.3 o superior) instalado y operativo.</li>
@@ -26,7 +28,7 @@ import BlogLayout from "../../layouts/BlogLayout.astro";
 <li>Agente Wazuh instalado en un servidor con conectividad a la API de Microsoft Graph.</li>
 </ul>
 
-<h2>Instalación paso a paso: Configurar la integración de Office 365</h2>
+<h2>¿Cómo configurar la integración de Office 365 en Wazuh paso a paso?</h2>
 <p>El primer paso es registrar una aplicación en Azure AD para que Wazuh obtenga permisos de lectura de logs. Luego, se configura el módulo de Office 365 en el Wazuh Manager.</p>
 <pre><code class="language-bash"># 1. En el servidor del Wazuh Manager, edita el archivo de configuración del módulo
 sudo nano /var/ossec/etc/office365.conf
@@ -40,7 +42,7 @@ sudo nano /var/ossec/etc/office365.conf
 <p>Luego, habilita y reinicia el módulo integrador en el manager.</p>
 <pre><code class="language-bash">sudo systemctl restart wazuh-integratord</code></pre>
 
-<h2>Ejemplo práctico: Crear reglas para los escenarios clave</h2>
+<h2>¿Qué reglas crear para detectar accesos anómalos en Office 365?</h2>
 <p>Con los logs fluyendo, se crean reglas personalizadas en Wazuh. Por ejemplo, para detectar accesos desde fuera del país, se analiza el campo 'location' de los logs de inicio de sesión. Para la eliminación en masa en SharePoint, se monitoriza la operación 'FileDeleted'.</p>
 <pre><code class="language-xml">&lt;!-- Ejemplo de regla para detectar accesos desde una lista de países no permitidos --&gt;
 &lt;group name="office365,attack,"&gt;

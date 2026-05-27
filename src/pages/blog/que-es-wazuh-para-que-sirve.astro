@@ -11,7 +11,11 @@ import BlogLayout from "../../layouts/BlogLayout.astro";
   tags={["Wazuh", "SIEM", "XDR", "Ciberseguridad", "Open Source", "Monitorización"]}
   canonical="https://aisecurity.es/blog/que-es-wazuh-para-que-sirve">
 
-  <h2>¿Qué es Wazuh?</h2>
+  <p>
+    <strong>Wazuh</strong> es una plataforma de seguridad open source que funciona como SIEM y XDR: centraliza los logs de todos tus servidores y dispositivos, detecta amenazas en tiempo real, monitoriza la integridad de ficheros críticos y genera alertas automáticas. Es gratuito, cumple con ENS e ISO 27001, y es la opción más usada por PyMEs que necesitan ciberseguridad real sin licencias de pago.
+  </p>
+
+  <h2>¿Qué es Wazuh exactamente?</h2>
 
   <p>
     <strong>Wazuh</strong> es una plataforma de seguridad <strong>open source</strong> que combina las funcionalidades de un <strong>SIEM (Security Information and Event Management)</strong> y un <strong>XDR (Extended Detection and Response)</strong>. Esto significa que no solo recolecta y analiza logs de seguridad, sino que también puede detectar amenazas avanzadas y responder automáticamente ante incidentes.
@@ -40,7 +44,7 @@ import BlogLayout from "../../layouts/BlogLayout.astro";
 
   <h2>¿Para qué sirve Wazuh? Las 6 funcionalidades clave</h2>
 
-  <h3>1. Centralización y análisis de logs</h3>
+  <h3>¿Cómo funciona la centralización y análisis de logs?</h3>
 
   <p>
     Imagina tener que revisar los logs de 50 servidores diferentes cada día. Sin Wazuh, tendrías que conectarte a cada servidor individualmente, navegar por archivos de logs en bruto (muchos en formatos diferentes), y buscar manualmente patrones sospechosos. <strong>Esto puede llevar horas y es propenso a errores humanos.</strong>
@@ -61,7 +65,7 @@ import BlogLayout from "../../layouts/BlogLayout.astro";
     <p class="m-0" style="color: #000000;"><strong style="color: #000000;">Ahorro real:</strong> Lo que antes llevaba 2-3 horas revisando logs servidor por servidor, ahora se hace en 5-10 minutos desde el dashboard centralizado.</p>
   </div>
 
-  <h3>2. Detección de amenazas en tiempo real</h3>
+  <h3>¿Cómo detecta Wazuh amenazas en tiempo real?</h3>
 
   <p>
     Wazuh monitoriza continuamente la actividad de tus sistemas y la compara contra bases de datos de amenazas conocidas y reglas de detección. Por ejemplo:
@@ -78,7 +82,7 @@ import BlogLayout from "../../layouts/BlogLayout.astro";
     <p class="m-0" style="color: #000000;"><strong style="color: #000000;">Ejemplo práctico:</strong> Sale un exploit crítico para Apache Log4j a las 10:00. A las 10:15 Wazuh ya te ha notificado qué servidores tienen versiones vulnerables y necesitan actualización urgente.</p>
   </div>
 
-  <h3>3. Monitorización de configuraciones de servidores (SCA)</h3>
+  <h3>¿Qué es el módulo SCA de monitorización de configuraciones?</h3>
 
   <p>
     El módulo <strong>Security Configuration Assessment (SCA)</strong> de Wazuh revisa automáticamente la configuración de tus servidores y la compara con benchmarks de seguridad oficiales como:
@@ -96,7 +100,7 @@ import BlogLayout from "../../layouts/BlogLayout.astro";
     El SCA te genera reportes con recomendaciones específicas: "El servidor WEB-01 tiene SSH configurado para permitir acceso root directo. Recomendación: Deshabilitar PermitRootLogin en /etc/ssh/sshd_config".
   </p>
 
-  <h3>4. Análisis de vulnerabilidades</h3>
+  <h3>¿Cómo funciona el análisis de vulnerabilidades en Wazuh?</h3>
 
   <p>
     Wazuh mantiene un inventario actualizado del software instalado en cada dispositivo monitorizado y lo cruza con bases de datos de vulnerabilidades conocidas (CVE). Esto te permite:
@@ -109,7 +113,7 @@ import BlogLayout from "../../layouts/BlogLayout.astro";
     <li><strong>Generar reportes de cumplimiento</strong> para auditorías</li>
   </ul>
 
-  <h3>5. Control de integridad de ficheros (FIM)</h3>
+  <h3>¿Qué es el control de integridad de ficheros (FIM) de Wazuh?</h3>
 
   <p>
     El módulo <strong>File Integrity Monitoring (FIM)</strong> vigila archivos críticos del sistema y te alerta cuando son modificados, eliminados o cuando cambian sus permisos. Esto es crucial porque:
@@ -129,7 +133,7 @@ import BlogLayout from "../../layouts/BlogLayout.astro";
     <p class="m-0" style="color: #000000;"><strong style="color: #000000;">Caso real:</strong> Un atacante consigue acceso a un servidor y modifica <code style="color: #000000; background-color: rgba(0,0,0,0.1);">/etc/passwd</code> para crear un usuario oculto. FIM detecta el cambio inmediatamente y genera una alerta de alta prioridad.</p>
   </div>
 
-  <h3>6. Generación de alertas y respuesta automatizada ante incidentes</h3>
+  <h3>¿Cómo funciona la respuesta automatizada ante incidentes en Wazuh?</h3>
 
   <p>
     Esta es una de las funcionalidades más potentes de Wazuh. No solo detecta amenazas, sino que puede <strong>reaccionar automáticamente</strong>:
@@ -195,7 +199,7 @@ import BlogLayout from "../../layouts/BlogLayout.astro";
       </a>
     </div>
   </div>
-  
+
 </BlogLayout>
 
 

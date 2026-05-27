@@ -13,6 +13,8 @@ import BlogLayout from "../../layouts/BlogLayout.astro";
 
   
 
+  <p>Para usar IA en threat hunting con Wazuh, instala Ollama con un modelo LLM local (Llama 3), conecta un script Python a los archivos de eventos de Wazuh y realiza consultas en lenguaje natural sobre tus logs de seguridad. Todo se ejecuta en local, sin enviar datos al exterior.</p>
+
   <h2>¿Qué conseguimos con esta integración?</h2>
 
   <ul>
@@ -24,7 +26,7 @@ import BlogLayout from "../../layouts/BlogLayout.astro";
 
   
 
-  <h2>Paso 1: Habilitar archivo de eventos</h2>
+  <h2>¿Cómo habilitar el archivo de eventos JSON en Wazuh?</h2>
 
   <p>
     Wazuh necesita almacenar todos los eventos en formato JSON para que la IA pueda analizarlos. Edita la configuración del servidor:
@@ -48,7 +50,7 @@ sudo systemctl restart wazuh-manager</code></pre>
     Esto creará el archivo <code>/var/ossec/logs/archives/archives.json</code> con todos los logs de seguridad.
   </p>
 
-  <h2>Paso 2: Instalar Ollama y modelo LLM</h2>
+  <h2>¿Cómo instalar Ollama y un modelo LLM localmente?</h2>
 
   <p>
     <strong>Ollama</strong> es una herramienta que permite ejecutar modelos de lenguaje (LLMs) localmente de forma sencilla. Vamos a instalar Ollama y descargar el modelo <strong>Llama 3</strong>:
@@ -67,7 +69,7 @@ ollama run llama3</code></pre>
     <strong>Nota</strong>: El primer <code>ollama pull</code> descargará varios GB. Si tu servidor tiene poca RAM, puedes usar modelos más ligeros como <code>llama3:7b</code> o <code>phi3:mini</code>.
   </p>
 
-  <h2>Paso 3: Instalar dependencias de Python</h2>
+  <h2>¿Qué dependencias de Python necesitas instalar?</h2>
 
   <p>
     El chatbot de threat hunting está escrito en Python y usa varias librerías para procesamiento de lenguaje natural:
@@ -92,7 +94,7 @@ pip3 install paramiko python-daemon langchain langchain-community \
     <li><strong>Transformers</strong>: Modelos de NLP de HuggingFace</li>
   </ul>
 
-  <h2>Paso 4: Descargar e instalar el script de threat hunting</h2>
+  <h2>¿Cómo descargar e instalar el script de threat hunting con IA?</h2>
 
   <p>
     El script <code>threat_hunter.py</code> es el corazón de la integración. Lo descargaremos desde el repositorio oficial de Wazuh:
@@ -106,7 +108,7 @@ sudo wget https://raw.githubusercontent.com/wazuh/wazuh-tools/master/ai-threat-h
 sudo chmod +x threat_hunter.py
 sudo chown root:wazuh threat_hunter.py</code></pre>
 
-  <h2>Paso 5: Configurar credenciales</h2>
+  <h2>¿Cómo configurar las credenciales de Wazuh para el script?</h2>
 
   <p>
     Antes de ejecutar el chatbot, necesitas configurar las credenciales de acceso. Abre el script y busca las siguientes líneas para modificarlas:
@@ -128,7 +130,7 @@ SSH_PASSWORD = "password_ssh"</code></pre>
     <strong>Importante</strong>: Usa una contraseña fuerte para el chatbot, ya que tendrá acceso a todos los logs de seguridad.
   </p>
 
-  <h2>Paso 6: Iniciar el chatbot de threat hunting</h2>
+  <h2>¿Cómo iniciar el chatbot de threat hunting con IA?</h2>
 
   <p>
     ¡Ya está todo listo! Ahora vamos a iniciar el chatbot:
@@ -144,7 +146,7 @@ sudo python3 /var/ossec/integrations/threat_hunter.py
     Abre tu navegador y accede a: <strong>http://&lt;IP_SERVIDOR&gt;:8000</strong>
   </p>
 
-  <h2>Uso del chatbot</h2>
+  <h2>¿Cómo usar el chatbot de threat hunting para analizar logs?</h2>
 
   <p>
     Una vez dentro del chatbot, puedes hacer preguntas en lenguaje natural. Algunos comandos útiles:
@@ -165,7 +167,7 @@ sudo python3 /var/ossec/integrations/threat_hunter.py
     <li>"Analiza actividad sospechosa en el servidor web-prod-01"</li>
   </ul>
 
-  <h2>Ejecutar como servicio (opcional)</h2>
+  <h2>¿Cómo ejecutar el chatbot de IA como servicio en Linux?</h2>
 
   <p>
     Para que el chatbot se ejecute permanentemente en segundo plano, créalo como un servicio de systemd:
@@ -198,7 +200,7 @@ sudo systemctl start wazuh-threat-hunter.service
 # Verificar estado
 sudo systemctl status wazuh-threat-hunter.service</code></pre>
 
-  <h2>Próximos pasos</h2>
+  <h2>¿Qué puedes hacer a continuación con esta integración?</h2>
 
   <p>
     En próximos artículos publicaré <strong>capturas de pantalla reales</strong> mostrando:

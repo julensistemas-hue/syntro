@@ -12,13 +12,15 @@ import BlogLayout from "../../layouts/BlogLayout.astro";
   canonical="https://aisecurity.es/blog/wazuh-elastic-security-configuracion-de-siem-completo">
 
 <div>
-<h2>Integración Wazuh + Elastic Security: Construyendo un SIEM Poderoso</h2>
+<p>Para integrar Wazuh con Elastic Security, instala Elasticsearch y Kibana 8.x, despliega el Wazuh Manager y conecta ambos con el módulo Filebeat configurado con el template de Wazuh. El resultado es un SIEM completo que centraliza alertas, visualiza eventos en tiempo real y correlaciona amenazas desde un único dashboard.</p>
+
+<h2>¿Cómo integrar Wazuh con Elastic Security para un SIEM completo?</h2>
 <p>La necesidad de un Sistema de Gestión de Eventos e Información de Seguridad (SIEM) robusto es crítica. Wazuh, como plataforma de seguridad de código abierto, ofrece detección de amenazas e integridad de archivos, pero su verdadero potencial se libera al combinarlo con la pila Elastic (Elasticsearch, Kibana) para almacenamiento, análisis y visualización. Esta guía te llevará desde la instalación hasta dashboards funcionales para un SIEM completo.</p>
 
-<h2>Caso de uso empresarial</h2>
+<h2>¿En qué caso de uso empresarial necesitas Wazuh con Elastic?</h2>
 <p>Una empresa de comercio electrónico necesita monitorizar en tiempo real intentos de acceso no autorizado a sus servidores web, detectar cambios en archivos críticos de configuración y correlacionar alertas de múltiples firewalls. Un SIEM integrado con Wazuh y Elastic Security centraliza estos logs, aplica reglas de correlación y presenta los incidentes en paneles visuales para que el equipo de SOC responda en minutos, reduciendo el tiempo de detección de amenazas.</p>
 
-<h2>Requisitos previos</h2>
+<h2>¿Qué requisitos necesitas para integrar Wazuh con Elastic Security?</h2>
 <ul>
 <li>Servidor Ubuntu 22.04 LTS (mínimo 8GB RAM, 4 núcleos CPU).</li>
 <li>Acceso de root o usuario con privilegios sudo.</li>
@@ -26,7 +28,7 @@ import BlogLayout from "../../layouts/BlogLayout.astro";
 <li>Dominio o IP pública para acceder a Kibana (configuración de firewall adecuada).</li>
 </ul>
 
-<h2>Instalación paso a paso</h2>
+<h2>¿Cómo instalar Wazuh + Elasticsearch + Kibana paso a paso?</h2>
 <p>Primero, instala Elasticsearch y Kibana 8.x. Luego, despliega el servidor Wazuh manager y finalmente integra ambos usando el conector de Wazuh para Elastic.</p>
 <pre><code class="language-bash"># 1. Instalar Elasticsearch
 wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo gpg --dearmor -o /usr/share/keyrings/elastic-keyring.gpg
@@ -55,7 +57,7 @@ sudo systemctl daemon-reload
 sudo systemctl enable filebeat
 sudo systemctl start filebeat</code></pre>
 
-<h2>Ejemplo práctico</h2>
+<h2>¿Cómo visualizar alertas de Wazuh en dashboards de Kibana?</h2>
 <p>Una vez instalado, accede a Kibana (http://TU_SERVIDOR:5601) y navega a la aplicación "Security". Aquí podrás ver alertas de Wazuh clasificadas por severidad. Para crear un dashboard útil que muestre los eventos de SSH fallidos por origen, usa la siguiente consulta en el "Discover" de Kibana:</p>
 <pre><code class="language-bash">rule.groups:"authentication_failed" AND data.win.eventdata.ipAddress:*
 </code></pre>

@@ -11,7 +11,9 @@ import BlogLayout from "../../layouts/BlogLayout.astro";
   tags={["Wazuh", "Decoders", "Reglas", "Alertas", "SIEM", "Logs"]}
   canonical="https://aisecurity.es/blog/flujo-logs-wazuh-decoders-reglas-alertas">
 
-  <h2>Introducción</h2>
+  <p>Cuando un log llega a Wazuh, pasa por cuatro fases: <strong>pre-decoder</strong> (extrae fecha y programa), <strong>decoder</strong> (extrae campos con regex), <strong>reglas</strong> (comprueba si el evento es relevante) y <strong>generación de alerta</strong> (si la regla se cumple, Wazuh notifica por email, Discord o Slack).</p>
+
+  <h2>¿Cómo fluyen los logs en Wazuh desde la entrada hasta la alerta?</h2>
 
   <p>
     Cuando un log entra en Wazuh, pasa por varias fases de procesamiento hasta convertirse en una alerta visible en el dashboard o enviada por correo/Discord/Slack. Entender este flujo es fundamental para crear reglas personalizadas y configurar alertas efectivas.

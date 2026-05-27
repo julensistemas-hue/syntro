@@ -11,7 +11,9 @@ import BlogLayout from "../../layouts/BlogLayout.astro";
   tags={["Wazuh", "Linux", "Agente", "SIEM", "Monitorización", "Ciberseguridad"]}
   canonical="https://aisecurity.es/blog/como-instalar-agente-wazuh-en-linux">
 
-  <h2>Introducción</h2>
+  <p>Para instalar el agente Wazuh en Linux (Debian/Ubuntu), añade el repositorio oficial, instala el paquete <code>wazuh-agent</code>, configura la IP del servidor en <code>ossec.conf</code> y arranca el servicio con <code>systemctl start wazuh-agent</code>. El proceso completo tarda menos de 10 minutos.</p>
+
+  <h2>¿Cómo se instala el agente Wazuh en Linux paso a paso?</h2>
 
   <p>
     En esta guía te enseño <strong>cómo instalar el agente de Wazuh en Linux</strong> (Debian/Ubuntu) y configurar los aspectos más importantes del archivo <code>ossec.conf</code>. El agente es el componente que recopila logs, monitoriza la integridad de archivos y envía toda la información al servidor Wazuh.

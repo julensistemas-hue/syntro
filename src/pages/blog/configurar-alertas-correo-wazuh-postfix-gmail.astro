@@ -11,7 +11,11 @@ import BlogLayout from "../../layouts/BlogLayout.astro";
   tags={["Wazuh", "Alertas", "Postfix", "Gmail", "SMTP", "Correo", "ENS", "ISO 27001"]}
   canonical="https://aisecurity.es/blog/configurar-alertas-correo-wazuh-postfix-gmail">
 
-  <h2>Introducción</h2>
+  <p>
+    Para configurar alertas por correo en Wazuh necesitas instalar <strong>Postfix</strong> como relay SMTP local y conectarlo a Gmail o Microsoft 365 mediante una contraseña de aplicación. Después, configuras en <code>ossec.conf</code> qué reglas disparan el correo y a qué destinatario.
+  </p>
+
+  <h2>¿Por qué Wazuh necesita Postfix para enviar correos?</h2>
 
   <p>
     Wazuh puede enviar alertas por correo electrónico cuando se disparan reglas específicas. Para ello necesitas configurar un servidor de correo local (Postfix) que reenvíe a través de SMTP de Gmail o Microsoft 365. En este artículo configuramos todo paso a paso.
@@ -63,7 +67,7 @@ import BlogLayout from "../../layouts/BlogLayout.astro";
     </p>
   </div>
 
-  <h2>Paso 1: Crear contraseña de aplicación en Gmail</h2>
+  <h2>¿Cómo crear la contraseña de aplicación en Gmail?</h2>
 
   <p>
     Gmail no permite usar tu contraseña normal para SMTP. Necesitas una <strong>contraseña de aplicación</strong>:
@@ -84,7 +88,7 @@ import BlogLayout from "../../layouts/BlogLayout.astro";
     <li>Guarda la contraseña de <strong>16 caracteres</strong> que te genera (sin espacios)</li>
   </ol>
 
-  <h2>Paso 2: Instalar y configurar Postfix</h2>
+  <h2>¿Cómo instalar y configurar Postfix?</h2>
 
   <p>Instala Postfix y los módulos SASL para autenticación:</p>
 
@@ -92,7 +96,7 @@ import BlogLayout from "../../layouts/BlogLayout.astro";
 
   <p>Durante la instalación, selecciona <strong>"Internet Site"</strong> y escribe el nombre de tu servidor.</p>
 
-  <h3>Configurar relay a Gmail</h3>
+  <h3>¿Cómo configurar el relay a Gmail?</h3>
 
   <p>Edita <code>/etc/postfix/main.cf</code> y añade al final:</p>
 
@@ -103,7 +107,7 @@ smtp_sasl_security_options = noanonymous
 smtp_tls_security_level = encrypt
 smtp_tls_CAfile = /etc/ssl/certs/ca-certificates.crt</code></pre>
 
-  <h3>Crear fichero de credenciales</h3>
+  <h3>¿Cómo crear el fichero de credenciales?</h3>
 
   <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">nano /etc/postfix/sasl_passwd</code></pre>
 
@@ -117,7 +121,7 @@ smtp_tls_CAfile = /etc/ssl/certs/ca-certificates.crt</code></pre>
 postmap /etc/postfix/sasl_passwd
 systemctl restart postfix</code></pre>
 
-  <h2>Configuración para Microsoft 365</h2>
+  <h2>¿Cómo configurar Postfix con Microsoft 365?</h2>
 
   <p>Si usas Microsoft en lugar de Gmail, cambia el relayhost:</p>
 
@@ -127,7 +131,7 @@ systemctl restart postfix</code></pre>
 
   <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">[smtp.office365.com]:587 tucuenta@tudominio.com:tu_contraseña</code></pre>
 
-  <h2>Paso 3: Configurar alertas en Wazuh</h2>
+  <h2>¿Cómo configurar las alertas por correo en Wazuh?</h2>
 
   <p>En el servidor Wazuh, edita <code>/var/ossec/etc/ossec.conf</code> y configura las alertas por correo:</p>
 
@@ -137,7 +141,7 @@ systemctl restart postfix</code></pre>
   &lt;email_from&gt;wazuh@tuservidor.com&lt;/email_from&gt;
 &lt;/global&gt;</code></pre>
 
-  <h3>Alertas personalizadas por regla</h3>
+  <h3>¿Cómo enviar alertas personalizadas por regla a destinatarios diferentes?</h3>
 
   <p>Puedes enviar alertas específicas a destinatarios diferentes según la regla:</p>
 
@@ -166,7 +170,7 @@ systemctl restart postfix</code></pre>
 
   <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">systemctl restart wazuh-manager</code></pre>
 
-  <h2>Probar el envío</h2>
+  <h2>¿Cómo probar que el envío de correo funciona?</h2>
 
   <p>Prueba que Postfix envía correctamente:</p>
 
@@ -198,7 +202,7 @@ systemctl restart postfix</code></pre>
     </table>
   </div>
 
-  <h2>Cumplimiento ISO 27001:2022</h2>
+  <h2>¿Qué controles de ISO 27001:2022 cubre esta configuración?</h2>
 
   <p>
     Configurar alertas por correo en Wazuh contribuye directamente al cumplimiento de varios controles del <strong>Anexo A de ISO 27001:2022</strong>:
@@ -239,7 +243,7 @@ systemctl restart postfix</code></pre>
     </table>
   </div>
 
-  <h2>Cumplimiento ENS (Esquema Nacional de Seguridad)</h2>
+  <h2>¿Qué medidas del ENS cubre el sistema de alertas por correo?</h2>
 
   <p>
     Para organizaciones sujetas al <strong>ENS (RD 311/2022)</strong>, las alertas por correo son fundamentales para cumplir con:
@@ -291,7 +295,7 @@ systemctl restart postfix</code></pre>
     </div>
   </div>
 
-  <h2>¿Por qué son importantes las alertas por correo?</h2>
+  <h2>¿Por qué son importantes las alertas por correo en Wazuh?</h2>
 
   <ul>
     <li><strong>Respuesta rápida</strong>: El equipo de seguridad recibe notificaciones inmediatas sin necesidad de revisar el dashboard constantemente</li>

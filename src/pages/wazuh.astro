@@ -10,6 +10,64 @@ const canonical = "https://aisecurity.es/wazuh";
 
 <WazuhLayout title={title} description={description} canonical={canonical}>
 
+  <!-- FAQ Schema JSON-LD para GEO (Google AI Overviews, ChatGPT, Perplexity) -->
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "¿Qué es Wazuh y para qué sirve?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Wazuh es una plataforma SIEM/XDR open source que centraliza logs de seguridad, detecta amenazas en tiempo real, monitoriza la integridad de ficheros y facilita el cumplimiento del Esquema Nacional de Seguridad (ENS). Es gratuita y funciona en Linux, Windows, macOS y entornos cloud."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Cuánto cuesta implementar Wazuh en una empresa española?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "El coste de implementación de Wazuh en AI Security parte desde 999€ para entornos básicos (hasta 10 agentes), 1.999€–3.999€ para implementación completa con configuración ENS, y 200€/mes para el servicio gestionado con soporte y mantenimiento continuo."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es el ENS y por qué necesito Wazuh para cumplirlo?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "El Esquema Nacional de Seguridad (RD 311/2022) obliga a organismos públicos y sus proveedores a implementar medidas de seguridad TI. Wazuh cubre directamente las medidas de monitorización de actividad, detección de intrusiones, gestión de logs y respuesta ante incidentes que exige el ENS."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Cuánto tiempo tarda la implementación de Wazuh?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Una implementación estándar de Wazuh tarda entre 2 y 4 semanas: instalación del servidor (1-2 días), despliegue de agentes en todos los equipos (3-5 días), configuración de reglas y alertas (1 semana) y formación del equipo (1-2 días). Entornos complejos pueden requerir hasta 2 meses."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Wazuh funciona con Windows y Linux?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sí. Wazuh tiene agentes nativos para Windows (Server 2008 en adelante y Windows 10/11), Linux (Ubuntu, Debian, CentOS, Rocky Linux, RHEL), macOS, y también monitoriza entornos cloud como AWS, Azure, GCP y contenedores Docker/Kubernetes."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Necesito conocimientos técnicos para usar Wazuh?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Wazuh requiere conocimientos de administración de sistemas para su instalación y configuración avanzada. AI Security ofrece el servicio completo: instalación, configuración, integración con tu infraestructura y formación de tu equipo técnico para que puedas gestionarlo de forma autónoma."
+        }
+      }
+    ]
+  }
+  </script>
+
   <!-- ═══ SIDEBAR NAV IZQUIERDA ═══ -->
   <nav id="wz-sidenav" class="fixed z-50 hidden xl:flex flex-col items-start" style="left:1.5rem;top:50%;transform:translateY(-50%);">
     <div class="relative flex flex-col">
@@ -73,7 +131,7 @@ const canonical = "https://aisecurity.es/wazuh";
           <span class="w-2 h-2 rounded-full animate-pulse" style="background:#60a5fa;"></span>
           SIEM Open Source · ENS · España
         </div>
-        <div class="relative" style="width:clamp(300px,42vw,480px);height:clamp(300px,42vw,480px);">
+        <div class="relative" style="width:clamp(240px,80vw,480px);height:clamp(240px,80vw,480px);">
           <!-- Glow -->
           <div class="absolute inset-0 rounded-full blur-3xl opacity-30" style="background:radial-gradient(circle,#3b82f6,transparent 65%);transform:scale(1.1);"></div>
 
@@ -219,19 +277,19 @@ const canonical = "https://aisecurity.es/wazuh";
 
           <!-- Notificaciones Wazuh que aparecen al bloquear -->
           <!-- RU bloqueado: aparece en t≈2.8s, ciclo 7s -->
-          <div class="wg-notif wg-notif-ru absolute top-3 right-0 text-xs font-mono px-3 py-2 rounded-lg border" style="background:rgba(74,222,128,0.1);border-color:rgba(74,222,128,0.4);color:#4ade80;">
+          <div class="wg-notif wg-notif-ru absolute top-3 right-0 max-w-[160px] text-xs font-mono px-3 py-2 rounded-lg border" style="background:rgba(74,222,128,0.1);border-color:rgba(74,222,128,0.4);color:#4ade80;">
             🛡️ BLOQUEADO · RU → ES
           </div>
           <!-- CN bloqueado: aparece en t≈4.55s -->
-          <div class="wg-notif wg-notif-cn absolute top-3 right-0 text-xs font-mono px-3 py-2 rounded-lg border" style="background:rgba(74,222,128,0.1);border-color:rgba(74,222,128,0.4);color:#4ade80;">
+          <div class="wg-notif wg-notif-cn absolute top-3 right-0 max-w-[160px] text-xs font-mono px-3 py-2 rounded-lg border" style="background:rgba(74,222,128,0.1);border-color:rgba(74,222,128,0.4);color:#4ade80;">
             🛡️ BLOQUEADO · CN → ES
           </div>
           <!-- US bloqueado: aparece en t≈6.3s -->
-          <div class="wg-notif wg-notif-us absolute bottom-12 right-0 text-xs font-mono px-3 py-2 rounded-lg border" style="background:rgba(245,158,11,0.1);border-color:rgba(245,158,11,0.4);color:#fbbf24;">
+          <div class="wg-notif wg-notif-us absolute bottom-12 right-0 max-w-[160px] text-xs font-mono px-3 py-2 rounded-lg border" style="background:rgba(245,158,11,0.1);border-color:rgba(245,158,11,0.4);color:#fbbf24;">
             ⚠️ INTERCEPTADO · US → ES
           </div>
           <!-- BR bloqueado: aparece en t≈8.05s -->
-          <div class="wg-notif wg-notif-br absolute bottom-4 left-0 text-xs font-mono px-3 py-2 rounded-lg border" style="background:rgba(74,222,128,0.1);border-color:rgba(74,222,128,0.4);color:#4ade80;">
+          <div class="wg-notif wg-notif-br absolute bottom-4 left-0 max-w-[160px] text-xs font-mono px-3 py-2 rounded-lg border" style="background:rgba(74,222,128,0.1);border-color:rgba(74,222,128,0.4);color:#4ade80;">
             🛡️ BLOQUEADO · BR → ES
           </div>
         </div>
@@ -403,7 +461,7 @@ const canonical = "https://aisecurity.es/wazuh";
     <div class="absolute top-0 inset-x-0 h-40 pointer-events-none" style="background:linear-gradient(to bottom,rgba(59,130,246,0.1),transparent);"></div>
     <!-- Content -->
   <div class="relative z-10">
-    <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
+    <div class="max-w-7xl mx-auto px-4 md:px-12 lg:px-24">
       <div class="text-center mb-16">
         <h2 id="precios" class="text-3xl md:text-4xl font-bold text-white mb-4">
           Precios <span style="background:linear-gradient(135deg,#60a5fa,#818cf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Transparentes</span>
@@ -611,7 +669,7 @@ const canonical = "https://aisecurity.es/wazuh";
     <div class="absolute -top-20 left-1/2 -translate-x-1/2 w-[700px] h-[400px] pointer-events-none rounded-full blur-3xl" style="background:radial-gradient(ellipse,rgba(6,182,212,0.12),transparent 65%);"></div>
     <div class="absolute top-0 inset-x-0 h-40 pointer-events-none" style="background:linear-gradient(to bottom,rgba(6,182,212,0.09),transparent);"></div>
     <!-- Content -->
-    <div class="relative z-10 max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
+    <div class="relative z-10 max-w-7xl mx-auto px-4 md:px-12 lg:px-24">
       <h2 id="monitorización" class="text-3xl md:text-4xl font-bold text-white text-center mb-6">
         Aprende Haciendo: <span style="background:linear-gradient(135deg,#60a5fa,#818cf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Monitorización Real</span>
       </h2>
@@ -637,20 +695,20 @@ const canonical = "https://aisecurity.es/wazuh";
           <!-- Screenshot Carousel -->
           <div class="bg-white rounded-b-xl overflow-hidden">
             <!-- Tab Navigation -->
-            <div class="flex bg-gray-100 border-b border-gray-200">
+            <div class="flex bg-gray-100 border-b border-gray-200 overflow-x-auto">
               <button
                 data-tab="wazuh-tab1"
-                class="wazuh-demo-tab active flex-1 px-4 py-3 text-sm font-medium text-blue-600 border-b-2 border-blue-600 transition-colors">
+                class="wazuh-demo-tab active flex-1 whitespace-nowrap px-2 md:px-4 py-3 text-xs md:text-sm font-medium text-blue-600 border-b-2 border-blue-600 transition-colors">
                 Overview Dashboard
               </button>
               <button
                 data-tab="wazuh-tab2"
-                class="wazuh-demo-tab flex-1 px-4 py-3 text-sm font-medium text-gray-600 hover:text-blue-600 border-b-2 border-transparent transition-colors">
+                class="wazuh-demo-tab flex-1 whitespace-nowrap px-2 md:px-4 py-3 text-xs md:text-sm font-medium text-gray-600 hover:text-blue-600 border-b-2 border-transparent transition-colors">
                 Threat Hunting
               </button>
               <button
                 data-tab="wazuh-tab3"
-                class="wazuh-demo-tab flex-1 px-4 py-3 text-sm font-medium text-gray-600 hover:text-blue-600 border-b-2 border-transparent transition-colors">
+                class="wazuh-demo-tab flex-1 whitespace-nowrap px-2 md:px-4 py-3 text-xs md:text-sm font-medium text-gray-600 hover:text-blue-600 border-b-2 border-transparent transition-colors">
                 Event Investigation
               </button>
             </div>
@@ -739,7 +797,7 @@ const canonical = "https://aisecurity.es/wazuh";
     <div class="absolute top-0 inset-x-0 h-40 pointer-events-none" style="background:linear-gradient(to bottom,rgba(59,130,246,0.09),transparent);"></div>
     <!-- Content -->
     <div class="relative z-10">
-      <div class="max-w-5xl mx-auto px-8 md:px-12 lg:px-24">
+      <div class="max-w-5xl mx-auto px-4 md:px-12 lg:px-24">
         <div class="text-center mb-10">
           <h2 class="text-2xl md:text-3xl font-bold text-white mb-3">
             ¿Por qué un proveedor <span style="background:linear-gradient(135deg,#a78bfa,#60a5fa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">español</span> para Wazuh?
@@ -815,7 +873,7 @@ const canonical = "https://aisecurity.es/wazuh";
     <div class="absolute top-0 inset-x-0 h-40 pointer-events-none" style="background:linear-gradient(to bottom,rgba(139,92,246,0.1),transparent);"></div>
     <!-- Content -->
     <div class="relative z-10">
-    <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
+    <div class="max-w-7xl mx-auto px-4 md:px-12 lg:px-24">
       <div class="text-center mb-16">
         <h2 id="por-que-wazuh" class="text-3xl md:text-4xl font-bold text-white mb-4">
           ¿Por qué <span style="background:linear-gradient(135deg,#a78bfa,#60a5fa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Wazuh</span>?
@@ -1016,14 +1074,14 @@ const canonical = "https://aisecurity.es/wazuh";
   <section class="wz-grid py-20 relative overflow-hidden" style="background-color:#0f1a30;">
     <div class="absolute -top-20 left-1/2 -translate-x-1/2 w-[600px] h-[400px] pointer-events-none rounded-full blur-3xl" style="background:radial-gradient(ellipse,rgba(96,165,250,0.08),transparent 65%);"></div>
     <div class="absolute top-0 inset-x-0 h-40 pointer-events-none" style="background:linear-gradient(to bottom,rgba(96,165,250,0.06),transparent);"></div>
-    <div class="relative z-10 max-w-4xl mx-auto px-8 md:px-12 lg:px-24">
+    <div class="relative z-10 max-w-4xl mx-auto px-4 md:px-12 lg:px-24">
       <h2 id="faq" class="text-3xl md:text-4xl font-bold text-white text-center mb-4">Preguntas <span style="background:linear-gradient(135deg,#60a5fa,#818cf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Frecuentes</span> sobre Wazuh</h2>
       <p class="text-white/70 text-center mb-12">Todo lo que necesitas saber antes de implementar Wazuh</p>
       <div class="space-y-4">
 
         <details class="group bg-white/5 rounded-xl border border-white/10 hover:border-white/20 group-open:border-white/30 transition-all duration-300">
-          <summary class="cursor-pointer px-6 py-5 flex items-center justify-between font-semibold text-lg text-white">
-            <span>¿Wazuh realmente cumple con el Esquema Nacional de Seguridad (ENS)?</span>
+          <summary class="cursor-pointer px-6 py-5 flex items-center justify-between font-semibold text-base md:text-lg text-white">
+            <span class="flex-1 min-w-0 pr-4">¿Wazuh realmente cumple con el Esquema Nacional de Seguridad (ENS)?</span>
             
           </summary>
           <div class="px-6 pb-6 text-white/70 leading-relaxed">
@@ -1032,8 +1090,8 @@ const canonical = "https://aisecurity.es/wazuh";
         </details>
 
         <details class="group bg-white/5 rounded-xl border border-white/10 hover:border-white/20 group-open:border-white/30 transition-all duration-300">
-          <summary class="cursor-pointer px-6 py-5 flex items-center justify-between font-semibold text-lg text-white">
-            <span>¿Cuánto tiempo tarda la implementación completa?</span>
+          <summary class="cursor-pointer px-6 py-5 flex items-center justify-between font-semibold text-base md:text-lg text-white">
+            <span class="flex-1 min-w-0 pr-4">¿Cuánto tiempo tarda la implementación completa?</span>
             
           </summary>
           <div class="px-6 pb-6 text-white/70 leading-relaxed">
@@ -1042,8 +1100,8 @@ const canonical = "https://aisecurity.es/wazuh";
         </details>
 
         <details class="group bg-white/5 rounded-xl border border-white/10 hover:border-white/20 group-open:border-white/30 transition-all duration-300">
-          <summary class="cursor-pointer px-6 py-5 flex items-center justify-between font-semibold text-lg text-white">
-            <span>¿Qué diferencia hay con soluciones como Splunk o QRadar?</span>
+          <summary class="cursor-pointer px-6 py-5 flex items-center justify-between font-semibold text-base md:text-lg text-white">
+            <span class="flex-1 min-w-0 pr-4">¿Qué diferencia hay con soluciones como Splunk o QRadar?</span>
             
           </summary>
           <div class="px-6 pb-6 text-white/70 leading-relaxed">
@@ -1052,8 +1110,8 @@ const canonical = "https://aisecurity.es/wazuh";
         </details>
 
         <details class="group bg-white/5 rounded-xl border border-white/10 hover:border-white/20 group-open:border-white/30 transition-all duration-300">
-          <summary class="cursor-pointer px-6 py-5 flex items-center justify-between font-semibold text-lg text-white">
-            <span>¿Incluye formación para nuestro equipo IT?</span>
+          <summary class="cursor-pointer px-6 py-5 flex items-center justify-between font-semibold text-base md:text-lg text-white">
+            <span class="flex-1 min-w-0 pr-4">¿Incluye formación para nuestro equipo IT?</span>
             
           </summary>
           <div class="px-6 pb-6 text-white/70 leading-relaxed">
@@ -1062,8 +1120,8 @@ const canonical = "https://aisecurity.es/wazuh";
         </details>
 
         <details class="group bg-white/5 rounded-xl border border-white/10 hover:border-white/20 group-open:border-white/30 transition-all duration-300">
-          <summary class="cursor-pointer px-6 py-5 flex items-center justify-between font-semibold text-lg text-white">
-            <span>¿Puedo implementar Wazuh yo mismo siguiendo vuestros tutoriales de YouTube?</span>
+          <summary class="cursor-pointer px-6 py-5 flex items-center justify-between font-semibold text-base md:text-lg text-white">
+            <span class="flex-1 min-w-0 pr-4">¿Puedo implementar Wazuh yo mismo siguiendo vuestros tutoriales de YouTube?</span>
             
           </summary>
           <div class="px-6 pb-6 text-white/70 leading-relaxed">
@@ -1072,8 +1130,8 @@ const canonical = "https://aisecurity.es/wazuh";
         </details>
 
         <details class="group bg-white/5 rounded-xl border border-white/10 hover:border-white/20 group-open:border-white/30 transition-all duration-300">
-          <summary class="cursor-pointer px-6 py-5 flex items-center justify-between font-semibold text-lg text-white">
-            <span>¿Qué pasa si ya tengo Wazuh instalado pero necesito ayuda?</span>
+          <summary class="cursor-pointer px-6 py-5 flex items-center justify-between font-semibold text-base md:text-lg text-white">
+            <span class="flex-1 min-w-0 pr-4">¿Qué pasa si ya tengo Wazuh instalado pero necesito ayuda?</span>
             
           </summary>
           <div class="px-6 pb-6 text-white/70 leading-relaxed">
@@ -1100,7 +1158,7 @@ const canonical = "https://aisecurity.es/wazuh";
 
     <!-- Content -->
     <div class="relative z-10">
-    <div class="max-w-4xl mx-auto px-8 md:px-12 text-center text-white">
+    <div class="max-w-4xl mx-auto px-4 md:px-12 text-center text-white">
       <h2 class="text-3xl md:text-4xl font-bold mb-6">
         ¿Listo para <span style="background:linear-gradient(135deg,#a78bfa,#60a5fa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">implementar Wazuh</span>?
       </h2>

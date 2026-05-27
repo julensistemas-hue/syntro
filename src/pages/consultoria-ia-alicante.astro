@@ -148,6 +148,47 @@ const departamentos = [
 
 <BaseLayout title={title} description={description} canonical={canonical}>
 
+  <script slot="head" type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "¿Qué empresas de Alicante pueden beneficiarse de la consultoría de IA?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Empresas de cualquier sector en Alicante y provincia pueden beneficiarse: turismo y hostelería, calzado y textil, construcción e inmobiliaria, restauración, agroalimentación y servicios profesionales. AI Security ofrece consultoría de IA presencial en Alicante con análisis personalizado por departamento."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Cuánto cuesta la consultoría de IA en Alicante?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "La primera consulta es gratuita y sin compromiso. Las implementaciones parten desde 1.500€ para un departamento específico. AI Security ofrece servicio presencial en Alicante y provincia, con propuesta personalizada según el tamaño y necesidades de tu empresa."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Necesito equipo técnico para implementar IA en mi empresa de Alicante?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. AI Security se encarga de toda la parte técnica e integra las herramientas de IA con los sistemas que ya usas (ERP, CRM, email). La formación del equipo está incluida para que cualquier empleado pueda usar las soluciones desde el primer día."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué herramientas de IA implementáis en empresas de Alicante?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Implementamos chatbots empresariales, gestores documentales con búsqueda semántica, recepcionistas virtuales con voz IA, automatización de procesos con n8n, y herramientas como Claude y ChatGPT para administración y área comercial. Todo integrado con los sistemas actuales de tu empresa."
+        }
+      }
+    ]
+  }
+  </script>
+
   <!-- Schema.org LocalBusiness -->
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",

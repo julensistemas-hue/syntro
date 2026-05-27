@@ -11,7 +11,9 @@ import BlogLayout from "../../layouts/BlogLayout.astro";
   tags={["Wazuh", "Reglas", "Alertas", "NAS", "SIEM", "Ciberseguridad"]}
   canonical="https://aisecurity.es/blog/crear-reglas-personalizadas-wazuh">
 
-  <h2>Introducción</h2>
+  <p>Las reglas personalizadas en Wazuh se crean en XML en <code>/var/ossec/etc/rules/local_rules.xml</code>. Cada regla define un ID único (mayor de 100000), el nivel de severidad, el campo del log que debe coincidir y la descripción de la alerta que verás en el dashboard.</p>
+
+  <h2>¿Cómo crear reglas personalizadas en Wazuh paso a paso?</h2>
 
   <p>
     Las reglas personalizadas en Wazuh permiten detectar patrones específicos en tus logs y generar alertas cuando se cumplen ciertas condiciones. En este artículo vemos ejemplos prácticos con logs de NAS: detectar accesos a carpetas, usuarios específicos y acciones como Delete o Write.

@@ -13,20 +13,24 @@ import BlogLayout from "../../layouts/BlogLayout.astro";
   canonical="https://aisecurity.es/blog/configurar-correo-corporativo-outlook-movil">
 
   <p>
-    Configurar el correo de empresa es una de las tareas de soporte más habituales: empleado nuevo, equipo nuevo, dispositivo nuevo... Es algo que se repite constantemente. Esta guía cubre los tres escenarios más comunes para que cualquiera pueda hacerlo sin necesidad de llamar a un técnico.
+    Para configurar el correo corporativo en Outlook, abre <strong>Archivo → Agregar cuenta</strong>, introduce tu dirección de empresa y pulsa Conectar. Con Microsoft 365 es automático; con Google Workspace selecciona "Google" como tipo; con servidor propio necesitas los datos IMAP/SMTP que te facilite el departamento IT.
   </p>
 
   <div class="bg-blue-50 border-l-4 border-blue-600 p-4 my-6 rounded-r-lg">
     <p class="m-0 text-base-800"><strong>Antes de empezar:</strong> Necesitas saber el tipo de servidor de correo que usa tu empresa. Los más habituales son Microsoft 365 (Exchange Online), Google Workspace o un servidor propio con IMAP/SMTP. Si no lo sabes, pregunta a quien gestione el IT de tu empresa.</p>
   </div>
 
-  <h2>Opción A: Correo con Microsoft 365 (Exchange Online)</h2>
+  <p>
+    Configurar el correo de empresa es una de las tareas de soporte más habituales: empleado nuevo, equipo nuevo, dispositivo nuevo... Es algo que se repite constantemente. Esta guía cubre los tres escenarios más comunes para que cualquiera pueda hacerlo sin necesidad de llamar a un técnico.
+  </p>
+
+  <h2>¿Cómo configurar el correo con Microsoft 365 (Exchange Online)?</h2>
 
   <p>
     Es el caso más habitual en empresas españolas. Tu dirección acaba en el dominio de tu empresa (ej: tu.nombre@tuempresa.com) y está gestionada desde el portal de Microsoft.
   </p>
 
-  <h3>En Outlook para Windows</h3>
+  <h3>¿Cómo configurarlo en Outlook para Windows?</h3>
 
   <ol>
     <li>Abre Outlook → menú <strong>Archivo</strong> → <strong>Agregar cuenta</strong></li>
@@ -40,7 +44,7 @@ import BlogLayout from "../../layouts/BlogLayout.astro";
     En la mayoría de los casos con Microsoft 365, Outlook detecta la configuración automáticamente. Si no funciona a la primera, asegúrate de que el administrador de IT ha añadido tu cuenta al tenant de Microsoft 365.
   </p>
 
-  <h3>En el móvil (iOS o Android)</h3>
+  <h3>¿Cómo configurarlo en el móvil (iOS o Android)?</h3>
 
   <p>
     La forma más recomendable es usar la app <strong>Outlook para móvil</strong> (gratuita en App Store y Google Play) en vez de la app de correo nativa del sistema. Gestiona mucho mejor el correo corporativo y tiene funciones adicionales como acceso al calendario compartido.
@@ -54,19 +58,19 @@ import BlogLayout from "../../layouts/BlogLayout.astro";
     <li>Opcional: cuando pregunte si añadir otra cuenta, puedes añadir también el Gmail personal</li>
   </ol>
 
-  <h2>Opción B: Correo con Google Workspace</h2>
+  <h2>¿Cómo configurar el correo con Google Workspace?</h2>
 
   <p>
     Cada vez más empresas usan Google Workspace (antes G Suite). Tu correo es Gmail pero con el dominio de la empresa.
   </p>
 
-  <h3>En el navegador</h3>
+  <h3>¿Cómo acceder desde el navegador?</h3>
 
   <p>
     Simplemente entra en <strong>mail.google.com</strong> e inicia sesión con tu correo corporativo. Al ser Gmail, no necesitas configurar nada.
   </p>
 
-  <h3>En Outlook (si prefieres usar Outlook aunque el correo sea de Google)</h3>
+  <h3>¿Cómo configurar Google Workspace en Outlook?</h3>
 
   <ol>
     <li>Abre Outlook → <strong>Archivo</strong> → <strong>Agregar cuenta</strong></li>
@@ -76,13 +80,13 @@ import BlogLayout from "../../layouts/BlogLayout.astro";
     <li>Aprueba los permisos que solicita Outlook</li>
   </ol>
 
-  <h3>En el móvil</h3>
+  <h3>¿Cómo configurarlo en el móvil con Google Workspace?</h3>
 
   <p>
     En Android, la app de Gmail nativa ya gestiona bien las cuentas de Google Workspace. En iOS, descarga la app de Gmail o usa Outlook para móvil siguiendo el mismo proceso que con Microsoft 365.
   </p>
 
-  <h2>Opción C: Servidor propio con IMAP/SMTP</h2>
+  <h2>¿Cómo configurar un servidor propio con IMAP/SMTP?</h2>
 
   <p>
     Si tu empresa tiene un servidor de correo propio (hosting con cPanel, Plesk, servidor Exchange on-premise...), necesitas configurar manualmente los datos del servidor. Pide estos datos a quien gestione el IT:
@@ -95,7 +99,7 @@ import BlogLayout from "../../layouts/BlogLayout.astro";
     <li><strong>Contraseña</strong>: la que te hayan asignado</li>
   </ul>
 
-  <h3>En Outlook</h3>
+  <h3>¿Cómo introducir los datos del servidor en Outlook?</h3>
 
   <ol>
     <li><strong>Archivo</strong> → <strong>Agregar cuenta</strong> → escribe tu correo</li>
@@ -103,7 +107,7 @@ import BlogLayout from "../../layouts/BlogLayout.astro";
     <li>Selecciona <strong>IMAP</strong> e introduce los datos del servidor</li>
   </ol>
 
-  <h2>Problemas más habituales y soluciones rápidas</h2>
+  <h2>¿Cuáles son los problemas más habituales y sus soluciones?</h2>
 
   <ul>
     <li><strong>"Contraseña incorrecta" aunque sea la correcta</strong>: Si la empresa usa MFA, puede ser que Outlook necesite una "contraseña de aplicación" específica, no tu contraseña habitual.</li>

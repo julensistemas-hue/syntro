@@ -11,7 +11,9 @@ import BlogLayout from "../../layouts/BlogLayout.astro";
   tags={["Wazuh", "Decoders", "Regex", "SIEM", "Logs", "Tutorial"]}
   canonical="https://aisecurity.es/blog/crear-decoders-personalizados-wazuh">
 
-  <h2>Introducción</h2>
+  <p>Para crear un decoder personalizado en Wazuh, define en XML el nombre del programa y las expresiones regex que extraen campos del log. Usa siempre la herramienta <code>/var/ossec/bin/wazuh-logtest</code> para probar cada cambio antes de aplicarlo, añadiendo un campo a la vez.</p>
+
+  <h2>¿Qué necesitas saber antes de crear un decoder personalizado en Wazuh?</h2>
 
   <p>
     Uno de los superpoderes de Wazuh es su capacidad de procesar <strong>cualquier tipo de log</strong>. Pero para aprovechar esta potencia, necesitas saber crear <strong>decoders personalizados</strong>. En esta guía vamos a ver cómo hacerlo paso a paso, usando un ejemplo real de logs de un NAS.

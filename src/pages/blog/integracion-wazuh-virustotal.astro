@@ -11,7 +11,9 @@ import BlogLayout from "../../layouts/BlogLayout.astro";
   tags={["Wazuh", "VirusTotal", "Malware", "FIM", "SIEM", "Ciberseguridad", "Integraciones"]}
   canonical="https://aisecurity.es/blog/integracion-wazuh-virustotal">
 
-  <h2>Introducción</h2>
+  <p>Para integrar Wazuh con VirusTotal, activa FIM para monitorizar directorios clave, añade la integración con tu API key de VirusTotal en <code>ossec.conf</code> y Wazuh enviará automáticamente el hash de cada archivo nuevo o modificado a los 70+ motores antivirus de VirusTotal.</p>
+
+  <h2>¿Cómo funciona la integración entre Wazuh FIM y VirusTotal?</h2>
 
   <p>
     <strong>FIM (File Integrity Monitoring)</strong> detecta archivos nuevos o modificados, pero no sabe si son maliciosos. <strong>VirusTotal</strong> analiza hashes contra más de 70 motores antivirus. Al integrarlos, Wazuh envía automáticamente cada archivo sospechoso a VirusTotal y recibes alertas directamente en el dashboard.

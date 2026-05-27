@@ -11,11 +11,35 @@ import BlogLayout from "../../layouts/BlogLayout.astro";
   tags={["Wazuh", "Windows", "Reglas", "Software", "Auditoría", "SIEM", "ENS", "ISO 27001"]}
   canonical="https://aisecurity.es/blog/detectar-instalaciones-software-windows-wazuh">
 
-  <h2>Introducción</h2>
+  <p>
+    Wazuh detecta instalaciones y desinstalaciones de software en Windows capturando los <strong>Event IDs 11707 y 11724</strong> del log de Application. Basta con añadir dos reglas personalizadas en <code>local_rules.xml</code> para recibir alertas en tiempo real con el nombre del software, el equipo y el usuario implicado.
+  </p>
+
+  <h2>¿Qué Event IDs de Windows generan estas acciones?</h2>
 
   <p>
-    Windows genera eventos específicos cuando se instala o desinstala software. Con Wazuh puedes capturar estos eventos y generar alertas para <strong>auditar cambios en tu infraestructura</strong>. Esto es útil para detectar software no autorizado o cambios sospechosos.
+    Windows Installer genera eventos en el log de Application cuando se instala o desinstala software:
   </p>
+
+  <div style="background: linear-gradient(135deg, #1a1f2e 0%, #0f1419 100%); border: 1px solid #2d3748; border-radius: 12px; padding: 24px; margin: 24px 0;">
+    <table style="width: 100%; border-collapse: collapse; color: #e5e7eb;">
+      <tr style="border-bottom: 1px solid #2d3748;">
+        <td style="padding: 12px; font-weight: bold; color: #60a5fa;">Event ID</td>
+        <td style="padding: 12px; font-weight: bold; color: #60a5fa;">Acción</td>
+        <td style="padding: 12px; font-weight: bold; color: #60a5fa;">Descripción</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #2d3748;">
+        <td style="padding: 12px;">11707</td>
+        <td style="padding: 12px;">Instalación</td>
+        <td style="padding: 12px;">Software instalado correctamente</td>
+      </tr>
+      <tr>
+        <td style="padding: 12px;">11724</td>
+        <td style="padding: 12px;">Desinstalación</td>
+        <td style="padding: 12px;">Software eliminado del sistema</td>
+      </tr>
+    </table>
+  </div>
 
   <!-- Video del curso bloqueado -->
   <div class="my-8">
@@ -63,33 +87,7 @@ import BlogLayout from "../../layouts/BlogLayout.astro";
     </p>
   </div>
 
-  <h2>Event IDs de Windows</h2>
-
-  <p>
-    Windows Installer genera eventos en el log de Application cuando se instala o desinstala software:
-  </p>
-
-  <div style="background: linear-gradient(135deg, #1a1f2e 0%, #0f1419 100%); border: 1px solid #2d3748; border-radius: 12px; padding: 24px; margin: 24px 0;">
-    <table style="width: 100%; border-collapse: collapse; color: #e5e7eb;">
-      <tr style="border-bottom: 1px solid #2d3748;">
-        <td style="padding: 12px; font-weight: bold; color: #60a5fa;">Event ID</td>
-        <td style="padding: 12px; font-weight: bold; color: #60a5fa;">Acción</td>
-        <td style="padding: 12px; font-weight: bold; color: #60a5fa;">Descripción</td>
-      </tr>
-      <tr style="border-bottom: 1px solid #2d3748;">
-        <td style="padding: 12px;">11707</td>
-        <td style="padding: 12px;">Instalación</td>
-        <td style="padding: 12px;">Software instalado correctamente</td>
-      </tr>
-      <tr>
-        <td style="padding: 12px;">11724</td>
-        <td style="padding: 12px;">Desinstalación</td>
-        <td style="padding: 12px;">Software eliminado del sistema</td>
-      </tr>
-    </table>
-  </div>
-
-  <h2>Regla para detectar instalaciones</h2>
+  <h2>¿Cómo crear la regla para detectar instalaciones?</h2>
 
   <p>
     Añade esta regla en <code>/var/ossec/etc/rules/local_rules.xml</code>:
@@ -112,7 +110,7 @@ import BlogLayout from "../../layouts/BlogLayout.astro";
     <li><code>no_full_log</code>: No incluye el log completo (reduce tamaño)</li>
   </ul>
 
-  <h2>Regla para detectar desinstalaciones</h2>
+  <h2>¿Cómo crear la regla para detectar desinstalaciones?</h2>
 
   <p>
     Las desinstalaciones pueden ser más críticas (eliminación de software de seguridad, por ejemplo):
@@ -133,13 +131,13 @@ import BlogLayout from "../../layouts/BlogLayout.astro";
     <li>Preparación para instalar software malicioso</li>
   </ul>
 
-  <h2>Aplicar las reglas</h2>
+  <h2>¿Cómo aplicar las reglas en Wazuh?</h2>
 
   <p>Reinicia el manager para aplicar:</p>
 
   <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">systemctl restart wazuh-manager</code></pre>
 
-  <h2>Qué verás en el dashboard</h2>
+  <h2>¿Qué información verás en el dashboard de Wazuh?</h2>
 
   <p>
     Cuando un usuario instale o desinstale software, verás alertas en el dashboard con:
@@ -152,7 +150,7 @@ import BlogLayout from "../../layouts/BlogLayout.astro";
     <li><strong>Timestamp</strong> exacto</li>
   </ul>
 
-  <h2>Casos de uso</h2>
+  <h2>¿Para qué casos de uso es útil esta monitorización?</h2>
 
   <ul>
     <li><strong>Cumplimiento normativo</strong>: Auditar cambios de software (ISO 27001, ENS)</li>
@@ -161,7 +159,7 @@ import BlogLayout from "../../layouts/BlogLayout.astro";
     <li><strong>Inventario de software</strong>: Mantener registro de cambios</li>
   </ul>
 
-  <h2>Cumplimiento ISO 27001:2022</h2>
+  <h2>¿Qué controles de ISO 27001:2022 cubre esta configuración?</h2>
 
   <p>
     Monitorizar las instalaciones y desinstalaciones de software con Wazuh ayuda a cumplir varios controles del <strong>Anexo A de ISO 27001:2022</strong>:
@@ -204,7 +202,7 @@ import BlogLayout from "../../layouts/BlogLayout.astro";
 
   <p><strong>Beneficio clave:</strong> Las reglas de Wazuh generan evidencia documental automática para auditorías ISO 27001, demostrando que existe un control activo sobre el software instalado en los sistemas.</p>
 
-  <h2>Cumplimiento ENS (Esquema Nacional de Seguridad)</h2>
+  <h2>¿Qué medidas del ENS cumple esta monitorización?</h2>
 
   <p>
     Para organizaciones del sector público español o proveedores que trabajan con la administración, el <strong>ENS (RD 311/2022)</strong> requiere medidas específicas que esta monitorización ayuda a cumplir:
