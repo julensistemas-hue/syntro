@@ -85,6 +85,7 @@ SERVICIOS DE CIBERSEGURIDAD Y SISTEMAS:
 7. Curso Wazuh (/curso-wazuh)
    - Formación intensiva para administradores de sistemas
    - Contenido práctico: configuración, reglas, alertas, cumplimiento ENS
+   - 4 horas de contenido en vídeo
    - Precio: 50€
 
 8. Soporte IT y Administración de Sistemas (/servicios/desarrollo-web)
