@@ -33,11 +33,34 @@ import BlogLayout from "../../layouts/BlogLayout.astro";
 <ul>
   <li>Wazuh Manager 4.7 o superior</li>
   <li>Agente Wazuh instalado en el host Linux con Docker</li>
-  <li>Docker Engine instalado (API compatible con el wodle)</li>
-  <li>El paquete Python <code>docker</code> instalado en el host (<code>pip3 install docker</code>)</li>
+  <li>Docker Engine instalado</li>
+  <li>Python 3.8–3.12 en el host</li>
 </ul>
 
-<h2>Paso 1: Habilitar el Docker Listener (wodle)</h2>
+<h2>Paso 1: Instalar las dependencias Python del wodle</h2>
+
+<p>El módulo <code>docker-listener</code> es un script Python que usa la librería <code>docker</code> para conectarse a la API del daemon. <strong>Sin este paso el wodle no arranca.</strong> Las versiones exactas importan:</p>
+
+<p>En Python 3.8–3.10:</p>
+<pre><code>pip3 install docker==7.1.0 urllib3==1.26.20 requests==2.32.2</code></pre>
+
+<p>En Python 3.11–3.12 (sistemas con entorno gestionado, como Ubuntu 23+):</p>
+<pre><code>pip3 install docker==7.1.0 urllib3==1.26.20 requests==2.32.2 --break-system-packages</code></pre>
+
+<p>Verifica que la instalación funciona:</p>
+<pre><code>python3 -c "import docker; c = docker.from_env(); print(c.ping())"
+# Debe devolver: True</code></pre>
+
+<h2>Paso 2: Dar acceso al socket Docker al usuario wazuh</h2>
+
+<p>El wodle corre con el usuario <code>wazuh</code>. Para que pueda acceder al socket de Docker:</p>
+
+<pre><code>sudo usermod -aG docker wazuh</code></pre>
+
+<p>Aplica el cambio de grupo sin reiniciar:</p>
+<pre><code>sudo systemctl restart wazuh-agent</code></pre>
+
+<h2>Paso 3: Habilitar el Docker Listener (wodle)</h2>
 
 <p>El módulo <code>docker-listener</code> se conecta a la API de Docker y captura en tiempo real todos los eventos del daemon: creación de contenedores, arranques, paradas, ejecución de comandos, pulls de imágenes, conexiones de red, etc.</p>
 
@@ -49,11 +72,6 @@ import BlogLayout from "../../layouts/BlogLayout.astro";
   &lt;run_on_start&gt;yes&lt;/run_on_start&gt;
   &lt;disabled&gt;no&lt;/disabled&gt;
 &lt;/wodle&gt;</code></pre>
-
-<p><strong>Importante:</strong> el wodle corre con el usuario <code>wazuh</code>. Para que pueda acceder al socket de Docker, añade ese usuario al grupo <code>docker</code>:</p>
-
-<pre><code>sudo usermod -aG docker wazuh
-sudo systemctl restart wazuh-agent</code></pre>
 
 <p>Una vez activo, este módulo captura eventos como:</p>
 
@@ -67,7 +85,7 @@ sudo systemctl restart wazuh-agent</code></pre>
 
 <p>Las reglas de Wazuh para estos eventos están en <code>/var/ossec/ruleset/rules/0560-docker_integration_rules.xml</code> (IDs 87901–87920).</p>
 
-<h2>Paso 2: Recoger los logs de los contenedores</h2>
+<h2>Paso 4: Recoger los logs de los contenedores</h2>
 
 <p>Docker, con el driver por defecto (<code>json-file</code>), almacena los logs de cada contenedor en:</p>
 
@@ -89,7 +107,7 @@ sudo systemctl restart wazuh-agent</code></pre>
   &lt;location&gt;journald&lt;/location&gt;
 &lt;/localfile&gt;</code></pre>
 
-<h2>Paso 3: FIM sobre la configuración de Docker</h2>
+<h2>Paso 5: FIM sobre la configuración de Docker</h2>
 
 <p>El módulo de integridad de archivos (syscheck) debe monitorizar los archivos de configuración de Docker, pero <strong>no</strong> el directorio <code>/var/lib/docker</code> completo: puede ocupar cientos de GB y cambia constantemente con las capas de overlay2, generando miles de alertas falsas.</p>
 
@@ -114,7 +132,7 @@ sudo systemctl restart wazuh-agent</code></pre>
 
 <p>Cualquier modificación a <code>/etc/docker/daemon.json</code> o cambio en los permisos del socket generará una alerta FIM en Wazuh.</p>
 
-<h2>Paso 4: Reiniciar el agente y verificar</h2>
+<h2>Paso 6: Reiniciar el agente y verificar</h2>
 
 <pre><code># Reiniciar el agente
 sudo systemctl restart wazuh-agent
