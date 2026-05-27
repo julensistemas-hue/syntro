@@ -6,7 +6,7 @@ const description = "Tutoriales prácticos sobre inteligencia artificial aplicad
 const canonical = "https://aisecurity.es/blog";
 
 // Array de artículos del blog (luego podríamos usar Content Collections)
-const articles = [
+const articles = ([
   // === SOPORTE TÉCNICO ===
   {
     slug: "pc-empresa-lento-causas-y-soluciones",
@@ -298,7 +298,7 @@ const articles = [
     category: "Wazuh & Seguridad"
   }
   // Más artículos se añadirán aquí
-];
+] as const).sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime());
 
 // Categorías disponibles
 const categories = ["Todos", "Concienciación", "Wazuh & Seguridad", "IA para Sistemas"];
