@@ -1,8 +1,8 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-const title = "Curso IA para Sysadmin — TechIA Boost | Ahorra 10h/semana | 50€";
-const description = "Curso de inteligencia artificial para administradores de sistemas y técnicos IT en España. Claude, Whisperflow, scripts con IA y gestión de incidencias. Ahorra 10h/semana. Vídeos grabados + comunidad. 50€ acceso permanente.";
+const title = "Cómo ser más productivo como Administrador de Sistemas con IA | TechIA Boost";
+const description = "Aprende a usar Claude, Whisperflow y scripts con IA para diagnosticar errores, documentar incidencias y automatizar tareas. Ahorra más de 10 horas semanales como técnico de sistemas. Vídeos + comunidad. 50€ acceso permanente.";
 const canonical = "https://aisecurity.es/curso-techai-boost";
 
 const schemaCourse = {
@@ -149,11 +149,20 @@ const schemaBreadcrumb = {
 
 <BaseLayout title={title} description={description} canonical={canonical}>
 
-  <!-- ── JSON-LD: Course + FAQPage + BreadcrumbList ── -->
+  <!-- ── JSON-LD + meta overrides específicos de esta página ── -->
   <Fragment slot="head">
     <script is:inline type="application/ld+json" set:html={JSON.stringify(schemaCourse)} />
     <script is:inline type="application/ld+json" set:html={JSON.stringify(schemaFAQ)} />
     <script is:inline type="application/ld+json" set:html={JSON.stringify(schemaBreadcrumb)} />
+    <!-- og:type curso de pago -->
+    <meta property="og:type" content="product" />
+    <!-- Localización española explícita -->
+    <meta property="og:locale" content="es_ES" />
+    <!-- Theme color verde para la barra del navegador en móvil -->
+    <meta name="theme-color" content="#040904" />
+    <!-- Precio para rich snippets de Google Shopping/SERP -->
+    <meta property="product:price:amount" content="50" />
+    <meta property="product:price:currency" content="EUR" />
   </Fragment>
 
   <!-- HERO -->
@@ -173,7 +182,7 @@ const schemaBreadcrumb = {
 
           <div style="line-height:1;">
             <div style="font-size:clamp(100px,14vw,180px);font-weight:900;color:#00ff41;font-family:'Inter',sans-serif;letter-spacing:-6px;line-height:0.9;">10H</div>
-            <h1 style="font-size:clamp(22px,3.5vw,44px);font-weight:800;color:#f0f0f0;letter-spacing:0.05em;text-transform:uppercase;margin-top:8px;line-height:1.15;">recuperadas<br>por semana<br><span style="font-size:clamp(14px,2vw,24px);font-weight:600;text-transform:none;letter-spacing:0.02em;color:rgba(240,240,240,0.7);">Curso de IA para administradores de sistemas</span></h1>
+            <h1 style="font-size:clamp(22px,3.5vw,44px);font-weight:800;color:#f0f0f0;letter-spacing:0.05em;text-transform:uppercase;margin-top:8px;line-height:1.15;">recuperadas<br>por semana<br><span style="font-size:clamp(14px,2vw,24px);font-weight:600;text-transform:none;letter-spacing:0.02em;color:rgba(240,240,240,0.7);">Cómo ser más productivo como administrador de sistemas con IA</span></h1>
           </div>
 
           <p style="color:rgba(240,240,240,0.55);font-size:17px;line-height:1.65;max-width:480px;margin-top:24px;">
