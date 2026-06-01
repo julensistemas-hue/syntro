@@ -1,0 +1,984 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const title = "Curso IA para Sysadmin — TechIA Boost | Ahorra 10h/semana | 50€";
+const description = "Curso de inteligencia artificial para administradores de sistemas y técnicos IT en España. Claude, Whisperflow, scripts con IA y gestión de incidencias. Ahorra 10h/semana. Vídeos grabados + comunidad. 50€ acceso permanente.";
+const canonical = "https://aisecurity.es/curso-techai-boost";
+
+const schemaCourse = {
+  "@context": "https://schema.org",
+  "@type": "Course",
+  "name": "TechIA Boost — Curso de IA para Administradores de Sistemas",
+  "description": "Curso práctico para sysadmins, técnicos IT y administradores de sistemas en España. Aprende a usar Claude, Whisperflow, scripts con IA y atajos de Windows para ahorrar 10 horas semanales en la gestión de incidencias y tareas de sistemas.",
+  "url": "https://aisecurity.es/curso-techai-boost",
+  "provider": {
+    "@type": "Organization",
+    "name": "AI Security",
+    "url": "https://aisecurity.es",
+    "logo": "https://aisecurity.es/og-image.png"
+  },
+  "educationalLevel": "Intermediate",
+  "teaches": [
+    "Uso de Claude AI para diagnóstico de servidores",
+    "Whisperflow para documentación de incidencias por voz",
+    "Generación de scripts bash y PowerShell con IA",
+    "Atajos de Windows para técnicos IT (Win+V, Win+Shift+S, Win+G)",
+    "Automatización de la gestión de incidencias con inteligencia artificial"
+  ],
+  "coursePrerequisites": "Conocimientos básicos de administración de sistemas Linux o Windows Server",
+  "timeRequired": "PT2H",
+  "inLanguage": "es",
+  "availableLanguage": "es",
+  "isAccessibleForFree": false,
+  "hasCourseInstance": {
+    "@type": "CourseInstance",
+    "courseMode": "online",
+    "courseWorkload": "PT2H",
+    "inLanguage": "es"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "50",
+    "priceCurrency": "EUR",
+    "availability": "https://schema.org/PreOrder",
+    "description": "Acceso permanente al curso con actualizaciones incluidas"
+  },
+  "audience": {
+    "@type": "Audience",
+    "audienceType": "Administradores de sistemas, técnicos IT, sysadmins, técnicos de soporte informático"
+  },
+  "keywords": "curso IA para sysadmin, productividad administrador de sistemas con IA, Claude para administradores de sistemas, automatizar gestión incidencias IT con IA, curso técnico sistemas inteligencia artificial España, atajos Windows técnico IT"
+};
+
+const schemaFAQ = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Este curso es para mí si soy administrador de sistemas?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí, es el público principal. TechIA Boost está diseñado específicamente para sysadmins que gestionan servidores Linux o Windows, llevan incidencias y necesitan ahorrar tiempo en diagnósticos, documentación y scripts. Si usas herramientas como systemd, nginx, Active Directory o PowerShell en tu día a día, este curso es para ti."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Necesito saber programar para seguir el curso?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Aunque se generan scripts bash y PowerShell con IA, el curso explica todo paso a paso. No necesitas ser desarrollador: con describir lo que necesitas a Claude ya obtienes el script funcional con comentarios y manejo de errores. Solo necesitas saber qué quieres automatizar."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué es Claude y cómo lo uso como administrador de sistemas?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Claude es un asistente de IA de Anthropic. Para sysadmins es especialmente útil: pegas un log de error y te da la causa raíz en segundos, le describes un script y lo genera listo para producción, o le pides que documente un cambio de configuración automáticamente. En el curso aprendes los prompts exactos que funcionan para casos reales de administración de sistemas."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué es Whisperflow y para qué sirve un técnico IT?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Whisperflow es una herramienta que convierte tu voz en texto en cualquier campo de texto del sistema. Para un técnico IT permite dictar incidencias, tickets y emails mientras tienes las manos en el teclado resolviendo el problema. En lugar de 20 minutos escribiendo el ticket, son 2 minutos dictando mientras trabajas."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿El acceso al curso es permanente y recibo las actualizaciones?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. Pagas una vez y el acceso es para siempre. Cada vez que aparezca una herramienta nueva relevante para sysadmins se añade un módulo al curso y los alumnos actuales lo reciben automáticamente sin coste adicional. El precio de 50€ no volverá a subir para quienes ya sean alumnos."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Realmente se pueden ahorrar 10 horas semanales un técnico de sistemas con IA?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "La estimación está basada en tareas concretas: diagnosticar un error de nginx pasa de ~45 minutos (Google + pruebas) a ~3 minutos con Claude; documentar una incidencia pasa de ~20 minutos a ~2 minutos con Whisperflow; generar un script de backup pasa de ~1 hora a ~5 minutos. Sumando las tareas habituales de un técnico de sistemas, el ahorro real es de entre 8 y 14 horas semanales. Las 10h son el valor conservador."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Funciona el curso tanto para Linux como para Windows Server?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. Los módulos de Claude, Whisperflow y atajos de Windows funcionan en ambos entornos. Los scripts de ejemplo cubren tanto bash (Linux) como PowerShell (Windows Server). Si tu entorno es mixto, el curso sigue siendo completamente aplicable."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿El curso incluye soporte o comunidad?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. El acceso incluye entrada al grupo de alumnos donde se comparten prompts, scripts y flujos de trabajo reales. Si tienes dudas sobre cómo aplicar una técnica a tu entorno específico, puedes preguntar. Lo que aprende un alumno, lo aprenden todos."
+      }
+    }
+  ]
+};
+
+const schemaBreadcrumb = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "AI Security",
+      "item": "https://aisecurity.es"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Formación",
+      "item": "https://aisecurity.es/curso-wazuh"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "TechIA Boost — Curso IA para Sysadmin",
+      "item": "https://aisecurity.es/curso-techai-boost"
+    }
+  ]
+};
+---
+
+<BaseLayout title={title} description={description} canonical={canonical}>
+
+  <!-- ── JSON-LD: Course + FAQPage + BreadcrumbList ── -->
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(schemaCourse)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(schemaFAQ)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(schemaBreadcrumb)} />
+  </Fragment>
+
+  <!-- HERO -->
+  <section id="hero" style="background:#0a0a0a;min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding:80px 0;">
+    <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(0,255,65,0.03) 1px,transparent 1px);background-size:32px 32px;pointer-events:none;"></div>
+    <div style="position:absolute;top:-200px;right:-100px;width:600px;height:600px;background:radial-gradient(circle,rgba(0,255,65,0.06),transparent 65%);pointer-events:none;"></div>
+
+    <div style="max-width:1280px;margin:0 auto;padding:0 24px;width:100%;position:relative;z-index:1;">
+      <div class="hero-grid">
+
+        <!-- LEFT -->
+        <div style="display:flex;flex-direction:column;justify-content:center;">
+          <div style="display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border:1px solid rgba(0,255,65,0.3);border-radius:4px;margin-bottom:32px;width:fit-content;">
+            <span style="width:7px;height:7px;border-radius:50%;background:#00ff41;animation:blink 1.2s infinite;display:inline-block;"></span>
+            <span style="font-family:'JetBrains Mono','Fira Code',monospace;font-size:12px;color:#00ff41;letter-spacing:0.1em;">VÍDEOS · COMUNIDAD · SIEMPRE ACTUALIZADO · 50€</span>
+          </div>
+
+          <div style="line-height:1;">
+            <div style="font-size:clamp(100px,14vw,180px);font-weight:900;color:#00ff41;font-family:'Inter',sans-serif;letter-spacing:-6px;line-height:0.9;">10H</div>
+            <h1 style="font-size:clamp(22px,3.5vw,44px);font-weight:800;color:#f0f0f0;letter-spacing:0.05em;text-transform:uppercase;margin-top:8px;line-height:1.15;">recuperadas<br>por semana<br><span style="font-size:clamp(14px,2vw,24px);font-weight:600;text-transform:none;letter-spacing:0.02em;color:rgba(240,240,240,0.7);">Curso de IA para administradores de sistemas</span></h1>
+          </div>
+
+          <p style="color:rgba(240,240,240,0.55);font-size:17px;line-height:1.65;max-width:480px;margin-top:24px;">
+            Aprende el flujo exacto que usan los sysadmins más productivos: <strong style="color:#f0f0f0;">Claude para diagnósticos de servidor</strong>, Whisperflow para dictar incidencias, y scripts bash y PowerShell generados con IA. <strong style="color:#f0f0f0;">Acceso permanente + actualizaciones cada vez que salga algo nuevo.</strong>
+          </p>
+
+          <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:28px;">
+            <span class="chip">Claude</span>
+            <span class="chip">Whisperflow</span>
+            <span class="chip">Scripts IA</span>
+            <span class="chip">Atajos Windows</span>
+            <span class="chip">Gestión incidencias</span>
+          </div>
+
+          <div style="margin-top:36px;">
+            <p style="font-family:'JetBrains Mono','Fira Code',monospace;font-size:12px;color:#00ff41;margin-bottom:12px;letter-spacing:0.08em;">// 2 horas · 50€ · acceso permanente — apúntate</p>
+            <form id="hero-form" style="display:flex;gap:10px;max-width:460px;flex-wrap:wrap;">
+              <input
+                id="hero-email"
+                type="email"
+                placeholder="admin@tuempresa.com"
+                required
+                style="flex:1;min-width:220px;background:rgba(0,255,65,0.05);border:1px solid rgba(0,255,65,0.25);border-radius:6px;padding:14px 16px;color:#f0f0f0;font-family:'JetBrains Mono','Fira Code',monospace;font-size:14px;outline:none;"
+              />
+              <button type="submit" id="hero-btn" class="btn-primary">Avísame →</button>
+            </form>
+            <div id="hero-success" style="display:none;margin-top:12px;">
+              <span style="font-family:'JetBrains Mono',monospace;color:#00ff41;font-size:14px;">✓ apuntado. te avisamos antes que nadie.</span>
+            </div>
+            <p style="font-size:12px;color:rgba(240,240,240,0.3);margin-top:10px;">Sin spam. Solo te avisamos cuando abren inscripciones.</p>
+          </div>
+        </div>
+
+        <!-- RIGHT: terminal -->
+        <div class="terminal-col">
+          <div class="terminal-window">
+            <div style="background:#1a1a1a;padding:10px 16px;border-radius:12px 12px 0 0;display:flex;align-items:center;gap:8px;border-bottom:1px solid rgba(0,255,65,0.12);">
+              <span style="width:12px;height:12px;border-radius:50%;background:#ff5f57;display:inline-block;"></span>
+              <span style="width:12px;height:12px;border-radius:50%;background:#ffbd2e;display:inline-block;"></span>
+              <span style="width:12px;height:12px;border-radius:50%;background:#28c840;display:inline-block;"></span>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(240,240,240,0.35);margin-left:8px;">sysadmin@server:~$</span>
+            </div>
+            <div style="background:#0a0a0a;padding:24px;border-radius:0 0 12px 12px;font-family:'JetBrains Mono','Fira Code',monospace;font-size:13px;line-height:1.75;min-height:400px;">
+              <div id="terminal-output"></div>
+              <span id="cursor" style="display:inline-block;width:8px;height:14px;background:#00ff41;vertical-align:middle;animation:blink 1s infinite;"></span>
+            </div>
+          </div>
+
+          <!-- Cuenta atrás al lanzamiento -->
+          <div style="margin-top:20px;">
+            <p style="font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(0,255,65,0.45);letter-spacing:0.08em;margin-bottom:10px;text-align:center;">// lanzamiento en</p>
+            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;">
+              <div class="cd-box"><span id="cd-d" class="cd-num">--</span><span class="cd-lbl">días</span></div>
+              <div class="cd-box"><span id="cd-h" class="cd-num">--</span><span class="cd-lbl">horas</span></div>
+              <div class="cd-box"><span id="cd-m" class="cd-num">--</span><span class="cd-lbl">min</span></div>
+              <div class="cd-box"><span id="cd-s" class="cd-num">--</span><span class="cd-lbl">seg</span></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div style="background:#00ff41;padding:12px 0;overflow:hidden;white-space:nowrap;position:relative;">
+    <div class="marquee-track">
+      <span class="mq-item">$ claude analyze-log --file=nginx.log</span>
+      <span class="mq-sep">◆</span>
+      <span class="mq-item">$ whisperflow "incidencia servidor caído"</span>
+      <span class="mq-sep">◆</span>
+      <span class="mq-item">$ ai-script --task="backup_rotation" --os=linux</span>
+      <span class="mq-sep">◆</span>
+      <span class="mq-item">$ docs generate --from=historial_comandos.txt</span>
+      <span class="mq-sep">◆</span>
+      <span class="mq-item">;inc → plantilla incidencia completa</span>
+      <span class="mq-sep">◆</span>
+      <span class="mq-item">$ claude diagnose --error="OOM killed PID 4821"</span>
+      <span class="mq-sep">◆</span>
+      <span class="mq-item">$ whisperflow "abrir ticket urgente"</span>
+      <span class="mq-sep">◆</span>
+      <span class="mq-item">$ ai-script --task="monitor_disk_usage"</span>
+      <span class="mq-sep">◆</span>
+      <span class="mq-item">$ claude analyze-log --file=nginx.log</span>
+      <span class="mq-sep">◆</span>
+      <span class="mq-item">$ whisperflow "incidencia servidor caído"</span>
+      <span class="mq-sep">◆</span>
+      <span class="mq-item">$ ai-script --task="backup_rotation" --os=linux</span>
+      <span class="mq-sep">◆</span>
+      <span class="mq-item">$ docs generate --from=historial_comandos.txt</span>
+      <span class="mq-sep">◆</span>
+    </div>
+  </div>
+
+  <!-- QUÉ INCLUYE — 3 pilares -->
+  <section style="background:#080808;padding:80px 0;">
+    <div style="max-width:1280px;margin:0 auto;padding:0 24px;">
+      <div style="text-align:center;margin-bottom:56px;">
+        <p style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#00ff41;letter-spacing:0.12em;margin-bottom:12px;">// qué es TechIA Boost</p>
+        <h2 style="font-size:clamp(28px,4vw,52px);font-weight:900;color:#f0f0f0;line-height:1.1;">No es un curso. Es una comunidad<br>que <span style="color:#00ff41;">crece contigo.</span></h2>
+        <p style="color:rgba(240,240,240,0.45);font-size:15px;line-height:1.7;max-width:680px;margin:20px auto 0;">Curso de inteligencia artificial para administradores de sistemas, técnicos IT y sysadmins en España. Aprende a usar Claude para servidores, Whisperflow para documentar incidencias por voz, y a generar scripts bash y PowerShell con IA. Sin teoría vacía: flujos de trabajo reales para el día a día del técnico de sistemas.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;" class="pillars-grid">
+        <div style="background:#111111;border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:36px;text-align:center;">
+          <div style="font-size:40px;margin-bottom:16px;">📹</div>
+          <h3 style="font-size:20px;font-weight:800;color:#f0f0f0;margin-bottom:10px;">Vídeos prácticos</h3>
+          <p style="font-size:14px;color:rgba(240,240,240,0.55);line-height:1.65;">Cada herramienta explicada con casos de uso reales de administración de sistemas. Sin teoría innecesaria.</p>
+        </div>
+        <div style="background:#111111;border:1px solid rgba(0,255,65,0.25);border-radius:16px;padding:36px;text-align:center;position:relative;">
+          <div style="position:absolute;top:-1px;left:50%;transform:translateX(-50%);background:#00ff41;color:#0a0a0a;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;padding:4px 14px;border-radius:0 0 8px 8px;letter-spacing:0.08em;">LO DIFERENTE</div>
+          <div style="font-size:40px;margin-bottom:16px;">🔄</div>
+          <h3 style="font-size:20px;font-weight:800;color:#f0f0f0;margin-bottom:10px;">Siempre actualizado</h3>
+          <p style="font-size:14px;color:rgba(240,240,240,0.55);line-height:1.65;">Cada vez que sale una herramienta nueva relevante para sysadmins, el curso se actualiza. Pagas una vez, recibes todo lo que venga después.</p>
+        </div>
+        <div style="background:#111111;border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:36px;text-align:center;">
+          <div style="font-size:40px;margin-bottom:16px;">👥</div>
+          <h3 style="font-size:20px;font-weight:800;color:#f0f0f0;margin-bottom:10px;">Comunidad activa</h3>
+          <p style="font-size:14px;color:rgba(240,240,240,0.55);line-height:1.65;">Acceso al grupo de alumnos donde se comparten prompts, scripts y flujos de trabajo. Lo que aprende uno, lo aprenden todos.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ANTES / DESPUÉS -->
+  <section style="background:#0a0a0a;padding:80px 0;">
+    <div style="max-width:1280px;margin:0 auto;padding:0 24px;">
+      <div style="text-align:center;margin-bottom:56px;">
+        <p style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#00ff41;letter-spacing:0.12em;margin-bottom:12px;">// el problema</p>
+        <h2 style="font-size:clamp(28px,4vw,52px);font-weight:900;color:#f0f0f0;line-height:1.1;">¿Cuánto tiempo pierdes<br>haciendo esto a mano?</h2>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:3px;border-radius:16px 16px 0 0;overflow:hidden;" class="before-after-grid">
+        <div style="background:#130505;padding:40px;">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:32px;">
+            <div style="width:10px;height:10px;border-radius:50%;background:#ff4040;"></div>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#ff8080;letter-spacing:0.08em;">SIN IA</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:20px;">
+            <div class="ba-item"><span class="ba-icon">✗</span><div><div class="ba-task">Diagnosticar error de nginx</div><div class="ba-time bad-time">~45 min buscando en Google + pruebas</div></div></div>
+            <div class="ba-item"><span class="ba-icon">✗</span><div><div class="ba-task">Documentar una incidencia</div><div class="ba-time bad-time">~20 min escribiendo el ticket</div></div></div>
+            <div class="ba-item"><span class="ba-icon">✗</span><div><div class="ba-task">Script de backup personalizado</div><div class="ba-time bad-time">~1h escribiendo, probando, depurando</div></div></div>
+            <div class="ba-item"><span class="ba-icon">✗</span><div><div class="ba-task">Informe semanal de incidencias</div><div class="ba-time bad-time">~1h recopilando datos y redactando</div></div></div>
+            <div class="ba-item"><span class="ba-icon">✗</span><div><div class="ba-task">Notificación de mantenimiento</div><div class="ba-time bad-time">~15 min redactando el email</div></div></div>
+            <div style="margin-top:16px;padding-top:20px;border-top:1px solid rgba(255,64,64,0.15);">
+              <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#ff8080;">total estimado: <strong style="color:#ff4040;font-size:18px;">~14h / semana</strong></span>
+            </div>
+          </div>
+        </div>
+
+        <div style="background:#060f06;padding:40px;">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:32px;">
+            <div style="width:10px;height:10px;border-radius:50%;background:#00ff41;"></div>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#00ff41;letter-spacing:0.08em;">CON IA</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:20px;">
+            <div class="ba-item"><span class="ba-icon good-icon">✓</span><div><div class="ba-task">Diagnosticar error de nginx</div><div class="ba-time good-time">~3 min pegando el log a Claude</div></div></div>
+            <div class="ba-item"><span class="ba-icon good-icon">✓</span><div><div class="ba-task">Documentar una incidencia</div><div class="ba-time good-time">~2 min dictando con Whisperflow</div></div></div>
+            <div class="ba-item"><span class="ba-icon good-icon">✓</span><div><div class="ba-task">Script de backup personalizado</div><div class="ba-time good-time">~5 min describiendo lo que necesitas</div></div></div>
+            <div class="ba-item"><span class="ba-icon good-icon">✓</span><div><div class="ba-task">Informe semanal de incidencias</div><div class="ba-time good-time">~2 min con script automatizado</div></div></div>
+            <div class="ba-item"><span class="ba-icon good-icon">✓</span><div><div class="ba-task">Notificación de mantenimiento</div><div class="ba-time good-time">~30 seg con expansor de texto</div></div></div>
+            <div style="margin-top:16px;padding-top:20px;border-top:1px solid rgba(0,255,65,0.15);">
+              <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#6ee7b7;">total estimado: <strong style="color:#00ff41;font-size:18px;">~4h / semana</strong></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:#111111;border-radius:0 0 16px 16px;padding:28px 40px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;" class="result-bar">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(240,240,240,0.4);">14h - 4h =</span>
+        <span style="font-size:clamp(28px,4vw,56px);font-weight:900;color:#00ff41;font-family:'Inter',sans-serif;letter-spacing:-2px;">10 horas semanales recuperadas</span>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:rgba(240,240,240,0.35);">≈ 500h / año</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENTO GRID -->
+  <section style="background:#080808;padding:80px 0;">
+    <div style="max-width:1280px;margin:0 auto;padding:0 24px;">
+      <div style="margin-bottom:48px;">
+        <p style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#00ff41;letter-spacing:0.12em;margin-bottom:12px;">// herramientas del curso</p>
+        <h2 style="font-size:clamp(28px,4vw,52px);font-weight:900;color:#f0f0f0;line-height:1.1;max-width:700px;">Las 5 herramientas de IA que todo técnico<br>de sistemas debería dominar</h2>
+        <p style="color:rgba(240,240,240,0.4);font-size:14px;line-height:1.65;max-width:560px;margin-top:14px;">Stack de productividad para administradores de sistemas: desde el diagnóstico de errores hasta la automatización de informes semanales.</p>
+      </div>
+
+      <div class="bento-grid">
+
+        <div class="bento-card bento-large" style="border-color:rgba(0,255,65,0.25);">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px;">
+            <div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#00ff41;letter-spacing:0.1em;margin-bottom:8px;">01 / DIAGNÓSTICO + SCRIPTS + DOCS</div>
+              <h3 style="font-size:32px;font-weight:900;color:#f0f0f0;">Claude</h3>
+            </div>
+            <div style="width:48px;height:48px;border-radius:12px;background:rgba(0,255,65,0.08);display:flex;align-items:center;justify-content:center;font-size:24px;">🤖</div>
+          </div>
+          <p style="color:rgba(240,240,240,0.55);line-height:1.65;font-size:15px;margin-bottom:24px;">Tu copiloto técnico. Pegas el log de error y te da la causa raíz en 10 segundos. Le describes el script que necesitas y lo genera con comentarios y manejo de errores.</p>
+          <div style="background:#0a0a0a;border-radius:8px;padding:16px;font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.8;border:1px solid rgba(0,255,65,0.08);">
+            <div style="color:rgba(0,255,65,0.45);"># Ejemplo real</div>
+            <div><span style="color:#00ff41;">❯</span> <span style="color:#f0f0f0;">Tengo este error en nginx:</span></div>
+            <div style="color:rgba(240,240,240,0.4);">  *1 SSL_do_handshake() failed...</div>
+            <div style="color:#00d4aa;margin-top:6px;">→ Causa: certificado expirado en /etc/ssl/</div>
+            <div style="color:#00d4aa;">→ Fix: certbot renew --force-renewal</div>
+            <div style="color:#00d4aa;">→ Script de renovación automática: [generado]</div>
+          </div>
+        </div>
+
+        <div class="bento-card">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#00ff41;letter-spacing:0.1em;margin-bottom:8px;">02 / DICTADO POR VOZ</div>
+          <h3 style="font-size:24px;font-weight:900;color:#f0f0f0;margin-bottom:12px;">Whisperflow</h3>
+          <p style="color:rgba(240,240,240,0.55);font-size:14px;line-height:1.6;margin-bottom:20px;">Mantén las manos en el servidor. Dicta incidencias, tickets y emails mientras resuelves el problema.</p>
+          <div style="display:flex;align-items:center;gap:10px;padding:12px;background:rgba(0,255,65,0.04);border-radius:8px;border:1px solid rgba(0,255,65,0.1);">
+            <span style="font-size:20px;">🎤</span>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(240,240,240,0.45);">
+              <span style="color:#00ff41;">[ REC ]</span> "servidor de correo caído desde las 14:32..."
+            </div>
+          </div>
+        </div>
+
+        <div class="bento-card">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#00ff41;letter-spacing:0.1em;margin-bottom:8px;">03 / BASH + POWERSHELL</div>
+          <h3 style="font-size:24px;font-weight:900;color:#f0f0f0;margin-bottom:12px;">Scripts con IA</h3>
+          <p style="color:rgba(240,240,240,0.55);font-size:14px;line-height:1.6;margin-bottom:20px;">Describe lo que necesitas, obtén el script explicado línea a línea. Listo para producción.</p>
+          <div style="display:flex;flex-direction:column;gap:6px;">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:11px;padding:6px 10px;background:rgba(0,255,65,0.05);border-radius:4px;color:#6ee7b7;">backup_rotation.sh ✓</div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:11px;padding:6px 10px;background:rgba(0,255,65,0.05);border-radius:4px;color:#6ee7b7;">monitor_disk.ps1 ✓</div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:11px;padding:6px 10px;background:rgba(0,255,65,0.05);border-radius:4px;color:#6ee7b7;">check_services.sh ✓</div>
+          </div>
+        </div>
+
+        <div class="bento-card bento-wide" style="border-color:rgba(0,212,170,0.2);">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px;">
+            <div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#00d4aa;letter-spacing:0.1em;margin-bottom:8px;">04 / ATAJOS Y EXPANSORES</div>
+              <h3 style="font-size:26px;font-weight:900;color:#f0f0f0;">Atajos de Windows + expansores de texto</h3>
+            </div>
+          </div>
+          <p style="color:rgba(240,240,240,0.55);font-size:14px;line-height:1.6;margin-bottom:20px;max-width:480px;">Atajos nativos de Windows que la mayoría de técnicos desconoce, más expansores que convierten 4 teclas en plantillas completas.</p>
+          <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;">
+            <div class="expander-demo"><span class="exp-key">Win+V</span><span class="exp-arrow">→</span><span class="exp-val">Historial portapapeles</span></div>
+            <div class="expander-demo"><span class="exp-key">Win+⇧+S</span><span class="exp-arrow">→</span><span class="exp-val">Recorte de pantalla</span></div>
+            <div class="expander-demo"><span class="exp-key">Win+.</span><span class="exp-arrow">→</span><span class="exp-val">Panel de emojis/símbolos</span></div>
+            <div class="expander-demo"><span class="exp-key">Win+G</span><span class="exp-arrow">→</span><span class="exp-val">Grabación de pantalla</span></div>
+            <div class="expander-demo"><span class="exp-key">;inc</span><span class="exp-arrow">→</span><span class="exp-val">Plantilla incidencia</span></div>
+            <div class="expander-demo"><span class="exp-key">;mant</span><span class="exp-arrow">→</span><span class="exp-val">Notif. mantenimiento</span></div>
+            <div class="expander-demo"><span class="exp-key">;run</span><span class="exp-arrow">→</span><span class="exp-val">Runbook despliegue</span></div>
+            <div class="expander-demo"><span class="exp-key">;post</span><span class="exp-arrow">→</span><span class="exp-val">Postmortem template</span></div>
+          </div>
+        </div>
+
+        <div class="bento-card" style="border-color:rgba(255,150,50,0.18);">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#ffa030;letter-spacing:0.1em;margin-bottom:8px;">05 / FLUJO COMPLETO</div>
+          <h3 style="font-size:24px;font-weight:900;color:#f0f0f0;margin-bottom:12px;">Gestión de incidencias</h3>
+          <p style="color:rgba(240,240,240,0.55);font-size:14px;line-height:1.6;margin-bottom:20px;">Del problema al cierre documentado en 10 minutos.</p>
+          <div style="display:flex;flex-direction:column;gap:6px;">
+            <div class="flow-step">🔴 Detección</div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-step">🤖 Diagnóstico IA</div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-step">🔧 Resolución</div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-step">📄 Documentación auto</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- TEMARIO -->
+  <section id="temario" style="background:#0a0a0a;padding:80px 0;">
+    <div style="max-width:900px;margin:0 auto;padding:0 24px;">
+      <div style="text-align:center;margin-bottom:56px;">
+        <p style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#00ff41;letter-spacing:0.12em;margin-bottom:12px;">// temario</p>
+        <h2 style="font-size:clamp(28px,4vw,52px);font-weight:900;color:#f0f0f0;line-height:1.1;">Temario: IA aplicada a sistemas IT.<br><span style="font-size:clamp(20px,3vw,38px);color:rgba(240,240,240,0.6);">6 módulos prácticos + nuevos según evoluciona la IA.</span></h2>
+      </div>
+
+      <div style="position:relative;">
+        <div style="position:absolute;left:24px;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,#00ff41,rgba(0,255,65,0.05));"></div>
+
+        <div style="display:flex;flex-direction:column;gap:0;">
+
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+              <div class="tl-meta"><span class="tl-num">01</span></div>
+              <h3 class="tl-title">La IA como copiloto del sysadmin</h3>
+              <p class="tl-desc">Qué puede y qué NO puede hacer la IA por un técnico de sistemas. El stack mínimo para empezar hoy mismo.</p>
+              <div class="tl-tags"><span class="tag">Mentalidad</span><span class="tag">Setup</span></div>
+            </div>
+          </div>
+
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+              <div class="tl-meta"><span class="tl-num">02</span></div>
+              <h3 class="tl-title">Claude para servidores</h3>
+              <p class="tl-desc">Prompts que funcionan para diagnóstico de errores. Documentación automática de cambios. Scripts bash y PowerShell generados y explicados.</p>
+              <div class="tl-tags"><span class="tag">Claude</span><span class="tag">Diagnóstico</span><span class="tag">Scripts</span><span class="tag">Docs</span></div>
+            </div>
+          </div>
+
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+              <div class="tl-meta"><span class="tl-num">03</span></div>
+              <h3 class="tl-title">Whisperflow para técnicos IT</h3>
+              <p class="tl-desc">Configurar el atajo global. Demo: dictar una incidencia mientras se resuelve, crear ticket y email sin soltar el ratón.</p>
+              <div class="tl-tags"><span class="tag">Whisperflow</span><span class="tag">Voz</span><span class="tag">Tickets</span></div>
+            </div>
+          </div>
+
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+              <div class="tl-meta"><span class="tl-num">04</span></div>
+              <h3 class="tl-title">Atajos de Windows + expansores de texto</h3>
+              <p class="tl-desc">Los atajos nativos de Windows que casi nadie usa: <code>Win+V</code> (historial portapapeles), <code>Win+Shift+S</code> (recorte rápido), <code>Win+G</code> (grabación)... más expansores que convierten 4 caracteres en plantillas completas de IT.</p>
+              <div class="tl-tags"><span class="tag">Win+V</span><span class="tag">Atajos Windows</span><span class="tag">Text Expanders</span><span class="tag">Output IA</span></div>
+            </div>
+          </div>
+
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+              <div class="tl-meta"><span class="tl-num">05</span></div>
+              <h3 class="tl-title">Gestión de incidencias con IA</h3>
+              <p class="tl-desc">Flujo completo: servidor caído → diagnóstico → resolución → ticket → email al cliente → postmortem. Script de informe semanal automático.</p>
+              <div class="tl-tags"><span class="tag">Incidencias</span><span class="tag">Postmortem</span><span class="tag">Informe auto</span></div>
+            </div>
+          </div>
+
+          <div class="tl-item" style="padding-bottom:0;">
+            <div class="tl-dot" style="background:#00ff41;box-shadow:0 0 12px rgba(0,255,65,0.5);"></div>
+            <div class="tl-content">
+              <div class="tl-meta"><span class="tl-num">06+</span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#00ff41;background:rgba(0,255,65,0.08);padding:3px 8px;border-radius:4px;letter-spacing:0.06em;">EN EXPANSIÓN</span></div>
+              <h3 class="tl-title">Nuevas herramientas según van llegando</h3>
+              <p class="tl-desc">Cuando aparezca una herramienta relevante para sysadmins, se añade un módulo nuevo. Los alumnos actuales reciben el acceso automáticamente.</p>
+              <div class="tl-tags"><span class="tag">Actualizaciones</span><span class="tag">Comunidad</span><span class="tag">Siempre vigente</span></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARA QUIÉN -->
+  <section style="background:#080808;padding:80px 0;">
+    <div style="max-width:1280px;margin:0 auto;padding:0 24px;">
+      <div style="margin-bottom:48px;">
+        <p style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#00ff41;letter-spacing:0.12em;margin-bottom:12px;">// target</p>
+        <h2 style="font-size:clamp(28px,4vw,48px);font-weight:900;color:#f0f0f0;line-height:1.1;">¿Quién necesita este curso<br>de IA para técnicos IT?</h2>
+      </div>
+      <div class="who-grid">
+        <div class="who-card"><div class="who-role">Administrador de sistemas</div><p class="who-desc">Linux o Windows. Llevas servidores, usuarios y te piden más con menos. La IA puede ser tu segundo técnico.</p><div class="who-match">✓ Match perfecto</div></div>
+        <div class="who-card"><div class="who-role">Técnico de soporte IT</div><p class="who-desc">Gestionas tickets a diario. Quieres resolverlos más rápido y documentarlos mejor con el mínimo esfuerzo.</p><div class="who-match">✓ Match perfecto</div></div>
+        <div class="who-card"><div class="who-role">IT en solitario (PyME)</div><p class="who-desc">Llevas sistemas, soporte, backup y seguridad tú solo. Con IA tienes el equivalente a un segundo técnico.</p><div class="who-match">✓ Match perfecto</div></div>
+        <div class="who-card"><div class="who-role">Junior que quiere avanzar</div><p class="who-desc">Recién aterrizado en IT. Con este flujo de trabajo tendrás la productividad de alguien con 10 años de experiencia.</p><div class="who-match">✓ Vale la pena</div></div>
+        <div class="who-card"><div class="who-role">Senior que ya usa IA</div><p class="who-desc">Usas ChatGPT de vez en cuando. Aquí aprenderás a integrarlo en tu flujo real, no solo para consultas puntuales.</p><div class="who-match">✓ Vale la pena</div></div>
+        <div class="who-card"><div class="who-role">Consultor / MSP</div><p class="who-desc">Llevas varios clientes a la vez. Documenta, responde y gestiona incidencias de forma más eficiente.</p><div class="who-match">✓ Vale la pena</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEXTO SEO: Para qué sirve este curso -->
+  <section style="background:#0a0a0a;padding:80px 0;">
+    <div style="max-width:900px;margin:0 auto;padding:0 24px;">
+      <div style="margin-bottom:40px;">
+        <p style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#00ff41;letter-spacing:0.12em;margin-bottom:12px;">// productividad con IA para sysadmins</p>
+        <h2 style="font-size:clamp(24px,3.5vw,42px);font-weight:900;color:#f0f0f0;line-height:1.15;">Productividad del administrador de sistemas<br><span style="color:#00ff41;">con inteligencia artificial</span></h2>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;" class="seo-text-grid">
+        <div>
+          <h3 style="font-size:17px;font-weight:700;color:#f0f0f0;margin-bottom:10px;">Claude para servidores Linux y Windows</h3>
+          <p style="font-size:14px;color:rgba(240,240,240,0.5);line-height:1.75;">Claude es el asistente de IA más útil para un administrador de sistemas. Permite diagnosticar errores de nginx, Apache, systemd o Active Directory en segundos pegando el log directamente. También genera scripts bash y PowerShell listos para producción y documenta cambios de configuración automáticamente. En este curso aprenderás los prompts exactos que funcionan para el trabajo real de un sysadmin.</p>
+        </div>
+        <div>
+          <h3 style="font-size:17px;font-weight:700;color:#f0f0f0;margin-bottom:10px;">Automatizar la gestión de incidencias IT con IA</h3>
+          <p style="font-size:14px;color:rgba(240,240,240,0.5);line-height:1.75;">La gestión de incidencias consume entre 3 y 5 horas semanales de un técnico IT solo en documentación y comunicación. Combinando Whisperflow (dictado por voz), expansores de texto y Claude para el postmortem automático, ese tiempo se reduce a menos de 30 minutos. El flujo completo —detección, diagnóstico, resolución, ticket, email y postmortem— queda cerrado en 10 minutos.</p>
+        </div>
+        <div>
+          <h3 style="font-size:17px;font-weight:700;color:#f0f0f0;margin-bottom:10px;">Atajos de Windows que los técnicos IT no conocen</h3>
+          <p style="font-size:14px;color:rgba(240,240,240,0.5);line-height:1.75;">Windows incluye herramientas nativas poco conocidas que multiplican la productividad del técnico: <code style="font-family:'JetBrains Mono',monospace;color:#00d4aa;font-size:12px;background:rgba(0,212,170,0.08);padding:1px 5px;border-radius:3px;">Win+V</code> para historial de portapapeles, <code style="font-family:'JetBrains Mono',monospace;color:#00d4aa;font-size:12px;background:rgba(0,212,170,0.08);padding:1px 5px;border-radius:3px;">Win+Shift+S</code> para recortes, <code style="font-family:'JetBrains Mono',monospace;color:#00d4aa;font-size:12px;background:rgba(0,212,170,0.08);padding:1px 5px;border-radius:3px;">Win+G</code> para grabación. Combinados con expansores de texto que convierten <code style="font-family:'JetBrains Mono',monospace;color:#00d4aa;font-size:12px;background:rgba(0,212,170,0.08);padding:1px 5px;border-radius:3px;">;inc</code> en una plantilla de incidencia completa, el ahorro de tiempo es inmediato desde el primer día.</p>
+        </div>
+        <div>
+          <h3 style="font-size:17px;font-weight:700;color:#f0f0f0;margin-bottom:10px;">Scripts con IA: bash y PowerShell sin ser programador</h3>
+          <p style="font-size:14px;color:rgba(240,240,240,0.5);line-height:1.75;">Uno de los mayores bloqueos para un técnico IT es escribir o mantener scripts. Con IA, describe en lenguaje natural lo que necesita el script y obtienes el código con comentarios, manejo de errores y casos límite incluidos. Rotación de backups, monitorización de disco, comprobación de servicios, informes semanales: todo automatizable sin necesidad de ser programador.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ VISIBLE -->
+  <section id="faq" style="background:#080808;padding:80px 0;">
+    <div style="max-width:860px;margin:0 auto;padding:0 24px;">
+      <div style="text-align:center;margin-bottom:56px;">
+        <p style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#00ff41;letter-spacing:0.12em;margin-bottom:12px;">// faq</p>
+        <h2 style="font-size:clamp(24px,3.5vw,44px);font-weight:900;color:#f0f0f0;line-height:1.1;">Preguntas frecuentes</h2>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:6px;">
+
+        <details class="faq-item">
+          <summary class="faq-q">¿Este curso es para mí si soy administrador de sistemas?</summary>
+          <div class="faq-a">
+            <p>Sí, es el público principal. TechIA Boost está diseñado para sysadmins que gestionan servidores Linux o Windows, llevan incidencias y necesitan ahorrar tiempo en diagnósticos, documentación y scripts. Si usas nginx, systemd, Active Directory o PowerShell en tu día a día, este curso es para ti.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-q">¿Necesito saber programar para seguir el curso?</summary>
+          <div class="faq-a">
+            <p>No. Aunque se generan scripts bash y PowerShell con IA, el curso explica todo paso a paso. No necesitas ser desarrollador: con describir lo que necesitas a Claude ya obtienes el script funcional con comentarios y manejo de errores. Solo necesitas saber qué quieres automatizar.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-q">¿Qué es Claude y cómo lo uso para administración de sistemas?</summary>
+          <div class="faq-a">
+            <p>Claude es un asistente de IA de Anthropic. Para sysadmins es especialmente útil: pegas un log de error y te da la causa raíz en segundos, le describes un script y lo genera listo para producción, o le pides que documente un cambio de configuración automáticamente. En el curso aprendes los prompts exactos para casos reales de administración de sistemas.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-q">¿Qué es Whisperflow y para qué sirve a un técnico IT?</summary>
+          <div class="faq-a">
+            <p>Whisperflow convierte tu voz en texto en cualquier campo del sistema. Para un técnico IT permite dictar incidencias, tickets y emails mientras tienes las manos en el teclado resolviendo el problema. En lugar de 20 minutos escribiendo el ticket, son 2 minutos dictando mientras trabajas.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-q">¿Realmente se pueden ahorrar 10 horas semanales con IA?</summary>
+          <div class="faq-a">
+            <p>La estimación viene de tareas concretas: diagnosticar un error de nginx pasa de ~45 min (Google + pruebas) a ~3 min con Claude; documentar una incidencia pasa de ~20 min a ~2 min con Whisperflow; generar un script de backup pasa de ~1h a ~5 min. Sumando tareas habituales de un técnico de sistemas, el ahorro es entre 8 y 14 horas semanales. Las 10h son el valor conservador.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-q">¿El acceso es permanente y recibo las actualizaciones?</summary>
+          <div class="faq-a">
+            <p>Sí. Pagas una vez y el acceso es para siempre. Cada vez que aparezca una herramienta nueva relevante para sysadmins se añade un módulo y los alumnos actuales lo reciben automáticamente sin coste adicional. El precio de 50€ no volverá a subir para los alumnos ya inscritos.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-q">¿Funciona para entornos Linux y Windows Server?</summary>
+          <div class="faq-a">
+            <p>Sí. Los módulos de Claude, Whisperflow y atajos de Windows funcionan en ambos entornos. Los scripts de ejemplo cubren bash (Linux) y PowerShell (Windows Server). Si tu entorno es mixto, el curso sigue siendo completamente aplicable.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-q">¿El curso incluye comunidad o soporte?</summary>
+          <div class="faq-a">
+            <p>Sí. El acceso incluye entrada al grupo de alumnos donde se comparten prompts, scripts y flujos de trabajo reales. Si tienes dudas sobre cómo aplicar una técnica a tu entorno, puedes preguntar. Lo que aprende un alumno, lo aprenden todos.</p>
+          </div>
+        </details>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section style="background:#0a0a0a;padding:100px 0;position:relative;overflow:hidden;">
+    <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(0,255,65,0.03) 1px,transparent 1px);background-size:24px 24px;pointer-events:none;"></div>
+    <div style="max-width:800px;margin:0 auto;padding:0 24px;text-align:center;position:relative;z-index:1;">
+      <h2 style="font-size:clamp(32px,5vw,68px);font-weight:900;color:#f0f0f0;line-height:1;margin-bottom:12px;">
+        50€. <span style="color:#00ff41;">Acceso permanente.</span><br>10h ahorradas.
+      </h2>
+      <p style="color:rgba(240,240,240,0.5);font-size:18px;margin-bottom:48px;line-height:1.6;">Vídeos grabados · Comunidad activa · Actualizaciones para siempre</p>
+
+      <div style="background:#111111;border:1px solid rgba(0,255,65,0.18);border-radius:16px;padding:40px;max-width:520px;margin:0 auto;">
+        <p style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#00ff41;letter-spacing:0.12em;margin-bottom:24px;">$ ./inscribirse --curso=techai-boost</p>
+        <form id="bottom-form" style="display:flex;flex-direction:column;gap:12px;">
+          <label style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#00ff41;text-align:left;letter-spacing:0.08em;">// tu email</label>
+          <input
+            id="bottom-email"
+            type="email"
+            placeholder="root@servidor.es"
+            required
+            style="background:rgba(0,255,65,0.04);border:1px solid rgba(0,255,65,0.18);border-radius:8px;padding:16px;color:#f0f0f0;font-family:'JetBrains Mono',monospace;font-size:14px;outline:none;"
+          />
+          <button type="submit" id="bottom-btn" class="btn-primary" style="width:100%;padding:18px;">
+            Apúntame a la lista de espera →
+          </button>
+        </form>
+        <div id="bottom-success" style="display:none;padding:20px 0;">
+          <p style="font-family:'JetBrains Mono',monospace;color:#00ff41;font-size:15px;">✓ perfecto. te avisamos cuando abran inscripciones.</p>
+        </div>
+        <p style="font-size:12px;color:rgba(240,240,240,0.22);margin-top:16px;">Sin spam · Solo avisamos cuando abren inscripciones</p>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<script is:inline>
+  // Tema verde: añadir clase al body (el CSS is:global hace el resto)
+  document.body.classList.add('techai-theme');
+
+  // Override del scroll handler de Navigation.astro (que resetea a azul)
+  window.addEventListener('scroll', () => {
+    const h = document.getElementById('main-header');
+    if (!h) return;
+    const bg = window.scrollY > 20
+      ? 'linear-gradient(135deg, #030703 0%, #060a06 100%)'
+      : 'linear-gradient(135deg, #040904 0%, #070c07 50%, #040904 100%)';
+    h.style.setProperty('background', bg, 'important');
+    h.style.setProperty('border-bottom', '1px solid rgba(0,255,65,0.15)', 'important');
+  });
+
+  // Cuenta atrás
+  const target = new Date('2026-07-07T18:00:00').getTime();
+  function tick() {
+    const diff = target - Date.now();
+    if (diff <= 0) return;
+    const pad = n => String(Math.floor(n)).padStart(2,'0');
+    document.getElementById('cd-d').textContent = pad(diff/86400000);
+    document.getElementById('cd-h').textContent = pad((diff%86400000)/3600000);
+    document.getElementById('cd-m').textContent = pad((diff%3600000)/60000);
+    document.getElementById('cd-s').textContent = pad((diff%60000)/1000);
+  }
+  tick(); setInterval(tick, 1000);
+
+  // Terminal typewriter
+  const lines = [
+    { t: '$ claude diagnose --paste-log', c: '#00ff41' },
+    { t: '> [ANALIZANDO nginx error.log...]', c: 'rgba(240,240,240,0.4)', d: 800 },
+    { t: '✓ Causa: SSL cert expirado', c: '#00d4aa', d: 1400 },
+    { t: '✓ Fix: certbot renew --force', c: '#00d4aa', d: 1900 },
+    { t: '', c: '', d: 2500 },
+    { t: '$ whisperflow start', c: '#00ff41', d: 2900 },
+    { t: '> [ REC ] "incidencia servidor web..."', c: 'rgba(240,240,240,0.4)', d: 3600 },
+    { t: '✓ Ticket generado automáticamente', c: '#00d4aa', d: 4300 },
+    { t: '', c: '', d: 4900 },
+    { t: '$ ai-script --task="backup diario"', c: '#00ff41', d: 5300 },
+    { t: '> Generando backup_daily.sh...', c: 'rgba(240,240,240,0.4)', d: 6000 },
+    { t: '✓ Script listo con manejo de errores', c: '#00d4aa', d: 6600 },
+    { t: '', c: '', d: 7200 },
+    { t: '# Tiempo total: 8 min | Antes: ~3h', c: 'rgba(0,255,65,0.4)', d: 7600 },
+  ];
+  const out = document.getElementById('terminal-output');
+  if (out) {
+    lines.forEach(({ t, c, d = 0 }) => {
+      setTimeout(() => {
+        const el = document.createElement('div');
+        el.textContent = t;
+        el.style.color = c;
+        if (!t) el.style.height = '10px';
+        out.appendChild(el);
+        out.parentElement.scrollTop = 9999;
+      }, d);
+    });
+  }
+
+  // Formulario
+  async function submitForm(emailId, formId, successId, btnId, defaultBtnText) {
+    const email = document.getElementById(emailId)?.value;
+    const btn = document.getElementById(btnId);
+    if (btn) { btn.disabled = true; btn.textContent = 'Enviando...'; }
+    try {
+      const res = await fetch('/api/lista-espera-techai-boost', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email })
+      });
+      const data = await res.json();
+      if (data.success) {
+        const form = document.getElementById(formId);
+        const success = document.getElementById(successId);
+        if (form) form.style.display = 'none';
+        if (success) success.style.display = 'block';
+      } else {
+        if (btn) { btn.disabled = false; btn.textContent = defaultBtnText; }
+      }
+    } catch {
+      if (btn) { btn.disabled = false; btn.textContent = defaultBtnText; }
+    }
+  }
+
+  document.getElementById('hero-form')?.addEventListener('submit', e => {
+    e.preventDefault();
+    submitForm('hero-email','hero-form','hero-success','hero-btn','Avísame →');
+  });
+  document.getElementById('bottom-form')?.addEventListener('submit', e => {
+    e.preventDefault();
+    submitForm('bottom-email','bottom-form','bottom-success','bottom-btn','Apúntame a la lista de espera →');
+  });
+</script>
+
+<style is:global>
+  /* ── TechIA Boost — theme overrides (solo en esta página) ── */
+
+  /* Header fondo */
+  body.techai-theme #main-header {
+    background: linear-gradient(135deg, #040904 0%, #070c07 50%, #040904 100%) !important;
+    border-bottom: 1px solid rgba(0,255,65,0.15) !important;
+  }
+
+  /* Nav links: subrayado verde en hover/active */
+  body.techai-theme .nav-link::after {
+    background: linear-gradient(90deg, #00ff41, #00d4aa) !important;
+  }
+
+  /* Nav links highlight (Wazuh/Servicios dropdown) */
+  body.techai-theme .nav-link--highlight {
+    color: #00d4aa !important;
+  }
+  body.techai-theme .nav-link--highlight:hover {
+    color: #00ff41 !important;
+  }
+
+  /* Botón CTA "Solicitar Reunión" */
+  body.techai-theme header nav a[href="/reunion"] {
+    background: linear-gradient(135deg, #00cc35 0%, #009e2a 100%) !important;
+    color: #0a0a0a !important;
+  }
+
+  /* Footer fondo y borde */
+  body.techai-theme footer {
+    background-color: #040904 !important;
+    border-top-color: rgba(0,255,65,0.12) !important;
+  }
+
+  /* Override global "a { color: accent-600 }" — links del footer por defecto son grises */
+  body.techai-theme footer a {
+    color: rgba(200,200,200,0.6) !important;
+  }
+
+  /* Links de botones (text-white) conservan su color */
+  body.techai-theme footer a.text-white {
+    color: #ffffff !important;
+  }
+
+  /* Hover en verde */
+  body.techai-theme footer a:hover {
+    color: #00ff41 !important;
+  }
+  body.techai-theme footer a.text-white:hover {
+    color: rgba(255,255,255,0.85) !important;
+  }
+
+  /* Logo link */
+  body.techai-theme footer a[href="/"] {
+    color: inherit !important;
+  }
+
+  /* Footer botón "Te llamamos" */
+  body.techai-theme #te-llamamos-btn {
+    background-color: #00cc35 !important;
+    color: #0a0a0a !important;
+  }
+  body.techai-theme #te-llamamos-btn:hover {
+    background-color: #00e83a !important;
+  }
+
+  /* Footer divisor interno */
+  body.techai-theme footer .border-base-700 {
+    border-color: rgba(0,255,65,0.1) !important;
+  }
+</style>
+
+<style>
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+  @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+  .chip {
+    font-family: 'JetBrains Mono','Fira Code',monospace;
+    font-size: 12px;
+    padding: 5px 12px;
+    border: 1px solid rgba(0,255,65,0.2);
+    border-radius: 4px;
+    color: rgba(0,255,65,0.7);
+    background: rgba(0,255,65,0.04);
+    letter-spacing: 0.05em;
+  }
+  .btn-primary {
+    background: #00ff41;
+    color: #0a0a0a;
+    font-family: 'JetBrains Mono','Fira Code',monospace;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 14px 24px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    white-space: nowrap;
+    letter-spacing: 0.04em;
+    transition: opacity 0.15s, transform 0.15s;
+  }
+  .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+  .btn-primary:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
+
+  .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+  .terminal-window { border-radius: 12px; border: 1px solid rgba(0,255,65,0.15); overflow: hidden; box-shadow: 0 0 60px rgba(0,255,65,0.05), 0 24px 48px rgba(0,0,0,0.6); }
+
+  .cd-box { background: rgba(0,255,65,0.04); border: 1px solid rgba(0,255,65,0.1); border-radius: 8px; padding: 12px 8px; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+  .cd-num { font-family: 'JetBrains Mono',monospace; font-size: 28px; font-weight: 700; color: #00ff41; line-height: 1; }
+  .cd-lbl { font-family: 'JetBrains Mono',monospace; font-size: 10px; color: rgba(0,255,65,0.35); letter-spacing: 0.08em; text-transform: uppercase; }
+
+  .marquee-track { display: inline-flex; align-items: center; gap: 24px; animation: marquee 30s linear infinite; white-space: nowrap; }
+  .mq-item { font-family: 'JetBrains Mono','Fira Code',monospace; font-size: 13px; font-weight: 600; color: #0a0a0a; letter-spacing: 0.02em; }
+  .mq-sep { color: rgba(10,10,10,0.35); font-size: 10px; }
+
+  .ba-item { display: flex; align-items: flex-start; gap: 12px; }
+  .ba-icon { font-size: 16px; color: #ff4040; flex-shrink: 0; margin-top: 2px; font-weight: 700; }
+  .good-icon { color: #00ff41; }
+  .ba-task { font-size: 14px; font-weight: 600; color: #f0f0f0; margin-bottom: 2px; }
+  .ba-time { font-family: 'JetBrains Mono',monospace; font-size: 12px; }
+  .bad-time { color: rgba(255,128,128,0.65); }
+  .good-time { color: rgba(0,255,65,0.6); }
+
+  .bento-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+  .bento-card { background: #111111; border: 1px solid rgba(255,255,255,0.07); border-radius: 16px; padding: 28px; transition: border-color 0.2s, transform 0.2s; }
+  .bento-card:hover { border-color: rgba(0,255,65,0.2); transform: translateY(-2px); }
+  .bento-large { grid-column: span 2; }
+  .bento-wide { grid-column: span 2; }
+
+  .expander-demo { display: flex; align-items: center; gap: 6px; padding: 8px 10px; background: rgba(0,255,65,0.04); border-radius: 6px; border: 1px solid rgba(0,255,65,0.08); }
+  .exp-key { font-family: 'JetBrains Mono',monospace; font-size: 11px; color: #00ff41; font-weight: 700; }
+  .exp-arrow { font-size: 11px; color: rgba(240,240,240,0.25); }
+  .exp-val { font-family: 'JetBrains Mono',monospace; font-size: 10px; color: rgba(240,240,240,0.45); }
+
+  .flow-step { font-family: 'JetBrains Mono',monospace; font-size: 12px; color: rgba(240,240,240,0.65); padding: 6px 10px; background: rgba(255,150,50,0.06); border-radius: 4px; border-left: 2px solid rgba(255,150,50,0.25); }
+  .flow-arrow { font-family: 'JetBrains Mono',monospace; font-size: 12px; color: rgba(240,240,240,0.18); margin-left: 10px; }
+
+  .tl-item { display: flex; align-items: flex-start; gap: 24px; padding: 0 0 40px 56px; position: relative; }
+  .tl-dot { position: absolute; left: 17px; top: 4px; width: 15px; height: 15px; border-radius: 50%; background: #111111; border: 2px solid #00ff41; flex-shrink: 0; }
+  .tl-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .tl-num { font-family: 'JetBrains Mono',monospace; font-size: 11px; color: #00ff41; letter-spacing: 0.1em; background: rgba(0,255,65,0.07); padding: 3px 8px; border-radius: 4px; }
+  .tl-title { font-size: 20px; font-weight: 800; color: #f0f0f0; margin-bottom: 8px; }
+  .tl-desc { font-size: 14px; color: rgba(240,240,240,0.5); line-height: 1.65; margin-bottom: 12px; }
+  .tl-desc code { font-family: 'JetBrains Mono',monospace; font-size: 12px; color: #00d4aa; background: rgba(0,212,170,0.08); padding: 1px 5px; border-radius: 3px; }
+  .tl-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag { font-family: 'JetBrains Mono',monospace; font-size: 10px; padding: 3px 8px; border: 1px solid rgba(0,255,65,0.13); border-radius: 3px; color: rgba(0,255,65,0.5); letter-spacing: 0.05em; }
+
+  .who-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+  .who-card { background: #111111; border: 1px solid rgba(255,255,255,0.07); border-radius: 12px; padding: 24px; transition: border-color 0.2s; }
+  .who-card:hover { border-color: rgba(0,255,65,0.18); }
+  .who-role { font-size: 16px; font-weight: 800; color: #f0f0f0; margin-bottom: 10px; }
+  .who-desc { font-size: 13px; color: rgba(240,240,240,0.5); line-height: 1.6; margin-bottom: 16px; }
+  .who-match { font-family: 'JetBrains Mono',monospace; font-size: 11px; color: #00ff41; letter-spacing: 0.06em; }
+
+  .pillars-grid { }
+
+  /* FAQ visible */
+  .faq-item {
+    background: #111111;
+    border: 1px solid rgba(0,255,65,0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .faq-item[open] { border-color: rgba(0,255,65,0.3); }
+  .faq-q {
+    font-family: 'JetBrains Mono','Fira Code',monospace;
+    font-size: 14px;
+    font-weight: 600;
+    color: #f0f0f0;
+    padding: 18px 20px;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    letter-spacing: 0.01em;
+    transition: color 0.15s;
+  }
+  .faq-q::-webkit-details-marker { display: none; }
+  .faq-q::before {
+    content: '▶';
+    font-size: 9px;
+    color: #00ff41;
+    transition: transform 0.2s;
+    flex-shrink: 0;
+  }
+  details[open] .faq-q::before { transform: rotate(90deg); }
+  .faq-q:hover { color: #00ff41; }
+  .faq-a {
+    padding: 0 20px 18px 44px;
+    border-top: 1px solid rgba(0,255,65,0.06);
+  }
+  .faq-a p {
+    font-size: 14px;
+    color: rgba(240,240,240,0.5);
+    line-height: 1.75;
+    margin: 12px 0 0;
+  }
+
+  /* Grid texto SEO responsive */
+  .seo-text-grid { }
+
+  @media (max-width: 900px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+    .terminal-col { display: none; }
+    .bento-grid { grid-template-columns: 1fr 1fr; }
+    .bento-large, .bento-wide { grid-column: span 2; }
+    .who-grid { grid-template-columns: 1fr 1fr; }
+    .pillars-grid { grid-template-columns: 1fr !important; }
+    .seo-text-grid { grid-template-columns: 1fr !important; }
+  }
+  @media (max-width: 600px) {
+    .bento-grid { grid-template-columns: 1fr; }
+    .bento-large, .bento-wide { grid-column: span 1; }
+    .who-grid { grid-template-columns: 1fr; }
+    .before-after-grid { grid-template-columns: 1fr !important; }
+    .result-bar { flex-direction: column; text-align: center; padding: 24px !important; }
+  }
+</style>
