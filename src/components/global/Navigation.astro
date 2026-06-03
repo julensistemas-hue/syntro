@@ -157,6 +157,18 @@ const currentPath = Astro.url.pathname;
                 <div class="p-5" style="border-right: 1px solid rgba(255,255,255,0.06);">
                   <p class="text-[10px] font-bold uppercase tracking-widest mb-4" style="color: #60a5fa;">Inteligencia Artificial</p>
                   <div class="space-y-0.5">
+                    <a href="/servicios/gestor-citas" @click="dropdownOpen = false"
+                      class="group block px-3 py-2.5 rounded-lg transition-all duration-150 hover:bg-white/5"
+                      style={currentPath === '/servicios/gestor-citas' ? 'background: rgba(99,102,241,0.15);' : ''}>
+                      <p class="text-sm font-semibold text-white/90 group-hover:text-white transition-colors">Gestor de Citas IA</p>
+                      <p class="text-xs mt-0.5" style="color: rgba(148,163,184,0.7);">Agenda automática 24/7</p>
+                    </a>
+                    <a href="/servicios/atencion-llamadas" @click="dropdownOpen = false"
+                      class="group block px-3 py-2.5 rounded-lg transition-all duration-150 hover:bg-white/5"
+                      style={currentPath === '/servicios/atencion-llamadas' ? 'background: rgba(99,102,241,0.15);' : ''}>
+                      <p class="text-sm font-semibold text-white/90 group-hover:text-white transition-colors">Atención de Llamadas IA</p>
+                      <p class="text-xs mt-0.5" style="color: rgba(148,163,184,0.7);">Recepcionista virtual 24/7</p>
+                    </a>
                     <a href="/servicios/chatbot" @click="dropdownOpen = false"
                       class="group block px-3 py-2.5 rounded-lg transition-all duration-150 hover:bg-white/5"
                       style={currentPath === '/servicios/chatbot' ? 'background: rgba(99,102,241,0.15);' : ''}>
@@ -168,12 +180,6 @@ const currentPath = Astro.url.pathname;
                       style={currentPath === '/servicios/gestor-documental' ? 'background: rgba(99,102,241,0.15);' : ''}>
                       <p class="text-sm font-semibold text-white/90 group-hover:text-white transition-colors">Gestor Documental IA</p>
                       <p class="text-xs mt-0.5" style="color: rgba(148,163,184,0.7);">Búsqueda semántica</p>
-                    </a>
-                    <a href="/servicios/atencion-llamadas" @click="dropdownOpen = false"
-                      class="group block px-3 py-2.5 rounded-lg transition-all duration-150 hover:bg-white/5"
-                      style={currentPath === '/servicios/atencion-llamadas' ? 'background: rgba(99,102,241,0.15);' : ''}>
-                      <p class="text-sm font-semibold text-white/90 group-hover:text-white transition-colors">Atención de Llamadas IA</p>
-                      <p class="text-xs mt-0.5" style="color: rgba(148,163,184,0.7);">Recepcionista virtual 24/7</p>
                     </a>
                     <a href="/consultoria-ia" @click="dropdownOpen = false"
                       class="group block px-3 py-2.5 rounded-lg transition-all duration-150"
