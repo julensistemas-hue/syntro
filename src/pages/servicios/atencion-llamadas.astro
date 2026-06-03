@@ -1,288 +1,769 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import TestIABanner from "../../components/global/TestIABanner.astro";
 
-const title = "Recepcionista Virtual IA - Atención Telefónica 24/7 | AI Security";
-const description = "Recepcionista con voz natural en español. Atiende llamadas 24/7, agenda citas, responde preguntas frecuentes y deriva casos complejos a humanos.";
+const title = "Recepcionista Virtual con IA para Empresas - Atención Telefónica 24/7 | AI Security";
+const description = "Recepcionista virtual con IA y voz natural en español. Atiende llamadas 24/7, agenda citas, responde preguntas frecuentes y deriva a humanos cuando es necesario. Tres niveles: básico, integrado con CRM y avanzado con tickets y WhatsApp.";
 const canonical = "https://aisecurity.es/servicios/atencion-llamadas";
 ---
 
 <BaseLayout title={title} description={description} canonical={canonical}>
-  <section class="py-10 bg-base-25">
-    <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
-      <!-- Hero Section -->
-      <div class="text-center mb-16">
-   
-        <h1 class="text-4xl md:text-5xl font-bold text-base-900 mb-6">
-          Recepcionista virtual <span class="text-accent-600">que nunca descansa</span>
+
+  <!-- Schema JSON-LD — Service + FAQ para GEO (Google AI Overviews, ChatGPT, Perplexity) -->
+  <script type="application/ld+json" is:inline>
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Recepcionista Virtual con IA",
+      "alternateName": "Atención de Llamadas con Inteligencia Artificial",
+      "description": "Sistema de atención telefónica automatizada con IA y voz natural en español. Gestiona llamadas entrantes 24/7, agenda y cancela citas, responde preguntas frecuentes e integra con CRM, ERP y WhatsApp Business.",
+      "provider": {
+        "@type": "Organization",
+        "name": "AI Security",
+        "url": "https://aisecurity.es",
+        "areaServed": "ES"
+      },
+      "serviceType": "Automatización de atención telefónica con IA",
+      "areaServed": "España",
+      "availableChannel": {
+        "@type": "ServiceChannel",
+        "serviceUrl": "https://aisecurity.es/servicios/atencion-llamadas",
+        "availableLanguage": ["Spanish", "Catalan", "English", "French", "German", "Portuguese"]
+      },
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "Plan Básico — Recepcionista IA",
+          "description": "Atención automática 24/7 con voz natural, base de conocimiento personalizada, recogida de incidencias y email automático al responsable tras cada llamada.",
+          "availability": "https://schema.org/InStock"
+        },
+        {
+          "@type": "Offer",
+          "name": "Plan Medio — Recepcionista IA con CRM",
+          "description": "Todo lo del básico más integración bidireccional con CRM/ERP, respuestas personalizadas por cliente, registro automático en expediente y análisis de urgencia.",
+          "availability": "https://schema.org/InStock"
+        },
+        {
+          "@type": "Offer",
+          "name": "Plan Avanzado — Recepcionista IA multicanal",
+          "description": "Operación completa: tickets automáticos, envío de documentos por email, WhatsApp Business, derivación al gremio correcto y agentes especializados por tipo de consulta.",
+          "availability": "https://schema.org/InStock"
+        }
+      ]
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Qué es un recepcionista virtual con IA?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Un recepcionista virtual con IA es un sistema de atención telefónica automatizada que usa inteligencia artificial para atender llamadas con voz natural, entender el lenguaje conversacional, responder preguntas frecuentes, gestionar citas y derivar los casos complejos a un agente humano. A diferencia de un IVR clásico con menús de teclado, entiende el lenguaje natural y mantiene una conversación fluida."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuánto cuesta un sistema de atención de llamadas con IA para empresas en España?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "AI Security ofrece tres niveles de servicio de atención de llamadas con IA: un plan básico (atención automática con derivación por email), un plan medio (conectado al CRM con respuestas personalizadas) y un plan avanzado (operación completa con tickets, WhatsApp y multi-agente). Los plazos de implantación van de 7 días para el básico hasta 5-6 semanas para el avanzado. Solicita un análisis gratuito para obtener el coste según tu volumen de llamadas."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Puede una IA atender llamadas en español de forma natural?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí. Los sistemas actuales de IA conversacional con síntesis de voz neural producen voz natural en español con entonación y pronunciación correctas. El sistema entiende interrupciones, reformulaciones e imprecisiones del hablante, y puede detectar automáticamente el idioma del interlocutor (español, catalán, inglés, francés, alemán, portugués, entre otros)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué porcentaje de llamadas puede resolver la IA sin intervención humana?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "En implementaciones bien configuradas, aproximadamente el 80-85% de las llamadas habituales se resuelven de forma autónoma: reservas y cancelaciones de citas, consultas de horarios y precios, información sobre servicios, estado de pedidos o incidencias recurrentes. El 15-20% restante —urgencias, negociaciones o casos fuera del ámbito configurado— se deriva automáticamente a un agente humano."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuánto tiempo tarda en implementarse un recepcionista virtual con IA?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "El plan básico (sin integración con sistemas internos) puede estar operativo en 7-10 días hábiles. El plan medio, que integra el CRM o ERP de la empresa mediante API, requiere 3-4 semanas. El plan avanzado, con tickets automáticos, WhatsApp Business y multi-agente, se implanta en 5-6 semanas. El plazo depende principalmente de la disponibilidad de la API del sistema de gestión del cliente."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué empresas pueden beneficiarse de un recepcionista IA?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Cualquier empresa que reciba un volumen significativo de llamadas repetitivas: clínicas dentales y consultas médicas (citas, horarios, seguros), hoteles y alojamientos (reservas, check-in, servicios), despachos de abogados y asesorías (primera atención, citas), talleres mecánicos (estado de reparaciones, citas ITV), inmobiliarias (disponibilidad de pisos, visitas) y e-commerce (estado de pedidos, devoluciones)."
+          }
+        }
+      ]
+    }
+  ]
+  </script>
+
+  <!-- ══════════════════════════════════════════════
+       HERO + DEMO — todo en una sección oscura
+  ══════════════════════════════════════════════ -->
+  <section style="background: linear-gradient(135deg, #0a0d1a 0%, #0f1628 50%, #0a0d1a 100%); padding: 80px 0 60px; position: relative; overflow: hidden;">
+    <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(circle at 20% 30%, #2563eb 0%, transparent 50%), radial-gradient(circle at 80% 70%, #0ea5e9 0%, transparent 50%);"></div>
+
+    <div class="max-w-6xl mx-auto px-6 relative z-10">
+      <!-- Badge + Título -->
+      <div class="text-center mb-10">
+        <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight" style="color: #fff;">
+          Recepcionista virtual<br/>
+          <span style="background: linear-gradient(90deg, #60a5fa, #22d3ee); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">que nunca descansa</span>
         </h1>
-      
+        <p class="text-xl max-w-3xl mx-auto" style="color: #94a3b8; line-height: 1.7;">
+          Atención telefónica con <strong style="color: #e2e8f0;">voz natural en español</strong>. Gestiona llamadas, reserva citas,
+          responde preguntas frecuentes y deriva casos complejos a tu equipo solo cuando realmente lo necesitan.
+        </p>
       </div>
 
-      <!-- Interactive Demo Section -->
-      <div class="mb-16">
-        <div class="max-w-4xl mx-auto bg-gradient-to-br from-base-900 to-base-800 rounded-2xl shadow-2xl overflow-hidden">
-          <!-- Demo Header -->
-          <div class="bg-base-800 px-6 py-4 border-b border-base-700">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center gap-3">
-                <div class="w-3 h-3 rounded-full bg-red-500"></div>
-                <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
-                <div class="w-3 h-3 rounded-full bg-green-500"></div>
-                <span class="ml-4 text-base-300 text-sm font-medium">Atención Telefónica - Demo</span>
-              </div>
-              <div class="flex items-center gap-2 text-base-400 text-sm">
-                <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-                Disponible 24/7
-              </div>
+      <!-- DEMO INTERACTIVA -->
+      <div id="demo" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 1.5rem; overflow: hidden;">
+        <!-- Barra superior tipo terminal -->
+        <div style="background: rgba(0,0,0,0.4); padding: 14px 24px; border-bottom: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: space-between;">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <div style="display: flex; gap: 6px;">
+              <div style="width:12px;height:12px;border-radius:50%;background:#ef4444;"></div>
+              <div style="width:12px;height:12px;border-radius:50%;background:#eab308;"></div>
+              <div style="width:12px;height:12px;border-radius:50%;background:#22c55e;"></div>
             </div>
+            <span style="color: #64748b; font-size: 0.875rem; font-family: monospace;">Atención Telefónica IA — Demo interactiva</span>
           </div>
+          <div style="display: flex; align-items: center; gap: 8px; font-size: 0.8rem;" class="text-green-400">
+            <span style="width:8px;height:8px;background:#22c55e;border-radius:50%;display:inline-block;" class="animate-pulse"></span>
+            En línea 24/7
+          </div>
+        </div>
 
-          <!-- Phone Interface -->
-          <div class="bg-gradient-to-br from-blue-500 to-blue-700 p-8">
-            <div class="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto items-start">
-              <!-- Phone Mockup -->
-              <div class="relative bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 rounded-[3rem] p-3 shadow-2xl border-8 border-gray-800 w-full max-w-md mx-auto lg:mx-0 h-[750px]">
-                <!-- Phone screen -->
-                <div class="bg-black rounded-[2.5rem] overflow-hidden h-full flex flex-col">
-                  <!-- Status bar -->
-                  <div class="flex items-center justify-between text-white text-xs px-6 py-3 bg-black flex-shrink-0">
-                    <span class="font-semibold">9:41</span>
-                    <div class="flex gap-1.5 items-center">
-                      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"></path>
-                      </svg>
-                      <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M17.778 8.222c-4.296-4.296-11.26-4.296-15.556 0A1 1 0 01.808 6.808c5.076-5.077 13.308-5.077 18.384 0a1 1 0 01-1.414 1.414zM14.95 11.05a7 7 0 00-9.9 0 1 1 0 01-1.414-1.414 9 9 0 0112.728 0 1 1 0 01-1.414 1.414zM12.12 13.88a3 3 0 00-4.242 0 1 1 0 01-1.415-1.415 5 5 0 017.072 0 1 1 0 01-1.415 1.415zM9 16a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z" clip-rule="evenodd"></path>
-                      </svg>
-                      <span class="text-[10px]">100%</span>
-                    </div>
+        <!-- Contenido del demo: phone + transcript -->
+        <div style="background: linear-gradient(135deg, #1d4ed8 0%, #0369a1 100%); padding: 2rem;">
+          <div class="grid lg:grid-cols-2 gap-8 max-w-5xl mx-auto items-start">
+
+            <!-- Phone Mockup -->
+            <div style="background: linear-gradient(to bottom, #111827, #1f2937, #111827); border-radius: 3rem; padding: 12px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); border: 8px solid #1f2937; width: 100%; max-width: 340px; margin: 0 auto; height: 700px;">
+              <div style="background: #000; border-radius: 2.5rem; overflow: hidden; height: 100%; display: flex; flex-direction: column;">
+                <!-- Status bar -->
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 20px;background:#000;color:#fff;font-size:0.7rem;flex-shrink:0;">
+                  <span style="font-weight:600;">9:41</span>
+                  <div style="display:flex;gap:4px;align-items:center;">
+                    <svg width="14" height="14" fill="currentColor" viewBox="0 0 20 20"><path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"/></svg>
+                    <span>100%</span>
                   </div>
+                </div>
 
-                  <!-- Main content area -->
-                  <div class="bg-gradient-to-b from-gray-900 to-black flex-1 px-6 py-8 flex flex-col overflow-hidden relative">
-                    <!-- Pre-Call Screen (shown before call) -->
-                    <div id="pre-call-screen" class="absolute inset-0 px-6 py-8 flex flex-col">
-                      <!-- Contact photo and info -->
-                      <div class="text-center mb-8">
-                        <div class="w-32 h-32 mx-auto mb-4 rounded-full bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-white text-5xl font-bold shadow-2xl">
-                          DG
-                        </div>
-                        <h3 class="text-white text-2xl font-semibold mb-2">Clínica Dental<br/>Dr. García</h3>
-                        <p class="text-gray-400 text-base">+34 900 123 456</p>
-                        <p id="call-status" class="text-gray-500 text-sm mt-2"></p>
-                      </div>
+                <!-- Main content -->
+                <div style="background:linear-gradient(to bottom,#111827,#000);flex:1;position:relative;overflow:hidden;">
+                  <!-- Pre-Call Screen -->
+                  <div id="pre-call-screen" style="position:absolute;inset:0;padding:24px;display:flex;flex-direction:column;">
+                    <div style="text-align:center;margin-bottom:24px;">
+                      <div style="width:100px;height:100px;margin:0 auto 12px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#0ea5e9);display:flex;align-items:center;justify-content:center;color:white;font-size:2rem;font-weight:700;box-shadow:0 0 40px rgba(37,99,235,0.4);">DG</div>
+                      <h3 style="color:#fff;font-size:1.1rem;font-weight:600;margin:0 0 4px;">Clínica Dental Dr. García</h3>
+                      <p style="color:#6b7280;font-size:0.8rem;margin:0;">+34 900 123 456</p>
+                    </div>
 
-                      <!-- Scenario Selector -->
-                      <div class="mb-auto">
-                        <p class="text-gray-400 text-xs font-semibold mb-3 text-center uppercase tracking-wide">Motivo de la llamada</p>
-                        <div class="space-y-2">
-                          <button data-scenario="reservar" class="scenario-button w-full text-left px-4 py-3 bg-gray-800/50 backdrop-blur rounded-xl border border-blue-500/50 hover:bg-gray-700/50 transition-all duration-200 text-sm text-white shadow-lg shadow-blue-500/20">
-                            <div class="flex items-center gap-3">
-                              <span class="text-xl">📅</span>
-                              <span>Reservar una cita</span>
-                            </div>
-                          </button>
-                          <button data-scenario="modificar" class="scenario-button w-full text-left px-4 py-3 bg-gray-800/30 backdrop-blur rounded-xl border border-gray-700 hover:bg-gray-700/50 transition-all duration-200 text-sm text-white">
-                            <div class="flex items-center gap-3">
-                              <span class="text-xl">✏️</span>
-                              <span>Modificar/Eliminar cita</span>
-                            </div>
-                          </button>
-                          <button data-scenario="pago" class="scenario-button w-full text-left px-4 py-3 bg-gray-800/30 backdrop-blur rounded-xl border border-gray-700 hover:bg-gray-700/50 transition-all duration-200 text-sm text-white">
-                            <div class="flex items-center gap-3">
-                              <span class="text-xl">💳</span>
-                              <span>Consulta sobre pago</span>
-                            </div>
-                          </button>
-                        </div>
-                      </div>
-
-                      <!-- Call Button -->
-                      <div class="flex justify-center mt-auto pt-8">
-                        <button id="call-button" class="flex flex-col items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity">
-                          <div class="w-20 h-20 rounded-full bg-green-500 hover:bg-green-600 flex items-center justify-center shadow-2xl shadow-green-500/50 hover:scale-105 transition-transform">
-                            <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 20 20">
-                              <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
-                            </svg>
-                          </div>
-                          <span class="text-white text-xs"></span>
+                    <div style="flex:1;">
+                      <p style="color:#6b7280;font-size:0.7rem;font-weight:600;text-align:center;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:10px;">Motivo de la llamada</p>
+                      <div style="display:flex;flex-direction:column;gap:8px;">
+                        <button data-scenario="reservar" class="scenario-button" style="width:100%;text-align:left;padding:10px 14px;background:rgba(37,99,235,0.2);border:1px solid rgba(37,99,235,0.5);border-radius:12px;color:#fff;font-size:0.8rem;cursor:pointer;box-shadow:0 4px 15px rgba(37,99,235,0.2);">
+                          <span style="margin-right:8px;">📅</span> Reservar una cita
+                        </button>
+                        <button data-scenario="modificar" class="scenario-button" style="width:100%;text-align:left;padding:10px 14px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;color:#fff;font-size:0.8rem;cursor:pointer;">
+                          <span style="margin-right:8px;">✏️</span> Modificar/Eliminar cita
+                        </button>
+                        <button data-scenario="pago" class="scenario-button" style="width:100%;text-align:left;padding:10px 14px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;color:#fff;font-size:0.8rem;cursor:pointer;">
+                          <span style="margin-right:8px;">💳</span> Consulta sobre pago
                         </button>
                       </div>
                     </div>
 
-                    <!-- In-Call Screen (shown during call) -->
-                    <div id="in-call-screen" class="hidden absolute inset-0 px-6 py-8 flex-col justify-between">
-                      <!-- Contact photo and info (smaller) -->
-                      <div class="text-center pt-8">
-                        <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-white text-4xl font-bold shadow-2xl">
-                          DG
+                    <div style="display:flex;justify-content:center;padding-top:20px;">
+                      <button id="call-button" style="display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer;background:none;border:none;">
+                        <div style="width:72px;height:72px;border-radius:50%;background:#22c55e;display:flex;align-items:center;justify-content:center;box-shadow:0 0 30px rgba(34,197,94,0.5);transition:transform 0.2s;">
+                          <svg width="32" height="32" fill="white" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/></svg>
                         </div>
-                        <h3 class="text-white text-xl font-semibold mb-1">Clínica Dental Dr. García</h3>
-                        <p class="text-green-400 text-sm font-medium">En llamada</p>
-                      </div>
+                        <span style="color:#fff;font-size:0.7rem;">Llamar</span>
+                      </button>
+                    </div>
+                  </div>
 
-                      <!-- Call Duration -->
-                      <div class="text-center flex-1 flex flex-col justify-center">
-                        <div class="text-white text-5xl font-light mb-2" id="duration-text">00:00</div>
-                        <p class="text-gray-400 text-sm">Duración de la llamada</p>
-                      </div>
-
-                      <!-- Hang Up Button -->
-                      <div class="flex justify-center pb-8">
-                        <button id="hangup-button-in-phone" class="flex flex-col items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity">
-                          <div class="w-20 h-20 rounded-full bg-red-500 hover:bg-red-600 flex items-center justify-center shadow-2xl shadow-red-500/50 hover:scale-105 transition-transform">
-                            <svg class="w-10 h-10 text-white transform rotate-135" fill="currentColor" viewBox="0 0 20 20">
-                              <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
-                            </svg>
-                          </div>
-                          <span class="text-white text-xs">Colgar</span>
-                        </button>
-                      </div>
+                  <!-- In-Call Screen -->
+                  <div id="in-call-screen" style="position:absolute;inset:0;padding:24px;display:none;flex-direction:column;justify-content:space-between;">
+                    <div style="text-align:center;padding-top:20px;">
+                      <div style="width:80px;height:80px;margin:0 auto 10px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#0ea5e9);display:flex;align-items:center;justify-content:center;color:white;font-size:1.6rem;font-weight:700;">DG</div>
+                      <h3 style="color:#fff;font-size:1rem;font-weight:600;margin:0 0 4px;">Clínica Dental Dr. García</h3>
+                      <p style="color:#22c55e;font-size:0.8rem;">En llamada</p>
+                    </div>
+                    <div style="text-align:center;">
+                      <div id="duration-text" style="color:#fff;font-size:2.5rem;font-weight:300;margin-bottom:4px;">00:00</div>
+                      <p style="color:#6b7280;font-size:0.75rem;">Duración de la llamada</p>
+                    </div>
+                    <div style="display:flex;justify-content:center;padding-bottom:20px;">
+                      <button id="hangup-button-in-phone" style="display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer;background:none;border:none;">
+                        <div style="width:72px;height:72px;border-radius:50%;background:#ef4444;display:flex;align-items:center;justify-content:center;box-shadow:0 0 30px rgba(239,68,68,0.5);">
+                          <svg width="32" height="32" fill="white" viewBox="0 0 20 20" style="transform:rotate(135deg);"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/></svg>
+                        </div>
+                        <span style="color:#fff;font-size:0.7rem;">Colgar</span>
+                      </button>
                     </div>
                   </div>
                 </div>
               </div>
+            </div>
 
-              <!-- Transcription Panel (always visible) -->
-              <div id="transcription-panel" class="bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl p-6 w-full max-w-md mx-auto lg:mx-0 h-[750px] flex flex-col">
-                <div class="flex items-center justify-between mb-4 pb-4 border-b border-gray-200 flex-shrink-0">
-                  <h4 style="color: #4f46e5;" class="text-lg font-semibold text-gray-900 flex items-center gap-2">
-                    <svg class="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clip-rule="evenodd"></path>
-                    </svg>
-                    Transcripción en vivo
-                  </h4>
-                  <div id="recording-indicator" class="hidden items-center gap-2">
-                    <span class="w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
-                    <span class="text-xs text-gray-500 font-medium">Grabando</span>
-                  </div>
+            <!-- Transcription Panel -->
+            <div id="transcription-panel" style="background:rgba(255,255,255,0.97);border-radius:1.25rem;padding:24px;height:700px;display:flex;flex-direction:column;box-shadow:0 25px 50px -12px rgba(0,0,0,0.4);">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid #e5e7eb;flex-shrink:0;">
+                <h4 style="color:#4f46e5;font-size:1rem;font-weight:600;display:flex;align-items:center;gap:8px;margin:0;">
+                  <svg width="18" height="18" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clip-rule="evenodd"/></svg>
+                  Transcripción en vivo
+                </h4>
+                <div id="recording-indicator" style="display:none;align-items:center;gap:6px;">
+                  <span style="width:8px;height:8px;background:#ef4444;border-radius:50%;display:inline-block;" class="animate-pulse"></span>
+                  <span style="font-size:0.75rem;color:#6b7280;font-weight:500;">Grabando</span>
                 </div>
+              </div>
 
-                <div id="conversation-log" class="space-y-3 flex-1 overflow-y-auto pr-2">
-                  <!-- Empty state -->
-                  <div id="empty-state" class="flex flex-col items-center justify-center h-full text-center py-12">
-                    <svg class="w-16 h-16 text-gray-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
-                    </svg>
-                    <p style="color: black;" class="text-gray-400 text-sm font-medium">La transcripción aparecerá aquí</p>
-                    <p style="color: black;" class="text-gray-300 text-xs mt-2">Selecciona un motivo y pulsa "Llamar"</p>
-                  </div>
+              <div id="conversation-log" style="flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:10px;padding-right:4px;">
+                <div id="empty-state" style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;padding:32px 0;">
+                  <svg width="56" height="56" fill="none" stroke="#d1d5db" stroke-width="2" viewBox="0 0 24 24" style="margin-bottom:12px;"><path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+                  <p style="color:#111;font-size:0.875rem;font-weight:500;margin:0 0 4px;">La transcripción aparecerá aquí</p>
+                  <p style="color:#6b7280;font-size:0.75rem;margin:0;">Selecciona un motivo y pulsa "Llamar"</p>
                 </div>
               </div>
             </div>
-          </div>
 
-          <!-- Info Panel -->
-          <div class="bg-base-100 px-6 py-5">
-            <p class="text-sm text-base-600 text-center font-medium max-w-2xl mx-auto">
-              Esta es una demo simulada. El sistema real utiliza síntesis de voz natural y procesamiento de lenguaje avanzado.
-            </p>
           </div>
         </div>
-      </div>
- 
-        <p class="text-xl text-base-600 max-w-3xl mx-auto mb-8">
-          Atención telefónica automatizada con voz natural. Gestiona llamadas, reserva citas,
-          responde preguntas frecuentes y deriva casos complejos a tu equipo.
-        </p>
-          <!-- Features Grid
-        <div class="inline-flex items-center gap-2 px-4 py-2 bg-green-50 text-green-700 rounded-lg text-sm font-medium">
-          <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-          Demo interactiva disponible abajo
-        </div>-->
-      <!-- Features Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-        <div class="bg-black border-2 border-base-300 rounded-xl p-6">
-          <div class="w-12 h-12 bg-accent-600 rounded-lg flex items-center justify-center text-white text-xl mb-4">
-            🗣️
-          </div>
-          <h3 class="text-lg font-semibold text-white mb-3">Voz Natural</h3>
-          <p class="text-white/80">
-            Síntesis de voz con entonación natural y pronunciación perfecta en español.
-          </p>
-        </div>
 
-        <div class="bg-black border-2 border-base-300 rounded-xl p-6">
-          <div class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center text-white text-xl mb-4">
-            🎯
-          </div>
-          <h3 class="text-lg font-semibold text-white mb-3">Comprensión Contextual</h3>
-          <p class="text-white/80">
-            Entiende el contexto de la conversación y adapta las respuestas.
-          </p>
-        </div>
-
-        <div class="bg-black border-2 border-base-300 rounded-xl p-6">
-          <div class="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center text-white text-xl mb-4">
-            🔀
-          </div>
-          <h3 class="text-lg font-semibold text-white mb-3">Derivación Inteligente</h3>
-          <p class="text-white/80">
-            Transfiere llamadas complejas a agentes humanos cuando es necesario.
-          </p>
+        <!-- Nota -->
+        <div style="padding: 14px 24px; background: rgba(0,0,0,0.3); border-top: 1px solid rgba(255,255,255,0.06); text-align:center;">
+          <p style="color:#475569;font-size:0.8rem;margin:0;">Demo simulada. El sistema real usa síntesis de voz natural y procesamiento de lenguaje avanzado.</p>
         </div>
       </div>
 
-      <!-- Stats Section -->
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-16">
-        <div class="rounded-xl p-6 text-white text-center" style="background: linear-gradient(to bottom right, #4338ca, #3730a3);">
-          <div class="text-4xl font-bold mb-2">24/7</div>
-          <div class="text-sm opacity-90">Disponibilidad</div>
+      <!-- Stats + CTAs debajo de la demo -->
+      <div class="text-center mt-10">
+        <div class="flex flex-wrap justify-center gap-6 mb-8">
+          <div class="text-center">
+            <div class="text-3xl font-bold" style="color: #60a5fa;">24/7</div>
+            <div class="text-xs mt-1" style="color: #64748b;">Sin festivos ni vacaciones</div>
+          </div>
+          <div class="w-px h-10 self-center" style="background: rgba(255,255,255,0.1);"></div>
+          <div class="text-center">
+            <div class="text-3xl font-bold" style="color: #22d3ee;">~85%</div>
+            <div class="text-xs mt-1" style="color: #64748b;">Llamadas resueltas sin humano</div>
+          </div>
+          <div class="w-px h-10 self-center" style="background: rgba(255,255,255,0.1);"></div>
+          <div class="text-center">
+            <div class="text-3xl font-bold" style="color: #60a5fa;">0s</div>
+            <div class="text-xs mt-1" style="color: #64748b;">Tiempo de espera</div>
+          </div>
+          <div class="w-px h-10 self-center" style="background: rgba(255,255,255,0.1);"></div>
+          <div class="text-center">
+            <div class="text-3xl font-bold" style="color: #22d3ee;">-60%</div>
+            <div class="text-xs mt-1" style="color: #64748b;">Coste telefónico</div>
+          </div>
         </div>
-        <div class="rounded-xl p-6 text-white text-center" style="background: linear-gradient(to bottom right, #6366f1, #4f46e5);">
-          <div class="text-4xl font-bold mb-2">90%</div>
-          <div class="text-sm opacity-90">Llamadas resueltas</div>
+        <div class="flex flex-wrap gap-4 justify-center">
+          <a href="/presupuesto?plan=Atencion-Llamadas-IA"
+            class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all"
+            style="background: linear-gradient(135deg, #2563eb, #0ea5e9); color: #ffffff;">
+            Solicitar análisis gratuito →
+          </a>
+          <a href="#como-funciona"
+            class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all"
+            style="background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15); color: #cbd5e1;">
+            ¿Cómo funciona?
+          </a>
         </div>
-        <div class="rounded-xl p-6 text-white text-center" style="background: linear-gradient(to bottom right, #3b82f6, #2563eb);">
-          <div class="text-4xl font-bold mb-2">70%</div>
-          <div class="text-sm opacity-90">Reducción de costos</div>
-        </div>
-        <div class="rounded-xl p-6 text-white text-center"style="background: linear-gradient(to bottom right, #78ceff, #3b82f6);  ">
-          <div class="text-4xl font-bold mb-2">0s</div>
-          <div class="text-sm opacity-90">Tiempo de espera</div>
-        </div>
-      </div>
-
-      <!-- CTA Section -->
-      <div class="text-center rounded-2xl p-12 text-white">
-        <h2 class="text-3xl font-bold mb-4">
-          Nunca pierdas una llamada importante
-        </h2>
-        <p class="text-xl mb-8 max-w-2xl mx-auto opacity-90">
-          Descubre cómo nuestra IA puede transformar tu atención telefónica
-        </p>
-        <a
-          href="/presupuesto?plan=Atencion-Llamadas-IA"
-          style="color: white;"
-          class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200"
-        >
-          Solicitar Demo Gratuita
-        </a>
-      </div>
-
-      <!-- Test IA Banner -->
-      <div class="mt-16">
-        <TestIABanner />
       </div>
     </div>
   </section>
+
+
+  <!-- ══════════════════════════════════════════════
+       TRES NIVELES DE IMPLANTACIÓN
+  ══════════════════════════════════════════════ -->
+  <section id="como-funciona" style="background: linear-gradient(135deg, #0a0d1a 0%, #0f1628 100%); padding: 80px 0; position: relative; overflow: hidden;">
+    <div class="absolute inset-0 pointer-events-none" style="background-image: radial-gradient(circle at 20% 50%, rgba(37,99,235,0.12), transparent 60%), radial-gradient(circle at 80% 50%, rgba(14,165,233,0.10), transparent 60%);"></div>
+    <div class="relative max-w-6xl mx-auto px-6" style="z-index:1;">
+      <div class="text-center mb-14">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4" style="color: #e2e8f0;">Tres niveles de implantación</h2>
+        <p style="color: #94a3b8; font-size: 1.1rem; max-width: 650px; margin: 0 auto; line-height: 1.7;">
+          La propuesta está pensada para escalar progresivamente. Empieza por el nivel básico, valida resultados con datos reales
+          y sube de nivel cuando los indicadores lo justifiquen.
+        </p>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;align-items:start;">
+
+        <!-- NIVEL 1 — BÁSICO -->
+        <div style="background:rgba(37,99,235,0.07);border:1px solid rgba(37,99,235,0.3);border-radius:1.25rem;padding:32px;display:flex;flex-direction:column;gap:20px;">
+          <div>
+            <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(37,99,235,0.15);border:1px solid rgba(37,99,235,0.3);border-radius:8px;padding:4px 12px;margin-bottom:14px;">
+              <span style="color:#60a5fa;font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;">Nivel 1</span>
+            </div>
+            <h3 style="color:#fff;font-size:1.25rem;font-weight:700;margin:0 0 6px;">Básico</h3>
+            <p style="color:#60a5fa;font-size:0.875rem;font-weight:500;margin:0 0 12px;">Atención automática con derivación</p>
+            <p style="color:#94a3b8;font-size:0.875rem;line-height:1.6;margin:0;">
+              La IA atiende llamadas con el contexto de tu empresa y resuelve las preguntas frecuentes.
+              Al finalizar, envía un resumen estructurado al responsable correspondiente.
+            </p>
+          </div>
+          <div style="border-top:1px solid rgba(255,255,255,0.08);padding-top:20px;">
+            <p style="color:#64748b;font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;margin:0 0 10px;">Incluye</p>
+            <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;">
+              <li style="color:#94a3b8;font-size:0.8rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#60a5fa;flex-shrink:0;font-weight:700;">✓</span> Agente conversacional multidioma (6 idiomas)</li>
+              <li style="color:#94a3b8;font-size:0.8rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#60a5fa;flex-shrink:0;font-weight:700;">✓</span> Base de conocimiento con tu información operativa</li>
+              <li style="color:#94a3b8;font-size:0.8rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#60a5fa;flex-shrink:0;font-weight:700;">✓</span> Recogida estructurada de incidencias y consultas</li>
+              <li style="color:#94a3b8;font-size:0.8rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#60a5fa;flex-shrink:0;font-weight:700;">✓</span> Email automático al responsable tras cada llamada</li>
+              <li style="color:#94a3b8;font-size:0.8rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#60a5fa;flex-shrink:0;font-weight:700;">✓</span> Grabación y transcripción de todas las llamadas</li>
+              <li style="color:#94a3b8;font-size:0.8rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#60a5fa;flex-shrink:0;font-weight:700;">✓</span> Dashboard: llamadas, duración, motivo, tasa resolución</li>
+            </ul>
+          </div>
+          <div style="background:rgba(37,99,235,0.1);border-radius:10px;padding:14px;">
+            <p style="color:#93c5fd;font-size:0.8rem;line-height:1.5;margin:0;">
+              <strong style="color:#fff;">Ideal para:</strong> Empresas que quieren cobertura 24/7 y liberar al equipo de consultas repetitivas, sin integración con sistemas internos.
+            </p>
+          </div>
+          <div style="color:#64748b;font-size:0.75rem;display:flex;align-items:center;gap:6px;">
+            <span>⏱</span> Listo en <strong style="color:#94a3b8;">7-10 días hábiles</strong>
+          </div>
+        </div>
+
+        <!-- NIVEL 2 — MEDIO -->
+        <div style="background:rgba(124,58,237,0.07);border:2px solid rgba(124,58,237,0.4);border-radius:1.25rem;padding:32px;display:flex;flex-direction:column;gap:20px;position:relative;">
+          <div style="position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#7c3aed,#a78bfa);color:#fff;font-size:0.7rem;font-weight:700;padding:4px 14px;border-radius:20px;white-space:nowrap;">MÁS POPULAR</div>
+          <div>
+            <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(124,58,237,0.15);border:1px solid rgba(124,58,237,0.3);border-radius:8px;padding:4px 12px;margin-bottom:14px;">
+              <span style="color:#a78bfa;font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;">Nivel 2</span>
+            </div>
+            <h3 style="color:#fff;font-size:1.25rem;font-weight:700;margin:0 0 6px;">Medio</h3>
+            <p style="color:#a78bfa;font-size:0.875rem;font-weight:500;margin:0 0 12px;">Conectado al CRM, respuestas personalizadas</p>
+            <p style="color:#94a3b8;font-size:0.875rem;line-height:1.6;margin:0;">
+              Todo lo del nivel básico, más: cuando el cliente se identifica, la IA consulta en tiempo real
+              tu sistema y personaliza la conversación con sus datos reales.
+            </p>
+          </div>
+          <div style="border-top:1px solid rgba(255,255,255,0.08);padding-top:20px;">
+            <p style="color:#64748b;font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;margin:0 0 10px;">Todo lo del básico, más</p>
+            <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;">
+              <li style="color:#94a3b8;font-size:0.8rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#a78bfa;flex-shrink:0;font-weight:700;">✓</span> Integración bidireccional con tu CRM/ERP vía API</li>
+              <li style="color:#94a3b8;font-size:0.8rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#a78bfa;flex-shrink:0;font-weight:700;">✓</span> Respuesta personalizada según el historial del cliente</li>
+              <li style="color:#94a3b8;font-size:0.8rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#a78bfa;flex-shrink:0;font-weight:700;">✓</span> Registro automático de la consulta en el expediente</li>
+              <li style="color:#94a3b8;font-size:0.8rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#a78bfa;flex-shrink:0;font-weight:700;">✓</span> Análisis de urgencia, sentimiento e intención</li>
+              <li style="color:#94a3b8;font-size:0.8rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#a78bfa;flex-shrink:0;font-weight:700;">✓</span> Almacenamiento extendido de transcripciones (6 meses)</li>
+            </ul>
+          </div>
+          <div style="background:rgba(124,58,237,0.1);border-radius:10px;padding:14px;">
+            <p style="color:#c4b5fd;font-size:0.8rem;line-height:1.5;margin:0;">
+              <strong style="color:#fff;">Ideal para:</strong> Empresas con CRM/ERP activo que quieren convertir cada llamada en un dato útil dentro de su sistema, sin trabajo manual del equipo.
+            </p>
+          </div>
+          <div style="color:#64748b;font-size:0.75rem;display:flex;align-items:center;gap:6px;">
+            <span>⏱</span> Listo en <strong style="color:#94a3b8;">3-4 semanas</strong>
+          </div>
+        </div>
+
+        <!-- NIVEL 3 — AVANZADO -->
+        <div style="background:rgba(6,182,212,0.06);border:1px solid rgba(6,182,212,0.3);border-radius:1.25rem;padding:32px;display:flex;flex-direction:column;gap:20px;">
+          <div>
+            <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(6,182,212,0.12);border:1px solid rgba(6,182,212,0.3);border-radius:8px;padding:4px 12px;margin-bottom:14px;">
+              <span style="color:#22d3ee;font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;">Nivel 3</span>
+            </div>
+            <h3 style="color:#fff;font-size:1.25rem;font-weight:700;margin:0 0 6px;">Avanzado</h3>
+            <p style="color:#22d3ee;font-size:0.875rem;font-weight:500;margin:0 0 12px;">Operación completa: tickets, documentos, multicanal</p>
+            <p style="color:#94a3b8;font-size:0.875rem;line-height:1.6;margin:0;">
+              Todo lo del nivel medio, más: la IA crea tickets automáticamente, envía documentación por email
+              o WhatsApp y deriva la incidencia al responsable correcto.
+            </p>
+          </div>
+          <div style="border-top:1px solid rgba(255,255,255,0.08);padding-top:20px;">
+            <p style="color:#64748b;font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;margin:0 0 10px;">Todo lo del medio, más</p>
+            <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;">
+              <li style="color:#94a3b8;font-size:0.8rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#22d3ee;flex-shrink:0;font-weight:700;">✓</span> Creación automática de tickets en tu sistema</li>
+              <li style="color:#94a3b8;font-size:0.8rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#22d3ee;flex-shrink:0;font-weight:700;">✓</span> Envío de documentos por email durante la llamada</li>
+              <li style="color:#94a3b8;font-size:0.8rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#22d3ee;flex-shrink:0;font-weight:700;">✓</span> Comunicación por WhatsApp Business</li>
+              <li style="color:#94a3b8;font-size:0.8rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#22d3ee;flex-shrink:0;font-weight:700;">✓</span> Derivación inteligente al responsable o gremio correcto</li>
+              <li style="color:#94a3b8;font-size:0.8rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#22d3ee;flex-shrink:0;font-weight:700;">✓</span> Escalado a agente humano en urgencias</li>
+              <li style="color:#94a3b8;font-size:0.8rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#22d3ee;flex-shrink:0;font-weight:700;">✓</span> Multi-agente: especialistas por tipo de consulta</li>
+            </ul>
+          </div>
+          <div style="background:rgba(6,182,212,0.08);border-radius:10px;padding:14px;">
+            <p style="color:#67e8f9;font-size:0.8rem;line-height:1.5;margin:0;">
+              <strong style="color:#fff;">Ideal para:</strong> Empresas que quieren operar como una organización moderna con atención 24/7, gestión automática de incidencias y comunicación multicanal sin trabajo manual.
+            </p>
+          </div>
+          <div style="color:#64748b;font-size:0.75rem;display:flex;align-items:center;gap:6px;">
+            <span>⏱</span> Listo en <strong style="color:#94a3b8;">5-6 semanas</strong>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Nota recomendación -->
+      <div style="margin-top:40px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:1rem;padding:24px;display:flex;align-items:flex-start;gap:14px;max-width:800px;margin-left:auto;margin-right:auto;margin-top:40px;">
+        <span style="font-size:1.5rem;flex-shrink:0;">💡</span>
+        <div>
+          <h4 style="color:#e2e8f0;font-weight:700;margin:0 0 6px;">Nuestra recomendación</h4>
+          <p style="color:#94a3b8;font-size:0.875rem;line-height:1.6;margin:0;">
+            Si partes de cero con IA conversacional, empieza por el <strong style="color:#60a5fa;">nivel básico durante 2-3 meses</strong>.
+            Es la forma de validar con datos reales el volumen, el tipo de llamadas y el porcentaje de resolución.
+            Con esos datos, la transición al nivel medio es muy informada. El nivel avanzado tiene sentido
+            cuando el equipo ya está cómodo y quiere automatizar la operativa completa.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════
+       ¿PARA QUIÉN? — selector interactivo
+  ══════════════════════════════════════════════ -->
+  <section style="background: #0a0d1a; padding: 80px 0;">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-14">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4" style="color: #e2e8f0;">¿Para quién es ideal?</h2>
+        <p style="color: #94a3b8; font-size: 1.1rem; max-width: 600px; margin: 0 auto;">Selecciona tu sector y ve qué preguntas resolvería la IA automáticamente.</p>
+      </div>
+
+      <!-- Grid de sectores clickables -->
+      <div id="sector-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:32px;">
+
+        <button data-sector="clinicas" class="sector-btn" style="background:rgba(37,99,235,0.15);border:2px solid rgba(37,99,235,0.5);border-radius:1rem;padding:18px 16px;display:flex;align-items:center;gap:12px;cursor:pointer;text-align:left;transition:all 0.2s;">
+          <span style="font-size:1.6rem;flex-shrink:0;">🦷</span>
+          <div>
+            <div style="color:#fff;font-weight:700;font-size:0.875rem;line-height:1.2;">Clínicas y consultas médicas</div>
+            <div style="color:#60a5fa;font-size:0.7rem;margin-top:2px;">Citas · Horarios · Especialistas</div>
+          </div>
+        </button>
+
+        <button data-sector="hoteles" class="sector-btn" style="background:rgba(255,255,255,0.04);border:2px solid rgba(255,255,255,0.08);border-radius:1rem;padding:18px 16px;display:flex;align-items:center;gap:12px;cursor:pointer;text-align:left;transition:all 0.2s;">
+          <span style="font-size:1.6rem;flex-shrink:0;">🏨</span>
+          <div>
+            <div style="color:#e2e8f0;font-weight:700;font-size:0.875rem;line-height:1.2;">Hoteles y alojamientos</div>
+            <div style="color:#64748b;font-size:0.7rem;margin-top:2px;">Reservas · Servicios · Check-in</div>
+          </div>
+        </button>
+
+        <button data-sector="asesorias" class="sector-btn" style="background:rgba(255,255,255,0.04);border:2px solid rgba(255,255,255,0.08);border-radius:1rem;padding:18px 16px;display:flex;align-items:center;gap:12px;cursor:pointer;text-align:left;transition:all 0.2s;">
+          <span style="font-size:1.6rem;flex-shrink:0;">⚖️</span>
+          <div>
+            <div style="color:#e2e8f0;font-weight:700;font-size:0.875rem;line-height:1.2;">Despachos y asesorías</div>
+            <div style="color:#64748b;font-size:0.7rem;margin-top:2px;">Consultas · Expedientes · Citas</div>
+          </div>
+        </button>
+
+        <button data-sector="talleres" class="sector-btn" style="background:rgba(255,255,255,0.04);border:2px solid rgba(255,255,255,0.08);border-radius:1rem;padding:18px 16px;display:flex;align-items:center;gap:12px;cursor:pointer;text-align:left;transition:all 0.2s;">
+          <span style="font-size:1.6rem;flex-shrink:0;">🔧</span>
+          <div>
+            <div style="color:#e2e8f0;font-weight:700;font-size:0.875rem;line-height:1.2;">Talleres y servicios técnicos</div>
+            <div style="color:#64748b;font-size:0.7rem;margin-top:2px;">Averías · Presupuestos · Estado</div>
+          </div>
+        </button>
+
+        <button data-sector="inmobiliarias" class="sector-btn" style="background:rgba(255,255,255,0.04);border:2px solid rgba(255,255,255,0.08);border-radius:1rem;padding:18px 16px;display:flex;align-items:center;gap:12px;cursor:pointer;text-align:left;transition:all 0.2s;">
+          <span style="font-size:1.6rem;flex-shrink:0;">🏠</span>
+          <div>
+            <div style="color:#e2e8f0;font-weight:700;font-size:0.875rem;line-height:1.2;">Inmobiliarias</div>
+            <div style="color:#64748b;font-size:0.7rem;margin-top:2px;">Pisos · Visitas · Alquiler</div>
+          </div>
+        </button>
+
+        <button data-sector="ecommerce" class="sector-btn" style="background:rgba(255,255,255,0.04);border:2px solid rgba(255,255,255,0.08);border-radius:1rem;padding:18px 16px;display:flex;align-items:center;gap:12px;cursor:pointer;text-align:left;transition:all 0.2s;">
+          <span style="font-size:1.6rem;flex-shrink:0;">🛒</span>
+          <div>
+            <div style="color:#e2e8f0;font-weight:700;font-size:0.875rem;line-height:1.2;">E-commerce y distribución</div>
+            <div style="color:#64748b;font-size:0.7rem;margin-top:2px;">Pedidos · Devoluciones · Stock</div>
+          </div>
+        </button>
+
+      </div>
+
+      <!-- Panel de preguntas -->
+      <div id="questions-panel" style="background:rgba(255,255,255,0.03);border:1px solid rgba(37,99,235,0.2);border-radius:1.25rem;padding:28px;transition:opacity 0.25s;">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;">
+          <div style="width:8px;height:8px;background:#22c55e;border-radius:50;" class="animate-pulse"></div>
+          <p id="panel-title" style="color:#94a3b8;font-size:0.8rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;margin:0;">Preguntas que resuelve sin agente humano — Clínicas y consultas médicas</p>
+        </div>
+        <div id="questions-list" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+  (function() {
+    const SECTORS: Record<string, { label: string; color: string; questions: string[] }> = {
+      clinicas: {
+        label: 'Clínicas y consultas médicas',
+        color: '#2563eb',
+        questions: [
+          '¿Cuándo tengo mi próxima cita?',
+          'Necesito cancelar la cita del jueves',
+          '¿Tienen disponibilidad esta semana?',
+          '¿A qué hora abrís los lunes?',
+          '¿Qué médicos especialistas tienen?',
+          '¿Aceptáis el seguro de Sanitas?',
+          '¿Cuánto dura una limpieza dental?',
+          'Quiero cambiar mi cita a la tarde',
+          '¿Con qué doctor tengo la consulta?',
+          '¿Necesito ir en ayunas?',
+          '¿Tienen servicio de urgencias?',
+          '¿Hacéis revisiones sin cita previa?',
+        ],
+      },
+      hoteles: {
+        label: 'Hoteles y alojamientos',
+        color: '#7c3aed',
+        questions: [
+          '¿Tenéis habitaciones para el puente?',
+          '¿Cuál es el horario de check-in?',
+          '¿Hay aparcamiento en el hotel?',
+          '¿El desayuno está incluido?',
+          'Quiero reservar una habitación doble',
+          '¿Hay piscina disponible en agosto?',
+          '¿Podéis guardar el equipaje?',
+          '¿El hotel acepta mascotas?',
+          '¿Hay wifi gratuito?',
+          '¿Cuál es el precio por noche?',
+          '¿Tienen habitaciones adaptadas?',
+          '¿A qué hora es el check-out?',
+        ],
+      },
+      asesorias: {
+        label: 'Despachos y asesorías',
+        color: '#d97706',
+        questions: [
+          'Necesito hablar con un abogado',
+          '¿Cuánto cuesta una consulta inicial?',
+          '¿Gestionáis divorcios?',
+          '¿Cuál es el estado de mi expediente?',
+          '¿En qué horario puedo llamar?',
+          'Necesito asesoría laboral urgente',
+          '¿Podéis ayudarme con una herencia?',
+          'Quiero cita con el asesor fiscal',
+          '¿Trabajáis con autónomos?',
+          '¿Tenéis abogados de familia?',
+          '¿Gestionáis reclamaciones a seguros?',
+          '¿Cuánto tarda un proceso de despido?',
+        ],
+      },
+      talleres: {
+        label: 'Talleres y servicios técnicos',
+        color: '#059669',
+        questions: [
+          '¿Cuánto cuesta revisar los frenos?',
+          '¿Está listo mi coche?',
+          'Necesito cita para pasar la ITV',
+          'Mi coche no arranca, ¿tenéis grúa?',
+          '¿Cuánto tarda un cambio de aceite?',
+          '¿Hacéis presupuesto gratuito?',
+          '¿Estáis abiertos los sábados?',
+          'Quiero recoger mi vehículo hoy',
+          '¿Reparáis motos también?',
+          '¿Trabajáis con garantía?',
+          '¿Tenéis vehículo de sustitución?',
+          '¿Cuánto cuesta la revisión de 30.000 km?',
+        ],
+      },
+      inmobiliarias: {
+        label: 'Inmobiliarias',
+        color: '#db2777',
+        questions: [
+          '¿Tenéis pisos de 3 habitaciones?',
+          '¿Cuánto es el alquiler del piso de la calle Mayor?',
+          '¿Está disponible el ático que vi en la web?',
+          '¿Cuándo puedo hacer una visita?',
+          '¿Aceptáis avales bancarios?',
+          '¿Los gastos de comunidad están incluidos?',
+          'Quiero poner mi piso en alquiler',
+          '¿Cuál es el proceso para alquilar?',
+          '¿Trabajáis en toda la ciudad?',
+          '¿Se admiten mascotas?',
+          '¿Hay plazas de garaje disponibles?',
+          '¿Cuánto es la comisión de la agencia?',
+        ],
+      },
+      ecommerce: {
+        label: 'E-commerce y distribución',
+        color: '#0891b2',
+        questions: [
+          '¿Cuándo llega mi pedido?',
+          'Quiero devolver un producto',
+          'Mi pedido ha llegado roto',
+          '¿Tenéis el modelo en talla M?',
+          '¿Hacéis envíos a Canarias?',
+          '¿Cuánto tarda el envío exprés?',
+          'Necesito la factura de mi compra',
+          '¿Puedo cambiar la dirección de entrega?',
+          '¿Cuál es vuestra política de devoluciones?',
+          '¿Está disponible el artículo en otro color?',
+          '¿Cuándo se repone el stock?',
+          '¿Cómo sigo el estado de mi envío?',
+        ],
+      },
+    };
+
+    let current = 'clinicas';
+
+    function renderQuestions(key: string) {
+      const sector = SECTORS[key];
+      if (!sector) return;
+
+      const list = document.getElementById('questions-list')!;
+      const title = document.getElementById('panel-title')!;
+      const panel = document.getElementById('questions-panel')!;
+
+      panel.style.opacity = '0';
+      panel.style.borderColor = `rgba(${hexToComponents(sector.color)},0.3)`;
+      title.textContent = `Preguntas que resuelve sin agente humano — ${sector.label}`;
+
+      setTimeout(() => {
+        list.innerHTML = sector.questions.map(q => `
+          <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:0.75rem;padding:10px 14px;display:flex;align-items:flex-start;gap:8px;">
+            <span style="color:#60a5fa;font-size:0.75rem;flex-shrink:0;margin-top:1px;">📞</span>
+            <span style="color:#cbd5e1;font-size:0.82rem;line-height:1.4;">"${q}"</span>
+          </div>
+        `).join('');
+        panel.style.opacity = '1';
+      }, 150);
+    }
+
+    function hexToComponents(hex: string): string {
+      const r = parseInt(hex.slice(1,3),16);
+      const g = parseInt(hex.slice(3,5),16);
+      const b = parseInt(hex.slice(5,7),16);
+      return `${r},${g},${b}`;
+    }
+
+    function selectSector(key: string) {
+      current = key;
+      const btns = document.querySelectorAll<HTMLElement>('.sector-btn');
+      btns.forEach(btn => {
+        const s = btn.getAttribute('data-sector')!;
+        const sector = SECTORS[s];
+        if (s === key) {
+          btn.style.background = `rgba(${hexToComponents(sector.color)},0.15)`;
+          btn.style.borderColor = sector.color;
+          const tag = btn.querySelector('div > div:last-child') as HTMLElement;
+          if (tag) tag.style.color = sector.color;
+        } else {
+          btn.style.background = 'rgba(255,255,255,0.04)';
+          btn.style.borderColor = 'rgba(255,255,255,0.08)';
+          const tag = btn.querySelector('div > div:last-child') as HTMLElement;
+          if (tag) tag.style.color = '#64748b';
+        }
+      });
+      renderQuestions(key);
+    }
+
+    document.querySelectorAll<HTMLElement>('.sector-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const s = btn.getAttribute('data-sector');
+        if (s) selectSector(s);
+      });
+    });
+
+    // Init
+    selectSector('clinicas');
+  })();
+  </script>
+
+
+  <!-- ══════════════════════════════════════════════
+       TRANSPARENCIA + CTA — misma sección
+  ══════════════════════════════════════════════ -->
+  <section style="background: #0f1628; padding: 80px 0;">
+    <div class="max-w-5xl mx-auto px-6">
+
+      <!-- Transparencia -->
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4" style="color: #e2e8f0;">Transparencia: qué resuelve y qué no</h2>
+        <p style="color: #94a3b8; font-size: 1.1rem; max-width: 600px; margin: 0 auto;">No es magia. Es tecnología bien configurada. Queremos que sepas exactamente qué esperar.</p>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:72px;">
+        <div style="background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.25);border-radius:1rem;padding:28px;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
+            <div style="width:36px;height:36px;background:rgba(34,197,94,0.2);border-radius:8px;display:flex;align-items:center;justify-content:center;">✅</div>
+            <h3 style="color:#4ade80;font-weight:700;margin:0;">Resuelve de forma autónoma</h3>
+          </div>
+          <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;">
+            <li style="color:#94a3b8;font-size:0.875rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#4ade80;font-weight:700;flex-shrink:0;">✓</span> Consultas repetitivas con respuesta definida</li>
+            <li style="color:#94a3b8;font-size:0.875rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#4ade80;font-weight:700;flex-shrink:0;">✓</span> Reservar, modificar y cancelar citas</li>
+            <li style="color:#94a3b8;font-size:0.875rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#4ade80;font-weight:700;flex-shrink:0;">✓</span> Información de horarios, precios y servicios</li>
+            <li style="color:#94a3b8;font-size:0.875rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#4ade80;font-weight:700;flex-shrink:0;">✓</span> Estado de pedidos y seguimiento</li>
+            <li style="color:#94a3b8;font-size:0.875rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#4ade80;font-weight:700;flex-shrink:0;">✓</span> Recogida de datos y derivación organizada</li>
+          </ul>
+        </div>
+        <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:1rem;padding:28px;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
+            <div style="width:36px;height:36px;background:rgba(255,255,255,0.08);border-radius:8px;display:flex;align-items:center;justify-content:center;">🔁</div>
+            <h3 style="color:#e2e8f0;font-weight:700;margin:0;">Deriva a humano</h3>
+          </div>
+          <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;">
+            <li style="color:#94a3b8;font-size:0.875rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#60a5fa;flex-shrink:0;">→</span> Urgencias médicas o situaciones delicadas</li>
+            <li style="color:#94a3b8;font-size:0.875rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#60a5fa;flex-shrink:0;">→</span> Negociaciones o decisiones complejas</li>
+            <li style="color:#94a3b8;font-size:0.875rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#60a5fa;flex-shrink:0;">→</span> Reclamaciones que requieren criterio humano</li>
+            <li style="color:#94a3b8;font-size:0.875rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#60a5fa;flex-shrink:0;">→</span> Casos fuera del ámbito configurado</li>
+            <li style="color:#94a3b8;font-size:0.875rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#60a5fa;flex-shrink:0;">→</span> Cuando el cliente solicita un agente</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Separador -->
+      <div style="height:1px;background:linear-gradient(to right,transparent,rgba(37,99,235,0.3),transparent);margin-bottom:72px;"></div>
+
+      <!-- CTA integrado -->
+      <div style="text-align:center;">
+          <div style="font-size:2.5rem;margin-bottom:14px;">📞</div>
+          <h2 class="text-3xl md:text-4xl font-bold mb-5" style="color:#fff;">Nunca más pierdas<br/>una llamada importante</h2>
+          <p style="color:#94a3b8;font-size:1.05rem;margin-bottom:36px;line-height:1.7;max-width:560px;margin-left:auto;margin-right:auto;">
+            Analizamos tu volumen de llamadas actual y te decimos exactamente cuánto tiempo y dinero puede ahorrar tu negocio. La reunión es gratuita y sin compromiso.
+          </p>
+          <div style="display:flex;flex-wrap:wrap;gap:14px;justify-content:center;">
+            <a href="/presupuesto?plan=Atencion-Llamadas-IA"
+              style="display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:15px 34px;background:linear-gradient(135deg,#2563eb,#0ea5e9);color:#fff;font-weight:700;font-size:1rem;border-radius:14px;text-decoration:none;box-shadow:0 16px 36px -8px rgba(37,99,235,0.45);">
+              Solicitar análisis gratuito
+            </a>
+            <a href="#demo"
+              style="display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:15px 34px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);color:#cbd5e1;font-weight:600;font-size:1rem;border-radius:14px;text-decoration:none;">
+              Ver la demo primero
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
 </BaseLayout>
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     const callButton = document.getElementById('call-button');
-    const callButtonContainer = document.getElementById('call-button-container');
     const hangupButtonInPhone = document.getElementById('hangup-button-in-phone');
     const durationText = document.getElementById('duration-text');
     const conversationLog = document.getElementById('conversation-log');
-    const scenarioButtons = document.querySelectorAll('.scenario-button');
-    const scenarioSelectorContainer = document.getElementById('scenario-selector-container');
+    const scenarioButtons = document.querySelectorAll('.scenario-button') as NodeListOf<HTMLElement>;
     const preCallScreen = document.getElementById('pre-call-screen');
     const inCallScreen = document.getElementById('in-call-screen');
-    const transcriptionPanel = document.getElementById('transcription-panel');
     const recordingIndicator = document.getElementById('recording-indicator');
-    const emptyState = document.getElementById('empty-state');
+
 
     let isInCall = false;
     let callStartTime = 0;
@@ -291,7 +772,6 @@ const canonical = "https://aisecurity.es/servicios/atencion-llamadas";
     let audioTimeouts: number[] = [];
     let selectedScenario: keyof typeof scenarios = 'reservar';
 
-    // Escenarios con sus conversaciones y archivos de audio
     const scenarios = {
       reservar: [
         { delay: 1000, speaker: 'AI', text: '¡Hola! Bienvenido a Clínica Dental Dr. García. ¿En qué puedo ayudarte?', audio: '/audio/reservar/ai_1.mp3' },
@@ -316,9 +796,9 @@ const canonical = "https://aisecurity.es/servicios/atencion-llamadas";
       pago: [
         { delay: 1000, speaker: 'AI', text: 'Clínica Dental Dr. García, ¿en qué puedo ayudarle?', audio: '/audio/pago/ai_1.mp3' },
         { delay: 3000, speaker: 'User', text: 'Quisiera saber cuánto dura un tratamiento de ortodoncia', audio: '/audio/pago/user_1.mp3' },
-        { delay: 5000, speaker: 'AI', text: 'El tratamiento de ortodoncia suele durar entre 12 y 24 meses, dependiendo del caso. ¿Le gustaría información sobre las formas de pago?', audio: '/audio/pago/ai_2.mp3' },
+        { delay: 5000, speaker: 'AI', text: 'El tratamiento suele durar entre 12 y 24 meses según el caso. ¿Le gustaría información sobre las formas de pago?', audio: '/audio/pago/ai_2.mp3' },
         { delay: 7500, speaker: 'User', text: 'Sí, ¿tienen opciones de financiación?', audio: '/audio/pago/user_2.mp3' },
-        { delay: 9000, speaker: 'AI', text: 'Sí, ofrecemos financiación sin intereses hasta 12 meses, y también aceptamos tarjetas de crédito y transferencias. ¿Le gustaría agendar una consulta gratuita para valoración?', audio: '/audio/pago/ai_3.mp3' },
+        { delay: 9000, speaker: 'AI', text: 'Sí, ofrecemos financiación sin intereses hasta 12 meses, y aceptamos tarjetas y transferencias. ¿Le gustaría agendar una consulta gratuita?', audio: '/audio/pago/ai_3.mp3' },
         { delay: 11500, speaker: 'User', text: 'Sí, me interesa', audio: '/audio/pago/user_3.mp3' },
         { delay: 12500, speaker: 'AI', text: 'Perfecto. ¿Qué día le vendría mejor para la consulta?', audio: '/audio/pago/ai_4.mp3' },
       ]
@@ -327,113 +807,71 @@ const canonical = "https://aisecurity.es/servicios/atencion-llamadas";
     function addConversationLine(speaker: string, text: string, audioSrc?: string) {
       if (!conversationLog) return;
 
-      // Ocultar estado vacío en el primer mensaje
-      if (emptyState && !emptyState.classList.contains('hidden')) {
-        emptyState.classList.add('hidden');
-      }
+      const es = document.getElementById('empty-state');
+      if (es) es.style.display = 'none';
 
       const line = document.createElement('div');
-      line.className = speaker === 'AI'
-        ? 'flex gap-2 items-start'
-        : 'flex gap-2 items-start justify-end';
+      line.style.cssText = speaker === 'AI'
+        ? 'display:flex;gap:8px;align-items:flex-start;'
+        : 'display:flex;gap:8px;align-items:flex-start;justify-content:flex-end;';
 
       const bubble = document.createElement('div');
-      bubble.className = speaker === 'AI'
-        ? 'bg-blue-50 text-gray-800 px-4 py-2 rounded-2xl rounded-tl-sm max-w-[85%]'
-        : 'bg-blue-600 text-white px-4 py-2 rounded-2xl rounded-tr-sm max-w-[85%]';
+      bubble.style.cssText = speaker === 'AI'
+        ? 'background:#eff6ff;color:#1e3a5f;padding:10px 14px;border-radius:16px 16px 16px 4px;max-width:85%;'
+        : 'background:#2563eb;color:#fff;padding:10px 14px;border-radius:16px 16px 4px 16px;max-width:85%;';
 
-      const content = document.createElement('div');
       const label = document.createElement('div');
-      label.className = 'text-xs font-semibold mb-1 opacity-70';
+      label.style.cssText = 'font-size:0.7rem;font-weight:600;margin-bottom:4px;opacity:0.7;';
       label.textContent = speaker === 'AI' ? '🤖 Asistente' : '👤 Tú';
 
       const message = document.createElement('div');
-      message.className = 'text-sm leading-relaxed';
+      message.style.cssText = 'font-size:0.8rem;line-height:1.5;';
       message.textContent = text;
 
-      content.appendChild(label);
-      content.appendChild(message);
-      bubble.appendChild(content);
+      bubble.appendChild(label);
+      bubble.appendChild(message);
       line.appendChild(bubble);
-
       conversationLog.appendChild(line);
       conversationLog.scrollTop = conversationLog.scrollHeight;
 
-      // Reproducir audio si está disponible
-      if (audioSrc) {
-        playAudio(audioSrc);
-      }
+      if (audioSrc) playAudio(audioSrc);
     }
 
     function playAudio(src: string) {
-      // Detener audio actual si existe
-      if (currentAudio) {
-        currentAudio.pause();
-        currentAudio.currentTime = 0;
-      }
-
-      // Crear y reproducir nuevo audio
+      if (currentAudio) { currentAudio.pause(); currentAudio.currentTime = 0; }
       currentAudio = new Audio(src);
-      currentAudio.play().catch(error => {
-        console.log('Audio playback failed:', error);
-        // Silenciosamente fallar si el audio no está disponible
-      });
+      currentAudio.play().catch(() => {});
     }
 
     function stopAllAudio() {
-      if (currentAudio) {
-        currentAudio.pause();
-        currentAudio.currentTime = 0;
-        currentAudio = null;
-      }
-
-      // Limpiar todos los timeouts de audio
-      audioTimeouts.forEach(timeout => clearTimeout(timeout));
+      if (currentAudio) { currentAudio.pause(); currentAudio.currentTime = 0; currentAudio = null; }
+      audioTimeouts.forEach(t => clearTimeout(t));
       audioTimeouts = [];
     }
 
     function updateDuration() {
       const elapsed = Math.floor((Date.now() - callStartTime) / 1000);
-      const minutes = Math.floor(elapsed / 60).toString().padStart(2, '0');
-      const seconds = (elapsed % 60).toString().padStart(2, '0');
-      if (durationText) {
-        durationText.textContent = `${minutes}:${seconds}`;
-      }
+      const m = Math.floor(elapsed / 60).toString().padStart(2, '0');
+      const s = (elapsed % 60).toString().padStart(2, '0');
+      if (durationText) durationText.textContent = `${m}:${s}`;
     }
 
     function startCall() {
       isInCall = true;
       callStartTime = Date.now();
-
-      // Usar escenario seleccionado
       const conversation = scenarios[selectedScenario];
 
-      // Ocultar pantalla pre-llamada
-      if (preCallScreen) preCallScreen.classList.add('hidden');
+      if (preCallScreen) preCallScreen.style.display = 'none';
+      if (inCallScreen) inCallScreen.style.display = 'flex';
+      if (recordingIndicator) recordingIndicator.style.display = 'flex';
 
-      // Mostrar pantalla en llamada
-      if (inCallScreen) {
-        inCallScreen.classList.remove('hidden');
-        inCallScreen.classList.add('flex');
-      }
-
-      // Mostrar indicador de grabación
-      if (recordingIndicator) {
-        recordingIndicator.classList.remove('hidden');
-        recordingIndicator.classList.add('flex');
-      }
-
-      // Start duration counter
       durationInterval = setInterval(updateDuration, 1000) as unknown as number;
 
-      // Play conversation with audio
       conversation.forEach(line => {
-        const timeout = setTimeout(() => {
-          if (isInCall) {
-            addConversationLine(line.speaker, line.text, line.audio);
-          }
+        const t = setTimeout(() => {
+          if (isInCall) addConversationLine(line.speaker, line.text, line.audio);
         }, line.delay) as unknown as number;
-        audioTimeouts.push(timeout);
+        audioTimeouts.push(t);
       });
     }
 
@@ -442,73 +880,44 @@ const canonical = "https://aisecurity.es/servicios/atencion-llamadas";
       clearInterval(durationInterval);
       stopAllAudio();
 
-      // Ocultar pantalla en llamada
-      if (inCallScreen) {
-        inCallScreen.classList.add('hidden');
-        inCallScreen.classList.remove('flex');
-      }
-
-      // Ocultar indicador de grabación
-      if (recordingIndicator) {
-        recordingIndicator.classList.add('hidden');
-        recordingIndicator.classList.remove('flex');
-      }
-
-      // Limpiar transcripción y mostrar estado vacío
-      if (conversationLog) {
-        conversationLog.innerHTML = `
-          <div id="empty-state" class="flex flex-col items-center justify-center h-full text-center py-12">
-            <svg class="w-16 h-16 text-gray-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
-            </svg>
-            <p class="text-gray-400 text-sm font-medium">La transcripción aparecerá aquí</p>
-            <p class="text-gray-300 text-xs mt-2">Selecciona un motivo y pulsa "Llamar"</p>
-          </div>
-        `;
-      }
-
-      // Reset temporizador
+      if (inCallScreen) inCallScreen.style.display = 'none';
+      if (recordingIndicator) recordingIndicator.style.display = 'none';
+      if (preCallScreen) preCallScreen.style.display = 'flex';
       if (durationText) durationText.textContent = '00:00';
 
-      // Mostrar pantalla pre-llamada
-      if (preCallScreen) preCallScreen.classList.remove('hidden');
+      if (conversationLog) {
+        conversationLog.innerHTML = `
+          <div id="empty-state" style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;padding:32px 0;">
+            <svg width="56" height="56" fill="none" stroke="#d1d5db" stroke-width="2" viewBox="0 0 24 24" style="margin-bottom:12px;"><path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+            <p style="color:#111;font-size:0.875rem;font-weight:500;margin:0 0 4px;">La transcripción aparecerá aquí</p>
+            <p style="color:#6b7280;font-size:0.75rem;margin:0;">Selecciona un motivo y pulsa "Llamar"</p>
+          </div>`;
+      }
     }
 
-    // Función para actualizar el escenario seleccionado
     function updateSelectedScenario(scenario: keyof typeof scenarios) {
       selectedScenario = scenario;
-
-      // Actualizar estilos de los botones
       scenarioButtons.forEach(btn => {
-        const btnScenario = btn.getAttribute('data-scenario');
-        if (btnScenario === scenario) {
-          btn.classList.remove('border-gray-700', 'bg-gray-800/30');
-          btn.classList.add('border-blue-500/50', 'bg-gray-800/50', 'shadow-lg', 'shadow-blue-500/20');
+        const s = btn.getAttribute('data-scenario');
+        if (s === scenario) {
+          btn.style.background = 'rgba(37,99,235,0.2)';
+          btn.style.border = '1px solid rgba(37,99,235,0.5)';
+          btn.style.boxShadow = '0 4px 15px rgba(37,99,235,0.2)';
         } else {
-          btn.classList.remove('border-blue-500/50', 'bg-gray-800/50', 'shadow-lg', 'shadow-blue-500/20');
-          btn.classList.add('border-gray-700', 'bg-gray-800/30');
+          btn.style.background = 'rgba(255,255,255,0.05)';
+          btn.style.border = '1px solid rgba(255,255,255,0.1)';
+          btn.style.boxShadow = 'none';
         }
       });
     }
 
-    // Event listener para el botón de llamar
-    if (callButton) {
-      callButton.addEventListener('click', startCall);
-    }
-
-    // Event listeners para los botones de escenario
-    scenarioButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        const scenario = button.getAttribute('data-scenario') as keyof typeof scenarios;
-        if (scenario) {
-          updateSelectedScenario(scenario);
-        }
+    callButton?.addEventListener('click', startCall);
+    hangupButtonInPhone?.addEventListener('click', endCall);
+    scenarioButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const s = btn.getAttribute('data-scenario') as keyof typeof scenarios;
+        if (s) updateSelectedScenario(s);
       });
     });
-
-    // Event listener para colgar (botón dentro del teléfono)
-    if (hangupButtonInPhone) {
-      hangupButtonInPhone.addEventListener('click', endCall);
-    }
   });
 </script>

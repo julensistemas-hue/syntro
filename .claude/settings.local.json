@@ -41,10 +41,34 @@
       "Bash(wc -l /c/Users/Jul/Documents/Project/aisecurity.es/web/syntro/scripts/seo-automation/*.js)",
       "Bash(python -c \"import sys,json; users=json.load\\(sys.stdin\\).get\\('users',[]\\); [print\\(u['id'], u['email']\\) for u in users]\")",
       "Bash(vercel logs:*)",
-      "Bash(xargs sed:*)"
+      "Bash(xargs sed:*)",
+      "Bash(py -c ':*)",
+      "Bash(py create-lesson-mcp.py)",
+      "Bash(rm create-lesson-mcp.py)",
+      "Bash(rm generate-pdf.mjs)",
+      "Read(//c/Users/Jul/.claude/plugins/cache/playwright-skill/playwright-skill/4.0.2/skills/playwright-skill/**)",
+      "Bash(cmd /c \"cd /d C:\\\\Users\\\\Jul\\\\.claude\\\\plugins\\\\cache\\\\playwright-skill\\\\playwright-skill\\\\4.0.2\\\\skills\\\\playwright-skill && node -e \\\\\"require\\('./lib/helpers'\\).detectDevServers\\(\\).then\\(s => console.log\\(JSON.stringify\\(s\\)\\)\\)\\\\\"\")",
+      "Bash(git -C \"c:/Users/Jul/Documents/Project/aisecurity.es/web/syntro\" add src/components/landing/AIHeroFloating.astro)",
+      "Bash(git -C \"c:/Users/Jul/Documents/Project/aisecurity.es/web/syntro\" commit -m \"fix: hero responsive mobile — chat input, quick buttons y solution card\")",
+      "Bash(git -C \"c:/Users/Jul/Documents/Project/aisecurity.es/web/syntro\" push origin main)",
+      "WebFetch(domain:documentation.wazuh.com)",
+      "WebFetch(domain:www.cyberclick.es)",
+      "WebFetch(domain:www.reddit.com)",
+      "Bash(cd \"C:\\\\Users\\\\Jul\\\\.claude\\\\plugins\\\\cache\\\\playwright-skill\\\\playwright-skill\\\\4.1.0\\\\skills\\\\playwright-skill\" && node -e \"require\\('./lib/helpers'\\).detectDevServers\\(\\).then\\(s => console.log\\(JSON.stringify\\(s\\)\\)\\)\")",
+      "Read(//c/Users/Jul/.claude/plugins/cache/playwright-skill/playwright-skill/4.1.0/skills/playwright-skill/**)",
+      "PowerShell(npm list -g playwright 2>&1)",
+      "PowerShell(head -5)",
+      "PowerShell(npx playwright --version 2>&1)",
+      "PowerShell(head -3)",
+      "PowerShell(cd c:\\\\Users\\\\Jul\\\\Documents\\\\Project\\\\aisecurity.es\\\\web\\\\syntro; $env:PLAYWRIGHT_BROWSERS_PATH=\"0\"; npx playwright@1.60.0 --version 2>&1 | Select-Object -First 1; node -e \"require\\('@playwright/test'\\)\" 2>&1 | Select-Object -First 2)",
+      "Bash(Read \"C:\\\\Users\\\\Jul\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-Jul-Documents-Project-aisecurity-es-web-syntro\\\\a10e4311-eab9-45b0-84fd-03801334b014\\\\tasks\\\\bqb8503ur.output\")"
     ],
     "deny": [],
-    "ask": []
+    "ask": [],
+    "additionalDirectories": [
+      "\\tmp",
+      "c:\\tmp"
+    ]
   },
   "enableAllProjectMcpServers": true,
   "enabledMcpjsonServers": [

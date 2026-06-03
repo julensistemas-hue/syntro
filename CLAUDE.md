@@ -1,4 +1,4 @@
-# CLAUDE.md
+ CLAUDE.md
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
@@ -334,8 +334,7 @@ SMTP_FROM_NAME=AI Security
   - **User confirmation email**: Payment instructions (Bank transfer + Bizum)
   - **Admin notification**: New inscription alert to info@aisecurity.es
 - Payment details included in email:
-  - Bank transfer: IBAN ES52 0081 1389 1200 0114 0773 (Julian Vergara Díaz)
-  - Bizum: 722 67 48 74
+  -
 - Uses `nodemailer` library for SMTP transport
 - Professional HTML + plain text email templates
 
@@ -680,3 +679,4 @@ Edit({
   new_string: "Contáctanos"
 });
 ```
+#

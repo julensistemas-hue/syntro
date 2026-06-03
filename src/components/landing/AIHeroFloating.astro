@@ -33,7 +33,7 @@
     <div class="hero-main-card w-full max-w-3xl mx-auto rounded-2xl px-4 py-4 sm:px-7 sm:py-6 mb-2" style="background:rgba(5,12,30,0.75);border:1px solid rgba(59,130,246,0.18);backdrop-filter:blur(8px);">
 
       <!-- Frase typewriter — altura fija para no mover layout -->
-      <div class="tw-height-wrap" style="min-height:120px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin-bottom:10px;overflow:hidden;">
+      <div class="tw-height-wrap" style="height:120px;min-height:120px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin-bottom:10px;overflow:hidden;">
         <p id="typewriter-text" class="font-bold leading-tight text-center" aria-hidden="true" style="color:#f0f6ff;font-size:clamp(1.4rem,3.2vw,2.2rem);max-width:100%;white-space:pre-line;"></p>
         <span id="tw-cursor" class="tw-cursor" aria-hidden="true"></span>
       </div>
@@ -41,8 +41,8 @@
       <!-- Separador interno -->
       <div style="height:1px;background:linear-gradient(to right,transparent,rgba(59,130,246,0.3),transparent);margin-bottom:16px;"></div>
 
-      <!-- Solución — altura flexible -->
-      <div class="sol-height-wrap" style="min-height:64px;display:flex;align-items:center;justify-content:center;overflow:hidden;">
+      <!-- Solución — altura fija para no mover layout -->
+      <div class="sol-height-wrap" style="height:120px;min-height:120px;display:flex;align-items:center;justify-content:center;overflow:hidden;width:100%;">
         <div id="solution-box" class="solution-card w-full rounded-xl px-4 py-3 sm:px-5 sm:py-4 flex flex-col sm:flex-row items-start sm:items-center gap-3 text-left" style="position:relative;overflow:hidden;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);opacity:0;transform:translateY(24px) scale(0.85);filter:blur(4px);">
           <div id="solution-glow" style="position:absolute;inset:0;border-radius:0.75rem;opacity:0;pointer-events:none;background:radial-gradient(ellipse at center,rgba(96,165,250,0.25),transparent 70%);"></div>
           <!-- Fila icono + texto (siempre en fila) -->
@@ -573,7 +573,7 @@
       ctaText:  'Ver Consultoría IA',
       solution: 'Analizamos tu negocio y diseñamos un plan de IA a tu medida.',
       icon:     'M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z',
-      href:     '/servicios/consultoria-ia',
+      href:     '/consultoria-ia',
     },
     // 6ª — citas
     {

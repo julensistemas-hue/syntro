@@ -256,8 +256,8 @@ const departamentos = [
       <div class="flex flex-col xl:flex-row gap-8 items-start justify-center">
 
         <!-- Diagram + descripción debajo -->
-        <div id="diagram-container" style="flex-shrink: 0; display: flex; flex-direction: column; gap: 16px;">
-          <svg id="diagram-svg" width="560" height="560" viewBox="0 0 560 560" style="display: block; margin: 0 auto;">
+        <div id="diagram-container" style="width: 100%; max-width: 560px; flex-shrink: 0; display: flex; flex-direction: column; gap: 16px;">
+          <svg id="diagram-svg" viewBox="0 0 560 560" style="display: block; margin: 0 auto; width: min(100%, 560px); height: auto;">
             <g id="lines"></g>
             <g id="center-node">
               <circle cx="280" cy="280" r="62" fill="#1a1d27" stroke="#4f7cff" stroke-width="2"/>

@@ -1,4 +1,4 @@
----
+﻿---
 import BlogLayout from "../../layouts/BlogLayout.astro";
 ---
 
@@ -161,8 +161,8 @@ import BlogLayout from "../../layouts/BlogLayout.astro";
     El flag <code>-d</code> ejecuta los contenedores en segundo plano (detached mode).
   </p>
 
-  <div class="bg-green-200 border-l-4 border-green-700 p-4 my-6 rounded-r-lg">
-    <p class="m-0" style="color: #000000;"><strong style="color: #000000;">Todos los comandos juntos:</strong></p>
+  <div style="background:rgba(16,185,129,0.12);border-left:4px solid #10b981;padding:1rem;margin:1.5rem 0;border-radius:0 0.5rem 0.5rem 0;">
+    <p class="m-0" style="color:rgba(255,255,255,0.9);"><strong style="color:rgba(255,255,255,0.9);">Todos los comandos juntos:</strong></p>
     <pre style="background:#0f1419;padding:16px;border-radius:8px;margin-top:12px;overflow-x:auto;"><code style="color: #e5e7eb;">git clone https://github.com/wazuh/wazuh-docker.git -b v4.14.3
 cd wazuh-docker/single-node/
 docker compose -f generate-indexer-certs.yml run --rm generator
@@ -194,8 +194,8 @@ docker compose up -d</code></pre>
 
   <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">docker inspect id-contenedor-server</code></pre>
 
-  <div class="bg-amber-200 border-l-4 border-amber-700 p-4 my-6 rounded-r-lg">
-    <p class="m-0" style="color: #000000;"><strong style="color: #000000;">Importante:</strong> Cambia la contraseña por defecto en entornos de producción. Puedes hacerlo modificando el archivo <code style="color: #000000; background-color: rgba(0,0,0,0.1);">docker-compose.yml</code> antes de levantar los contenedores.</p>
+  <div style="background:rgba(245,158,11,0.12);border-left:4px solid #f59e0b;padding:1rem;margin:1.5rem 0;border-radius:0 0.5rem 0.5rem 0;">
+    <p class="m-0" style="color:rgba(255,255,255,0.9);"><strong style="color:rgba(255,255,255,0.9);">Importante:</strong> Cambia la contraseña por defecto en entornos de producción. Puedes hacerlo modificando el archivo <code style="color: #000000; background-color: rgba(0,0,0,0.1);">docker-compose.yml</code> antes de levantar los contenedores.</p>
   </div>
 
   <h2>Comandos útiles</h2>

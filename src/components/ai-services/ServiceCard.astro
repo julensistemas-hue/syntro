@@ -43,19 +43,19 @@ const isConsultoria = !["Chatbot Inteligente","Gestor Documental IA","Gestor de 
     </div>
   )}
 
-  <div class="flex items-start gap-3 mb-4">
-    <div class={`
-      w-11 h-11 rounded-xl flex items-center justify-center text-2xl flex-shrink-0 shadow-md transition-transform duration-300 group-hover:scale-110
-      ${featured ? 'bg-gradient-to-br from-accent-600 to-blue-600' : 'bg-accent-100'}
-    `}>
-      {featured ? <span class="filter drop-shadow-sm">{icon}</span> : icon}
-    </div>
+  <div class="flex items-center gap-3 mb-4">
     <div class="flex-1 min-w-0">
-      <h3 class="text-lg font-bold text-base-900 mb-1">{title}</h3>
+      <h3 class="text-lg font-bold text-base-900">{title}</h3>
     </div>
   </div>
 
-  <p class="text-sm text-base-600 mb-4 leading-relaxed">{description}</p>
+  <!-- Icono grande reemplaza al texto descriptivo -->
+  <div class="flex justify-center items-center mb-6">
+    <div class={`service-icon-big transition-transform duration-300 group-hover:scale-105 ${featured ? 'service-icon-featured' : 'service-icon-default'}`}>
+      <span class="service-icon-emoji">{icon}</span>
+      <div class="service-icon-ring"></div>
+    </div>
+  </div>
 
   <ul class="space-y-2 mb-6 flex-1">
     {features.map((feature) => (
@@ -96,5 +96,59 @@ const isConsultoria = !["Chatbot Inteligente","Gestor Documental IA","Gestor de 
 <style>
   .service-card-button:hover {
     color: #000000 !important;
+  }
+
+  .service-icon-big {
+    position: relative;
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .service-icon-default {
+    background: radial-gradient(circle at 35% 35%, rgba(59,130,246,0.18), rgba(15,23,42,0.9));
+    border: 1.5px solid rgba(59,130,246,0.3);
+    box-shadow:
+      0 0 24px rgba(59,130,246,0.15),
+      inset 0 1px 0 rgba(255,255,255,0.07);
+  }
+
+  .service-icon-featured {
+    background: radial-gradient(circle at 35% 35%, rgba(96,165,250,0.35), rgba(29,78,216,0.85));
+    border: 1.5px solid rgba(96,165,250,0.5);
+    box-shadow:
+      0 0 32px rgba(59,130,246,0.3),
+      0 8px 24px rgba(29,78,216,0.25),
+      inset 0 1px 0 rgba(255,255,255,0.1);
+  }
+
+  .service-icon-emoji {
+    font-size: 2.4rem;
+    line-height: 1;
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.4));
+    position: relative;
+    z-index: 1;
+  }
+
+  .service-icon-ring {
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    border: 1px solid rgba(59,130,246,0.15);
+    animation: icon-ring-pulse 3s ease-in-out infinite;
+  }
+
+  @keyframes icon-ring-pulse {
+    0%, 100% { opacity: 0.4; transform: scale(1); }
+    50%       { opacity: 0.8; transform: scale(1.04); }
+  }
+
+  .group:hover .service-icon-ring {
+    border-color: rgba(59,130,246,0.35);
+    animation: none;
+    opacity: 1;
   }
 </style>

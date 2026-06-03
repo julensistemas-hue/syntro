@@ -1,4 +1,4 @@
----
+﻿---
 import BlogLayout from "../../layouts/BlogLayout.astro";
 ---
 
@@ -202,7 +202,7 @@ systemctl restart wazuh-agent</code></pre>
 
   <h2>¿Cómo es el flujo completo de logs?</h2>
 
-  <div class="bg-green-200 border-l-4 border-green-700 p-4 my-6 rounded-r-lg">
+  <div style="background:rgba(16,185,129,0.12);border-left:4px solid #10b981;padding:1rem;margin:1.5rem 0;border-radius:0 0.5rem 0.5rem 0;">
     <ol style="color: #000000; margin: 0;">
       <li>El dispositivo (NAS, router, etc.) envía logs al puerto 514</li>
       <li>rsyslog los recibe y filtra según las reglas configuradas</li>

@@ -1,4 +1,4 @@
----
+﻿---
 import BlogLayout from "../../layouts/BlogLayout.astro";
 ---
 
@@ -67,8 +67,8 @@ import BlogLayout from "../../layouts/BlogLayout.astro";
 
   <h2>Requisito previo: Conectividad con el servidor</h2>
 
-  <div class="bg-amber-200 border-l-4 border-amber-700 p-4 my-6 rounded-r-lg">
-    <p class="m-0" style="color: #000000;"><strong style="color: #000000;">Importante:</strong> Antes de instalar el agente, asegúrate de que la máquina tiene <strong style="color: #000000;">conectividad con el servidor Wazuh</strong>. El agente necesita comunicarse con el servidor para enviar los logs y recibir configuración.</p>
+  <div style="background:rgba(245,158,11,0.12);border-left:4px solid #f59e0b;padding:1rem;margin:1.5rem 0;border-radius:0 0.5rem 0.5rem 0;">
+    <p class="m-0" style="color:rgba(255,255,255,0.9);"><strong style="color:rgba(255,255,255,0.9);">Importante:</strong> Antes de instalar el agente, asegúrate de que la máquina tiene <strong style="color:rgba(255,255,255,0.9);">conectividad con el servidor Wazuh</strong>. El agente necesita comunicarse con el servidor para enviar los logs y recibir configuración.</p>
   </div>
 
   <p>
@@ -112,8 +112,8 @@ https://IP_SERVIDOR</code></pre>
 
   <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">wget https://packages.wazuh.com/4.x/apt/pool/main/w/wazuh-agent/wazuh-agent_4.9.2-1_amd64.deb && sudo WAZUH_MANAGER='TU_IP_SERVIDOR' WAZUH_AGENT_NAME='NOMBRE_AGENTE' dpkg -i ./wazuh-agent_4.9.2-1_amd64.deb</code></pre>
 
-  <div class="bg-amber-200 border-l-4 border-amber-700 p-4 my-6 rounded-r-lg">
-    <p class="m-0" style="color: #000000;"><strong style="color: #000000;">Ejemplo real:</strong> Si tu servidor Wazuh está en 192.168.1.100 y quieres llamar al agente "servidor-web":</p>
+  <div style="background:rgba(245,158,11,0.12);border-left:4px solid #f59e0b;padding:1rem;margin:1.5rem 0;border-radius:0 0.5rem 0.5rem 0;">
+    <p class="m-0" style="color:rgba(255,255,255,0.9);"><strong style="color:rgba(255,255,255,0.9);">Ejemplo real:</strong> Si tu servidor Wazuh está en 192.168.1.100 y quieres llamar al agente "servidor-web":</p>
     <pre style="background:#0f1419;padding:16px;border-radius:8px;margin-top:12px;overflow-x:auto;"><code style="color: #e5e7eb;">wget https://packages.wazuh.com/4.x/apt/pool/main/w/wazuh-agent/wazuh-agent_4.9.2-1_amd64.deb && sudo WAZUH_MANAGER='192.168.1.100' WAZUH_AGENT_NAME='servidor-web' dpkg -i ./wazuh-agent_4.9.2-1_amd64.deb</code></pre>
   </div>
 
@@ -163,8 +163,8 @@ sudo systemctl start wazuh-agent</code></pre>
   &lt;location&gt;/var/log/apache2/access.log&lt;/location&gt;
 &lt;/localfile&gt;</code></pre>
 
-  <div class="bg-green-200 border-l-4 border-green-700 p-4 my-6 rounded-r-lg">
-    <p class="m-0" style="color: #000000;"><strong style="color: #000000;">Formatos de log disponibles:</strong></p>
+  <div style="background:rgba(16,185,129,0.12);border-left:4px solid #10b981;padding:1rem;margin:1.5rem 0;border-radius:0 0.5rem 0.5rem 0;">
+    <p class="m-0" style="color:rgba(255,255,255,0.9);"><strong style="color:rgba(255,255,255,0.9);">Formatos de log disponibles:</strong></p>
     <ul style="color: #000000; margin-top: 8px;">
       <li><code style="color: #000000; background-color: rgba(0,0,0,0.1);">syslog</code> - Para logs del sistema (/var/log/syslog, /var/log/auth.log)</li>
       <li><code style="color: #000000; background-color: rgba(0,0,0,0.1);">apache</code> - Para logs de Apache/Nginx</li>
