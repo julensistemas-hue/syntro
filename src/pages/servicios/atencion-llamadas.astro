@@ -425,6 +425,14 @@ const canonical = "https://aisecurity.es/servicios/atencion-llamadas";
         </div>
       </div>
 
+      <!-- CTA niveles -->
+      <div style="text-align:center;margin-top:48px;">
+        <a href="/presupuesto?plan=Atencion-Llamadas-IA"
+          style="display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 40px;background:linear-gradient(135deg,#2563eb,#0ea5e9);color:#fff;font-weight:700;font-size:1rem;border-radius:14px;text-decoration:none;box-shadow:0 16px 36px -8px rgba(37,99,235,0.4);">
+          Solicitar presupuesto sin compromiso →
+        </a>
+      </div>
+
     </div>
   </section>
 
@@ -440,7 +448,7 @@ const canonical = "https://aisecurity.es/servicios/atencion-llamadas";
       </div>
 
       <!-- Grid de sectores clickables -->
-      <div id="sector-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:32px;">
+      <div id="sector-grid" class="grid grid-cols-2 md:grid-cols-3 gap-3 mb-8">
 
         <button data-sector="clinicas" class="sector-btn" style="background:rgba(37,99,235,0.15);border:2px solid rgba(37,99,235,0.5);border-radius:1rem;padding:18px 16px;display:flex;align-items:center;gap:12px;cursor:pointer;text-align:left;transition:all 0.2s;">
           <span style="font-size:1.6rem;flex-shrink:0;">🦷</span>
@@ -617,8 +625,6 @@ const canonical = "https://aisecurity.es/servicios/atencion-llamadas";
       },
     };
 
-    let current = 'clinicas';
-
     function renderQuestions(key: string) {
       const sector = SECTORS[key];
       if (!sector) return;
@@ -650,7 +656,6 @@ const canonical = "https://aisecurity.es/servicios/atencion-llamadas";
     }
 
     function selectSector(key: string) {
-      current = key;
       const btns = document.querySelectorAll<HTMLElement>('.sector-btn');
       btns.forEach(btn => {
         const s = btn.getAttribute('data-sector')!;
@@ -684,6 +689,98 @@ const canonical = "https://aisecurity.es/servicios/atencion-llamadas";
 
 
   <!-- ══════════════════════════════════════════════
+       FAQ
+  ══════════════════════════════════════════════ -->
+  <section style="background: #0f1628; padding: 80px 0;">
+    <div class="max-w-3xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4" style="color: #e2e8f0;">Preguntas frecuentes</h2>
+        <p style="color: #94a3b8; font-size: 1.05rem; max-width: 520px; margin: 0 auto;">Las dudas más habituales antes de implantar una recepcionista virtual con IA.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+
+        <div class="faq-item" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;transition:border-color 0.2s;">
+          <button class="faq-btn" style="width:100%;text-align:left;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;cursor:pointer;background:none;border:none;">
+            <span style="color:#e2e8f0;font-weight:600;font-size:0.95rem;line-height:1.4;">¿Qué es un recepcionista virtual con IA?</span>
+            <svg class="faq-chevron" style="width:20px;height:20px;color:#60a5fa;flex-shrink:0;transition:transform 0.25s;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer" style="display:none;padding:0 24px 20px;">
+            <p style="color:#94a3b8;font-size:0.875rem;line-height:1.75;margin:0;border-top:1px solid rgba(255,255,255,0.06);padding-top:16px;">Un recepcionista virtual con IA es un sistema de atención telefónica automatizada que usa inteligencia artificial para atender llamadas con voz natural, entender el lenguaje conversacional, responder preguntas frecuentes, gestionar citas y derivar los casos complejos a un agente humano. A diferencia de un IVR clásico con menús de teclado, entiende el lenguaje natural y mantiene una conversación fluida.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;transition:border-color 0.2s;">
+          <button class="faq-btn" style="width:100%;text-align:left;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;cursor:pointer;background:none;border:none;">
+            <span style="color:#e2e8f0;font-weight:600;font-size:0.95rem;line-height:1.4;">¿Puede una IA atender llamadas en español de forma natural?</span>
+            <svg class="faq-chevron" style="width:20px;height:20px;color:#60a5fa;flex-shrink:0;transition:transform 0.25s;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer" style="display:none;padding:0 24px 20px;">
+            <p style="color:#94a3b8;font-size:0.875rem;line-height:1.75;margin:0;border-top:1px solid rgba(255,255,255,0.06);padding-top:16px;">Sí. Los sistemas actuales de IA conversacional con síntesis de voz neural producen voz natural en español con entonación y pronunciación correctas. El sistema entiende interrupciones, reformulaciones e imprecisiones del hablante, y puede detectar automáticamente el idioma del interlocutor (español, catalán, inglés, francés, alemán, portugués, entre otros).</p>
+          </div>
+        </div>
+
+        <div class="faq-item" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;transition:border-color 0.2s;">
+          <button class="faq-btn" style="width:100%;text-align:left;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;cursor:pointer;background:none;border:none;">
+            <span style="color:#e2e8f0;font-weight:600;font-size:0.95rem;line-height:1.4;">¿Qué porcentaje de llamadas puede resolver la IA sin intervención humana?</span>
+            <svg class="faq-chevron" style="width:20px;height:20px;color:#60a5fa;flex-shrink:0;transition:transform 0.25s;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer" style="display:none;padding:0 24px 20px;">
+            <p style="color:#94a3b8;font-size:0.875rem;line-height:1.75;margin:0;border-top:1px solid rgba(255,255,255,0.06);padding-top:16px;">En implementaciones bien configuradas, aproximadamente el 80-85% de las llamadas habituales se resuelven de forma autónoma: reservas y cancelaciones de citas, consultas de horarios y precios, información sobre servicios, estado de pedidos o incidencias recurrentes. El 15-20% restante —urgencias, negociaciones o casos fuera del ámbito configurado— se deriva automáticamente a un agente humano.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;transition:border-color 0.2s;">
+          <button class="faq-btn" style="width:100%;text-align:left;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;cursor:pointer;background:none;border:none;">
+            <span style="color:#e2e8f0;font-weight:600;font-size:0.95rem;line-height:1.4;">¿Cuánto tiempo tarda en implementarse un recepcionista virtual con IA?</span>
+            <svg class="faq-chevron" style="width:20px;height:20px;color:#60a5fa;flex-shrink:0;transition:transform 0.25s;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer" style="display:none;padding:0 24px 20px;">
+            <p style="color:#94a3b8;font-size:0.875rem;line-height:1.75;margin:0;border-top:1px solid rgba(255,255,255,0.06);padding-top:16px;">El plan básico (sin integración con sistemas internos) puede estar operativo en 7-10 días hábiles. El plan medio, que integra el CRM o ERP de la empresa mediante API, requiere 3-4 semanas. El plan avanzado, con tickets automáticos, WhatsApp Business y multi-agente, se implanta en 5-6 semanas. El plazo depende principalmente de la disponibilidad de la API del sistema de gestión del cliente.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;transition:border-color 0.2s;">
+          <button class="faq-btn" style="width:100%;text-align:left;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;cursor:pointer;background:none;border:none;">
+            <span style="color:#e2e8f0;font-weight:600;font-size:0.95rem;line-height:1.4;">¿Se puede integrar con el número de teléfono actual de la empresa?</span>
+            <svg class="faq-chevron" style="width:20px;height:20px;color:#60a5fa;flex-shrink:0;transition:transform 0.25s;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer" style="display:none;padding:0 24px 20px;">
+            <p style="color:#94a3b8;font-size:0.875rem;line-height:1.75;margin:0;border-top:1px solid rgba(255,255,255,0.06);padding-top:16px;">Sí. La integración se realiza mediante SIP trunk o redirección de llamadas, por lo que el número de teléfono visible para el cliente no cambia. El sistema puede configurarse para atender todas las llamadas, solo las que entran fuera de horario, o solo las que no son contestadas en X segundos. El equipo humano sigue pudiendo recibir y hacer llamadas con normalidad.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;transition:border-color 0.2s;">
+          <button class="faq-btn" style="width:100%;text-align:left;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;cursor:pointer;background:none;border:none;">
+            <span style="color:#e2e8f0;font-weight:600;font-size:0.95rem;line-height:1.4;">¿Qué empresas pueden beneficiarse de un recepcionista IA?</span>
+            <svg class="faq-chevron" style="width:20px;height:20px;color:#60a5fa;flex-shrink:0;transition:transform 0.25s;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer" style="display:none;padding:0 24px 20px;">
+            <p style="color:#94a3b8;font-size:0.875rem;line-height:1.75;margin:0;border-top:1px solid rgba(255,255,255,0.06);padding-top:16px;">Cualquier empresa que reciba un volumen significativo de llamadas repetitivas: clínicas dentales y consultas médicas (citas, horarios, seguros), hoteles y alojamientos (reservas, check-in, servicios), despachos de abogados y asesorías (primera atención, citas), talleres mecánicos (estado de reparaciones, citas ITV), inmobiliarias (disponibilidad de pisos, visitas) y e-commerce (estado de pedidos, devoluciones).</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <script is:inline>
+  (function(){
+    document.querySelectorAll('.faq-btn').forEach(function(btn){
+      btn.addEventListener('click',function(){
+        var item=btn.closest('.faq-item');
+        var answer=item.querySelector('.faq-answer');
+        var icon=btn.querySelector('.faq-chevron');
+        var open=answer.style.display==='block';
+        document.querySelectorAll('.faq-answer').forEach(function(a){a.style.display='none';});
+        document.querySelectorAll('.faq-chevron').forEach(function(i){i.style.transform='rotate(0deg)';});
+        document.querySelectorAll('.faq-item').forEach(function(i){i.style.borderColor='rgba(255,255,255,0.08)';});
+        if(!open){answer.style.display='block';icon.style.transform='rotate(180deg)';item.style.borderColor='rgba(96,165,250,0.3)';}
+      });
+    });
+  })();
+  </script>
+
+  <!-- ══════════════════════════════════════════════
        TRANSPARENCIA + CTA — misma sección
   ══════════════════════════════════════════════ -->
   <section style="background: #0f1628; padding: 80px 0;">
@@ -695,7 +792,7 @@ const canonical = "https://aisecurity.es/servicios/atencion-llamadas";
         <p style="color: #94a3b8; font-size: 1.1rem; max-width: 600px; margin: 0 auto;">No es magia. Es tecnología bien configurada. Queremos que sepas exactamente qué esperar.</p>
       </div>
 
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:72px;">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
         <div style="background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.25);border-radius:1rem;padding:28px;">
           <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
             <div style="width:36px;height:36px;background:rgba(34,197,94,0.2);border-radius:8px;display:flex;align-items:center;justify-content:center;">✅</div>

@@ -24,6 +24,20 @@ const buttonMap: Record<string, string> = {
 };
 const buttonText = buttonMap[title] ?? "Ver servicio";
 const isConsultoria = !["Chatbot Inteligente","Gestor Documental IA","Gestor de Citas IA","Atención de Llamadas IA"].includes(title);
+
+// Plan para el botón de presupuesto
+const planMap: Record<string, string> = {
+  "Chatbot Inteligente":       "Chatbot-IA",
+  "Gestor Documental IA":      "Gestor-Documental-IA",
+  "Gestor de Citas IA":        "Gestor-Citas-IA",
+  "Atención de Llamadas IA":   "Atencion-Llamadas-IA",
+  "Wazuh & Ciberseguridad":    "Wazuh-Ciberseguridad",
+  "Consultoría IA":            "Consultoria-IA",
+  "Diseño Web Profesional":    "Diseno-Web",
+  "Posicionamiento SEO y GEO": "SEO-GEO",
+  "Soporte Técnico IT":        "Soporte-IT",
+};
+const presupuestoPlan = planMap[title] ?? title.replace(/\s+/g, '-');
 ---
 
 <div
@@ -89,6 +103,17 @@ const isConsultoria = !["Chatbot Inteligente","Gestor Documental IA","Gestor de 
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
         </>
       )}
+    </svg>
+  </a>
+
+  <a
+    href={`/presupuesto?plan=${presupuestoPlan}`}
+    class="inline-flex items-center justify-center w-full px-5 py-2.5 rounded-xl font-semibold text-sm transition-all duration-200 mt-2 border-2 border-accent-200 hover:border-accent-400 hover:bg-accent-50"
+    style="color: #1d4ed8;"
+  >
+    Solicitar presupuesto
+    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
     </svg>
   </a>
 </div>

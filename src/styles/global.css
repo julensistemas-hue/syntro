@@ -96,6 +96,7 @@ body {
   color: var(--color-base-800);
   background-color: var(--color-base-50);
   line-height: 1.6;
+  overflow-x: hidden;
 }
 
 /* Enhanced Typography Scale */
@@ -158,9 +159,10 @@ a:hover {
   color: var(--color-accent-700);
 }
 
-/* Smooth Scrolling */
+/* Smooth Scrolling + prevent horizontal overflow on all pages */
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 /* Selection Styles */

@@ -149,7 +149,7 @@ const canonical = "https://aisecurity.es/servicios/gestor-citas";
         </div>
 
         <!-- Botones de canal -->
-        <div style="display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; padding: 24px 24px 0;">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 px-6 pt-6">
           <button class="channel-btn" data-channel="whatsapp"
             style="text-align:left;border-radius:1rem;padding:20px;border:2px solid rgba(34,197,94,0.35);background:rgba(34,197,94,0.08);cursor:pointer;transition:all 0.2s;">
             <div style="font-size:1.75rem;margin-bottom:8px;">💬</div>
@@ -189,7 +189,7 @@ const canonical = "https://aisecurity.es/servicios/gestor-citas";
 
         <!-- ── PANEL WHATSAPP ── -->
         <div id="panel-whatsapp" class="demo-panel" style="display:none;padding:24px;">
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;border-radius:1.25rem;overflow:hidden;border:1px solid rgba(34,197,94,0.2);">
+          <div class="grid grid-cols-1 lg:grid-cols-2" style="border-radius:1.25rem;overflow:hidden;border:1px solid rgba(34,197,94,0.2);">
             <!-- Chat WhatsApp -->
             <div style="background:#111b21;">
               <div style="background:#202c33;display:flex;align-items:center;gap:12px;padding:14px 18px;">
@@ -216,7 +216,7 @@ const canonical = "https://aisecurity.es/servicios/gestor-citas";
                 <li style="color:rgba(255,255,255,0.75);font-size:0.825rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#22c55e;flex-shrink:0;">✓</span>Sincroniza con Google Calendar y Outlook</li>
                 <li style="color:rgba(255,255,255,0.75);font-size:0.825rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#22c55e;flex-shrink:0;">✓</span>Lista de espera automática si no hay hueco</li>
               </ul>
-              <a href="/contacto-migracion?plan=Gestor-Citas-WhatsApp"
+              <a href="/presupuesto?plan=Gestor-Citas-WhatsApp"
                 style="display:inline-flex;align-items:center;justify-content:center;padding:12px 24px;background:#22c55e;color:#052e16;font-weight:700;font-size:0.875rem;border-radius:10px;text-decoration:none;width:fit-content;">
                 Quiero el gestor por WhatsApp →
               </a>
@@ -226,7 +226,7 @@ const canonical = "https://aisecurity.es/servicios/gestor-citas";
 
         <!-- ── PANEL LLAMADA ── -->
         <div id="panel-llamada" class="demo-panel" style="display:none;padding:24px;">
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;border-radius:1.25rem;overflow:hidden;border:1px solid rgba(56,177,255,0.2);">
+          <div class="grid grid-cols-1 lg:grid-cols-2" style="border-radius:1.25rem;overflow:hidden;border:1px solid rgba(56,177,255,0.2);">
             <!-- Simulación llamada -->
             <div style="background:#0a0e1a;padding:32px;display:flex;flex-direction:column;align-items:center;">
               <div style="width:72px;height:72px;border-radius:50%;background:rgba(56,177,255,0.1);border:2px solid rgba(56,177,255,0.3);display:flex;align-items:center;justify-content:center;font-size:2rem;margin-bottom:12px;">📞</div>
@@ -257,7 +257,7 @@ const canonical = "https://aisecurity.es/servicios/gestor-citas";
                   style="display:inline-flex;align-items:center;padding:12px 20px;border:1px solid #38b1ff;color:#38b1ff;font-weight:600;font-size:0.875rem;border-radius:10px;text-decoration:none;">
                   Demo completa →
                 </a>
-                <a href="/contacto-migracion?plan=Gestor-Citas-Llamada"
+                <a href="/presupuesto?plan=Gestor-Citas-Llamada"
                   style="display:inline-flex;align-items:center;padding:12px 20px;background:#38b1ff;color:#020817;font-weight:700;font-size:0.875rem;border-radius:10px;text-decoration:none;">
                   Lo quiero
                 </a>
@@ -268,7 +268,7 @@ const canonical = "https://aisecurity.es/servicios/gestor-citas";
 
         <!-- ── PANEL WIDGET ── -->
         <div id="panel-widget" class="demo-panel" style="display:none;padding:24px;">
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;border-radius:1.25rem;overflow:hidden;border:1px solid rgba(139,92,246,0.2);">
+          <div class="grid grid-cols-1 lg:grid-cols-2" style="border-radius:1.25rem;overflow:hidden;border:1px solid rgba(139,92,246,0.2);">
             <!-- Demo calendario -->
             <div style="background:#1a1030;padding:24px;">
               <div style="border-radius:12px;overflow:hidden;box-shadow:0 20px 40px rgba(0,0,0,0.4);">
@@ -281,6 +281,16 @@ const canonical = "https://aisecurity.es/servicios/gestor-citas";
                 </div>
                 <!-- Calendario (fondo blanco — UI del cliente, no del sitio) -->
                 <div style="background:#fff;padding:20px;">
+                  <!-- Selector de profesional -->
+                  <div style="margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #e5e7eb;">
+                    <div style="font-size:0.7rem;font-weight:700;color:#333;margin-bottom:8px;">Selecciona profesional</div>
+                    <div style="display:flex;gap:6px;flex-wrap:wrap;">
+                      <button class="widget-pro active-pro" data-pro="any" style="padding:5px 10px;border-radius:6px;border:1px solid #7c3aed;background:#7c3aed;color:#fff;font-size:0.68rem;font-weight:600;cursor:pointer;">Cualquiera</button>
+                      <button class="widget-pro" data-pro="ana" style="padding:5px 10px;border-radius:6px;border:1px solid #d1d5db;background:white;color:#374151;font-size:0.68rem;font-weight:600;cursor:pointer;">Ana M.</button>
+                      <button class="widget-pro" data-pro="carlos" style="padding:5px 10px;border-radius:6px;border:1px solid #d1d5db;background:white;color:#374151;font-size:0.68rem;font-weight:600;cursor:pointer;">Carlos R.</button>
+                      <button class="widget-pro" data-pro="lucia" style="padding:5px 10px;border-radius:6px;border:1px solid #d1d5db;background:white;color:#374151;font-size:0.68rem;font-weight:600;cursor:pointer;">Lucía G.</button>
+                    </div>
+                  </div>
                   <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
                     <button style="padding:4px;background:none;border:none;cursor:pointer;color:#555;">◀</button>
                     <span id="widget-month-label" style="font-weight:700;font-size:0.875rem;color:#111;">Junio 2026</span>
@@ -318,7 +328,7 @@ const canonical = "https://aisecurity.es/servicios/gestor-citas";
                 <li style="color:rgba(255,255,255,0.75);font-size:0.825rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#a78bfa;flex-shrink:0;">✓</span>Integra con Google Calendar y Outlook</li>
                 <li style="color:rgba(255,255,255,0.75);font-size:0.825rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#a78bfa;flex-shrink:0;">✓</span>Pagos online opcionales al reservar</li>
               </ul>
-              <a href="/contacto-migracion?plan=Gestor-Citas-Widget"
+              <a href="/presupuesto?plan=Gestor-Citas-Widget"
                 style="display:inline-flex;align-items:center;justify-content:center;padding:12px 24px;background:#8b5cf6;color:#fff;font-weight:700;font-size:0.875rem;border-radius:10px;text-decoration:none;width:fit-content;">
                 Instalar el widget en mi web →
               </a>
@@ -358,7 +368,7 @@ const canonical = "https://aisecurity.es/servicios/gestor-citas";
         <div class="flex flex-wrap gap-4 justify-center">
           <a href="/presupuesto?plan=Gestor-Citas-IA"
             class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all"
-            style="background: linear-gradient(135deg, #22c55e, #16a34a); color: #fff;">
+            style="background: #38b1ff; color: #020817;">
             Solicitar análisis gratuito →
           </a>
           <a href="#como-funciona"
@@ -497,9 +507,17 @@ const canonical = "https://aisecurity.es/servicios/gestor-citas";
         <div>
           <h4 style="color:#e2e8f0;font-weight:700;margin:0 0 6px;">Nuestra recomendación</h4>
           <p style="color:#94a3b8;font-size:0.875rem;line-height:1.6;margin:0;">
-            Si empiezas desde cero, el <strong style="color:#4ade80;">nivel básico durante 2-3 meses</strong> te da datos reales: qué canal usan más tus clientes, cuántas reservas se automatizan y qué tipo de consultas llegan. Con esos datos, la decisión de añadir el widget o integrar el CRM es mucho más informada.
+            Si empiezas desde cero, el <strong style="color:#38b1ff;">nivel básico durante 2-3 meses</strong> te da datos reales: qué canal usan más tus clientes, cuántas reservas se automatizan y qué tipo de consultas llegan. Con esos datos, la decisión de añadir el widget o integrar el CRM es mucho más informada.
           </p>
         </div>
+      </div>
+
+      <!-- CTA niveles -->
+      <div style="text-align:center;margin-top:48px;">
+        <a href="/presupuesto?plan=Gestor-Citas-IA"
+          style="display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 40px;background:#38b1ff;color:#020817;font-weight:700;font-size:1rem;border-radius:14px;text-decoration:none;box-shadow:0 16px 36px -8px rgba(56,177,255,0.35);">
+          Solicitar presupuesto sin compromiso →
+        </a>
       </div>
 
     </div>
@@ -516,7 +534,7 @@ const canonical = "https://aisecurity.es/servicios/gestor-citas";
         <p style="color: #94a3b8; font-size: 1.1rem; max-width: 600px; margin: 0 auto;">Selecciona tu sector y ve qué reservas o consultas gestionaría la IA automáticamente.</p>
       </div>
 
-      <div id="sector-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:32px;">
+      <div id="sector-grid" class="grid grid-cols-2 md:grid-cols-3 gap-3 mb-8">
 
         <button data-sector="clinicas" class="sector-btn" style="background:rgba(34,197,94,0.12);border:2px solid rgba(34,197,94,0.5);border-radius:1rem;padding:18px 16px;display:flex;align-items:center;gap:12px;cursor:pointer;text-align:left;transition:all 0.2s;">
           <span style="font-size:1.5rem;flex-shrink:0;">🦷</span>
@@ -692,8 +710,6 @@ const canonical = "https://aisecurity.es/servicios/gestor-citas";
       },
     };
 
-    let current = 'clinicas';
-
     function hexToComponents(hex: string): string {
       const r = parseInt(hex.slice(1,3),16);
       const g = parseInt(hex.slice(3,5),16);
@@ -724,7 +740,6 @@ const canonical = "https://aisecurity.es/servicios/gestor-citas";
     }
 
     function selectSector(key: string) {
-      current = key;
       document.querySelectorAll<HTMLElement>('.sector-btn').forEach(btn => {
         const s = btn.getAttribute('data-sector')!;
         const sector = SECTORS[s];
@@ -756,6 +771,98 @@ const canonical = "https://aisecurity.es/servicios/gestor-citas";
 
 
   <!-- ══════════════════════════════════════════════
+       FAQ
+  ══════════════════════════════════════════════ -->
+  <section style="background: #0f1628; padding: 80px 0;">
+    <div class="max-w-3xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4" style="color: #e2e8f0;">Preguntas frecuentes</h2>
+        <p style="color: #94a3b8; font-size: 1.05rem; max-width: 520px; margin: 0 auto;">Las dudas más habituales antes de automatizar la gestión de citas.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+
+        <div class="faq-item" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;transition:border-color 0.2s;">
+          <button class="faq-btn" style="width:100%;text-align:left;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;cursor:pointer;background:none;border:none;">
+            <span style="color:#e2e8f0;font-weight:600;font-size:0.95rem;line-height:1.4;">¿Cómo funciona un gestor de citas con IA por WhatsApp?</span>
+            <svg class="faq-chevron" style="width:20px;height:20px;color:#38b1ff;flex-shrink:0;transition:transform 0.25s;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer" style="display:none;padding:0 24px 20px;">
+            <p style="color:#94a3b8;font-size:0.875rem;line-height:1.75;margin:0;border-top:1px solid rgba(255,255,255,0.06);padding-top:16px;">El cliente escribe un mensaje de WhatsApp —de forma natural, como lo haría a una persona— y la IA entiende su intención, consulta la disponibilidad en tiempo real y confirma la cita en la misma conversación. Gestiona también cancelaciones, reprogramaciones y envía recordatorios automáticos 24h y 1h antes de la cita. No requiere que el cliente instale nada ni salga de la app que ya usa.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;transition:border-color 0.2s;">
+          <button class="faq-btn" style="width:100%;text-align:left;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;cursor:pointer;background:none;border:none;">
+            <span style="color:#e2e8f0;font-weight:600;font-size:0.95rem;line-height:1.4;">¿Qué es un widget de reservas incrustado en la web?</span>
+            <svg class="faq-chevron" style="width:20px;height:20px;color:#38b1ff;flex-shrink:0;transition:transform 0.25s;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer" style="display:none;padding:0 24px 20px;">
+            <p style="color:#94a3b8;font-size:0.875rem;line-height:1.75;margin:0;border-top:1px solid rgba(255,255,255,0.06);padding-top:16px;">Es un calendario interactivo que se integra directamente en tu página web. El cliente ve los huecos disponibles en tiempo real y reserva en menos de 2 minutos sin salir de tu web. Se personaliza con los colores y el diseño de tu marca, sincroniza con Google Calendar y Outlook, y envía confirmaciones automáticas por email y SMS.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;transition:border-color 0.2s;">
+          <button class="faq-btn" style="width:100%;text-align:left;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;cursor:pointer;background:none;border:none;">
+            <span style="color:#e2e8f0;font-weight:600;font-size:0.95rem;line-height:1.4;">¿Cuánto se reducen las llamadas entrantes con un gestor de citas IA?</span>
+            <svg class="faq-chevron" style="width:20px;height:20px;color:#38b1ff;flex-shrink:0;transition:transform 0.25s;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer" style="display:none;padding:0 24px 20px;">
+            <p style="color:#94a3b8;font-size:0.875rem;line-height:1.75;margin:0;border-top:1px solid rgba(255,255,255,0.06);padding-top:16px;">En negocios con alto volumen de citas, el sistema puede gestionar entre el 70% y el 85% de las reservas de forma completamente automática, sin que ningún miembro del equipo intervenga. Esto reduce significativamente las llamadas entrantes para reservas y las consultas por email, liberando al equipo para tareas de mayor valor.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;transition:border-color 0.2s;">
+          <button class="faq-btn" style="width:100%;text-align:left;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;cursor:pointer;background:none;border:none;">
+            <span style="color:#e2e8f0;font-weight:600;font-size:0.95rem;line-height:1.4;">¿Qué tipos de negocio se benefician más de un gestor de citas automatizado?</span>
+            <svg class="faq-chevron" style="width:20px;height:20px;color:#38b1ff;flex-shrink:0;transition:transform 0.25s;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer" style="display:none;padding:0 24px 20px;">
+            <p style="color:#94a3b8;font-size:0.875rem;line-height:1.75;margin:0;border-top:1px solid rgba(255,255,255,0.06);padding-top:16px;">Los negocios con mayor retorno son: clínicas dentales y médicas (alta frecuencia de citas y recordatorios), centros de estética y peluquerías (múltiples profesionales y servicios), talleres mecánicos (citas ITV y revisiones), asesorías y despachos (primera visita y consultas), restaurantes (reservas de mesa) y centros deportivos (clases y entrenadores personales).</p>
+          </div>
+        </div>
+
+        <div class="faq-item" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;transition:border-color 0.2s;">
+          <button class="faq-btn" style="width:100%;text-align:left;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;cursor:pointer;background:none;border:none;">
+            <span style="color:#e2e8f0;font-weight:600;font-size:0.95rem;line-height:1.4;">¿Cuánto tiempo tarda en implementarse un gestor de citas con IA?</span>
+            <svg class="faq-chevron" style="width:20px;height:20px;color:#38b1ff;flex-shrink:0;transition:transform 0.25s;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer" style="display:none;padding:0 24px 20px;">
+            <p style="color:#94a3b8;font-size:0.875rem;line-height:1.75;margin:0;border-top:1px solid rgba(255,255,255,0.06);padding-top:16px;">El plan básico (WhatsApp + llamada con sincronización a Google Calendar) puede estar activo en 7-10 días hábiles. El plan medio, que incluye el widget web y gestión de cancelaciones avanzada, requiere 3-4 semanas. El plan avanzado con CRM y pagos online se implementa en 5-6 semanas. El plazo depende principalmente de la integración con el sistema de agenda existente.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;transition:border-color 0.2s;">
+          <button class="faq-btn" style="width:100%;text-align:left;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;cursor:pointer;background:none;border:none;">
+            <span style="color:#e2e8f0;font-weight:600;font-size:0.95rem;line-height:1.4;">¿Cómo evita el gestor de citas IA los no-shows?</span>
+            <svg class="faq-chevron" style="width:20px;height:20px;color:#38b1ff;flex-shrink:0;transition:transform 0.25s;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer" style="display:none;padding:0 24px 20px;">
+            <p style="color:#94a3b8;font-size:0.875rem;line-height:1.75;margin:0;border-top:1px solid rgba(255,255,255,0.06);padding-top:16px;">El sistema envía recordatorios automáticos por WhatsApp, SMS o email en dos momentos: 24 horas y 1 hora antes de la cita. Si el cliente no puede asistir, puede cancelar o reprogramar desde el propio recordatorio con un clic, liberando el hueco para otro cliente automáticamente. Los negocios que implementan esta automatización reducen los no-shows entre un 40% y un 70%.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <script is:inline>
+  (function(){
+    document.querySelectorAll('.faq-btn').forEach(function(btn){
+      btn.addEventListener('click',function(){
+        var item=btn.closest('.faq-item');
+        var answer=item.querySelector('.faq-answer');
+        var icon=btn.querySelector('.faq-chevron');
+        var open=answer.style.display==='block';
+        document.querySelectorAll('.faq-answer').forEach(function(a){a.style.display='none';});
+        document.querySelectorAll('.faq-chevron').forEach(function(i){i.style.transform='rotate(0deg)';});
+        document.querySelectorAll('.faq-item').forEach(function(i){i.style.borderColor='rgba(255,255,255,0.08)';});
+        if(!open){answer.style.display='block';icon.style.transform='rotate(180deg)';item.style.borderColor='rgba(56,177,255,0.3)';}
+      });
+    });
+  })();
+  </script>
+
+  <!-- ══════════════════════════════════════════════
        TRANSPARENCIA + CTA
   ══════════════════════════════════════════════ -->
   <section style="background: #0f1628; padding: 80px 0;">
@@ -766,7 +873,7 @@ const canonical = "https://aisecurity.es/servicios/gestor-citas";
         <p style="color: #94a3b8; font-size: 1.1rem; max-width: 600px; margin: 0 auto;">No es magia. Queremos que sepas exactamente qué esperar antes de implementarlo.</p>
       </div>
 
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:72px;">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
         <div style="background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.25);border-radius:1rem;padding:28px;">
           <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
             <div style="width:36px;height:36px;background:rgba(34,197,94,0.2);border-radius:8px;display:flex;align-items:center;justify-content:center;">✅</div>
@@ -807,7 +914,7 @@ const canonical = "https://aisecurity.es/servicios/gestor-citas";
         </p>
         <div style="display:flex;flex-wrap:wrap;gap:14px;justify-content:center;">
           <a href="/presupuesto?plan=Gestor-Citas-IA"
-            style="display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:15px 34px;background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;font-weight:700;font-size:1rem;border-radius:14px;text-decoration:none;box-shadow:0 16px 36px -8px rgba(34,197,94,0.35);">
+            style="display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:15px 34px;background:#38b1ff;color:#020817;font-weight:700;font-size:1rem;border-radius:14px;text-decoration:none;box-shadow:0 16px 36px -8px rgba(56,177,255,0.35);">
             Solicitar análisis gratuito
           </a>
           <a href="#demo"
@@ -945,6 +1052,33 @@ const canonical = "https://aisecurity.es/servicios/gestor-citas";
       s.addEventListener('click', () => {
         document.querySelectorAll('.widget-slot').forEach(x => { x.style.background = 'white'; x.style.color = '#374151'; x.style.borderColor = '#d1d5db'; });
         s.style.background = '#7c3aed'; s.style.color = 'white'; s.style.borderColor = '#7c3aed';
+      });
+    });
+
+    // Selector de profesional
+    const slotsByPro = {
+      any:    ['09:00','09:30','10:00','10:30','11:00','11:30','16:00','16:30'],
+      ana:    ['09:00','10:30','11:30','16:30'],
+      carlos: ['09:30','10:00','11:00','16:00'],
+      lucia:  ['09:00','10:00','11:00','11:30'],
+    };
+    document.querySelectorAll('.widget-pro').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.widget-pro').forEach(b => {
+          b.style.background = 'white'; b.style.color = '#374151'; b.style.borderColor = '#d1d5db';
+        });
+        btn.style.background = '#7c3aed'; btn.style.color = 'white'; btn.style.borderColor = '#7c3aed';
+        const pro = btn.getAttribute('data-pro');
+        const available = slotsByPro[pro] || slotsByPro.any;
+        document.querySelectorAll('.widget-slot').forEach(s => {
+          const t = s.textContent.trim();
+          s.style.background = 'white'; s.style.color = '#374151'; s.style.borderColor = '#d1d5db';
+          if (available.includes(t)) {
+            s.style.opacity = '1'; s.style.cursor = 'pointer'; s.disabled = false;
+          } else {
+            s.style.opacity = '0.3'; s.style.cursor = 'not-allowed'; s.disabled = true;
+          }
+        });
       });
     });
   }

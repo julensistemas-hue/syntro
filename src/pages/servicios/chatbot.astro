@@ -1,392 +1,964 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import TestIABanner from "../../components/global/TestIABanner.astro";
 
-const title = "Chatbot Inteligente con IA - Atención Cliente 24/7 | AI Security";
-const description = "Chatbot empresarial con acceso a bases de datos. Consulta facturas, pedidos y stock en tiempo real. Integración ERP/CRM. Demo interactiva disponible.";
+const title = "Chatbot Inteligente con IA para Empresas — Atención al Cliente 24/7 | AI Security";
+const description = "Chatbot empresarial con IA que responde preguntas, consulta pedidos y facturas en tiempo real, y escala a humanos cuando es necesario. Integración con CRM, ERP y WhatsApp. Demo interactiva disponible.";
 const canonical = "https://aisecurity.es/servicios/chatbot";
 ---
 
 <BaseLayout title={title} description={description} canonical={canonical}>
-  <section class="py-10 bg-base-25">
-    <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-24">
-      <!-- Hero Section -->
-      <div class="text-center mb-16">
-      
-        <h1 class="text-4xl md:text-5xl font-bold text-base-900 mb-6">
-          Atención al cliente <span class="text-accent-600">24/7 automatizada</span>
+
+  <!-- Schema JSON-LD — Service + FAQ para GEO -->
+  <script type="application/ld+json" is:inline>
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Chatbot Inteligente con IA",
+      "alternateName": "Asistente virtual para atención al cliente empresarial",
+      "description": "Chatbot empresarial con inteligencia artificial que atiende consultas 24/7, consulta bases de datos en tiempo real (pedidos, facturas, stock), se integra con CRM y ERP, y escala automáticamente a un agente humano cuando el caso lo requiere.",
+      "provider": {
+        "@type": "Organization",
+        "name": "AI Security",
+        "url": "https://aisecurity.es",
+        "areaServed": "ES"
+      },
+      "serviceType": "Automatización de atención al cliente con IA conversacional",
+      "areaServed": "España",
+      "availableChannel": {
+        "@type": "ServiceChannel",
+        "serviceUrl": "https://aisecurity.es/servicios/chatbot",
+        "availableLanguage": ["Spanish", "Catalan", "English", "French", "German", "Portuguese"]
+      },
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "Plan Básico — Chatbot con base de conocimiento",
+          "description": "Chatbot entrenado con la información de tu empresa: preguntas frecuentes, horarios, precios, políticas y servicios. Responde en tiempo real sin acceder a sistemas externos.",
+          "availability": "https://schema.org/InStock"
+        },
+        {
+          "@type": "Offer",
+          "name": "Plan Medio — Chatbot conectado al CRM/ERP",
+          "description": "Todo lo del básico más acceso en tiempo real a tus sistemas: consulta pedidos, facturas, stock e historial del cliente. El chatbot responde con datos reales de tu base de datos.",
+          "availability": "https://schema.org/InStock"
+        },
+        {
+          "@type": "Offer",
+          "name": "Plan Avanzado — Chatbot multicanal con escalado inteligente",
+          "description": "Operación completa en web, WhatsApp, Telegram y más canales. Análisis de sentimiento, escalado automático a agente humano, generación de tickets y analítica avanzada.",
+          "availability": "https://schema.org/InStock"
+        }
+      ]
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Qué puede hacer un chatbot con IA para empresas?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Un chatbot empresarial con IA puede responder preguntas frecuentes, consultar el estado de pedidos, enviar facturas, informar del stock disponible, gestionar devoluciones, agendar citas y escalar al agente humano correcto cuando el caso lo requiere. A diferencia de un chatbot con respuestas predefinidas, entiende el lenguaje natural y accede a los datos de tus sistemas en tiempo real para dar respuestas precisas."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cómo se integra un chatbot con IA con el CRM o ERP de la empresa?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "La integración se realiza mediante API REST. El chatbot puede conectarse con los principales CRM (Salesforce, HubSpot, Zoho, Dynamics) y ERP (SAP, Odoo, Holded, Sage) para consultar y actualizar datos en tiempo real durante la conversación. También puede integrarse con bases de datos propias, Google Sheets o cualquier sistema que tenga API disponible."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué porcentaje de consultas resuelve un chatbot sin intervención humana?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "En implementaciones bien configuradas con acceso a datos en tiempo real, un chatbot empresarial resuelve entre el 70% y el 85% de las consultas de forma autónoma. Las consultas repetitivas como estado de pedidos, facturas, horarios o precios tienen tasas de resolución superiores al 90%. El 15-30% restante —reclamaciones complejas, negociaciones o casos fuera del ámbito— se deriva automáticamente a un agente humano."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿En qué canales puede desplegarse un chatbot empresarial?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Un chatbot con IA puede desplegarse simultáneamente en el widget de la web, WhatsApp Business, Telegram, Facebook Messenger, Instagram Direct y correo electrónico. Todas las conversaciones se unifican en un mismo panel de gestión, independientemente del canal por el que contacte el cliente."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuánto tiempo tarda en implementarse un chatbot con IA?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "El plan básico (sin integración con sistemas externos) puede estar activo en 7-10 días hábiles. El plan medio, con acceso a CRM o ERP mediante API, requiere 3-4 semanas. El plan avanzado con multicanal, escalado inteligente y analítica avanzada se implementa en 5-6 semanas. El plazo depende principalmente de la complejidad y documentación disponible de los sistemas a integrar."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cómo sabe el chatbot cuándo derivar a un agente humano?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "El chatbot detecta automáticamente situaciones que requieren intervención humana: cuando el cliente expresa frustración o urgencia elevada (análisis de sentimiento), cuando la consulta está fuera del ámbito configurado, cuando el cliente lo solicita explícitamente, o cuando se supera un número de intentos fallidos. En ese momento deriva la conversación al agente disponible con un resumen del contexto, evitando que el cliente tenga que repetir todo."
+          }
+        }
+      ]
+    }
+  ]
+  </script>
+
+
+  <!-- ══════════════════════════════════════════════
+       HERO + DEMO
+  ══════════════════════════════════════════════ -->
+  <section style="background: linear-gradient(135deg, #0a0d1a 0%, #0f1628 50%, #0a0d1a 100%); padding: 80px 0 60px; position: relative; overflow: hidden;">
+    <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(circle at 20% 30%, #2563eb 0%, transparent 50%), radial-gradient(circle at 80% 70%, #0ea5e9 0%, transparent 50%);"></div>
+
+    <div class="max-w-6xl mx-auto px-6 relative z-10">
+      <div class="text-center mb-10">
+        <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight" style="color: #fff;">
+          Atención al cliente con IA<br/>
+          <span style="background: linear-gradient(90deg, #60a5fa, #22d3ee); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">que conoce tu negocio</span>
         </h1>
-        <p class="text-xl text-base-600 max-w-3xl mx-auto mb-6">
-          Transforma la experiencia de tus clientes con un chatbot inteligente que entiende,
-          responde y resuelve consultas de manera natural, las 24 horas del día.
+        <p class="text-xl max-w-3xl mx-auto" style="color: #94a3b8; line-height: 1.7;">
+          Responde preguntas, consulta <strong style="color: #e2e8f0;">pedidos, facturas y stock en tiempo real</strong>,
+          y deriva a tu equipo solo cuando realmente lo necesitan. Las 24 horas, los 7 días de la semana.
         </p>
-       
-       
       </div>
 
-      <!-- Interactive Demo Section -->
-      <div class="mb-16">
-        <div class="max-w-4xl mx-auto bg-gradient-to-br from-base-900 to-base-800 rounded-2xl shadow-2xl overflow-hidden">
-          <!-- Demo Header -->
-          <div class="bg-base-800 px-6 py-4 border-b border-base-700">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center gap-3">
-                <div class="w-3 h-3 rounded-full bg-red-500"></div>
-                <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
-                <div class="w-3 h-3 rounded-full bg-green-500"></div>
-                <span class="ml-4 text-base-300 text-sm font-medium">Chat de Soporte - Demo</span>
-              </div>
-              <div class="flex items-center gap-2 text-base-400 text-sm">
-                <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-                Online
-              </div>
-            </div>
-          </div>
+      <!-- DEMO INTERACTIVA -->
+      <div id="demo" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 1.5rem; overflow: hidden;">
 
-          <!-- Chat Interface -->
-          <div class="bg-gradient-to-br from-blue-500 to-blue-700 p-8">
-            <div class="max-w-3xl mx-auto">
-              <!-- Chat Screen -->
-              <div class="rounded-3xl p-6 shadow-2xl" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);">
-                <!-- Chat Container -->
-                <div class="min-h-[450px] max-h-[450px] overflow-y-auto mb-4" id="chat-container">
-                  <!-- Welcome Message -->
-                  <div class="flex items-start gap-3 mb-4">
-                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-white font-bold flex-shrink-0">
-                      AI
-                    </div>
-                    <div class="bg-gradient-to-br from-blue-500 to-blue-700 rounded-2xl rounded-tl-none px-4 py-3 shadow-sm max-w-[80%]">
-                      <p class="text-white text-sm">¡Hola! 👋 Soy el asistente virtual de TechStore. ¿En qué puedo ayudarte hoy?</p>
-                      <p class="text-blue-100 text-sm mt-3 font-medium">Puedes preguntarme sobre:</p>
+        <!-- Barra terminal -->
+        <div style="background: rgba(0,0,0,0.4); padding: 14px 24px; border-bottom: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: space-between;">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <div style="display: flex; gap: 6px;">
+              <div style="width:12px;height:12px;border-radius:50%;background:#ef4444;"></div>
+              <div style="width:12px;height:12px;border-radius:50%;background:#eab308;"></div>
+              <div style="width:12px;height:12px;border-radius:50%;background:#22c55e;"></div>
+            </div>
+            <span style="color: #64748b; font-size: 0.875rem; font-family: monospace;">Chatbot IA — Demo interactiva</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 8px; font-size: 0.8rem; color: #22c55e;">
+            <span style="width:8px;height:8px;background:#22c55e;border-radius:50%;display:inline-block;" class="animate-pulse"></span>
+            En línea 24/7
+          </div>
+        </div>
+
+        <!-- Contenido demo: chat + panel info -->
+        <div style="background: linear-gradient(135deg, #1d4ed8 0%, #0369a1 100%); padding: 2rem;">
+          <div class="grid lg:grid-cols-2 gap-8 max-w-5xl mx-auto items-start">
+
+            <!-- Chat Mockup -->
+            <div style="background: linear-gradient(to bottom, #0f172a, #1e293b); border-radius: 1.5rem; overflow: hidden; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.08);">
+
+              <!-- Chat header -->
+              <div style="background: rgba(0,0,0,0.4); padding: 14px 20px; border-bottom: 1px solid rgba(255,255,255,0.08); display:flex; align-items:center; justify-content:space-between;">
+                <div style="display:flex;align-items:center;gap:10px;">
+                  <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#0ea5e9);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.8rem;color:#fff;">AI</div>
+                  <div>
+                    <div style="color:#fff;font-weight:600;font-size:0.875rem;">Asistente TechStore</div>
+                    <div style="color:#22c55e;font-size:0.7rem;display:flex;align-items:center;gap:4px;">
+                      <span style="width:5px;height:5px;background:#22c55e;border-radius:50%;display:inline-block;" class="animate-pulse"></span> Online
                     </div>
                   </div>
+                </div>
+                <div style="color:#64748b;font-size:0.75rem;">Chat de soporte</div>
+              </div>
 
-                  <!-- Quick Question Buttons -->
-                  <div class="space-y-2 mb-4 ml-14">
-                    <button class="quick-question w-full text-left px-4 py-3 bg-white border-2 border-blue-300 rounded-xl text-sm font-medium hover:bg-blue-50 hover:border-blue-400 transition-all duration-200 shadow-md" style="color: #000000;">
-                      Necesito mi factura, mi DNI es 12345678A
-                    </button>
-                    <button class="quick-question w-full text-left px-4 py-3 bg-white border-2 border-blue-300 rounded-xl text-sm font-medium hover:bg-blue-50 hover:border-blue-400 transition-all duration-200 shadow-md" style="color: #000000;">
-                      ¿El portátil HP 15-dy tiene SSD?
-                    </button>
-                    <button class="quick-question w-full text-left px-4 py-3 bg-white border-2 border-blue-300 rounded-xl text-sm font-medium hover:bg-blue-50 hover:border-blue-400 transition-all duration-200 shadow-md" style="color: #000000;">
-                      ¿Dónde está mi pedido #TS-2845?
-                    </button>
+              <!-- Mensajes -->
+              <div id="chat-container" style="padding:20px;min-height:380px;max-height:420px;overflow-y:auto;display:flex;flex-direction:column;gap:12px;">
+                <!-- Bienvenida -->
+                <div style="display:flex;align-items:flex-start;gap:8px;">
+                  <div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#0ea5e9);display:flex;align-items:center;justify-content:center;font-size:0.65rem;font-weight:700;color:#fff;flex-shrink:0;">AI</div>
+                  <div style="background:linear-gradient(135deg,rgba(37,99,235,0.8),rgba(14,165,233,0.8));color:#fff;padding:10px 14px;border-radius:16px 16px 16px 4px;font-size:0.82rem;line-height:1.5;max-width:85%;">
+                    ¡Hola! 👋 Soy el asistente de TechStore. Puedo consultar pedidos, facturas y productos en tiempo real.<br/><br/>
+                    <span style="opacity:0.85;">Prueba alguna de estas consultas:</span>
                   </div>
                 </div>
-
-                <!-- Input Area -->
-                <div class="pt-4 border-t border-blue-400/30">
-                  <form id="demo-chat-form" class="flex gap-3">
-                    <input
-                      type="text"
-                      id="demo-chat-input"
-                      placeholder="Escribe tu mensaje..."
-                      class="flex-1 px-4 py-3 border-2 border-blue-400/40 rounded-xl focus:outline-none focus:border-blue-400 text-white placeholder-base-400 transition-colors"
-                      style="background: rgba(15, 23, 42, 0.5);"
-                    />
-                    <button
-                      type="submit"
-                      class="px-6 py-3 bg-blue-600 text-white rounded-xl font-semibold hover:bg-blue-700 transition-all duration-200 shadow-lg hover:shadow-xl"
-                    >
-                      Enviar
-                    </button>
-                  </form>
+                <!-- Botones rápidos -->
+                <div id="quick-btns" style="display:flex;flex-direction:column;gap:6px;padding-left:36px;">
+                  <button class="quick-question" style="text-align:left;padding:8px 14px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.15);border-radius:10px;color:#e2e8f0;font-size:0.8rem;cursor:pointer;transition:all 0.15s;">
+                    📄 Necesito mi factura, mi DNI es 12345678A
+                  </button>
+                  <button class="quick-question" style="text-align:left;padding:8px 14px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.15);border-radius:10px;color:#e2e8f0;font-size:0.8rem;cursor:pointer;transition:all 0.15s;">
+                    💻 ¿El portátil HP 15-dy tiene SSD?
+                  </button>
+                  <button class="quick-question" style="text-align:left;padding:8px 14px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.15);border-radius:10px;color:#e2e8f0;font-size:0.8rem;cursor:pointer;transition:all 0.15s;">
+                    📦 ¿Dónde está mi pedido #TS-2845?
+                  </button>
                 </div>
               </div>
-            </div>
-          </div>
 
-          <!-- Info Panel -->
-          <div class="bg-base-100 px-6 py-5">
-            <p class="text-sm text-base-600 text-center font-medium max-w-2xl mx-auto">
-              Esta es una demo interactiva. En producción, el chatbot se entrena con tu base de conocimientos.
+              <!-- Input -->
+              <div style="padding:14px 20px;border-top:1px solid rgba(255,255,255,0.06);display:flex;gap:8px;">
+                <input id="demo-chat-input" type="text" placeholder="Escribe tu consulta..."
+                  style="flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:10px 14px;color:#fff;font-size:0.82rem;outline:none;" />
+                <button id="demo-chat-send"
+                  style="padding:10px 18px;background:linear-gradient(135deg,#2563eb,#0ea5e9);color:#fff;font-weight:600;font-size:0.8rem;border-radius:10px;border:none;cursor:pointer;">
+                  Enviar
+                </button>
+              </div>
+            </div>
+
+            <!-- Panel info -->
+            <div style="background:rgba(255,255,255,0.97);border-radius:1.25rem;padding:28px;box-shadow:0 25px 50px -12px rgba(0,0,0,0.4);">
+              <h3 style="color:#1e3a5f;font-size:1.1rem;font-weight:700;margin:0 0 16px;display:flex;align-items:center;gap:8px;">
+                <svg width="18" height="18" fill="#2563eb" viewBox="0 0 20 20"><path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/><path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd"/></svg>
+                Qué acaba de pasar en el chat
+              </h3>
+              <div id="info-default" style="display:block;">
+                <p style="color:#475569;font-size:0.82rem;line-height:1.6;margin:0 0 16px;">
+                  El chatbot no solo responde preguntas genéricas — consulta tu base de datos en tiempo real para dar respuestas exactas con los datos del cliente.
+                </p>
+                <div style="display:flex;flex-direction:column;gap:8px;">
+                  <div style="display:flex;align-items:flex-start;gap:8px;padding:10px;background:#eff6ff;border-radius:8px;">
+                    <span style="font-size:1rem;flex-shrink:0;">🔍</span>
+                    <div style="font-size:0.78rem;color:#1e40af;line-height:1.4;"><strong>Consulta en tiempo real</strong> — Accede a CRM, ERP y bases de datos mientras el cliente escribe</div>
+                  </div>
+                  <div style="display:flex;align-items:flex-start;gap:8px;padding:10px;background:#f0fdf4;border-radius:8px;">
+                    <span style="font-size:1rem;flex-shrink:0;">⚡</span>
+                    <div style="font-size:0.78rem;color:#166534;line-height:1.4;"><strong>Respuesta en &lt;2 segundos</strong> — Sin esperas, sin formularios, sin menús de teclado</div>
+                  </div>
+                  <div style="display:flex;align-items:flex-start;gap:8px;padding:10px;background:#fef3c7;border-radius:8px;">
+                    <span style="font-size:1rem;flex-shrink:0;">🧠</span>
+                    <div style="font-size:0.78rem;color:#92400e;line-height:1.4;"><strong>Contexto acumulado</strong> — Recuerda todo lo dicho en la conversación, sin que el cliente repita</div>
+                  </div>
+                  <div style="display:flex;align-items:flex-start;gap:8px;padding:10px;background:#fdf4ff;border-radius:8px;">
+                    <span style="font-size:1rem;flex-shrink:0;">🌍</span>
+                    <div style="font-size:0.78rem;color:#6b21a8;line-height:1.4;"><strong>Multiidioma automático</strong> — Detecta el idioma del cliente y responde en español, catalán, inglés u otros</div>
+                  </div>
+                  <div style="display:flex;align-items:flex-start;gap:8px;padding:10px;background:#fff1f2;border-radius:8px;">
+                    <span style="font-size:1rem;flex-shrink:0;">👤</span>
+                    <div style="font-size:0.78rem;color:#9f1239;line-height:1.4;"><strong>Escalado con contexto</strong> — Si deriva a un agente, le pasa toda la conversación para que no empiece de cero</div>
+                  </div>
+                </div>
+              </div>
+              <div id="info-factura" style="display:none;">
+                <div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:10px;padding:14px;margin-bottom:12px;">
+                  <div style="font-size:0.7rem;font-weight:700;color:#2563eb;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:6px;">🔍 Consulta ejecutada en CRM</div>
+                  <div style="font-size:0.78rem;color:#1e40af;font-family:monospace;line-height:1.6;">DNI: 12345678A → Cliente encontrado<br/>Última factura: FAC-2024-03456<br/>Importe: 899,99€ · Estado: Pagada</div>
+                </div>
+                <p style="color:#475569;font-size:0.8rem;line-height:1.5;margin:0;">El chatbot identificó al cliente por DNI, consultó su historial en el CRM y envió la factura automáticamente. Sin intervención humana.</p>
+              </div>
+              <div id="info-producto" style="display:none;">
+                <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:14px;margin-bottom:12px;">
+                  <div style="font-size:0.7rem;font-weight:700;color:#16a34a;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:6px;">📦 Consulta ejecutada en ERP</div>
+                  <div style="font-size:0.78rem;color:#166534;font-family:monospace;line-height:1.6;">SKU: HP-15DY-I5 → Stock: 8 unidades<br/>Precio: 699,99€ · SSD: 512GB NVMe ✓<br/>Envío 24-48h disponible</div>
+                </div>
+                <p style="color:#475569;font-size:0.8rem;line-height:1.5;margin:0;">Consultó el catálogo en tiempo real: especificaciones técnicas, precio actual y stock disponible. Datos siempre actualizados.</p>
+              </div>
+              <div id="info-pedido" style="display:none;">
+                <div style="background:#fef3c7;border:1px solid #fde68a;border-radius:10px;padding:14px;margin-bottom:12px;">
+                  <div style="font-size:0.7rem;font-weight:700;color:#d97706;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:6px;">🚚 Consulta en plataforma logística</div>
+                  <div style="font-size:0.78rem;color:#92400e;font-family:monospace;line-height:1.6;">#TS-2845 → En reparto SEUR<br/>Tracking: ES1234567890YZ<br/>Entrega estimada: mañana antes 14h</div>
+                </div>
+                <p style="color:#475569;font-size:0.8rem;line-height:1.5;margin:0;">Accedió a la API del operador logístico para dar el estado exacto del envío. El cliente no necesita llamar ni buscar el email de confirmación.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Nota -->
+        <div style="padding: 12px 24px; background: rgba(0,0,0,0.3); border-top: 1px solid rgba(255,255,255,0.06); text-align:center;">
+          <p style="color:#475569;font-size:0.8rem;margin:0;">Demo simulada con datos de ejemplo. El sistema real se entrena con la información y sistemas de tu empresa.</p>
+        </div>
+      </div>
+
+      <!-- Stats + CTAs -->
+      <div class="text-center mt-10">
+        <div class="flex flex-wrap justify-center gap-6 mb-8">
+          <div class="text-center">
+            <div class="text-3xl font-bold" style="color: #60a5fa;">24/7</div>
+            <div class="text-xs mt-1" style="color: #64748b;">Sin festivos ni vacaciones</div>
+          </div>
+          <div class="w-px h-10 self-center" style="background: rgba(255,255,255,0.1);"></div>
+          <div class="text-center">
+            <div class="text-3xl font-bold" style="color: #22d3ee;">~80%</div>
+            <div class="text-xs mt-1" style="color: #64748b;">Consultas sin agente humano</div>
+          </div>
+          <div class="w-px h-10 self-center" style="background: rgba(255,255,255,0.1);"></div>
+          <div class="text-center">
+            <div class="text-3xl font-bold" style="color: #60a5fa;">&lt;2s</div>
+            <div class="text-xs mt-1" style="color: #64748b;">Tiempo de respuesta</div>
+          </div>
+          <div class="w-px h-10 self-center" style="background: rgba(255,255,255,0.1);"></div>
+          <div class="text-center">
+            <div class="text-3xl font-bold" style="color: #22d3ee;">-70%</div>
+            <div class="text-xs mt-1" style="color: #64748b;">Tickets de soporte manuales</div>
+          </div>
+        </div>
+        <div class="flex flex-wrap gap-4 justify-center">
+          <a href="/presupuesto?plan=Chatbot-IA"
+            class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all"
+            style="background: linear-gradient(135deg, #2563eb, #0ea5e9); color: #ffffff;">
+            Solicitar análisis gratuito →
+          </a>
+          <a href="#como-funciona"
+            class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all"
+            style="background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15); color: #cbd5e1;">
+            ¿Cómo funciona?
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════
+       TRES NIVELES
+  ══════════════════════════════════════════════ -->
+  <section id="como-funciona" style="background: linear-gradient(135deg, #0a0d1a 0%, #0f1628 100%); padding: 80px 0; position: relative; overflow: hidden;">
+    <div class="absolute inset-0 pointer-events-none" style="background-image: radial-gradient(circle at 20% 50%, rgba(37,99,235,0.12), transparent 60%), radial-gradient(circle at 80% 50%, rgba(14,165,233,0.10), transparent 60%);"></div>
+    <div class="relative max-w-6xl mx-auto px-6" style="z-index:1;">
+
+      <div class="text-center mb-14">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4" style="color: #e2e8f0;">Tres niveles de implantación</h2>
+        <p style="color: #94a3b8; font-size: 1.1rem; max-width: 650px; margin: 0 auto; line-height: 1.7;">
+          Empieza respondiendo preguntas frecuentes, añade acceso a tus datos en tiempo real
+          y escala a multicanal cuando el volumen lo justifique.
+        </p>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;align-items:start;">
+
+        <!-- NIVEL 1 -->
+        <div style="background:rgba(37,99,235,0.07);border:1px solid rgba(37,99,235,0.3);border-radius:1.25rem;padding:32px;display:flex;flex-direction:column;gap:20px;">
+          <div>
+            <div style="display:inline-flex;background:rgba(37,99,235,0.15);border:1px solid rgba(37,99,235,0.3);border-radius:8px;padding:4px 12px;margin-bottom:14px;">
+              <span style="color:#60a5fa;font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;">Nivel 1</span>
+            </div>
+            <h3 style="color:#fff;font-size:1.25rem;font-weight:700;margin:0 0 6px;">Básico</h3>
+            <p style="color:#60a5fa;font-size:0.875rem;font-weight:500;margin:0 0 12px;">Base de conocimiento + FAQ automatizadas</p>
+            <p style="color:#94a3b8;font-size:0.875rem;line-height:1.6;margin:0;">
+              El chatbot se entrena con la información de tu empresa y responde preguntas frecuentes al instante, sin acceder a sistemas externos.
             </p>
           </div>
-        </div>
-      </div>
-
-      <!-- Features Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-        <div class="bg-black border-2 border-base-300 rounded-xl p-6">
-          <div class="w-12 h-12 bg-accent-600 rounded-lg flex items-center justify-center text-white text-xl mb-4">
-            💬
-          </div>
-          <h3 class="text-lg font-semibold text-white mb-3">Conversaciones Naturales</h3>
-          <p class="text-white/80">
-            Procesamiento de lenguaje natural avanzado que entiende el contexto y responde de manera humana.
-          </p>
-        </div>
-
-        <div class="bg-black border-2 border-base-300 rounded-xl p-6">
-          <div class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center text-white text-xl mb-4">
-            🔗
-          </div>
-          <h3 class="text-lg font-semibold text-white mb-3">Múltiples Canales</h3>
-          <p class="text-white/80">
-            Integración con WhatsApp, Telegram, Facebook Messenger, web y más plataformas.
-          </p>
-        </div>
-
-        <div class="bg-black border-2 border-base-300 rounded-xl p-6">
-          <div class="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center text-white text-xl mb-4">
-            🧠
-          </div>
-          <h3 class="text-lg font-semibold text-white mb-3">Aprendizaje Continuo</h3>
-          <p class="text-white/80">
-            El chatbot mejora constantemente aprendiendo de cada conversación y feedback.
-          </p>
-        </div>
-
-        <div class="bg-black border-2 border-base-300 rounded-xl p-6">
-          <div class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center text-white text-xl mb-4">
-            👤
-          </div>
-          <h3 class="text-lg font-semibold text-white mb-3">Escalado Inteligente</h3>
-          <p class="text-white/80">
-            Deriva automáticamente consultas complejas a agentes humanos cuando es necesario.
-          </p>
-        </div>
-
-        <div class="bg-black border-2 border-base-300 rounded-xl p-6">
-          <div class="w-12 h-12 bg-orange-600 rounded-lg flex items-center justify-center text-white text-xl mb-4">
-            📊
-          </div>
-          <h3 class="text-lg font-semibold text-white mb-3">Analytics Avanzados</h3>
-          <p class="text-white/80">
-            Dashboard completo con métricas de satisfacción, resolución y rendimiento.
-          </p>
-        </div>
-
-        <div class="bg-black border-2 border-base-300 rounded-xl p-6">
-          <div class="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center text-white text-xl mb-4">
-            🔒
-          </div>
-          <h3 class="text-lg font-semibold text-white mb-3">Seguridad Total</h3>
-          <p class="text-white/80">
-            Cumplimiento GDPR, encriptación end-to-end y protección de datos sensibles.
-          </p>
-        </div>
-      </div>
-
-      <!-- Integration Section -->
-      <div class=" rounded-2xl p-8 md:p-12 text-white mb-16">
-        <h2 class="text-3xl font-bold mb-6 text-center">Integraciones y Conectividad</h2>
-        <p class="text-center text-lg opacity-90 mb-8 max-w-3xl mx-auto">
-          El chatbot se conecta en tiempo real con tus sistemas existentes para ofrecer respuestas precisas y actualizadas
-        </p>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div class="bg-gradient-to-br from-blue-500 to-blue-700 bg-black border-2 border-base-300 rounded-xl p-6">
-            <div class="text-4xl mb-3">🗄️</div>
-            <h3 class="text-xl font-semibold mb-3">Base de Datos de Clientes</h3>
-            <ul class="space-y-2 text-sm text-white/80">
-              <li>• Consulta de información del cliente</li>
-              <li>• Histórico de compras y pedidos</li>
-              <li>• Preferencias y configuración</li>
-              <li>• Datos de contacto actualizados</li>
+          <div style="border-top:1px solid rgba(255,255,255,0.08);padding-top:20px;">
+            <p style="color:#64748b;font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;margin:0 0 10px;">Incluye</p>
+            <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;">
+              <li style="color:#94a3b8;font-size:0.8rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#60a5fa;flex-shrink:0;font-weight:700;">✓</span>Entrenamiento con documentos, web y FAQs</li>
+              <li style="color:#94a3b8;font-size:0.8rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#60a5fa;flex-shrink:0;font-weight:700;">✓</span>Respuestas en lenguaje natural (no menús)</li>
+              <li style="color:#94a3b8;font-size:0.8rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#60a5fa;flex-shrink:0;font-weight:700;">✓</span>Multiidioma (español, catalán, inglés y más)</li>
+              <li style="color:#94a3b8;font-size:0.8rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#60a5fa;flex-shrink:0;font-weight:700;">✓</span>Widget embebido en tu web</li>
+              <li style="color:#94a3b8;font-size:0.8rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#60a5fa;flex-shrink:0;font-weight:700;">✓</span>Escalado a agente humano con contexto</li>
+              <li style="color:#94a3b8;font-size:0.8rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#60a5fa;flex-shrink:0;font-weight:700;">✓</span>Dashboard: conversaciones, temas, satisfacción</li>
             </ul>
           </div>
-
-          <div class="bg-gradient-to-br from-blue-500 to-blue-700 bg-black border-2 border-base-300 rounded-xl p-6">
-            <div class="text-4xl mb-3">🔌</div>
-            <h3 class="text-xl font-semibold mb-3">APIs de Sistemas Externos</h3>
-            <ul class="space-y-2 text-sm text-white/80">
-              <li>• ERP (SAP, Odoo, Microsoft Dynamics)</li>
-              <li>• CRM (Salesforce, HubSpot, Zoho)</li>
-              <li>• Plataformas de envío y logística</li>
-              <li>• Pasarelas de pago</li>
-            </ul>
+          <div style="background:rgba(37,99,235,0.1);border-radius:10px;padding:14px;">
+            <p style="color:#93c5fd;font-size:0.8rem;line-height:1.5;margin:0;">
+              <strong style="color:#fff;">Ideal para:</strong> Negocios con muchas preguntas repetitivas (horarios, precios, políticas) que consumen tiempo del equipo de soporte.
+            </p>
           </div>
-
-          <div class="bg-gradient-to-br from-blue-500 to-blue-700 bg-black border-2 border-base-300 rounded-xl p-6">
-            <div class="text-4xl mb-3">📚</div>
-            <h3 class="text-xl font-semibold mb-3">Múltiples Formatos de Datos</h3>
-            <ul class="space-y-2 text-sm text-white/80">
-              <li>• Documentos PDF, Word, Excel</li>
-              <li>• Bases de datos SQL y NoSQL</li>
-              <li>• APIs REST y GraphQL</li>
-              <li>• Archivos CSV, JSON, XML</li>
-            </ul>
+          <div style="color:#64748b;font-size:0.75rem;display:flex;align-items:center;gap:6px;">
+            <span>⏱</span> Listo en <strong style="color:#94a3b8;">7-10 días hábiles</strong>
           </div>
         </div>
 
-        <p class="text-sm text-center text-white/75 mt-8 w-full mx-auto">
-          ⚡ Sincronización en tiempo real • 🔒 Conexiones seguras y encriptadas • 🔄 Actualizaciones automáticas
-        </p>
+        <!-- NIVEL 2 -->
+        <div style="background:rgba(124,58,237,0.07);border:2px solid rgba(124,58,237,0.4);border-radius:1.25rem;padding:32px;display:flex;flex-direction:column;gap:20px;position:relative;">
+          <div style="position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#7c3aed,#a78bfa);color:#fff;font-size:0.7rem;font-weight:700;padding:4px 14px;border-radius:20px;white-space:nowrap;">MÁS POPULAR</div>
+          <div>
+            <div style="display:inline-flex;background:rgba(124,58,237,0.15);border:1px solid rgba(124,58,237,0.3);border-radius:8px;padding:4px 12px;margin-bottom:14px;">
+              <span style="color:#a78bfa;font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;">Nivel 2</span>
+            </div>
+            <h3 style="color:#fff;font-size:1.25rem;font-weight:700;margin:0 0 6px;">Medio</h3>
+            <p style="color:#a78bfa;font-size:0.875rem;font-weight:500;margin:0 0 12px;">Conectado al CRM/ERP, datos en tiempo real</p>
+            <p style="color:#94a3b8;font-size:0.875rem;line-height:1.6;margin:0;">
+              Todo el nivel básico, más: el chatbot consulta tus sistemas durante la conversación y responde con datos exactos del cliente (pedidos, facturas, stock).
+            </p>
+          </div>
+          <div style="border-top:1px solid rgba(255,255,255,0.08);padding-top:20px;">
+            <p style="color:#64748b;font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;margin:0 0 10px;">Todo lo del básico, más</p>
+            <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;">
+              <li style="color:#94a3b8;font-size:0.8rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#a78bfa;flex-shrink:0;font-weight:700;">✓</span>Integración con CRM/ERP vía API</li>
+              <li style="color:#94a3b8;font-size:0.8rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#a78bfa;flex-shrink:0;font-weight:700;">✓</span>Consulta de pedidos, facturas y stock en vivo</li>
+              <li style="color:#94a3b8;font-size:0.8rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#a78bfa;flex-shrink:0;font-weight:700;">✓</span>Identificación del cliente por DNI, email o número</li>
+              <li style="color:#94a3b8;font-size:0.8rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#a78bfa;flex-shrink:0;font-weight:700;">✓</span>Respuestas personalizadas con datos reales</li>
+              <li style="color:#94a3b8;font-size:0.8rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#a78bfa;flex-shrink:0;font-weight:700;">✓</span>Registro automático de la consulta en el CRM</li>
+            </ul>
+          </div>
+          <div style="background:rgba(124,58,237,0.1);border-radius:10px;padding:14px;">
+            <p style="color:#c4b5fd;font-size:0.8rem;line-height:1.5;margin:0;">
+              <strong style="color:#fff;">Ideal para:</strong> E-commerce, distribuidoras y empresas de servicios donde los clientes preguntan continuamente por sus pedidos, facturas o contratos.
+            </p>
+          </div>
+          <div style="color:#64748b;font-size:0.75rem;display:flex;align-items:center;gap:6px;">
+            <span>⏱</span> Listo en <strong style="color:#94a3b8;">3-4 semanas</strong>
+          </div>
+        </div>
+
+        <!-- NIVEL 3 -->
+        <div style="background:rgba(6,182,212,0.06);border:1px solid rgba(6,182,212,0.3);border-radius:1.25rem;padding:32px;display:flex;flex-direction:column;gap:20px;">
+          <div>
+            <div style="display:inline-flex;background:rgba(6,182,212,0.12);border:1px solid rgba(6,182,212,0.3);border-radius:8px;padding:4px 12px;margin-bottom:14px;">
+              <span style="color:#22d3ee;font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;">Nivel 3</span>
+            </div>
+            <h3 style="color:#fff;font-size:1.25rem;font-weight:700;margin:0 0 6px;">Avanzado</h3>
+            <p style="color:#22d3ee;font-size:0.875rem;font-weight:500;margin:0 0 12px;">Multicanal, escalado inteligente y analítica</p>
+            <p style="color:#94a3b8;font-size:0.875rem;line-height:1.6;margin:0;">
+              Operación completa: desplegado en todos los canales, con análisis de sentimiento, generación de tickets automática y paneles de rendimiento.
+            </p>
+          </div>
+          <div style="border-top:1px solid rgba(255,255,255,0.08);padding-top:20px;">
+            <p style="color:#64748b;font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;margin:0 0 10px;">Todo lo del medio, más</p>
+            <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;">
+              <li style="color:#94a3b8;font-size:0.8rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#22d3ee;flex-shrink:0;font-weight:700;">✓</span>Web, WhatsApp, Telegram, Instagram, email</li>
+              <li style="color:#94a3b8;font-size:0.8rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#22d3ee;flex-shrink:0;font-weight:700;">✓</span>Análisis de sentimiento y urgencia</li>
+              <li style="color:#94a3b8;font-size:0.8rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#22d3ee;flex-shrink:0;font-weight:700;">✓</span>Generación automática de tickets en Zendesk/Jira</li>
+              <li style="color:#94a3b8;font-size:0.8rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#22d3ee;flex-shrink:0;font-weight:700;">✓</span>Panel de agentes con historial unificado</li>
+              <li style="color:#94a3b8;font-size:0.8rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#22d3ee;flex-shrink:0;font-weight:700;">✓</span>Informe semanal: satisfacción, temas, resolución</li>
+              <li style="color:#94a3b8;font-size:0.8rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#22d3ee;flex-shrink:0;font-weight:700;">✓</span>A/B testing de respuestas y optimización continua</li>
+            </ul>
+          </div>
+          <div style="background:rgba(6,182,212,0.08);border-radius:10px;padding:14px;">
+            <p style="color:#67e8f9;font-size:0.8rem;line-height:1.5;margin:0;">
+              <strong style="color:#fff;">Ideal para:</strong> Empresas con alto volumen de soporte que quieren centralizar todos los canales y dar a su equipo visibilidad completa de cada cliente.
+            </p>
+          </div>
+          <div style="color:#64748b;font-size:0.75rem;display:flex;align-items:center;gap:6px;">
+            <span>⏱</span> Listo en <strong style="color:#94a3b8;">5-6 semanas</strong>
+          </div>
+        </div>
+
       </div>
 
-      <!-- CTA Section -->
-      <div class="text-center">
-        <h2 class="text-3xl font-bold text-base-900 mb-6">
-          ¿Listo para automatizar tu atención al cliente?
-        </h2>
-        <p class="text-xl text-base-600 mb-8 max-w-2xl mx-auto">
-          Programa una demostración gratuita y descubre cómo nuestro chatbot puede transformar
-          la experiencia de tus clientes.
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a
-            href="/presupuesto?plan=Chatbot-Inteligente"
-            style="color: #ffffff"
-            class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200"
-          >
-            Solicitar Demo Gratuita
-            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-3.582 8-8 8a8.955 8.955 0 01-4.126-.98L3 20l1.98-5.874A8.955 8.955 0 013 12c0-4.418 3.582-8 8-8s8 3.582 8 8z"></path>
-            </svg>
-          </a>
-          <a
-            href="/#servicios"
-            class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold bg-base-100 hover:bg-base-200 rounded-xl  transition-all duration-200"
-            style="color: #ffffff;"
-          >
-            Ver Otros Servicios
-          </a>
+      <!-- Nota -->
+      <div style="margin-top:40px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:1rem;padding:24px;display:flex;align-items:flex-start;gap:14px;max-width:800px;margin-left:auto;margin-right:auto;">
+        <span style="font-size:1.5rem;flex-shrink:0;">💡</span>
+        <div>
+          <h4 style="color:#e2e8f0;font-weight:700;margin:0 0 6px;">Nuestra recomendación</h4>
+          <p style="color:#94a3b8;font-size:0.875rem;line-height:1.6;margin:0;">
+            Empieza con el <strong style="color:#60a5fa;">nivel básico durante 4-6 semanas</strong> para identificar cuáles son las preguntas más frecuentes y qué porcentaje se resuelve sin datos externos. Con esos datos, la integración con CRM/ERP en el nivel medio es mucho más informada y el ROI es inmediato.
+          </p>
         </div>
       </div>
 
-      <!-- Test IA Banner -->
-      <div class="mt-16">
-        <TestIABanner />
+      <!-- CTA niveles -->
+      <div style="text-align:center;margin-top:48px;">
+        <a href="/presupuesto?plan=Chatbot-IA"
+          style="display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 40px;background:linear-gradient(135deg,#2563eb,#0ea5e9);color:#fff;font-weight:700;font-size:1rem;border-radius:14px;text-decoration:none;box-shadow:0 16px 36px -8px rgba(37,99,235,0.4);">
+          Solicitar presupuesto sin compromiso →
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════
+       ¿PARA QUIÉN? — selector interactivo
+  ══════════════════════════════════════════════ -->
+  <section style="background: #0a0d1a; padding: 80px 0;">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-14">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4" style="color: #e2e8f0;">¿Para quién es ideal?</h2>
+        <p style="color: #94a3b8; font-size: 1.1rem; max-width: 600px; margin: 0 auto;">Selecciona tu sector y ve qué consultas resolvería el chatbot de forma autónoma.</p>
+      </div>
+
+      <div id="sector-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:32px;">
+
+        <button data-sector="ecommerce" class="sector-btn" style="background:rgba(37,99,235,0.15);border:2px solid rgba(37,99,235,0.5);border-radius:1rem;padding:18px 16px;display:flex;align-items:center;gap:12px;cursor:pointer;text-align:left;transition:all 0.2s;">
+          <span style="font-size:1.5rem;flex-shrink:0;">🛒</span>
+          <div>
+            <div style="color:#fff;font-weight:700;font-size:0.875rem;line-height:1.2;">E-commerce y distribución</div>
+            <div style="color:#60a5fa;font-size:0.7rem;margin-top:2px;">Pedidos · Facturas · Devoluciones</div>
+          </div>
+        </button>
+
+        <button data-sector="clinicas" class="sector-btn" style="background:rgba(255,255,255,0.04);border:2px solid rgba(255,255,255,0.08);border-radius:1rem;padding:18px 16px;display:flex;align-items:center;gap:12px;cursor:pointer;text-align:left;transition:all 0.2s;">
+          <span style="font-size:1.5rem;flex-shrink:0;">🏥</span>
+          <div>
+            <div style="color:#e2e8f0;font-weight:700;font-size:0.875rem;line-height:1.2;">Clínicas y salud</div>
+            <div style="color:#64748b;font-size:0.7rem;margin-top:2px;">Servicios · Seguros · Precios</div>
+          </div>
+        </button>
+
+        <button data-sector="hoteles" class="sector-btn" style="background:rgba(255,255,255,0.04);border:2px solid rgba(255,255,255,0.08);border-radius:1rem;padding:18px 16px;display:flex;align-items:center;gap:12px;cursor:pointer;text-align:left;transition:all 0.2s;">
+          <span style="font-size:1.5rem;flex-shrink:0;">🏨</span>
+          <div>
+            <div style="color:#e2e8f0;font-weight:700;font-size:0.875rem;line-height:1.2;">Hoteles y alojamientos</div>
+            <div style="color:#64748b;font-size:0.7rem;margin-top:2px;">Reservas · Servicios · Políticas</div>
+          </div>
+        </button>
+
+        <button data-sector="asesorias" class="sector-btn" style="background:rgba(255,255,255,0.04);border:2px solid rgba(255,255,255,0.08);border-radius:1rem;padding:18px 16px;display:flex;align-items:center;gap:12px;cursor:pointer;text-align:left;transition:all 0.2s;">
+          <span style="font-size:1.5rem;flex-shrink:0;">⚖️</span>
+          <div>
+            <div style="color:#e2e8f0;font-weight:700;font-size:0.875rem;line-height:1.2;">Despachos y asesorías</div>
+            <div style="color:#64748b;font-size:0.7rem;margin-top:2px;">Consultas · Servicios · Honorarios</div>
+          </div>
+        </button>
+
+        <button data-sector="inmobiliarias" class="sector-btn" style="background:rgba(255,255,255,0.04);border:2px solid rgba(255,255,255,0.08);border-radius:1rem;padding:18px 16px;display:flex;align-items:center;gap:12px;cursor:pointer;text-align:left;transition:all 0.2s;">
+          <span style="font-size:1.5rem;flex-shrink:0;">🏠</span>
+          <div>
+            <div style="color:#e2e8f0;font-weight:700;font-size:0.875rem;line-height:1.2;">Inmobiliarias</div>
+            <div style="color:#64748b;font-size:0.7rem;margin-top:2px;">Pisos · Precios · Visitas</div>
+          </div>
+        </button>
+
+        <button data-sector="banca" class="sector-btn" style="background:rgba(255,255,255,0.04);border:2px solid rgba(255,255,255,0.08);border-radius:1rem;padding:18px 16px;display:flex;align-items:center;gap:12px;cursor:pointer;text-align:left;transition:all 0.2s;">
+          <span style="font-size:1.5rem;flex-shrink:0;">🏦</span>
+          <div>
+            <div style="color:#e2e8f0;font-weight:700;font-size:0.875rem;line-height:1.2;">Financiero y seguros</div>
+            <div style="color:#64748b;font-size:0.7rem;margin-top:2px;">Productos · Reclamaciones · Coberturas</div>
+          </div>
+        </button>
+
+      </div>
+
+      <div id="questions-panel" style="background:rgba(255,255,255,0.03);border:1px solid rgba(37,99,235,0.2);border-radius:1.25rem;padding:28px;transition:opacity 0.25s;">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;">
+          <div style="width:8px;height:8px;background:#22c55e;border-radius:50%;"></div>
+          <p id="panel-title" style="color:#94a3b8;font-size:0.8rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;margin:0;">Preguntas que resuelve sin agente humano — E-commerce y distribución</p>
+        </div>
+        <div id="questions-list" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+  (function() {
+    const SECTORS: Record<string, { label: string; color: string; questions: string[] }> = {
+      ecommerce: {
+        label: 'E-commerce y distribución',
+        color: '#2563eb',
+        questions: [
+          '¿Cuándo llega mi pedido?',
+          'Necesito la factura de mi compra',
+          'Quiero devolver un producto',
+          '¿Tenéis el modelo en color negro?',
+          'Mi pedido ha llegado dañado',
+          '¿Cuánto tarda el envío a Canarias?',
+          '¿Cuál es vuestra política de devoluciones?',
+          '¿Puedo cambiar la dirección de entrega?',
+          '¿Cuándo se repone el stock del artículo X?',
+          '¿Está disponible en talla M?',
+          'Necesito el albarán del pedido de enero',
+          '¿Hacéis envíos a Portugal?',
+        ],
+      },
+      clinicas: {
+        label: 'Clínicas y salud',
+        color: '#0891b2',
+        questions: [
+          '¿Aceptáis el seguro de Sanitas?',
+          '¿Cuánto cuesta una consulta inicial?',
+          '¿Qué especialidades tienen?',
+          '¿Tenéis servicio de urgencias?',
+          '¿Dónde estáis ubicados?',
+          '¿Necesito derivación médica para la consulta?',
+          '¿Cuánto dura un tratamiento de ortodoncia?',
+          '¿Tenéis financiación para los tratamientos?',
+          '¿Hacéis videoconsulta?',
+          '¿Qué documentación debo traer?',
+          '¿Cuál es el precio de una limpieza dental?',
+          '¿Trabajáis también con mutualidades?',
+        ],
+      },
+      hoteles: {
+        label: 'Hoteles y alojamientos',
+        color: '#7c3aed',
+        questions: [
+          '¿Cuál es la política de cancelación?',
+          '¿Está incluido el desayuno?',
+          '¿Tenéis parking disponible?',
+          '¿Admitís mascotas?',
+          '¿Cuál es el horario de check-in?',
+          '¿Tenéis habitaciones con vista al mar?',
+          '¿Hay piscina abierta en octubre?',
+          '¿Podéis guardar el equipaje antes del check-in?',
+          '¿Tenéis habitaciones adaptadas?',
+          '¿Cuál es el precio por noche en agosto?',
+          '¿Ofrecéis traslado desde el aeropuerto?',
+          '¿Tenéis servicio de lavandería?',
+        ],
+      },
+      asesorias: {
+        label: 'Despachos y asesorías',
+        color: '#d97706',
+        questions: [
+          '¿Gestionáis herencias?',
+          '¿Cuánto cuesta la primera consulta?',
+          '¿Trabajáis con autónomos?',
+          '¿Qué documentación necesito para el IRPF?',
+          '¿Lleváis la contabilidad de empresas?',
+          '¿Gestionáis reclamaciones a seguros?',
+          '¿Podéis ayudarme con un despido?',
+          '¿Tenéis abogados de familia?',
+          '¿Cuánto tarda tramitar una herencia?',
+          '¿Hacéis consultas por videollamada?',
+          '¿Gestionáis sociedades limitadas?',
+          '¿Cuál es vuestro horario de atención?',
+        ],
+      },
+      inmobiliarias: {
+        label: 'Inmobiliarias',
+        color: '#db2777',
+        questions: [
+          '¿Tenéis pisos de dos habitaciones en el centro?',
+          '¿Cuánto es el alquiler del piso de la calle Mayor?',
+          '¿El piso del anuncio sigue disponible?',
+          '¿Aceptáis avales bancarios?',
+          '¿Los gastos de comunidad están incluidos?',
+          '¿Se admiten mascotas?',
+          '¿Cuál es el proceso para alquilar un piso?',
+          '¿Tenéis plazas de garaje disponibles?',
+          '¿Cuánto es la comisión de la agencia?',
+          '¿Qué documentación piden los propietarios?',
+          '¿Tenéis locales comerciales en alquiler?',
+          '¿Trabajáis en toda la provincia?',
+        ],
+      },
+      banca: {
+        label: 'Financiero y seguros',
+        color: '#059669',
+        questions: [
+          '¿Qué cubre mi seguro de hogar?',
+          '¿Cómo presento una reclamación?',
+          '¿Cuál es el plazo de resolución?',
+          '¿Tenéis seguro para autónomos?',
+          '¿Cómo cancelo mi póliza?',
+          '¿Qué documentación necesito para la reclamación?',
+          '¿El seguro cubre el robo de móvil fuera de casa?',
+          '¿Cuánto cuesta añadir un conductor al seguro?',
+          '¿Tenéis seguro de vida con coberturas de invalidez?',
+          '¿Qué es la franquicia y cómo funciona?',
+          '¿Cuándo renueva automáticamente mi póliza?',
+          '¿Cómo solicito el certificado de seguros?',
+        ],
+      },
+    };
+
+    function hexToComponents(hex: string): string {
+      const r = parseInt(hex.slice(1,3),16);
+      const g = parseInt(hex.slice(3,5),16);
+      const b = parseInt(hex.slice(5,7),16);
+      return `${r},${g},${b}`;
+    }
+
+    function renderQuestions(key: string) {
+      const sector = SECTORS[key];
+      if (!sector) return;
+      const list = document.getElementById('questions-list')!;
+      const title = document.getElementById('panel-title')!;
+      const panel = document.getElementById('questions-panel')!;
+
+      panel.style.opacity = '0';
+      panel.style.borderColor = `rgba(${hexToComponents(sector.color)},0.3)`;
+      title.textContent = `Preguntas que resuelve sin agente humano — ${sector.label}`;
+
+      setTimeout(() => {
+        list.innerHTML = sector.questions.map(q => `
+          <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:0.75rem;padding:10px 14px;display:flex;align-items:flex-start;gap:8px;">
+            <span style="color:#60a5fa;font-size:0.75rem;flex-shrink:0;margin-top:1px;">💬</span>
+            <span style="color:#cbd5e1;font-size:0.82rem;line-height:1.4;">"${q}"</span>
+          </div>
+        `).join('');
+        panel.style.opacity = '1';
+      }, 150);
+    }
+
+    function selectSector(key: string) {
+      document.querySelectorAll<HTMLElement>('.sector-btn').forEach(btn => {
+        const s = btn.getAttribute('data-sector')!;
+        const sector = SECTORS[s];
+        if (s === key) {
+          btn.style.background = `rgba(${hexToComponents(sector.color)},0.15)`;
+          btn.style.borderColor = sector.color;
+          const tag = btn.querySelector('div > div:last-child') as HTMLElement;
+          if (tag) tag.style.color = sector.color;
+        } else {
+          btn.style.background = 'rgba(255,255,255,0.04)';
+          btn.style.borderColor = 'rgba(255,255,255,0.08)';
+          const tag = btn.querySelector('div > div:last-child') as HTMLElement;
+          if (tag) tag.style.color = '#64748b';
+        }
+      });
+      renderQuestions(key);
+    }
+
+    document.querySelectorAll<HTMLElement>('.sector-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const s = btn.getAttribute('data-sector');
+        if (s) selectSector(s);
+      });
+    });
+
+    selectSector('ecommerce');
+  })();
+  </script>
+
+
+  <!-- ══════════════════════════════════════════════
+       FAQ
+  ══════════════════════════════════════════════ -->
+  <section style="background: #0f1628; padding: 80px 0;">
+    <div class="max-w-3xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4" style="color: #e2e8f0;">Preguntas frecuentes</h2>
+        <p style="color: #94a3b8; font-size: 1.05rem; max-width: 520px; margin: 0 auto;">Las dudas más habituales antes de implementar un chatbot empresarial.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+
+        <div class="faq-item" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;transition:border-color 0.2s;">
+          <button class="faq-btn" style="width:100%;text-align:left;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;cursor:pointer;background:none;border:none;">
+            <span style="color:#e2e8f0;font-weight:600;font-size:0.95rem;line-height:1.4;">¿Qué puede hacer un chatbot con IA para empresas?</span>
+            <svg class="faq-chevron" style="width:20px;height:20px;color:#60a5fa;flex-shrink:0;transition:transform 0.25s;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer" style="display:none;padding:0 24px 20px;">
+            <p style="color:#94a3b8;font-size:0.875rem;line-height:1.75;margin:0;border-top:1px solid rgba(255,255,255,0.06);padding-top:16px;">Un chatbot empresarial con IA puede responder preguntas frecuentes, consultar el estado de pedidos, enviar facturas, informar del stock disponible, gestionar devoluciones, agendar citas y escalar al agente humano correcto cuando el caso lo requiere. A diferencia de un chatbot con respuestas predefinidas, entiende el lenguaje natural y accede a los datos de tus sistemas en tiempo real para dar respuestas precisas.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;transition:border-color 0.2s;">
+          <button class="faq-btn" style="width:100%;text-align:left;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;cursor:pointer;background:none;border:none;">
+            <span style="color:#e2e8f0;font-weight:600;font-size:0.95rem;line-height:1.4;">¿Cómo se integra un chatbot con IA con el CRM o ERP de la empresa?</span>
+            <svg class="faq-chevron" style="width:20px;height:20px;color:#60a5fa;flex-shrink:0;transition:transform 0.25s;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer" style="display:none;padding:0 24px 20px;">
+            <p style="color:#94a3b8;font-size:0.875rem;line-height:1.75;margin:0;border-top:1px solid rgba(255,255,255,0.06);padding-top:16px;">La integración se realiza mediante API REST. El chatbot puede conectarse con los principales CRM (Salesforce, HubSpot, Zoho, Dynamics) y ERP (SAP, Odoo, Holded, Sage) para consultar y actualizar datos en tiempo real durante la conversación. También puede integrarse con bases de datos propias, Google Sheets o cualquier sistema que tenga API disponible.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;transition:border-color 0.2s;">
+          <button class="faq-btn" style="width:100%;text-align:left;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;cursor:pointer;background:none;border:none;">
+            <span style="color:#e2e8f0;font-weight:600;font-size:0.95rem;line-height:1.4;">¿Qué porcentaje de consultas resuelve un chatbot sin intervención humana?</span>
+            <svg class="faq-chevron" style="width:20px;height:20px;color:#60a5fa;flex-shrink:0;transition:transform 0.25s;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer" style="display:none;padding:0 24px 20px;">
+            <p style="color:#94a3b8;font-size:0.875rem;line-height:1.75;margin:0;border-top:1px solid rgba(255,255,255,0.06);padding-top:16px;">En implementaciones bien configuradas con acceso a datos en tiempo real, un chatbot empresarial resuelve entre el 70% y el 85% de las consultas de forma autónoma. Las consultas repetitivas como estado de pedidos, facturas, horarios o precios tienen tasas de resolución superiores al 90%. El 15-30% restante —reclamaciones complejas, negociaciones o casos fuera del ámbito— se deriva automáticamente a un agente humano.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;transition:border-color 0.2s;">
+          <button class="faq-btn" style="width:100%;text-align:left;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;cursor:pointer;background:none;border:none;">
+            <span style="color:#e2e8f0;font-weight:600;font-size:0.95rem;line-height:1.4;">¿En qué canales puede desplegarse un chatbot empresarial?</span>
+            <svg class="faq-chevron" style="width:20px;height:20px;color:#60a5fa;flex-shrink:0;transition:transform 0.25s;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer" style="display:none;padding:0 24px 20px;">
+            <p style="color:#94a3b8;font-size:0.875rem;line-height:1.75;margin:0;border-top:1px solid rgba(255,255,255,0.06);padding-top:16px;">Un chatbot con IA puede desplegarse simultáneamente en el widget de la web, WhatsApp Business, Telegram, Facebook Messenger, Instagram Direct y correo electrónico. Todas las conversaciones se unifican en un mismo panel de gestión, independientemente del canal por el que contacte el cliente.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;transition:border-color 0.2s;">
+          <button class="faq-btn" style="width:100%;text-align:left;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;cursor:pointer;background:none;border:none;">
+            <span style="color:#e2e8f0;font-weight:600;font-size:0.95rem;line-height:1.4;">¿Cuánto tiempo tarda en implementarse un chatbot con IA?</span>
+            <svg class="faq-chevron" style="width:20px;height:20px;color:#60a5fa;flex-shrink:0;transition:transform 0.25s;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer" style="display:none;padding:0 24px 20px;">
+            <p style="color:#94a3b8;font-size:0.875rem;line-height:1.75;margin:0;border-top:1px solid rgba(255,255,255,0.06);padding-top:16px;">El plan básico (sin integración con sistemas externos) puede estar activo en 7-10 días hábiles. El plan medio, con acceso a CRM o ERP mediante API, requiere 3-4 semanas. El plan avanzado con multicanal, escalado inteligente y analítica avanzada se implementa en 5-6 semanas. El plazo depende principalmente de la complejidad y documentación disponible de los sistemas a integrar.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;transition:border-color 0.2s;">
+          <button class="faq-btn" style="width:100%;text-align:left;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;cursor:pointer;background:none;border:none;">
+            <span style="color:#e2e8f0;font-weight:600;font-size:0.95rem;line-height:1.4;">¿Cómo sabe el chatbot cuándo derivar a un agente humano?</span>
+            <svg class="faq-chevron" style="width:20px;height:20px;color:#60a5fa;flex-shrink:0;transition:transform 0.25s;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer" style="display:none;padding:0 24px 20px;">
+            <p style="color:#94a3b8;font-size:0.875rem;line-height:1.75;margin:0;border-top:1px solid rgba(255,255,255,0.06);padding-top:16px;">El chatbot detecta automáticamente situaciones que requieren intervención humana: cuando el cliente expresa frustración o urgencia elevada (análisis de sentimiento), cuando la consulta está fuera del ámbito configurado, cuando el cliente lo solicita explícitamente, o cuando se supera un número de intentos fallidos. En ese momento deriva la conversación al agente disponible con un resumen del contexto, evitando que el cliente tenga que repetir todo.</p>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
+
+  <script is:inline>
+  (function(){
+    document.querySelectorAll('.faq-btn').forEach(function(btn){
+      btn.addEventListener('click',function(){
+        var item=btn.closest('.faq-item');
+        var answer=item.querySelector('.faq-answer');
+        var icon=btn.querySelector('.faq-chevron');
+        var open=answer.style.display==='block';
+        document.querySelectorAll('.faq-answer').forEach(function(a){a.style.display='none';});
+        document.querySelectorAll('.faq-chevron').forEach(function(i){i.style.transform='rotate(0deg)';});
+        document.querySelectorAll('.faq-item').forEach(function(i){i.style.borderColor='rgba(255,255,255,0.08)';});
+        if(!open){answer.style.display='block';icon.style.transform='rotate(180deg)';item.style.borderColor='rgba(96,165,250,0.3)';}
+      });
+    });
+  })();
+  </script>
+
+  <!-- ══════════════════════════════════════════════
+       TRANSPARENCIA + CTA
+  ══════════════════════════════════════════════ -->
+  <section style="background: #0f1628; padding: 80px 0;">
+    <div class="max-w-5xl mx-auto px-6">
+
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4" style="color: #e2e8f0;">Transparencia: qué resuelve y qué no</h2>
+        <p style="color: #94a3b8; font-size: 1.1rem; max-width: 600px; margin: 0 auto;">Queremos que sepas exactamente qué esperar antes de implementarlo.</p>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:72px;">
+        <div style="background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.25);border-radius:1rem;padding:28px;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
+            <div style="width:36px;height:36px;background:rgba(34,197,94,0.2);border-radius:8px;display:flex;align-items:center;justify-content:center;">✅</div>
+            <h3 style="color:#4ade80;font-weight:700;margin:0;">Resuelve de forma autónoma</h3>
+          </div>
+          <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;">
+            <li style="color:#94a3b8;font-size:0.875rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#4ade80;flex-shrink:0;">✓</span>Preguntas frecuentes con respuesta definida</li>
+            <li style="color:#94a3b8;font-size:0.875rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#4ade80;flex-shrink:0;">✓</span>Consultas de pedidos, facturas y stock en tiempo real</li>
+            <li style="color:#94a3b8;font-size:0.875rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#4ade80;flex-shrink:0;">✓</span>Información de precios, horarios y servicios</li>
+            <li style="color:#94a3b8;font-size:0.875rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#4ade80;flex-shrink:0;">✓</span>Inicio de procesos: devoluciones, citas, reclamaciones</li>
+            <li style="color:#94a3b8;font-size:0.875rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#4ade80;flex-shrink:0;">✓</span>Recogida estructurada de datos para el equipo</li>
+          </ul>
+        </div>
+        <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:1rem;padding:28px;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
+            <div style="width:36px;height:36px;background:rgba(255,255,255,0.08);border-radius:8px;display:flex;align-items:center;justify-content:center;">🔁</div>
+            <h3 style="color:#e2e8f0;font-weight:700;margin:0;">Deriva a humano</h3>
+          </div>
+          <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;">
+            <li style="color:#94a3b8;font-size:0.875rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#60a5fa;flex-shrink:0;">→</span>Reclamaciones con criterio legal o económico</li>
+            <li style="color:#94a3b8;font-size:0.875rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#60a5fa;flex-shrink:0;">→</span>Negociaciones de precios o condiciones especiales</li>
+            <li style="color:#94a3b8;font-size:0.875rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#60a5fa;flex-shrink:0;">→</span>Casos que expresan frustración elevada</li>
+            <li style="color:#94a3b8;font-size:0.875rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#60a5fa;flex-shrink:0;">→</span>Consultas fuera del ámbito configurado</li>
+            <li style="color:#94a3b8;font-size:0.875rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#60a5fa;flex-shrink:0;">→</span>Cuando el cliente solicita hablar con una persona</li>
+          </ul>
+        </div>
+      </div>
+
+      <div style="height:1px;background:linear-gradient(to right,transparent,rgba(37,99,235,0.3),transparent);margin-bottom:72px;"></div>
+
+      <div style="text-align:center;">
+        <div style="font-size:2.5rem;margin-bottom:14px;">💬</div>
+        <h2 class="text-3xl md:text-4xl font-bold mb-5" style="color:#fff;">Tu equipo para lo que importa,<br/>la IA para lo repetitivo</h2>
+        <p style="color:#94a3b8;font-size:1.05rem;margin-bottom:36px;line-height:1.7;max-width:560px;margin-left:auto;margin-right:auto;">
+          Analizamos el volumen y tipo de consultas que recibe tu empresa y te mostramos cuánto tiempo puede liberar el chatbot cada semana. La reunión es gratuita.
+        </p>
+        <div style="display:flex;flex-wrap:wrap;gap:14px;justify-content:center;">
+          <a href="/presupuesto?plan=Chatbot-IA"
+            style="display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:15px 34px;background:linear-gradient(135deg,#2563eb,#0ea5e9);color:#fff;font-weight:700;font-size:1rem;border-radius:14px;text-decoration:none;box-shadow:0 16px 36px -8px rgba(37,99,235,0.45);">
+            Solicitar análisis gratuito
+          </a>
+          <a href="#demo"
+            style="display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:15px 34px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);color:#cbd5e1;font-weight:600;font-size:1rem;border-radius:14px;text-decoration:none;">
+            Ver la demo primero
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
 </BaseLayout>
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    const chatForm = document.getElementById('demo-chat-form') as HTMLFormElement;
-    const chatInput = document.getElementById('demo-chat-input') as HTMLInputElement;
-    const chatContainer = document.getElementById('chat-container') as HTMLDivElement;
+    const input = document.getElementById('demo-chat-input') as HTMLInputElement;
+    const sendBtn = document.getElementById('demo-chat-send');
+    const container = document.getElementById('chat-container') as HTMLDivElement;
 
-    if (!chatForm || !chatInput || !chatContainer) return;
-
-    // Respuestas predefinidas del bot para tienda de electrónica
-    const responses: Record<string, string> = {
-      'factura': '🔍 He encontrado tu información en nuestra base de datos:\n\n👤 Cliente: María García López\n📧 Email: maria.garcia@email.com\n📱 Teléfono: +34 612 345 678\n\n📄 Última factura:\n• Número: FAC-2024-03456\n• Fecha: 15/01/2025\n• Importe: 899,99€\n• Producto: Portátil HP Pavilion 15\n\n✅ Te he enviado la factura por email.\n¿Necesitas la factura de otro pedido?',
-      'producto': '💻 Portátil HP 15-dy - Especificaciones:\n\n✅ Procesador: Intel Core i5-1235U (12ª Gen)\n✅ RAM: 16GB DDR4\n✅ Almacenamiento: SSD 512GB NVMe\n✅ Pantalla: 15.6" Full HD (1920x1080)\n✅ Gráficos: Intel Iris Xe\n✅ Batería: hasta 8 horas\n\n💰 Precio: 699,99€\n📦 Stock: Disponible (envío 24-48h)\n⭐ Valoración: 4.5/5 (127 opiniones)\n\n¿Quieres que te ayude con la compra?',
-      'pedido': '📦 Estado de tu pedido #TS-2845:\n\n✅ Confirmado: 20/01/2025 10:23h\n✅ Preparado: 20/01/2025 16:45h\n✅ Enviado: 21/01/2025 09:12h\n🚚 En reparto: Llegará mañana 22/01 antes de las 14:00h\n\n📍 Dirección de entrega:\nCalle Mayor 123, 2ºB\n28013 Madrid\n\n🔗 Seguimiento: ES1234567890YZ\n👤 Transportista: SEUR\n\n¿Necesitas cambiar algo del envío?',
-      'default': 'Entiendo tu consulta. Puedo ayudarte con:\n\n📄 Consultar facturas (dime tu DNI)\n💻 Información de productos\n📦 Estado de pedidos\n🔄 Devoluciones y garantías\n💳 Métodos de pago\n\n¿En qué más puedo ayudarte?'
+    const responses: Record<string, { text: string; panel: string }> = {
+      factura: {
+        text: '🔍 He encontrado tu información:\n\n👤 María García López\n📧 maria.garcia@email.com\n\n📄 Última factura:\n• Nº: FAC-2024-03456\n• Fecha: 15/01/2025\n• Importe: 899,99€\n• Producto: Portátil HP Pavilion 15\n\n✅ Te he enviado la factura por email.',
+        panel: 'factura',
+      },
+      producto: {
+        text: '💻 HP 15-dy — Especificaciones:\n\n✅ Intel Core i5-1235U (12ª Gen)\n✅ RAM: 16GB DDR4\n✅ SSD 512GB NVMe ← sí, tiene SSD\n✅ Pantalla: 15.6" Full HD\n✅ Batería: hasta 8h\n\n💰 699,99€ · Stock: disponible\n📦 Envío 24-48h',
+        panel: 'producto',
+      },
+      pedido: {
+        text: '📦 Pedido #TS-2845:\n\n✅ Confirmado: 20/01/2025\n✅ Preparado: 20/01/2025\n✅ Enviado: 21/01/2025\n🚚 En reparto — llega mañana antes de las 14:00h\n\n📍 Calle Mayor 123, 2ºB · Madrid\n👤 Transportista: SEUR\n🔗 Tracking: ES1234567890YZ',
+        panel: 'pedido',
+      },
+      default: {
+        text: 'Entiendo tu consulta. Puedo ayudarte con:\n\n📄 Facturas (dime tu DNI)\n💻 Especificaciones de productos\n📦 Estado de pedidos\n🔄 Devoluciones y garantías\n\n¿Sobre qué te ayudo?',
+        panel: '',
+      },
     };
 
-    function addMessage(text: string, isUser: boolean) {
-      const messageDiv = document.createElement('div');
-      messageDiv.className = `flex items-start gap-3 mb-4 ${isUser ? 'flex-row-reverse' : ''}`;
+    function showPanel(key: string) {
+      if (!key) return;
+      ['default','factura','producto','pedido'].forEach(id => {
+        const el = document.getElementById('info-' + id);
+        if (el) el.style.display = id === key ? 'block' : 'none';
+      });
+    }
+
+    function getResponse(msg: string): { text: string; panel: string } {
+      const m = msg.toLowerCase();
+      if (m.includes('factura') || m.includes('dni') || m.includes('12345678')) return responses.factura;
+      if (m.includes('portátil') || m.includes('portatil') || m.includes('hp') || m.includes('ssd')) return responses.producto;
+      if (m.includes('pedido') || m.includes('ts-2845') || m.includes('envío') || m.includes('dónde')) return responses.pedido;
+      return responses.default;
+    }
+
+    function addMsg(text: string, isUser: boolean) {
+      const wrap = document.createElement('div');
+      wrap.style.cssText = 'display:flex;align-items:flex-start;gap:8px;' + (isUser ? 'flex-direction:row-reverse;' : '');
 
       const avatar = document.createElement('div');
+      avatar.style.cssText = 'width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;flex-shrink:0;';
       if (isUser) {
-        avatar.className = 'w-10 h-10 rounded-full bg-white flex items-center justify-center font-bold flex-shrink-0 shadow-md';
-        avatar.style.color = '#000000';
+        avatar.style.background = 'rgba(255,255,255,0.15)';
+        avatar.style.color = '#fff';
         avatar.textContent = 'TÚ';
       } else {
-        avatar.className = 'w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-white font-bold flex-shrink-0';
+        avatar.style.background = 'linear-gradient(135deg,#2563eb,#0ea5e9)';
+        avatar.style.color = '#fff';
         avatar.textContent = 'AI';
       }
 
       const bubble = document.createElement('div');
-      bubble.className = `rounded-2xl px-4 py-3 shadow-md max-w-[80%] ${
-        isUser
-          ? 'bg-white rounded-tr-none font-medium'
-          : 'bg-gradient-to-br from-blue-500 to-blue-700 text-white rounded-tl-none'
-      }`;
+      bubble.style.cssText = 'max-width:82%;padding:10px 14px;border-radius:' + (isUser ? '16px 16px 4px 16px' : '16px 16px 16px 4px') + ';font-size:0.8rem;line-height:1.55;white-space:pre-wrap;';
       if (isUser) {
-        bubble.style.color = '#000000';
+        bubble.style.background = 'rgba(255,255,255,0.12)';
+        bubble.style.color = '#e2e8f0';
+      } else {
+        bubble.style.background = 'linear-gradient(135deg,rgba(37,99,235,0.8),rgba(14,165,233,0.8))';
+        bubble.style.color = '#fff';
       }
-      bubble.style.whiteSpace = 'pre-wrap';
-      bubble.innerHTML = text.replace(/\n/g, '<br>');
+      bubble.textContent = text;
 
-      messageDiv.appendChild(avatar);
-      messageDiv.appendChild(bubble);
-      chatContainer.appendChild(messageDiv);
-
-      // Scroll to bottom
-      chatContainer.scrollTop = chatContainer.scrollHeight;
+      wrap.appendChild(avatar);
+      wrap.appendChild(bubble);
+      container.appendChild(wrap);
+      container.scrollTop = container.scrollHeight;
     }
 
-    function getBotResponse(userMessage: string): string {
-      const message = userMessage.toLowerCase();
-
-      if (message.includes('factura') || message.includes('dni') || message.includes('12345678')) {
-        return responses['factura'];
-      }
-      if (message.includes('portátil') || message.includes('portatil') || message.includes('hp') || message.includes('ssd') || message.includes('especificaciones')) {
-        return responses['producto'];
-      }
-      if (message.includes('pedido') || message.includes('ts-2845') || message.includes('envío') || message.includes('envio') || message.includes('dónde está') || message.includes('donde esta')) {
-        return responses['pedido'];
-      }
-
-      return responses['default'];
+    function addTyping() {
+      const wrap = document.createElement('div');
+      wrap.id = 'typing';
+      wrap.style.cssText = 'display:flex;align-items:flex-start;gap:8px;';
+      wrap.innerHTML = '<div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#0ea5e9);display:flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:#fff;flex-shrink:0;">AI</div><div style="background:linear-gradient(135deg,rgba(37,99,235,0.8),rgba(14,165,233,0.8));border-radius:16px 16px 16px 4px;padding:10px 14px;"><span style="display:inline-flex;gap:3px;"><span style="width:6px;height:6px;background:rgba(255,255,255,0.8);border-radius:50%;display:inline-block;" class="animate-bounce"></span><span style="width:6px;height:6px;background:rgba(255,255,255,0.8);border-radius:50%;display:inline-block;animation-delay:0.1s;" class="animate-bounce"></span><span style="width:6px;height:6px;background:rgba(255,255,255,0.8);border-radius:50%;display:inline-block;animation-delay:0.2s;" class="animate-bounce"></span></span></div>';
+      container.appendChild(wrap);
+      container.scrollTop = container.scrollHeight;
     }
 
-    function simulateTyping() {
-      const typingDiv = document.createElement('div');
-      typingDiv.className = 'flex items-start gap-3 mb-4';
-      typingDiv.id = 'typing-indicator';
+    let sending = false;
 
-      const avatar = document.createElement('div');
-      avatar.className = 'w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-white font-bold flex-shrink-0';
-      avatar.textContent = 'AI';
-
-      const bubble = document.createElement('div');
-      bubble.className = 'bg-gradient-to-br from-blue-500 to-blue-700 rounded-2xl rounded-tl-none px-4 py-3 shadow-sm';
-      bubble.innerHTML = '<span class="inline-flex gap-1"><span class="w-2 h-2 bg-white rounded-full animate-bounce"></span><span class="w-2 h-2 bg-white rounded-full animate-bounce" style="animation-delay: 0.1s"></span><span class="w-2 h-2 bg-white rounded-full animate-bounce" style="animation-delay: 0.2s"></span></span>';
-
-      typingDiv.appendChild(avatar);
-      typingDiv.appendChild(bubble);
-      chatContainer.appendChild(typingDiv);
-      chatContainer.scrollTop = chatContainer.scrollHeight;
-    }
-
-    function removeTyping() {
-      const typingIndicator = document.getElementById('typing-indicator');
-      if (typingIndicator) {
-        typingIndicator.remove();
-      }
-    }
-
-    function sendMessage(message: string) {
-      // Add user message
-      addMessage(message, true);
-      chatInput.value = '';
-
-      // Hide quick question buttons after first use
-      const quickButtons = document.querySelector('.space-y-2.mb-4.ml-14');
-      if (quickButtons) {
-        quickButtons.classList.add('hidden');
-      }
-
-      // Show typing indicator
-      simulateTyping();
-
-      // Simulate bot response delay
+    function send(msg: string) {
+      if (sending) return;
+      sending = true;
+      const qb = document.getElementById('quick-btns');
+      if (qb) qb.remove(); // eliminar del DOM para que no ocupe espacio
+      addMsg(msg, true);
+      if (input) input.value = '';
+      addTyping();
       setTimeout(() => {
-        removeTyping();
-        const botResponse = getBotResponse(message);
-        addMessage(botResponse, false);
-      }, 1000 + Math.random() * 1000);
+        document.getElementById('typing')?.remove();
+        const r = getResponse(msg);
+        addMsg(r.text, false);
+        if (r.panel) showPanel(r.panel); // solo actualiza si hay panel concreto
+        sending = false;
+        input?.focus();
+      }, 900 + Math.random() * 600);
     }
 
-    chatForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-
-      const userMessage = chatInput.value.trim();
-      if (!userMessage) return;
-
-      sendMessage(userMessage);
-    });
-
-    // Quick question buttons
-    const quickQuestionButtons = document.querySelectorAll('.quick-question');
-    quickQuestionButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        const question = button.textContent?.trim();
-        if (question) {
-          chatInput.value = question;
-          sendMessage(question);
-        }
-      });
+    sendBtn?.addEventListener('click', () => { const v = input?.value.trim(); if (v) send(v); });
+    input?.addEventListener('keydown', (e) => { if (e.key === 'Enter') { const v = input.value.trim(); if (v) send(v); } });
+    document.querySelectorAll('.quick-question').forEach(btn => {
+      btn.addEventListener('click', () => { const t = btn.textContent?.trim().replace(/^[^\s]+\s/, ''); if (t) send(t); });
     });
   });
 </script>
