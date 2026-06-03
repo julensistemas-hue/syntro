@@ -1,313 +1,862 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import TestIABanner from "../../components/global/TestIABanner.astro";
 
-const title = "Gestor de Citas con IA — WhatsApp, Llamada o Widget Web | AI Security";
-const description = "Sistema de reservas automático con IA. Tus clientes pueden pedir cita por WhatsApp, por llamada telefónica con agente IA, o desde un widget incrustado en tu web. Sin llamadas manuales, sin esperas.";
+const title = "Gestor de Citas con IA — WhatsApp, Llamada y Widget Web | AI Security";
+const description = "Sistema de reservas automático con IA. Tus clientes piden cita por WhatsApp, llamada telefónica o desde un widget incrustado en tu web. Confirmaciones y recordatorios automáticos. Sin trabajo manual para tu equipo.";
 const canonical = "https://aisecurity.es/servicios/gestor-citas";
 ---
 
 <BaseLayout title={title} description={description} canonical={canonical}>
-  <section class="pt-12 pb-24" style="background:#020817;">
-    <div class="max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
 
-      <!-- HERO -->
-      <div class="text-center mb-14 max-w-3xl mx-auto">
-        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-semibold mb-5" style="background:rgba(56,177,255,0.1);color:#38b1ff;border:1px solid rgba(56,177,255,0.2);">
-          Gestión de citas con IA · 24/7
-        </div>
-        <h1 class="text-4xl md:text-5xl font-bold mb-5 text-white" style="line-height:1.1;">
-          ¿Cómo prefieren reservar<br>cita tus clientes?
+  <!-- Schema JSON-LD — Service + FAQ para GEO -->
+  <script type="application/ld+json" is:inline>
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Gestor de Citas con IA",
+      "alternateName": "Sistema de reservas automático por WhatsApp, llamada y widget web",
+      "description": "Sistema de gestión de citas automatizado con IA. Permite a los clientes reservar cita por WhatsApp, llamada telefónica o widget incrustado en la web. Incluye confirmaciones automáticas, recordatorios y sincronización con Google Calendar y Outlook.",
+      "provider": {
+        "@type": "Organization",
+        "name": "AI Security",
+        "url": "https://aisecurity.es",
+        "areaServed": "ES"
+      },
+      "serviceType": "Automatización de gestión de citas con IA",
+      "areaServed": "España",
+      "availableChannel": {
+        "@type": "ServiceChannel",
+        "serviceUrl": "https://aisecurity.es/servicios/gestor-citas",
+        "availableLanguage": ["Spanish", "Catalan", "English"]
+      },
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "Plan Básico — Gestor de citas",
+          "description": "Reservas por WhatsApp o llamada con IA, confirmaciones automáticas, recordatorios 24h y 1h antes, sincronización con Google Calendar.",
+          "availability": "https://schema.org/InStock"
+        },
+        {
+          "@type": "Offer",
+          "name": "Plan Medio — Gestor de citas multicanal",
+          "description": "WhatsApp + llamada + widget en web, lista de espera automática, integración con Google Calendar y Outlook, gestión de cancelaciones y reprogramaciones.",
+          "availability": "https://schema.org/InStock"
+        },
+        {
+          "@type": "Offer",
+          "name": "Plan Avanzado — Gestor de citas completo",
+          "description": "Todos los canales más CRM integrado, pagos online al reservar, notificaciones por SMS, análisis de ocupación y reportes de no-shows.",
+          "availability": "https://schema.org/InStock"
+        }
+      ]
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Cómo funciona un gestor de citas con IA por WhatsApp?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "El cliente escribe un mensaje de WhatsApp —de forma natural, como lo haría a una persona— y la IA entiende su intención, consulta la disponibilidad en tiempo real y confirma la cita en la misma conversación. Gestiona también cancelaciones, reprogramaciones y envía recordatorios automáticos 24h y 1h antes de la cita. No requiere que el cliente instale nada ni salga de la app que ya usa."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué es un widget de reservas incrustado en la web?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Es un calendario interactivo que se integra directamente en tu página web. El cliente ve los huecos disponibles en tiempo real y reserva en menos de 2 minutos sin salir de tu web. Se personaliza con los colores y el diseño de tu marca, sincroniza con Google Calendar y Outlook, y envía confirmaciones automáticas por email y SMS."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuánto se reducen las llamadas entrantes con un gestor de citas IA?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "En negocios con alto volumen de citas, el sistema puede gestionar entre el 70% y el 85% de las reservas de forma completamente automática, sin que ningún miembro del equipo intervenga. Esto reduce significativamente las llamadas entrantes para reservas y las consultas por email, liberando al equipo para tareas de mayor valor."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué tipos de negocio se benefician más de un gestor de citas automatizado?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Los negocios con mayor retorno son: clínicas dentales y médicas (alta frecuencia de citas y recordatorios), centros de estética y peluquerías (múltiples profesionales y servicios), talleres mecánicos (citas ITV y revisiones), asesorías y despachos (primera visita y consultas), restaurantes (reservas de mesa) y centros deportivos (clases y entrenadores personales)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuánto tiempo tarda en implementarse un gestor de citas con IA?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "El plan básico (WhatsApp + llamada con sincronización a Google Calendar) puede estar activo en 7-10 días hábiles. El plan medio, que incluye el widget web y gestión de cancelaciones avanzada, requiere 3-4 semanas. El plan avanzado con CRM y pagos online se implementa en 5-6 semanas. El plazo depende principalmente de la integración con el sistema de agenda existente."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cómo evita el gestor de citas IA los no-shows?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "El sistema envía recordatorios automáticos por WhatsApp, SMS o email en dos momentos: 24 horas y 1 hora antes de la cita. Si el cliente no puede asistir, puede cancelar o reprogramar desde el propio recordatorio con un clic, liberando el hueco para otro cliente automáticamente. Los negocios que implementan esta automatización reducen los no-shows entre un 40% y un 70%."
+          }
+        }
+      ]
+    }
+  ]
+  </script>
+
+
+  <!-- ══════════════════════════════════════════════
+       HERO + DEMOS DE CANAL
+  ══════════════════════════════════════════════ -->
+  <section style="background: linear-gradient(135deg, #0a0d1a 0%, #0f1628 50%, #0a0d1a 100%); padding: 80px 0 60px; position: relative; overflow: hidden;">
+    <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(circle at 20% 30%, #2563eb 0%, transparent 50%), radial-gradient(circle at 80% 70%, #0ea5e9 0%, transparent 50%);"></div>
+
+    <div class="max-w-6xl mx-auto px-6 relative z-10">
+
+      <!-- Título -->
+      <div class="text-center mb-12">
+        <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight" style="color: #fff;">
+          Tus clientes reservan cita<br/>
+          <span style="background: linear-gradient(90deg, #22c55e, #38b1ff, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">como prefieran</span>
         </h1>
-        <p class="text-lg" style="color:rgba(255,255,255,0.6);">
-          Elige el canal que mejor encaje con tu negocio. O combínalos todos. La IA gestiona reservas, confirmaciones y recordatorios de forma automática.
+        <p class="text-xl max-w-3xl mx-auto" style="color: #94a3b8; line-height: 1.7;">
+          Por <strong style="color: #22c55e;">WhatsApp</strong>, por <strong style="color: #38b1ff;">llamada telefónica</strong> o desde un <strong style="color: #a78bfa;">widget en tu web</strong>.
+          La IA gestiona reservas, confirmaciones y recordatorios. Sin trabajo manual para tu equipo.
         </p>
       </div>
 
-      <!-- SELECTOR DE 3 OPCIONES -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6" id="channel-selector">
+      <!-- Selector de canal -->
+      <div id="demo" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 1.5rem; overflow: hidden;">
 
-        <!-- WhatsApp -->
-        <button class="channel-btn text-left rounded-2xl p-6 border-2 transition-all duration-200 focus:outline-none"
-          data-channel="whatsapp"
-          style="border-color:rgba(34,197,94,0.3);background:rgba(34,197,94,0.06);">
-          <div class="flex items-start gap-4">
-            <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 text-2xl" style="background:rgba(34,197,94,0.12);">💬</div>
-            <div>
-              <div class="text-xs font-bold uppercase tracking-wider mb-1" style="color:#22c55e;">WhatsApp</div>
-              <h2 class="text-lg font-bold mb-1 text-white">Reserva por WhatsApp</h2>
-              <p class="text-sm" style="color:rgba(255,255,255,0.55);">El cliente escribe un mensaje y la IA gestiona la cita en la conversación.</p>
+        <!-- Barra tipo terminal -->
+        <div style="background: rgba(0,0,0,0.4); padding: 14px 24px; border-bottom: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: space-between;">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <div style="display: flex; gap: 6px;">
+              <div style="width:12px;height:12px;border-radius:50%;background:#ef4444;"></div>
+              <div style="width:12px;height:12px;border-radius:50%;background:#eab308;"></div>
+              <div style="width:12px;height:12px;border-radius:50%;background:#22c55e;"></div>
             </div>
+            <span style="color: #64748b; font-size: 0.875rem; font-family: monospace;">Gestor de Citas IA — Elige tu canal</span>
           </div>
-          <div class="mt-4 flex items-center gap-2 text-sm font-semibold" style="color:#22c55e;">
-            <span class="w-2 h-2 rounded-full" style="background:#22c55e;"></span>
-            <span class="channel-label">Ver demo</span>
-          </div>
-        </button>
-
-        <!-- Llamada -->
-        <button class="channel-btn text-left rounded-2xl p-6 border-2 transition-all duration-200 focus:outline-none"
-          data-channel="llamada"
-          style="border-color:rgba(56,177,255,0.3);background:rgba(56,177,255,0.06);">
-          <div class="flex items-start gap-4">
-            <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 text-2xl" style="background:rgba(56,177,255,0.12);">📞</div>
-            <div>
-              <div class="text-xs font-bold uppercase tracking-wider mb-1" style="color:#38b1ff;">Llamada telefónica</div>
-              <h2 class="text-lg font-bold mb-1 text-white">Reserva por llamada</h2>
-              <p class="text-sm" style="color:rgba(255,255,255,0.55);">Un agente IA atiende la llamada, entiende al cliente y reserva la cita.</p>
-            </div>
-          </div>
-          <div class="mt-4 flex items-center gap-2 text-sm font-semibold" style="color:#38b1ff;">
-            <span class="w-2 h-2 rounded-full" style="background:#38b1ff;"></span>
-            <span class="channel-label">Ver demo</span>
-          </div>
-        </button>
-
-        <!-- Widget web -->
-        <button class="channel-btn text-left rounded-2xl p-6 border-2 transition-all duration-200 focus:outline-none"
-          data-channel="widget"
-          style="border-color:rgba(139,92,246,0.3);background:rgba(139,92,246,0.06);">
-          <div class="flex items-start gap-4">
-            <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 text-2xl" style="background:rgba(139,92,246,0.12);">🌐</div>
-            <div>
-              <div class="text-xs font-bold uppercase tracking-wider mb-1" style="color:#a78bfa;">Widget en tu web</div>
-              <h2 class="text-lg font-bold mb-1 text-white">Reserva desde tu web</h2>
-              <p class="text-sm" style="color:rgba(255,255,255,0.55);">Un calendario incrustado en tu página donde el cliente elige fecha y hora.</p>
-            </div>
-          </div>
-          <div class="mt-4 flex items-center gap-2 text-sm font-semibold" style="color:#a78bfa;">
-            <span class="w-2 h-2 rounded-full" style="background:#8b5cf6;"></span>
-            <span class="channel-label">Ver demo</span>
-          </div>
-        </button>
-
-      </div>
-
-      <!-- ── PANEL WHATSAPP ── -->
-      <div id="demo-whatsapp" class="demo-panel rounded-3xl overflow-hidden mb-10" style="display:none;border:1px solid rgba(34,197,94,0.2);">
-        <div class="grid grid-cols-1 lg:grid-cols-2">
-
-          <!-- Chat simulado — colores propios de WhatsApp, hardcodeados -->
-          <div style="background:#111b21;">
-            <div class="flex items-center gap-3 px-5 py-4" style="background:#202c33;">
-              <div class="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-sm" style="background:#00a884;">CG</div>
-              <div>
-                <div class="text-white font-semibold text-sm">Clínica García</div>
-                <div class="text-xs" style="color:#00a884;">Gestor de citas · En línea</div>
-              </div>
-            </div>
-            <div class="p-4 space-y-3 overflow-y-auto" style="max-height:380px;" id="wa-messages"></div>
-          </div>
-
-          <!-- Info panel — fondo oscuro, texto claro -->
-          <div class="p-8 flex flex-col justify-center" style="background:#0b1524;">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold mb-6 w-fit" style="background:rgba(34,197,94,0.12);color:#22c55e;border:1px solid rgba(34,197,94,0.2);">
-              <span class="w-2 h-2 rounded-full bg-green-500"></span> WhatsApp Business API
-            </div>
-            <h3 class="text-2xl font-bold mb-3 text-white">El canal que ya usan tus clientes</h3>
-            <p class="mb-6 text-sm leading-relaxed" style="color:rgba(255,255,255,0.6);">El 85% de los españoles tiene WhatsApp instalado. Sin descargas, sin formularios — solo escriben como lo hacen siempre.</p>
-            <ul class="space-y-2.5 mb-8">
-              <li class="flex items-start gap-3 text-sm" style="color:rgba(255,255,255,0.75);"><span class="text-green-400 flex-shrink-0 mt-0.5">✓</span>Reserva, cancelación y reprogramación por chat</li>
-              <li class="flex items-start gap-3 text-sm" style="color:rgba(255,255,255,0.75);"><span class="text-green-400 flex-shrink-0 mt-0.5">✓</span>Recordatorios automáticos 24h y 1h antes</li>
-              <li class="flex items-start gap-3 text-sm" style="color:rgba(255,255,255,0.75);"><span class="text-green-400 flex-shrink-0 mt-0.5">✓</span>Detecta intención: "quiero cita para mañana"</li>
-              <li class="flex items-start gap-3 text-sm" style="color:rgba(255,255,255,0.75);"><span class="text-green-400 flex-shrink-0 mt-0.5">✓</span>Sincroniza con Google Calendar y Outlook</li>
-              <li class="flex items-start gap-3 text-sm" style="color:rgba(255,255,255,0.75);"><span class="text-green-400 flex-shrink-0 mt-0.5">✓</span>Derivación a humano si la consulta es compleja</li>
-            </ul>
-            <a href="/contacto-migracion?plan=Gestor-Citas-WhatsApp"
-              class="inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold text-sm transition-all hover:-translate-y-0.5 w-fit"
-              style="background:#22c55e;color:#052e16;">
-              Quiero el gestor por WhatsApp →
-            </a>
+          <div style="display: flex; align-items: center; gap: 8px; font-size: 0.8rem; color: #22c55e;">
+            <span style="width:8px;height:8px;background:#22c55e;border-radius:50%;display:inline-block;" class="animate-pulse"></span>
+            Disponible 24/7
           </div>
         </div>
-      </div>
 
-      <!-- ── PANEL LLAMADA ── -->
-      <div id="demo-llamada" class="demo-panel rounded-3xl overflow-hidden mb-10" style="display:none;border:1px solid rgba(56,177,255,0.2);">
-        <div class="grid grid-cols-1 lg:grid-cols-2">
+        <!-- Botones de canal -->
+        <div style="display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; padding: 24px 24px 0;">
+          <button class="channel-btn" data-channel="whatsapp"
+            style="text-align:left;border-radius:1rem;padding:20px;border:2px solid rgba(34,197,94,0.35);background:rgba(34,197,94,0.08);cursor:pointer;transition:all 0.2s;">
+            <div style="font-size:1.75rem;margin-bottom:8px;">💬</div>
+            <div style="color:#22c55e;font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px;">WhatsApp</div>
+            <div style="color:#fff;font-weight:700;font-size:0.95rem;margin-bottom:4px;">Reserva por mensaje</div>
+            <div style="color:rgba(255,255,255,0.5);font-size:0.8rem;">El cliente escribe y la IA gestiona</div>
+            <div style="margin-top:12px;display:flex;align-items:center;gap:6px;font-size:0.8rem;font-weight:600;color:#22c55e;">
+              <span class="w-2 h-2 rounded-full" style="width:6px;height:6px;background:#22c55e;border-radius:50%;display:inline-block;"></span>
+              <span class="ch-label">Ver demo</span>
+            </div>
+          </button>
 
-          <!-- Simulación llamada — ya era oscuro, sin cambios -->
-          <div class="p-8 flex flex-col justify-center" style="background:#0a0e1a;">
-            <div class="text-center mb-6">
-              <div class="w-20 h-20 rounded-full flex items-center justify-center text-4xl mx-auto mb-4" style="background:rgba(56,177,255,0.1);border:2px solid rgba(56,177,255,0.25);">📞</div>
-              <div class="text-white font-bold text-lg mb-1">Agente IA</div>
-              <div class="text-sm flex items-center justify-center gap-2" style="color:#38b1ff;">
-                <span class="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
-                Llamada en curso · 00:43
+          <button class="channel-btn" data-channel="llamada"
+            style="text-align:left;border-radius:1rem;padding:20px;border:2px solid rgba(56,177,255,0.25);background:rgba(56,177,255,0.05);cursor:pointer;transition:all 0.2s;">
+            <div style="font-size:1.75rem;margin-bottom:8px;">📞</div>
+            <div style="color:#38b1ff;font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px;">Llamada</div>
+            <div style="color:#fff;font-weight:700;font-size:0.95rem;margin-bottom:4px;">Reserva por teléfono</div>
+            <div style="color:rgba(255,255,255,0.5);font-size:0.8rem;">Agente IA con voz natural</div>
+            <div style="margin-top:12px;display:flex;align-items:center;gap:6px;font-size:0.8rem;font-weight:600;color:#38b1ff;">
+              <span style="width:6px;height:6px;background:#38b1ff;border-radius:50%;display:inline-block;"></span>
+              <span class="ch-label">Ver demo</span>
+            </div>
+          </button>
+
+          <button class="channel-btn" data-channel="widget"
+            style="text-align:left;border-radius:1rem;padding:20px;border:2px solid rgba(139,92,246,0.25);background:rgba(139,92,246,0.05);cursor:pointer;transition:all 0.2s;">
+            <div style="font-size:1.75rem;margin-bottom:8px;">🗓️</div>
+            <div style="color:#a78bfa;font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px;">Widget web</div>
+            <div style="color:#fff;font-weight:700;font-size:0.95rem;margin-bottom:4px;">Reserva desde tu web</div>
+            <div style="color:rgba(255,255,255,0.5);font-size:0.8rem;">Calendario incrustado en tu página</div>
+            <div style="margin-top:12px;display:flex;align-items:center;gap:6px;font-size:0.8rem;font-weight:600;color:#a78bfa;">
+              <span style="width:6px;height:6px;background:#8b5cf6;border-radius:50%;display:inline-block;"></span>
+              <span class="ch-label">Ver demo</span>
+            </div>
+          </button>
+        </div>
+
+        <!-- ── PANEL WHATSAPP ── -->
+        <div id="panel-whatsapp" class="demo-panel" style="display:none;padding:24px;">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;border-radius:1.25rem;overflow:hidden;border:1px solid rgba(34,197,94,0.2);">
+            <!-- Chat WhatsApp -->
+            <div style="background:#111b21;">
+              <div style="background:#202c33;display:flex;align-items:center;gap:12px;padding:14px 18px;">
+                <div style="width:36px;height:36px;border-radius:50%;background:#00a884;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.8rem;color:#fff;">CG</div>
+                <div>
+                  <div style="color:#fff;font-weight:600;font-size:0.875rem;">Clínica García</div>
+                  <div style="color:#00a884;font-size:0.75rem;">Gestor de citas · En línea</div>
+                </div>
               </div>
+              <div id="wa-messages" style="padding:16px;display:flex;flex-direction:column;gap:10px;min-height:280px;max-height:320px;overflow-y:auto;"></div>
             </div>
-            <div class="space-y-3 text-sm font-mono" id="call-transcript"></div>
-          </div>
-
-          <!-- Info panel -->
-          <div class="p-8 flex flex-col justify-center" style="background:#0b1524;">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold mb-6 w-fit" style="background:rgba(56,177,255,0.1);color:#38b1ff;border:1px solid rgba(56,177,255,0.2);">
-              <span class="w-2 h-2 rounded-full" style="background:#38b1ff;"></span> Agente de voz con IA
-            </div>
-            <h3 class="text-2xl font-bold mb-3 text-white">Para quien prefiere llamar</h3>
-            <p class="mb-6 text-sm leading-relaxed" style="color:rgba(255,255,255,0.6);">Un recepcionista virtual con voz natural en español atiende la llamada, entiende lo que necesita el cliente y reserva la cita. Sin esperas, sin contestador.</p>
-            <ul class="space-y-2.5 mb-8">
-              <li class="flex items-start gap-3 text-sm" style="color:rgba(255,255,255,0.75);"><span style="color:#38b1ff;" class="flex-shrink-0 mt-0.5">✓</span>Voz natural en español, sin sonar robótico</li>
-              <li class="flex items-start gap-3 text-sm" style="color:rgba(255,255,255,0.75);"><span style="color:#38b1ff;" class="flex-shrink-0 mt-0.5">✓</span>Atiende llamadas 24/7, fines de semana incluidos</li>
-              <li class="flex items-start gap-3 text-sm" style="color:rgba(255,255,255,0.75);"><span style="color:#38b1ff;" class="flex-shrink-0 mt-0.5">✓</span>Deriva a una persona real si lo necesita</li>
-              <li class="flex items-start gap-3 text-sm" style="color:rgba(255,255,255,0.75);"><span style="color:#38b1ff;" class="flex-shrink-0 mt-0.5">✓</span>Transcripción automática de cada llamada</li>
-              <li class="flex items-start gap-3 text-sm" style="color:rgba(255,255,255,0.75);"><span style="color:#38b1ff;" class="flex-shrink-0 mt-0.5">✓</span>Integra con tu número de teléfono actual</li>
-            </ul>
-            <div class="flex flex-wrap gap-3">
-              <a href="/servicios/atencion-llamadas"
-                class="inline-flex items-center justify-center px-5 py-3 rounded-xl font-semibold text-sm border transition-all hover:-translate-y-0.5"
-                style="border-color:#38b1ff;color:#38b1ff;">
-                Ver demo completa →
-              </a>
-              <a href="/contacto-migracion?plan=Gestor-Citas-Llamada"
-                class="inline-flex items-center justify-center px-5 py-3 rounded-xl font-semibold text-sm transition-all hover:-translate-y-0.5"
-                style="background:#38b1ff;color:#020817;">
-                Lo quiero
+            <!-- Info -->
+            <div style="background:#0b1524;padding:32px;display:flex;flex-direction:column;justify-content:center;">
+              <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.2);border-radius:20px;padding:4px 12px;width:fit-content;margin-bottom:16px;">
+                <span style="width:6px;height:6px;background:#22c55e;border-radius:50%;display:inline-block;"></span>
+                <span style="color:#22c55e;font-size:0.75rem;font-weight:700;">WhatsApp Business API</span>
+              </div>
+              <h3 style="color:#fff;font-size:1.35rem;font-weight:700;margin:0 0 10px;">El canal que ya usan tus clientes</h3>
+              <p style="color:rgba(255,255,255,0.6);font-size:0.875rem;line-height:1.7;margin:0 0 18px;">El 85% de los españoles tiene WhatsApp instalado. Sin apps, sin formularios. Solo escriben como siempre.</p>
+              <ul style="list-style:none;margin:0 0 24px;padding:0;display:flex;flex-direction:column;gap:8px;">
+                <li style="color:rgba(255,255,255,0.75);font-size:0.825rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#22c55e;flex-shrink:0;">✓</span>Reserva, cancelación y reprogramación por chat</li>
+                <li style="color:rgba(255,255,255,0.75);font-size:0.825rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#22c55e;flex-shrink:0;">✓</span>Recordatorios automáticos 24h y 1h antes</li>
+                <li style="color:rgba(255,255,255,0.75);font-size:0.825rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#22c55e;flex-shrink:0;">✓</span>Detecta intención: "quiero cita para mañana"</li>
+                <li style="color:rgba(255,255,255,0.75);font-size:0.825rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#22c55e;flex-shrink:0;">✓</span>Sincroniza con Google Calendar y Outlook</li>
+                <li style="color:rgba(255,255,255,0.75);font-size:0.825rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#22c55e;flex-shrink:0;">✓</span>Lista de espera automática si no hay hueco</li>
+              </ul>
+              <a href="/contacto-migracion?plan=Gestor-Citas-WhatsApp"
+                style="display:inline-flex;align-items:center;justify-content:center;padding:12px 24px;background:#22c55e;color:#052e16;font-weight:700;font-size:0.875rem;border-radius:10px;text-decoration:none;width:fit-content;">
+                Quiero el gestor por WhatsApp →
               </a>
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- ── PANEL WIDGET WEB ── -->
-      <div id="demo-widget" class="demo-panel rounded-3xl overflow-hidden mb-10" style="display:none;border:1px solid rgba(139,92,246,0.2);">
-        <div class="grid grid-cols-1 lg:grid-cols-2">
-
-          <!-- Demo widget — simulación de browser. Fondo gris claro propio de un browser -->
-          <div class="p-6" style="background:#1a1030;">
-            <div class="rounded-xl overflow-hidden shadow-lg">
-              <!-- Barra del browser — colores propios del chrome del browser -->
-              <div class="flex items-center gap-2 px-4 py-3" style="background:#2d2d2d;">
-                <div class="w-3 h-3 rounded-full" style="background:#ff5f57;"></div>
-                <div class="w-3 h-3 rounded-full" style="background:#ffbd2e;"></div>
-                <div class="w-3 h-3 rounded-full" style="background:#28c840;"></div>
-                <div class="flex-1 mx-3 px-3 py-1 rounded text-xs" style="background:#3d3d3d;color:#aaa;">tuclínica.com/reservar</div>
+        <!-- ── PANEL LLAMADA ── -->
+        <div id="panel-llamada" class="demo-panel" style="display:none;padding:24px;">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;border-radius:1.25rem;overflow:hidden;border:1px solid rgba(56,177,255,0.2);">
+            <!-- Simulación llamada -->
+            <div style="background:#0a0e1a;padding:32px;display:flex;flex-direction:column;align-items:center;">
+              <div style="width:72px;height:72px;border-radius:50%;background:rgba(56,177,255,0.1);border:2px solid rgba(56,177,255,0.3);display:flex;align-items:center;justify-content:center;font-size:2rem;margin-bottom:12px;">📞</div>
+              <div style="color:#fff;font-weight:700;margin-bottom:4px;">Agente IA de Citas</div>
+              <div style="color:#38b1ff;font-size:0.8rem;display:flex;align-items:center;gap:6px;margin-bottom:24px;">
+                <span style="width:6px;height:6px;background:#38b1ff;border-radius:50%;display:inline-block;" class="animate-pulse"></span>
+                Llamada en curso
               </div>
-              <!-- El calendario es UI real del cliente, fondo blanco con texto oscuro hardcodeado -->
-              <div style="background:#ffffff;padding:20px;">
-                <div class="flex items-center justify-between mb-4">
-                  <button class="p-1 rounded hover:bg-gray-100">
-                    <svg class="w-4 h-4" style="color:#333;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
-                  </button>
-                  <span class="font-semibold text-sm" style="color:#111;" id="widget-month-label">Junio 2026</span>
-                  <button class="p-1 rounded hover:bg-gray-100">
-                    <svg class="w-4 h-4" style="color:#333;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                  </button>
+              <div id="call-transcript" style="width:100%;display:flex;flex-direction:column;gap:10px;font-size:0.8rem;font-family:monospace;"></div>
+            </div>
+            <!-- Info -->
+            <div style="background:#0b1524;padding:32px;display:flex;flex-direction:column;justify-content:center;">
+              <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(56,177,255,0.1);border:1px solid rgba(56,177,255,0.2);border-radius:20px;padding:4px 12px;width:fit-content;margin-bottom:16px;">
+                <span style="width:6px;height:6px;background:#38b1ff;border-radius:50%;display:inline-block;"></span>
+                <span style="color:#38b1ff;font-size:0.75rem;font-weight:700;">Agente de voz con IA</span>
+              </div>
+              <h3 style="color:#fff;font-size:1.35rem;font-weight:700;margin:0 0 10px;">Para quien prefiere llamar</h3>
+              <p style="color:rgba(255,255,255,0.6);font-size:0.875rem;line-height:1.7;margin:0 0 18px;">Voz natural en español. Atiende la llamada, entiende lo que necesita el cliente y reserva la cita. Sin esperas, sin contestador.</p>
+              <ul style="list-style:none;margin:0 0 24px;padding:0;display:flex;flex-direction:column;gap:8px;">
+                <li style="color:rgba(255,255,255,0.75);font-size:0.825rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#38b1ff;flex-shrink:0;">✓</span>Voz natural en español, sin sonar robótico</li>
+                <li style="color:rgba(255,255,255,0.75);font-size:0.825rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#38b1ff;flex-shrink:0;">✓</span>Atiende 24/7, fines de semana incluidos</li>
+                <li style="color:rgba(255,255,255,0.75);font-size:0.825rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#38b1ff;flex-shrink:0;">✓</span>Deriva a persona real si lo necesita</li>
+                <li style="color:rgba(255,255,255,0.75);font-size:0.825rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#38b1ff;flex-shrink:0;">✓</span>Transcripción automática de cada llamada</li>
+                <li style="color:rgba(255,255,255,0.75);font-size:0.825rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#38b1ff;flex-shrink:0;">✓</span>Integra con tu número de teléfono actual</li>
+              </ul>
+              <div style="display:flex;gap:10px;flex-wrap:wrap;">
+                <a href="/servicios/atencion-llamadas"
+                  style="display:inline-flex;align-items:center;padding:12px 20px;border:1px solid #38b1ff;color:#38b1ff;font-weight:600;font-size:0.875rem;border-radius:10px;text-decoration:none;">
+                  Demo completa →
+                </a>
+                <a href="/contacto-migracion?plan=Gestor-Citas-Llamada"
+                  style="display:inline-flex;align-items:center;padding:12px 20px;background:#38b1ff;color:#020817;font-weight:700;font-size:0.875rem;border-radius:10px;text-decoration:none;">
+                  Lo quiero
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── PANEL WIDGET ── -->
+        <div id="panel-widget" class="demo-panel" style="display:none;padding:24px;">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;border-radius:1.25rem;overflow:hidden;border:1px solid rgba(139,92,246,0.2);">
+            <!-- Demo calendario -->
+            <div style="background:#1a1030;padding:24px;">
+              <div style="border-radius:12px;overflow:hidden;box-shadow:0 20px 40px rgba(0,0,0,0.4);">
+                <!-- Barra browser -->
+                <div style="background:#2d2d2d;display:flex;align-items:center;gap:6px;padding:10px 14px;">
+                  <div style="width:10px;height:10px;border-radius:50%;background:#ff5f57;"></div>
+                  <div style="width:10px;height:10px;border-radius:50%;background:#ffbd2e;"></div>
+                  <div style="width:10px;height:10px;border-radius:50%;background:#28c840;"></div>
+                  <div style="flex:1;margin-left:8px;background:#3d3d3d;border-radius:4px;padding:4px 10px;color:#aaa;font-size:0.7rem;">tuclinica.com/reservar</div>
                 </div>
-                <div class="grid grid-cols-7 gap-1 mb-2">
-                  {['L','M','X','J','V','S','D'].map(d => (
-                    <div class="text-center text-xs font-medium py-1" style="color:#666;">{d}</div>
-                  ))}
-                </div>
-                <div class="grid grid-cols-7 gap-1" id="widget-calendar"></div>
-                <div class="mt-4 pt-4" style="border-top:1px solid #e5e7eb;">
-                  <div class="text-xs font-semibold mb-2" style="color:#333;">Horas disponibles</div>
-                  <div class="grid grid-cols-4 gap-1.5">
-                    {['09:00','09:30','10:00','10:30','11:00','11:30','16:00','16:30'].map(t => (
-                      <button class="widget-slot px-2 py-1.5 rounded-lg border text-xs font-medium transition-all" style="border-color:#d1d5db;color:#374151;background:white;">{t}</button>
+                <!-- Calendario (fondo blanco — UI del cliente, no del sitio) -->
+                <div style="background:#fff;padding:20px;">
+                  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+                    <button style="padding:4px;background:none;border:none;cursor:pointer;color:#555;">◀</button>
+                    <span id="widget-month-label" style="font-weight:700;font-size:0.875rem;color:#111;">Junio 2026</span>
+                    <button style="padding:4px;background:none;border:none;cursor:pointer;color:#555;">▶</button>
+                  </div>
+                  <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px;margin-bottom:6px;">
+                    {['L','M','X','J','V','S','D'].map(d => (
+                      <div style="text-align:center;font-size:0.65rem;font-weight:600;color:#888;padding:4px 0;">{d}</div>
                     ))}
+                  </div>
+                  <div id="widget-calendar" style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px;"></div>
+                  <div style="margin-top:14px;padding-top:14px;border-top:1px solid #e5e7eb;">
+                    <div style="font-size:0.7rem;font-weight:700;color:#333;margin-bottom:8px;">Horas disponibles</div>
+                    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;">
+                      {['09:00','09:30','10:00','10:30','11:00','11:30','16:00','16:30'].map(t => (
+                        <button class="widget-slot" style="padding:6px 4px;border-radius:6px;border:1px solid #d1d5db;font-size:0.7rem;font-weight:600;color:#374151;background:white;cursor:pointer;">{t}</button>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-
-          <!-- Info panel -->
-          <div class="p-8 flex flex-col justify-center" style="background:#0b1524;">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold mb-6 w-fit" style="background:rgba(139,92,246,0.12);color:#a78bfa;border:1px solid rgba(139,92,246,0.2);">
-              <span class="w-2 h-2 rounded-full" style="background:#8b5cf6;"></span> Widget embebido
+            <!-- Info -->
+            <div style="background:#0b1524;padding:32px;display:flex;flex-direction:column;justify-content:center;">
+              <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(139,92,246,0.12);border:1px solid rgba(139,92,246,0.2);border-radius:20px;padding:4px 12px;width:fit-content;margin-bottom:16px;">
+                <span style="width:6px;height:6px;background:#8b5cf6;border-radius:50%;display:inline-block;"></span>
+                <span style="color:#a78bfa;font-size:0.75rem;font-weight:700;">Widget embebido</span>
+              </div>
+              <h3 style="color:#fff;font-size:1.35rem;font-weight:700;margin:0 0 10px;">Reserva directa desde tu web</h3>
+              <p style="color:rgba(255,255,255,0.6);font-size:0.875rem;line-height:1.7;margin:0 0 18px;">Un calendario visual en tu página que muestra disponibilidad real. El cliente reserva en menos de 2 minutos sin salir de tu web.</p>
+              <ul style="list-style:none;margin:0 0 24px;padding:0;display:flex;flex-direction:column;gap:8px;">
+                <li style="color:rgba(255,255,255,0.75);font-size:0.825rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#a78bfa;flex-shrink:0;">✓</span>Se adapta al diseño y colores de tu web</li>
+                <li style="color:rgba(255,255,255,0.75);font-size:0.825rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#a78bfa;flex-shrink:0;">✓</span>Sincronización en tiempo real con tu agenda</li>
+                <li style="color:rgba(255,255,255,0.75);font-size:0.825rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#a78bfa;flex-shrink:0;">✓</span>Confirmación y recordatorios por email y SMS</li>
+                <li style="color:rgba(255,255,255,0.75);font-size:0.825rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#a78bfa;flex-shrink:0;">✓</span>Integra con Google Calendar y Outlook</li>
+                <li style="color:rgba(255,255,255,0.75);font-size:0.825rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#a78bfa;flex-shrink:0;">✓</span>Pagos online opcionales al reservar</li>
+              </ul>
+              <a href="/contacto-migracion?plan=Gestor-Citas-Widget"
+                style="display:inline-flex;align-items:center;justify-content:center;padding:12px 24px;background:#8b5cf6;color:#fff;font-weight:700;font-size:0.875rem;border-radius:10px;text-decoration:none;width:fit-content;">
+                Instalar el widget en mi web →
+              </a>
             </div>
-            <h3 class="text-2xl font-bold mb-3 text-white">Directamente desde tu web</h3>
-            <p class="mb-6 text-sm leading-relaxed" style="color:rgba(255,255,255,0.6);">Un calendario visual incrustado en tu página que muestra disponibilidad real y permite reservar en menos de 2 minutos. Sin salir de tu web.</p>
-            <ul class="space-y-2.5 mb-8">
-              <li class="flex items-start gap-3 text-sm" style="color:rgba(255,255,255,0.75);"><span style="color:#a78bfa;" class="flex-shrink-0 mt-0.5">✓</span>Se adapta al diseño y colores de tu web</li>
-              <li class="flex items-start gap-3 text-sm" style="color:rgba(255,255,255,0.75);"><span style="color:#a78bfa;" class="flex-shrink-0 mt-0.5">✓</span>Sincronización en tiempo real con tu agenda</li>
-              <li class="flex items-start gap-3 text-sm" style="color:rgba(255,255,255,0.75);"><span style="color:#a78bfa;" class="flex-shrink-0 mt-0.5">✓</span>Confirmación y recordatorios por email y SMS</li>
-              <li class="flex items-start gap-3 text-sm" style="color:rgba(255,255,255,0.75);"><span style="color:#a78bfa;" class="flex-shrink-0 mt-0.5">✓</span>Integra con Google Calendar y Outlook</li>
-              <li class="flex items-start gap-3 text-sm" style="color:rgba(255,255,255,0.75);"><span style="color:#a78bfa;" class="flex-shrink-0 mt-0.5">✓</span>Pagos online opcionales al reservar</li>
-            </ul>
-            <a href="/contacto-migracion?plan=Gestor-Citas-Widget"
-              class="inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold text-sm transition-all hover:-translate-y-0.5 w-fit"
-              style="background:#8b5cf6;color:#fff;">
-              Instalar el widget en mi web →
-            </a>
           </div>
         </div>
-      </div>
 
-      <!-- STATS -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
-        <div class="rounded-2xl p-6 text-center" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);">
-          <div class="text-4xl font-bold mb-1 text-white">24/7</div>
-          <div class="text-sm" style="color:rgba(255,255,255,0.55);">Disponibilidad</div>
-        </div>
-        <div class="rounded-2xl p-6 text-center" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);">
-          <div class="text-4xl font-bold mb-1 text-white">85%</div>
-          <div class="text-sm" style="color:rgba(255,255,255,0.55);">Reservas sin intervención humana</div>
-        </div>
-        <div class="rounded-2xl p-6 text-center" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);">
-          <div class="text-4xl font-bold mb-1 text-white">60%</div>
-          <div class="text-sm" style="color:rgba(255,255,255,0.55);">Reducción de llamadas entrantes</div>
-        </div>
-        <div class="rounded-2xl p-6 text-center" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);">
-          <div class="text-4xl font-bold mb-1 text-white">≈0</div>
-          <div class="text-sm" style="color:rgba(255,255,255,0.55);">No-shows con recordatorios</div>
+        <!-- Nota -->
+        <div style="padding: 12px 24px; background: rgba(0,0,0,0.3); border-top: 1px solid rgba(255,255,255,0.06); text-align:center;">
+          <p style="color:#475569;font-size:0.8rem;margin:0;">Selecciona un canal para ver la demo. Los tres canales son combinables en un mismo sistema.</p>
         </div>
       </div>
 
-      <!-- CTA -->
-      <div class="rounded-3xl p-12 text-center text-white mb-16" style="background:linear-gradient(135deg,#003dd4,#0065ff);">
-        <h2 class="text-3xl font-bold mb-4">¿No sabes qué canal elegir?</h2>
-        <p class="text-lg mb-8 max-w-xl mx-auto" style="color:rgba(255,255,255,0.85);">Cuéntanos cómo funciona tu negocio y te recomendamos la combinación que más reduce trabajo a tu equipo.</p>
-        <a href="/contacto-migracion?plan=Gestor-Citas-IA"
-          class="inline-flex items-center justify-center px-8 py-4 rounded-xl font-semibold text-base transition-all hover:-translate-y-0.5 shadow-lg"
-          style="background:white;color:#003dd4;">
-          Hablar con un experto — gratis
-        </a>
+      <!-- Stats + CTAs -->
+      <div class="text-center mt-10">
+        <div class="flex flex-wrap justify-center gap-6 mb-8">
+          <div class="text-center">
+            <div class="text-3xl font-bold" style="color: #22c55e;">24/7</div>
+            <div class="text-xs mt-1" style="color: #64748b;">Toma citas sin parar</div>
+          </div>
+          <div class="w-px h-10 self-center" style="background: rgba(255,255,255,0.1);"></div>
+          <div class="text-center">
+            <div class="text-3xl font-bold" style="color: #38b1ff;">~85%</div>
+            <div class="text-xs mt-1" style="color: #64748b;">Reservas sin intervención humana</div>
+          </div>
+          <div class="w-px h-10 self-center" style="background: rgba(255,255,255,0.1);"></div>
+          <div class="text-center">
+            <div class="text-3xl font-bold" style="color: #a78bfa;">-60%</div>
+            <div class="text-xs mt-1" style="color: #64748b;">Llamadas para reservas</div>
+          </div>
+          <div class="w-px h-10 self-center" style="background: rgba(255,255,255,0.1);"></div>
+          <div class="text-center">
+            <div class="text-3xl font-bold" style="color: #22c55e;">≈0</div>
+            <div class="text-xs mt-1" style="color: #64748b;">No-shows con recordatorios</div>
+          </div>
+        </div>
+        <div class="flex flex-wrap gap-4 justify-center">
+          <a href="/presupuesto?plan=Gestor-Citas-IA"
+            class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all"
+            style="background: linear-gradient(135deg, #22c55e, #16a34a); color: #fff;">
+            Solicitar análisis gratuito →
+          </a>
+          <a href="#como-funciona"
+            class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all"
+            style="background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15); color: #cbd5e1;">
+            ¿Cómo funciona?
+          </a>
+        </div>
       </div>
 
-      <TestIABanner />
     </div>
   </section>
+
+
+  <!-- ══════════════════════════════════════════════
+       TRES NIVELES DE IMPLANTACIÓN
+  ══════════════════════════════════════════════ -->
+  <section id="como-funciona" style="background: linear-gradient(135deg, #0a0d1a 0%, #0f1628 100%); padding: 80px 0; position: relative; overflow: hidden;">
+    <div class="absolute inset-0 pointer-events-none" style="background-image: radial-gradient(circle at 20% 50%, rgba(34,197,94,0.10), transparent 60%), radial-gradient(circle at 80% 50%, rgba(56,177,255,0.08), transparent 60%);"></div>
+    <div class="relative max-w-6xl mx-auto px-6" style="z-index:1;">
+
+      <div class="text-center mb-14">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4" style="color: #e2e8f0;">Tres niveles de implantación</h2>
+        <p style="color: #94a3b8; font-size: 1.1rem; max-width: 650px; margin: 0 auto; line-height: 1.7;">
+          Empieza por lo que necesitas hoy, valida resultados y escala cuando los datos lo justifiquen.
+          Cada nivel añade canales y automatizaciones, sin tirar lo anterior.
+        </p>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;align-items:start;">
+
+        <!-- NIVEL 1 -->
+        <div style="background:rgba(34,197,94,0.07);border:1px solid rgba(34,197,94,0.3);border-radius:1.25rem;padding:32px;display:flex;flex-direction:column;gap:20px;">
+          <div>
+            <div style="display:inline-flex;background:rgba(34,197,94,0.15);border:1px solid rgba(34,197,94,0.3);border-radius:8px;padding:4px 12px;margin-bottom:14px;">
+              <span style="color:#4ade80;font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;">Nivel 1</span>
+            </div>
+            <h3 style="color:#fff;font-size:1.25rem;font-weight:700;margin:0 0 6px;">Básico</h3>
+            <p style="color:#4ade80;font-size:0.875rem;font-weight:500;margin:0 0 12px;">WhatsApp o llamada + Google Calendar</p>
+            <p style="color:#94a3b8;font-size:0.875rem;line-height:1.6;margin:0;">
+              La IA atiende reservas por WhatsApp o llamada, sincroniza con tu agenda y envía confirmaciones y recordatorios automáticos al cliente.
+            </p>
+          </div>
+          <div style="border-top:1px solid rgba(255,255,255,0.08);padding-top:20px;">
+            <p style="color:#64748b;font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;margin:0 0 10px;">Incluye</p>
+            <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;">
+              <li style="color:#94a3b8;font-size:0.8rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#4ade80;flex-shrink:0;font-weight:700;">✓</span>Reservas por WhatsApp y/o llamada IA</li>
+              <li style="color:#94a3b8;font-size:0.8rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#4ade80;flex-shrink:0;font-weight:700;">✓</span>Sincronización con Google Calendar</li>
+              <li style="color:#94a3b8;font-size:0.8rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#4ade80;flex-shrink:0;font-weight:700;">✓</span>Confirmación automática al cliente</li>
+              <li style="color:#94a3b8;font-size:0.8rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#4ade80;flex-shrink:0;font-weight:700;">✓</span>Recordatorios 24h y 1h antes</li>
+              <li style="color:#94a3b8;font-size:0.8rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#4ade80;flex-shrink:0;font-weight:700;">✓</span>Gestión de cancelaciones y cambios</li>
+              <li style="color:#94a3b8;font-size:0.8rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#4ade80;flex-shrink:0;font-weight:700;">✓</span>Resumen diario de citas al responsable</li>
+            </ul>
+          </div>
+          <div style="background:rgba(34,197,94,0.08);border-radius:10px;padding:14px;">
+            <p style="color:#86efac;font-size:0.8rem;line-height:1.5;margin:0;">
+              <strong style="color:#fff;">Ideal para:</strong> Negocios que hoy gestionan citas manualmente por teléfono o WhatsApp y quieren automatizarlo sin grandes cambios.
+            </p>
+          </div>
+          <div style="color:#64748b;font-size:0.75rem;display:flex;align-items:center;gap:6px;">
+            <span>⏱</span> Listo en <strong style="color:#94a3b8;">7-10 días hábiles</strong>
+          </div>
+        </div>
+
+        <!-- NIVEL 2 -->
+        <div style="background:rgba(56,177,255,0.06);border:2px solid rgba(56,177,255,0.4);border-radius:1.25rem;padding:32px;display:flex;flex-direction:column;gap:20px;position:relative;">
+          <div style="position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#0369a1,#38b1ff);color:#fff;font-size:0.7rem;font-weight:700;padding:4px 14px;border-radius:20px;white-space:nowrap;">MÁS POPULAR</div>
+          <div>
+            <div style="display:inline-flex;background:rgba(56,177,255,0.15);border:1px solid rgba(56,177,255,0.3);border-radius:8px;padding:4px 12px;margin-bottom:14px;">
+              <span style="color:#38b1ff;font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;">Nivel 2</span>
+            </div>
+            <h3 style="color:#fff;font-size:1.25rem;font-weight:700;margin:0 0 6px;">Medio</h3>
+            <p style="color:#38b1ff;font-size:0.875rem;font-weight:500;margin:0 0 12px;">Multicanal: WhatsApp + llamada + widget web</p>
+            <p style="color:#94a3b8;font-size:0.875rem;line-height:1.6;margin:0;">
+              Todo el nivel básico más el widget incrustado en tu web. Los clientes eligen el canal que prefieran y toda la agenda se gestiona de forma unificada.
+            </p>
+          </div>
+          <div style="border-top:1px solid rgba(255,255,255,0.08);padding-top:20px;">
+            <p style="color:#64748b;font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;margin:0 0 10px;">Todo lo del básico, más</p>
+            <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;">
+              <li style="color:#94a3b8;font-size:0.8rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#38b1ff;flex-shrink:0;font-weight:700;">✓</span>Widget de reservas en tu web (personalizable)</li>
+              <li style="color:#94a3b8;font-size:0.8rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#38b1ff;flex-shrink:0;font-weight:700;">✓</span>Sincronización con Google Calendar y Outlook</li>
+              <li style="color:#94a3b8;font-size:0.8rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#38b1ff;flex-shrink:0;font-weight:700;">✓</span>Lista de espera automática si no hay hueco</li>
+              <li style="color:#94a3b8;font-size:0.8rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#38b1ff;flex-shrink:0;font-weight:700;">✓</span>Soporte a múltiples profesionales y servicios</li>
+              <li style="color:#94a3b8;font-size:0.8rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#38b1ff;flex-shrink:0;font-weight:700;">✓</span>Recordatorios por WhatsApp, email y SMS</li>
+            </ul>
+          </div>
+          <div style="background:rgba(56,177,255,0.08);border-radius:10px;padding:14px;">
+            <p style="color:#7dd3fc;font-size:0.8rem;line-height:1.5;margin:0;">
+              <strong style="color:#fff;">Ideal para:</strong> Clínicas, centros de estética o despachos con varios profesionales que quieren que el cliente elija canal y profesional libremente.
+            </p>
+          </div>
+          <div style="color:#64748b;font-size:0.75rem;display:flex;align-items:center;gap:6px;">
+            <span>⏱</span> Listo en <strong style="color:#94a3b8;">3-4 semanas</strong>
+          </div>
+        </div>
+
+        <!-- NIVEL 3 -->
+        <div style="background:rgba(139,92,246,0.06);border:1px solid rgba(139,92,246,0.3);border-radius:1.25rem;padding:32px;display:flex;flex-direction:column;gap:20px;">
+          <div>
+            <div style="display:inline-flex;background:rgba(139,92,246,0.15);border:1px solid rgba(139,92,246,0.3);border-radius:8px;padding:4px 12px;margin-bottom:14px;">
+              <span style="color:#a78bfa;font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;">Nivel 3</span>
+            </div>
+            <h3 style="color:#fff;font-size:1.25rem;font-weight:700;margin:0 0 6px;">Avanzado</h3>
+            <p style="color:#a78bfa;font-size:0.875rem;font-weight:500;margin:0 0 12px;">CRM integrado, pagos online y analítica</p>
+            <p style="color:#94a3b8;font-size:0.875rem;line-height:1.6;margin:0;">
+              Operación completa: el sistema consulta el historial del cliente en tu CRM, acepta pagos al reservar y genera informes de ocupación y no-shows.
+            </p>
+          </div>
+          <div style="border-top:1px solid rgba(255,255,255,0.08);padding-top:20px;">
+            <p style="color:#64748b;font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;margin:0 0 10px;">Todo lo del medio, más</p>
+            <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;">
+              <li style="color:#94a3b8;font-size:0.8rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#a78bfa;flex-shrink:0;font-weight:700;">✓</span>Integración bidireccional con tu CRM/ERP</li>
+              <li style="color:#94a3b8;font-size:0.8rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#a78bfa;flex-shrink:0;font-weight:700;">✓</span>Historial del cliente visible durante la reserva</li>
+              <li style="color:#94a3b8;font-size:0.8rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#a78bfa;flex-shrink:0;font-weight:700;">✓</span>Pagos online opcionales al confirmar la cita</li>
+              <li style="color:#94a3b8;font-size:0.8rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#a78bfa;flex-shrink:0;font-weight:700;">✓</span>Dashboard: ocupación, no-shows, canales más usados</li>
+              <li style="color:#94a3b8;font-size:0.8rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#a78bfa;flex-shrink:0;font-weight:700;">✓</span>Registro automático de cita en el expediente</li>
+              <li style="color:#94a3b8;font-size:0.8rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#a78bfa;flex-shrink:0;font-weight:700;">✓</span>Informe semanal de rendimiento de la agenda</li>
+            </ul>
+          </div>
+          <div style="background:rgba(139,92,246,0.08);border-radius:10px;padding:14px;">
+            <p style="color:#c4b5fd;font-size:0.8rem;line-height:1.5;margin:0;">
+              <strong style="color:#fff;">Ideal para:</strong> Negocios con CRM activo que quieren convertir cada cita en un dato útil, reducir no-shows con depósito y analizar la eficiencia de su agenda.
+            </p>
+          </div>
+          <div style="color:#64748b;font-size:0.75rem;display:flex;align-items:center;gap:6px;">
+            <span>⏱</span> Listo en <strong style="color:#94a3b8;">5-6 semanas</strong>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Nota recomendación -->
+      <div style="margin-top:40px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:1rem;padding:24px;display:flex;align-items:flex-start;gap:14px;max-width:800px;margin-left:auto;margin-right:auto;">
+        <span style="font-size:1.5rem;flex-shrink:0;">💡</span>
+        <div>
+          <h4 style="color:#e2e8f0;font-weight:700;margin:0 0 6px;">Nuestra recomendación</h4>
+          <p style="color:#94a3b8;font-size:0.875rem;line-height:1.6;margin:0;">
+            Si empiezas desde cero, el <strong style="color:#4ade80;">nivel básico durante 2-3 meses</strong> te da datos reales: qué canal usan más tus clientes, cuántas reservas se automatizan y qué tipo de consultas llegan. Con esos datos, la decisión de añadir el widget o integrar el CRM es mucho más informada.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════
+       ¿PARA QUIÉN? — selector por sector
+  ══════════════════════════════════════════════ -->
+  <section style="background: #0a0d1a; padding: 80px 0;">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-14">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4" style="color: #e2e8f0;">¿Para quién es ideal?</h2>
+        <p style="color: #94a3b8; font-size: 1.1rem; max-width: 600px; margin: 0 auto;">Selecciona tu sector y ve qué reservas o consultas gestionaría la IA automáticamente.</p>
+      </div>
+
+      <div id="sector-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:32px;">
+
+        <button data-sector="clinicas" class="sector-btn" style="background:rgba(34,197,94,0.12);border:2px solid rgba(34,197,94,0.5);border-radius:1rem;padding:18px 16px;display:flex;align-items:center;gap:12px;cursor:pointer;text-align:left;transition:all 0.2s;">
+          <span style="font-size:1.5rem;flex-shrink:0;">🦷</span>
+          <div>
+            <div style="color:#fff;font-weight:700;font-size:0.875rem;line-height:1.2;">Clínicas y consultas</div>
+            <div style="color:#4ade80;font-size:0.7rem;margin-top:2px;">Citas · Revisiones · Especialistas</div>
+          </div>
+        </button>
+
+        <button data-sector="estetica" class="sector-btn" style="background:rgba(255,255,255,0.04);border:2px solid rgba(255,255,255,0.08);border-radius:1rem;padding:18px 16px;display:flex;align-items:center;gap:12px;cursor:pointer;text-align:left;transition:all 0.2s;">
+          <span style="font-size:1.5rem;flex-shrink:0;">💅</span>
+          <div>
+            <div style="color:#e2e8f0;font-weight:700;font-size:0.875rem;line-height:1.2;">Centros de estética</div>
+            <div style="color:#64748b;font-size:0.7rem;margin-top:2px;">Servicios · Profesional · Duración</div>
+          </div>
+        </button>
+
+        <button data-sector="talleres" class="sector-btn" style="background:rgba(255,255,255,0.04);border:2px solid rgba(255,255,255,0.08);border-radius:1rem;padding:18px 16px;display:flex;align-items:center;gap:12px;cursor:pointer;text-align:left;transition:all 0.2s;">
+          <span style="font-size:1.5rem;flex-shrink:0;">🔧</span>
+          <div>
+            <div style="color:#e2e8f0;font-weight:700;font-size:0.875rem;line-height:1.2;">Talleres y servicios técnicos</div>
+            <div style="color:#64748b;font-size:0.7rem;margin-top:2px;">ITV · Revisiones · Reparaciones</div>
+          </div>
+        </button>
+
+        <button data-sector="asesorias" class="sector-btn" style="background:rgba(255,255,255,0.04);border:2px solid rgba(255,255,255,0.08);border-radius:1rem;padding:18px 16px;display:flex;align-items:center;gap:12px;cursor:pointer;text-align:left;transition:all 0.2s;">
+          <span style="font-size:1.5rem;flex-shrink:0;">⚖️</span>
+          <div>
+            <div style="color:#e2e8f0;font-weight:700;font-size:0.875rem;line-height:1.2;">Despachos y asesorías</div>
+            <div style="color:#64748b;font-size:0.7rem;margin-top:2px;">Primera visita · Consultas · Citas</div>
+          </div>
+        </button>
+
+        <button data-sector="restaurantes" class="sector-btn" style="background:rgba(255,255,255,0.04);border:2px solid rgba(255,255,255,0.08);border-radius:1rem;padding:18px 16px;display:flex;align-items:center;gap:12px;cursor:pointer;text-align:left;transition:all 0.2s;">
+          <span style="font-size:1.5rem;flex-shrink:0;">🍽️</span>
+          <div>
+            <div style="color:#e2e8f0;font-weight:700;font-size:0.875rem;line-height:1.2;">Restaurantes</div>
+            <div style="color:#64748b;font-size:0.7rem;margin-top:2px;">Reservas · Menús · Grupos</div>
+          </div>
+        </button>
+
+        <button data-sector="deportivos" class="sector-btn" style="background:rgba(255,255,255,0.04);border:2px solid rgba(255,255,255,0.08);border-radius:1rem;padding:18px 16px;display:flex;align-items:center;gap:12px;cursor:pointer;text-align:left;transition:all 0.2s;">
+          <span style="font-size:1.5rem;flex-shrink:0;">🏋️</span>
+          <div>
+            <div style="color:#e2e8f0;font-weight:700;font-size:0.875rem;line-height:1.2;">Centros deportivos</div>
+            <div style="color:#64748b;font-size:0.7rem;margin-top:2px;">Clases · Entrenador · Pistas</div>
+          </div>
+        </button>
+
+      </div>
+
+      <div id="questions-panel" style="background:rgba(255,255,255,0.03);border:1px solid rgba(34,197,94,0.2);border-radius:1.25rem;padding:28px;transition:opacity 0.25s;">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;">
+          <div style="width:8px;height:8px;background:#22c55e;border-radius:50%;"></div>
+          <p id="panel-title" style="color:#94a3b8;font-size:0.8rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;margin:0;">Reservas que gestiona sin agente humano — Clínicas y consultas</p>
+        </div>
+        <div id="questions-list" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+  (function() {
+    const SECTORS: Record<string, { label: string; color: string; questions: string[] }> = {
+      clinicas: {
+        label: 'Clínicas y consultas',
+        color: '#22c55e',
+        questions: [
+          'Quiero pedir cita para mañana',
+          'Necesito cancelar la cita del jueves',
+          '¿Tenéis disponibilidad esta semana?',
+          '¿A qué hora abrís los lunes?',
+          '¿Qué médicos especialistas tienen?',
+          '¿Aceptáis el seguro de Sanitas?',
+          '¿Cuánto dura una limpieza dental?',
+          'Quiero cambiar mi cita a la tarde',
+          '¿Con qué doctor tengo la consulta?',
+          '¿Necesito ir en ayunas?',
+          'Pónme en lista de espera si se libera algo',
+          '¿Hacéis revisiones sin cita previa?',
+        ],
+      },
+      estetica: {
+        label: 'Centros de estética y peluquerías',
+        color: '#ec4899',
+        questions: [
+          'Quiero cita para corte y tinte el sábado',
+          '¿Cuánto dura una sesión de manicura?',
+          '¿Tenéis disponibilidad con María esta semana?',
+          '¿Hacéis extensiones de pestañas?',
+          'Necesito cancelar mi cita de mañana',
+          '¿Cuánto cuesta un tinte completo?',
+          '¿Puedo traer foto de referencia?',
+          '¿Tenéis citas disponibles en fines de semana?',
+          'Quiero reservar para dos personas',
+          '¿Aceptáis bonos regalo?',
+          '¿Cuánto tiempo necesito reservar para alisado?',
+          '¿Tienen plaza esta tarde?',
+        ],
+      },
+      talleres: {
+        label: 'Talleres y servicios técnicos',
+        color: '#f59e0b',
+        questions: [
+          'Necesito cita para pasar la ITV',
+          '¿Cuánto cuesta revisar los frenos?',
+          'Quiero pedir hora para el cambio de aceite',
+          '¿Está listo mi coche?',
+          '¿Estáis abiertos los sábados por la mañana?',
+          'Necesito cita urgente, mi coche no arranca',
+          '¿Hacéis presupuesto gratuito?',
+          'Quiero recoger mi vehículo hoy',
+          '¿Tenéis vehículo de sustitución?',
+          '¿Cuánto tarda una revisión de 30.000 km?',
+          'Necesito cita para poner neumáticos',
+          '¿Cuándo puedo traer el coche esta semana?',
+        ],
+      },
+      asesorias: {
+        label: 'Despachos y asesorías',
+        color: '#d97706',
+        questions: [
+          'Quiero cita con un abogado laboralista',
+          '¿Cuánto cuesta la primera consulta?',
+          'Necesito asesoría fiscal urgente',
+          'Quiero cita con el asesor fiscal para el IRPF',
+          '¿En qué horario puedo llamar?',
+          '¿Podéis ayudarme con una herencia?',
+          'Necesito hablar con alguien sobre mi despido',
+          '¿Trabajáis con autónomos?',
+          'Quiero una reunión para revisar un contrato',
+          '¿Tenéis abogados de familia?',
+          '¿Puedo pedir cita online?',
+          '¿Cuánto tarda una consulta inicial?',
+        ],
+      },
+      restaurantes: {
+        label: 'Restaurantes',
+        color: '#ef4444',
+        questions: [
+          'Quiero reservar mesa para 4 personas el viernes',
+          '¿Tenéis mesa disponible esta noche?',
+          'Necesito cancelar la reserva de mañana',
+          '¿Hacéis menú de grupos para 20 personas?',
+          '¿Tenéis menú sin gluten?',
+          '¿Se puede traer tarta de cumpleaños?',
+          '¿A qué hora cerráis los jueves?',
+          '¿Tienen terraza disponible?',
+          '¿Se admiten mascotas en la terraza?',
+          'Quiero cambiar la reserva a las 21:00',
+          '¿Necesito pagar algo por adelantado?',
+          '¿Tenéis platos para celíacos?',
+        ],
+      },
+      deportivos: {
+        label: 'Centros deportivos y gimnasios',
+        color: '#7c3aed',
+        questions: [
+          'Quiero apuntarme a la clase de yoga del martes',
+          '¿Hay sitio en pilates esta semana?',
+          'Necesito reservar sesión con entrenador personal',
+          '¿A qué hora es spinning mañana?',
+          'Quiero cancelar mi clase de mañana',
+          '¿Puedo reservar pista de pádel para el sábado?',
+          '¿Qué clases quedan libres esta tarde?',
+          '¿Cuánto cuesta el bono de 10 sesiones?',
+          '¿Tenéis instructor de natación disponible?',
+          '¿Puedo reservar para dos personas a la vez?',
+          '¿Tenéis lista de espera para clases llenas?',
+          '¿Hay clases para principiantes?',
+        ],
+      },
+    };
+
+    let current = 'clinicas';
+
+    function hexToComponents(hex: string): string {
+      const r = parseInt(hex.slice(1,3),16);
+      const g = parseInt(hex.slice(3,5),16);
+      const b = parseInt(hex.slice(5,7),16);
+      return `${r},${g},${b}`;
+    }
+
+    function renderQuestions(key: string) {
+      const sector = SECTORS[key];
+      if (!sector) return;
+      const list = document.getElementById('questions-list')!;
+      const title = document.getElementById('panel-title')!;
+      const panel = document.getElementById('questions-panel')!;
+
+      panel.style.opacity = '0';
+      panel.style.borderColor = `rgba(${hexToComponents(sector.color)},0.3)`;
+      title.textContent = `Reservas que gestiona sin agente humano — ${sector.label}`;
+
+      setTimeout(() => {
+        list.innerHTML = sector.questions.map(q => `
+          <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:0.75rem;padding:10px 14px;display:flex;align-items:flex-start;gap:8px;">
+            <span style="color:#22c55e;font-size:0.75rem;flex-shrink:0;margin-top:1px;">📅</span>
+            <span style="color:#cbd5e1;font-size:0.82rem;line-height:1.4;">"${q}"</span>
+          </div>
+        `).join('');
+        panel.style.opacity = '1';
+      }, 150);
+    }
+
+    function selectSector(key: string) {
+      current = key;
+      document.querySelectorAll<HTMLElement>('.sector-btn').forEach(btn => {
+        const s = btn.getAttribute('data-sector')!;
+        const sector = SECTORS[s];
+        if (s === key) {
+          btn.style.background = `rgba(${hexToComponents(sector.color)},0.15)`;
+          btn.style.borderColor = sector.color;
+          const tag = btn.querySelector('div > div:last-child') as HTMLElement;
+          if (tag) tag.style.color = sector.color;
+        } else {
+          btn.style.background = 'rgba(255,255,255,0.04)';
+          btn.style.borderColor = 'rgba(255,255,255,0.08)';
+          const tag = btn.querySelector('div > div:last-child') as HTMLElement;
+          if (tag) tag.style.color = '#64748b';
+        }
+      });
+      renderQuestions(key);
+    }
+
+    document.querySelectorAll<HTMLElement>('.sector-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const s = btn.getAttribute('data-sector');
+        if (s) selectSector(s);
+      });
+    });
+
+    selectSector('clinicas');
+  })();
+  </script>
+
+
+  <!-- ══════════════════════════════════════════════
+       TRANSPARENCIA + CTA
+  ══════════════════════════════════════════════ -->
+  <section style="background: #0f1628; padding: 80px 0;">
+    <div class="max-w-5xl mx-auto px-6">
+
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4" style="color: #e2e8f0;">Transparencia: qué resuelve y qué no</h2>
+        <p style="color: #94a3b8; font-size: 1.1rem; max-width: 600px; margin: 0 auto;">No es magia. Queremos que sepas exactamente qué esperar antes de implementarlo.</p>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:72px;">
+        <div style="background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.25);border-radius:1rem;padding:28px;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
+            <div style="width:36px;height:36px;background:rgba(34,197,94,0.2);border-radius:8px;display:flex;align-items:center;justify-content:center;">✅</div>
+            <h3 style="color:#4ade80;font-weight:700;margin:0;">Gestiona de forma autónoma</h3>
+          </div>
+          <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;">
+            <li style="color:#94a3b8;font-size:0.875rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#4ade80;flex-shrink:0;">✓</span>Reservas, cambios y cancelaciones</li>
+            <li style="color:#94a3b8;font-size:0.875rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#4ade80;flex-shrink:0;">✓</span>Recordatorios automáticos al cliente</li>
+            <li style="color:#94a3b8;font-size:0.875rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#4ade80;flex-shrink:0;">✓</span>Consultas de disponibilidad y horarios</li>
+            <li style="color:#94a3b8;font-size:0.875rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#4ade80;flex-shrink:0;">✓</span>Lista de espera automática</li>
+            <li style="color:#94a3b8;font-size:0.875rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#4ade80;flex-shrink:0;">✓</span>Resumen diario de la agenda</li>
+          </ul>
+        </div>
+        <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:1rem;padding:28px;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
+            <div style="width:36px;height:36px;background:rgba(255,255,255,0.08);border-radius:8px;display:flex;align-items:center;justify-content:center;">🔁</div>
+            <h3 style="color:#e2e8f0;font-weight:700;margin:0;">Necesita configuración previa</h3>
+          </div>
+          <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;">
+            <li style="color:#94a3b8;font-size:0.875rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#60a5fa;flex-shrink:0;">→</span>Definir servicios, duraciones y profesionales</li>
+            <li style="color:#94a3b8;font-size:0.875rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#60a5fa;flex-shrink:0;">→</span>Reglas de agenda (bloqueos, festivos, descansos)</li>
+            <li style="color:#94a3b8;font-size:0.875rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#60a5fa;flex-shrink:0;">→</span>Casos muy específicos fuera del flujo configurado</li>
+            <li style="color:#94a3b8;font-size:0.875rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#60a5fa;flex-shrink:0;">→</span>Negociaciones de precio o condiciones especiales</li>
+            <li style="color:#94a3b8;font-size:0.875rem;display:flex;align-items:flex-start;gap:8px;"><span style="color:#60a5fa;flex-shrink:0;">→</span>Cuando el cliente solicita hablar con una persona</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Separador -->
+      <div style="height:1px;background:linear-gradient(to right,transparent,rgba(34,197,94,0.3),transparent);margin-bottom:72px;"></div>
+
+      <!-- CTA -->
+      <div style="text-align:center;">
+        <div style="font-size:2.5rem;margin-bottom:14px;">📅</div>
+        <h2 class="text-3xl md:text-4xl font-bold mb-5" style="color:#fff;">Tu agenda nunca más<br/>sin cubrir</h2>
+        <p style="color:#94a3b8;font-size:1.05rem;margin-bottom:36px;line-height:1.7;max-width:560px;margin-left:auto;margin-right:auto;">
+          Analizamos tu flujo de reservas actual y te decimos exactamente cuánto tiempo puede ahorrarte tu equipo cada semana. La reunión es gratuita.
+        </p>
+        <div style="display:flex;flex-wrap:wrap;gap:14px;justify-content:center;">
+          <a href="/presupuesto?plan=Gestor-Citas-IA"
+            style="display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:15px 34px;background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;font-weight:700;font-size:1rem;border-radius:14px;text-decoration:none;box-shadow:0 16px 36px -8px rgba(34,197,94,0.35);">
+            Solicitar análisis gratuito
+          </a>
+          <a href="#demo"
+            style="display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:15px 34px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);color:#cbd5e1;font-weight:600;font-size:1rem;border-radius:14px;text-decoration:none;">
+            Ver la demo primero
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
 </BaseLayout>
 
 <script is:inline>
-  // ── Selector ──────────────────────────────────────────────────
-  const buttons = document.querySelectorAll('.channel-btn');
-  const panels  = document.querySelectorAll('.demo-panel');
+(function() {
+  // ── Selector de canal ─────────────────────────────────────────
+  const STYLES = {
+    whatsapp: { on: 'rgba(34,197,94,0.15)',   off: 'rgba(34,197,94,0.08)',   bon: 'rgba(34,197,94,0.7)',   boff: 'rgba(34,197,94,0.35)' },
+    llamada:  { on: 'rgba(56,177,255,0.15)',  off: 'rgba(56,177,255,0.05)',  bon: 'rgba(56,177,255,0.6)',  boff: 'rgba(56,177,255,0.25)' },
+    widget:   { on: 'rgba(139,92,246,0.15)',  off: 'rgba(139,92,246,0.05)',  bon: 'rgba(139,92,246,0.6)',  boff: 'rgba(139,92,246,0.25)' },
+  };
   let active = null;
 
-  const styles = {
-    whatsapp: { on:  'rgba(34,197,94,0.15)',  off: 'rgba(34,197,94,0.06)',  border_on: 'rgba(34,197,94,0.6)',   border_off: 'rgba(34,197,94,0.3)'  },
-    llamada:  { on:  'rgba(56,177,255,0.15)', off: 'rgba(56,177,255,0.06)', border_on: 'rgba(56,177,255,0.6)',  border_off: 'rgba(56,177,255,0.3)' },
-    widget:   { on:  'rgba(139,92,246,0.15)', off: 'rgba(139,92,246,0.06)', border_on: 'rgba(139,92,246,0.6)',  border_off: 'rgba(139,92,246,0.3)' },
-  };
-
-  buttons.forEach(btn => {
+  document.querySelectorAll('.channel-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const ch = btn.dataset.channel;
       const isOpen = active === ch;
 
-      // Reset all
-      buttons.forEach(b => {
-        const s = styles[b.dataset.channel];
+      document.querySelectorAll('.channel-btn').forEach(b => {
+        const s = STYLES[b.dataset.channel];
         b.style.background = s.off;
-        b.style.borderColor = s.border_off;
-        b.querySelector('.channel-label').textContent = 'Ver demo';
+        b.style.borderColor = s.boff;
+        b.querySelector('.ch-label').textContent = 'Ver demo';
       });
-      panels.forEach(p => p.style.display = 'none');
+      document.querySelectorAll('.demo-panel').forEach(p => p.style.display = 'none');
 
       if (!isOpen) {
-        const s = styles[ch];
+        const s = STYLES[ch];
         btn.style.background = s.on;
-        btn.style.borderColor = s.border_on;
-        btn.querySelector('.channel-label').textContent = 'Ocultar demo';
+        btn.style.borderColor = s.bon;
+        btn.querySelector('.ch-label').textContent = 'Ocultar demo';
         active = ch;
-        const panel = document.getElementById('demo-' + ch);
+        const panel = document.getElementById('panel-' + ch);
         panel.style.display = 'block';
         panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        if (ch === 'whatsapp') initWhatsApp();
-        if (ch === 'llamada')  initLlamada();
+        if (ch === 'whatsapp') initWA();
+        if (ch === 'llamada')  initCall();
         if (ch === 'widget')   initWidget();
       } else {
         active = null;
@@ -316,52 +865,52 @@ const canonical = "https://aisecurity.es/servicios/gestor-citas";
   });
 
   // ── WhatsApp ──────────────────────────────────────────────────
-  function initWhatsApp() {
+  function initWA() {
     const box = document.getElementById('wa-messages');
     if (!box || box.dataset.init) return;
     box.dataset.init = '1';
     const msgs = [
-      { from: 'client', text: 'Hola, quería pedir cita para mañana si es posible' },
-      { from: 'bot',    text: '¡Hola! Claro 😊 ¿Para qué servicio necesitas la cita?' },
-      { from: 'client', text: 'Limpieza dental' },
-      { from: 'bot',    text: 'Perfecto. Para mañana tengo las 10:00 o las 17:00. ¿Cuál te viene mejor?' },
-      { from: 'client', text: 'Las 10 está bien' },
-      { from: 'bot',    text: '✅ Cita confirmada:\n📅 Mañana · 10:00\n🦷 Limpieza dental\n📍 Clínica García\n\nTe enviaré un recordatorio 1h antes.' },
+      { from: 'c', text: 'Hola, quería pedir cita para mañana si es posible' },
+      { from: 'b', text: '¡Hola! Claro 😊 ¿Para qué servicio necesitas la cita?' },
+      { from: 'c', text: 'Limpieza dental' },
+      { from: 'b', text: 'Perfecto. Para mañana tengo las 10:00 o las 17:00. ¿Cuál te viene mejor?' },
+      { from: 'c', text: 'Las 10 está bien' },
+      { from: 'b', text: '✅ Cita confirmada:\n📅 Mañana · 10:00\n🦷 Limpieza dental\n📍 Clínica García\n\nTe enviaré un recordatorio 1h antes.' },
     ];
     let i = 0;
     (function next() {
       if (i >= msgs.length) return;
       const m = msgs[i++];
       const div = document.createElement('div');
-      div.style.cssText = 'display:flex;justify-content:' + (m.from === 'client' ? 'flex-end' : 'flex-start');
-      div.innerHTML = `<div style="max-width:78%;padding:8px 12px;border-radius:${m.from === 'client' ? '18px 18px 4px 18px' : '18px 18px 18px 4px'};background:${m.from === 'client' ? '#005c4b' : '#202c33'};color:#e9edef;font-size:13px;line-height:1.5;white-space:pre-line;">${m.text}</div>`;
+      div.style.cssText = 'display:flex;justify-content:' + (m.from === 'c' ? 'flex-end' : 'flex-start');
+      div.innerHTML = '<div style="max-width:78%;padding:9px 13px;border-radius:' + (m.from === 'c' ? '18px 18px 4px 18px' : '18px 18px 18px 4px') + ';background:' + (m.from === 'c' ? '#005c4b' : '#202c33') + ';color:#e9edef;font-size:13px;line-height:1.5;white-space:pre-line;">' + m.text + '</div>';
       box.appendChild(div);
       box.scrollTop = 9999;
-      setTimeout(next, 950);
+      setTimeout(next, 980);
     })();
   }
 
   // ── Llamada ───────────────────────────────────────────────────
-  function initLlamada() {
+  function initCall() {
     const box = document.getElementById('call-transcript');
     if (!box || box.dataset.init) return;
     box.dataset.init = '1';
     const lines = [
-      { role: 'agent',  text: 'Clínica García, buenos días. ¿En qué puedo ayudarle?' },
-      { role: 'client', text: 'Hola, quería pedir cita para revisión' },
-      { role: 'agent',  text: 'Por supuesto. ¿Preferencia de día o de horario?' },
-      { role: 'client', text: 'Esta semana si puede ser, por las mañanas' },
-      { role: 'agent',  text: 'Tengo disponible el jueves a las 10:30. ¿Le viene bien?' },
-      { role: 'client', text: 'Sí, perfecto' },
-      { role: 'agent',  text: '¡Listo! Cita confirmada para el jueves a las 10:30. Le llegará un SMS de confirmación.' },
+      { r: 'a', t: 'Centro de Salud García, buenos días. ¿En qué puedo ayudarle?' },
+      { r: 'c', t: 'Hola, quería pedir cita para revisión' },
+      { r: 'a', t: '¿Para esta semana o la próxima?' },
+      { r: 'c', t: 'Esta semana si puede ser, por las mañanas' },
+      { r: 'a', t: 'Tengo disponible el jueves a las 10:30. ¿Le viene bien?' },
+      { r: 'c', t: 'Sí, perfecto' },
+      { r: 'a', t: '¡Listo! Cita confirmada para el jueves a las 10:30. Le enviaré SMS de confirmación.' },
     ];
     let i = 0;
     (function next() {
       if (i >= lines.length) return;
       const l = lines[i++];
       const div = document.createElement('div');
-      div.style.cssText = 'display:flex;gap:8px;align-items:flex-start;margin-bottom:8px;';
-      div.innerHTML = `<span style="font-size:10px;font-weight:700;min-width:44px;padding-top:2px;color:${l.role === 'agent' ? '#38b1ff' : 'rgba(255,255,255,0.4)'}">${l.role === 'agent' ? 'AGENTE' : 'CLIENTE'}</span><span style="color:${l.role === 'agent' ? '#fff' : 'rgba(255,255,255,0.65)'};font-size:13px;line-height:1.5;">${l.text}</span>`;
+      div.style.cssText = 'display:flex;gap:8px;align-items:flex-start;';
+      div.innerHTML = '<span style="font-size:10px;font-weight:700;min-width:50px;padding-top:2px;color:' + (l.r === 'a' ? '#38b1ff' : 'rgba(255,255,255,0.35)') + '">' + (l.r === 'a' ? 'AGENTE' : 'CLIENTE') + '</span><span style="color:' + (l.r === 'a' ? '#fff' : 'rgba(255,255,255,0.6)') + ';font-size:0.8rem;line-height:1.5;">' + l.t + '</span>';
       box.appendChild(div);
       setTimeout(next, 1100);
     })();
@@ -376,8 +925,8 @@ const canonical = "https://aisecurity.es/servicios/gestor-citas";
     const y = today.getFullYear(), m = today.getMonth();
     const firstDay = (new Date(y, m, 1).getDay() || 7);
     const days = new Date(y, m + 1, 0).getDate();
-    document.getElementById('widget-month-label').textContent =
-      new Date(y, m).toLocaleString('es-ES', { month: 'long', year: 'numeric' }).replace(/^\w/, c => c.toUpperCase());
+    const lbl = document.getElementById('widget-month-label');
+    if (lbl) lbl.textContent = new Date(y, m).toLocaleString('es-ES', { month: 'long', year: 'numeric' }).replace(/^\w/, c => c.toUpperCase());
     for (let i = 1; i < firstDay; i++) grid.innerHTML += '<div></div>';
     for (let d = 1; d <= days; d++) {
       const past = d < today.getDate();
@@ -385,9 +934,9 @@ const canonical = "https://aisecurity.es/servicios/gestor-citas";
       const btn = document.createElement('button');
       btn.textContent = d;
       btn.disabled = past;
-      btn.style.cssText = `aspect-ratio:1;padding:4px;border-radius:6px;font-size:11px;font-weight:500;transition:all 0.15s;color:${past ? '#bbb' : isToday ? '#7c3aed' : '#111'};background:${isToday ? '#ede9fe' : 'transparent'};cursor:${past ? 'not-allowed' : 'pointer'};`;
+      btn.style.cssText = 'aspect-ratio:1;padding:4px;border-radius:6px;font-size:11px;font-weight:500;border:none;color:' + (past ? '#bbb' : isToday ? '#7c3aed' : '#111') + ';background:' + (isToday ? '#ede9fe' : 'transparent') + ';cursor:' + (past ? 'not-allowed' : 'pointer') + ';';
       if (!past) btn.addEventListener('click', () => {
-        grid.querySelectorAll('button').forEach(b => { b.style.background = b.textContent == today.getDate() ? '#ede9fe' : 'transparent'; b.style.color = '#111'; });
+        grid.querySelectorAll('button').forEach(b => { b.style.background = +b.textContent === today.getDate() ? '#ede9fe' : 'transparent'; b.style.color = '#111'; });
         btn.style.background = '#7c3aed'; btn.style.color = 'white';
       });
       grid.appendChild(btn);
@@ -402,4 +951,5 @@ const canonical = "https://aisecurity.es/servicios/gestor-citas";
 
   // Abrir WhatsApp por defecto
   document.querySelector('[data-channel="whatsapp"]').click();
+})();
 </script>
