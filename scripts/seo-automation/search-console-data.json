@@ -1,128 +1,158 @@
 {
-  "generatedAt": "2026-06-01T06:05:45.967Z",
+  "generatedAt": "2026-06-08T06:12:06.127Z",
   "siteUrl": "sc-domain:aisecurity.es",
   "period": {
-    "startDate": "2026-05-22",
-    "endDate": "2026-05-29"
+    "startDate": "2026-05-29",
+    "endDate": "2026-06-05"
   },
   "periodDays": 7,
   "totals": {
     "current": {
-      "clicks": 12,
-      "impressions": 1144
+      "clicks": 21,
+      "impressions": 1121
     },
     "previous": {
-      "clicks": 7,
-      "impressions": 840
+      "clicks": 12,
+      "impressions": 1144
     }
   },
   "topKeywords": [
     {
-      "keyword": "wazuh mcp server",
+      "keyword": "instalar wazuh en ubuntu",
+      "clicks": 4,
+      "impressions": 9,
+      "ctr": 0.4444444444444444,
+      "position": 3.5555555555555554,
+      "prevClicks": 0,
+      "prevPosition": 2.5,
+      "isNew": false
+    },
+    {
+      "keyword": "curso wazuh",
       "clicks": 2,
-      "impressions": 3,
-      "ctr": 0.6666666666666666,
-      "position": 4.333333333333334,
+      "impressions": 2,
+      "ctr": 1,
+      "position": 3,
+      "prevClicks": 1,
+      "prevPosition": 5,
+      "isNew": false
+    },
+    {
+      "keyword": "instalar wazuh en ubuntu 24.04",
+      "clicks": 2,
+      "impressions": 6,
+      "ctr": 0.3333333333333333,
+      "position": 1.1666666666666667,
+      "prevClicks": 0,
+      "prevPosition": 1.25,
+      "isNew": false
+    },
+    {
+      "keyword": "wazuh",
+      "clicks": 2,
+      "impressions": 601,
+      "ctr": 0.0033277870216306157,
+      "position": 7.728785357737105,
+      "prevClicks": 1,
+      "prevPosition": 7.376701966717095,
+      "isNew": false
+    },
+    {
+      "keyword": "wazuh ia",
+      "clicks": 2,
+      "impressions": 12,
+      "ctr": 0.16666666666666666,
+      "position": 3.8333333333333335,
       "prevClicks": 0,
       "prevPosition": null,
       "isNew": true
     },
     {
-      "keyword": "ai security",
-      "clicks": 1,
-      "impressions": 11,
-      "ctr": 0.09090909090909091,
-      "position": 8.181818181818182,
-      "prevClicks": 0,
-      "prevPosition": 7.5,
-      "isNew": false
-    },
-    {
-      "keyword": "curso wazuh",
+      "keyword": "aisecurity",
       "clicks": 1,
       "impressions": 1,
       "ctr": 1,
-      "position": 5,
+      "position": 1,
       "prevClicks": 0,
-      "prevPosition": 3.75,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "ia castellon",
+      "clicks": 1,
+      "impressions": 2,
+      "ctr": 0.5,
+      "position": 18.5,
+      "prevClicks": 0,
+      "prevPosition": 19,
+      "isNew": false
+    },
+    {
+      "keyword": "ia security",
+      "clicks": 1,
+      "impressions": 6,
+      "ctr": 0.16666666666666666,
+      "position": 19.166666666666668,
+      "prevClicks": 0,
+      "prevPosition": 33.4,
       "isNew": false
     },
     {
       "keyword": "instalar wazuh en ubuntu server",
       "clicks": 1,
-      "impressions": 4,
-      "ctr": 0.25,
-      "position": 3,
-      "prevClicks": 0,
+      "impressions": 6,
+      "ctr": 0.16666666666666666,
+      "position": 2.833333333333333,
+      "prevClicks": 1,
       "prevPosition": 3,
       "isNew": false
     },
     {
-      "keyword": "mcp wazuh",
-      "clicks": 1,
-      "impressions": 3,
-      "ctr": 0.3333333333333333,
-      "position": 3.6666666666666665,
-      "prevClicks": 0,
-      "prevPosition": 4,
-      "isNew": false
-    },
-    {
-      "keyword": "que es wazuh",
-      "clicks": 1,
-      "impressions": 28,
-      "ctr": 0.03571428571428571,
-      "position": 6.714285714285714,
-      "prevClicks": 0,
-      "prevPosition": 4.705882352941177,
-      "isNew": false
-    },
-    {
-      "keyword": "wazuh",
-      "clicks": 1,
-      "impressions": 661,
-      "ctr": 0.0015128593040847202,
-      "position": 7.376701966717095,
-      "prevClicks": 2,
-      "prevPosition": 7.987531172069826,
-      "isNew": false
-    },
-    {
-      "keyword": "wazuh agent linux",
-      "clicks": 1,
-      "impressions": 2,
-      "ctr": 0.5,
-      "position": 6.5,
-      "prevClicks": 0,
-      "prevPosition": null,
-      "isNew": true
-    },
-    {
-      "keyword": "wazuh blog",
-      "clicks": 1,
-      "impressions": 8,
-      "ctr": 0.125,
-      "position": 6.5,
-      "prevClicks": 0,
-      "prevPosition": null,
-      "isNew": true
-    },
-    {
-      "keyword": "wazuh mcp",
+      "keyword": "instalar wazuh en windows",
       "clicks": 1,
       "impressions": 4,
       "ctr": 0.25,
-      "position": 5,
-      "prevClicks": 1,
-      "prevPosition": 9,
+      "position": 4,
+      "prevClicks": 0,
+      "prevPosition": 6,
       "isNew": false
     },
     {
-      "keyword": "wazuh ollama",
+      "keyword": "install wazuh ubuntu 24.04",
+      "clicks": 1,
+      "impressions": 1,
+      "ctr": 1,
+      "position": 1,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "wazuh curso",
       "clicks": 1,
       "impressions": 2,
       "ctr": 0.5,
-      "position": 4.5,
+      "position": 1.5,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "wazuh para que sirve",
+      "clicks": 1,
+      "impressions": 6,
+      "ctr": 0.16666666666666666,
+      "position": 2.666666666666667,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "wazuh que es",
+      "clicks": 1,
+      "impressions": 117,
+      "ctr": 0.008547008547008548,
+      "position": 7.743589743589744,
       "prevClicks": 0,
       "prevPosition": null,
       "isNew": true
@@ -132,29 +162,29 @@
       "clicks": 0,
       "impressions": 8,
       "ctr": 0,
-      "position": 36.25,
+      "position": 34.375,
       "prevClicks": 0,
-      "prevPosition": 36.666666666666664,
+      "prevPosition": 36.25,
       "isNew": false
     },
     {
       "keyword": "agencia ia castellon",
       "clicks": 0,
-      "impressions": 26,
+      "impressions": 17,
       "ctr": 0,
-      "position": 30.26923076923077,
+      "position": 19.529411764705884,
       "prevClicks": 0,
-      "prevPosition": 35.333333333333336,
+      "prevPosition": 30.26923076923077,
       "isNew": false
     },
     {
       "keyword": "agencia ia valencia",
       "clicks": 0,
-      "impressions": 40,
+      "impressions": 39,
       "ctr": 0,
-      "position": 43.9,
+      "position": 31.102564102564102,
       "prevClicks": 0,
-      "prevPosition": 50.5,
+      "prevPosition": 43.9,
       "isNew": false
     },
     {
@@ -162,9 +192,9 @@
       "clicks": 0,
       "impressions": 8,
       "ctr": 0,
-      "position": 51.25,
+      "position": 46.375,
       "prevClicks": 0,
-      "prevPosition": 56.666666666666664,
+      "prevPosition": 51.25,
       "isNew": false
     },
     {
@@ -172,29 +202,29 @@
       "clicks": 0,
       "impressions": 3,
       "ctr": 0,
-      "position": 66,
+      "position": 31.666666666666668,
       "prevClicks": 0,
-      "prevPosition": null,
-      "isNew": true
+      "prevPosition": 66,
+      "isNew": false
     },
     {
       "keyword": "agendación de citas con asistentes virtuales",
       "clicks": 0,
       "impressions": 9,
       "ctr": 0,
-      "position": 25.77777777777778,
+      "position": 33.55555555555556,
       "prevClicks": 0,
-      "prevPosition": 27.77777777777778,
+      "prevPosition": 25.77777777777778,
       "isNew": false
     },
     {
       "keyword": "agente wazuh",
       "clicks": 0,
-      "impressions": 6,
+      "impressions": 11,
       "ctr": 0,
-      "position": 8.833333333333332,
+      "position": 8.181818181818182,
       "prevClicks": 0,
-      "prevPosition": 7.538461538461538,
+      "prevPosition": 8.833333333333332,
       "isNew": false
     },
     {
@@ -202,7 +232,37 @@
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 9,
+      "position": 12,
+      "prevClicks": 0,
+      "prevPosition": 9,
+      "isNew": false
+    },
+    {
+      "keyword": "agentes ia castellon",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 14,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "ai consultant valencia",
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 70.33333333333333,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "ai consultants valencia",
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 63.333333333333336,
       "prevClicks": 0,
       "prevPosition": null,
       "isNew": true
@@ -210,15 +270,145 @@
     {
       "keyword": "ai sec",
       "clicks": 0,
-      "impressions": 2,
+      "impressions": 1,
       "ctr": 0,
-      "position": 4,
+      "position": 2,
+      "prevClicks": 0,
+      "prevPosition": 4,
+      "isNew": false
+    },
+    {
+      "keyword": "ai security",
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 2.666666666666667,
+      "prevClicks": 1,
+      "prevPosition": 8.181818181818182,
+      "isNew": false
+    },
+    {
+      "keyword": "alforbu",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 40,
       "prevClicks": 0,
       "prevPosition": null,
       "isNew": true
     },
     {
-      "keyword": "antivirus ia",
+      "keyword": "asistente virtual 24/7",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 71,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "atencion al cliente con chatbot malaga",
+      "clicks": 0,
+      "impressions": 5,
+      "ctr": 0,
+      "position": 42.6,
+      "prevClicks": 0,
+      "prevPosition": 41.888888888888886,
+      "isNew": false
+    },
+    {
+      "keyword": "auditoria de seguridad en alicante",
+      "clicks": 0,
+      "impressions": 4,
+      "ctr": 0,
+      "position": 78.5,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "automatizacion de citas",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 39,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "automatizaciones ia castellon",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 17.5,
+      "prevClicks": 0,
+      "prevPosition": 18,
+      "isNew": false
+    },
+    {
+      "keyword": "automatizar citas por teléfono",
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 13.333333333333334,
+      "prevClicks": 0,
+      "prevPosition": 13,
+      "isNew": false
+    },
+    {
+      "keyword": "baiting ciberseguridad",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 22,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "chatbot ai atención al cliente",
+      "clicks": 0,
+      "impressions": 6,
+      "ctr": 0,
+      "position": 25.5,
+      "prevClicks": 0,
+      "prevPosition": 37.714285714285715,
+      "isNew": false
+    },
+    {
+      "keyword": "chatbot atencion al cliente granada",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 23.5,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "chatbot atencion al cliente malaga",
+      "clicks": 0,
+      "impressions": 4,
+      "ctr": 0,
+      "position": 40.5,
+      "prevClicks": 0,
+      "prevPosition": 41.75,
+      "isNew": false
+    },
+    {
+      "keyword": "chatbot gestion de citas",
+      "clicks": 0,
+      "impressions": 10,
+      "ctr": 0,
+      "position": 17.8,
+      "prevClicks": 0,
+      "prevPosition": 28.545454545454547,
+      "isNew": false
+    },
+    {
+      "keyword": "chatbot para atencion al cliente granada",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
@@ -228,221 +418,111 @@
       "isNew": false
     },
     {
-      "keyword": "atencion al cliente con chatbot malaga",
+      "keyword": "chatbot para atencion al cliente malaga",
       "clicks": 0,
-      "impressions": 9,
+      "impressions": 2,
       "ctr": 0,
-      "position": 41.888888888888886,
+      "position": 40.5,
       "prevClicks": 0,
-      "prevPosition": 36.5,
+      "prevPosition": 41.285714285714285,
       "isNew": false
     },
     {
-      "keyword": "automatizacion seguridad",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 86,
-      "prevClicks": 0,
-      "prevPosition": 84,
-      "isNew": false
-    },
-    {
-      "keyword": "automatizaciones ia castellon",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 18,
-      "prevClicks": 0,
-      "prevPosition": null,
-      "isNew": true
-    },
-    {
-      "keyword": "automatización negocios valencia",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 42,
-      "prevClicks": 0,
-      "prevPosition": 41.75,
-      "isNew": false
-    },
-    {
-      "keyword": "automatizar citas por teléfono",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 13,
-      "prevClicks": 0,
-      "prevPosition": 13.666666666666666,
-      "isNew": false
-    },
-    {
-      "keyword": "blog wazuh",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 4,
-      "prevClicks": 0,
-      "prevPosition": 5.333333333333333,
-      "isNew": false
-    },
-    {
-      "keyword": "busqueda inteligente de documentos",
+      "keyword": "chatbot para empresas gandia",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
       "position": 37,
       "prevClicks": 0,
-      "prevPosition": 43,
-      "isNew": false
-    },
-    {
-      "keyword": "chatbot ai atención al cliente",
-      "clicks": 0,
-      "impressions": 7,
-      "ctr": 0,
-      "position": 37.714285714285715,
-      "prevClicks": 0,
-      "prevPosition": 36,
-      "isNew": false
-    },
-    {
-      "keyword": "chatbot atencion al cliente malaga",
-      "clicks": 0,
-      "impressions": 8,
-      "ctr": 0,
-      "position": 41.75,
-      "prevClicks": 0,
-      "prevPosition": 38,
-      "isNew": false
-    },
-    {
-      "keyword": "chatbot atención al cliente",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 67,
-      "prevClicks": 0,
-      "prevPosition": 67,
-      "isNew": false
-    },
-    {
-      "keyword": "chatbot gestion de citas",
-      "clicks": 0,
-      "impressions": 11,
-      "ctr": 0,
-      "position": 28.545454545454547,
-      "prevClicks": 0,
-      "prevPosition": 22.46153846153846,
-      "isNew": false
-    },
-    {
-      "keyword": "chatbot para atencion al cliente granada",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 31,
-      "prevClicks": 0,
       "prevPosition": null,
       "isNew": true
     },
     {
-      "keyword": "chatbot para atencion al cliente malaga",
-      "clicks": 0,
-      "impressions": 7,
-      "ctr": 0,
-      "position": 41.285714285714285,
-      "prevClicks": 0,
-      "prevPosition": 39.285714285714285,
-      "isNew": false
-    },
-    {
       "keyword": "chatbot reservas online",
       "clicks": 0,
-      "impressions": 11,
+      "impressions": 9,
       "ctr": 0,
-      "position": 28.818181818181817,
+      "position": 30,
       "prevClicks": 0,
-      "prevPosition": 28.625,
+      "prevPosition": 28.818181818181817,
       "isNew": false
     },
     {
       "keyword": "chatbot servicio al cliente malaga",
       "clicks": 0,
-      "impressions": 10,
+      "impressions": 5,
       "ctr": 0,
-      "position": 43.3,
+      "position": 33.2,
       "prevClicks": 0,
-      "prevPosition": 35.44444444444444,
+      "prevPosition": 43.3,
       "isNew": false
     },
     {
       "keyword": "chatbots alicante",
       "clicks": 0,
-      "impressions": 2,
+      "impressions": 8,
       "ctr": 0,
-      "position": 18,
+      "position": 13,
       "prevClicks": 0,
-      "prevPosition": null,
-      "isNew": true
+      "prevPosition": 18,
+      "isNew": false
     },
     {
       "keyword": "chatbots inteligentes alicante",
       "clicks": 0,
-      "impressions": 10,
+      "impressions": 5,
       "ctr": 0,
-      "position": 18.2,
+      "position": 11.8,
       "prevClicks": 0,
-      "prevPosition": 20.25,
+      "prevPosition": 18.2,
       "isNew": false
-    },
-    {
-      "keyword": "ciberseguridad para empresas en alicante",
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 51,
-      "prevClicks": 0,
-      "prevPosition": null,
-      "isNew": true
     },
     {
       "keyword": "como funciona wazuh",
       "clicks": 0,
-      "impressions": 3,
+      "impressions": 7,
       "ctr": 0,
-      "position": 10,
+      "position": 8.857142857142858,
       "prevClicks": 0,
-      "prevPosition": 6.5,
+      "prevPosition": 10,
       "isNew": false
     },
     {
       "keyword": "como instalar wazuh",
       "clicks": 0,
-      "impressions": 3,
+      "impressions": 9,
       "ctr": 0,
-      "position": 9.333333333333334,
+      "position": 9.11111111111111,
       "prevClicks": 0,
-      "prevPosition": 7.2,
+      "prevPosition": 9.333333333333334,
       "isNew": false
     },
     {
       "keyword": "como instalar wazuh en ubuntu server",
       "clicks": 0,
-      "impressions": 7,
+      "impressions": 9,
       "ctr": 0,
-      "position": 7,
+      "position": 6,
+      "prevClicks": 0,
+      "prevPosition": 7,
+      "isNew": false
+    },
+    {
+      "keyword": "configurar correo gva outlook",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 27,
       "prevClicks": 0,
       "prevPosition": null,
       "isNew": true
     },
     {
-      "keyword": "como instalo?",
+      "keyword": "consultor ia alcoy",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 4,
+      "position": 57,
       "prevClicks": 0,
       "prevPosition": null,
       "isNew": true
@@ -450,59 +530,69 @@
     {
       "keyword": "consultora de inteligencia artificial valencia",
       "clicks": 0,
-      "impressions": 3,
+      "impressions": 1,
       "ctr": 0,
-      "position": 19.666666666666668,
+      "position": 14,
       "prevClicks": 0,
-      "prevPosition": 37.5,
+      "prevPosition": 19.666666666666668,
       "isNew": false
     },
     {
-      "keyword": "consultores protección de datos en alicante",
+      "keyword": "consultoria de ia",
       "clicks": 0,
-      "impressions": 2,
+      "impressions": 1,
       "ctr": 0,
-      "position": 54.5,
+      "position": 40,
       "prevClicks": 0,
-      "prevPosition": 57,
-      "isNew": false
+      "prevPosition": null,
+      "isNew": true
     },
     {
       "keyword": "consultoria de seguridad en maquinas alicante",
       "clicks": 0,
-      "impressions": 3,
+      "impressions": 1,
       "ctr": 0,
-      "position": 78,
+      "position": 69,
       "prevClicks": 0,
-      "prevPosition": 65.5,
+      "prevPosition": 78,
       "isNew": false
     },
     {
       "keyword": "consultoria de seguridad en maquinas castellon",
       "clicks": 0,
-      "impressions": 5,
+      "impressions": 1,
       "ctr": 0,
-      "position": 75.4,
+      "position": 53,
       "prevClicks": 0,
-      "prevPosition": 69,
+      "prevPosition": 75.4,
       "isNew": false
     },
     {
       "keyword": "consultoria de seguridad industrial castellon",
       "clicks": 0,
-      "impressions": 10,
+      "impressions": 4,
       "ctr": 0,
-      "position": 42.4,
+      "position": 35.25,
       "prevClicks": 0,
-      "prevPosition": 52.25,
+      "prevPosition": 42.4,
       "isNew": false
     },
     {
-      "keyword": "consultoria ia para empresas",
+      "keyword": "consultoria ia",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 100,
+      "position": 117,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "consultoria ia alicante",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 12,
       "prevClicks": 0,
       "prevPosition": null,
       "isNew": true
@@ -512,23 +602,83 @@
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 35,
+      "position": 23,
+      "prevClicks": 0,
+      "prevPosition": 35,
+      "isNew": false
+    },
+    {
+      "keyword": "consultoría ia alcoy",
+      "clicks": 0,
+      "impressions": 7,
+      "ctr": 0,
+      "position": 40.285714285714285,
+      "prevClicks": 0,
+      "prevPosition": 49.92857142857143,
+      "isNew": false
+    },
+    {
+      "keyword": "consultoría ia alicante",
+      "clicks": 0,
+      "impressions": 10,
+      "ctr": 0,
+      "position": 12.2,
+      "prevClicks": 0,
+      "prevPosition": 19,
+      "isNew": false
+    },
+    {
+      "keyword": "consultoría ia en alicante",
+      "clicks": 0,
+      "impressions": 8,
+      "ctr": 0,
+      "position": 12.375,
+      "prevClicks": 0,
+      "prevPosition": 17.11111111111111,
+      "isNew": false
+    },
+    {
+      "keyword": "consultoría ia valencia",
+      "clicks": 0,
+      "impressions": 8,
+      "ctr": 0,
+      "position": 13.75,
+      "prevClicks": 0,
+      "prevPosition": 18.875,
+      "isNew": false
+    },
+    {
+      "keyword": "consultoría protección de datos en alicante",
+      "clicks": 0,
+      "impressions": 7,
+      "ctr": 0,
+      "position": 68.42857142857143,
+      "prevClicks": 0,
+      "prevPosition": 68.46666666666667,
+      "isNew": false
+    },
+    {
+      "keyword": "correo corporativo en outlook",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 26,
       "prevClicks": 0,
       "prevPosition": null,
       "isNew": true
     },
     {
-      "keyword": "consultoría ia alcoy",
+      "keyword": "correo corporativo outlook",
       "clicks": 0,
-      "impressions": 14,
+      "impressions": 1,
       "ctr": 0,
-      "position": 49.92857142857143,
+      "position": 15,
       "prevClicks": 0,
-      "prevPosition": 64.5,
-      "isNew": false
+      "prevPosition": null,
+      "isNew": true
     },
     {
-      "keyword": "consultoría ia alicante",
+      "keyword": "correo outlook corporativo",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
@@ -538,91 +688,41 @@
       "isNew": true
     },
     {
-      "keyword": "consultoría ia en alicante",
-      "clicks": 0,
-      "impressions": 9,
-      "ctr": 0,
-      "position": 17.11111111111111,
-      "prevClicks": 0,
-      "prevPosition": 21,
-      "isNew": false
-    },
-    {
-      "keyword": "consultoría ia valencia",
-      "clicks": 0,
-      "impressions": 8,
-      "ctr": 0,
-      "position": 18.875,
-      "prevClicks": 0,
-      "prevPosition": 21.75,
-      "isNew": false
-    },
-    {
-      "keyword": "consultoría protección de datos en alicante",
-      "clicks": 0,
-      "impressions": 15,
-      "ctr": 0,
-      "position": 68.46666666666667,
-      "prevClicks": 0,
-      "prevPosition": 68.57142857142857,
-      "isNew": false
-    },
-    {
-      "keyword": "consultoría tecnológica castellón",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 21,
-      "prevClicks": 0,
-      "prevPosition": 17.5,
-      "isNew": false
-    },
-    {
       "keyword": "curso de wazuh",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 8,
+      "prevClicks": 0,
+      "prevPosition": 11,
+      "isNew": false
+    },
+    {
+      "keyword": "curso sistema siem",
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 12.666666666666666,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "curso sysadmin",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 8,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "descargar wazuh",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
       "position": 11,
-      "prevClicks": 2,
-      "prevPosition": 8.75,
-      "isNew": false
-    },
-    {
-      "keyword": "curso siem",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 18,
-      "prevClicks": 0,
-      "prevPosition": null,
-      "isNew": true
-    },
-    {
-      "keyword": "docker wazuh",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 8,
-      "prevClicks": 0,
-      "prevPosition": null,
-      "isNew": true
-    },
-    {
-      "keyword": "eazuh",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 8,
-      "prevClicks": 0,
-      "prevPosition": 8,
-      "isNew": false
-    },
-    {
-      "keyword": "elastic search siem",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 18,
       "prevClicks": 0,
       "prevPosition": null,
       "isNew": true
@@ -634,11 +734,231 @@
       "ctr": 0,
       "position": 44,
       "prevClicks": 0,
-      "prevPosition": 43,
+      "prevPosition": 44,
       "isNew": false
     },
     {
-      "keyword": "empresa ciberseguridad alicante",
+      "keyword": "elastic wazuh",
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 5.666666666666667,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "empresa ia valencia",
+      "clicks": 0,
+      "impressions": 5,
+      "ctr": 0,
+      "position": 20.8,
+      "prevClicks": 0,
+      "prevPosition": 22.666666666666668,
+      "isNew": false
+    },
+    {
+      "keyword": "experto en ia en castellón",
+      "clicks": 0,
+      "impressions": 8,
+      "ctr": 0,
+      "position": 19.25,
+      "prevClicks": 0,
+      "prevPosition": 33.875,
+      "isNew": false
+    },
+    {
+      "keyword": "fim wazuh",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 7,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "gestionar citas con agente ia",
+      "clicks": 0,
+      "impressions": 16,
+      "ctr": 0,
+      "position": 48,
+      "prevClicks": 0,
+      "prevPosition": 40,
+      "isNew": false
+    },
+    {
+      "keyword": "gestor citas",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 1,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "gestor de citas",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 7,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "herramientas de ia para consultoría",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 25,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "i security",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 30,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "ia automatización castellón",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 15,
+      "prevClicks": 0,
+      "prevPosition": 16.333333333333336,
+      "isNew": false
+    },
+    {
+      "keyword": "ia sec",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 9,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "ics correu corporatiu outlook",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 18,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "instalar agente wazuh en windows",
+      "clicks": 0,
+      "impressions": 5,
+      "ctr": 0,
+      "position": 2.8,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "instalar wazuh",
+      "clicks": 0,
+      "impressions": 6,
+      "ctr": 0,
+      "position": 7.833333333333333,
+      "prevClicks": 0,
+      "prevPosition": 8.714285714285715,
+      "isNew": false
+    },
+    {
+      "keyword": "install wazuh agent ubuntu",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 6,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "install wazuh in ubuntu",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 5,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "install wazuh linux",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 6,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "install wazuh ubuntu",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 6,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "kibana siem",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 9.5,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "llamada de herramienta ollama",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 46.5,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "marketing automatizado con ia alicante",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 63,
+      "prevClicks": 0,
+      "prevPosition": null,
+      "isNew": true
+    },
+    {
+      "keyword": "monitoreo de docker",
+      "clicks": 0,
+      "impressions": 6,
+      "ctr": 0,
+      "position": 12.833333333333334,
+      "prevClicks": 0,
+      "prevPosition": 9.5,
+      "isNew": false
+    },
+    {
+      "keyword": "notificador de correo entrante",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
@@ -648,77 +968,7 @@
       "isNew": true
     },
     {
-      "keyword": "empresa ia valencia",
-      "clicks": 0,
-      "impressions": 9,
-      "ctr": 0,
-      "position": 22.666666666666668,
-      "prevClicks": 0,
-      "prevPosition": 23.333333333333332,
-      "isNew": false
-    },
-    {
-      "keyword": "empresas de ciberseguridad en alicante",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 66,
-      "prevClicks": 0,
-      "prevPosition": null,
-      "isNew": true
-    },
-    {
-      "keyword": "experto en ia en castellón",
-      "clicks": 0,
-      "impressions": 8,
-      "ctr": 0,
-      "position": 33.875,
-      "prevClicks": 0,
-      "prevPosition": 39.666666666666664,
-      "isNew": false
-    },
-    {
-      "keyword": "gestion de la seguridad industrial castellon",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 71,
-      "prevClicks": 0,
-      "prevPosition": 69.5,
-      "isNew": false
-    },
-    {
-      "keyword": "gestionar citas con agente ia",
-      "clicks": 0,
-      "impressions": 16,
-      "ctr": 0,
-      "position": 40,
-      "prevClicks": 0,
-      "prevPosition": 38,
-      "isNew": false
-    },
-    {
-      "keyword": "gestionar reservas con ia",
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 66,
-      "prevClicks": 0,
-      "prevPosition": 72.125,
-      "isNew": false
-    },
-    {
-      "keyword": "gmail",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 4,
-      "prevClicks": 0,
-      "prevPosition": null,
-      "isNew": true
-    },
-    {
-      "keyword": "google workspace smtp",
+      "keyword": "open source xdr",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
@@ -728,121 +978,31 @@
       "isNew": true
     },
     {
-      "keyword": "how to install wazuh server on ubuntu",
+      "keyword": "outlook corporativo",
       "clicks": 0,
       "impressions": 1,
-      "ctr": 0,
-      "position": 7,
-      "prevClicks": 0,
-      "prevPosition": null,
-      "isNew": true
-    },
-    {
-      "keyword": "ia automatización castellón",
-      "clicks": 0,
-      "impressions": 3,
-      "ctr": 0,
-      "position": 16.333333333333336,
-      "prevClicks": 0,
-      "prevPosition": 20,
-      "isNew": false
-    },
-    {
-      "keyword": "ia castellon",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 19,
-      "prevClicks": 0,
-      "prevPosition": null,
-      "isNew": true
-    },
-    {
-      "keyword": "ia security",
-      "clicks": 0,
-      "impressions": 10,
-      "ctr": 0,
-      "position": 33.4,
-      "prevClicks": 0,
-      "prevPosition": 16.833333333333336,
-      "isNew": false
-    },
-    {
-      "keyword": "instalacion de wazuh",
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 9.5,
-      "prevClicks": 0,
-      "prevPosition": 10,
-      "isNew": false
-    },
-    {
-      "keyword": "instalar wazuh",
-      "clicks": 0,
-      "impressions": 7,
-      "ctr": 0,
-      "position": 8.714285714285715,
-      "prevClicks": 0,
-      "prevPosition": 9.142857142857142,
-      "isNew": false
-    },
-    {
-      "keyword": "instalar wazuh en ubuntu",
-      "clicks": 0,
-      "impressions": 6,
-      "ctr": 0,
-      "position": 2.5,
-      "prevClicks": 0,
-      "prevPosition": 4.5,
-      "isNew": false
-    },
-    {
-      "keyword": "instalar wazuh en ubuntu 24.04",
-      "clicks": 0,
-      "impressions": 4,
-      "ctr": 0,
-      "position": 1.25,
-      "prevClicks": 1,
-      "prevPosition": 1,
-      "isNew": false
-    },
-    {
-      "keyword": "instalar wazuh en windows",
-      "clicks": 0,
-      "impressions": 2,
       "ctr": 0,
       "position": 6,
       "prevClicks": 0,
-      "prevPosition": 12,
-      "isNew": false
+      "prevPosition": null,
+      "isNew": true
     },
     {
-      "keyword": "install wazuh server on ubuntu 24.04",
+      "keyword": "outlook correo corporativo",
       "clicks": 0,
       "impressions": 2,
       "ctr": 0,
-      "position": 7,
-      "prevClicks": 0,
-      "prevPosition": 5.142857142857143,
-      "isNew": false
-    },
-    {
-      "keyword": "kibana wazuh",
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 6.5,
+      "position": 21,
       "prevClicks": 0,
       "prevPosition": null,
       "isNew": true
     },
     {
-      "keyword": "monitoreo de docker",
+      "keyword": "outlook correos corporativos",
       "clicks": 0,
-      "impressions": 2,
+      "impressions": 1,
       "ctr": 0,
-      "position": 9.5,
+      "position": 21,
       "prevClicks": 0,
       "prevPosition": null,
       "isNew": true
@@ -850,381 +1010,213 @@
     {
       "keyword": "para que sirve wazuh",
       "clicks": 0,
-      "impressions": 7,
+      "impressions": 3,
       "ctr": 0,
-      "position": 3.7142857142857144,
+      "position": 2.666666666666667,
       "prevClicks": 0,
-      "prevPosition": 2.75,
-      "isNew": false
-    },
-    {
-      "keyword": "plataforma ia segura",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 53,
-      "prevClicks": 0,
-      "prevPosition": null,
-      "isNew": true
-    },
-    {
-      "keyword": "proteger datos con wazuh",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 1,
-      "prevClicks": 0,
-      "prevPosition": 18,
-      "isNew": false
-    },
-    {
-      "keyword": "puerto wazuh",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 8,
-      "prevClicks": 0,
-      "prevPosition": 8,
-      "isNew": false
-    },
-    {
-      "keyword": "que es wazu",
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 8,
-      "prevClicks": 0,
-      "prevPosition": 1,
-      "isNew": false
-    },
-    {
-      "keyword": "que es wazuh agent",
-      "clicks": 0,
-      "impressions": 5,
-      "ctr": 0,
-      "position": 5,
-      "prevClicks": 0,
-      "prevPosition": 7,
-      "isNew": false
-    },
-    {
-      "keyword": "que es wazuh y para que sirve",
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 1,
-      "prevClicks": 0,
-      "prevPosition": 1.6923076923076923,
-      "isNew": false
-    },
-    {
-      "keyword": "que hace wazuh",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 12,
-      "prevClicks": 0,
-      "prevPosition": null,
-      "isNew": true
-    },
-    {
-      "keyword": "qué es wazuh",
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 7,
-      "prevClicks": 0,
-      "prevPosition": 5.666666666666667,
-      "isNew": false
-    },
-    {
-      "keyword": "recepcionista ai",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 15,
-      "prevClicks": 0,
-      "prevPosition": 15,
-      "isNew": false
-    },
-    {
-      "keyword": "recepcionista ia",
-      "clicks": 0,
-      "impressions": 20,
-      "ctr": 0,
-      "position": 29.5,
-      "prevClicks": 0,
-      "prevPosition": 35.375,
-      "isNew": false
-    },
-    {
-      "keyword": "recepcionista virtual ia",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 31,
-      "prevClicks": 0,
-      "prevPosition": null,
-      "isNew": true
-    },
-    {
-      "keyword": "recepción de averías 24/7 con ia",
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 18.5,
-      "prevClicks": 0,
-      "prevPosition": null,
-      "isNew": true
-    },
-    {
-      "keyword": "secur ai",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 8,
-      "prevClicks": 0,
-      "prevPosition": null,
-      "isNew": true
-    },
-    {
-      "keyword": "seguridad de datos con wazuh",
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 39.5,
-      "prevClicks": 0,
-      "prevPosition": 12,
-      "isNew": false
-    },
-    {
-      "keyword": "servicio ai officer empresas",
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 37,
-      "prevClicks": 0,
-      "prevPosition": null,
-      "isNew": true
-    },
-    {
-      "keyword": "servicio de inteligencia artificial",
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 59.5,
-      "prevClicks": 0,
-      "prevPosition": 66.75,
+      "prevPosition": 3.7142857142857144,
       "isNew": false
     }
   ],
   "topPages": [
     {
       "page": "/blog/como-instalar-wazuh-en-linux",
-      "clicks": 16,
-      "impressions": 366,
-      "ctr": 0.04371584699453552,
-      "position": 5.669398907103825,
-      "prevClicks": 11
+      "clicks": 17,
+      "impressions": 288,
+      "ctr": 0.059027777777777776,
+      "position": 5.684027777777778,
+      "prevClicks": 16
     },
     {
       "page": "/blog/que-es-wazuh-para-que-sirve",
-      "clicks": 10,
-      "impressions": 1283,
-      "ctr": 0.00779423226812159,
-      "position": 7.176149649259548,
-      "prevClicks": 5
+      "clicks": 7,
+      "impressions": 1323,
+      "ctr": 0.005291005291005291,
+      "position": 7.240362811791384,
+      "prevClicks": 10
     },
     {
-      "page": "/blog/como-instalar-agente-wazuh-en-windows",
-      "clicks": 7,
-      "impressions": 391,
-      "ctr": 0.017902813299232736,
-      "position": 5.8951406649616365,
-      "prevClicks": 9
+      "page": "/curso-wazuh",
+      "clicks": 5,
+      "impressions": 50,
+      "ctr": 0.1,
+      "position": 20.48,
+      "prevClicks": 4
     },
     {
       "page": "/blog/como-instalar-agente-wazuh-en-linux",
       "clicks": 4,
-      "impressions": 175,
-      "ctr": 0.022857142857142857,
-      "position": 6.171428571428572,
-      "prevClicks": 1
+      "impressions": 174,
+      "ctr": 0.022988505747126436,
+      "position": 6.028735632183908,
+      "prevClicks": 4
+    },
+    {
+      "page": "/blog/como-instalar-agente-wazuh-en-windows",
+      "clicks": 4,
+      "impressions": 394,
+      "ctr": 0.01015228426395939,
+      "position": 6.4213197969543145,
+      "prevClicks": 7
     },
     {
       "page": "/blog/ia-threat-hunting-wazuh",
       "clicks": 4,
-      "impressions": 61,
-      "ctr": 0.06557377049180328,
-      "position": 5.819672131147541,
-      "prevClicks": 3
-    },
-    {
-      "page": "/blog/wazuh-mcp-server-claude-ia",
-      "clicks": 4,
-      "impressions": 39,
-      "ctr": 0.10256410256410256,
-      "position": 5.846153846153846,
-      "prevClicks": 1
-    },
-    {
-      "page": "/curso-wazuh",
-      "clicks": 4,
-      "impressions": 53,
-      "ctr": 0.07547169811320754,
-      "position": 12.69811320754717,
-      "prevClicks": 5
+      "impressions": 102,
+      "ctr": 0.0392156862745098,
+      "position": 7.147058823529412,
+      "prevClicks": 4
     },
     {
       "page": "/wazuh",
-      "clicks": 4,
-      "impressions": 81,
-      "ctr": 0.04938271604938271,
-      "position": 6.444444444444445,
-      "prevClicks": 12
-    },
-    {
-      "page": "/blog/como-monitorizar-tu-tenant-de-office365-registros-de-exchange-sharepoint",
       "clicks": 3,
-      "impressions": 24,
-      "ctr": 0.125,
-      "position": 6.291666666666667,
-      "prevClicks": 0
+      "impressions": 82,
+      "ctr": 0.036585365853658534,
+      "position": 11.25609756097561,
+      "prevClicks": 4
     },
     {
-      "page": "/blog/configurar-alertas-correo-wazuh-postfix-gmail",
+      "page": "/",
       "clicks": 2,
-      "impressions": 82,
-      "ctr": 0.024390243902439025,
-      "position": 5.865853658536586,
+      "impressions": 49,
+      "ctr": 0.04081632653061224,
+      "position": 29.693877551020407,
       "prevClicks": 1
     },
     {
-      "page": "/servicios/atencion-llamadas",
+      "page": "/blog/como-monitorizar-tu-tenant-de-office365-registros-de-exchange-sharepoint",
       "clicks": 2,
-      "impressions": 30,
-      "ctr": 0.06666666666666667,
-      "position": 24.3,
-      "prevClicks": 0
+      "impressions": 18,
+      "ctr": 0.1111111111111111,
+      "position": 4.111111111111111,
+      "prevClicks": 3
     },
     {
       "page": "/servicios/gestor-citas",
       "clicks": 2,
-      "impressions": 83,
-      "ctr": 0.024096385542168676,
-      "position": 24.27710843373494,
+      "impressions": 91,
+      "ctr": 0.02197802197802198,
+      "position": 21.824175824175825,
       "prevClicks": 2
     },
     {
-      "page": "/",
+      "page": "/blog/configurar-alertas-correo-wazuh-postfix-gmail",
       "clicks": 1,
-      "impressions": 47,
-      "ctr": 0.02127659574468085,
-      "position": 20.382978723404257,
-      "prevClicks": 1
+      "impressions": 88,
+      "ctr": 0.011363636363636364,
+      "position": 4.818181818181818,
+      "prevClicks": 2
     },
     {
-      "page": "/blog",
+      "page": "/blog/configurar-correo-corporativo-outlook-movil",
       "clicks": 1,
-      "impressions": 12,
-      "ctr": 0.08333333333333333,
-      "position": 5.75,
+      "impressions": 44,
+      "ctr": 0.022727272727272728,
+      "position": 9.022727272727273,
       "prevClicks": 0
     },
     {
       "page": "/blog/configurar-correo-corporativo-outlook-movil/",
       "clicks": 1,
-      "impressions": 110,
-      "ctr": 0.00909090909090909,
-      "position": 8.1,
+      "impressions": 149,
+      "ctr": 0.006711409395973154,
+      "position": 8.644295302013422,
       "prevClicks": 1
     },
     {
-      "page": "/blog/wazuh-elastic-security-configuracion-de-siem-completo",
+      "page": "/blog/contrasenas-seguras-empleados-guia-completa",
       "clicks": 1,
-      "impressions": 75,
-      "ctr": 0.013333333333333334,
-      "position": 11.6,
-      "prevClicks": 2
+      "impressions": 3,
+      "ctr": 0.3333333333333333,
+      "position": 5.333333333333333,
+      "prevClicks": 0
+    },
+    {
+      "page": "/blog/detectar-phishing-outlook-microsoft-guia-empleados",
+      "clicks": 1,
+      "impressions": 53,
+      "ctr": 0.018867924528301886,
+      "position": 8.735849056603772,
+      "prevClicks": 0
     },
     {
       "page": "/consultoria-ia-alicante",
       "clicks": 1,
-      "impressions": 84,
-      "ctr": 0.011904761904761904,
-      "position": 37.892857142857146,
+      "impressions": 79,
+      "ctr": 0.012658227848101266,
+      "position": 28.860759493670887,
+      "prevClicks": 1
+    },
+    {
+      "page": "/consultoria-ia-castellon",
+      "clicks": 1,
+      "impressions": 51,
+      "ctr": 0.0196078431372549,
+      "position": 20.098039215686274,
       "prevClicks": 0
+    },
+    {
+      "page": "/blog",
+      "clicks": 0,
+      "impressions": 12,
+      "ctr": 0,
+      "position": 4.333333333333334,
+      "prevClicks": 1
     },
     {
       "page": "/blog/ciberseguridad-basica-empleados-guia-completa",
       "clicks": 0,
-      "impressions": 2,
+      "impressions": 3,
       "ctr": 0,
-      "position": 5.5,
+      "position": 11.333333333333334,
       "prevClicks": 0
     },
     {
       "page": "/blog/configuracion-de-grupos-en-wazuh/",
       "clicks": 0,
-      "impressions": 72,
+      "impressions": 10,
       "ctr": 0,
-      "position": 5.972222222222222,
-      "prevClicks": 2
-    },
-    {
-      "page": "/blog/contrasenas-seguras-empleados-guia-completa",
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 8,
-      "prevClicks": 0
-    },
-    {
-      "page": "/blog/detectar-instalaciones-software-windows-wazuh",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 4,
+      "position": 7.3,
       "prevClicks": 0
     },
     {
       "page": "/blog/detectar-phishing-gmail-guia-empleados",
       "clicks": 0,
-      "impressions": 18,
+      "impressions": 11,
       "ctr": 0,
-      "position": 8.333333333333332,
-      "prevClicks": 0
-    },
-    {
-      "page": "/blog/detectar-phishing-outlook-microsoft-guia-empleados",
-      "clicks": 0,
-      "impressions": 41,
-      "ctr": 0,
-      "position": 9.146341463414634,
+      "position": 9.454545454545455,
       "prevClicks": 0
     },
     {
       "page": "/blog/investigar-ataque-ssh-wazuh-discover",
       "clicks": 0,
-      "impressions": 3,
+      "impressions": 4,
       "ctr": 0,
-      "position": 5.666666666666667,
+      "position": 6.5,
       "prevClicks": 0
     },
     {
       "page": "/blog/monitorizacion-de-contenedores-docker-con-wazuh",
       "clicks": 0,
-      "impressions": 87,
+      "impressions": 79,
       "ctr": 0,
-      "position": 6.988505747126437,
-      "prevClicks": 1
+      "position": 7.367088607594937,
+      "prevClicks": 0
     },
     {
       "page": "/blog/monitorizacion-de-contenedores-docker-con-wazuh/",
       "clicks": 0,
-      "impressions": 8,
+      "impressions": 4,
       "ctr": 0,
-      "position": 7.625,
+      "position": 8,
+      "prevClicks": 0
+    },
+    {
+      "page": "/blog/monitorizar-certificados-wazuh-fim",
+      "clicks": 0,
+      "impressions": 9,
+      "ctr": 0,
+      "position": 4.555555555555555,
       "prevClicks": 0
     },
     {
@@ -1232,130 +1224,150 @@
       "clicks": 0,
       "impressions": 3,
       "ctr": 0,
-      "position": 5.333333333333333,
+      "position": 7,
       "prevClicks": 0
+    },
+    {
+      "page": "/blog/wazuh-elastic-security-configuracion-de-siem-completo",
+      "clicks": 0,
+      "impressions": 92,
+      "ctr": 0,
+      "position": 10.315217391304348,
+      "prevClicks": 1
+    },
+    {
+      "page": "/blog/wazuh-mcp-server-claude-ia",
+      "clicks": 0,
+      "impressions": 21,
+      "ctr": 0,
+      "position": 6.190476190476191,
+      "prevClicks": 4
     },
     {
       "page": "/consultoria-ia",
       "clicks": 0,
-      "impressions": 6,
+      "impressions": 3,
       "ctr": 0,
-      "position": 22.666666666666668,
-      "prevClicks": 0
-    },
-    {
-      "page": "/consultoria-ia-castellon",
-      "clicks": 0,
-      "impressions": 78,
-      "ctr": 0,
-      "position": 30.17948717948718,
+      "position": 60.666666666666664,
       "prevClicks": 0
     },
     {
       "page": "/consultoria-ia-valencia",
       "clicks": 0,
-      "impressions": 108,
+      "impressions": 99,
       "ctr": 0,
-      "position": 38.94444444444444,
+      "position": 30.464646464646464,
       "prevClicks": 0
     }
   ],
   "trending90": [
     {
       "keyword": "instalar wazuh en ubuntu 24.04",
-      "clicks": 28,
+      "clicks": 30,
       "impressions": 82,
-      "position": 2.4878048780487805
-    },
-    {
-      "keyword": "wazuh ens",
-      "clicks": 11,
-      "impressions": 26,
-      "position": 1.1153846153846154
+      "position": 2.3658536585365857
     },
     {
       "keyword": "wazuh",
-      "clicks": 9,
-      "impressions": 3080,
-      "position": 7.751623376623376
+      "clicks": 11,
+      "impressions": 3611,
+      "position": 7.689836610357242
+    },
+    {
+      "keyword": "instalar wazuh en ubuntu",
+      "clicks": 10,
+      "impressions": 85,
+      "position": 4.247058823529412
+    },
+    {
+      "keyword": "wazuh ens",
+      "clicks": 8,
+      "impressions": 27,
+      "position": 1.2592592592592593
+    },
+    {
+      "keyword": "curso wazuh",
+      "clicks": 7,
+      "impressions": 54,
+      "position": 7.592592592592593
+    },
+    {
+      "keyword": "wazuh ia",
+      "clicks": 7,
+      "impressions": 58,
+      "position": 4.637931034482758
     },
     {
       "keyword": "ai security",
       "clicks": 6,
-      "impressions": 135,
-      "position": 6
-    },
-    {
-      "keyword": "instalar wazuh en ubuntu",
-      "clicks": 6,
-      "impressions": 76,
-      "position": 4.328947368421053
-    },
-    {
-      "keyword": "curso wazuh",
-      "clicks": 5,
-      "impressions": 67,
-      "position": 11.522388059701493
+      "impressions": 123,
+      "position": 6.2439024390243905
     },
     {
       "keyword": "instalar wazuh en ubuntu server",
-      "clicks": 5,
-      "impressions": 48,
-      "position": 4.375
-    },
-    {
-      "keyword": "wazuh ia",
-      "clicks": 5,
-      "impressions": 49,
-      "position": 5
+      "clicks": 6,
+      "impressions": 52,
+      "position": 4.096153846153847
     },
     {
       "keyword": "aisecurity",
-      "clicks": 3,
-      "impressions": 14,
-      "position": 1.7857142857142856
+      "clicks": 4,
+      "impressions": 15,
+      "position": 1.7333333333333334
     },
     {
-      "keyword": "wazuh elasticsearch",
+      "keyword": "instalar wazuh en windows",
       "clicks": 3,
-      "impressions": 18,
-      "position": 4.055555555555555
+      "impressions": 51,
+      "position": 6.431372549019608
+    },
+    {
+      "keyword": "install wazuh ubuntu 24.04",
+      "clicks": 3,
+      "impressions": 8,
+      "position": 3.25
+    },
+    {
+      "keyword": "wazuh que es",
+      "clicks": 3,
+      "impressions": 445,
+      "position": 7.678651685393258
     },
     {
       "keyword": "curso de wazuh",
       "clicks": 2,
-      "impressions": 55,
-      "position": 13.236363636363636
-    },
-    {
-      "keyword": "instalar wazuh en windows",
-      "clicks": 2,
-      "impressions": 51,
-      "position": 9.745098039215685
-    },
-    {
-      "keyword": "install wazuh ubuntu 24.04",
-      "clicks": 2,
-      "impressions": 7,
-      "position": 3.5714285714285716
+      "impressions": 45,
+      "position": 15.577777777777778
     },
     {
       "keyword": "que es wazuh",
       "clicks": 2,
-      "impressions": 171,
-      "position": 8.052631578947368
+      "impressions": 196,
+      "position": 7.821428571428571
     },
     {
       "keyword": "wazuh blog",
       "clicks": 2,
-      "impressions": 62,
-      "position": 6.096774193548387
+      "impressions": 65,
+      "position": 6.107692307692307
+    },
+    {
+      "keyword": "wazuh curso",
+      "clicks": 2,
+      "impressions": 43,
+      "position": 7.4186046511627906
+    },
+    {
+      "keyword": "wazuh elasticsearch",
+      "clicks": 2,
+      "impressions": 15,
+      "position": 4.133333333333333
     },
     {
       "keyword": "wazuh mcp",
       "clicks": 2,
-      "impressions": 5,
-      "position": 6
+      "impressions": 6,
+      "position": 5.333333333333333
     },
     {
       "keyword": "wazuh mcp server",
@@ -1370,34 +1382,28 @@
       "position": 7.833333333333333
     },
     {
-      "keyword": "wazuh que es",
-      "clicks": 2,
-      "impressions": 341,
-      "position": 7.703812316715543
-    },
-    {
       "keyword": "agente wazuh",
       "clicks": 1,
-      "impressions": 91,
-      "position": 7.615384615384615
+      "impressions": 100,
+      "position": 7.63
     },
     {
-      "keyword": "elasticsearch wazuh",
+      "keyword": "ia castellon",
       "clicks": 1,
-      "impressions": 8,
-      "position": 5.875
+      "impressions": 3,
+      "position": 18.666666666666668
     },
     {
       "keyword": "ia security",
       "clicks": 1,
-      "impressions": 34,
-      "position": 19.88235294117647
+      "impressions": 31,
+      "position": 16.58064516129032
     },
     {
       "keyword": "install wazuh ubuntu",
       "clicks": 1,
-      "impressions": 13,
-      "position": 6.3076923076923075
+      "impressions": 14,
+      "position": 6.285714285714286
     },
     {
       "keyword": "mcp wazuh",
@@ -1408,56 +1414,38 @@
     {
       "keyword": "para que sirve wazuh",
       "clicks": 1,
-      "impressions": 20,
-      "position": 3.75
-    },
-    {
-      "keyword": "recepcionista ai",
-      "clicks": 1,
-      "impressions": 3,
-      "position": 10.333333333333334
+      "impressions": 22,
+      "position": 3.590909090909091
     },
     {
       "keyword": "recepcionista ia",
       "clicks": 1,
-      "impressions": 72,
-      "position": 42.861111111111114
+      "impressions": 87,
+      "position": 40.5632183908046
     },
     {
       "keyword": "wazhu",
       "clicks": 1,
-      "impressions": 78,
-      "position": 7.487179487179487
+      "impressions": 89,
+      "position": 7.50561797752809
     },
     {
       "keyword": "wazuh agent linux",
       "clicks": 1,
-      "impressions": 12,
-      "position": 6.5
-    },
-    {
-      "keyword": "wazuh agent para que sirve",
-      "clicks": 1,
-      "impressions": 23,
-      "position": 6.869565217391305
+      "impressions": 13,
+      "position": 6.769230769230769
     },
     {
       "keyword": "wazuh agent windows",
       "clicks": 1,
-      "impressions": 187,
-      "position": 7.160427807486631
+      "impressions": 201,
+      "position": 7.124378109452737
     },
     {
       "keyword": "wazuh ai",
       "clicks": 1,
-      "impressions": 16,
-      "position": 7.625
-    },
-    {
-      "keyword": "wazuh curso",
-      "clicks": 1,
-      "impressions": 54,
-      "position": 13.518518518518519
+      "impressions": 17,
+      "position": 7.588235294117647
     },
     {
       "keyword": "wazuh elastic",
@@ -1468,8 +1456,8 @@
     {
       "keyword": "wazuh ia integration",
       "clicks": 1,
-      "impressions": 6,
-      "position": 6
+      "impressions": 5,
+      "position": 6.4
     },
     {
       "keyword": "wazuh iso 27001",
@@ -1480,26 +1468,32 @@
     {
       "keyword": "wazuh kibana",
       "clicks": 1,
-      "impressions": 13,
-      "position": 5.6923076923076925
+      "impressions": 14,
+      "position": 5.857142857142857
     },
     {
       "keyword": "wazuh monitor docker",
       "clicks": 1,
-      "impressions": 1,
-      "position": 9
+      "impressions": 2,
+      "position": 7.5
+    },
+    {
+      "keyword": "wazuh para que sirve",
+      "clicks": 1,
+      "impressions": 32,
+      "position": 4.84375
     },
     {
       "keyword": "wazuh precio",
       "clicks": 1,
-      "impressions": 19,
-      "position": 2.052631578947368
+      "impressions": 18,
+      "position": 1.9444444444444444
     },
     {
       "keyword": "wazuh que es y para que sirve",
       "clicks": 1,
-      "impressions": 32,
-      "position": 2.15625
+      "impressions": 40,
+      "position": 3.25
     },
     {
       "keyword": "\"/var/ossec/bin/agent-auth -m\"",
@@ -1518,12 +1512,6 @@
       "clicks": 0,
       "impressions": 1,
       "position": 4
-    },
-    {
-      "keyword": "\"curl -s https://packages.wazuh.com/install.sh\"",
-      "clicks": 0,
-      "impressions": 1,
-      "position": 3
     },
     {
       "keyword": "\"https://packages.wazuh.com/4.x/windows/wazuh-agent.msi\"",
@@ -1546,8 +1534,8 @@
     {
       "keyword": "\"office365.userid\" \"wazuh\"",
       "clicks": 0,
-      "impressions": 9,
-      "position": 6.444444444444445
+      "impressions": 7,
+      "position": 6.142857142857143
     },
     {
       "keyword": "\"office365.userid\" wazuh",
@@ -1560,237 +1548,289 @@
       "clicks": 0,
       "impressions": 1,
       "position": 12
+    },
+    {
+      "keyword": "\"office365.userid\" wazuh rule",
+      "clicks": 0,
+      "impressions": 3,
+      "position": 7
+    },
+    {
+      "keyword": "\"siem\" -site:reddit.com -site:twitter.com -site:x.com -site:wykop.pl -site:tripadvisor.com -site:youtube.com -site:yelp.com -site:booking.com -site:facebook.com -site:instagram.com -site:tiktok.com",
+      "clicks": 0,
+      "impressions": 1,
+      "position": 4
     }
   ],
   "opportunities": [
     {
       "keyword": "wazuh",
-      "clicks": 1,
-      "impressions": 661,
-      "ctr": 0.0015128593040847202,
-      "position": 7.376701966717095
+      "clicks": 2,
+      "impressions": 601,
+      "ctr": 0.0033277870216306157,
+      "position": 7.728785357737105
     },
     {
-      "keyword": "que es wazuh",
+      "keyword": "wazuh que es",
       "clicks": 1,
-      "impressions": 28,
-      "ctr": 0.03571428571428571,
-      "position": 6.714285714285714
+      "impressions": 117,
+      "ctr": 0.008547008547008548,
+      "position": 7.743589743589744
     },
     {
-      "keyword": "chatbots inteligentes alicante",
+      "keyword": "agencia ia castellon",
+      "clicks": 0,
+      "impressions": 17,
+      "ctr": 0,
+      "position": 19.529411764705884
+    },
+    {
+      "keyword": "agente wazuh",
+      "clicks": 0,
+      "impressions": 11,
+      "ctr": 0,
+      "position": 8.181818181818182
+    },
+    {
+      "keyword": "chatbot gestion de citas",
       "clicks": 0,
       "impressions": 10,
       "ctr": 0,
-      "position": 18.2
+      "position": 17.8
+    },
+    {
+      "keyword": "consultoría ia alicante",
+      "clicks": 0,
+      "impressions": 10,
+      "ctr": 0,
+      "position": 12.2
+    },
+    {
+      "keyword": "como instalar wazuh",
+      "clicks": 0,
+      "impressions": 9,
+      "ctr": 0,
+      "position": 9.11111111111111
+    },
+    {
+      "keyword": "como instalar wazuh en ubuntu server",
+      "clicks": 0,
+      "impressions": 9,
+      "ctr": 0,
+      "position": 6
+    },
+    {
+      "keyword": "chatbots alicante",
+      "clicks": 0,
+      "impressions": 8,
+      "ctr": 0,
+      "position": 13
     },
     {
       "keyword": "consultoría ia en alicante",
       "clicks": 0,
-      "impressions": 9,
+      "impressions": 8,
       "ctr": 0,
-      "position": 17.11111111111111
+      "position": 12.375
     },
     {
       "keyword": "consultoría ia valencia",
       "clicks": 0,
       "impressions": 8,
       "ctr": 0,
-      "position": 18.875
+      "position": 13.75
     },
     {
-      "keyword": "como instalar wazuh en ubuntu server",
+      "keyword": "experto en ia en castellón",
+      "clicks": 0,
+      "impressions": 8,
+      "ctr": 0,
+      "position": 19.25
+    },
+    {
+      "keyword": "como funciona wazuh",
       "clicks": 0,
       "impressions": 7,
       "ctr": 0,
-      "position": 7
+      "position": 8.857142857142858
     },
     {
       "keyword": "instalar wazuh",
       "clicks": 0,
-      "impressions": 7,
+      "impressions": 6,
       "ctr": 0,
-      "position": 8.714285714285715
+      "position": 7.833333333333333
     },
     {
-      "keyword": "para que sirve wazuh",
-      "clicks": 0,
-      "impressions": 7,
-      "ctr": 0,
-      "position": 3.7142857142857144
-    },
-    {
-      "keyword": "agente wazuh",
+      "keyword": "monitoreo de docker",
       "clicks": 0,
       "impressions": 6,
       "ctr": 0,
-      "position": 8.833333333333332
-    },
-    {
-      "keyword": "instalar wazuh en ubuntu",
-      "clicks": 0,
-      "impressions": 6,
-      "ctr": 0,
-      "position": 2.5
-    },
-    {
-      "keyword": "que es wazuh agent",
-      "clicks": 0,
-      "impressions": 5,
-      "ctr": 0,
-      "position": 5
+      "position": 12.833333333333334
     }
   ],
   "nearTop": [
     {
       "keyword": "wazuh",
+      "clicks": 2,
+      "impressions": 601,
+      "ctr": 0.0033277870216306157,
+      "position": 7.728785357737105
+    },
+    {
+      "keyword": "wazuh que es",
       "clicks": 1,
-      "impressions": 661,
-      "ctr": 0.0015128593040847202,
-      "position": 7.376701966717095
-    },
-    {
-      "keyword": "que es wazuh",
-      "clicks": 1,
-      "impressions": 28,
-      "ctr": 0.03571428571428571,
-      "position": 6.714285714285714
-    },
-    {
-      "keyword": "ai security",
-      "clicks": 1,
-      "impressions": 11,
-      "ctr": 0.09090909090909091,
-      "position": 8.181818181818182
-    },
-    {
-      "keyword": "wazuh blog",
-      "clicks": 1,
-      "impressions": 8,
-      "ctr": 0.125,
-      "position": 6.5
-    },
-    {
-      "keyword": "como instalar wazuh en ubuntu server",
-      "clicks": 0,
-      "impressions": 7,
-      "ctr": 0,
-      "position": 7
-    },
-    {
-      "keyword": "instalar wazuh",
-      "clicks": 0,
-      "impressions": 7,
-      "ctr": 0,
-      "position": 8.714285714285715
+      "impressions": 117,
+      "ctr": 0.008547008547008548,
+      "position": 7.743589743589744
     },
     {
       "keyword": "agente wazuh",
       "clicks": 0,
-      "impressions": 6,
+      "impressions": 11,
       "ctr": 0,
-      "position": 8.833333333333332
+      "position": 8.181818181818182
     },
     {
-      "keyword": "que es wazuh agent",
+      "keyword": "consultoría ia alicante",
       "clicks": 0,
-      "impressions": 5,
+      "impressions": 10,
       "ctr": 0,
-      "position": 5
+      "position": 12.2
     },
     {
-      "keyword": "wazuh mcp",
-      "clicks": 1,
-      "impressions": 4,
-      "ctr": 0.25,
-      "position": 5
-    },
-    {
-      "keyword": "wazuh mcp server",
-      "clicks": 2,
-      "impressions": 3,
-      "ctr": 0.6666666666666666,
-      "position": 4.333333333333334
-    }
-  ],
-  "newKeywords": [
-    {
-      "keyword": "wazuh blog",
-      "clicks": 1,
-      "impressions": 8,
-      "position": 6.5
+      "keyword": "como instalar wazuh",
+      "clicks": 0,
+      "impressions": 9,
+      "ctr": 0,
+      "position": 9.11111111111111
     },
     {
       "keyword": "como instalar wazuh en ubuntu server",
       "clicks": 0,
-      "impressions": 7,
-      "position": 7
-    },
-    {
-      "keyword": "wazuh mcp server",
-      "clicks": 2,
-      "impressions": 3,
-      "position": 4.333333333333334
-    },
-    {
-      "keyword": "agencia inteligencia artificial valencia",
-      "clicks": 0,
-      "impressions": 3,
-      "position": 66
-    },
-    {
-      "keyword": "wazuh agent linux",
-      "clicks": 1,
-      "impressions": 2,
-      "position": 6.5
-    },
-    {
-      "keyword": "wazuh ollama",
-      "clicks": 1,
-      "impressions": 2,
-      "position": 4.5
-    },
-    {
-      "keyword": "ai sec",
-      "clicks": 0,
-      "impressions": 2,
-      "position": 4
+      "impressions": 9,
+      "ctr": 0,
+      "position": 6
     },
     {
       "keyword": "chatbots alicante",
       "clicks": 0,
-      "impressions": 2,
-      "position": 18
+      "impressions": 8,
+      "ctr": 0,
+      "position": 13
     },
     {
-      "keyword": "ciberseguridad para empresas en alicante",
+      "keyword": "consultoría ia en alicante",
       "clicks": 0,
-      "impressions": 2,
-      "position": 51
+      "impressions": 8,
+      "ctr": 0,
+      "position": 12.375
     },
     {
-      "keyword": "kibana wazuh",
+      "keyword": "consultoría ia valencia",
       "clicks": 0,
-      "impressions": 2,
-      "position": 6.5
+      "impressions": 8,
+      "ctr": 0,
+      "position": 13.75
     },
     {
-      "keyword": "monitoreo de docker",
+      "keyword": "como funciona wazuh",
       "clicks": 0,
-      "impressions": 2,
-      "position": 9.5
+      "impressions": 7,
+      "ctr": 0,
+      "position": 8.857142857142858
+    }
+  ],
+  "newKeywords": [
+    {
+      "keyword": "wazuh que es",
+      "clicks": 1,
+      "impressions": 117,
+      "position": 7.743589743589744
     },
     {
-      "keyword": "recepción de averías 24/7 con ia",
-      "clicks": 0,
-      "impressions": 2,
-      "position": 18.5
+      "keyword": "wazuh ia",
+      "clicks": 2,
+      "impressions": 12,
+      "position": 3.8333333333333335
     },
     {
-      "keyword": "servicio ai officer empresas",
+      "keyword": "wazuh para que sirve",
+      "clicks": 1,
+      "impressions": 6,
+      "position": 2.666666666666667
+    },
+    {
+      "keyword": "instalar agente wazuh en windows",
+      "clicks": 0,
+      "impressions": 5,
+      "position": 2.8
+    },
+    {
+      "keyword": "auditoria de seguridad en alicante",
+      "clicks": 0,
+      "impressions": 4,
+      "position": 78.5
+    },
+    {
+      "keyword": "ai consultant valencia",
+      "clicks": 0,
+      "impressions": 3,
+      "position": 70.33333333333333
+    },
+    {
+      "keyword": "ai consultants valencia",
+      "clicks": 0,
+      "impressions": 3,
+      "position": 63.333333333333336
+    },
+    {
+      "keyword": "curso sistema siem",
+      "clicks": 0,
+      "impressions": 3,
+      "position": 12.666666666666666
+    },
+    {
+      "keyword": "elastic wazuh",
+      "clicks": 0,
+      "impressions": 3,
+      "position": 5.666666666666667
+    },
+    {
+      "keyword": "wazuh curso",
+      "clicks": 1,
+      "impressions": 2,
+      "position": 1.5
+    },
+    {
+      "keyword": "chatbot atencion al cliente granada",
       "clicks": 0,
       "impressions": 2,
-      "position": 37
+      "position": 23.5
+    },
+    {
+      "keyword": "curso sysadmin",
+      "clicks": 0,
+      "impressions": 2,
+      "position": 8
+    },
+    {
+      "keyword": "ia sec",
+      "clicks": 0,
+      "impressions": 2,
+      "position": 9
+    },
+    {
+      "keyword": "install wazuh in ubuntu",
+      "clicks": 0,
+      "impressions": 2,
+      "position": 5
+    },
+    {
+      "keyword": "install wazuh linux",
+      "clicks": 0,
+      "impressions": 2,
+      "position": 6
     }
   ]
 }

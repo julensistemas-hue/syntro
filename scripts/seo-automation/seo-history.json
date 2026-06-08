@@ -1074,6 +1074,221 @@
           "isNew": true
         }
       ]
+    },
+    {
+      "date": "2026-06-08T06:12:06.127Z",
+      "totals": {
+        "current": {
+          "clicks": 21,
+          "impressions": 1121
+        },
+        "previous": {
+          "clicks": 12,
+          "impressions": 1144
+        }
+      },
+      "topKeywords": [
+        {
+          "keyword": "instalar wazuh en ubuntu",
+          "clicks": 4,
+          "impressions": 9,
+          "ctr": 0.4444444444444444,
+          "position": 3.5555555555555554,
+          "prevClicks": 0,
+          "prevPosition": 2.5,
+          "isNew": false
+        },
+        {
+          "keyword": "curso wazuh",
+          "clicks": 2,
+          "impressions": 2,
+          "ctr": 1,
+          "position": 3,
+          "prevClicks": 1,
+          "prevPosition": 5,
+          "isNew": false
+        },
+        {
+          "keyword": "instalar wazuh en ubuntu 24.04",
+          "clicks": 2,
+          "impressions": 6,
+          "ctr": 0.3333333333333333,
+          "position": 1.1666666666666667,
+          "prevClicks": 0,
+          "prevPosition": 1.25,
+          "isNew": false
+        },
+        {
+          "keyword": "wazuh",
+          "clicks": 2,
+          "impressions": 601,
+          "ctr": 0.0033277870216306157,
+          "position": 7.728785357737105,
+          "prevClicks": 1,
+          "prevPosition": 7.376701966717095,
+          "isNew": false
+        },
+        {
+          "keyword": "wazuh ia",
+          "clicks": 2,
+          "impressions": 12,
+          "ctr": 0.16666666666666666,
+          "position": 3.8333333333333335,
+          "prevClicks": 0,
+          "prevPosition": null,
+          "isNew": true
+        },
+        {
+          "keyword": "aisecurity",
+          "clicks": 1,
+          "impressions": 1,
+          "ctr": 1,
+          "position": 1,
+          "prevClicks": 0,
+          "prevPosition": null,
+          "isNew": true
+        },
+        {
+          "keyword": "ia castellon",
+          "clicks": 1,
+          "impressions": 2,
+          "ctr": 0.5,
+          "position": 18.5,
+          "prevClicks": 0,
+          "prevPosition": 19,
+          "isNew": false
+        },
+        {
+          "keyword": "ia security",
+          "clicks": 1,
+          "impressions": 6,
+          "ctr": 0.16666666666666666,
+          "position": 19.166666666666668,
+          "prevClicks": 0,
+          "prevPosition": 33.4,
+          "isNew": false
+        },
+        {
+          "keyword": "instalar wazuh en ubuntu server",
+          "clicks": 1,
+          "impressions": 6,
+          "ctr": 0.16666666666666666,
+          "position": 2.833333333333333,
+          "prevClicks": 1,
+          "prevPosition": 3,
+          "isNew": false
+        },
+        {
+          "keyword": "instalar wazuh en windows",
+          "clicks": 1,
+          "impressions": 4,
+          "ctr": 0.25,
+          "position": 4,
+          "prevClicks": 0,
+          "prevPosition": 6,
+          "isNew": false
+        },
+        {
+          "keyword": "install wazuh ubuntu 24.04",
+          "clicks": 1,
+          "impressions": 1,
+          "ctr": 1,
+          "position": 1,
+          "prevClicks": 0,
+          "prevPosition": null,
+          "isNew": true
+        },
+        {
+          "keyword": "wazuh curso",
+          "clicks": 1,
+          "impressions": 2,
+          "ctr": 0.5,
+          "position": 1.5,
+          "prevClicks": 0,
+          "prevPosition": null,
+          "isNew": true
+        },
+        {
+          "keyword": "wazuh para que sirve",
+          "clicks": 1,
+          "impressions": 6,
+          "ctr": 0.16666666666666666,
+          "position": 2.666666666666667,
+          "prevClicks": 0,
+          "prevPosition": null,
+          "isNew": true
+        },
+        {
+          "keyword": "wazuh que es",
+          "clicks": 1,
+          "impressions": 117,
+          "ctr": 0.008547008547008548,
+          "position": 7.743589743589744,
+          "prevClicks": 0,
+          "prevPosition": null,
+          "isNew": true
+        },
+        {
+          "keyword": "agencia ia alicante",
+          "clicks": 0,
+          "impressions": 8,
+          "ctr": 0,
+          "position": 34.375,
+          "prevClicks": 0,
+          "prevPosition": 36.25,
+          "isNew": false
+        },
+        {
+          "keyword": "agencia ia castellon",
+          "clicks": 0,
+          "impressions": 17,
+          "ctr": 0,
+          "position": 19.529411764705884,
+          "prevClicks": 0,
+          "prevPosition": 30.26923076923077,
+          "isNew": false
+        },
+        {
+          "keyword": "agencia ia valencia",
+          "clicks": 0,
+          "impressions": 39,
+          "ctr": 0,
+          "position": 31.102564102564102,
+          "prevClicks": 0,
+          "prevPosition": 43.9,
+          "isNew": false
+        },
+        {
+          "keyword": "agencia inteligencia artificial alicante",
+          "clicks": 0,
+          "impressions": 8,
+          "ctr": 0,
+          "position": 46.375,
+          "prevClicks": 0,
+          "prevPosition": 51.25,
+          "isNew": false
+        },
+        {
+          "keyword": "agencia inteligencia artificial valencia",
+          "clicks": 0,
+          "impressions": 3,
+          "ctr": 0,
+          "position": 31.666666666666668,
+          "prevClicks": 0,
+          "prevPosition": 66,
+          "isNew": false
+        },
+        {
+          "keyword": "agendación de citas con asistentes virtuales",
+          "clicks": 0,
+          "impressions": 9,
+          "ctr": 0,
+          "position": 33.55555555555556,
+          "prevClicks": 0,
+          "prevPosition": 25.77777777777778,
+          "isNew": false
+        }
+      ]
     }
   ]
 }

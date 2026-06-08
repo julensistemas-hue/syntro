@@ -1,132 +1,152 @@
 {
-  "generatedAt": "2026-06-01T06:05:52.614Z",
+  "generatedAt": "2026-06-08T06:12:12.527Z",
   "propertyId": "519124169",
   "period": {
-    "startDate": "2026-05-24",
-    "endDate": "2026-05-31"
+    "startDate": "2026-05-31",
+    "endDate": "2026-06-07"
   },
   "summary": {
-    "totalSessions": 47,
+    "totalSessions": 54,
     "organicSessions": 17,
-    "organicPct": "36.2"
+    "organicPct": "31.5"
   },
   "topPages": [
     {
-      "page": "/",
-      "sessions": 25,
-      "activeUsers": 20,
+      "page": "/curso-wazuh",
+      "sessions": 24,
+      "activeUsers": 15,
       "bounceRate": 0,
-      "avgDuration": 75.50345916,
-      "pageViews": 27,
+      "avgDuration": 181.65606470833333,
+      "pageViews": 24,
       "prevSessions": 16,
-      "sessionsDiff": 9
+      "sessionsDiff": 8
     },
     {
-      "page": "/curso-wazuh",
-      "sessions": 16,
-      "activeUsers": 13,
+      "page": "/",
+      "sessions": 19,
+      "activeUsers": 14,
       "bounceRate": 0,
-      "avgDuration": 240.235744,
-      "pageViews": 22,
-      "prevSessions": 17,
-      "sessionsDiff": -1
+      "avgDuration": 215.5337914736842,
+      "pageViews": 53,
+      "prevSessions": 25,
+      "sessionsDiff": -6
     },
     {
       "page": "/consultoria-ia",
-      "sessions": 5,
-      "activeUsers": 4,
+      "sessions": 7,
+      "activeUsers": 6,
       "bounceRate": 0,
-      "avgDuration": 10.4428228,
-      "pageViews": 5,
-      "prevSessions": 1,
-      "sessionsDiff": 4
-    },
-    {
-      "page": "/blog",
-      "sessions": 3,
-      "activeUsers": 2,
-      "bounceRate": 0,
-      "avgDuration": 10.697175666666666,
-      "pageViews": 3,
+      "avgDuration": 27.238305857142855,
+      "pageViews": 10,
       "prevSessions": 5,
-      "sessionsDiff": -2
+      "sessionsDiff": 2
     },
     {
-      "page": "/servicios/atencion-llamadas",
-      "sessions": 3,
+      "page": "/servicios/gestor-citas",
+      "sessions": 4,
       "activeUsers": 3,
       "bounceRate": 0,
-      "avgDuration": 30.81587233333333,
+      "avgDuration": 36.2213325,
       "pageViews": 3,
-      "prevSessions": 1,
+      "prevSessions": 2,
       "sessionsDiff": 2
+    },
+    {
+      "page": "/curso-techai-boost",
+      "sessions": 2,
+      "activeUsers": 2,
+      "bounceRate": 0,
+      "avgDuration": 1716.1325725,
+      "pageViews": 4,
+      "prevSessions": 1,
+      "sessionsDiff": 1
     },
     {
       "page": "/presupuesto",
       "sessions": 2,
       "activeUsers": 2,
       "bounceRate": 0,
-      "avgDuration": 80.86756,
-      "pageViews": 2,
-      "prevSessions": 5,
-      "sessionsDiff": -3
+      "avgDuration": 89.3031315,
+      "pageViews": 4,
+      "prevSessions": 2,
+      "sessionsDiff": 0
     },
     {
-      "page": "/privacy",
+      "page": "/reunion",
       "sessions": 2,
       "activeUsers": 1,
       "bounceRate": 0,
-      "avgDuration": 22.328417,
-      "pageViews": 2,
-      "prevSessions": 1,
-      "sessionsDiff": 1
-    },
-    {
-      "page": "/servicios/chatbot",
-      "sessions": 2,
-      "activeUsers": 2,
-      "bounceRate": 0,
-      "avgDuration": 16.955419,
+      "avgDuration": 351.8989965,
       "pageViews": 2,
       "prevSessions": 0,
       "sessionsDiff": 2
     },
     {
-      "page": "/servicios/gestor-citas",
+      "page": "/servicios/automatizacion",
       "sessions": 2,
-      "activeUsers": 2,
+      "activeUsers": 1,
       "bounceRate": 0,
-      "avgDuration": 14.9265115,
-      "pageViews": 2,
-      "prevSessions": 1,
-      "sessionsDiff": 1
+      "avgDuration": 150.6561665,
+      "pageViews": 5,
+      "prevSessions": 0,
+      "sessionsDiff": 2
     },
     {
       "page": "/consultoria-ia-alicante",
       "sessions": 1,
       "activeUsers": 1,
       "bounceRate": 0,
-      "avgDuration": 1.921781,
-      "pageViews": 1,
-      "prevSessions": 0,
-      "sessionsDiff": 1
+      "avgDuration": 34.846455,
+      "pageViews": 2,
+      "prevSessions": 1,
+      "sessionsDiff": 0
     },
     {
-      "page": "/curso-techai-boost",
-      "sessions": 1,
-      "activeUsers": 0,
-      "bounceRate": 0,
-      "avgDuration": 0,
-      "pageViews": 1,
-      "prevSessions": 0,
-      "sessionsDiff": 1
-    },
-    {
-      "page": "/servicios/concienciacion",
+      "page": "/consultoria-ia-castellon",
       "sessions": 1,
       "activeUsers": 1,
       "bounceRate": 0,
-      "avgDuration": 38.501519,
+      "avgDuration": 61.02024,
+      "pageViews": 1,
+      "prevSessions": 0,
+      "sessionsDiff": 1
+    },
+    {
+      "page": "/contacto",
+      "sessions": 1,
+      "activeUsers": 1,
+      "bounceRate": 0,
+      "avgDuration": 215.867626,
+      "pageViews": 1,
+      "prevSessions": 0,
+      "sessionsDiff": 1
+    },
+    {
+      "page": "/servicios/atencion-llamadas",
+      "sessions": 1,
+      "activeUsers": 1,
+      "bounceRate": 0,
+      "avgDuration": 1885.577788,
+      "pageViews": 21,
+      "prevSessions": 3,
+      "sessionsDiff": -2
+    },
+    {
+      "page": "/servicios/chatbot",
+      "sessions": 1,
+      "activeUsers": 1,
+      "bounceRate": 0,
+      "avgDuration": 26.12157,
+      "pageViews": 1,
+      "prevSessions": 2,
+      "sessionsDiff": -1
+    },
+    {
+      "page": "/servicios/geo-posicionamiento",
+      "sessions": 1,
+      "activeUsers": 1,
+      "bounceRate": 0,
+      "avgDuration": 0.300679,
       "pageViews": 1,
       "prevSessions": 0,
       "sessionsDiff": 1
@@ -136,17 +156,17 @@
       "sessions": 1,
       "activeUsers": 1,
       "bounceRate": 0,
-      "avgDuration": 11.839425,
+      "avgDuration": 8.279386,
       "pageViews": 1,
-      "prevSessions": 0,
-      "sessionsDiff": 1
+      "prevSessions": 1,
+      "sessionsDiff": 0
     },
     {
-      "page": "/test-ia",
+      "page": "/soporte-tecnico",
       "sessions": 1,
       "activeUsers": 1,
       "bounceRate": 0,
-      "avgDuration": 5.48817,
+      "avgDuration": 13.574996,
       "pageViews": 1,
       "prevSessions": 0,
       "sessionsDiff": 1
@@ -154,70 +174,56 @@
   ],
   "channels": [
     {
+      "channel": "Direct",
+      "sessions": 25,
+      "activeUsers": 20,
+      "bounceRate": 0,
+      "conversions": 234
+    },
+    {
       "channel": "Organic Search",
       "sessions": 17,
-      "activeUsers": 11,
+      "activeUsers": 12,
       "bounceRate": 0,
-      "conversions": 83
-    },
-    {
-      "channel": "Direct",
-      "sessions": 14,
-      "activeUsers": 10,
-      "bounceRate": 0,
-      "conversions": 65
-    },
-    {
-      "channel": "Paid Search",
-      "sessions": 8,
-      "activeUsers": 8,
-      "bounceRate": 0,
-      "conversions": 24
+      "conversions": 67
     },
     {
       "channel": "Organic Video",
-      "sessions": 4,
-      "activeUsers": 4,
+      "sessions": 7,
+      "activeUsers": 3,
       "bounceRate": 0,
-      "conversions": 26
+      "conversions": 21
     },
     {
       "channel": "Referral",
-      "sessions": 2,
-      "activeUsers": 2,
+      "sessions": 4,
+      "activeUsers": 3,
       "bounceRate": 0,
-      "conversions": 6
+      "conversions": 17
     },
     {
       "channel": "Organic Shopping",
       "sessions": 1,
-      "activeUsers": 1,
+      "activeUsers": 0,
       "bounceRate": 0,
-      "conversions": 5
-    },
-    {
-      "channel": "Unassigned",
-      "sessions": 1,
-      "activeUsers": 1,
-      "bounceRate": 1,
-      "conversions": 1
+      "conversions": 2
     }
   ],
   "events": [
     {
       "event": "page_view",
-      "count": 73,
-      "users": 37
-    },
-    {
-      "event": "session_start",
-      "count": 46,
-      "users": 37
+      "count": 134,
+      "users": 40
     },
     {
       "event": "user_engagement",
-      "count": 44,
-      "users": 15
+      "count": 97,
+      "users": 26
+    },
+    {
+      "event": "session_start",
+      "count": 54,
+      "users": 41
     },
     {
       "event": "first_visit",
@@ -226,53 +232,53 @@
     },
     {
       "event": "scroll",
-      "count": 12,
-      "users": 9
+      "count": 20,
+      "users": 7
     },
     {
       "event": "form_start",
-      "count": 1,
+      "count": 2,
       "users": 1
     }
   ],
   "countries": [
     {
       "country": "Spain",
-      "sessions": 20,
-      "users": 14
+      "sessions": 30,
+      "users": 23
     },
     {
-      "country": "(not set)",
-      "sessions": 8,
-      "users": 8
+      "country": "Argentina",
+      "sessions": 6,
+      "users": 2
     },
     {
       "country": "El Salvador",
-      "sessions": 4,
-      "users": 1
-    },
-    {
-      "country": "United States",
       "sessions": 3,
-      "users": 3
+      "users": 0
     },
     {
-      "country": "Morocco",
+      "country": "Cuba",
       "sessions": 2,
       "users": 1
     },
     {
-      "country": "Argentina",
-      "sessions": 1,
+      "country": "Iran",
+      "sessions": 2,
       "users": 1
     },
     {
-      "country": "China",
-      "sessions": 1,
-      "users": 1
+      "country": "Netherlands",
+      "sessions": 2,
+      "users": 2
     },
     {
-      "country": "Colombia",
+      "country": "United States",
+      "sessions": 2,
+      "users": 2
+    },
+    {
+      "country": "Chile",
       "sessions": 1,
       "users": 1
     }
@@ -280,14 +286,14 @@
   "devices": [
     {
       "device": "desktop",
-      "sessions": 44,
-      "users": 34,
+      "sessions": 46,
+      "users": 31,
       "bounceRate": 0
     },
     {
       "device": "mobile",
-      "sessions": 2,
-      "users": 2,
+      "sessions": 8,
+      "users": 6,
       "bounceRate": 0
     }
   ]
