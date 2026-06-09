@@ -1,0 +1,494 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+interface CiudadData {
+  slug: string;
+  nombre: string;
+  region: string;
+  contexto: string;
+  contextoCorto: string;
+  sectores: { nombre: string; icon: string; desc: string }[];
+  dptos: { nombre: string; herramienta: string; ahorro: string }[];
+  faq: { q: string; a: string }[];
+}
+
+const ciudades: CiudadData[] = [
+  {
+    slug: "madrid",
+    nombre: "Madrid",
+    region: "Comunidad de Madrid",
+    contexto: "Madrid concentra el 30% del PIB español y acoge las sedes de las principales empresas del Ibex 35, multinacionales tecnológicas y uno de los ecosistemas fintech más activos de Europa. La presión competitiva es alta y la adopción de IA en empresas madrileñas crece a doble dígito. Las PYMES del corredor del Henares, Pozuelo y Las Rozas son de las primeras en adoptar automatización para competir con las grandes.",
+    contextoCorto: "Ecosistema empresarial de alta competitividad: fintech, consultoría, tecnología y servicios profesionales.",
+    sectores: [
+      { nombre: "Fintech y banca", icon: "🏦", desc: "Automatización de compliance, análisis de riesgo y atención al cliente con IA para empresas del sector financiero madrileño." },
+      { nombre: "Consultoría y servicios", icon: "💼", desc: "Generación de propuestas, análisis de contratos y documentación automática para despachos y consultoras." },
+      { nombre: "Tecnología y SaaS", icon: "💻", desc: "Aceleración del ciclo de desarrollo con Claude Code y GitHub Copilot para empresas tech del Paseo de la Castellana y alrededores." },
+    ],
+    dptos: [
+      { nombre: "Administración", herramienta: "Claude + Mindee", ahorro: "Procesa facturas en segundos. Una consultoría de 50 personas en Madrid pasó de 3 días a 4 horas/semana en gestión de facturas de proveedores." },
+      { nombre: "Atención al cliente", herramienta: "Chatbot IA", ahorro: "Una empresa SaaS madrileña redujo tickets de soporte en un 70% con chatbot conectado a su base de conocimiento." },
+      { nombre: "Comercial", herramienta: "Claude + n8n", ahorro: "Propuestas comerciales generadas en 10 min vs 2 horas. Seguimiento automático de leads sin trabajo manual." },
+      { nombre: "Comunicación", herramienta: "Midjourney + HeyGen", ahorro: "Contenido visual para redes en minutos. 10x más publicaciones con el mismo equipo." },
+    ],
+    faq: [
+      { q: "¿Ofrecéis implantación presencial en Madrid?", a: "Sí. Para clientes en Madrid ofrecemos visitas presenciales para el kickoff y la formación del equipo. El servicio posterior es 100% remoto. Nos desplazamos a cualquier punto de la Comunidad de Madrid." },
+      { q: "¿Qué sectores en Madrid tienen mayor retorno con IA?", a: "En Madrid los sectores con mayor retorno son fintech, consultoría, despachos profesionales, empresas de software y e-commerce de media-gran escala. El denominador común es el alto volumen de trabajo repetitivo que la IA puede automatizar: informes, facturas, atención al cliente, generación de propuestas." },
+      { q: "¿Cuánto tiempo tarda la implementación para una empresa en Madrid?", a: "Desde el análisis inicial hasta la puesta en marcha de la primera herramienta, entre 2 y 6 semanas según la complejidad. El plan básico (un departamento, sin integración con sistemas internos) puede estar activo en 10 días hábiles." },
+    ],
+  },
+  {
+    slug: "barcelona",
+    nombre: "Barcelona",
+    region: "Cataluña",
+    contexto: "Barcelona es el principal hub de startups de España y uno de los cinco mayores de Europa. La moda, el turismo, la logística y la industria tecnológica conviven con un tejido de PYMES muy dinámico. Empresas de todos los tamaños del Barcelonès, el Vallès y el Baix Llobregat buscan eficiencia operativa para competir en mercados internacionales.",
+    contextoCorto: "Hub europeo de startups, moda, logística y turismo con alta orientación a mercados internacionales.",
+    sectores: [
+      { nombre: "Moda y retail", icon: "👗", desc: "Automatización de descripciones de producto, gestión de devoluciones y atención multiidioma para marcas con presencia internacional." },
+      { nombre: "Turismo y hospitalidad", icon: "🏨", desc: "Gestores de citas IA, recepcionistas virtuales multiidioma y chatbots que atienden turistas en inglés, francés y alemán." },
+      { nombre: "Logística y distribución", icon: "🚚", desc: "Automatización de comunicaciones con clientes, seguimiento de pedidos con chatbot y procesado automático de albaranes." },
+    ],
+    dptos: [
+      { nombre: "Atención al cliente", herramienta: "Chatbot IA multiidioma", ahorro: "Una empresa de moda barcelonesa atiende consultas en 6 idiomas 24/7 con un único chatbot. Antes necesitaba 3 agentes por turno." },
+      { nombre: "Administración", herramienta: "n8n + Claude", ahorro: "Procesado automático de facturas en español, catalán e inglés. Reducción del 80% en tiempo de gestión documental." },
+      { nombre: "Comercial", herramienta: "Claude + CRM", ahorro: "Propuestas personalizadas generadas en minutos a partir de una reunión. Seguimiento de leads automatizado en Salesforce o HubSpot." },
+      { nombre: "Comunicación", herramienta: "Midjourney + Canva AI", ahorro: "Contenido visual adaptado al mercado catalán e internacional sin ampliar el equipo creativo." },
+    ],
+    faq: [
+      { q: "¿Podéis implementar IA en Barcelona en catalán?", a: "Sí. Configuramos los sistemas de IA con soporte completo en catalán: chatbots, recepcionistas virtuales y gestores documentales funcionan correctamente en catalán, castellano e inglés simultáneamente." },
+      { q: "¿Trabajáis con startups en Barcelona además de PYMES consolidadas?", a: "Sí. Tenemos experiencia con startups en fase de crecimiento que necesitan automatizar rápidamente sin grandes inversiones. Adaptamos el alcance al presupuesto y la madurez tecnológica de cada empresa." },
+      { q: "¿Ofrecéis servicio presencial en Barcelona?", a: "Sí, nos desplazamos a Barcelona para el análisis inicial y la formación del equipo. El servicio de mantenimiento es remoto. También atendemos el Vallès, el Baix Llobregat y el Maresme." },
+    ],
+  },
+  {
+    slug: "valencia",
+    nombre: "Valencia",
+    region: "Comunitat Valenciana",
+    contexto: "Valencia es la tercera economía española con una industria agroalimentaria líder en Europa (cítricos, horticultura), una fuerte presencia del sector cerámico (Azulejos de Castellón) y una creciente industria tecnológica. El Puerto de Valencia es el más activo del Mediterráneo occidental, generando un gran volumen de empresas logísticas y de comercio exterior que pueden beneficiarse enormemente de la automatización.",
+    contextoCorto: "Agroalimentación, cerámica, logística portuaria y sector tecnológico en crecimiento.",
+    sectores: [
+      { nombre: "Agroalimentación", icon: "🍊", desc: "Automatización de gestión de proveedores, trazabilidad de producto y atención a distribuidores internacionales con IA multiidioma." },
+      { nombre: "Cerámica y construcción", icon: "🏗️", desc: "Catálogos de producto actualizados automáticamente, atención a arquitectos y prescriptores con chatbot especializado." },
+      { nombre: "Logística y comercio exterior", icon: "🚢", desc: "Procesado de documentación aduanera, comunicación con operadores internacionales y gestión de incidencias de envío." },
+    ],
+    dptos: [
+      { nombre: "Administración", herramienta: "Mindee + Claude", ahorro: "Una empresa agroalimentaria valenciana procesa ahora facturas de 200 proveedores al mes en 2 horas vs 3 días de trabajo anterior." },
+      { nombre: "Atención al cliente", herramienta: "Chatbot multiidioma", ahorro: "Atención en español, inglés, francés y alemán para distribuidores europeos. Disponible 24/7, adaptado al sector." },
+      { nombre: "Comercial", herramienta: "Claude + n8n", ahorro: "Fichas técnicas de producto generadas automáticamente a partir de datos del ERP. 90% menos tiempo en marketing de producto." },
+      { nombre: "Comunicación", herramienta: "Midjourney + HeyGen", ahorro: "Vídeos de presentación de producto con avatar IA en 4 idiomas. Sin contratar productora." },
+    ],
+    faq: [
+      { q: "¿Podéis implementar IA en Valencia con soporte en valenciano?", a: "Sí. Configuramos los sistemas para que funcionen correctamente en valenciano, castellano e inglés. Especialmente relevante para chatbots de atención al cliente y gestores documentales que manejan documentación en valenciano." },
+      { q: "¿Tenéis experiencia con empresas del sector agroalimentario en Valencia?", a: "Sí. La automatización de la gestión de proveedores, las fichas técnicas de producto y la trazabilidad documental son especialmente valiosas para empresas del sector agroalimentario que trabajan con altos volúmenes de documentación." },
+      { q: "¿Cuánto puede ahorrar una empresa exportadora de Valencia con IA?", a: "Las empresas exportadoras son de las que más retorno obtienen: automatización de la comunicación multiidioma con clientes internacionales, procesado de documentación de comercio exterior y seguimiento de pedidos puede reducir entre 10 y 20 horas semanales de trabajo administrativo." },
+    ],
+  },
+  {
+    slug: "sevilla",
+    nombre: "Sevilla",
+    region: "Andalucía",
+    contexto: "Sevilla alberga el mayor polo aeronáutico de España (Airbus, Alestis, Aernnovairtia), una industria turística de primer nivel y una creciente comunidad tecnológica en el Parque Tecnológico Cartuja. La administración pública autonómica y una red de PYMES industriales completan un tejido empresarial con mucho potencial de automatización.",
+    contextoCorto: "Aeronáutica, turismo, industria agroalimentaria (aceite de oliva) y tecnología en el Parque Cartuja.",
+    sectores: [
+      { nombre: "Industria aeronáutica", icon: "✈️", desc: "Documentación técnica automatizada, gestión de procedimientos y control de calidad con IA para proveedores del sector aeronáutico." },
+      { nombre: "Turismo y hostelería", icon: "🌞", desc: "Recepcionistas virtuales, gestores de reservas y atención multiidioma para hoteles y complejos turísticos sevillanos." },
+      { nombre: "Agroalimentación (aceite)", icon: "🫒", desc: "Automatización de pedidos, fichas de producto y trazabilidad para exportadores de aceite de oliva y otros productos andaluces." },
+    ],
+    dptos: [
+      { nombre: "Administración", herramienta: "Claude + Mindee", ahorro: "Proveedores aeronáuticos sevillanos reducen la gestión documental de certificados y facturas de 2 días a 2 horas por semana." },
+      { nombre: "Atención al cliente", herramienta: "Gestor de citas IA", ahorro: "Hoteles en el centro histórico de Sevilla gestionan reservas y consultas en 5 idiomas sin aumentar plantilla." },
+      { nombre: "Comercial", herramienta: "n8n + Claude", ahorro: "Exportadores de aceite con fichas técnicas generadas automáticamente en español, inglés y árabe para mercados del Golfo." },
+      { nombre: "Sistemas", herramienta: "Wazuh + Ansible", ahorro: "Empresas del Parque Cartuja implementan seguridad ENS con monitorización continua sin necesidad de CISO propio." },
+    ],
+    faq: [
+      { q: "¿Trabajáis con empresas del Parque Tecnológico Cartuja en Sevilla?", a: "Sí. Tenemos experiencia con empresas tecnológicas e industriales del Cartuja. La implantación de IA en equipos de desarrollo y la automatización de procesos internos son los servicios más demandados por empresas del parque." },
+      { q: "¿Podéis ayudar a proveedores aeronáuticos de Sevilla a implementar IA?", a: "Sí. Para proveedores del sector aeronáutico la automatización de la documentación técnica, los procedimientos de calidad y la gestión de incidencias con los OEMs (Airbus, Tier 1) supone un ahorro significativo. Nuestra consultoría analiza qué procesos son automatizables sin afectar a los requisitos de certificación." },
+      { q: "¿Ofrecéis servicio presencial en Sevilla y resto de Andalucía?", a: "Sí, nos desplazamos a Sevilla para el análisis inicial y la formación. Cubrimos también Málaga, Córdoba, Granada y el resto de Andalucía. El servicio posterior es remoto." },
+    ],
+  },
+  {
+    slug: "bilbao",
+    nombre: "Bilbao",
+    region: "País Vasco",
+    contexto: "El País Vasco tiene la mayor renta per cápita de España y un tejido industrial y empresarial muy sofisticado: industria manufacturera de alto valor añadido, ingeniería, energía (renovables, petróleo) y un sector financiero potente (Kutxabank, BBVA). Las empresas vascas, acostumbradas a invertir en tecnología, son de las más receptivas a adoptar IA de manera estructurada.",
+    contextoCorto: "Industria de alto valor añadido, energía, ingeniería y sector financiero con alta inversión en tecnología.",
+    sectores: [
+      { nombre: "Industria y manufactura", icon: "🏭", desc: "Automatización de procesos industriales: documentación técnica, gestión de incidencias y mantenimiento predictivo con IA." },
+      { nombre: "Energía e ingeniería", icon: "⚡", desc: "Análisis de datos de instalaciones, generación de informes técnicos y gestión de proyectos de ingeniería con IA." },
+      { nombre: "Servicios financieros", icon: "🏦", desc: "Automatización de compliance, análisis de riesgos y atención al cliente para entidades y empresas del sector financiero vasco." },
+    ],
+    dptos: [
+      { nombre: "Sistemas", herramienta: "Wazuh + Ansible IA", ahorro: "Industrias del Gran Bilbao monitorizan su infraestructura IT con detección automática de amenazas y cumplimiento de normativas sectoriales." },
+      { nombre: "Administración", herramienta: "Claude + Excel", ahorro: "Empresas industriales bilbaínas automatizan la generación de informes de producción y el análisis de datos de fábrica sin programar." },
+      { nombre: "Gestión de proyectos", herramienta: "Notion AI + n8n", ahorro: "Empresas de ingeniería reducen un 50% el tiempo de reporting de proyectos con resúmenes automáticos de sprints." },
+      { nombre: "Desarrollo", herramienta: "Claude Code + Copilot", ahorro: "Equipos de desarrollo de empresas tech vascas multiplican por 2x la velocidad de entrega de features." },
+    ],
+    faq: [
+      { q: "¿Tenéis experiencia con empresas industriales del País Vasco?", a: "Sí. Las empresas industriales del País Vasco son de las que mejor retorno obtienen de la consultoría IA: alta madurez tecnológica, procesos bien definidos y gran volumen de documentación técnica susceptible de automatización." },
+      { q: "¿Podéis implementar IA en euskera?", a: "Sí. Podemos configurar los sistemas de IA para que gestionen conversaciones y documentación en euskera, español e inglés. Útil para empresas con plantillas bilingües o que atienden a clientes en euskera." },
+      { q: "¿Qué diferencia la consultoría IA para empresas vascas respecto a otras regiones?", a: "El nivel de exigencia técnica es mayor: las empresas vascas suelen tener sistemas ERP y MES consolidados que requieren integraciones API más complejas. Nuestra experiencia técnica (administración de sistemas + IA) nos permite abordar estas integraciones con garantías." },
+    ],
+  },
+  {
+    slug: "zaragoza",
+    nombre: "Zaragoza",
+    region: "Aragón",
+    contexto: "Zaragoza es el gran hub logístico del noreste de España: Amazon, Inditex (Plataforma Europa), el Centro de Logística de Mercancías y el puerto seco más activo del país. La industria del automóvil (Stellantis/Opel) y una red de PYMES industriales y de servicios completan un tejido empresarial con gran potencial de automatización logística y administrativa.",
+    contextoCorto: "Hub logístico nacional (Amazon, Inditex), industria del automóvil y servicios empresariales.",
+    sectores: [
+      { nombre: "Logística y transporte", icon: "📦", desc: "Automatización de comunicaciones con proveedores, gestión de incidencias de envío y procesado de albaranes con IA." },
+      { nombre: "Industria del automóvil", icon: "🚗", desc: "Documentación de procesos de fabricación, gestión de no conformidades y comunicación con proveedores Tier 1." },
+      { nombre: "Distribución y comercio", icon: "🏪", desc: "Gestores de pedidos automatizados, atención al cliente 24/7 y seguimiento de envíos sin intervención manual." },
+    ],
+    dptos: [
+      { nombre: "Administración", herramienta: "Mindee + n8n", ahorro: "Empresas logísticas zaragozanas procesan albaranes y facturas de transporte automáticamente. 200 documentos/día en 30 min vs 8h de trabajo manual." },
+      { nombre: "Atención al cliente", herramienta: "Chatbot IA", ahorro: "Distribuidoras con clientes en toda España atienden consultas de seguimiento de pedido sin agentes. El 85% de consultas resueltas automáticamente." },
+      { nombre: "Comercial", herramienta: "Claude + CRM", ahorro: "Proveedores del automóvil generan fichas técnicas y homologaciones de producto automáticamente a partir de datos del ERP." },
+      { nombre: "Sistemas", herramienta: "Wazuh", ahorro: "Empresas del Polígono PLAZA implementan seguridad y cumplimiento normativo sin CISO dedicado." },
+    ],
+    faq: [
+      { q: "¿Tenéis experiencia con empresas del sector logístico en Zaragoza?", a: "Sí. La automatización del procesado de albaranes, facturas de transporte y la comunicación con clientes y proveedores es especialmente valiosa para empresas logísticas. El volumen de documentación repetitiva es alto y el ROI se consigue en pocas semanas." },
+      { q: "¿Podéis integrar IA con los sistemas de gestión de almacén (SGA) que usan las empresas del PLAZA?", a: "Sí. Trabajamos con APIs de los principales SGA del mercado (Mecalux, Easy WMS, Generix) para conectar los sistemas de IA con los flujos de información del almacén. El análisis previo determina qué integraciones son viables." },
+      { q: "¿Cuánto cuesta el servicio de consultoría IA para una empresa en Zaragoza?", a: "La primera consulta es gratuita. Las implementaciones parten desde 1.500€ para un único departamento (ej: automatización de facturas o chatbot de atención al cliente). Tras el análisis inicial te damos una propuesta con precio fijo, sin sorpresas." },
+    ],
+  },
+  {
+    slug: "malaga",
+    nombre: "Málaga",
+    region: "Andalucía",
+    contexto: "Málaga se ha convertido en el Silicon Valley español: más de 700 empresas tecnológicas, aceleradoras internacionales y el campus de Google y otras multinacionales en el Málaga TechPark. Al mismo tiempo, el turismo, la construcción y el sector inmobiliario mantienen un altísimo volumen de actividad. Esta combinación hace de Málaga uno de los mejores mercados para adopción temprana de IA.",
+    contextoCorto: "Hub tecnológico nacional (Málaga TechPark, Google), turismo de primer nivel e inmobiliario.",
+    sectores: [
+      { nombre: "Tecnología y startups", icon: "🚀", desc: "Automatización de desarrollo, customer success y marketing de producto para empresas tech del Málaga TechPark." },
+      { nombre: "Turismo e inmobiliario", icon: "🏖️", desc: "Atención multiidioma 24/7, gestión de reservas y seguimiento de leads para agencias y promotoras de la Costa del Sol." },
+      { nombre: "Servicios profesionales", icon: "📋", desc: "Gestión documental, generación de contratos y atención al cliente para despachos y consultoras en expansión." },
+    ],
+    dptos: [
+      { nombre: "Atención al cliente", herramienta: "Chatbot IA multiidioma", ahorro: "Agencias inmobiliarias de Málaga atienden a compradores británicos, alemanes y escandinavos en su idioma. Sin contratar agentes multilingües." },
+      { nombre: "Comercial", herramienta: "Claude + n8n", ahorro: "Startups del TechPark automatizan el seguimiento de demos y la generación de propuestas. 3h/semana en lugar de 15h." },
+      { nombre: "Comunicación", herramienta: "HeyGen + Midjourney", ahorro: "Vídeos de presentación de proyectos inmobiliarios en 5 idiomas con avatar IA. Antes requería producción externa." },
+      { nombre: "Desarrollo", herramienta: "Claude Code + Copilot", ahorro: "Startups tech de Málaga multiplican la velocidad de desarrollo y reducen el tiempo de onboarding de nuevos desarrolladores." },
+    ],
+    faq: [
+      { q: "¿Tenéis experiencia con startups en Málaga?", a: "Sí. Málaga tiene un ecosistema muy activo de startups en el TechPark y POLO. Trabajamos con startups en fase de crecimiento que necesitan automatizar operaciones rápidamente: customer success, marketing, desarrollo y administración." },
+      { q: "¿Podéis configurar el chatbot para que atienda en inglés a clientes extranjeros en la Costa del Sol?", a: "Sí. Los chatbots y recepcionistas virtuales que implementamos son multiidioma desde el primer día: español, inglés, alemán, francés. Útil especialmente para inmobiliarias, hoteles y empresas de servicios que atienden a compradores y turistas internacionales." },
+      { q: "¿Ofrecéis servicio presencial en Málaga?", a: "Sí, nos desplazamos a Málaga para el análisis inicial y la formación del equipo. Cubrimos también Marbella, Benalmádena, Torremolinos y el resto de la Costa del Sol." },
+    ],
+  },
+  {
+    slug: "alicante",
+    nombre: "Alicante",
+    region: "Comunitat Valenciana",
+    contexto: "Alicante concentra una interesante mezcla de sectores: la industria del mármol y la piedra natural (Novelda es capital mundial del mármol), la industria del juguete y la plástica (Ibi), el calzado (Elda, Elche) y un sector turístico e inmobiliario muy activo en toda la Costa Blanca. Todos estos sectores tienen grandes volúmenes de documentación, pedidos y atención a clientes internacionales que la IA puede automatizar.",
+    contextoCorto: "Mármol, calzado, juguete y turismo/inmobiliaria con fuerte presencia internacional.",
+    sectores: [
+      { nombre: "Piedra natural y mármol", icon: "🪨", desc: "Automatización de fichas técnicas, comunicación con arquitectos internacionales y gestión de pedidos de exportación." },
+      { nombre: "Calzado e industria", icon: "👟", desc: "Catálogos de producto automáticos, atención a distribuidores internacionales y procesado de pedidos de exportación." },
+      { nombre: "Turismo e inmobiliaria", icon: "🌊", desc: "Atención multiidioma a compradores extranjeros, gestión de reservas y seguimiento de leads para la Costa Blanca." },
+    ],
+    dptos: [
+      { nombre: "Administración", herramienta: "Claude + Mindee", ahorro: "Empresas exportadoras de Novelda y Elda procesan pedidos de 50 países sin aumentar el equipo administrativo." },
+      { nombre: "Atención al cliente", herramienta: "Chatbot IA", ahorro: "Fabricantes de calzado de Elche atienden a distribuidores de Alemania, Francia y EEUU en su idioma 24/7." },
+      { nombre: "Comercial", herramienta: "HeyGen + Claude", ahorro: "Vídeos de presentación de colecciones de calzado con avatar IA en 6 idiomas para ferias internacionales (GDS, Micam)." },
+      { nombre: "Comunicación", herramienta: "Midjourney + Canva AI", ahorro: "Fichas de producto y catálogos visuales generados automáticamente para nuevas colecciones. 80% menos tiempo de producción." },
+    ],
+    faq: [
+      { q: "¿Podéis ayudar a empresas exportadoras de Alicante (mármol, calzado) a implementar IA?", a: "Sí. Las empresas exportadoras de la provincia de Alicante son de las que más retorno obtienen: alto volumen de comunicación internacional, fichas técnicas repetitivas y gestión de pedidos de múltiples distribuidores. La IA puede automatizar gran parte de ese trabajo." },
+      { q: "¿El sistema puede generar fichas de producto en diferentes idiomas automáticamente?", a: "Sí. El sistema extrae los datos técnicos del ERP o catálogo y genera fichas de producto en español, inglés, francés, alemán e italiano automáticamente. Útil para fabricantes de mármol, calzado o juguetes que venden en mercados europeos." },
+      { q: "¿Ofrecéis servicio presencial en Alicante, Elche y Elda?", a: "Sí, nos desplazamos a toda la provincia de Alicante para el análisis inicial y la formación. El servicio posterior es 100% remoto." },
+    ],
+  },
+  {
+    slug: "valladolid",
+    nombre: "Valladolid",
+    region: "Castilla y León",
+    contexto: "Valladolid es la capital industrial de Castilla y León: la planta de Renault es la segunda fábrica de automóviles más productiva de España, y una extensa red de proveedores Tier 1 y Tier 2 orbita alrededor de ella. El sector agroalimentario (Ribera del Duero, legumbres, cereales) y los servicios empresariales de la ciudad completan un tejido con mucho potencial de automatización.",
+    contextoCorto: "Industria del automóvil (Renault), proveedores industriales, vitivinicultura y agroalimentación.",
+    sectores: [
+      { nombre: "Industria del automóvil", icon: "🚗", desc: "Documentación de no conformidades, gestión de calidad y comunicación con OEMs para proveedores de la cadena Renault." },
+      { nombre: "Agroalimentación", icon: "🍷", desc: "Gestión de pedidos, comunicación con distribuidores internacionales y trazabilidad para bodegas de Ribera del Duero y empresas agroalimentarias." },
+      { nombre: "Servicios empresariales", icon: "🏢", desc: "Automatización de gestión administrativa, atención al cliente y generación de propuestas para empresas de servicios de la ciudad." },
+    ],
+    dptos: [
+      { nombre: "Administración", herramienta: "Mindee + n8n", ahorro: "Proveedores del automóvil de Valladolid procesan automáticamente ordenes de compra, albaranes y no conformidades de Renault." },
+      { nombre: "Sistemas", herramienta: "Wazuh + Ansible", ahorro: "Empresas industriales del Polígono San Cristóbal monitorizan su seguridad IT y cumplen con normativas de proveedores de Tier 0." },
+      { nombre: "Comercial", herramienta: "Claude + CRM", ahorro: "Bodegas de Ribera del Duero generan fichas de vino y materiales de exportación en inglés, alemán y chino automáticamente." },
+      { nombre: "Atención al cliente", herramienta: "Chatbot IA", ahorro: "Empresas de servicios vallisoletanas atienden consultas frecuentes sin agentes. El 80% de preguntas resueltas automáticamente." },
+    ],
+    faq: [
+      { q: "¿Podéis ayudar a proveedores de Renault en Valladolid a implementar IA?", a: "Sí. Los proveedores de Renault y su cadena de suministro tienen grandes volúmenes de documentación técnica (QAP, PPAP, AMFE) y comunicación estructurada con el OEM. La automatización de ese flujo documental puede ahorrar decenas de horas al mes." },
+      { q: "¿Tenéis experiencia con bodegas y empresas agroalimentarias en Castilla y León?", a: "Sí. La generación automática de fichas de vino y productos en múltiples idiomas, la gestión de pedidos de importadores internacionales y el procesado de documentación de exportación son servicios especialmente relevantes para bodegas de Ribera del Duero y Rueda." },
+      { q: "¿El servicio cubre toda Castilla y León o solo Valladolid?", a: "Cubre toda Castilla y León. Nos desplazamos a Valladolid, Burgos, Salamanca, León, Segovia y el resto de la región para el análisis inicial. El servicio posterior es remoto." },
+    ],
+  },
+  {
+    slug: "murcia",
+    nombre: "Murcia",
+    region: "Región de Murcia",
+    contexto: "La Región de Murcia es la huerta de Europa: el sector agroalimentario (frutas, hortalizas, flor cortada) mueve miles de millones al año y exporta a toda la UE. Junto a la agricultura intensiva, la industria de conservas y congelados, las empresas de servicios y un tejido de PYMES comerciales configuran una economía regional con mucho potencial de automatización.",
+    contextoCorto: "Agroalimentación y horticultura de exportación, conservas, flor cortada y sector servicios.",
+    sectores: [
+      { nombre: "Agroalimentación y horticultura", icon: "🥦", desc: "Gestión de pedidos de exportación, comunicación con distribuidores europeos y trazabilidad documental con IA." },
+      { nombre: "Conservas y procesado", icon: "🥫", desc: "Automatización de fichas técnicas, gestión de calidad (certificados) y atención a distribuidores de la gran distribución." },
+      { nombre: "Servicios y comercio", icon: "🏪", desc: "Chatbots para atención al cliente, gestión de citas y automatización de tareas administrativas para PYMES murcianas." },
+    ],
+    dptos: [
+      { nombre: "Administración", herramienta: "Claude + Mindee", ahorro: "Empresas exportadoras de frutas y hortalizas procesan facturas, albaranes y documentación de exportación automáticamente. 80% menos tiempo administrativo." },
+      { nombre: "Atención al cliente", herramienta: "Chatbot multiidioma", ahorro: "Conserveras murcianas atienden a distribuidores alemanes, británicos y franceses en su idioma sin ampliar el equipo comercial." },
+      { nombre: "Comercial", herramienta: "Claude + HeyGen", ahorro: "Fichas técnicas de producto generadas en 5 idiomas para ferias internacionales (Fruit Logistica, Anuga). Sin trabajo manual." },
+      { nombre: "Sistemas", herramienta: "Wazuh", ahorro: "Empresas con obligaciones de trazabilidad (BRC, IFS, GlobalGAP) implementan control de accesos y auditoría IT sin CISO." },
+    ],
+    faq: [
+      { q: "¿Podéis ayudar a empresas agroalimentarias de Murcia a implementar IA?", a: "Sí. El sector agroalimentario murciano es uno de los que más retorno obtiene de la automatización: alto volumen de documentación de exportación, comunicación internacional en múltiples idiomas y gestión de calidad repetitiva. La IA puede asumir gran parte de ese trabajo." },
+      { q: "¿Podéis gestionar fichas de producto en inglés, alemán y francés para exportación?", a: "Sí. El sistema genera automáticamente fichas técnicas de producto, certificados y materiales de marketing en los idiomas que necesites. Conectado a tu ERP o catálogo de producto, se actualiza automáticamente cuando hay cambios." },
+      { q: "¿Cuánto cuesta la consultoría IA para una empresa en Murcia?", a: "La primera consulta es gratuita. Las implementaciones parten desde 1.500€ para un único proceso (ej: automatización de facturas de exportación o chatbot para distribuidores). Tras el análisis damos precio fijo por el alcance acordado." },
+    ],
+  },
+];
+
+export async function getStaticPaths() {
+  return ciudades.map((ciudad) => ({
+    params: { ciudad: ciudad.slug },
+    props: ciudad,
+  }));
+}
+
+type Props = CiudadData;
+const ciudad = Astro.props;
+
+const title = `Consultoría de Inteligencia Artificial para Empresas en ${ciudad.nombre} — AI Security`;
+const description = `Implementamos IA en empresas de ${ciudad.nombre} y la ${ciudad.region}: automatización por departamento, formación incluida y ROI visible en 2-3 meses. Primera consulta gratuita.`;
+const canonical = `https://aisecurity.es/consultoria-ia/${ciudad.slug}`;
+---
+
+<BaseLayout title={title} description={description} canonical={canonical}>
+
+  <!-- Schema JSON-LD — Service + LocalBusiness context + FAQPage -->
+  <script type="application/ld+json" is:inline set:html={JSON.stringify([
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": `Consultoría de Inteligencia Artificial para Empresas en ${ciudad.nombre}`,
+      "description": `Servicio de análisis, implementación y formación de herramientas de IA adaptadas a empresas de ${ciudad.nombre} y la ${ciudad.region}. Cubre todos los departamentos: administración, comercial, atención al cliente, comunicación, desarrollo y sistemas.`,
+      "provider": {
+        "@type": "Organization",
+        "name": "AI Security",
+        "url": "https://aisecurity.es",
+        "areaServed": "ES"
+      },
+      "areaServed": {
+        "@type": "City",
+        "name": ciudad.nombre,
+        "containedInPlace": {
+          "@type": "AdministrativeArea",
+          "name": ciudad.region
+        }
+      },
+      "serviceType": "Consultoría de Inteligencia Artificial para empresas",
+      "availableChannel": {
+        "@type": "ServiceChannel",
+        "serviceUrl": `https://aisecurity.es/consultoria-ia/${ciudad.slug}`,
+        "availableLanguage": ["Spanish", "Catalan", "English"]
+      },
+      "offers": {
+        "@type": "Offer",
+        "description": "Primera consulta gratuita. Propuesta personalizada sin compromiso.",
+        "availability": "https://schema.org/InStock"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": ciudad.faq.map(f => ({
+        "@type": "Question",
+        "name": f.q,
+        "acceptedAnswer": { "@type": "Answer", "text": f.a }
+      })).concat([
+        {
+          "@type": "Question",
+          "name": `¿Qué departamentos de una empresa de ${ciudad.nombre} pueden beneficiarse de la IA?`,
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": `Prácticamente todos. Los más habituales en empresas de ${ciudad.nombre} son: Administración (facturas, presupuestos automáticos), Atención al cliente (chatbot 24/7), Comercial (propuestas y seguimiento automático), Comunicación (contenido visual con IA generativa), Desarrollo (Claude Code, GitHub Copilot) y Sistemas (Wazuh, Ansible con IA).`
+          }
+        }
+      ])
+    }
+  ])}></script>
+
+
+  <!-- HERO -->
+  <section style="background: linear-gradient(135deg, #0a0d1a 0%, #0f1628 50%, #0a0d1a 100%); padding: 80px 0 60px; position: relative; overflow: hidden;">
+    <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(circle at 20% 50%, #4f7cff 0%, transparent 50%), radial-gradient(circle at 80% 50%, #8b5cf6 0%, transparent 50%);"></div>
+    <div class="max-w-5xl mx-auto px-6 relative z-10">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;">
+        <a href="/consultoria-ia" style="color:#60a5fa;font-size:0.875rem;text-decoration:none;">← Consultoría IA</a>
+        <span style="color:#475569;font-size:0.875rem;">/</span>
+        <span style="color:#94a3b8;font-size:0.875rem;">{ciudad.nombre}</span>
+      </div>
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium mb-6" style="background: rgba(79,124,255,0.15); border: 1px solid rgba(79,124,255,0.3); color: #7da4ff;">
+        <span>🤖</span> Consultoría IA · {ciudad.nombre}
+      </div>
+      <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight" style="color: #fff;">
+        IA para empresas en {ciudad.nombre},<br/>
+        <span style="background: linear-gradient(90deg, #4f7cff, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">departamento a departamento</span>
+      </h1>
+      <p class="text-lg max-w-3xl mb-4" style="color: #94a3b8; line-height: 1.75;">
+        {ciudad.contexto}
+      </p>
+      <p class="text-base max-w-3xl mb-8" style="color: #64748b;">
+        Analizamos tu empresa, entendemos cómo trabajáis y os implementamos las mejores herramientas de IA del mercado. Con formación para tu equipo incluida.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href={`/presupuesto?plan=Consultoria-IA-${ciudad.nombre}`}
+          style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:linear-gradient(135deg,#4f7cff,#7c3aed);color:#fff;font-weight:700;font-size:1rem;border-radius:12px;text-decoration:none;">
+          Solicitar consulta gratuita en {ciudad.nombre} →
+        </a>
+        <a href="/consultoria-ia"
+          style="display:inline-flex;align-items:center;gap:8px;padding:14px 24px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#cbd5e1;font-weight:600;font-size:0.95rem;border-radius:12px;text-decoration:none;">
+          Ver todos los servicios
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- SECTORES LOCALES -->
+  <section style="background: #0a0d1a; padding: 80px 0;">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold mb-4" style="color: #e2e8f0;">Sectores clave en {ciudad.nombre}</h2>
+        <p style="color: #94a3b8; font-size: 1rem; max-width: 580px; margin: 0 auto;">{ciudad.contextoCorto}</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;">
+        {ciudad.sectores.map(sector => (
+          <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(79,124,255,0.2);border-radius:1.25rem;padding:28px;">
+            <div style="font-size:2rem;margin-bottom:12px;">{sector.icon}</div>
+            <h3 style="color:#e2e8f0;font-weight:700;font-size:1rem;margin:0 0 8px;">{sector.nombre}</h3>
+            <p style="color:#94a3b8;font-size:0.875rem;line-height:1.6;margin:0;">{sector.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+
+  <!-- CASOS POR DEPARTAMENTO -->
+  <section style="background: linear-gradient(135deg, #0a0d1a 0%, #0f1628 100%); padding: 80px 0; position:relative;overflow:hidden;">
+    <div class="absolute inset-0 pointer-events-none" style="background-image: radial-gradient(circle at 20% 50%, rgba(79,124,255,0.08), transparent 60%), radial-gradient(circle at 80% 50%, rgba(139,92,246,0.06), transparent 60%);"></div>
+    <div class="max-w-5xl mx-auto px-6 relative z-10">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold mb-4" style="color: #e2e8f0;">Qué implementamos en empresas de {ciudad.nombre}</h2>
+        <p style="color: #94a3b8; font-size: 1rem; max-width: 560px; margin: 0 auto;">Ejemplos reales de ahorro por departamento en empresas similares a la tuya en la región.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;">
+        {ciudad.dptos.map((dpto, i) => (
+          <div style={`background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:1.25rem;padding:28px;border-left:3px solid ${['#4f7cff','#a78bfa','#22c55e','#f59e0b'][i % 4]};`}>
+            <div style={`color:${['#60a5fa','#a78bfa','#4ade80','#fbbf24'][i % 4]};font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;`}>{dpto.nombre}</div>
+            <div style="color:#64748b;font-size:0.78rem;margin-bottom:10px;">Herramienta: {dpto.herramienta}</div>
+            <p style="color:#94a3b8;font-size:0.875rem;line-height:1.6;margin:0;">{dpto.ahorro}</p>
+          </div>
+        ))}
+      </div>
+
+      <div style="margin-top:48px;text-align:center;">
+        <a href="/consultoria-ia" style="color:#60a5fa;font-size:0.9rem;text-decoration:none;">Ver todos los departamentos y herramientas disponibles →</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FAQ -->
+  <section style="background: #0f1628; padding: 80px 0;">
+    <div class="max-w-3xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold mb-4" style="color: #e2e8f0;">Preguntas frecuentes — {ciudad.nombre}</h2>
+        <p style="color: #94a3b8; font-size: 1rem; max-width: 500px; margin: 0 auto;">Dudas habituales de empresas en {ciudad.nombre} y {ciudad.region} antes de implementar IA.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        {ciudad.faq.map(item => (
+          <div class="faq-item" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;transition:border-color 0.2s;">
+            <button class="faq-btn" style="width:100%;text-align:left;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;cursor:pointer;background:none;border:none;">
+              <span style="color:#e2e8f0;font-weight:600;font-size:0.95rem;line-height:1.4;">{item.q}</span>
+              <svg class="faq-chevron" style="width:20px;height:20px;color:#60a5fa;flex-shrink:0;transition:transform 0.25s;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="faq-answer" style="display:none;padding:0 24px 20px;">
+              <p style="color:#94a3b8;font-size:0.875rem;line-height:1.75;margin:0;border-top:1px solid rgba(255,255,255,0.06);padding-top:16px;">{item.a}</p>
+            </div>
+          </div>
+        ))}
+
+        <!-- FAQ genérica -->
+        <div class="faq-item" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;transition:border-color 0.2s;">
+          <button class="faq-btn" style="width:100%;text-align:left;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;cursor:pointer;background:none;border:none;">
+            <span style="color:#e2e8f0;font-weight:600;font-size:0.95rem;line-height:1.4;">¿Necesito equipo técnico propio en {ciudad.nombre} para implementar IA?</span>
+            <svg class="faq-chevron" style="width:20px;height:20px;color:#60a5fa;flex-shrink:0;transition:transform 0.25s;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer" style="display:none;padding:0 24px 20px;">
+            <p style="color:#94a3b8;font-size:0.875rem;line-height:1.75;margin:0;border-top:1px solid rgba(255,255,255,0.06);padding-top:16px;">No. AI Security se encarga de toda la parte técnica: configuración, integración con tus herramientas actuales (ERP, CRM, email, Google Workspace) y puesta en marcha. La formación del equipo está incluida para que puedas usarlo de forma autónoma desde el primer día.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script is:inline>
+  (function(){
+    document.querySelectorAll('.faq-btn').forEach(function(btn){
+      btn.addEventListener('click',function(){
+        var item=btn.closest('.faq-item');
+        var answer=item.querySelector('.faq-answer');
+        var icon=btn.querySelector('.faq-chevron');
+        var open=answer.style.display==='block';
+        document.querySelectorAll('.faq-answer').forEach(function(a){a.style.display='none';});
+        document.querySelectorAll('.faq-chevron').forEach(function(i){i.style.transform='rotate(0deg)';});
+        document.querySelectorAll('.faq-item').forEach(function(i){i.style.borderColor='rgba(255,255,255,0.08)';});
+        if(!open){answer.style.display='block';icon.style.transform='rotate(180deg)';item.style.borderColor='rgba(79,124,255,0.3)';}
+      });
+    });
+  })();
+  </script>
+
+
+  <!-- CTA FINAL -->
+  <section style="background: #0a0d1a; padding: 80px 0;">
+    <div class="max-w-3xl mx-auto px-6 text-center">
+      <div style="font-size:2.5rem;margin-bottom:16px;">🤖</div>
+      <h2 class="text-3xl md:text-4xl font-bold mb-5" style="color:#fff;">
+        Tu empresa en {ciudad.nombre},<br/>más eficiente con IA
+      </h2>
+      <p style="color:#94a3b8;font-size:1.05rem;margin-bottom:36px;line-height:1.7;max-width:520px;margin-left:auto;margin-right:auto;">
+        Analizamos tus procesos actuales y te decimos exactamente qué puede automatizarse y cuánto puede ahorrar tu empresa. Primera consulta gratuita y sin compromiso.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:14px;justify-content:center;">
+        <a href={`/presupuesto?plan=Consultoria-IA-${ciudad.nombre}`}
+          style="display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:15px 34px;background:linear-gradient(135deg,#4f7cff,#7c3aed);color:#fff;font-weight:700;font-size:1rem;border-radius:14px;text-decoration:none;box-shadow:0 16px 36px -8px rgba(79,124,255,0.4);">
+          Solicitar consulta gratuita
+        </a>
+        <a href="/consultoria-ia"
+          style="display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:15px 34px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);color:#cbd5e1;font-weight:600;font-size:1rem;border-radius:14px;text-decoration:none;">
+          Ver todos los servicios IA
+        </a>
+      </div>
+
+      <!-- Enlace a otras ciudades -->
+      <div style="margin-top:48px;padding-top:32px;border-top:1px solid rgba(255,255,255,0.06);">
+        <p style="color:#475569;font-size:0.8rem;margin-bottom:12px;">También en otras ciudades de España:</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;">
+          {[
+            {slug:'madrid',nombre:'Madrid'},{slug:'barcelona',nombre:'Barcelona'},
+            {slug:'valencia',nombre:'Valencia'},{slug:'sevilla',nombre:'Sevilla'},
+            {slug:'bilbao',nombre:'Bilbao'},{slug:'zaragoza',nombre:'Zaragoza'},
+            {slug:'malaga',nombre:'Málaga'},{slug:'alicante',nombre:'Alicante'},
+            {slug:'valladolid',nombre:'Valladolid'},{slug:'murcia',nombre:'Murcia'},
+          ].filter(c => c.slug !== ciudad.slug).map(c => (
+            <a href={`/consultoria-ia/${c.slug}`}
+              style="padding:5px 12px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:20px;color:#64748b;font-size:0.78rem;text-decoration:none;">
+              {c.nombre}
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

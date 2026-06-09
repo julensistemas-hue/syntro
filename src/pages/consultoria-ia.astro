@@ -1,8 +1,8 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-const title = "Consultoría IA para Empresas - Herramientas de Inteligencia Artificial | AI Security";
-const description = "Analizamos tu empresa departamento a departamento y te implementamos las mejores herramientas de IA del mercado. Ahorra costes, multiplica la productividad. Formación incluida.";
+const title = "Consultoría de Inteligencia Artificial para Empresas — IA por Departamentos | AI Security";
+const description = "Consultoría IA para PYMES en España: analizamos tu empresa por departamentos e implementamos las mejores herramientas de IA (Claude, ChatGPT, n8n, Wazuh). Primera consulta gratuita. ROI visible en 2-3 meses.";
 const canonical = "https://aisecurity.es/consultoria-ia";
 
 const departamentos = [
@@ -155,7 +155,34 @@ const departamentos = [
 
 <BaseLayout title={title} description={description} canonical={canonical}>
 
-  <!-- FAQ Schema JSON-LD para GEO -->
+  <!-- Schema JSON-LD — Service + FAQPage para GEO -->
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Consultoría de Inteligencia Artificial para Empresas",
+    "alternateName": "Consultoría IA empresas España",
+    "description": "Servicio de análisis, implementación y formación de herramientas de IA adaptadas a cada departamento de la empresa. Cubre administración, comercial, atención al cliente, comunicación, gestión de proyectos, desarrollo y sistemas.",
+    "provider": {
+      "@type": "Organization",
+      "name": "AI Security",
+      "url": "https://aisecurity.es",
+      "areaServed": "ES"
+    },
+    "serviceType": "Consultoría de Inteligencia Artificial para empresas",
+    "areaServed": "España",
+    "availableChannel": {
+      "@type": "ServiceChannel",
+      "serviceUrl": "https://aisecurity.es/consultoria-ia",
+      "availableLanguage": ["Spanish", "Catalan", "English"]
+    },
+    "offers": {
+      "@type": "Offer",
+      "description": "Primera consulta gratuita. Propuesta personalizada sin compromiso. Implementaciones desde 1.500€ por departamento.",
+      "availability": "https://schema.org/InStock"
+    }
+  }
+  </script>
   <script slot="head" type="application/ld+json" is:inline>
   {
     "@context": "https://schema.org",
@@ -431,6 +458,27 @@ const departamentos = [
         style="background: linear-gradient(135deg, #4f7cff, #7c3aed); color: #ffffff;">
         Solicitar consulta gratuita
       </a>
+    </div>
+  </section>
+
+  <!-- PÁGINAS POR CIUDAD — enlace interno para SEO -->
+  <section style="background: #0a0d1a; padding: 48px 0; border-top: 1px solid rgba(255,255,255,0.05);">
+    <div class="max-w-5xl mx-auto px-6">
+      <p class="text-center text-sm mb-6" style="color: #475569;">Consultoría de Inteligencia Artificial para empresas en toda España</p>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;">
+        {[
+          {slug:'madrid',nombre:'Madrid'},{slug:'barcelona',nombre:'Barcelona'},
+          {slug:'valencia',nombre:'Valencia'},{slug:'sevilla',nombre:'Sevilla'},
+          {slug:'bilbao',nombre:'Bilbao'},{slug:'zaragoza',nombre:'Zaragoza'},
+          {slug:'malaga',nombre:'Málaga'},{slug:'alicante',nombre:'Alicante'},
+          {slug:'valladolid',nombre:'Valladolid'},{slug:'murcia',nombre:'Murcia'},
+        ].map(c => (
+          <a href={`/consultoria-ia/${c.slug}`}
+            style="padding:8px 16px;background:rgba(255,255,255,0.04);border:1px solid rgba(79,124,255,0.2);border-radius:24px;color:#7da4ff;font-size:0.85rem;text-decoration:none;transition:all 0.2s;">
+            Consultoría IA {c.nombre}
+          </a>
+        ))}
+      </div>
     </div>
   </section>
 
