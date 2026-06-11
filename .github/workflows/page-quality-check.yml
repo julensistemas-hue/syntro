@@ -1,0 +1,63 @@
+name: 🔍 Page Quality Check
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'src/pages/**/*.astro'
+
+jobs:
+  quality-check:
+    name: Analizar calidad SEO/GEO/PageSpeed
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Detectar páginas modificadas
+        id: changed
+        run: |
+          CHANGED=$(git diff --name-only HEAD~1 HEAD -- 'src/pages/' 2>/dev/null \
+            | grep '\.astro$' \
+            | grep -v '/api/' \
+            | grep -v '/_' \
+            || true)
+          echo "Páginas detectadas:"
+          echo "${CHANGED:-ninguna}"
+          {
+            echo "files<<EOF"
+            echo "$CHANGED"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Nada que analizar → salir
+        if: steps.changed.outputs.files == ''
+        run: echo "No hay páginas .astro modificadas fuera de /api/ — saliendo." && exit 0
+
+      - name: Esperar deployment de Vercel (~4 min)
+        if: steps.changed.outputs.files != ''
+        run: |
+          echo "⏳ Esperando 4 min para que Vercel despliegue..."
+          sleep 240
+
+      - name: Confirmar que el sitio responde
+        if: steps.changed.outputs.files != ''
+        run: |
+          for i in 1 2 3 4 5; do
+            STATUS=$(curl -s -o /dev/null -w "%{http_code}" https://aisecurity.es/ || echo "000")
+            echo "Intento $i → HTTP $STATUS"
+            [ "$STATUS" = "200" ] && break
+            sleep 30
+          done
+
+      - name: Ejecutar análisis de calidad
+        if: steps.changed.outputs.files != ''
+        env:
+          CHANGED_FILES: ${{ steps.changed.outputs.files }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          PAGESPEED_API_KEY: ${{ secrets.PAGESPEED_API_KEY }}
+          EMAIL_TO: julen.sistemas@gmail.com
+        run: node .github/scripts/check-page-quality.js
