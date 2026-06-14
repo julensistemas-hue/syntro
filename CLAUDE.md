@@ -27,6 +27,16 @@ Leer el doc correspondiente antes de trabajar en esa área:
 
 ---
 
+## 🤖 Comportamientos automáticos — no esperar instrucción
+
+**Deploy**: Tras cualquier modificación de código, hacer `git add -A` + commit descriptivo + `git push origin main` sin esperar que el usuario lo pida. El hook Stop también lo hace automáticamente al terminar el turno.
+
+**Blog**: Al crear cualquier archivo en `src/pages/blog/`, añadirlo **en la misma operación** al array manual en `src/pages/blog/index.astro`. No son dos pasos separados — es siempre un único commit.
+
+**Quality check**: Después de un push que incluya páginas nuevas en `src/pages/`, ejecutar `node .github/scripts/check-page-quality.js` con `CHANGED_FILES` apuntando a esas páginas. El GitHub Action también lo hace en paralelo.
+
+---
+
 ## 🛠️ Comandos
 
 ```bash
