@@ -124,41 +124,33 @@ async function buildReport() {
   const curr = await queryTotals(dateRange);
   const prev = isAll ? null : await queryTotals(dateRangePrev);
 
-  // 1. Top páginas con clicks en links — agrupado por página + evento
-  //    Nota: customEvent:event_label requiere Custom Dimensions en GA4 Admin.
-  //    Hasta que estén registradas, usamos pagePath (dimensión estándar).
+  // 1. Top botones clicados — con página de origen
   const clicks = await query(
-    ['pagePath', 'eventName'],
+    ['customEvent:event_label', 'customEvent:event_category', 'pagePath'],
     ['eventCount'],
-    { filter: { fieldName: 'eventName', orGroup: { expressions: [
-      { filter: { fieldName: 'eventName', stringFilter: { value: 'click_link' } } },
-      { filter: { fieldName: 'eventName', stringFilter: { value: 'click_button' } } },
-    ] } } }
+    { filter: { fieldName: 'eventName', stringFilter: { value: 'click_link' } } }
   );
 
-  // 2. Clicks por tipo de evento (categoría aproximada)
+  // 2. Clicks por categoría
   const byCategory = await query(
-    ['eventName'],
+    ['customEvent:event_category'],
     ['eventCount'],
     { filter: { fieldName: 'eventName', orGroup: { expressions: [
       { filter: { fieldName: 'eventName', stringFilter: { value: 'click_link' } } },
       { filter: { fieldName: 'eventName', stringFilter: { value: 'click_button' } } },
-      { filter: { fieldName: 'eventName', stringFilter: { value: 'conversion_click' } } },
-      { filter: { fieldName: 'eventName', stringFilter: { value: 'conversion_form' } } },
-      { filter: { fieldName: 'eventName', stringFilter: { value: 'form_submit' } } },
     ] } } }
   );
 
-  // 3. Conversiones (leads) — páginas que generan más clics de conversión
+  // 3. Conversiones (leads) — con página de origen y texto del botón
   const conversions = await query(
-    ['pagePath'],
+    ['customEvent:event_label', 'pagePath'],
     ['eventCount'],
     { filter: { fieldName: 'eventName', stringFilter: { value: 'conversion_click' } } }
   );
 
-  // 4. Formularios enviados — páginas con form_submit
+  // 4. Formularios enviados — con página
   const forms = await query(
-    ['pagePath'],
+    ['customEvent:event_label', 'pagePath'],
     ['eventCount'],
     { filter: { fieldName: 'eventName', stringFilter: { value: 'form_submit' } } }
   );
@@ -200,35 +192,38 @@ async function buildReport() {
 
   <!-- Conversiones -->
   ${section('Clicks de conversión (leads)', '🎯',
-    ['Página origen', 'Clicks de lead'],
+    ['Botón / Enlace', 'Página origen', 'Clicks'],
     conversions.map(r => row([
-      r.dimensionValues[0].value || '/',
+      r.dimensionValues[0].value || '(sin texto)',
+      r.dimensionValues[1].value || '/',
       r.metricValues[0].value,
     ])).join('')
   )}
 
   <!-- Formularios -->
   ${section('Formularios enviados', '📋',
-    ['Página', 'Envíos'],
+    ['Formulario', 'Página', 'Envíos'],
     forms.map(r => row([
-      r.dimensionValues[0].value || '/',
+      r.dimensionValues[0].value || 'form',
+      r.dimensionValues[1].value || '/',
       r.metricValues[0].value,
     ])).join('')
   )}
 
-  <!-- Top páginas con clicks -->
-  ${section('Top páginas con interacción', '🖱️',
-    ['Página', 'Evento', 'Clicks'],
+  <!-- Top botones con página -->
+  ${section('Top botones clicados', '🖱️',
+    ['Texto del botón', 'Categoría', 'Página origen', 'Clicks'],
     clicks.map(r => row([
-      r.dimensionValues[0].value || '/',
+      r.dimensionValues[0].value || '(sin texto)',
       r.dimensionValues[1].value || '-',
+      r.dimensionValues[2].value || '/',
       r.metricValues[0].value,
     ])).join('')
   )}
 
-  <!-- Por tipo de evento -->
-  ${section('Clicks por tipo de evento', '📂',
-    ['Evento', 'Total'],
+  <!-- Por categoría -->
+  ${section('Clicks por categoría', '📂',
+    ['Categoría', 'Total clicks'],
     byCategory.map(r => row([
       r.dimensionValues[0].value || '-',
       r.metricValues[0].value,
