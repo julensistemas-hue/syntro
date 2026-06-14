@@ -86,7 +86,7 @@ const cursos = [
 ];
 ---
 
-<BaseLayout title={title} description={description} canonical={canonical}>
+<BaseLayout title={title} description={description} canonical={canonical} ogImage="https://aisecurity.es/api/og/cursos">
   <Fragment slot="head">
     <script is:inline type="application/ld+json" set:html={JSON.stringify(schemaItemList)} />
     <script is:inline type="application/ld+json" set:html={JSON.stringify(schemaBreadcrumb)} />
