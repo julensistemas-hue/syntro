@@ -1,0 +1,634 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const title = "Cómo posicionarte en Google y en IAs con Claude | Curso SEO + GEO";
+const description = "Aprende a usar Claude para investigar keywords, crear contenido que posiciona en Google, ChatGPT, Perplexity y Gemini. Auditorías SEO automatizadas, schema markup y estrategia GEO. Vídeos + comunidad. 50€ acceso permanente.";
+const canonical = "https://aisecurity.es/curso-seo-geo-claude";
+
+const schemaCourse = {
+  "@context": "https://schema.org",
+  "@type": "Course",
+  "name": "SEO + GEO con Claude — Posiciónate en Google y en IAs",
+  "description": "Curso práctico para autónomos, marketers y dueños de negocio. Aprende a usar Claude para investigar keywords, optimizar contenido, aparecer en ChatGPT y Perplexity, y generar schema markup automáticamente.",
+  "url": "https://aisecurity.es/curso-seo-geo-claude",
+  "provider": { "@type": "Organization", "name": "AI Security", "url": "https://aisecurity.es" },
+  "educationalLevel": "Beginner to Intermediate",
+  "teaches": ["SEO con inteligencia artificial", "GEO - Generative Engine Optimization", "Investigación de keywords con Claude", "Schema markup generado con IA", "Estrategia de contenido SEO con Claude"],
+  "timeRequired": "PT2H",
+  "inLanguage": "es",
+  "isAccessibleForFree": false,
+  "offers": { "@type": "Offer", "price": "50", "priceCurrency": "EUR", "availability": "https://schema.org/PreOrder" },
+  "audience": { "@type": "Audience", "audienceType": "Autónomos, marketers, dueños de negocio, freelancers, agencias digitales" },
+  "keywords": "curso SEO con IA, GEO posicionamiento inteligencia artificial, Claude para SEO, cómo posicionarse en ChatGPT, Generative Engine Optimization España"
+};
+
+const schemaFAQ = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "¿Qué es el GEO y por qué importa en 2026?",
+      "acceptedAnswer": { "@type": "Answer", "text": "GEO (Generative Engine Optimization) es la técnica de optimizar tu contenido para que aparezca citado en IAs como ChatGPT, Perplexity, Gemini o Copilot cuando alguien hace una búsqueda. En 2026, cada vez más personas buscan directamente en estas IAs en lugar de Google. Si no apareces ahí, pierdes visibilidad." }},
+    { "@type": "Question", "name": "¿Necesito conocimientos previos de SEO?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. El curso está diseñado para funcionar tanto si empiezas desde cero como si ya tienes base en SEO. Claude simplifica la parte técnica: le describes tu negocio y te genera el análisis, el contenido optimizado y el schema markup listo para pegar." }},
+    { "@type": "Question", "name": "¿Qué es Claude y cómo ayuda al SEO?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Claude es un asistente de IA de Anthropic. Para SEO es muy útil: analiza páginas y sugiere mejoras, genera meta descriptions optimizadas, crea artículos de blog con estructura SEO correcta, genera schema markup en JSON-LD y detecta oportunidades de keywords que estás perdiendo." }},
+    { "@type": "Question", "name": "¿El acceso es permanente y recibo actualizaciones?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Sí. Pago único de 50€ con acceso de por vida. El SEO y el GEO evolucionan rápido — cuando cambie algo relevante (nuevo algoritmo, nueva IA, nueva táctica) se añade contenido al curso sin coste adicional." }},
+    { "@type": "Question", "name": "¿Funciona para cualquier tipo de negocio?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Sí. El curso cubre tanto SEO local (para negocios con ubicación física como clínicas, talleres o tiendas) como SEO para servicios online. Hay módulos específicos para cada caso." }}
+  ]
+};
+
+const schemaBreadcrumb = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "AI Security", "item": "https://aisecurity.es" },
+    { "@type": "ListItem", "position": 2, "name": "Formación", "item": "https://aisecurity.es/cursos" },
+    { "@type": "ListItem", "position": 3, "name": "SEO + GEO con Claude", "item": "https://aisecurity.es/curso-seo-geo-claude" }
+  ]
+};
+---
+
+<BaseLayout title={title} description={description} canonical={canonical}>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(schemaCourse)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(schemaFAQ)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(schemaBreadcrumb)} />
+    <meta property="og:type" content="product" />
+    <meta property="og:locale" content="es_ES" />
+    <meta name="theme-color" content="#0d0800" />
+    <meta property="product:price:amount" content="50" />
+    <meta property="product:price:currency" content="EUR" />
+  </Fragment>
+
+  <!-- HERO -->
+  <section style="background:#0d0800;min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding:80px 0;">
+    <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(245,158,11,0.04) 1px,transparent 1px);background-size:32px 32px;pointer-events:none;"></div>
+    <div style="position:absolute;top:-200px;right:-100px;width:600px;height:600px;background:radial-gradient(circle,rgba(245,158,11,0.08),transparent 65%);pointer-events:none;"></div>
+    <div style="position:absolute;bottom:-100px;left:-50px;width:400px;height:400px;background:radial-gradient(circle,rgba(249,115,22,0.05),transparent 65%);pointer-events:none;"></div>
+
+    <div style="max-width:1280px;margin:0 auto;padding:0 24px;width:100%;position:relative;z-index:1;">
+      <div class="hero-grid">
+
+        <!-- LEFT -->
+        <div style="display:flex;flex-direction:column;justify-content:center;">
+          <div style="display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border:1px solid rgba(245,158,11,0.35);border-radius:4px;margin-bottom:32px;width:fit-content;">
+            <span style="width:7px;height:7px;border-radius:50%;background:#f59e0b;animation:blink 1.2s infinite;display:inline-block;"></span>
+            <span style="font-family:'JetBrains Mono','Fira Code',monospace;font-size:12px;color:#f59e0b;letter-spacing:0.1em;">VÍDEOS · COMUNIDAD · SIEMPRE ACTUALIZADO · 50€</span>
+          </div>
+
+          <div style="line-height:1;">
+            <div style="font-size:clamp(52px,9vw,120px);font-weight:900;color:#f59e0b;font-family:'Inter',sans-serif;letter-spacing:-4px;line-height:0.9;">SEO</div>
+            <div style="font-size:clamp(28px,4.5vw,64px);font-weight:900;color:#f97316;font-family:'Inter',sans-serif;letter-spacing:-2px;line-height:0.95;">+ GEO</div>
+            <h1 style="font-size:clamp(16px,2.2vw,26px);font-weight:700;color:#f0f0f0;letter-spacing:0.02em;text-transform:uppercase;margin-top:10px;line-height:1.2;">con Claude — Posiciónate en<br>Google <span style="color:#f59e0b;">y en las IAs</span></h1>
+          </div>
+
+          <p style="color:rgba(240,240,240,0.6);font-size:17px;line-height:1.65;max-width:480px;margin-top:24px;">
+            Aprende los prompts exactos para investigar keywords, crear contenido que posiciona, aparecer en ChatGPT y Perplexity, y generar schema markup con IA. <strong style="color:#f0f0f0;">Sin agencias. Sin tecnicismos.</strong>
+          </p>
+
+          <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:28px;">
+            <span class="chip">Google SEO</span>
+            <span class="chip">GEO / LLM SEO</span>
+            <span class="chip">Keywords con IA</span>
+            <span class="chip">Schema markup</span>
+            <span class="chip">Contenido optimizado</span>
+          </div>
+
+          <div style="margin-top:36px;">
+            <p style="font-family:'JetBrains Mono','Fira Code',monospace;font-size:12px;color:#f59e0b;margin-bottom:12px;letter-spacing:0.08em;">// 2 horas · 50€ · acceso permanente — apúntate</p>
+            <form id="hero-form" style="display:flex;gap:10px;max-width:460px;flex-wrap:wrap;">
+              <input id="hero-email" type="email" placeholder="tu@negocio.com" required
+                style="flex:1;min-width:220px;background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.28);border-radius:6px;padding:14px 16px;color:#f0f0f0;font-family:'JetBrains Mono','Fira Code',monospace;font-size:14px;outline:none;" />
+              <button type="submit" id="hero-btn" class="btn-primary">Avísame →</button>
+            </form>
+            <div id="hero-success" style="display:none;margin-top:12px;">
+              <span style="font-family:'JetBrains Mono',monospace;color:#f59e0b;font-size:14px;">✓ apuntado. te avisamos antes que nadie.</span>
+            </div>
+            <p style="font-size:12px;color:rgba(240,240,240,0.3);margin-top:10px;">Sin spam. Solo te avisamos cuando abren inscripciones.</p>
+          </div>
+        </div>
+
+        <!-- RIGHT: terminal SEO -->
+        <div class="terminal-col">
+          <div class="terminal-window">
+            <div style="background:#1a1a1a;padding:10px 16px;border-radius:12px 12px 0 0;display:flex;align-items:center;gap:8px;border-bottom:1px solid rgba(245,158,11,0.15);">
+              <span style="width:12px;height:12px;border-radius:50%;background:#ff5f57;display:inline-block;"></span>
+              <span style="width:12px;height:12px;border-radius:50%;background:#ffbd2e;display:inline-block;"></span>
+              <span style="width:12px;height:12px;border-radius:50%;background:#28c840;display:inline-block;"></span>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(240,240,240,0.35);margin-left:8px;">claude-seo@aisecurity:~$</span>
+            </div>
+            <div style="background:#0d0800;padding:24px;border-radius:0 0 12px 12px;font-family:'JetBrains Mono','Fira Code',monospace;font-size:13px;line-height:1.75;min-height:400px;">
+              <div id="terminal-output"></div>
+              <span id="cursor" style="display:inline-block;width:8px;height:14px;background:#f59e0b;vertical-align:middle;animation:blink 1s infinite;"></span>
+            </div>
+          </div>
+
+          <div style="margin-top:20px;">
+            <p style="font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(245,158,11,0.5);letter-spacing:0.08em;margin-bottom:10px;text-align:center;">// lanzamiento en</p>
+            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;">
+              <div class="cd-box"><span id="cd-d" class="cd-num">--</span><span class="cd-lbl">días</span></div>
+              <div class="cd-box"><span id="cd-h" class="cd-num">--</span><span class="cd-lbl">horas</span></div>
+              <div class="cd-box"><span id="cd-m" class="cd-num">--</span><span class="cd-lbl">min</span></div>
+              <div class="cd-box"><span id="cd-s" class="cd-num">--</span><span class="cd-lbl">seg</span></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div style="background:#f59e0b;padding:12px 0;overflow:hidden;white-space:nowrap;">
+    <div class="marquee-track">
+      <span class="mq-item">$ claude keywords --nicho="fontanero madrid" --intención=local</span>
+      <span class="mq-sep">◆</span>
+      <span class="mq-item">$ geo-optimize --target=ChatGPT,Perplexity,Gemini</span>
+      <span class="mq-sep">◆</span>
+      <span class="mq-item">$ claude schema --tipo=LocalBusiness --negocio="Clínica dental"</span>
+      <span class="mq-sep">◆</span>
+      <span class="mq-item">$ audit-seo --url=miweb.es --output=informe.md</span>
+      <span class="mq-sep">◆</span>
+      <span class="mq-item">$ claude blog --keyword="mejor CRM para pymes" --longitud=1500</span>
+      <span class="mq-sep">◆</span>
+      <span class="mq-item">$ meta-tags --página=servicios --max-chars=160</span>
+      <span class="mq-sep">◆</span>
+      <span class="mq-item">$ claude keywords --nicho="fontanero madrid" --intención=local</span>
+      <span class="mq-sep">◆</span>
+      <span class="mq-item">$ geo-optimize --target=ChatGPT,Perplexity,Gemini</span>
+      <span class="mq-sep">◆</span>
+      <span class="mq-item">$ claude schema --tipo=LocalBusiness --negocio="Clínica dental"</span>
+      <span class="mq-sep">◆</span>
+      <span class="mq-item">$ audit-seo --url=miweb.es --output=informe.md</span>
+      <span class="mq-sep">◆</span>
+    </div>
+  </div>
+
+  <!-- QUÉ ES -->
+  <section style="background:#111108;padding:80px 0;">
+    <div style="max-width:1280px;margin:0 auto;padding:0 24px;">
+      <div style="text-align:center;margin-bottom:56px;">
+        <p style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#f59e0b;letter-spacing:0.12em;margin-bottom:12px;">// qué es este curso</p>
+        <h2 style="font-size:clamp(28px,4vw,52px);font-weight:900;color:#f0f0f0;line-height:1.1;">Google ya no es el único buscador.<br><span style="color:#f59e0b;">Las IAs también posicionan.</span></h2>
+        <p style="color:rgba(240,240,240,0.55);font-size:17px;max-width:640px;margin:16px auto 0;line-height:1.65;">Cada vez más personas buscan directamente en ChatGPT, Perplexity o Gemini. Si no apareces ahí, estás perdiendo visibilidad. Este curso te enseña a posicionarte en ambos mundos usando Claude.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;" class="pillars-grid">
+        <div style="background:#1a1508;border:1px solid rgba(245,158,11,0.15);border-radius:16px;padding:36px;text-align:center;">
+          <div style="font-size:40px;margin-bottom:16px;">🔍</div>
+          <h3 style="font-size:20px;font-weight:800;color:#f0f0f0;margin-bottom:10px;">SEO clásico con IA</h3>
+          <p style="font-size:14px;color:rgba(240,240,240,0.55);line-height:1.65;">Keywords, contenido, on-page, schema markup y auditorías técnicas — todo generado y analizado con Claude en minutos.</p>
+        </div>
+        <div style="background:#1a1508;border:1px solid rgba(245,158,11,0.4);border-radius:16px;padding:36px;text-align:center;position:relative;">
+          <div style="position:absolute;top:-1px;left:50%;transform:translateX(-50%);background:#f59e0b;color:#0d0800;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;padding:4px 14px;border-radius:0 0 8px 8px;letter-spacing:0.08em;">LO NUEVO</div>
+          <div style="font-size:40px;margin-bottom:16px;">🤖</div>
+          <h3 style="font-size:20px;font-weight:800;color:#f0f0f0;margin-bottom:10px;">GEO — IA Search</h3>
+          <p style="font-size:14px;color:rgba(240,240,240,0.55);line-height:1.65;">Optimiza tu contenido para aparecer citado en ChatGPT, Perplexity y Gemini cuando alguien pregunta por tu sector.</p>
+        </div>
+        <div style="background:#1a1508;border:1px solid rgba(245,158,11,0.15);border-radius:16px;padding:36px;text-align:center;">
+          <div style="font-size:40px;margin-bottom:16px;">🔄</div>
+          <h3 style="font-size:20px;font-weight:800;color:#f0f0f0;margin-bottom:10px;">Siempre actualizado</h3>
+          <p style="font-size:14px;color:rgba(240,240,240,0.55);line-height:1.65;">El SEO cambia constantemente. Cuando cambie algo importante, se añade un módulo nuevo. Tu acceso incluye todas las actualizaciones.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENTO: herramientas -->
+  <section style="background:#0d0800;padding:80px 0;">
+    <div style="max-width:1280px;margin:0 auto;padding:0 24px;">
+      <div style="margin-bottom:48px;">
+        <p style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#f59e0b;letter-spacing:0.12em;margin-bottom:12px;">// lo que aprenderás a hacer</p>
+        <h2 style="font-size:clamp(28px,4vw,52px);font-weight:900;color:#f0f0f0;line-height:1.1;max-width:640px;">5 cosas que harás con Claude<br>que cambiarán tu SEO</h2>
+      </div>
+
+      <div class="bento-grid">
+
+        <!-- Grande: Keywords -->
+        <div class="bento-card bento-large" style="border-color:rgba(245,158,11,0.3);">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px;">
+            <div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#f59e0b;letter-spacing:0.1em;margin-bottom:8px;">01 / INVESTIGACIÓN DE KEYWORDS</div>
+              <h3 style="font-size:30px;font-weight:900;color:#f0f0f0;">Keywords con Claude</h3>
+            </div>
+            <div style="width:48px;height:48px;border-radius:12px;background:rgba(245,158,11,0.1);display:flex;align-items:center;justify-content:center;font-size:24px;">🔍</div>
+          </div>
+          <p style="color:rgba(240,240,240,0.6);line-height:1.65;font-size:15px;margin-bottom:24px;">No más pagar por herramientas de keywords. Claude analiza tu nicho, detecta intención de búsqueda y genera clusters de keywords con dificultad estimada — en segundos.</p>
+          <div style="background:#0a0700;border-radius:8px;padding:16px;font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.8;border:1px solid rgba(245,158,11,0.1);">
+            <div style="color:rgba(245,158,11,0.5);"># Ejemplo real</div>
+            <div><span style="color:#f59e0b;">❯</span> <span style="color:#f0f0f0;">Dame keywords para "clínica dental Madrid" con intención local</span></div>
+            <div style="color:#fbbf24;margin-top:4px;">→ "dentista urgencias madrid" — Vol: 2.4k · Dif: baja</div>
+            <div style="color:#fbbf24;">→ "limpieza dental precio madrid" — Vol: 1.8k · Dif: media</div>
+            <div style="color:#fbbf24;">→ "ortodoncia invisible madrid" — Vol: 3.1k · Dif: alta</div>
+          </div>
+        </div>
+
+        <!-- GEO -->
+        <div class="bento-card" style="border-color:rgba(249,115,22,0.3);">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#f97316;letter-spacing:0.1em;margin-bottom:8px;">02 / GENERATIVE ENGINE OPT.</div>
+          <h3 style="font-size:24px;font-weight:900;color:#f0f0f0;margin-bottom:12px;">Aparecer en las IAs</h3>
+          <p style="color:rgba(240,240,240,0.55);font-size:14px;line-height:1.6;margin-bottom:20px;">Aprenderás a estructurar tu contenido para que ChatGPT, Perplexity y Gemini te citen cuando alguien pregunte por tu sector.</p>
+          <div style="display:flex;flex-direction:column;gap:6px;">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:11px;padding:6px 10px;background:rgba(249,115,22,0.07);border-radius:4px;color:#fdba74;">ChatGPT te cita ✓</div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:11px;padding:6px 10px;background:rgba(249,115,22,0.07);border-radius:4px;color:#fdba74;">Perplexity te indexa ✓</div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:11px;padding:6px 10px;background:rgba(249,115,22,0.07);border-radius:4px;color:#fdba74;">Gemini te recomienda ✓</div>
+          </div>
+        </div>
+
+        <!-- Contenido -->
+        <div class="bento-card">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#f59e0b;letter-spacing:0.1em;margin-bottom:8px;">03 / CONTENIDO SEO</div>
+          <h3 style="font-size:24px;font-weight:900;color:#f0f0f0;margin-bottom:12px;">Artículos que posicionan</h3>
+          <p style="color:rgba(240,240,240,0.55);font-size:14px;line-height:1.6;margin-bottom:20px;">Los prompts exactos para que Claude genere artículos con estructura H1-H6 correcta, densidad de keyword natural y enlazado interno sugerido.</p>
+          <div style="display:flex;flex-direction:column;gap:6px;">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:11px;padding:6px 10px;background:rgba(245,158,11,0.06);border-radius:4px;color:#fcd34d;">blog_post_seo.md ✓</div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:11px;padding:6px 10px;background:rgba(245,158,11,0.06);border-radius:4px;color:#fcd34d;">pagina_servicio_opt.md ✓</div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:11px;padding:6px 10px;background:rgba(245,158,11,0.06);border-radius:4px;color:#fcd34d;">faq_schema_ready.md ✓</div>
+          </div>
+        </div>
+
+        <!-- Schema markup — ancho -->
+        <div class="bento-card bento-wide" style="border-color:rgba(245,158,11,0.25);">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px;">
+            <div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#f59e0b;letter-spacing:0.1em;margin-bottom:8px;">04 / DATOS ESTRUCTURADOS</div>
+              <h3 style="font-size:26px;font-weight:900;color:#f0f0f0;">Schema markup con Claude</h3>
+            </div>
+          </div>
+          <p style="color:rgba(240,240,240,0.55);font-size:14px;line-height:1.6;margin-bottom:20px;max-width:440px;">Describe tu negocio y Claude genera el JSON-LD correcto para tus páginas. Sin tocar código, sin errores.</p>
+          <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;">
+            <div class="schema-demo"><span class="sc-key">LocalBusiness</span><span class="sc-val">→ Negocios locales</span></div>
+            <div class="schema-demo"><span class="sc-key">FAQPage</span><span class="sc-val">→ Rich snippets</span></div>
+            <div class="schema-demo"><span class="sc-key">Article</span><span class="sc-val">→ Blog y noticias</span></div>
+            <div class="schema-demo"><span class="sc-key">Course</span><span class="sc-val">→ Formación online</span></div>
+          </div>
+        </div>
+
+        <!-- Auditorías -->
+        <div class="bento-card" style="border-color:rgba(234,179,8,0.2);">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#eab308;letter-spacing:0.1em;margin-bottom:8px;">05 / AUDITORÍA SEO</div>
+          <h3 style="font-size:24px;font-weight:900;color:#f0f0f0;margin-bottom:12px;">Análisis automático</h3>
+          <p style="color:rgba(240,240,240,0.55);font-size:14px;line-height:1.6;margin-bottom:20px;">Copia el HTML de tu página y Claude detecta todos los problemas SEO con prioridad y solución incluida.</p>
+          <div style="display:flex;flex-direction:column;gap:6px;">
+            <div class="audit-item">⚠ H1 duplicado → corregir</div>
+            <div class="audit-item">⚠ Meta desc. > 160 chars</div>
+            <div class="audit-item">✓ Schema LocalBusiness OK</div>
+            <div class="audit-item">⚠ Alt en 3 imágenes vacío</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- TEMARIO -->
+  <section id="temario" style="background:#111108;padding:80px 0;">
+    <div style="max-width:900px;margin:0 auto;padding:0 24px;">
+      <div style="text-align:center;margin-bottom:56px;">
+        <p style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#f59e0b;letter-spacing:0.12em;margin-bottom:12px;">// temario</p>
+        <h2 style="font-size:clamp(28px,4vw,52px);font-weight:900;color:#f0f0f0;line-height:1.1;">6 módulos. 2 horas.<br>Nuevos módulos según evoluciona el sector.</h2>
+      </div>
+
+      <div style="position:relative;">
+        <div style="position:absolute;left:24px;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,#f59e0b,rgba(245,158,11,0.05));"></div>
+        <div style="display:flex;flex-direction:column;gap:0;">
+
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+              <div class="tl-meta"><span class="tl-num">01</span></div>
+              <h3 class="tl-title">Google, las IAs y el nuevo SEO</h3>
+              <p class="tl-desc">Qué ha cambiado en búsqueda en 2025-2026. Por qué el GEO ya es necesario. Qué puedes conseguir con Claude que antes requería herramientas de pago.</p>
+              <div class="tl-tags"><span class="tag">Contexto</span><span class="tag">GEO</span><span class="tag">Setup Claude</span></div>
+            </div>
+          </div>
+
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+              <div class="tl-meta"><span class="tl-num">02</span></div>
+              <h3 class="tl-title">Investigación de keywords con Claude</h3>
+              <p class="tl-desc">Los prompts exactos para generar clusters de keywords, detectar intención de búsqueda, encontrar long-tails sin competencia y priorizar qué atacar primero.</p>
+              <div class="tl-tags"><span class="tag">Keywords</span><span class="tag">Intención</span><span class="tag">Clusters</span></div>
+            </div>
+          </div>
+
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+              <div class="tl-meta"><span class="tl-num">03</span></div>
+              <h3 class="tl-title">Contenido que posiciona en Google Y en IAs</h3>
+              <p class="tl-desc">Cómo crear artículos y páginas de servicio optimizados para los dos entornos a la vez. Estructura, densidad, enlazado interno y tono — todo con prompts reutilizables.</p>
+              <div class="tl-tags"><span class="tag">Contenido SEO</span><span class="tag">GEO</span><span class="tag">Prompts</span></div>
+            </div>
+          </div>
+
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+              <div class="tl-meta"><span class="tl-num">04</span></div>
+              <h3 class="tl-title">Schema markup y structured data con IA</h3>
+              <p class="tl-desc">Genera JSON-LD correcto para cualquier tipo de página: LocalBusiness, FAQPage, Article, Course, Product. Pégalo directamente en tu web. Sin errores.</p>
+              <div class="tl-tags"><span class="tag">JSON-LD</span><span class="tag">Rich snippets</span><span class="tag">Schema.org</span></div>
+            </div>
+          </div>
+
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+              <div class="tl-meta"><span class="tl-num">05</span></div>
+              <h3 class="tl-title">Auditorías SEO automáticas con Claude</h3>
+              <p class="tl-desc">Cómo hacer una auditoría completa de cualquier página en 5 minutos: detectar problemas de H1, meta tags, alt text, velocidad, estructura y más. Con plan de acción incluido.</p>
+              <div class="tl-tags"><span class="tag">Auditoría</span><span class="tag">On-page</span><span class="tag">Plan de acción</span></div>
+            </div>
+          </div>
+
+          <div class="tl-item" style="padding-bottom:0;">
+            <div class="tl-dot" style="background:#f59e0b;box-shadow:0 0 12px rgba(245,158,11,0.5);"></div>
+            <div class="tl-content">
+              <div class="tl-meta"><span class="tl-num">06+</span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#f59e0b;background:rgba(245,158,11,0.1);padding:3px 8px;border-radius:4px;letter-spacing:0.06em;">EN EXPANSIÓN</span></div>
+              <h3 class="tl-title">Nuevos módulos según cambia el sector</h3>
+              <p class="tl-desc">Cada vez que cambie un algoritmo, aparezca una nueva IA relevante o surja una técnica GEO efectiva, se añade un módulo nuevo. Los alumnos actuales lo reciben automáticamente.</p>
+              <div class="tl-tags"><span class="tag">Actualizaciones</span><span class="tag">Comunidad</span><span class="tag">Siempre vigente</span></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARA QUIÉN -->
+  <section style="background:#0d0800;padding:80px 0;">
+    <div style="max-width:1280px;margin:0 auto;padding:0 24px;">
+      <div style="margin-bottom:48px;">
+        <p style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#f59e0b;letter-spacing:0.12em;margin-bottom:12px;">// para quién</p>
+        <h2 style="font-size:clamp(28px,4vw,48px);font-weight:900;color:#f0f0f0;line-height:1.1;">¿Este curso es para ti?</h2>
+      </div>
+      <div class="who-grid">
+        <div class="who-card"><div class="who-role">Autónomo o pequeño negocio</div><p class="who-desc">Tienes web pero no apareces en Google. Quieres atraer clientes sin pagar publicidad ni contratar a nadie.</p><div class="who-match">✓ Match perfecto</div></div>
+        <div class="who-card"><div class="who-role">Freelance o consultor</div><p class="who-desc">Ofreces servicios y necesitas que te encuentren en Google y en las búsquedas de IA. Tu mejor canal de captación es el orgánico.</p><div class="who-match">✓ Match perfecto</div></div>
+        <div class="who-card"><div class="who-role">Marketer o responsable de web</div><p class="who-desc">Ya haces SEO pero quieres incorporar IA para ir más rápido y cubrir también las búsquedas en ChatGPT y Perplexity.</p><div class="who-match">✓ Match perfecto</div></div>
+        <div class="who-card"><div class="who-role">Dueño de tienda online</div><p class="who-desc">Quieres más tráfico orgánico sin depender de Google Ads. El SEO con IA te permite escalar contenido sin escalar equipo.</p><div class="who-match">✓ Vale la pena</div></div>
+        <div class="who-card"><div class="who-role">Agencia o diseñador web</div><p class="who-desc">Quieres ofrecer SEO a tus clientes sin ser especialista. Con Claude puedes hacer auditorías y contenido optimizado en minutos.</p><div class="who-match">✓ Vale la pena</div></div>
+        <div class="who-card"><div class="who-role">Bloguero o creador de contenido</div><p class="who-desc">Publicas contenido y quieres que te encuentren tanto en Google como cuando alguien le pregunta a una IA sobre tu temática.</p><div class="who-match">✓ Vale la pena</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section style="background:#111108;padding:80px 0;">
+    <div style="max-width:800px;margin:0 auto;padding:0 24px;">
+      <div style="text-align:center;margin-bottom:48px;">
+        <p style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#f59e0b;letter-spacing:0.12em;margin-bottom:12px;">// preguntas frecuentes</p>
+        <h2 style="font-size:clamp(24px,3.5vw,40px);font-weight:900;color:#f0f0f0;">Lo que nos suelen preguntar</h2>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+
+        <details class="faq-item">
+          <summary class="faq-summary">¿Qué es el GEO y por qué importa en 2026?
+            <svg class="faq-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="faq-body">GEO (Generative Engine Optimization) es optimizar tu contenido para aparecer citado cuando alguien busca en ChatGPT, Perplexity, Gemini o Copilot. En 2026 millones de personas ya buscan directamente en estas IAs. Si tu web no está estructurada para que las IAs la entiendan y citen, estás perdiendo una fuente de tráfico creciente.</div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-summary">¿Necesito conocimientos previos de SEO?
+            <svg class="faq-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="faq-body">No. El curso funciona tanto para principiantes como para quienes ya tienen base. Claude simplifica la parte técnica: describes tu negocio y obtienes el análisis, el contenido y el schema markup. Si ya sabes SEO, aprenderás a hacer en minutos lo que antes te llevaba horas.</div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-summary">¿Hace falta pagar herramientas de SEO como Semrush o Ahrefs?
+            <svg class="faq-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="faq-body">No son necesarias. El curso está diseñado para que puedas hacer investigación de keywords, auditorías y análisis de competencia usando Claude y herramientas gratuitas como Google Search Console y Google PageSpeed. Si ya tienes Semrush o Ahrefs, aprenderás a combinarlos con Claude para ir mucho más rápido.</div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-summary">¿El acceso es permanente y recibo actualizaciones?
+            <svg class="faq-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="faq-body">Sí. Pago único de 50€ con acceso de por vida. El SEO y el GEO cambian constantemente — cuando haya un cambio relevante (nuevo algoritmo, nueva IA, nueva táctica) se añade contenido al curso sin coste adicional para alumnos ya inscritos.</div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-summary">¿Funciona para cualquier tipo de negocio?
+            <svg class="faq-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="faq-body">Sí. El curso cubre SEO local (para negocios con ubicación física: clínicas, talleres, restaurantes, tiendas) y SEO para servicios online. Los prompts se adaptan a cualquier nicho.</div>
+        </details>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section style="background:#0d0800;padding:100px 0;position:relative;overflow:hidden;">
+    <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(245,158,11,0.04) 1px,transparent 1px);background-size:24px 24px;pointer-events:none;"></div>
+    <div style="max-width:800px;margin:0 auto;padding:0 24px;text-align:center;position:relative;z-index:1;">
+      <h2 style="font-size:clamp(32px,5vw,68px);font-weight:900;color:#f0f0f0;line-height:1;margin-bottom:12px;">
+        50€. <span style="color:#f59e0b;">Acceso permanente.</span><br>Posiciona de verdad.
+      </h2>
+      <p style="color:rgba(240,240,240,0.5);font-size:18px;margin-bottom:48px;line-height:1.6;">Vídeos grabados · Comunidad activa · Actualizaciones para siempre</p>
+
+      <div style="background:#1a1508;border:1px solid rgba(245,158,11,0.2);border-radius:16px;padding:40px;max-width:520px;margin:0 auto;">
+        <p style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#f59e0b;letter-spacing:0.12em;margin-bottom:24px;">$ ./inscribirse --curso=seo-geo-claude</p>
+        <form id="bottom-form" style="display:flex;flex-direction:column;gap:12px;">
+          <label style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#f59e0b;text-align:left;letter-spacing:0.08em;">// tu email</label>
+          <input id="bottom-email" type="email" placeholder="tu@negocio.com" required
+            style="background:rgba(245,158,11,0.05);border:1px solid rgba(245,158,11,0.2);border-radius:8px;padding:16px;color:#f0f0f0;font-family:'JetBrains Mono',monospace;font-size:14px;outline:none;" />
+          <button type="submit" id="bottom-btn" class="btn-primary" style="width:100%;padding:18px;">
+            Apúntame a la lista de espera →
+          </button>
+        </form>
+        <div id="bottom-success" style="display:none;padding:20px 0;">
+          <p style="font-family:'JetBrains Mono',monospace;color:#f59e0b;font-size:15px;">✓ perfecto. te avisamos cuando abran inscripciones.</p>
+        </div>
+        <p style="font-size:12px;color:rgba(240,240,240,0.22);margin-top:16px;">Sin spam · Solo avisamos cuando abren inscripciones</p>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<script is:inline>
+  // Tema naranja para header y footer
+  (function() {
+    document.body.classList.add('seogeo-theme');
+    const h = document.getElementById('main-header');
+    const f = document.querySelector('footer');
+    if (h) { h.style.setProperty('background','linear-gradient(135deg,#0a0700 0%,#0d0900 50%,#0a0700 100%)','important'); h.style.setProperty('border-bottom','1px solid rgba(245,158,11,0.18)','important'); }
+    if (f) { f.style.backgroundColor = '#0a0700'; f.style.borderTopColor = 'rgba(245,158,11,0.12)'; }
+    window.addEventListener('scroll', () => {
+      if (!h) return;
+      const bg = window.scrollY > 20 ? 'linear-gradient(135deg,#070500 0%,#0a0700 100%)' : 'linear-gradient(135deg,#0a0700 0%,#0d0900 50%,#0a0700 100%)';
+      h.style.setProperty('background', bg, 'important');
+      h.style.setProperty('border-bottom','1px solid rgba(245,158,11,0.18)','important');
+    });
+  })();
+
+  // Cuenta atrás — 26 de Julio 2026
+  const target = new Date('2026-07-26T18:00:00').getTime();
+  function tick() {
+    const diff = target - Date.now();
+    if (diff <= 0) return;
+    const pad = n => String(Math.floor(n)).padStart(2,'0');
+    document.getElementById('cd-d').textContent = pad(diff/86400000);
+    document.getElementById('cd-h').textContent = pad((diff%86400000)/3600000);
+    document.getElementById('cd-m').textContent = pad((diff%3600000)/60000);
+    document.getElementById('cd-s').textContent = pad((diff%60000)/1000);
+  }
+  tick(); setInterval(tick, 1000);
+
+  // Terminal SEO
+  const lines = [
+    { t: '$ claude analyze-page --url=miweb.es/servicios', c: '#f59e0b' },
+    { t: '> [ANALIZANDO estructura SEO...]', c: 'rgba(240,240,240,0.4)', d: 800 },
+    { t: '⚠ H1 duplicado en /servicios', c: '#f97316', d: 1400 },
+    { t: '⚠ Meta description ausente en 3 páginas', c: '#f97316', d: 1900 },
+    { t: '✓ Schema LocalBusiness detectado', c: '#fbbf24', d: 2400 },
+    { t: '', c: '', d: 3000 },
+    { t: '$ claude keywords --nicho="fontanero madrid"', c: '#f59e0b', d: 3400 },
+    { t: '→ "fontanero urgencias madrid" Vol:2.4k', c: '#fbbf24', d: 4100 },
+    { t: '→ "desatascar tuberías madrid" Vol:1.2k', c: '#fbbf24', d: 4600 },
+    { t: '', c: '', d: 5200 },
+    { t: '$ geo-optimize --target=ChatGPT,Perplexity', c: '#f59e0b', d: 5600 },
+    { t: '> Estructura GEO aplicada ✓', c: '#fbbf24', d: 6300 },
+    { t: '> FAQ schema generado ✓', c: '#fbbf24', d: 6800 },
+    { t: '', c: '', d: 7300 },
+    { t: '# Resultado: +340% tráfico orgánico en 90 días', c: 'rgba(245,158,11,0.5)', d: 7700 },
+  ];
+  const out = document.getElementById('terminal-output');
+  if (out) {
+    lines.forEach(({ t, c, d = 0 }) => {
+      setTimeout(() => {
+        const el = document.createElement('div');
+        el.textContent = t;
+        el.style.color = c;
+        if (!t) el.style.height = '10px';
+        out.appendChild(el);
+        out.parentElement.scrollTop = 9999;
+      }, d);
+    });
+  }
+
+  // Formularios
+  async function submitForm(emailId, formId, successId, btnId, btnText) {
+    const email = document.getElementById(emailId)?.value;
+    const btn = document.getElementById(btnId);
+    if (btn) { btn.disabled = true; btn.textContent = 'Enviando...'; }
+    try {
+      const res = await fetch('/api/lista-espera-seo-geo', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email })
+      });
+      const data = await res.json();
+      if (data.success) {
+        const form = document.getElementById(formId);
+        const success = document.getElementById(successId);
+        if (form) form.style.display = 'none';
+        if (success) success.style.display = 'block';
+      } else {
+        if (btn) { btn.disabled = false; btn.textContent = btnText; }
+      }
+    } catch {
+      if (btn) { btn.disabled = false; btn.textContent = btnText; }
+    }
+  }
+  document.getElementById('hero-form')?.addEventListener('submit', e => { e.preventDefault(); submitForm('hero-email','hero-form','hero-success','hero-btn','Avísame →'); });
+  document.getElementById('bottom-form')?.addEventListener('submit', e => { e.preventDefault(); submitForm('bottom-email','bottom-form','bottom-success','bottom-btn','Apúntame a la lista de espera →'); });
+</script>
+
+<style is:global>
+  body.seogeo-theme #main-header { background:linear-gradient(135deg,#0a0700 0%,#0d0900 50%,#0a0700 100%) !important; border-bottom:1px solid rgba(245,158,11,0.18) !important; }
+  body.seogeo-theme .nav-link::after { background:linear-gradient(90deg,#f59e0b,#f97316) !important; }
+  body.seogeo-theme .nav-link--highlight { color:#f97316 !important; }
+  body.seogeo-theme .nav-link--highlight:hover { color:#f59e0b !important; }
+  body.seogeo-theme header nav a[href="/reunion"] { background:linear-gradient(135deg,#d97706 0%,#b45309 100%) !important; color:#0d0800 !important; }
+  body.seogeo-theme footer { background-color:#0a0700 !important; border-top-color:rgba(245,158,11,0.12) !important; }
+  body.seogeo-theme footer a { color:rgba(200,200,200,0.6) !important; }
+  body.seogeo-theme footer a.text-white { color:#ffffff !important; }
+  body.seogeo-theme footer a:hover { color:#f59e0b !important; }
+  body.seogeo-theme footer a.text-white:hover { color:rgba(255,255,255,0.85) !important; }
+  body.seogeo-theme #te-llamamos-btn { background-color:#d97706 !important; color:#0d0800 !important; }
+  body.seogeo-theme #te-llamamos-btn:hover { background-color:#f59e0b !important; }
+  body.seogeo-theme footer .border-base-700 { border-color:rgba(245,158,11,0.1) !important; }
+</style>
+
+<style>
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+  @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+  .chip { font-family:'JetBrains Mono','Fira Code',monospace; font-size:12px; padding:5px 12px; border:1px solid rgba(245,158,11,0.25); border-radius:4px; color:rgba(245,158,11,0.75); background:rgba(245,158,11,0.05); letter-spacing:0.05em; }
+  .btn-primary { background:#f59e0b; color:#0d0800; font-family:'JetBrains Mono','Fira Code',monospace; font-size:14px; font-weight:700; padding:14px 24px; border:none; border-radius:6px; cursor:pointer; white-space:nowrap; letter-spacing:0.04em; transition:opacity 0.15s,transform 0.15s; }
+  .btn-primary:hover { opacity:0.88; transform:translateY(-1px); }
+  .btn-primary:disabled { opacity:0.45; cursor:not-allowed; transform:none; }
+
+  .hero-grid { display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center; }
+  .terminal-col { width:100%; }
+  .terminal-window { border-radius:12px; border:1px solid rgba(245,158,11,0.18); overflow:hidden; box-shadow:0 0 60px rgba(245,158,11,0.05),0 24px 48px rgba(0,0,0,0.6); }
+
+  .cd-box { background:rgba(245,158,11,0.05); border:1px solid rgba(245,158,11,0.12); border-radius:8px; padding:12px 8px; display:flex; flex-direction:column; align-items:center; gap:4px; }
+  .cd-num { font-family:'JetBrains Mono',monospace; font-size:28px; font-weight:700; color:#f59e0b; line-height:1; }
+  .cd-lbl { font-family:'JetBrains Mono',monospace; font-size:10px; color:rgba(245,158,11,0.4); letter-spacing:0.08em; text-transform:uppercase; }
+
+  .marquee-track { display:inline-flex; align-items:center; gap:24px; animation:marquee 35s linear infinite; white-space:nowrap; }
+  .mq-item { font-family:'JetBrains Mono','Fira Code',monospace; font-size:13px; font-weight:600; color:#0d0800; letter-spacing:0.02em; }
+  .mq-sep { color:rgba(13,8,0,0.35); font-size:10px; }
+
+  .pillars-grid { }
+  .bento-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+  .bento-card { background:#1a1508; border:1px solid rgba(255,255,255,0.07); border-radius:16px; padding:28px; transition:border-color 0.2s,transform 0.2s; }
+  .bento-card:hover { border-color:rgba(245,158,11,0.25); transform:translateY(-2px); }
+  .bento-large { grid-column:span 2; }
+  .bento-wide { grid-column:span 2; }
+
+  .schema-demo { display:flex; align-items:center; gap:8px; padding:8px 10px; background:rgba(245,158,11,0.05); border-radius:6px; border:1px solid rgba(245,158,11,0.1); }
+  .sc-key { font-family:'JetBrains Mono',monospace; font-size:11px; color:#f59e0b; font-weight:700; }
+  .sc-val { font-family:'JetBrains Mono',monospace; font-size:10px; color:rgba(240,240,240,0.45); }
+
+  .audit-item { font-family:'JetBrains Mono',monospace; font-size:12px; color:rgba(240,240,240,0.65); padding:6px 10px; background:rgba(234,179,8,0.05); border-radius:4px; border-left:2px solid rgba(234,179,8,0.3); }
+
+  .tl-item { display:flex; align-items:flex-start; gap:24px; padding:0 0 40px 56px; position:relative; }
+  .tl-dot { position:absolute; left:17px; top:4px; width:15px; height:15px; border-radius:50%; background:#1a1508; border:2px solid #f59e0b; }
+  .tl-content { flex:1; }
+  .tl-meta { display:flex; align-items:center; gap:10px; margin-bottom:8px; }
+  .tl-num { font-family:'JetBrains Mono',monospace; font-size:11px; color:#f59e0b; letter-spacing:0.1em; background:rgba(245,158,11,0.08); padding:3px 8px; border-radius:4px; }
+  .tl-title { font-size:20px; font-weight:800; color:#f0f0f0; margin-bottom:8px; }
+  .tl-desc { font-size:14px; color:rgba(240,240,240,0.5); line-height:1.65; margin-bottom:12px; }
+  .tl-tags { display:flex; flex-wrap:wrap; gap:6px; }
+  .tag { font-family:'JetBrains Mono',monospace; font-size:10px; padding:3px 8px; border:1px solid rgba(245,158,11,0.15); border-radius:3px; color:rgba(245,158,11,0.55); }
+
+  .who-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+  .who-card { background:#1a1508; border:1px solid rgba(255,255,255,0.07); border-radius:12px; padding:24px; transition:border-color 0.2s; }
+  .who-card:hover { border-color:rgba(245,158,11,0.2); }
+  .who-role { font-size:16px; font-weight:800; color:#f0f0f0; margin-bottom:10px; }
+  .who-desc { font-size:13px; color:rgba(240,240,240,0.5); line-height:1.6; margin-bottom:16px; }
+  .who-match { font-family:'JetBrains Mono',monospace; font-size:11px; color:#f59e0b; letter-spacing:0.06em; }
+
+  .faq-item { background:#1a1508; border:1px solid rgba(245,158,11,0.12); border-radius:12px; overflow:hidden; transition:border-color 0.2s; }
+  .faq-item[open] { border-color:rgba(245,158,11,0.3); }
+  .faq-summary { cursor:pointer; padding:20px 24px; font-weight:700; font-size:16px; color:#f0f0f0; list-style:none; display:flex; align-items:center; justify-content:space-between; gap:12px; }
+  .faq-summary::-webkit-details-marker { display:none; }
+  .faq-summary:hover { color:#fbbf24; }
+  .faq-arrow { width:20px; height:20px; color:#f59e0b; flex-shrink:0; transition:transform 0.2s; }
+  .faq-item[open] .faq-arrow { transform:rotate(180deg); }
+  .faq-body { padding:0 24px 20px; font-size:14px; color:rgba(240,240,240,0.6); line-height:1.7; }
+
+  @media (max-width:900px) {
+    .hero-grid { grid-template-columns:1fr; gap:40px; }
+    .terminal-col { display:none; }
+    .bento-grid { grid-template-columns:1fr 1fr; }
+    .bento-large,.bento-wide { grid-column:span 2; }
+    .who-grid { grid-template-columns:1fr 1fr; }
+    .pillars-grid { grid-template-columns:1fr !important; }
+  }
+  @media (max-width:600px) {
+    .bento-grid { grid-template-columns:1fr; }
+    .bento-large,.bento-wide { grid-column:span 1; }
+    .who-grid { grid-template-columns:1fr; }
+  }
+</style>

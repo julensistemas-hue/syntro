@@ -1,0 +1,155 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const title = "Cursos de IA para Profesionales | AI Security";
+const description = "Formación práctica con inteligencia artificial: Wazuh y ciberseguridad, productividad para administradores de sistemas, y SEO + GEO con Claude. Vídeos grabados, comunidad activa y acceso permanente.";
+const canonical = "https://aisecurity.es/cursos";
+
+const cursos = [
+  {
+    slug: "curso-wazuh",
+    nombre: "Wazuh en Español",
+    tagline: "SIEM + XDR + cumplimiento ENS",
+    descripcion: "Aprende a instalar, configurar y administrar Wazuh desde cero. Agentes Windows/Linux, reglas personalizadas y cumplimiento del Esquema Nacional de Seguridad.",
+    precio: "50€",
+    estado: "disponible",
+    estadoLabel: "Disponible ahora",
+    nivel: "Principiante → Avanzado",
+    duracion: "10+ horas",
+    color: "#8b5cf6",
+    colorBg: "rgba(139,92,246,0.08)",
+    colorBorder: "rgba(139,92,246,0.3)",
+    colorTag: "rgba(139,92,246,0.15)",
+    emoji: "🛡️",
+    temas: ["Instalación completa Wazuh", "Agentes Windows y Linux", "Reglas y decoders personalizados", "Cumplimiento ENS", "Integraciones VirusTotal + IA"],
+    cta: "Acceder al curso →",
+  },
+  {
+    slug: "curso-techai-boost",
+    nombre: "TechIA Boost",
+    tagline: "Productividad con IA para sysadmins",
+    descripcion: "Aprende a usar Claude, Whisperflow y scripts con IA para diagnosticar errores, documentar incidencias y automatizar tareas. Ahorra 10 horas semanales.",
+    precio: "50€",
+    estado: "waitlist",
+    estadoLabel: "Lista de espera · 7 Jul 2026",
+    nivel: "Todos los niveles",
+    duracion: "2 horas + actualizaciones",
+    color: "#00ff41",
+    colorBg: "rgba(0,255,65,0.06)",
+    colorBorder: "rgba(0,255,65,0.3)",
+    colorTag: "rgba(0,255,65,0.12)",
+    emoji: "⚡",
+    temas: ["Claude para diagnóstico de servidores", "Whisperflow para dictar incidencias", "Scripts bash/PowerShell con IA", "Atajos de Windows para IT", "Gestión de incidencias automatizada"],
+    cta: "Apúntarme a la lista →",
+  },
+  {
+    slug: "curso-seo-geo-claude",
+    nombre: "SEO + GEO con Claude",
+    tagline: "Posiciónate en Google y en las IAs",
+    descripcion: "Investigación de keywords, contenido optimizado, schema markup y GEO para aparecer en ChatGPT, Perplexity y Gemini. Sin agencias ni herramientas de pago.",
+    precio: "50€",
+    estado: "waitlist",
+    estadoLabel: "Lista de espera · 26 Jul 2026",
+    nivel: "Principiante → Intermedio",
+    duracion: "2 horas + actualizaciones",
+    color: "#f59e0b",
+    colorBg: "rgba(245,158,11,0.06)",
+    colorBorder: "rgba(245,158,11,0.3)",
+    colorTag: "rgba(245,158,11,0.12)",
+    emoji: "🔍",
+    temas: ["Keywords con Claude (sin Semrush)", "GEO: aparecer en ChatGPT y Perplexity", "Contenido que posiciona en Google y en IAs", "Schema markup generado con IA", "Auditorías SEO automatizadas"],
+    cta: "Apúntarme a la lista →",
+  },
+];
+---
+
+<BaseLayout title={title} description={description} canonical={canonical}>
+  <section style="background:#020817;min-height:100vh;padding:80px 0;">
+    <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(59,130,246,0.04) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;"></div>
+
+    <div style="max-width:1280px;margin:0 auto;padding:0 24px;position:relative;z-index:1;">
+
+      <!-- HERO -->
+      <div style="text-align:center;margin-bottom:72px;max-width:720px;margin-left:auto;margin-right:auto;">
+        <div style="display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border:1px solid rgba(255,255,255,0.12);border-radius:4px;margin-bottom:24px;">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:rgba(255,255,255,0.5);letter-spacing:0.1em;">FORMACIÓN · AI SECURITY</span>
+        </div>
+        <h1 style="font-size:clamp(36px,6vw,72px);font-weight:900;color:#fff;line-height:1;margin-bottom:20px;letter-spacing:-2px;">
+          Cursos de IA<br><span style="background:linear-gradient(135deg,#60a5fa,#818cf8,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">para profesionales</span>
+        </h1>
+        <p style="font-size:18px;color:rgba(255,255,255,0.55);line-height:1.65;max-width:560px;margin:0 auto;">
+          Formación práctica, vídeos grabados, comunidad activa y acceso permanente. Cada curso se actualiza cuando evoluciona la tecnología.
+        </p>
+      </div>
+
+      <!-- GRID DE CURSOS -->
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:24px;align-items:start;">
+        {cursos.map(curso => (
+          <a href={`/${curso.slug}`} style={`display:block;text-decoration:none;background:#0b1120;border:1px solid ${curso.colorBorder};border-radius:24px;padding:32px;transition:transform 0.2s,border-color 0.2s,box-shadow 0.2s;`}
+            class="curso-card">
+
+            <!-- Header -->
+            <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:20px;">
+              <div style={`width:56px;height:56px;border-radius:14px;background:${curso.colorBg};border:1px solid ${curso.colorBorder};display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0;`}>
+                {curso.emoji}
+              </div>
+              <div style={`display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:4px;background:${curso.estado === 'disponible' ? 'rgba(34,197,94,0.12)' : curso.colorTag};border:1px solid ${curso.estado === 'disponible' ? 'rgba(34,197,94,0.3)' : curso.colorBorder};`}>
+                <span style={`width:6px;height:6px;border-radius:50%;background:${curso.estado === 'disponible' ? '#22c55e' : curso.color};display:inline-block;${curso.estado === 'disponible' ? 'animation:blink 1.5s infinite;' : ''}`}></span>
+                <span style={`font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;color:${curso.estado === 'disponible' ? '#22c55e' : curso.color};letter-spacing:0.06em;`}>{curso.estadoLabel}</span>
+              </div>
+            </div>
+
+            <!-- Nombre y tagline -->
+            <div style={`font-family:'JetBrains Mono',monospace;font-size:11px;color:${curso.color};letter-spacing:0.1em;margin-bottom:6px;`}>{curso.tagline.toUpperCase()}</div>
+            <h2 style="font-size:26px;font-weight:900;color:#fff;margin-bottom:12px;line-height:1.1;">{curso.nombre}</h2>
+            <p style="font-size:14px;color:rgba(255,255,255,0.55);line-height:1.65;margin-bottom:24px;">{curso.descripcion}</p>
+
+            <!-- Temas -->
+            <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:28px;">
+              {curso.temas.map(tema => (
+                <div style="display:flex;align-items:flex-start;gap:10px;">
+                  <span style={`color:${curso.color};flex-shrink:0;font-size:14px;margin-top:1px;`}>✓</span>
+                  <span style="font-size:13px;color:rgba(255,255,255,0.65);">{tema}</span>
+                </div>
+              ))}
+            </div>
+
+            <!-- Footer -->
+            <div style={`padding-top:20px;border-top:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;justify-content:space-between;`}>
+              <div style="display:flex;gap:16px;">
+                <div>
+                  <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,0.35);letter-spacing:0.08em;margin-bottom:2px;">PRECIO</div>
+                  <div style="font-size:22px;font-weight:900;color:#fff;">{curso.precio}</div>
+                </div>
+                <div>
+                  <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,0.35);letter-spacing:0.08em;margin-bottom:2px;">DURACIÓN</div>
+                  <div style="font-size:13px;font-weight:600;color:rgba(255,255,255,0.7);">{curso.duracion}</div>
+                </div>
+              </div>
+              <div style={`display:inline-flex;align-items:center;gap:6px;padding:10px 16px;border-radius:8px;font-size:13px;font-weight:700;background:${curso.colorBg};color:${curso.color};border:1px solid ${curso.colorBorder};transition:background 0.15s;`}>
+                {curso.cta}
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <!-- NOTA INFERIOR -->
+      <div style="text-align:center;margin-top:64px;">
+        <p style="font-family:'JetBrains Mono',monospace;font-size:12px;color:rgba(255,255,255,0.25);letter-spacing:0.06em;">Todos los cursos incluyen acceso permanente · Comunidad activa · Actualizaciones sin coste adicional</p>
+      </div>
+
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+  .curso-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  }
+  @media (max-width:768px) {
+    .curso-card { margin-bottom:0; }
+  }
+</style>
