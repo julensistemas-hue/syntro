@@ -1,0 +1,73 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const concepts = [
+  { id:'k', name:'Núcleo orbital 3D', tag:'⭐ TOP', interaction:'Arrastra para girar', desc:'Esfera wireframe con 3D real; tus 4 áreas orbitan y se atenúan en la cara trasera.', accent:'#7cc0ff' },
+  { id:'g', name:'Texto de partículas', tag:'⭐ TOP', interaction:'Mueve el ratón / clic', desc:'El título hecho de partículas de tus 4 áreas; el ratón lo dispersa y la red se ilumina.', accent:'#60a5fa' },
+  { id:'d', name:'Linterna reveladora', tag:'⭐ TOP', interaction:'Mueve el ratón', desc:'Pantalla a oscuras; tu cursor es un foco que revela infraestructura oculta y amenazas.', accent:'#34d399' },
+  { id:'l', name:'Tipografía viva', tag:'', interaction:'Mueve el ratón sobre el título', desc:'Cada letra engorda, crece y se ilumina según la cercanía del cursor (fuente variable).', accent:'#a78bfa' },
+  { id:'i', name:'Desencriptado', tag:'', interaction:'Mueve el ratón sobre el título', desc:'Datos que se descifran al cargar + glitch que sigue al cursor. Estética consola de seguridad.', accent:'#34d399' },
+  { id:'m', name:'Distorsión gravitacional', tag:'', interaction:'Mueve el ratón', desc:'Una malla que se curva alrededor del cursor como el espacio-tiempo.', accent:'#60a5fa' },
+  { id:'f', name:'Terminal viva', tag:'', interaction:'Teclea comandos', desc:'Arranca AI-SEC OS y deja un prompt real: escribe servicios, wazuh, help…', accent:'#34d399' },
+  { id:'j', name:'Núcleo vivo (fusión)', tag:'', interaction:'Haz clic', desc:'El texto de partículas estalla y se reorganiza en tus 4 dominios conectados, y vuelve.', accent:'#fbbf24' },
+  { id:'e', name:'Orden del caos', tag:'', interaction:'Mueve el ratón', desc:'El cursor organiza nodos dispersos en una constelación conectada.', accent:'#a78bfa' },
+  { id:'h', name:'Infraestructura 3D', tag:'', interaction:'Mueve el ratón', desc:'Escena con profundidad 3D (perspectiva) que se inclina y hace parallax.', accent:'#fbbf24' },
+];
+---
+
+<BaseLayout
+  title="Galería de conceptos hero | AI Security"
+  description="Comparativa interna de conceptos de hero. No indexar.">
+  <meta slot="head" name="robots" content="noindex, nofollow" />
+
+  <section class="relative overflow-hidden px-6 py-20" style="background:#05070e;min-height:100vh;">
+    <div class="absolute inset-0 pointer-events-none" style="background-image:linear-gradient(rgba(59,130,246,0.08) 1px,transparent 1px),linear-gradient(90deg,rgba(59,130,246,0.08) 1px,transparent 1px);background-size:46px 46px;opacity:0.5;"></div>
+
+    <div class="relative max-w-6xl mx-auto" style="z-index:10;">
+      <div class="text-center mb-12">
+        <h1 class="font-black tracking-tight mb-4" style="font-size:clamp(2rem,5vw,3.2rem);color:#f4f8ff;">
+          10 conceptos de hero · elige el tuyo
+        </h1>
+        <p style="max-width:42rem;margin:0 auto;font-size:1.1rem;line-height:1.6;color:rgba(220,232,255,0.7);">
+          Cada uno usa una técnica de frontend distinta e interacción real. Ábrelos, juega con el ratón/teclado y dime cuál te sorprende.
+        </p>
+      </div>
+
+      <div class="grid gap-5" style="grid-template-columns:repeat(auto-fill,minmax(280px,1fr));">
+        {concepts.map(c => (
+          <a href={`/prueba-hero-${c.id}`} class="concept-card" style={`--c:${c.accent};`}>
+            <div class="flex items-center justify-between mb-3">
+              <span class="concept-letter" style={`background:${c.accent}1a;border:1px solid ${c.accent}55;color:${c.accent};`}>{c.id.toUpperCase()}</span>
+              {c.tag && <span style="font-size:0.68rem;font-weight:800;color:#fbbf24;letter-spacing:0.05em;">{c.tag}</span>}
+            </div>
+            <h2 style="font-size:1.15rem;font-weight:800;color:#f4f8ff;margin-bottom:0.4rem;">{c.name}</h2>
+            <p style="font-size:0.86rem;line-height:1.5;color:rgba(220,232,255,0.6);margin-bottom:0.9rem;min-height:3.2em;">{c.desc}</p>
+            <div class="flex items-center gap-2" style={`color:${c.accent};font-size:0.78rem;font-weight:700;`}>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5"/></svg>
+              {c.interaction}
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .concept-card {
+    display:block;padding:1.5rem;border-radius:1rem;text-decoration:none;
+    background:rgba(255,255,255,0.03);
+    border:1px solid color-mix(in srgb, var(--c) 20%, transparent);
+    transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease, background .2s ease;
+  }
+  .concept-card:hover {
+    transform:translateY(-5px);
+    border-color:var(--c);
+    background:rgba(255,255,255,0.05);
+    box-shadow:0 18px 44px -14px var(--c);
+  }
+  .concept-letter {
+    width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;
+    font-weight:900;font-size:0.95rem;
+  }
+</style>

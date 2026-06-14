@@ -1,0 +1,226 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e4]:
+      - link "AI SECURITY logo AI SECURITY" [ref=e6] [cursor=pointer]:
+        - /url: /
+        - img "AI SECURITY logo" [ref=e7]
+        - generic [ref=e8]: AI SECURITY
+      - navigation "Navegación principal" [ref=e9]:
+        - link "Consultoría IA" [ref=e10] [cursor=pointer]:
+          - /url: /consultoria-ia
+        - link "Posicionamiento SEO" [ref=e11] [cursor=pointer]:
+          - /url: /servicios/geo-posicionamiento
+        - button "Wazuh" [ref=e13] [cursor=pointer]:
+          - generic [ref=e14]: Wazuh
+          - img [ref=e15]
+        - button "Servicios" [ref=e18] [cursor=pointer]:
+          - generic [ref=e19]: Servicios
+          - img [ref=e20]
+        - link "Blog" [ref=e22] [cursor=pointer]:
+          - /url: /blog
+        - link "Solicitar Reunión GRATIS" [ref=e23] [cursor=pointer]:
+          - /url: /reunion
+          - text: Solicitar Reunión
+          - generic [ref=e24]: GRATIS
+  - main [ref=e25]:
+    - generic [ref=e27]:
+      - generic [ref=e28]:
+        - heading "10 conceptos de hero · elige el tuyo" [level=1] [ref=e29]
+        - paragraph [ref=e30]: Cada uno usa una técnica de frontend distinta e interacción real. Ábrelos, juega con el ratón/teclado y dime cuál te sorprende.
+      - generic [ref=e31]:
+        - link "K ⭐ TOP Núcleo orbital 3D Esfera wireframe con 3D real; tus 4 áreas orbitan y se atenúan en la cara trasera. Arrastra para girar" [ref=e32] [cursor=pointer]:
+          - /url: /prueba-hero-k
+          - generic [ref=e33]:
+            - generic [ref=e34]: K
+            - generic [ref=e35]: ⭐ TOP
+          - heading "Núcleo orbital 3D" [level=2] [ref=e36]
+          - paragraph [ref=e37]: Esfera wireframe con 3D real; tus 4 áreas orbitan y se atenúan en la cara trasera.
+          - generic [ref=e38]:
+            - img [ref=e39]
+            - text: Arrastra para girar
+        - link "G ⭐ TOP Texto de partículas El título hecho de partículas de tus 4 áreas; el ratón lo dispersa y la red se ilumina. Mueve el ratón / clic" [ref=e41] [cursor=pointer]:
+          - /url: /prueba-hero-g
+          - generic [ref=e42]:
+            - generic [ref=e43]: G
+            - generic [ref=e44]: ⭐ TOP
+          - heading "Texto de partículas" [level=2] [ref=e45]
+          - paragraph [ref=e46]: El título hecho de partículas de tus 4 áreas; el ratón lo dispersa y la red se ilumina.
+          - generic [ref=e47]:
+            - img [ref=e48]
+            - text: Mueve el ratón / clic
+        - link "D ⭐ TOP Linterna reveladora Pantalla a oscuras; tu cursor es un foco que revela infraestructura oculta y amenazas. Mueve el ratón" [ref=e50] [cursor=pointer]:
+          - /url: /prueba-hero-d
+          - generic [ref=e51]:
+            - generic [ref=e52]: D
+            - generic [ref=e53]: ⭐ TOP
+          - heading "Linterna reveladora" [level=2] [ref=e54]
+          - paragraph [ref=e55]: Pantalla a oscuras; tu cursor es un foco que revela infraestructura oculta y amenazas.
+          - generic [ref=e56]:
+            - img [ref=e57]
+            - text: Mueve el ratón
+        - link "L Tipografía viva Cada letra engorda, crece y se ilumina según la cercanía del cursor (fuente variable). Mueve el ratón sobre el título" [ref=e59] [cursor=pointer]:
+          - /url: /prueba-hero-l
+          - generic [ref=e61]: L
+          - heading "Tipografía viva" [level=2] [ref=e62]
+          - paragraph [ref=e63]: Cada letra engorda, crece y se ilumina según la cercanía del cursor (fuente variable).
+          - generic [ref=e64]:
+            - img [ref=e65]
+            - text: Mueve el ratón sobre el título
+        - link "I Desencriptado Datos que se descifran al cargar + glitch que sigue al cursor. Estética consola de seguridad. Mueve el ratón sobre el título" [ref=e67] [cursor=pointer]:
+          - /url: /prueba-hero-i
+          - generic [ref=e69]: I
+          - heading "Desencriptado" [level=2] [ref=e70]
+          - paragraph [ref=e71]: Datos que se descifran al cargar + glitch que sigue al cursor. Estética consola de seguridad.
+          - generic [ref=e72]:
+            - img [ref=e73]
+            - text: Mueve el ratón sobre el título
+        - link "M Distorsión gravitacional Una malla que se curva alrededor del cursor como el espacio-tiempo. Mueve el ratón" [ref=e75] [cursor=pointer]:
+          - /url: /prueba-hero-m
+          - generic [ref=e77]: M
+          - heading "Distorsión gravitacional" [level=2] [ref=e78]
+          - paragraph [ref=e79]: Una malla que se curva alrededor del cursor como el espacio-tiempo.
+          - generic [ref=e80]:
+            - img [ref=e81]
+            - text: Mueve el ratón
+        - 'link "F Terminal viva Arranca AI-SEC OS y deja un prompt real: escribe servicios, wazuh, help… Teclea comandos" [ref=e83] [cursor=pointer]':
+          - /url: /prueba-hero-f
+          - generic [ref=e85]: F
+          - heading "Terminal viva" [level=2] [ref=e86]
+          - paragraph [ref=e87]: "Arranca AI-SEC OS y deja un prompt real: escribe servicios, wazuh, help…"
+          - generic [ref=e88]:
+            - img [ref=e89]
+            - text: Teclea comandos
+        - link "J Núcleo vivo (fusión) El texto de partículas estalla y se reorganiza en tus 4 dominios conectados, y vuelve. Haz clic" [ref=e91] [cursor=pointer]:
+          - /url: /prueba-hero-j
+          - generic [ref=e93]: J
+          - heading "Núcleo vivo (fusión)" [level=2] [ref=e94]
+          - paragraph [ref=e95]: El texto de partículas estalla y se reorganiza en tus 4 dominios conectados, y vuelve.
+          - generic [ref=e96]:
+            - img [ref=e97]
+            - text: Haz clic
+        - link "E Orden del caos El cursor organiza nodos dispersos en una constelación conectada. Mueve el ratón" [ref=e99] [cursor=pointer]:
+          - /url: /prueba-hero-e
+          - generic [ref=e101]: E
+          - heading "Orden del caos" [level=2] [ref=e102]
+          - paragraph [ref=e103]: El cursor organiza nodos dispersos en una constelación conectada.
+          - generic [ref=e104]:
+            - img [ref=e105]
+            - text: Mueve el ratón
+        - link "H Infraestructura 3D Escena con profundidad 3D (perspectiva) que se inclina y hace parallax. Mueve el ratón" [ref=e107] [cursor=pointer]:
+          - /url: /prueba-hero-h
+          - generic [ref=e109]: H
+          - heading "Infraestructura 3D" [level=2] [ref=e110]
+          - paragraph [ref=e111]: Escena con profundidad 3D (perspectiva) que se inclina y hace parallax.
+          - generic [ref=e112]:
+            - img [ref=e113]
+            - text: Mueve el ratón
+  - contentinfo [ref=e115]:
+    - generic [ref=e116]:
+      - generic [ref=e117]:
+        - generic [ref=e118]:
+          - link "AI SECURITY logo AI SECURITY" [ref=e119] [cursor=pointer]:
+            - /url: /
+            - img "AI SECURITY logo" [ref=e120]
+            - generic [ref=e121]: AI SECURITY
+          - paragraph [ref=e122]: Soluciones de inteligencia artificial para empresas. Automatiza procesos, mejora la atención al cliente y optimiza tu operativa con tecnología de vanguardia.
+        - generic [ref=e123]:
+          - heading "¿Hablamos?" [level=3] [ref=e124]
+          - paragraph [ref=e125]: Cuéntanos tu proyecto y te ayudamos a automatizar tu negocio con soluciones de IA a medida.
+          - generic [ref=e126]:
+            - button "Te llamamos" [ref=e127] [cursor=pointer]:
+              - img [ref=e128]
+              - text: Te llamamos
+            - link "Agendar Reunión" [ref=e130] [cursor=pointer]:
+              - /url: /reunion
+              - img [ref=e131]
+              - text: Agendar Reunión
+      - generic [ref=e133]:
+        - generic [ref=e134]:
+          - heading "Servicios" [level=4] [ref=e135]
+          - list [ref=e136]:
+            - listitem [ref=e137]:
+              - link "Chatbot Inteligente" [ref=e138] [cursor=pointer]:
+                - /url: /servicios/chatbot
+            - listitem [ref=e139]:
+              - link "Gestor Documental IA" [ref=e140] [cursor=pointer]:
+                - /url: /servicios/gestor-documental
+            - listitem [ref=e141]:
+              - link "Gestor de Citas IA" [ref=e142] [cursor=pointer]:
+                - /url: /servicios/gestor-citas
+            - listitem [ref=e143]:
+              - link "Atención de Llamadas" [ref=e144] [cursor=pointer]:
+                - /url: /servicios/atencion-llamadas
+            - listitem [ref=e145]:
+              - link "Automatización" [ref=e146] [cursor=pointer]:
+                - /url: /servicios/automatizacion
+            - listitem [ref=e147]:
+              - link "Consultoría IA" [ref=e148] [cursor=pointer]:
+                - /url: /consultoria-ia
+        - generic [ref=e149]:
+          - heading "Empresa" [level=4] [ref=e150]
+          - list [ref=e151]:
+            - listitem [ref=e152]:
+              - link "Solicitar Reunión" [ref=e153] [cursor=pointer]:
+                - /url: /reunion
+            - listitem [ref=e154]:
+              - link "FAQ" [ref=e155] [cursor=pointer]:
+                - /url: /faq
+            - listitem [ref=e156]:
+              - link "Términos de Servicio" [ref=e157] [cursor=pointer]:
+                - /url: /terms
+            - listitem [ref=e158]:
+              - link "Política de Privacidad" [ref=e159] [cursor=pointer]:
+                - /url: /privacy
+        - generic [ref=e160]:
+          - heading "Seguridad" [level=4] [ref=e161]
+          - list [ref=e162]:
+            - listitem [ref=e163]:
+              - link "Wazuh & ENS" [ref=e164] [cursor=pointer]:
+                - /url: /wazuh
+            - listitem [ref=e165]:
+              - link "Consultoría IA" [ref=e166] [cursor=pointer]:
+                - /url: /consultoria-ia
+        - generic [ref=e167]:
+          - heading "Contacto" [level=4] [ref=e168]
+          - list [ref=e169]:
+            - listitem [ref=e170]:
+              - link "Email" [ref=e171] [cursor=pointer]:
+                - /url: mailto:info@aisecurity.es
+            - listitem [ref=e172]:
+              - link "Agendar Consulta" [ref=e173] [cursor=pointer]:
+                - /url: /reunion
+      - generic [ref=e174]:
+        - paragraph [ref=e175]: © 2026 AI SECURITY. Todos los derechos reservados.
+        - paragraph [ref=e176]: Soluciones de inteligencia artificial para empresas
+  - button "Abrir asistente" [ref=e177] [cursor=pointer]:
+    - generic [ref=e178]: ¿Te ayudo? 👋
+    - img [ref=e179]:
+      - generic [ref=e207]:
+        - generic [ref=e208]: z
+        - generic [ref=e209]: z
+        - generic [ref=e210]: Z
+  - generic:
+    - generic:
+      - generic:
+        - generic: 🤖
+        - generic:
+          - generic: Asistente AI Security
+          - generic: Responde al instante
+      - button: ✕
+    - generic:
+      - generic:
+        - text: 🤖
+        - generic:
+          - text: ¡Hola! 👋 Soy el asistente de
+          - strong: AI Security
+          - text: . ¿En qué puedo ayudarte hoy?
+    - generic:
+      - button: 🤖 Servicios de IA
+      - button: 🖥️ Soporte técnico
+      - button: 🛡️ Wazuh / Seguridad
+      - button: 💰 Precios
+      - button: 👤 Hablar con un humano
+    - generic:
+      - textbox:
+        - /placeholder: Escribe tu pregunta...
+      - button: →

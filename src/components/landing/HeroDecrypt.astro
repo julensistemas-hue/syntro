@@ -1,0 +1,149 @@
+---
+// HeroDecrypt — "Desencriptado"
+// El titular se descifra al cargar (scramble→texto). Al pasar el ratón sobre el
+// texto, las letras se re-cifran y descifran siguiendo el cursor (glitch).
+// Palabra rotatoria que se descifra: conectado / seguro / automático / optimizado.
+---
+
+<section id="dec-hero" class="relative overflow-hidden flex items-center justify-center px-6" style="background:#05070d;min-height:100vh;">
+
+  <!-- rejilla técnica muy tenue -->
+  <div class="absolute inset-0 pointer-events-none" style="background-image:linear-gradient(rgba(52,211,153,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(52,211,153,0.06) 1px,transparent 1px);background-size:34px 34px;z-index:0;"></div>
+  <!-- línea de escaneo -->
+  <div id="dec-scan" class="absolute left-0 right-0 pointer-events-none" style="height:2px;background:linear-gradient(90deg,transparent,rgba(52,211,153,0.5),transparent);z-index:1;top:0;"></div>
+
+  <div class="relative w-full max-w-4xl mx-auto text-center" style="z-index:10;">
+
+    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold mb-8 border" style="background:rgba(52,211,153,0.06);border-color:rgba(52,211,153,0.25);color:#5eead4;letter-spacing:0.16em;text-transform:uppercase;font-family:ui-monospace,monospace;">
+      <span style="width:7px;height:7px;border-radius:50%;background:#34d399;box-shadow:0 0 8px #34d399;display:inline-block;"></span>
+      Partner tecnológico · acceso seguro
+    </div>
+
+    <!-- Titular desencriptable -->
+    <h1 id="dec-h1" class="font-black tracking-tight" style="font-size:clamp(2.2rem,7vw,4.6rem);line-height:1.05;color:#eaf2ff;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;cursor:default;">
+      <span class="dec-line" data-text="TODO"></span>
+      <span class="dec-line" data-text="CONECTADO"></span>
+    </h1>
+
+    <!-- Línea rotatoria -->
+    <p class="mt-6 font-bold" style="font-size:clamp(1.1rem,3vw,1.8rem);font-family:ui-monospace,monospace;color:#94a3b8;">
+      <span style="color:#5eead4;">&gt;</span> todo
+      <span id="dec-rotor" style="color:#34d399;"></span><span id="dec-caret" style="display:inline-block;width:0.6ch;height:1.05em;background:#34d399;vertical-align:text-bottom;margin-left:2px;animation:decBlink 1s step-end infinite;"></span>
+    </p>
+
+    <p class="mx-auto mt-7" style="max-width:40rem;font-size:clamp(0.98rem,2.2vw,1.18rem);line-height:1.6;color:rgba(220,232,255,0.6);">
+      IA, ciberseguridad y sistemas bajo un mismo equipo. Lo que está conectado y controlado, se optimiza solo.
+    </p>
+
+    <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3">
+      <a href="/reunion" id="dec-cta" style="display:inline-flex;align-items:center;gap:0.6rem;background:#34d399;color:#05120b;font-weight:800;padding:0.95rem 2rem;border-radius:0.7rem;text-decoration:none;font-family:ui-monospace,monospace;font-size:0.95rem;box-shadow:0 10px 36px -8px rgba(52,211,153,0.6);transition:transform .2s,box-shadow .2s;">
+        ./solicitar-consulta --gratis
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+      </a>
+      <span id="dec-hint" style="color:rgba(148,163,184,0.7);font-size:0.82rem;font-family:ui-monospace,monospace;transition:opacity .5s;">// pasa el ratón sobre el título</span>
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes decBlink { 0%,100%{opacity:1;} 50%{opacity:0;} }
+  #dec-h1 .dec-line { display:inline-block; margin:0 0.12em; }
+  #dec-h1 .dec-char { display:inline-block; transition:color .12s; }
+  #dec-h1 .dec-char.scrambling { color:#34d399; text-shadow:0 0 12px rgba(52,211,153,0.7); }
+  #dec-cta:hover { transform:translateY(-2px);box-shadow:0 14px 46px -8px rgba(52,211,153,0.85); }
+  @keyframes decScan { 0%{top:0;opacity:0;} 8%{opacity:1;} 92%{opacity:1;} 100%{top:100%;opacity:0;} }
+  #dec-scan { animation:decScan 7s linear infinite 1s; }
+</style>
+
+<script>
+(function () {
+  const GLYPHS = 'ABCDEF0123456789#%&$/<>*+=!?@';
+  const rnd = () => GLYPHS[Math.floor(Math.random()*GLYPHS.length)];
+  const wait = (ms:number)=>new Promise(r=>setTimeout(r,ms));
+
+  const h1 = document.getElementById('dec-h1') as HTMLElement;
+  const hint = document.getElementById('dec-hint') as HTMLElement;
+  if (!h1) return;
+
+  // Construir spans por carácter
+  const lines = Array.from(h1.querySelectorAll('.dec-line')) as HTMLElement[];
+  const allChars: {el:HTMLElement; final:string}[] = [];
+  lines.forEach(line=>{
+    const text = line.getAttribute('data-text') || '';
+    line.textContent='';
+    for (const ch of text){
+      const s=document.createElement('span');
+      s.className='dec-char'; s.textContent=rnd(); s.dataset.final=ch;
+      line.appendChild(s); allChars.push({el:s, final:ch});
+    }
+  });
+
+  // Descifrado inicial (de izquierda a derecha, con cycling)
+  async function decryptIn(){
+    const cycles = 10;
+    for (let i=0;i<allChars.length;i++){
+      const {el,final}=allChars[i];
+      el.classList.add('scrambling');
+      for (let c=0;c<cycles;c++){ el.textContent=rnd(); await wait(26); }
+      el.textContent=final; el.classList.remove('scrambling');
+    }
+  }
+
+  // Glitch al pasar el ratón cerca de cada carácter
+  let lastGlitch=0;
+  h1.addEventListener('mousemove', (e)=>{
+    const now=Date.now(); if(now-lastGlitch<28) return; lastGlitch=now;
+    if(hint) hint.style.opacity='0.35';
+    for (const {el,final} of allChars){
+      const r=el.getBoundingClientRect();
+      const cx=r.left+r.width/2, cy=r.top+r.height/2;
+      const d=Math.hypot(e.clientX-cx, e.clientY-cy);
+      if (d<46 && !el.dataset.busy){
+        el.dataset.busy='1'; el.classList.add('scrambling');
+        let n=0; const iv=setInterval(()=>{
+          el.textContent=rnd(); n++;
+          if(n>4){ clearInterval(iv); el.textContent=final; el.classList.remove('scrambling'); delete el.dataset.busy; }
+        }, 32);
+      }
+    }
+  });
+
+  // Rotor de palabra que se descifra
+  const rotor = document.getElementById('dec-rotor') as HTMLElement;
+  const WORDS = ['conectado','seguro','automático','optimizado'];
+  let wi=0;
+  async function scrambleTo(word:string){
+    const max=Math.max(word.length, rotor.textContent?.length||0);
+    for (let step=0; step<=max; step++){
+      let out='';
+      for (let i=0;i<word.length;i++){ out += i<step ? word[i] : (Math.random()<0.6?rnd().toLowerCase():word[i]||''); }
+      rotor.textContent=out;
+      await wait(45);
+    }
+    rotor.textContent=word;
+  }
+  async function rotorLoop(){
+    await wait(1600);
+    while(true){
+      wi=(wi+1)%WORDS.length;
+      await scrambleTo(WORDS[wi]);
+      await wait(1900);
+    }
+  }
+
+  const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce){
+    // accesibilidad: texto ya descifrado, sin animación ni glitch
+    allChars.forEach(c=>{ c.el.textContent=c.final; });
+    rotor.textContent='conectado';
+    const scan=document.getElementById('dec-scan'); if(scan) scan.style.display='none';
+    const caret=document.getElementById('dec-caret'); if(caret) caret.style.animation='none';
+  } else {
+    (async()=>{
+      rotor.textContent='conectado';
+      await decryptIn();
+      rotorLoop();
+    })();
+  }
+})();
+</script>

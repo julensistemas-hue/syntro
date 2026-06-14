@@ -1,0 +1,182 @@
+---
+// HeroFusion — Linterna reveladora (fondo) + titular desencriptado (palabras)
+// Fondo: red de infraestructura oculta con las 4 áreas y amenazas, revelada por
+// el foco del cursor. Texto: se descifra al cargar y hace glitch siguiendo el ratón.
+// Contexto real AI Security: IA · Ciberseguridad · Sistemas · Automatización.
+---
+
+<section id="fus-hero" class="relative overflow-hidden flex items-center justify-center px-6" style="background:#03060d;min-height:100vh;cursor:none;">
+
+  <!-- Capa linterna -->
+  <canvas id="fus-canvas" class="absolute inset-0" style="width:100%;height:100%;display:block;z-index:1;"></canvas>
+
+  <!-- Foco visual que sigue al cursor -->
+  <div id="fus-cursor" style="position:absolute;width:16px;height:16px;border-radius:50%;pointer-events:none;z-index:30;transform:translate(-50%,-50%);background:radial-gradient(circle,#fff,rgba(255,255,255,0.2));box-shadow:0 0 24px 6px rgba(124,192,255,0.6);opacity:0;transition:opacity .3s;"></div>
+
+  <!-- Línea de escaneo -->
+  <div id="fus-scan" class="absolute left-0 right-0 pointer-events-none" style="height:2px;background:linear-gradient(90deg,transparent,rgba(52,211,153,0.45),transparent);z-index:6;top:0;"></div>
+
+  <!-- Contenido -->
+  <div class="relative w-full max-w-4xl mx-auto text-center" style="z-index:20;pointer-events:none;">
+
+    <h1 class="sr-only">AI Security — IA, ciberseguridad y sistemas para empresas. Todo conectado, todo bajo control.</h1>
+
+    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold mb-8 border" style="background:rgba(0,0,0,0.45);border-color:rgba(52,211,153,0.25);color:#5eead4;letter-spacing:0.16em;text-transform:uppercase;font-family:ui-monospace,monospace;backdrop-filter:blur(2px);">
+      <span style="width:7px;height:7px;border-radius:50%;background:#34d399;box-shadow:0 0 8px #34d399;display:inline-block;"></span>
+      AI Security · partner tecnológico
+    </div>
+
+    <!-- Titular desencriptable -->
+    <div id="fus-h1" aria-hidden="true" class="font-black tracking-tight" style="font-size:clamp(2.1rem,7vw,4.6rem);line-height:1.04;color:#eaf2ff;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;text-shadow:0 2px 40px rgba(3,6,13,0.95),0 0 70px rgba(3,6,13,0.9);">
+      <span class="fus-line" data-text="TODO"></span>
+      <span class="fus-line" data-text="CONECTADO"></span>
+    </div>
+
+    <!-- Rotor -->
+    <p class="mt-6 font-bold" style="font-size:clamp(1.05rem,3vw,1.7rem);font-family:ui-monospace,monospace;color:#94a3b8;text-shadow:0 2px 24px rgba(3,6,13,0.95);">
+      <span style="color:#5eead4;">&gt;</span> todo
+      <span id="fus-rotor" style="color:#34d399;"></span><span id="fus-caret" style="display:inline-block;width:0.55ch;height:1.05em;background:#34d399;vertical-align:text-bottom;margin-left:2px;animation:fusBlink 1s step-end infinite;"></span>
+    </p>
+
+    <p class="mx-auto mt-7" style="max-width:40rem;font-size:clamp(0.98rem,2.2vw,1.18rem);line-height:1.6;color:rgba(220,232,255,0.66);text-shadow:0 1px 20px rgba(3,6,13,0.95);">
+      IA, ciberseguridad y sistemas bajo un mismo equipo. Lo que no se ve no se controla — y lo que no se controla, no se optimiza. Nosotros lo iluminamos todo.
+    </p>
+
+    <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3" style="pointer-events:auto;">
+      <a href="/reunion" id="fus-cta" style="display:inline-flex;align-items:center;gap:0.6rem;background:#34d399;color:#05120b;font-weight:800;padding:0.95rem 2rem;border-radius:0.7rem;text-decoration:none;font-family:ui-monospace,monospace;font-size:0.95rem;cursor:pointer;box-shadow:0 10px 36px -8px rgba(52,211,153,0.55);transition:transform .2s,box-shadow .2s;">
+        Solicitar consulta gratuita
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+      </a>
+      <a href="#servicios" id="fus-ghost" style="display:inline-flex;align-items:center;color:#cbd5e1;font-weight:600;font-family:ui-monospace,monospace;font-size:0.9rem;padding:0.85rem 1.3rem;border-radius:0.7rem;border:1px solid rgba(255,255,255,0.14);text-decoration:none;cursor:pointer;transition:all .2s;">Ver servicios</a>
+    </div>
+
+    <div id="fus-hint" class="mt-7 flex items-center justify-center gap-2" style="color:rgba(159,198,255,0.8);font-size:0.84rem;transition:opacity .5s;">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5"/></svg>
+      Mueve el ratón para iluminar tu infraestructura
+    </div>
+  </div>
+
+  <!-- Scroll -->
+  <div class="absolute bottom-6 left-1/2 -translate-x-1/2" style="z-index:20;pointer-events:none;">
+    <div class="flex flex-col items-center gap-1 animate-bounce" style="color:rgba(159,198,255,0.6);">
+      <span class="text-xs">Descubre más</span>
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes fusBlink { 0%,100%{opacity:1;} 50%{opacity:0;} }
+  @keyframes fusScan { 0%{top:0;opacity:0;} 8%{opacity:1;} 92%{opacity:1;} 100%{top:100%;opacity:0;} }
+  #fus-scan { animation:fusScan 8s linear infinite 1.5s; }
+  #fus-h1 .fus-line { display:block; }
+  #fus-h1 .fus-char { display:inline-block; transition:color .12s; }
+  #fus-h1 .fus-char.scrambling { color:#34d399; text-shadow:0 0 14px rgba(52,211,153,0.7); }
+  #fus-cta:hover { transform:translateY(-2px);box-shadow:0 14px 46px -8px rgba(52,211,153,0.85); }
+  #fus-ghost:hover { color:#fff;border-color:rgba(255,255,255,0.3);background:rgba(255,255,255,0.04); }
+  @media (max-width:640px){ #fus-hero{ cursor:auto; } #fus-cursor{ display:none; } }
+</style>
+
+<script>
+(function () {
+  const section = document.getElementById('fus-hero') as HTMLElement;
+  const canvas  = document.getElementById('fus-canvas') as HTMLCanvasElement;
+  const cursorEl = document.getElementById('fus-cursor') as HTMLElement;
+  const hint    = document.getElementById('fus-hint') as HTMLElement;
+  if (!section || !canvas) return;
+  const ctx = canvas.getContext('2d')!;
+  const lit = document.createElement('canvas');
+  const lctx = lit.getContext('2d')!;
+
+  let W=0,H=0,DPR=Math.min(window.devicePixelRatio||1,2);
+  let mx=-9999,my=-9999,hasPointer=false,t=0;
+
+  type Kind='ia'|'cyber'|'system'|'auto'|'node'|'alert';
+  const COLORS:Record<Kind,string>={ ia:'#60a5fa', cyber:'#34d399', system:'#a78bfa', auto:'#fbbf24', node:'#5b7290', alert:'#ff5564' };
+  interface N{ x:number;y:number;r:number;kind:Kind;label?:string;phase:number;vx:number;vy:number; }
+  let nodes:N[]=[]; let links:[number,number][]=[];
+
+  function build(){
+    nodes=[]; links=[];
+    const hubs:{kind:Kind;label:string;fx:number;fy:number}[]=[
+      { kind:'ia',     label:'IA',             fx:0.18, fy:0.26 },
+      { kind:'cyber',  label:'Ciberseguridad', fx:0.82, fy:0.24 },
+      { kind:'system', label:'Sistemas',       fx:0.14, fy:0.78 },
+      { kind:'auto',   label:'Automatización', fx:0.86, fy:0.80 },
+    ];
+    hubs.forEach(h=>nodes.push({ x:h.fx*W, y:h.fy*H, r:13, kind:h.kind, label:h.label, phase:Math.random()*6.28, vx:0, vy:0 }));
+    const SMALL=Math.round((W*H)/42000);
+    for(let i=0;i<SMALL;i++) nodes.push({ x:Math.random()*W, y:Math.random()*H, r:Math.random()*2.2+2.2, kind:'node', phase:Math.random()*6.28, vx:(Math.random()-0.5)*0.18, vy:(Math.random()-0.5)*0.18 });
+    for(let i=0;i<5;i++) nodes.push({ x:Math.random()*W, y:(0.15+Math.random()*0.7)*H, r:6, kind:'alert', label:'⚠ amenaza', phase:Math.random()*6.28, vx:0, vy:0 });
+    for(let i=4;i<nodes.length;i++){ let best=-1,bd=1e9; for(let h=0;h<4;h++){ const dx=nodes[i].x-nodes[h].x,dy=nodes[i].y-nodes[h].y; const d=dx*dx+dy*dy; if(d<bd){bd=d;best=h;} } if(best>=0&&bd<(W*0.42)*(W*0.42)) links.push([i,best]); }
+    for(let i=4;i<nodes.length;i++) for(let j=i+1;j<nodes.length;j++){ const dx=nodes[i].x-nodes[j].x,dy=nodes[i].y-nodes[j].y; if(dx*dx+dy*dy<130*130&&Math.random()<0.5) links.push([i,j]); }
+  }
+  function resize(){ W=section.clientWidth; H=section.clientHeight; canvas.width=lit.width=W*DPR; canvas.height=lit.height=H*DPR; canvas.style.width=lit.style.width=W+'px'; canvas.style.height=lit.style.height=H+'px'; ctx.setTransform(DPR,0,0,DPR,0,0); lctx.setTransform(DPR,0,0,DPR,0,0); build(); }
+  function hexA(hex:string,a:number){ const r=parseInt(hex.slice(1,3),16),g=parseInt(hex.slice(3,5),16),b=parseInt(hex.slice(5,7),16); return `rgba(${r},${g},${b},${a})`; }
+
+  function drawNetwork(c:CanvasRenderingContext2D, on:boolean){
+    for(const [a,b] of links){ const na=nodes[a],nb=nodes[b]; c.beginPath(); c.moveTo(na.x,na.y); c.lineTo(nb.x,nb.y); const col=na.kind!=='node'?COLORS[na.kind]:(nb.kind!=='node'?COLORS[nb.kind]:'#3a4d68'); c.strokeStyle=on?hexA(col,0.55):hexA('#2a3a52',1); c.lineWidth=on?1.1:0.8; c.stroke(); }
+    if(on){ for(let k=0;k<links.length;k+=3){ const [a,b]=links[k]; const na=nodes[a],nb=nodes[b]; const p=((t*0.4+k*40)%100)/100; const px=na.x+(nb.x-na.x)*p,py=na.y+(nb.y-na.y)*p; const col=na.kind!=='node'?COLORS[na.kind]:'#7cc0ff'; c.beginPath(); c.arc(px,py,1.8,0,6.28); c.fillStyle=col; c.fill(); } }
+    for(const n of nodes){ const pulse=0.5+0.5*Math.sin(t*0.05+n.phase); const col=COLORS[n.kind];
+      if(n.kind==='alert'){ const s=n.r+(on?pulse*2:0); c.beginPath(); c.moveTo(n.x,n.y-s); c.lineTo(n.x+s,n.y+s); c.lineTo(n.x-s,n.y+s); c.closePath(); c.fillStyle=hexA(col,0.9); c.strokeStyle=on?'#ffd2d6':col; if(on){c.shadowColor=col;c.shadowBlur=16;} c.fill(); c.shadowBlur=0; }
+      else { if(on){ const g=c.createRadialGradient(n.x,n.y,0,n.x,n.y,n.r*5); g.addColorStop(0,hexA(col,0.5*pulse+0.2)); g.addColorStop(1,hexA(col,0)); c.fillStyle=g; c.beginPath(); c.arc(n.x,n.y,n.r*5,0,6.28); c.fill(); } c.beginPath(); c.arc(n.x,n.y,n.r,0,6.28); c.fillStyle=on?col:hexA(col,0.9); c.fill(); if(n.kind!=='node'){ c.lineWidth=2; c.strokeStyle=on?'#eaf2ff':hexA(col,0.6); c.stroke(); } }
+      if(on&&n.label){ c.font=n.kind==='alert'?'600 11px Inter,sans-serif':'700 13px Inter,sans-serif'; c.fillStyle=n.kind==='alert'?'#ff8d97':'#eaf2ff'; c.textAlign='center'; c.fillText(n.label,n.x,n.y-n.r-9); } }
+  }
+
+  const R=185;
+  function frame(){
+    t++;
+    for(let i=4;i<nodes.length;i++){ const n=nodes[i]; if(n.kind==='node'){ n.x+=n.vx; n.y+=n.vy; if(n.x<0||n.x>W)n.vx*=-1; if(n.y<0||n.y>H)n.vy*=-1; } }
+    if(!hasPointer){ mx=W*(0.5+0.32*Math.sin(t*0.011)); my=H*(0.55+0.24*Math.sin(t*0.019+1.5)); }
+    ctx.clearRect(0,0,W,H); ctx.globalAlpha=0.16; drawNetwork(ctx,false); ctx.globalAlpha=1;
+    lctx.clearRect(0,0,W,H); drawNetwork(lctx,true);
+    lctx.globalCompositeOperation='destination-in';
+    const grad=lctx.createRadialGradient(mx,my,0,mx,my,R); grad.addColorStop(0,'rgba(0,0,0,1)'); grad.addColorStop(0.7,'rgba(0,0,0,0.85)'); grad.addColorStop(1,'rgba(0,0,0,0)');
+    lctx.fillStyle=grad; lctx.beginPath(); lctx.arc(mx,my,R,0,6.28); lctx.fill(); lctx.globalCompositeOperation='source-over';
+    ctx.drawImage(lit,0,0,W,H);
+    const glow=ctx.createRadialGradient(mx,my,0,mx,my,R*1.1); glow.addColorStop(0,'rgba(124,192,255,0.09)'); glow.addColorStop(1,'rgba(124,192,255,0)'); ctx.fillStyle=glow; ctx.beginPath(); ctx.arc(mx,my,R*1.1,0,6.28); ctx.fill();
+    requestAnimationFrame(frame);
+  }
+
+  function onMove(x:number,y:number){ const r=section.getBoundingClientRect(); mx=x-r.left; my=y-r.top; if(!hasPointer){ hasPointer=true; cursorEl.style.opacity='1'; if(hint)hint.style.opacity='0'; } cursorEl.style.left=mx+'px'; cursorEl.style.top=my+'px'; }
+  section.addEventListener('mousemove', e=>onMove(e.clientX,e.clientY));
+  section.addEventListener('mouseleave', ()=>{ hasPointer=false; cursorEl.style.opacity='0'; });
+  section.addEventListener('touchmove', e=>{ if(e.touches[0]) onMove(e.touches[0].clientX,e.touches[0].clientY); }, {passive:true});
+
+  resize();
+  window.addEventListener('resize', resize);
+
+  // ───────────── Texto desencriptado ─────────────
+  const GLYPHS='ABCDEF0123456789#%&$/<>*+=!?@';
+  const rnd=()=>GLYPHS[Math.floor(Math.random()*GLYPHS.length)];
+  const wait=(ms:number)=>new Promise(r=>setTimeout(r,ms));
+  const h1=document.getElementById('fus-h1') as HTMLElement;
+  const rotor=document.getElementById('fus-rotor') as HTMLElement;
+  const allChars:{el:HTMLElement;final:string}[]=[];
+  (Array.from(h1.querySelectorAll('.fus-line')) as HTMLElement[]).forEach(line=>{ const text=line.getAttribute('data-text')||''; line.textContent=''; for(const ch of text){ const s=document.createElement('span'); s.className='fus-char'; s.textContent=rnd(); s.dataset.final=ch; line.appendChild(s); allChars.push({el:s,final:ch}); } });
+
+  async function decryptIn(){ for(let i=0;i<allChars.length;i++){ const {el,final}=allChars[i]; el.classList.add('scrambling'); for(let c=0;c<10;c++){ el.textContent=rnd(); await wait(26); } el.textContent=final; el.classList.remove('scrambling'); } }
+
+  let lastGlitch=0;
+  h1.addEventListener('mousemove',(e)=>{ const now=t; if(now-lastGlitch<1) return; lastGlitch=now;
+    for(const {el,final} of allChars){ const r=el.getBoundingClientRect(); const cxp=r.left+r.width/2, cyp=r.top+r.height/2; const d=Math.hypot(e.clientX-cxp,e.clientY-cyp); if(d<46&&!el.dataset.busy){ el.dataset.busy='1'; el.classList.add('scrambling'); let n=0; const iv=setInterval(()=>{ el.textContent=rnd(); n++; if(n>4){ clearInterval(iv); el.textContent=final; el.classList.remove('scrambling'); delete el.dataset.busy; } },32); } } });
+
+  const WORDS=['conectado','protegido','automatizado','optimizado'];
+  let wi=0;
+  async function scrambleTo(word:string){ const max=Math.max(word.length, rotor.textContent?.length||0); for(let step=0;step<=max;step++){ let out=''; for(let i=0;i<word.length;i++){ out+= i<step ? word[i] : (Math.random()<0.6?rnd().toLowerCase():(word[i]||'')); } rotor.textContent=out; await wait(45); } rotor.textContent=word; }
+  async function rotorLoop(){ await wait(1600); while(true){ wi=(wi+1)%WORDS.length; await scrambleTo(WORDS[wi]); await wait(1900); } }
+
+  const reduce=window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce){
+    section.style.cursor='auto'; cursorEl.style.display='none'; if(hint)hint.style.display='none';
+    const scan=document.getElementById('fus-scan'); if(scan)scan.style.display='none';
+    const caret=document.getElementById('fus-caret'); if(caret)caret.style.animation='none';
+    allChars.forEach(c=>{ c.el.textContent=c.final; }); rotor.textContent='conectado';
+    // red estática revelada
+    ctx.clearRect(0,0,W,H); ctx.globalAlpha=0.5; drawNetwork(ctx,true); ctx.globalAlpha=1;
+  } else {
+    requestAnimationFrame(frame);
+    (async()=>{ rotor.textContent='conectado'; await decryptIn(); rotorLoop(); })();
+  }
+})();
+</script>

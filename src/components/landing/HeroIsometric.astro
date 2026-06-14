@@ -1,0 +1,147 @@
+---
+// HeroIsometric — "Infraestructura 3D"
+// Escena 3D con profundidad: un núcleo central y las 4 áreas flotando como paneles.
+// Toda la escena se inclina y hace parallax siguiendo el ratón (perspectiva real).
+
+const cards = [
+  { label:'Inteligencia Artificial', short:'IA',             color:'#60a5fa', rgb:'96,165,250',  z:90,  pos:'top:6%;left:6%',      href:'/consultoria-ia',           icon:'M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z' },
+  { label:'Ciberseguridad',          short:'Ciberseguridad', color:'#34d399', rgb:'52,211,153',  z:130, pos:'top:6%;right:6%',     href:'/wazuh',                    icon:'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z' },
+  { label:'Sistemas IT',             short:'Sistemas',       color:'#a78bfa', rgb:'167,139,250', z:130, pos:'bottom:8%;left:8%',   href:'/soporte-tecnico',          icon:'M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01' },
+  { label:'Automatización',          short:'Automatización', color:'#fbbf24', rgb:'251,191,36',  z:90,  pos:'bottom:8%;right:8%',  href:'/servicios/automatizacion', icon:'M13 10V3L4 14h7v7l9-11h-7z' },
+];
+---
+
+<section id="iso-hero" class="relative overflow-hidden flex flex-col items-center px-4" style="background:#070a14;min-height:100vh;justify-content:center;">
+
+  <!-- glow ambiental -->
+  <div class="absolute pointer-events-none" style="top:30%;left:50%;transform:translate(-50%,-50%);width:70vw;height:60vh;background:radial-gradient(ellipse,rgba(59,130,246,0.12),transparent 70%);z-index:0;"></div>
+
+  <!-- Cabecera estática -->
+  <div class="relative text-center mb-6" style="z-index:20;">
+    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold mb-5 border" style="background:rgba(0,0,0,0.4);border-color:rgba(148,163,184,0.25);color:#cbd5e1;letter-spacing:0.12em;text-transform:uppercase;">
+      Tu partner tecnológico de confianza
+    </div>
+    <h1 class="font-black tracking-tight" style="font-size:clamp(1.9rem,5vw,3.4rem);line-height:1.06;color:#f4f8ff;">
+      Toda tu infraestructura.<br>Conectada y bajo control.
+    </h1>
+    <p class="mx-auto mt-4" style="max-width:38rem;font-size:clamp(0.98rem,2.1vw,1.15rem);line-height:1.55;color:rgba(220,232,255,0.68);">
+      IA, ciberseguridad y sistemas como un único sistema vivo. <span style="color:#9fc6ff;">Mueve el ratón</span> para explorarlo.
+    </p>
+  </div>
+
+  <!-- ═══ ESCENA 3D ═══ -->
+  <div id="iso-scene" class="relative" style="z-index:10;width:min(900px,94vw);height:min(400px,46vh);perspective:1200px;">
+    <div id="iso-stage" style="position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .15s ease-out;">
+
+      <!-- Suelo grid -->
+      <div style="position:absolute;inset:-20% 0% 0% 0%;transform:rotateX(74deg) translateZ(-70px);transform-origin:center;background-image:linear-gradient(rgba(96,165,250,0.18) 1px,transparent 1px),linear-gradient(90deg,rgba(96,165,250,0.18) 1px,transparent 1px);background-size:46px 46px;-webkit-mask-image:radial-gradient(ellipse 60% 60% at 50% 50%,#000,transparent 75%);mask-image:radial-gradient(ellipse 60% 60% at 50% 50%,#000,transparent 75%);"></div>
+
+      <!-- Líneas núcleo ↔ paneles -->
+      <svg viewBox="0 0 900 440" class="absolute inset-0 w-full h-full" style="transform:translateZ(40px);overflow:visible;" aria-hidden="true">
+        <line x1="450" y1="220" x2="150" y2="70"  stroke="#60a5fa" stroke-width="1.5" opacity="0.4"/>
+        <line x1="450" y1="220" x2="750" y2="70"  stroke="#34d399" stroke-width="1.5" opacity="0.4"/>
+        <line x1="450" y1="220" x2="170" y2="370" stroke="#a78bfa" stroke-width="1.5" opacity="0.4"/>
+        <line x1="450" y1="220" x2="730" y2="370" stroke="#fbbf24" stroke-width="1.5" opacity="0.4"/>
+        <circle r="4" fill="#60a5fa"><animateMotion dur="2.6s" repeatCount="indefinite" path="M150,70 L450,220"/></circle>
+        <circle r="4" fill="#34d399"><animateMotion dur="2.6s" begin="0.7s" repeatCount="indefinite" path="M750,70 L450,220"/></circle>
+        <circle r="4" fill="#a78bfa"><animateMotion dur="2.6s" begin="1.3s" repeatCount="indefinite" path="M170,370 L450,220"/></circle>
+        <circle r="4" fill="#fbbf24"><animateMotion dur="2.6s" begin="2.0s" repeatCount="indefinite" path="M730,370 L450,220"/></circle>
+      </svg>
+
+      <!-- Núcleo central -->
+      <div class="iso-core" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) translateZ(60px);width:130px;height:130px;border-radius:24px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;background:linear-gradient(145deg,#0e1d40,#060d22);border:1.5px solid rgba(124,192,255,0.45);box-shadow:0 24px 60px -10px rgba(0,0,0,0.8),0 0 50px -10px rgba(59,130,246,0.5),inset 0 1px 0 rgba(255,255,255,0.08);">
+        <svg class="w-8 h-8" fill="none" stroke="#7cc0ff" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+        <span style="font-size:0.7rem;font-weight:900;letter-spacing:0.08em;color:#f4f8ff;">AI SECURITY</span>
+        <span style="font-size:0.55rem;color:rgba(124,192,255,0.7);">núcleo</span>
+      </div>
+
+      <!-- Paneles de las 4 áreas -->
+      {cards.map(card => (
+        <a href={card.href} class="iso-card" style={`position:absolute;${card.pos};--c:${card.color};--rgb:${card.rgb};--z:${card.z}px;transform:translateZ(var(--z));`}>
+          <div class="iso-card-inner">
+            <div class="iso-card-icon" style={`background:rgba(${card.rgb},0.14);border:1px solid rgba(${card.rgb},0.3);`}>
+              <svg class="w-5 h-5" fill="none" stroke={card.color} viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d={card.icon}/></svg>
+            </div>
+            <span class="iso-card-label">{card.short}</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="relative mt-8" style="z-index:20;">
+    <a href="/reunion" id="iso-cta" style="display:inline-flex;align-items:center;gap:0.6rem;background:#7cc0ff;color:#070a14;font-weight:800;padding:0.95rem 2rem;border-radius:0.8rem;text-decoration:none;font-size:1rem;box-shadow:0 12px 40px -8px rgba(124,192,255,0.6);transition:transform .2s,box-shadow .2s;">
+      Habla con nosotros · Consulta gratuita
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</section>
+
+<style>
+  #iso-cta:hover { transform:translateY(-2px);box-shadow:0 16px 50px -8px rgba(124,192,255,0.8); }
+
+  .iso-card { text-decoration:none; transition:transform .25s ease; }
+  .iso-card-inner {
+    display:flex;flex-direction:column;align-items:center;gap:8px;
+    padding:14px 18px;border-radius:18px;
+    background:rgba(10,16,30,0.82);
+    border:1px solid color-mix(in srgb, var(--c) 35%, transparent);
+    backdrop-filter:blur(6px);
+    box-shadow:0 18px 40px -12px rgba(0,0,0,0.7);
+    transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  }
+  .iso-card:hover { transform:translateZ(calc(var(--z) + 50px)) scale(1.06) !important; z-index:5; }
+  .iso-card:hover .iso-card-inner { border-color:var(--c); box-shadow:0 26px 60px -12px var(--c); }
+  .iso-card-icon { width:44px;height:44px;border-radius:13px;display:flex;align-items:center;justify-content:center; }
+  .iso-card-label { font-size:0.78rem;font-weight:700;color:#eaf2ff;white-space:nowrap; }
+
+  /* flotación sutil */
+  @keyframes isoFloat { 0%,100%{ margin-top:0; } 50%{ margin-top:-8px; } }
+  .iso-card-inner { animation:isoFloat 5s ease-in-out infinite; }
+  .iso-card:nth-child(4) .iso-card-inner{ animation-delay:-1.3s; }
+  .iso-card:nth-child(5) .iso-card-inner{ animation-delay:-2.6s; }
+  .iso-card:nth-child(6) .iso-card-inner{ animation-delay:-3.9s; }
+
+  @media (max-width:640px){
+    .iso-card-icon{ width:36px;height:36px; }
+    .iso-card-label{ font-size:0.68rem; }
+  }
+</style>
+
+<script>
+(function () {
+  const scene = document.getElementById('iso-scene') as HTMLElement;
+  const stage = document.getElementById('iso-stage') as HTMLElement;
+  if (!scene || !stage) return;
+
+  let tx=0, ty=0, cx=0, cy=0;   // target vs current (lerp)
+  let raf=0;
+
+  function lerp(){
+    cx += (tx-cx)*0.08;
+    cy += (ty-cy)*0.08;
+    stage.style.transform = `rotateX(${cy}deg) rotateY(${cx}deg)`;
+    if (Math.abs(tx-cx)>0.05 || Math.abs(ty-cy)>0.05){ raf=requestAnimationFrame(lerp); }
+    else raf=0;
+  }
+  function kick(){ if(!raf) raf=requestAnimationFrame(lerp); }
+
+  scene.addEventListener('mousemove', e=>{
+    const r=scene.getBoundingClientRect();
+    const px=(e.clientX-r.left)/r.width - 0.5;
+    const py=(e.clientY-r.top)/r.height - 0.5;
+    tx = px*18;      // rotateY
+    ty = -py*16;     // rotateX
+    kick();
+  });
+  scene.addEventListener('mouseleave', ()=>{ tx=0; ty=0; kick(); });
+
+  // auto-vaivén suave hasta interacción (da vida en carga)
+  let auto=true, t=0;
+  scene.addEventListener('mouseenter', ()=>{ auto=false; });
+  (function idle(){
+    if(auto){ t+=0.012; tx=Math.sin(t)*7; ty=Math.cos(t*0.8)*4; kick(); requestAnimationFrame(idle); }
+  })();
+})();
+</script>

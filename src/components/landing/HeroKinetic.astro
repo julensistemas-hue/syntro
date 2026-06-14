@@ -1,0 +1,117 @@
+---
+// HeroKinetic — "Tipografía viva" (fuente variable)
+// Cada letra del titular reacciona al ratón: engorda (eje wght), crece y se
+// ilumina según la cercanía del cursor, creando una ola que lo persigue.
+// En reposo respira con una onda automática. Usa InterVariable (ya cargada).
+---
+
+<section id="kin-hero" class="relative overflow-hidden flex flex-col items-center justify-center px-6" style="background:#070a12;min-height:100vh;">
+
+  <!-- línea fina que sigue el cursor en X -->
+  <div id="kin-rule" class="absolute pointer-events-none" style="top:0;bottom:0;width:1px;background:linear-gradient(to bottom,transparent,rgba(124,192,255,0.35),transparent);z-index:2;opacity:0;transition:opacity .4s;"></div>
+
+  <div class="relative text-center" style="z-index:10;">
+    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold mb-10 border" style="background:rgba(0,0,0,0.4);border-color:rgba(148,163,184,0.25);color:#cbd5e1;letter-spacing:0.14em;text-transform:uppercase;">
+      Tu partner tecnológico de confianza
+    </div>
+
+    <!-- Titular cinético -->
+    <h1 id="kin-h1" aria-label="Todo conectado" style="font-family:'InterVariable',Inter,sans-serif;line-height:0.92;letter-spacing:-0.01em;margin:0;cursor:default;">
+      <span class="kin-line" data-text="TODO"></span>
+      <span class="kin-line" data-text="CONECTADO"></span>
+    </h1>
+
+    <p class="mx-auto mt-8" style="max-width:40rem;font-size:clamp(1rem,2.3vw,1.25rem);line-height:1.55;color:rgba(220,232,255,0.66);">
+      IA, ciberseguridad y sistemas bajo un mismo equipo. Una tecnología que reacciona, se adapta y se optimiza sola.
+    </p>
+
+    <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3">
+      <a href="/reunion" id="kin-cta" style="display:inline-flex;align-items:center;gap:0.6rem;background:#7cc0ff;color:#070a12;font-weight:800;padding:0.95rem 2rem;border-radius:0.8rem;text-decoration:none;font-size:1rem;box-shadow:0 12px 40px -8px rgba(124,192,255,0.55);transition:transform .2s,box-shadow .2s;">
+        Unifica tu tecnología
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+      </a>
+      <span id="kin-hint" style="color:rgba(148,163,184,0.75);font-size:0.85rem;">mueve el ratón sobre el título</span>
+    </div>
+  </div>
+</section>
+
+<style>
+  #kin-cta:hover { transform:translateY(-2px);box-shadow:0 16px 50px -8px rgba(124,192,255,0.8); }
+  #kin-h1 .kin-line { display:block; }
+  #kin-h1 .kin-char {
+    display:inline-block;
+    font-size:clamp(2.6rem,11vw,8rem);
+    font-variation-settings:'wght' 240;
+    color:#8190a8;
+    will-change:transform,font-variation-settings,color;
+  }
+</style>
+
+<script>
+(function () {
+  const section = document.getElementById('kin-hero') as HTMLElement;
+  const h1 = document.getElementById('kin-h1') as HTMLElement;
+  const rule = document.getElementById('kin-rule') as HTMLElement;
+  const hint = document.getElementById('kin-hint') as HTMLElement;
+  if (!section || !h1) return;
+
+  // construir spans por carácter
+  interface Ch { el:HTMLElement; w:number; tw:number; s:number; ts:number; }
+  const chars: Ch[] = [];
+  (Array.from(h1.querySelectorAll('.kin-line')) as HTMLElement[]).forEach(line=>{
+    const text=line.getAttribute('data-text')||''; line.textContent='';
+    for (const c of text){
+      const sp=document.createElement('span'); sp.className='kin-char'; sp.textContent=c;
+      line.appendChild(sp); chars.push({el:sp, w:240, tw:240, s:1, ts:1});
+    }
+  });
+
+  let mx=-9999,my=-9999,hasPointer=false,lastMove=-9999,t=0;
+  const RADIUS=190;
+
+  function onMove(x:number,y:number){
+    mx=x; my=y; lastMove=t;
+    if(!hasPointer){ hasPointer=true; if(hint)hint.style.opacity='0.4'; rule.style.opacity='1'; }
+    const r=section.getBoundingClientRect(); rule.style.left=(x-r.left)+'px';
+  }
+  section.addEventListener('mousemove', e=>onMove(e.clientX,e.clientY));
+  section.addEventListener('mouseleave', ()=>{ hasPointer=false; rule.style.opacity='0'; });
+  section.addEventListener('touchmove', e=>{ if(e.touches[0]) onMove(e.touches[0].clientX,e.touches[0].clientY); }, {passive:true});
+
+  const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce){ chars.forEach(c=>{ c.el.style.fontVariationSettings="'wght' 600"; c.el.style.color='#e6edf7'; }); return; }
+
+  function frame(){
+    t++;
+    const idle = (t-lastMove) > 90;   // ~1.5s sin ratón
+    for (let i=0;i<chars.length;i++){
+      const c=chars[i];
+      let prox=0;
+      if (idle){
+        // onda automática que recorre las letras
+        prox = 0.5 + 0.5*Math.sin(t*0.045 - i*0.5);
+        prox *= 0.7;
+      } else {
+        const r=c.el.getBoundingClientRect();
+        const cxp=r.left+r.width/2, cyp=r.top+r.height/2;
+        const d=Math.hypot(mx-cxp, my-cyp);
+        prox = Math.max(0, 1 - d/RADIUS);
+        prox = prox*prox; // cae más rápido = ola más definida
+      }
+      c.tw = 200 + prox*700;     // wght 200→900
+      c.ts = 1 + prox*0.16;      // ligero crecimiento
+      // easing
+      c.w += (c.tw-c.w)*0.18;
+      c.s += (c.ts-c.s)*0.18;
+      c.el.style.fontVariationSettings = `'wght' ${c.w.toFixed(0)}`;
+      c.el.style.transform = `scale(${c.s.toFixed(3)}) translateY(${(-(c.s-1)*40).toFixed(1)}px)`;
+      // color hacia blanco/azul con la proximidad
+      const lp = Math.min(1,(c.w-200)/700);
+      const R=129+Math.round(lp*(255-129)), G=144+Math.round(lp*(255-144)), B=168+Math.round(lp*(255-168));
+      c.el.style.color = `rgb(${R},${G},${B})`;
+    }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+</script>

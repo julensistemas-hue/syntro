@@ -1,0 +1,141 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e5]:
+      - link "AI SECURITY logo AI SECURITY" [ref=e6] [cursor=pointer]:
+        - /url: /
+        - img "AI SECURITY logo" [ref=e7]
+        - generic [ref=e8]: AI SECURITY
+      - button "Alternar menú de navegación" [ref=e9] [cursor=pointer]:
+        - img [ref=e10]
+  - main [ref=e12]:
+    - generic [ref=e13]:
+      - generic:
+        - generic: Tu partner tecnológico de confianza
+        - heading "Toda tu tecnología, en una sola órbita." [level=1]:
+          - text: Toda tu tecnología,
+          - text: en una sola órbita.
+      - generic:
+        - link "IA":
+          - /url: /consultoria-ia
+        - link "Ciberseguridad":
+          - /url: /wazuh
+        - link "Sistemas":
+          - /url: /soporte-tecnico
+        - link "Automatización":
+          - /url: /servicios/automatizacion
+      - generic [ref=e15]:
+        - paragraph [ref=e16]: Arrastra para girar tu infraestructura
+        - link "Habla con nosotros · Consulta gratuita" [ref=e17] [cursor=pointer]:
+          - /url: /reunion
+          - text: Habla con nosotros · Consulta gratuita
+          - img [ref=e18]
+  - contentinfo [ref=e20]:
+    - generic [ref=e21]:
+      - generic [ref=e22]:
+        - generic [ref=e23]:
+          - link "AI SECURITY logo AI SECURITY" [ref=e24] [cursor=pointer]:
+            - /url: /
+            - img "AI SECURITY logo" [ref=e25]
+            - generic [ref=e26]: AI SECURITY
+          - paragraph [ref=e27]: Soluciones de inteligencia artificial para empresas. Automatiza procesos, mejora la atención al cliente y optimiza tu operativa con tecnología de vanguardia.
+        - generic [ref=e28]:
+          - heading "¿Hablamos?" [level=3] [ref=e29]
+          - paragraph [ref=e30]: Cuéntanos tu proyecto y te ayudamos a automatizar tu negocio con soluciones de IA a medida.
+          - generic [ref=e31]:
+            - button "Te llamamos" [ref=e32] [cursor=pointer]:
+              - img [ref=e33]
+              - text: Te llamamos
+            - link "Agendar Reunión" [ref=e35] [cursor=pointer]:
+              - /url: /reunion
+              - img [ref=e36]
+              - text: Agendar Reunión
+      - generic [ref=e38]:
+        - generic [ref=e39]:
+          - heading "Servicios" [level=4] [ref=e40]
+          - list [ref=e41]:
+            - listitem [ref=e42]:
+              - link "Chatbot Inteligente" [ref=e43] [cursor=pointer]:
+                - /url: /servicios/chatbot
+            - listitem [ref=e44]:
+              - link "Gestor Documental IA" [ref=e45] [cursor=pointer]:
+                - /url: /servicios/gestor-documental
+            - listitem [ref=e46]:
+              - link "Gestor de Citas IA" [ref=e47] [cursor=pointer]:
+                - /url: /servicios/gestor-citas
+            - listitem [ref=e48]:
+              - link "Atención de Llamadas" [ref=e49] [cursor=pointer]:
+                - /url: /servicios/atencion-llamadas
+            - listitem [ref=e50]:
+              - link "Automatización" [ref=e51] [cursor=pointer]:
+                - /url: /servicios/automatizacion
+            - listitem [ref=e52]:
+              - link "Consultoría IA" [ref=e53] [cursor=pointer]:
+                - /url: /consultoria-ia
+        - generic [ref=e54]:
+          - heading "Empresa" [level=4] [ref=e55]
+          - list [ref=e56]:
+            - listitem [ref=e57]:
+              - link "Solicitar Reunión" [ref=e58] [cursor=pointer]:
+                - /url: /reunion
+            - listitem [ref=e59]:
+              - link "FAQ" [ref=e60] [cursor=pointer]:
+                - /url: /faq
+            - listitem [ref=e61]:
+              - link "Términos de Servicio" [ref=e62] [cursor=pointer]:
+                - /url: /terms
+            - listitem [ref=e63]:
+              - link "Política de Privacidad" [ref=e64] [cursor=pointer]:
+                - /url: /privacy
+        - generic [ref=e65]:
+          - heading "Seguridad" [level=4] [ref=e66]
+          - list [ref=e67]:
+            - listitem [ref=e68]:
+              - link "Wazuh & ENS" [ref=e69] [cursor=pointer]:
+                - /url: /wazuh
+            - listitem [ref=e70]:
+              - link "Consultoría IA" [ref=e71] [cursor=pointer]:
+                - /url: /consultoria-ia
+        - generic [ref=e72]:
+          - heading "Contacto" [level=4] [ref=e73]
+          - list [ref=e74]:
+            - listitem [ref=e75]:
+              - link "Email" [ref=e76] [cursor=pointer]:
+                - /url: mailto:info@aisecurity.es
+            - listitem [ref=e77]:
+              - link "Agendar Consulta" [ref=e78] [cursor=pointer]:
+                - /url: /reunion
+      - generic [ref=e79]:
+        - paragraph [ref=e80]: © 2026 AI SECURITY. Todos los derechos reservados.
+        - paragraph [ref=e81]: Soluciones de inteligencia artificial para empresas
+  - button "Abrir asistente" [ref=e82] [cursor=pointer]:
+    - generic [ref=e83]: ¿Te ayudo? 👋
+    - img [ref=e84]:
+      - generic [ref=e112]:
+        - generic [ref=e113]: z
+        - generic [ref=e114]: z
+        - generic [ref=e115]: Z
+  - generic:
+    - generic:
+      - generic:
+        - generic: 🤖
+        - generic:
+          - generic: Asistente AI Security
+          - generic: Responde al instante
+      - button: ✕
+    - generic:
+      - generic:
+        - text: 🤖
+        - generic:
+          - text: ¡Hola! 👋 Soy el asistente de
+          - strong: AI Security
+          - text: . ¿En qué puedo ayudarte hoy?
+    - generic:
+      - button: 🤖 Servicios de IA
+      - button: 🖥️ Soporte técnico
+      - button: 🛡️ Wazuh / Seguridad
+      - button: 💰 Precios
+      - button: 👤 Hablar con un humano
+    - generic:
+      - textbox:
+        - /placeholder: Escribe tu pregunta...
+      - button: →

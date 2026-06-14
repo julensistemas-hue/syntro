@@ -1,0 +1,516 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e4]:
+      - link "AI SECURITY logo AI SECURITY" [ref=e6] [cursor=pointer]:
+        - /url: /
+        - img "AI SECURITY logo" [ref=e7]
+        - generic [ref=e8]: AI SECURITY
+      - navigation "Navegación principal" [ref=e9]:
+        - link "Consultoría IA" [ref=e10] [cursor=pointer]:
+          - /url: /consultoria-ia
+        - link "Posicionamiento SEO" [ref=e11] [cursor=pointer]:
+          - /url: /servicios/geo-posicionamiento
+        - button "Wazuh" [ref=e13] [cursor=pointer]:
+          - generic [ref=e14]: Wazuh
+          - img [ref=e15]
+        - button "Servicios" [ref=e18] [cursor=pointer]:
+          - generic [ref=e19]: Servicios
+          - img [ref=e20]
+        - link "Blog" [ref=e22] [cursor=pointer]:
+          - /url: /blog
+        - link "Solicitar Reunión GRATIS" [ref=e23] [cursor=pointer]:
+          - /url: /reunion
+          - text: Solicitar Reunión
+          - generic [ref=e24]: GRATIS
+  - main [ref=e25]:
+    - generic [ref=e26]:
+      - generic:
+        - heading "AI Security — IA, ciberseguridad y sistemas para empresas. Todo conectado, todo bajo control." [level=1]
+        - generic: AI Security · partner tecnológico
+        - generic:
+          - generic: "&90$"
+          - generic: "*1@FA5+/A"
+        - paragraph: "> todo conectado"
+        - paragraph: IA, ciberseguridad y sistemas bajo un mismo equipo. Lo que no se ve no se controla — y lo que no se controla, no se optimiza. Nosotros lo iluminamos todo.
+        - generic [ref=e28]:
+          - link "Solicitar consulta gratuita" [ref=e29] [cursor=pointer]:
+            - /url: /reunion
+            - text: Solicitar consulta gratuita
+            - img [ref=e30]
+          - link "Ver servicios" [ref=e32] [cursor=pointer]:
+            - /url: "#servicios"
+        - generic:
+          - img
+          - text: Mueve el ratón para iluminar tu infraestructura
+      - generic:
+        - generic:
+          - generic: Descubre más
+          - img
+    - generic [ref=e34]:
+      - generic [ref=e35]:
+        - generic [ref=e37]:
+          - img [ref=e39]:
+            - generic [ref=e71]: RU
+            - generic [ref=e72]: CN
+            - generic [ref=e73]: US
+            - generic [ref=e74]: BR
+            - generic [ref=e77]: AI SEC
+          - generic [ref=e78]: 📞 Llamada gestionada · IA
+          - generic [ref=e79]: 📧 Correo enviado · automático
+          - generic [ref=e80]: 📅 Cita confirmada · +1 reserva
+          - generic [ref=e81]: 📄 Documento procesado · 0.3s
+        - generic [ref=e82]:
+          - generic [ref=e83]:
+            - generic [ref=e84]: ✨
+            - text: Nuestros Servicios
+          - heading "Servicios de Inteligencia Artificial" [level=2] [ref=e85]
+          - paragraph [ref=e86]: "Soluciones de automatización con IA para PyMEs españolas: chatbot inteligente, gestor documental, atención de llamadas, gestión de citas y consultoría IT. Sin conocimientos técnicos previos."
+      - generic [ref=e87]:
+        - generic [ref=e88]:
+          - generic [ref=e89]: Más Popular
+          - heading "Consultoría IA" [level=3] [ref=e92]
+          - generic [ref=e95]: 💡
+          - list [ref=e97]:
+            - listitem [ref=e98]:
+              - img [ref=e99]
+              - generic [ref=e101]: Análisis gratuito de tu situación actual
+            - listitem [ref=e102]:
+              - img [ref=e103]
+              - generic [ref=e105]: Plan de automatización personalizado
+            - listitem [ref=e106]:
+              - img [ref=e107]
+              - generic [ref=e109]: Identificación de ROI y ahorros reales
+            - listitem [ref=e110]:
+              - img [ref=e111]
+              - generic [ref=e113]: Hoja de ruta paso a paso sin tecnicismos
+            - listitem [ref=e114]:
+              - img [ref=e115]
+              - generic [ref=e117]: Sin compromiso de contratación
+          - link "Ver consultoría" [ref=e118] [cursor=pointer]:
+            - /url: /consultoria-ia
+            - text: Ver consultoría
+            - img [ref=e119]
+          - link "Solicitar presupuesto" [ref=e121] [cursor=pointer]:
+            - /url: /presupuesto?plan=Consultoria-IA
+            - text: Solicitar presupuesto
+            - img [ref=e122]
+        - generic [ref=e124]:
+          - heading "Gestor Documental IA" [level=3] [ref=e127]
+          - generic [ref=e130]: 📄
+          - list [ref=e132]:
+            - listitem [ref=e133]:
+              - img [ref=e134]
+              - generic [ref=e136]: Clasificación automática de documentos
+            - listitem [ref=e137]:
+              - img [ref=e138]
+              - generic [ref=e140]: Extracción de datos estructurados
+            - listitem [ref=e141]:
+              - img [ref=e142]
+              - generic [ref=e144]: Búsqueda semántica avanzada
+            - listitem [ref=e145]:
+              - img [ref=e146]
+              - generic [ref=e148]: Ahorra trabajo manual
+            - listitem [ref=e149]:
+              - img [ref=e150]
+              - generic [ref=e152]: Cumplimiento normativo automatizado
+          - link "Ver demo interactiva" [ref=e153] [cursor=pointer]:
+            - /url: /servicios/gestor-documental
+            - text: Ver demo interactiva
+            - img [ref=e154]
+          - link "Solicitar presupuesto" [ref=e157] [cursor=pointer]:
+            - /url: /presupuesto?plan=Gestor-Documental-IA
+            - text: Solicitar presupuesto
+            - img [ref=e158]
+        - generic [ref=e160]:
+          - heading "Atención de Llamadas IA" [level=3] [ref=e163]
+          - generic [ref=e166]: 📞
+          - list [ref=e168]:
+            - listitem [ref=e169]:
+              - img [ref=e170]
+              - generic [ref=e172]: Atención telefónica automatizada
+            - listitem [ref=e173]:
+              - img [ref=e174]
+              - generic [ref=e176]: Reconocimiento de voz en español
+            - listitem [ref=e177]:
+              - img [ref=e178]
+              - generic [ref=e180]: Toma de mensajes inteligente
+            - listitem [ref=e181]:
+              - img [ref=e182]
+              - generic [ref=e184]: Derivación contextual de llamadas
+          - link "Ver demo interactiva" [ref=e185] [cursor=pointer]:
+            - /url: /servicios/atencion-llamadas
+            - text: Ver demo interactiva
+            - img [ref=e186]
+          - link "Solicitar presupuesto" [ref=e189] [cursor=pointer]:
+            - /url: /presupuesto?plan=Atencion-Llamadas-IA
+            - text: Solicitar presupuesto
+            - img [ref=e190]
+        - generic [ref=e192]:
+          - heading "Gestor de Citas IA" [level=3] [ref=e195]
+          - generic [ref=e198]: 📅
+          - list [ref=e200]:
+            - listitem [ref=e201]:
+              - img [ref=e202]
+              - generic [ref=e204]: Programación automática de citas
+            - listitem [ref=e205]:
+              - img [ref=e206]
+              - generic [ref=e208]: Confirmaciones y recordatorios inteligentes
+            - listitem [ref=e209]:
+              - img [ref=e210]
+              - generic [ref=e212]: Optimización de horarios disponibles
+            - listitem [ref=e213]:
+              - img [ref=e214]
+              - generic [ref=e216]: Disponible 24/7
+            - listitem [ref=e217]:
+              - img [ref=e218]
+              - generic [ref=e220]: Integración con calendarios existentes
+          - link "Ver demo interactiva" [ref=e221] [cursor=pointer]:
+            - /url: /servicios/gestor-citas
+            - text: Ver demo interactiva
+            - img [ref=e222]
+          - link "Solicitar presupuesto" [ref=e225] [cursor=pointer]:
+            - /url: /presupuesto?plan=Gestor-Citas-IA
+            - text: Solicitar presupuesto
+            - img [ref=e226]
+        - generic [ref=e228]:
+          - heading "Chatbot Inteligente" [level=3] [ref=e231]
+          - generic [ref=e234]: 🤖
+          - list [ref=e236]:
+            - listitem [ref=e237]:
+              - img [ref=e238]
+              - generic [ref=e240]: Respuestas instantáneas 24/7
+            - listitem [ref=e241]:
+              - img [ref=e242]
+              - generic [ref=e244]: Integración con WhatsApp, Telegram y web
+            - listitem [ref=e245]:
+              - img [ref=e246]
+              - generic [ref=e248]: Consulta tu ERP o CRM en tiempo real
+            - listitem [ref=e249]:
+              - img [ref=e250]
+              - generic [ref=e252]: Escalado automático a agentes humanos
+          - link "Ver demo interactiva" [ref=e253] [cursor=pointer]:
+            - /url: /servicios/chatbot
+            - text: Ver demo interactiva
+            - img [ref=e254]
+          - link "Solicitar presupuesto" [ref=e257] [cursor=pointer]:
+            - /url: /presupuesto?plan=Chatbot-IA
+            - text: Solicitar presupuesto
+            - img [ref=e258]
+        - generic [ref=e260]:
+          - heading "Diseño Web Profesional" [level=3] [ref=e263]
+          - generic [ref=e266]: 🌐
+          - list [ref=e268]:
+            - listitem [ref=e269]:
+              - img [ref=e270]
+              - generic [ref=e272]: PageSpeed 95+ garantizado
+            - listitem [ref=e273]:
+              - img [ref=e274]
+              - generic [ref=e276]: Diseño personalizado y responsive
+            - listitem [ref=e277]:
+              - img [ref=e278]
+              - generic [ref=e280]: Sin WordPress, sin plugins, sin sustos
+            - listitem [ref=e281]:
+              - img [ref=e282]
+              - generic [ref=e284]: Entrega en 5-14 días
+          - link "Ver diseño web" [ref=e285] [cursor=pointer]:
+            - /url: /servicios/desarrollo-web
+            - text: Ver diseño web
+            - img [ref=e286]
+          - link "Solicitar presupuesto" [ref=e288] [cursor=pointer]:
+            - /url: /presupuesto?plan=Diseno-Web
+            - text: Solicitar presupuesto
+            - img [ref=e289]
+        - generic [ref=e291]:
+          - heading "Posicionamiento SEO y GEO" [level=3] [ref=e294]
+          - generic [ref=e297]: 📈
+          - list [ref=e299]:
+            - listitem [ref=e300]:
+              - img [ref=e301]
+              - generic [ref=e303]: Auditoría SEO técnica completa
+            - listitem [ref=e304]:
+              - img [ref=e305]
+              - generic [ref=e307]: Posicionamiento local y geográfico
+            - listitem [ref=e308]:
+              - img [ref=e309]
+              - generic [ref=e311]: Optimización de contenido y keywords
+            - listitem [ref=e312]:
+              - img [ref=e313]
+              - generic [ref=e315]: Alta en Google Business Profile
+            - listitem [ref=e316]:
+              - img [ref=e317]
+              - generic [ref=e319]: Informes mensuales de posiciones
+          - link "Ver SEO y GEO" [ref=e320] [cursor=pointer]:
+            - /url: /reunion
+            - text: Ver SEO y GEO
+            - img [ref=e321]
+          - link "Solicitar presupuesto" [ref=e323] [cursor=pointer]:
+            - /url: /presupuesto?plan=SEO-GEO
+            - text: Solicitar presupuesto
+            - img [ref=e324]
+        - generic [ref=e326]:
+          - heading "Wazuh & Ciberseguridad" [level=3] [ref=e329]
+          - generic [ref=e332]: 🛡️
+          - list [ref=e334]:
+            - listitem [ref=e335]:
+              - img [ref=e336]
+              - generic [ref=e338]: Implementación Wazuh completa
+            - listitem [ref=e339]:
+              - img [ref=e340]
+              - generic [ref=e342]: Cumplimiento ENS garantizado
+            - listitem [ref=e343]:
+              - img [ref=e344]
+              - generic [ref=e346]: Monitoreo en tiempo real
+            - listitem [ref=e347]:
+              - img [ref=e348]
+              - generic [ref=e350]: Detección de amenazas avanzada
+            - listitem [ref=e351]:
+              - img [ref=e352]
+              - generic [ref=e354]: Formación del equipo incluida
+          - link "Ver Wazuh" [ref=e355] [cursor=pointer]:
+            - /url: /wazuh
+            - text: Ver Wazuh
+            - img [ref=e356]
+          - link "Solicitar presupuesto" [ref=e358] [cursor=pointer]:
+            - /url: /presupuesto?plan=Wazuh-Ciberseguridad
+            - text: Solicitar presupuesto
+            - img [ref=e359]
+        - generic [ref=e361]:
+          - heading "Soporte Técnico IT" [level=3] [ref=e364]
+          - generic [ref=e367]: 🛠️
+          - list [ref=e369]:
+            - listitem [ref=e370]:
+              - img [ref=e371]
+              - generic [ref=e373]: Respuesta en menos de 2 horas
+            - listitem [ref=e374]:
+              - img [ref=e375]
+              - generic [ref=e377]: Remoto o presencial en tu empresa
+            - listitem [ref=e378]:
+              - img [ref=e379]
+              - generic [ref=e381]: Primera incidencia GRATIS
+            - listitem [ref=e382]:
+              - img [ref=e383]
+              - generic [ref=e385]: Bolsas de horas con descuento
+            - listitem [ref=e386]:
+              - img [ref=e387]
+              - generic [ref=e389]: Sin compromiso de permanencia
+          - link "Ver soporte IT" [ref=e390] [cursor=pointer]:
+            - /url: /soporte-tecnico
+            - text: Ver soporte IT
+            - img [ref=e391]
+          - link "Solicitar presupuesto" [ref=e393] [cursor=pointer]:
+            - /url: /presupuesto?plan=Soporte-IT
+            - text: Solicitar presupuesto
+            - img [ref=e394]
+      - link "Solicitar Consulta Gratuita" [ref=e397] [cursor=pointer]:
+        - /url: /reunion
+        - text: Solicitar Consulta Gratuita
+        - img [ref=e398]
+    - generic [ref=e401]:
+      - generic [ref=e402]:
+        - generic [ref=e403]:
+          - generic [ref=e404]: ⚡
+          - text: Tecnología de Vanguardia
+        - heading "Stack tecnológico real para empresas españolas" [level=2] [ref=e405]
+        - paragraph [ref=e406]: Combinamos los modelos más capaces del mercado con herramientas de automatización, voz y scraping para construir soluciones que se integran con los sistemas que ya tienes.
+      - generic [ref=e407]:
+        - generic [ref=e408]:
+          - generic [ref=e409]: 🤖
+          - heading "Claude 4 & GPT-4o" [level=3] [ref=e410]
+          - paragraph [ref=e411]: Los modelos más potentes de Anthropic y OpenAI para comprensión avanzada, razonamiento complejo y conversaciones naturales en español.
+        - generic [ref=e412]:
+          - generic [ref=e413]: 🔄
+          - heading "n8n — Automatización" [level=3] [ref=e414]
+          - paragraph [ref=e415]: Workflows visuales que conectan tu IA con email, CRM, ERP, Slack, Google Sheets y cientos de servicios más. Sin código, sin límites.
+        - generic [ref=e416]:
+          - generic [ref=e417]: 🎙️
+          - heading "ElevenLabs — Voz IA" [level=3] [ref=e418]
+          - paragraph [ref=e419]: Voz sintética hiperrealista en español para recepcionistas virtuales, llamadas automatizadas y atención al cliente 24/7 con sonido natural.
+        - generic [ref=e420]:
+          - generic [ref=e421]: ⚡
+          - heading "RAG Empresarial" [level=3] [ref=e422]
+          - paragraph [ref=e423]: "Retrieval Augmented Generation: respuestas precisas basadas en tu propia documentación, manuales, contratos o base de conocimiento interna."
+        - generic [ref=e424]:
+          - generic [ref=e425]: 🕷️
+          - heading "Playwright — Web Scraping" [level=3] [ref=e426]
+          - paragraph [ref=e427]: Extracción automatizada de datos de portales, webs de competencia y plataformas B2B. Información estructurada lista para alimentar tus modelos IA.
+        - generic [ref=e428]:
+          - generic [ref=e429]: 🔗
+          - heading "MCP — Integración IA" [level=3] [ref=e430]
+          - paragraph [ref=e431]: Model Context Protocol para conectar tus agentes IA directamente con herramientas, bases de datos y APIs internas de forma segura y escalable.
+    - generic [ref=e433]:
+      - generic [ref=e434]:
+        - generic [ref=e435]:
+          - generic [ref=e436]: 🚀
+          - text: Proceso de Implementación
+        - heading "Cómo implantamos IA en tu PyME, paso a paso" [level=2] [ref=e437]
+        - paragraph [ref=e438]: Sin tecnicismos ni sorpresas. Un proceso claro para que la inteligencia artificial funcione en tu empresa desde el primer día, con formación de tu equipo incluida.
+      - generic [ref=e439]:
+        - generic [ref=e440]:
+          - generic [ref=e442]: "1"
+          - generic [ref=e443]:
+            - heading "Análisis y Consultoría" [level=3] [ref=e444]
+            - paragraph [ref=e445]: Analizamos tus procesos actuales y sistemas existentes (ERP, CRM, bases de datos) para identificar qué automatizar con IA y qué impacto real tendrá en tu negocio. Primera consulta gratuita.
+        - generic [ref=e446]:
+          - generic [ref=e448]: "2"
+          - generic [ref=e449]:
+            - heading "Desarrollo e Integración" [level=3] [ref=e450]
+            - paragraph [ref=e451]: "Desarrollamos e integramos la solución de IA con tus herramientas actuales: chatbot, gestor documental, atención de llamadas o automatización de procesos. Sin cambiar lo que ya funciona."
+        - generic [ref=e452]:
+          - generic [ref=e454]: "3"
+          - generic [ref=e455]:
+            - heading "Despliegue y Soporte" [level=3] [ref=e456]
+            - paragraph [ref=e457]: Ponemos la IA en producción, formamos a tu equipo para usarla desde el primer día y te acompañamos con soporte continuo. Tu empresa ahorra tiempo desde la semana uno.
+    - generic [ref=e459]:
+      - generic [ref=e460]:
+        - generic [ref=e461]:
+          - img [ref=e462]
+          - text: Preguntas frecuentes
+        - heading "Todo lo que necesitas saber sobre la IA para tu empresa" [level=2] [ref=e464]
+        - paragraph [ref=e465]: Respondemos las dudas más habituales de las PyMEs españolas antes de dar el paso a la automatización con IA.
+      - generic [ref=e466]:
+        - group [ref=e467]:
+          - generic "¿Qué es un chatbot inteligente y para qué sirve en una empresa?" [ref=e468] [cursor=pointer]:
+            - generic [ref=e469]: ¿Qué es un chatbot inteligente y para qué sirve en una empresa?
+            - img [ref=e470]
+        - group [ref=e472]:
+          - generic "¿En cuánto tiempo se implementa una solución de IA en mi empresa?" [ref=e473] [cursor=pointer]:
+            - generic [ref=e474]: ¿En cuánto tiempo se implementa una solución de IA en mi empresa?
+            - img [ref=e475]
+        - group [ref=e477]:
+          - generic "¿Necesito conocimientos técnicos para usar vuestros servicios de IA?" [ref=e478] [cursor=pointer]:
+            - generic [ref=e479]: ¿Necesito conocimientos técnicos para usar vuestros servicios de IA?
+            - img [ref=e480]
+        - group [ref=e482]:
+          - generic "¿Qué es el gestor documental con inteligencia artificial?" [ref=e483] [cursor=pointer]:
+            - generic [ref=e484]: ¿Qué es el gestor documental con inteligencia artificial?
+            - img [ref=e485]
+        - group [ref=e487]:
+          - generic "¿Podéis integrar la IA con mi ERP o CRM actual?" [ref=e488] [cursor=pointer]:
+            - generic [ref=e489]: ¿Podéis integrar la IA con mi ERP o CRM actual?
+            - img [ref=e490]
+        - group [ref=e492]:
+          - generic "¿En qué consiste la consultoría de IA y consultoría IT?" [ref=e493] [cursor=pointer]:
+            - generic [ref=e494]: ¿En qué consiste la consultoría de IA y consultoría IT?
+            - img [ref=e495]
+        - group [ref=e497]:
+          - generic "¿La atención de llamadas con IA funciona bien en español?" [ref=e498] [cursor=pointer]:
+            - generic [ref=e499]: ¿La atención de llamadas con IA funciona bien en español?
+            - img [ref=e500]
+        - group [ref=e502]:
+          - generic "¿Cuánto cuesta implantar IA en mi empresa?" [ref=e503] [cursor=pointer]:
+            - generic [ref=e504]: ¿Cuánto cuesta implantar IA en mi empresa?
+            - img [ref=e505]
+      - link "Consulta gratuita sin compromiso" [ref=e508] [cursor=pointer]:
+        - /url: /reunion
+        - text: Consulta gratuita sin compromiso
+        - img [ref=e509]
+  - contentinfo [ref=e511]:
+    - generic [ref=e512]:
+      - generic [ref=e513]:
+        - generic [ref=e514]:
+          - link "AI SECURITY logo AI SECURITY" [ref=e515] [cursor=pointer]:
+            - /url: /
+            - img "AI SECURITY logo" [ref=e516]
+            - generic [ref=e517]: AI SECURITY
+          - paragraph [ref=e518]: Soluciones de inteligencia artificial para empresas. Automatiza procesos, mejora la atención al cliente y optimiza tu operativa con tecnología de vanguardia.
+        - generic [ref=e519]:
+          - heading "¿Hablamos?" [level=3] [ref=e520]
+          - paragraph [ref=e521]: Cuéntanos tu proyecto y te ayudamos a automatizar tu negocio con soluciones de IA a medida.
+          - generic [ref=e522]:
+            - button "Te llamamos" [ref=e523] [cursor=pointer]:
+              - img [ref=e524]
+              - text: Te llamamos
+            - link "Agendar Reunión" [ref=e526] [cursor=pointer]:
+              - /url: /reunion
+              - img [ref=e527]
+              - text: Agendar Reunión
+      - generic [ref=e529]:
+        - generic [ref=e530]:
+          - heading "Servicios" [level=4] [ref=e531]
+          - list [ref=e532]:
+            - listitem [ref=e533]:
+              - link "Chatbot Inteligente" [ref=e534] [cursor=pointer]:
+                - /url: /servicios/chatbot
+            - listitem [ref=e535]:
+              - link "Gestor Documental IA" [ref=e536] [cursor=pointer]:
+                - /url: /servicios/gestor-documental
+            - listitem [ref=e537]:
+              - link "Gestor de Citas IA" [ref=e538] [cursor=pointer]:
+                - /url: /servicios/gestor-citas
+            - listitem [ref=e539]:
+              - link "Atención de Llamadas" [ref=e540] [cursor=pointer]:
+                - /url: /servicios/atencion-llamadas
+            - listitem [ref=e541]:
+              - link "Automatización" [ref=e542] [cursor=pointer]:
+                - /url: /servicios/automatizacion
+            - listitem [ref=e543]:
+              - link "Consultoría IA" [ref=e544] [cursor=pointer]:
+                - /url: /consultoria-ia
+        - generic [ref=e545]:
+          - heading "Empresa" [level=4] [ref=e546]
+          - list [ref=e547]:
+            - listitem [ref=e548]:
+              - link "Solicitar Reunión" [ref=e549] [cursor=pointer]:
+                - /url: /reunion
+            - listitem [ref=e550]:
+              - link "FAQ" [ref=e551] [cursor=pointer]:
+                - /url: /faq
+            - listitem [ref=e552]:
+              - link "Términos de Servicio" [ref=e553] [cursor=pointer]:
+                - /url: /terms
+            - listitem [ref=e554]:
+              - link "Política de Privacidad" [ref=e555] [cursor=pointer]:
+                - /url: /privacy
+        - generic [ref=e556]:
+          - heading "Seguridad" [level=4] [ref=e557]
+          - list [ref=e558]:
+            - listitem [ref=e559]:
+              - link "Wazuh & ENS" [ref=e560] [cursor=pointer]:
+                - /url: /wazuh
+            - listitem [ref=e561]:
+              - link "Consultoría IA" [ref=e562] [cursor=pointer]:
+                - /url: /consultoria-ia
+        - generic [ref=e563]:
+          - heading "Contacto" [level=4] [ref=e564]
+          - list [ref=e565]:
+            - listitem [ref=e566]:
+              - link "Email" [ref=e567] [cursor=pointer]:
+                - /url: mailto:info@aisecurity.es
+            - listitem [ref=e568]:
+              - link "Agendar Consulta" [ref=e569] [cursor=pointer]:
+                - /url: /reunion
+      - generic [ref=e570]:
+        - paragraph [ref=e571]: © 2026 AI SECURITY. Todos los derechos reservados.
+        - paragraph [ref=e572]: Soluciones de inteligencia artificial para empresas
+  - button "Abrir asistente" [ref=e573] [cursor=pointer]:
+    - generic [ref=e574]: ¿Te ayudo? 👋
+    - img [ref=e575]:
+      - generic [ref=e603]:
+        - generic [ref=e604]: z
+        - generic [ref=e605]: z
+        - generic [ref=e606]: Z
+  - generic:
+    - generic:
+      - generic:
+        - generic: 🤖
+        - generic:
+          - generic: Asistente AI Security
+          - generic: Responde al instante
+      - button: ✕
+    - generic:
+      - generic:
+        - text: 🤖
+        - generic:
+          - text: ¡Hola! 👋 Soy el asistente de
+          - strong: AI Security
+          - text: . ¿En qué puedo ayudarte hoy?
+    - generic:
+      - button: 🤖 Servicios de IA
+      - button: 🖥️ Soporte técnico
+      - button: 🛡️ Wazuh / Seguridad
+      - button: 💰 Precios
+      - button: 👤 Hablar con un humano
+    - generic:
+      - textbox:
+        - /placeholder: Escribe tu pregunta...
+      - button: →

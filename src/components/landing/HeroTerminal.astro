@@ -1,0 +1,211 @@
+---
+// HeroTerminal — "AI Security OS"
+// Terminal real que arranca, inicializa los 4 módulos y deja un prompt
+// INTERACTIVO donde el visitante teclea comandos de verdad.
+---
+
+<section class="relative overflow-hidden flex items-center justify-center px-4 py-16" style="background:#070b12;min-height:100vh;">
+
+  <!-- Scanlines CRT sutiles -->
+  <div class="absolute inset-0 pointer-events-none" style="background:repeating-linear-gradient(0deg,rgba(255,255,255,0.018) 0px,rgba(255,255,255,0.018) 1px,transparent 1px,transparent 3px);z-index:1;"></div>
+  <!-- Glow ambiental verde/azul -->
+  <div class="absolute pointer-events-none" style="top:-10%;left:50%;transform:translateX(-50%);width:80vw;height:60vh;background:radial-gradient(ellipse,rgba(52,211,153,0.10),transparent 70%);z-index:0;"></div>
+
+  <div class="relative w-full max-w-3xl mx-auto" style="z-index:5;">
+
+    <!-- Línea superior -->
+    <p class="text-center mb-4" style="color:#5eead4;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:0.8rem;letter-spacing:0.1em;">
+      // tu partner tecnológico de confianza
+    </p>
+
+    <!-- ╔═ VENTANA TERMINAL ═╗ -->
+    <div class="term-window" style="border-radius:12px;overflow:hidden;border:1px solid rgba(94,234,212,0.2);box-shadow:0 0 0 1px rgba(0,0,0,0.5),0 40px 80px -20px rgba(0,0,0,0.8),0 0 80px -30px rgba(52,211,153,0.4);background:#0a0f17;">
+      <!-- Barra de título -->
+      <div class="flex items-center gap-2 px-4 py-3" style="background:#0d131d;border-bottom:1px solid rgba(255,255,255,0.06);">
+        <span style="width:12px;height:12px;border-radius:50%;background:#ff5f57;"></span>
+        <span style="width:12px;height:12px;border-radius:50%;background:#febc2e;"></span>
+        <span style="width:12px;height:12px;border-radius:50%;background:#28c840;"></span>
+        <span class="ml-3" style="color:#8aa0b5;font-family:ui-monospace,monospace;font-size:0.78rem;">visitante@ai-security: ~</span>
+        <span class="ml-auto" style="color:#3a4a5c;font-family:ui-monospace,monospace;font-size:0.7rem;">AI-SEC OS v2.0</span>
+      </div>
+
+      <!-- Cuerpo -->
+      <div id="term-body" class="term-body" style="padding:1.25rem 1.25rem 1rem;height:clamp(360px,52vh,460px);overflow-y:auto;font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;font-size:clamp(0.78rem,1.6vw,0.92rem);line-height:1.7;color:#cbd5e1;">
+        <!-- el contenido se inyecta por JS -->
+      </div>
+
+      <!-- Línea de input (oculta hasta el boot) -->
+      <div id="term-prompt" class="term-prompt hidden items-center gap-2 px-5 pb-4" style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:clamp(0.78rem,1.6vw,0.92rem);">
+        <span style="color:#34d399;font-weight:700;">➜</span>
+        <span style="color:#60a5fa;">~</span>
+        <span id="term-typed" style="color:#eaf2ff;white-space:pre-wrap;word-break:break-word;"></span>
+        <span id="term-caret" style="display:inline-block;width:9px;height:1.15em;background:#34d399;vertical-align:text-bottom;animation:termBlink 1s step-end infinite;"></span>
+        <input id="term-input" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Escribe un comando"
+          style="position:absolute;opacity:0;pointer-events:none;left:-9999px;" />
+      </div>
+    </div>
+
+    <!-- Ayuda + CTA bajo el terminal -->
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-3 mt-6">
+      <button id="term-focus-btn" class="term-cta-ghost" type="button">
+        <span style="color:#34d399;">›</span> Escribe <code style="color:#5eead4;">servicios</code> o <code style="color:#5eead4;">help</code>
+      </button>
+      <a href="/reunion" class="term-cta">
+        Consulta gratuita
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  @keyframes termBlink { 0%,100%{opacity:1;} 50%{opacity:0;} }
+  .term-body::-webkit-scrollbar { width:8px; }
+  .term-body::-webkit-scrollbar-thumb { background:rgba(94,234,212,0.2);border-radius:4px; }
+  .term-prompt.show { display:flex; }
+  .term-cta {
+    display:inline-flex;align-items:center;gap:0.5rem;
+    background:#34d399;color:#06120d;font-weight:800;
+    padding:0.8rem 1.6rem;border-radius:0.7rem;text-decoration:none;
+    font-family:ui-monospace,monospace;font-size:0.9rem;
+    box-shadow:0 10px 30px -8px rgba(52,211,153,0.6);transition:transform .2s,box-shadow .2s;
+  }
+  .term-cta:hover { transform:translateY(-2px);box-shadow:0 14px 40px -8px rgba(52,211,153,0.8); }
+  .term-cta-ghost {
+    display:inline-flex;align-items:center;gap:0.4rem;cursor:pointer;
+    background:rgba(255,255,255,0.04);border:1px solid rgba(94,234,212,0.2);
+    color:#9fb3c8;font-family:ui-monospace,monospace;font-size:0.82rem;
+    padding:0.75rem 1.2rem;border-radius:0.7rem;transition:all .2s;
+  }
+  .term-cta-ghost:hover { border-color:rgba(94,234,212,0.5);color:#cbd5e1; }
+  .term-line { white-space:pre-wrap;word-break:break-word; }
+  .term-link { color:#60a5fa;text-decoration:underline;text-underline-offset:2px; }
+  .term-link:hover { color:#93c5fd; }
+</style>
+
+<script>
+(function () {
+  const body   = document.getElementById('term-body') as HTMLElement;
+  const prompt = document.getElementById('term-prompt') as HTMLElement;
+  const typed  = document.getElementById('term-typed') as HTMLElement;
+  const input  = document.getElementById('term-input') as HTMLInputElement;
+  const focusBtn = document.getElementById('term-focus-btn') as HTMLElement;
+  if (!body || !input) return;
+
+  const C = { green:'#34d399', cyan:'#5eead4', blue:'#60a5fa', violet:'#a78bfa', amber:'#fbbf24', red:'#ff6b7a', gray:'#7e93a8', white:'#eaf2ff' };
+
+  function el(html:string){ const d=document.createElement('div'); d.className='term-line'; d.innerHTML=html; body.appendChild(d); body.scrollTop=body.scrollHeight; return d; }
+  function c(text:string,color:string,bold=false){ return `<span style="color:${color};${bold?'font-weight:700;':''}">${text}</span>`; }
+  const wait = (ms:number)=>new Promise(r=>setTimeout(r,ms));
+
+  // ── Secuencia de arranque ──
+  const boot = [
+    { html: c('visitante@ai-security','#34d399',true)+c(':','#7e93a8')+c('~','#60a5fa')+c(' $ ','#7e93a8')+c('aisec init --empresa','#eaf2ff'), d:420 },
+    { html: c('Inicializando AI Security OS...','#7e93a8'), d:500 },
+    { html: c('[','#7e93a8')+c('✓','#34d399',true)+c(']','#7e93a8')+'  Inteligencia Artificial '+c('······','#3a4a5c')+c(' online','#34d399'), d:260 },
+    { html: c('[','#7e93a8')+c('✓','#34d399',true)+c(']','#7e93a8')+'  Ciberseguridad · Wazuh '+c('······','#3a4a5c')+c(' online','#34d399'), d:260 },
+    { html: c('[','#7e93a8')+c('✓','#34d399',true)+c(']','#7e93a8')+'  Sistemas IT '+c('···············','#3a4a5c')+c(' online','#34d399'), d:260 },
+    { html: c('[','#7e93a8')+c('✓','#34d399',true)+c(']','#7e93a8')+'  Automatización '+c('············','#3a4a5c')+c(' online','#34d399'), d:300 },
+    { html: '&nbsp;', d:120 },
+    { html: c('➜','#34d399',true)+'  '+c('IA, ciberseguridad y sistemas. Todo conectado, todo optimizado.','#eaf2ff',true), d:260 },
+    { html: c('   Un solo proveedor para toda tu tecnología. Escribe ','#7e93a8')+c('help','#5eead4',true)+c(' para empezar.','#7e93a8'), d:200 },
+    { html: '&nbsp;', d:80 },
+  ];
+
+  // ── Comandos ──
+  const COMMANDS: Record<string,()=>string[]> = {
+    help: () => [
+      c('Comandos disponibles:','#5eead4',true),
+      '  '+c('servicios','#34d399')+c('        — ver las 4 áreas que cubrimos','#7e93a8'),
+      '  '+c('ia','#34d399')+c('               — automatización e inteligencia artificial','#7e93a8'),
+      '  '+c('wazuh','#34d399')+c('            — ciberseguridad, SIEM y cumplimiento ENS','#7e93a8'),
+      '  '+c('sistemas','#34d399')+c('         — administración, backups y soporte','#7e93a8'),
+      '  '+c('automatizacion','#34d399')+c('   — procesos que se ejecutan solos','#7e93a8'),
+      '  '+c('contacto','#34d399')+c('         — habla con nosotros','#7e93a8'),
+      '  '+c('clear','#34d399')+c('            — limpiar la pantalla','#7e93a8'),
+    ],
+    servicios: () => [
+      c('Cuatro áreas, un mismo equipo:','#eaf2ff',true),
+      '  '+c('◆','#60a5fa')+' '+c('Inteligencia Artificial','#60a5fa',true)+c(' — chatbots, gestor documental, llamadas y citas','#9fb3c8'),
+      '  '+c('◆','#34d399')+' '+c('Ciberseguridad','#34d399',true)+c('         — Wazuh SIEM, ENS, monitorización 24/7','#9fb3c8'),
+      '  '+c('◆','#a78bfa')+' '+c('Sistemas IT','#a78bfa',true)+c('            — servidores, backups, soporte técnico','#9fb3c8'),
+      '  '+c('◆','#fbbf24')+' '+c('Automatización','#fbbf24',true)+c('         — procesos repetitivos automatizados','#9fb3c8'),
+      '&nbsp;',
+      c('Cuanto más conectado está todo bajo un proveedor, más se optimiza.','#7e93a8'),
+      link('Ver todos los servicios','/#servicios'),
+    ],
+    ia: () => [
+      c('Inteligencia Artificial aplicada a tu negocio:','#60a5fa',true),
+      c('  Chatbots que atienden 24/7, gestor documental que encuentra','#9fb3c8'),
+      c('  cualquier archivo en segundos, recepcionista de voz y gestión','#9fb3c8'),
+      c('  de citas. Análisis previo → desarrollo a medida → formación.','#9fb3c8'),
+      link('Consultoría IA →','/consultoria-ia'),
+    ],
+    wazuh: () => [
+      c('Ciberseguridad · Wazuh SIEM:','#34d399',true),
+      c('  Detección de amenazas en tiempo real y cumplimiento del','#9fb3c8'),
+      c('  Esquema Nacional de Seguridad (ENS). Implantación completa,','#9fb3c8'),
+      c('  reglas a medida, formación y soporte.','#9fb3c8'),
+      link('Ver Wazuh / ENS →','/wazuh'),
+    ],
+    ciberseguridad: () => COMMANDS.wazuh(),
+    sistemas: () => [
+      c('Sistemas IT:','#a78bfa',true),
+      c('  Administración de servidores Linux/Windows, copias de','#9fb3c8'),
+      c('  seguridad automatizadas y soporte técnico remoto. La primera','#9fb3c8'),
+      c('  hora de consultoría es gratuita.','#9fb3c8'),
+      link('Soporte técnico →','/soporte-tecnico'),
+    ],
+    automatizacion: () => [
+      c('Automatización de procesos:','#fbbf24',true),
+      c('  Conectamos tu IA con email, CRM, ERP y cientos de servicios.','#9fb3c8'),
+      c('  Tareas repetitivas que pasan a ejecutarse solas, con un','#9fb3c8'),
+      c('  panel para medir el ahorro real.','#9fb3c8'),
+      link('Ver automatización →','/servicios/automatizacion'),
+    ],
+    contacto: () => [
+      c('Hablemos. Primera consulta sin coste:','#eaf2ff',true),
+      link('→ Reservar consulta gratuita','/reunion'),
+      c('  o escribe a ','#7e93a8')+c('info@aisecurity.es','#5eead4'),
+    ],
+    whoami: () => [ c('Una empresa que quiere dejar de pelearse con su tecnología. ','#9fb3c8')+c('Estás en el sitio correcto.','#34d399') ],
+    sudo: () => [ c('Permiso concedido. Aquí no hace falta pelear con permisos — de eso nos encargamos nosotros. 😉','#fbbf24') ],
+    ls: () => COMMANDS.servicios(),
+  };
+  function link(text:string,href:string){ return `<a class="term-link" href="${href}">${text}</a>`; }
+
+  async function runBoot(){
+    for (const step of boot){ el(step.html); await wait(step.d); }
+    prompt.classList.add('show');
+    input.focus();
+  }
+
+  function exec(raw:string){
+    const cmd = raw.trim().toLowerCase();
+    el(c('➜','#34d399',true)+'  '+c('~','#60a5fa')+' '+c(raw,'#eaf2ff'));
+    if (!cmd) return;
+    if (cmd==='clear'){ body.innerHTML=''; return; }
+    const fn = COMMANDS[cmd];
+    if (fn){ fn().forEach(line=>el(line)); }
+    else { el(c(`comando no encontrado: ${cmd}`,'#ff6b7a')+c('  ·  prueba con ','#7e93a8')+c('help','#5eead4')); }
+    el('&nbsp;');
+  }
+
+  // input handling
+  function syncTyped(){ typed.textContent = input.value; }
+  input.addEventListener('input', syncTyped);
+  input.addEventListener('keydown', (e)=>{
+    if (e.key==='Enter'){ exec(input.value); input.value=''; syncTyped(); }
+  });
+  // foco al hacer clic en cualquier parte del terminal o en el botón
+  body.parentElement?.addEventListener('click', ()=>input.focus());
+  focusBtn?.addEventListener('click', ()=>input.focus());
+
+  // arrancar cuando sea visible
+  if ('IntersectionObserver' in window){
+    const io = new IntersectionObserver((ents)=>{ if(ents[0].isIntersecting){ io.disconnect(); runBoot(); } }, {threshold:0.3});
+    io.observe(body);
+  } else { runBoot(); }
+})();
+</script>

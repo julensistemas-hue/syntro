@@ -1,0 +1,151 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e4]:
+      - link "AI SECURITY logo AI SECURITY" [ref=e6] [cursor=pointer]:
+        - /url: /
+        - img "AI SECURITY logo" [ref=e7]
+        - generic [ref=e8]: AI SECURITY
+      - navigation "Navegación principal" [ref=e9]:
+        - link "Consultoría IA" [ref=e10] [cursor=pointer]:
+          - /url: /consultoria-ia
+        - link "Posicionamiento SEO" [ref=e11] [cursor=pointer]:
+          - /url: /servicios/geo-posicionamiento
+        - button "Wazuh" [ref=e13] [cursor=pointer]:
+          - generic [ref=e14]: Wazuh
+          - img [ref=e15]
+        - button "Servicios" [ref=e18] [cursor=pointer]:
+          - generic [ref=e19]: Servicios
+          - img [ref=e20]
+        - link "Blog" [ref=e22] [cursor=pointer]:
+          - /url: /blog
+        - link "Solicitar Reunión GRATIS" [ref=e23] [cursor=pointer]:
+          - /url: /reunion
+          - text: Solicitar Reunión
+          - generic [ref=e24]: GRATIS
+  - main [ref=e25]:
+    - generic [ref=e27]:
+      - paragraph [ref=e28]: // tu partner tecnológico de confianza
+      - generic [ref=e30]:
+        - generic [ref=e34]: "visitante@ai-security: ~"
+        - generic [ref=e35]: AI-SEC OS v2.0
+      - generic [ref=e37]:
+        - button "› Escribe servicios o help" [ref=e38] [cursor=pointer]:
+          - generic [ref=e39]: ›
+          - text: Escribe
+          - code [ref=e40]: servicios
+          - text: o
+          - code [ref=e41]: help
+        - link "Consulta gratuita" [ref=e42] [cursor=pointer]:
+          - /url: /reunion
+          - text: Consulta gratuita
+          - img [ref=e43]
+  - contentinfo [ref=e45]:
+    - generic [ref=e46]:
+      - generic [ref=e47]:
+        - generic [ref=e48]:
+          - link "AI SECURITY logo AI SECURITY" [ref=e49] [cursor=pointer]:
+            - /url: /
+            - img "AI SECURITY logo" [ref=e50]
+            - generic [ref=e51]: AI SECURITY
+          - paragraph [ref=e52]: Soluciones de inteligencia artificial para empresas. Automatiza procesos, mejora la atención al cliente y optimiza tu operativa con tecnología de vanguardia.
+        - generic [ref=e53]:
+          - heading "¿Hablamos?" [level=3] [ref=e54]
+          - paragraph [ref=e55]: Cuéntanos tu proyecto y te ayudamos a automatizar tu negocio con soluciones de IA a medida.
+          - generic [ref=e56]:
+            - button "Te llamamos" [ref=e57] [cursor=pointer]:
+              - img [ref=e58]
+              - text: Te llamamos
+            - link "Agendar Reunión" [ref=e60] [cursor=pointer]:
+              - /url: /reunion
+              - img [ref=e61]
+              - text: Agendar Reunión
+      - generic [ref=e63]:
+        - generic [ref=e64]:
+          - heading "Servicios" [level=4] [ref=e65]
+          - list [ref=e66]:
+            - listitem [ref=e67]:
+              - link "Chatbot Inteligente" [ref=e68] [cursor=pointer]:
+                - /url: /servicios/chatbot
+            - listitem [ref=e69]:
+              - link "Gestor Documental IA" [ref=e70] [cursor=pointer]:
+                - /url: /servicios/gestor-documental
+            - listitem [ref=e71]:
+              - link "Gestor de Citas IA" [ref=e72] [cursor=pointer]:
+                - /url: /servicios/gestor-citas
+            - listitem [ref=e73]:
+              - link "Atención de Llamadas" [ref=e74] [cursor=pointer]:
+                - /url: /servicios/atencion-llamadas
+            - listitem [ref=e75]:
+              - link "Automatización" [ref=e76] [cursor=pointer]:
+                - /url: /servicios/automatizacion
+            - listitem [ref=e77]:
+              - link "Consultoría IA" [ref=e78] [cursor=pointer]:
+                - /url: /consultoria-ia
+        - generic [ref=e79]:
+          - heading "Empresa" [level=4] [ref=e80]
+          - list [ref=e81]:
+            - listitem [ref=e82]:
+              - link "Solicitar Reunión" [ref=e83] [cursor=pointer]:
+                - /url: /reunion
+            - listitem [ref=e84]:
+              - link "FAQ" [ref=e85] [cursor=pointer]:
+                - /url: /faq
+            - listitem [ref=e86]:
+              - link "Términos de Servicio" [ref=e87] [cursor=pointer]:
+                - /url: /terms
+            - listitem [ref=e88]:
+              - link "Política de Privacidad" [ref=e89] [cursor=pointer]:
+                - /url: /privacy
+        - generic [ref=e90]:
+          - heading "Seguridad" [level=4] [ref=e91]
+          - list [ref=e92]:
+            - listitem [ref=e93]:
+              - link "Wazuh & ENS" [ref=e94] [cursor=pointer]:
+                - /url: /wazuh
+            - listitem [ref=e95]:
+              - link "Consultoría IA" [ref=e96] [cursor=pointer]:
+                - /url: /consultoria-ia
+        - generic [ref=e97]:
+          - heading "Contacto" [level=4] [ref=e98]
+          - list [ref=e99]:
+            - listitem [ref=e100]:
+              - link "Email" [ref=e101] [cursor=pointer]:
+                - /url: mailto:info@aisecurity.es
+            - listitem [ref=e102]:
+              - link "Agendar Consulta" [ref=e103] [cursor=pointer]:
+                - /url: /reunion
+      - generic [ref=e104]:
+        - paragraph [ref=e105]: © 2026 AI SECURITY. Todos los derechos reservados.
+        - paragraph [ref=e106]: Soluciones de inteligencia artificial para empresas
+  - button "Abrir asistente" [ref=e107] [cursor=pointer]:
+    - generic [ref=e108]: ¿Te ayudo? 👋
+    - img [ref=e109]:
+      - generic [ref=e137]:
+        - generic [ref=e138]: z
+        - generic [ref=e139]: z
+        - generic [ref=e140]: Z
+  - generic:
+    - generic:
+      - generic:
+        - generic: 🤖
+        - generic:
+          - generic: Asistente AI Security
+          - generic: Responde al instante
+      - button: ✕
+    - generic:
+      - generic:
+        - text: 🤖
+        - generic:
+          - text: ¡Hola! 👋 Soy el asistente de
+          - strong: AI Security
+          - text: . ¿En qué puedo ayudarte hoy?
+    - generic:
+      - button: 🤖 Servicios de IA
+      - button: 🖥️ Soporte técnico
+      - button: 🛡️ Wazuh / Seguridad
+      - button: 💰 Precios
+      - button: 👤 Hablar con un humano
+    - generic:
+      - textbox:
+        - /placeholder: Escribe tu pregunta...
+      - button: →

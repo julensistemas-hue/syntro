@@ -1,0 +1,227 @@
+---
+// HeroNucleus — "El núcleo vivo" (fusión showpiece)
+// El título está hecho de partículas de las 4 áreas. El ratón las dispersa.
+// Al hacer CLIC, estallan y se reorganizan en los 4 dominios conectados al núcleo,
+// y luego vuelven a formar el título. tus servicios → conectados → un mensaje.
+---
+
+<section id="nuc-hero" class="relative overflow-hidden flex items-center justify-center" style="background:#04060c;min-height:100vh;cursor:pointer;">
+
+  <canvas id="nuc-canvas" class="absolute inset-0" style="width:100%;height:100%;display:block;z-index:1;"></canvas>
+
+  <h1 class="sr-only">Todo conectado — IA, ciberseguridad, sistemas y automatización con AI Security</h1>
+
+  <!-- Etiquetas de dominio (visibles en modo hub) -->
+  <div id="nuc-labels" class="absolute inset-0 pointer-events-none" style="z-index:5;"></div>
+
+  <!-- Núcleo central (modo hub) -->
+  <div id="nuc-core" class="absolute pointer-events-none" style="z-index:6;opacity:0;transform:translate(-50%,-50%) scale(0.7);transition:opacity .4s,transform .4s;">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:3px;padding:14px 16px;border-radius:16px;background:linear-gradient(145deg,#0e1d40,#060d22);border:1.5px solid rgba(124,192,255,0.45);box-shadow:0 0 40px -6px rgba(59,130,246,0.5);">
+      <span style="font-size:0.72rem;font-weight:900;letter-spacing:0.08em;color:#f4f8ff;">AI SECURITY</span>
+      <span style="font-size:0.55rem;color:rgba(124,192,255,0.7);">un solo núcleo</span>
+    </div>
+  </div>
+
+  <!-- Badge + subtítulo + CTA -->
+  <div class="absolute top-[12%] left-0 right-0 flex justify-center px-6" style="z-index:10;pointer-events:none;">
+    <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold border" style="background:rgba(0,0,0,0.4);border-color:rgba(148,163,184,0.25);color:#cbd5e1;letter-spacing:0.12em;text-transform:uppercase;backdrop-filter:blur(2px);">
+      Tu partner tecnológico de confianza
+    </span>
+  </div>
+
+  <div id="nuc-bottom" class="absolute left-0 right-0 flex flex-col items-center text-center px-6" style="bottom:13%;z-index:10;pointer-events:none;transition:opacity .35s;">
+    <p style="max-width:34rem;font-size:clamp(1rem,2.3vw,1.25rem);line-height:1.55;color:rgba(220,232,255,0.7);text-shadow:0 2px 24px rgba(0,0,0,0.85);">
+      IA, ciberseguridad y sistemas, bajo un mismo equipo.
+    </p>
+    <div id="nuc-hint" class="mt-4 flex items-center gap-2" style="color:#7cc0ff;font-size:0.88rem;font-weight:600;transition:opacity .4s;">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5"/></svg>
+      Haz clic para ver cómo se conecta todo
+    </div>
+    <div class="mt-6" style="pointer-events:auto;">
+      <a href="/reunion" id="nuc-cta" style="display:inline-flex;align-items:center;gap:0.6rem;background:#fff;color:#04060c;font-weight:800;padding:0.95rem 2rem;border-radius:0.8rem;text-decoration:none;font-size:1rem;box-shadow:0 10px 40px rgba(255,255,255,0.16);transition:transform .2s,box-shadow .2s;">
+        Unifica tu tecnología
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  #nuc-cta:hover { transform:translateY(-2px);box-shadow:0 14px 50px rgba(255,255,255,0.3); }
+  .nuc-label {
+    position:absolute;transform:translate(-50%,-50%);
+    font-size:0.8rem;font-weight:800;white-space:nowrap;
+    opacity:0;transition:opacity .4s;text-shadow:0 2px 12px rgba(0,0,0,0.9);
+    letter-spacing:0.02em;
+  }
+</style>
+
+<script>
+(function () {
+  const section = document.getElementById('nuc-hero') as HTMLElement;
+  const canvas  = document.getElementById('nuc-canvas') as HTMLCanvasElement;
+  const labelsBox = document.getElementById('nuc-labels') as HTMLElement;
+  const core    = document.getElementById('nuc-core') as HTMLElement;
+  const hint    = document.getElementById('nuc-hint') as HTMLElement;
+  const bottom  = document.getElementById('nuc-bottom') as HTMLElement;
+  if (!section || !canvas) return;
+  const ctx = canvas.getContext('2d')!;
+
+  const DOMAINS = [
+    { label:'Inteligencia Artificial', col:'#60a5fa' },
+    { label:'Ciberseguridad',          col:'#34d399' },
+    { label:'Sistemas IT',             col:'#a78bfa' },
+    { label:'Automatización',          col:'#fbbf24' },
+  ];
+  let W=0,H=0,DPR=Math.min(window.devicePixelRatio||1,2);
+
+  interface P { x:number;y:number;tx:number;ty:number;hubx:number;huby:number;vx:number;vy:number;dom:number; }
+  let parts: P[] = [];
+  let clusters:{x:number;y:number}[] = [];
+  let centerX=0, centerY=0;
+
+  // etiquetas DOM
+  const labelEls: HTMLElement[] = DOMAINS.map(d=>{
+    const e=document.createElement('div'); e.className='nuc-label'; e.textContent=d.label; e.style.color=d.col; labelsBox.appendChild(e); return e;
+  });
+
+  function sampleText(){
+    const off=document.createElement('canvas'); const o=off.getContext('2d')!;
+    off.width=W; off.height=H; o.clearRect(0,0,W,H);
+    o.fillStyle='#fff'; o.textAlign='center'; o.textBaseline='middle';
+    const big=Math.min(W*0.155,180); const small=big*0.74;
+    const cx=W/2, cy=H*0.44;
+    o.font=`900 ${big}px Inter, system-ui, sans-serif`; o.fillText('TODO', cx, cy-big*0.45);
+    o.font=`900 ${small*1.18}px Inter, system-ui, sans-serif`; o.fillText('CONECTADO', cx, cy+small*0.62);
+    const img=o.getImageData(0,0,W,H).data; const step=W<600?5:4; const t:{x:number;y:number}[]=[];
+    for(let y=0;y<H;y+=step) for(let x=0;x<W;x+=step){ if(img[(y*W+x)*4+3]>128) t.push({x,y}); }
+    return t;
+  }
+
+  function computeHub(){
+    centerX=W*0.5; centerY=H*0.46;
+    const rx=Math.min(W*0.22,300), ry=Math.min(H*0.19,170);
+    clusters=[
+      {x:centerX-rx, y:centerY-ry},
+      {x:centerX+rx, y:centerY-ry},
+      {x:centerX-rx, y:centerY+ry},
+      {x:centerX+rx, y:centerY+ry},
+    ];
+  }
+
+  function build(){
+    const targets=sampleText();
+    computeHub();
+    const spread=Math.min(W*0.038,50);
+    parts=targets.map((t,i)=>{
+      const dom=i%4; const c=clusters[dom];
+      const a=Math.random()*6.28, r=Math.sqrt(Math.random())*spread;
+      return { x:Math.random()*W, y:Math.random()*H, tx:t.x, ty:t.y,
+               hubx:c.x+Math.cos(a)*r, huby:c.y+Math.sin(a)*r*0.8, vx:0, vy:0, dom };
+    });
+  }
+  function resize(){
+    W=section.clientWidth; H=section.clientHeight;
+    canvas.width=W*DPR; canvas.height=H*DPR; canvas.style.width=W+'px'; canvas.style.height=H+'px';
+    ctx.setTransform(DPR,0,0,DPR,0,0); build();
+  }
+
+  let mx=-9999,my=-9999,hasPointer=false,t=0;
+  let hub=0;            // 0=text, 1=hub (eased)
+  let targetHub=0;
+  const R=80,R2=R*R,SPRING=0.075,FRICTION=0.80,PUSH=5;
+
+  function hexA(hex:string,a:number){ const r=parseInt(hex.slice(1,3),16),g=parseInt(hex.slice(3,5),16),b=parseInt(hex.slice(5,7),16); return `rgba(${r},${g},${b},${a})`; }
+
+  function frame(){
+    t++;
+    hub += (targetHub-hub)*0.07;
+    ctx.clearRect(0,0,W,H);
+
+    // líneas núcleo↔cluster + halos de área (según hub)
+    if (hub>0.02){
+      ctx.globalAlpha=hub;
+      const ringR=Math.min(W*0.07,86);
+      for(let i=0;i<4;i++){
+        // línea al núcleo
+        ctx.beginPath(); ctx.moveTo(centerX,centerY); ctx.lineTo(clusters[i].x,clusters[i].y);
+        ctx.strokeStyle=hexA(DOMAINS[i].col,0.45); ctx.lineWidth=1.4; ctx.stroke();
+        // halo radial del área
+        const g=ctx.createRadialGradient(clusters[i].x,clusters[i].y,0,clusters[i].x,clusters[i].y,ringR);
+        g.addColorStop(0,hexA(DOMAINS[i].col,0.16)); g.addColorStop(1,hexA(DOMAINS[i].col,0));
+        ctx.fillStyle=g; ctx.beginPath(); ctx.arc(clusters[i].x,clusters[i].y,ringR,0,6.28); ctx.fill();
+        // anillo
+        ctx.beginPath(); ctx.arc(clusters[i].x,clusters[i].y,ringR,0,6.28);
+        ctx.strokeStyle=hexA(DOMAINS[i].col,0.35); ctx.lineWidth=1; ctx.stroke();
+        // pulso viajando al núcleo
+        const p=((t*0.5+i*30)%100)/100; const px=centerX+(clusters[i].x-centerX)*p, py=centerY+(clusters[i].y-centerY)*p;
+        ctx.beginPath(); ctx.arc(px,py,2.2,0,6.28); ctx.fillStyle=DOMAINS[i].col; ctx.fill();
+      }
+      ctx.globalAlpha=1;
+    }
+
+    for(let i=0;i<parts.length;i++){
+      const p=parts[i];
+      // home interpolado entre texto y hub
+      const hx=p.tx+(p.hubx-p.tx)*hub;
+      const hy=p.ty+(p.huby-p.ty)*hub;
+      let ax=(hx-p.x)*SPRING, ay=(hy-p.y)*SPRING;
+      // repulsión ratón
+      const dx=p.x-mx, dy=p.y-my, d2=dx*dx+dy*dy;
+      if(d2<R2 && d2>0.01){ const d=Math.sqrt(d2); const f=(R-d)/R*PUSH; ax+=(dx/d)*f; ay+=(dy/d)*f; }
+      p.vx=(p.vx+ax)*FRICTION; p.vy=(p.vy+ay)*FRICTION; p.x+=p.vx; p.y+=p.vy;
+      const speed=Math.abs(p.vx)+Math.abs(p.vy);
+      const col=DOMAINS[p.dom].col;
+      // en hub brillan más
+      if(hub>0.3 || speed>2){
+        ctx.globalAlpha=0.9; ctx.fillStyle=col;
+        const s=2.4; ctx.fillRect(p.x-s/2,p.y-s/2,s,s);
+      } else {
+        ctx.globalAlpha=0.85; ctx.fillStyle=col;
+        ctx.fillRect(p.x-0.9,p.y-0.9,1.8,1.8);
+      }
+    }
+    ctx.globalAlpha=1;
+
+    // posicionar etiquetas + núcleo según hub
+    const ringR2=Math.min(W*0.07,86);
+    for(let i=0;i<4;i++){
+      const c=clusters[i];
+      labelEls[i].style.left=c.x+'px';
+      labelEls[i].style.top=(c.y - ringR2 - 16)+'px';
+      labelEls[i].style.opacity=String(hub>0.5?(hub-0.5)/0.5:0);
+    }
+    core.style.left=centerX+'px'; core.style.top=centerY+'px';
+    core.style.opacity=String(hub);
+    core.style.transform=`translate(-50%,-50%) scale(${0.7+0.3*hub})`;
+
+    requestAnimationFrame(frame);
+  }
+
+  function onMove(x:number,y:number){ const r=section.getBoundingClientRect(); mx=x-r.left; my=y-r.top; if(!hasPointer){hasPointer=true; if(hint)hint.style.opacity='1';} }
+  section.addEventListener('mousemove', e=>onMove(e.clientX,e.clientY));
+  section.addEventListener('mouseleave', ()=>{ mx=my=-9999; });
+  section.addEventListener('touchmove', e=>{ if(e.touches[0]) onMove(e.touches[0].clientX,e.touches[0].clientY); }, {passive:true});
+
+  // CLIC = morph a hub y vuelta
+  let busy=false;
+  function trigger(){
+    if(busy) return; busy=true;
+    targetHub=1;
+    if(hint) hint.style.opacity='0';
+    if(bottom) bottom.style.opacity='0.35';
+    setTimeout(()=>{ targetHub=0; if(bottom) bottom.style.opacity='1'; setTimeout(()=>busy=false,1200); }, 3600);
+  }
+  section.addEventListener('click', (e)=>{
+    // no disparar si clican el CTA
+    if((e.target as HTMLElement).closest('a')) return;
+    trigger();
+  });
+
+  resize();
+  window.addEventListener('resize', resize);
+  requestAnimationFrame(frame);
+  // demo automática a los 2.2s para enseñar el efecto
+  setTimeout(()=>{ if(!busy) trigger(); }, 2200);
+})();
+</script>

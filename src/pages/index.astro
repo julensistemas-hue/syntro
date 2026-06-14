@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import AIHeroFloating from "../components/landing/AIHeroFloating.astro";
+import HeroFusion from "../components/landing/HeroFusion.astro";
 import ServicesSection from "../components/ai-services/ServicesSection.astro";
 import WhyChooseUs from "../components/landing/WhyChooseUs.astro";
 import HowItWorks from "../components/landing/HowItWorks.astro";
@@ -56,7 +56,7 @@ const schemaOrg = {
 
 <BaseLayout title={title} description={description} canonical={canonical}>
   <script is:inline type="application/ld+json" set:html={JSON.stringify(schemaOrg)} />
-  <AIHeroFloating />
+  <HeroFusion />
   <ServicesSection />
   <WhyChooseUs />
   <HowItWorks />

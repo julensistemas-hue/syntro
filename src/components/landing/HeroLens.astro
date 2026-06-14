@@ -1,0 +1,133 @@
+---
+// HeroLens — "Distorsión gravitacional"
+// Una malla (la infraestructura como tejido) que se curva alrededor del cursor
+// como el espacio-tiempo. Las 4 áreas son nodos que se desplazan con la malla.
+---
+
+<section id="lens-hero" class="relative overflow-hidden flex items-center justify-center px-6" style="background:#05070e;min-height:100vh;cursor:crosshair;">
+
+  <canvas id="lens-canvas" class="absolute inset-0" style="width:100%;height:100%;display:block;z-index:1;"></canvas>
+  <div id="lens-labels" class="absolute inset-0 pointer-events-none" style="z-index:5;"></div>
+
+  <div class="relative text-center" style="z-index:10;pointer-events:none;">
+    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold mb-7 border" style="background:rgba(0,0,0,0.45);border-color:rgba(124,192,255,0.25);color:#9fc6ff;letter-spacing:0.14em;text-transform:uppercase;backdrop-filter:blur(2px);">
+      Tu partner tecnológico de confianza
+    </div>
+    <h1 class="font-black tracking-tight" style="font-size:clamp(2rem,5.5vw,3.8rem);line-height:1.05;color:#f4f8ff;text-shadow:0 2px 50px rgba(5,7,14,0.95),0 0 60px rgba(5,7,14,0.9);">
+      Doblamos tu tecnología<br>en torno a un solo eje.
+    </h1>
+    <p class="mx-auto mt-5" style="max-width:38rem;font-size:clamp(1rem,2.2vw,1.2rem);line-height:1.55;color:rgba(220,232,255,0.7);text-shadow:0 2px 24px rgba(5,7,14,0.95);">
+      IA, ciberseguridad y sistemas en un mismo tejido. Cuando todo gravita hacia un equipo, todo se alinea.
+    </p>
+    <div class="mt-8" style="pointer-events:auto;">
+      <a href="/reunion" id="lens-cta" style="display:inline-flex;align-items:center;gap:0.6rem;background:#fff;color:#05070e;font-weight:800;padding:0.95rem 2rem;border-radius:0.8rem;text-decoration:none;font-size:1rem;box-shadow:0 12px 40px rgba(255,255,255,0.16);transition:transform .2s,box-shadow .2s;">
+        Unifica tu tecnología
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <p id="lens-hint" class="mt-5" style="color:rgba(148,163,184,0.7);font-size:0.85rem;transition:opacity .4s;">mueve el ratón y curva el espacio</p>
+  </div>
+</section>
+
+<style>
+  #lens-cta:hover { transform:translateY(-2px);box-shadow:0 16px 50px rgba(255,255,255,0.3); }
+  .lens-label {
+    position:absolute;transform:translate(-50%,-50%);
+    font-size:0.72rem;font-weight:800;white-space:nowrap;padding:2px 8px;border-radius:8px;
+    background:rgba(5,7,14,0.6);backdrop-filter:blur(2px);text-shadow:0 1px 5px rgba(0,0,0,0.8);
+  }
+</style>
+
+<script>
+(function () {
+  const section = document.getElementById('lens-hero') as HTMLElement;
+  const canvas  = document.getElementById('lens-canvas') as HTMLCanvasElement;
+  const labelsBox = document.getElementById('lens-labels') as HTMLElement;
+  const hint = document.getElementById('lens-hint') as HTMLElement;
+  if (!section || !canvas) return;
+  const ctx = canvas.getContext('2d')!;
+
+  const DOMAINS = [
+    { label:'IA',             col:'#60a5fa', fx:0.26, fy:0.34 },
+    { label:'Ciberseguridad', col:'#34d399', fx:0.74, fy:0.34 },
+    { label:'Sistemas',       col:'#a78bfa', fx:0.26, fy:0.70 },
+    { label:'Automatización', col:'#fbbf24', fx:0.74, fy:0.70 },
+  ];
+  let W=0,H=0,DPR=Math.min(window.devicePixelRatio||1,2);
+  const SP=44;                 // separación de la malla
+  let cols=0,rows=0;
+  interface Pt { hx:number;hy:number;x:number;y:number; }
+  let grid:Pt[][]=[];
+  let domNodes:{gi:number;gj:number;col:string;label:string}[]=[];
+
+  const labelEls:HTMLElement[]=DOMAINS.map(d=>{ const e=document.createElement('div'); e.className='lens-label'; e.textContent=d.label; e.style.color=d.col; e.style.border=`1px solid ${d.col}55`; labelsBox.appendChild(e); return e; });
+
+  function build(){
+    cols=Math.ceil(W/SP)+1; rows=Math.ceil(H/SP)+1;
+    grid=[];
+    for(let i=0;i<cols;i++){ grid[i]=[]; for(let j=0;j<rows;j++){ const hx=i*SP, hy=j*SP; grid[i][j]={hx,hy,x:hx,y:hy}; } }
+    domNodes=DOMAINS.map(d=>({ gi:Math.round(d.fx*W/SP), gj:Math.round(d.fy*H/SP), col:d.col, label:d.label }));
+  }
+  function resize(){ W=section.clientWidth; H=section.clientHeight; canvas.width=W*DPR; canvas.height=H*DPR; canvas.style.width=W+'px'; canvas.style.height=H+'px'; ctx.setTransform(DPR,0,0,DPR,0,0); build(); }
+
+  let mx=-9999,my=-9999,hasPointer=false,t=0;
+  const R=230, STRENGTH=64, SWIRL=0.35;
+
+  function frame(){
+    t++;
+    if(!hasPointer){ mx=W*(0.5+0.30*Math.sin(t*0.011)); my=H*(0.5+0.26*Math.sin(t*0.016+1)); }
+
+    // actualizar posiciones (lente: empuje radial + leve giro)
+    for(let i=0;i<cols;i++) for(let j=0;j<rows;j++){
+      const p=grid[i][j];
+      const dx=p.hx-mx, dy=p.hy-my; const d=Math.hypot(dx,dy)||0.001;
+      let tx=p.hx, ty=p.hy;
+      if(d<R){
+        const f=(1-d/R); const push=f*f*STRENGTH;
+        const ux=dx/d, uy=dy/d;
+        // radial hacia afuera (magnifica) + componente tangencial (remolino suave)
+        tx = p.hx + ux*push - uy*push*SWIRL;
+        ty = p.hy + uy*push + ux*push*SWIRL;
+      }
+      p.x += (tx-p.x)*0.18; p.y += (ty-p.y)*0.18;
+    }
+
+    ctx.clearRect(0,0,W,H);
+    // líneas de la malla (alpha por cercanía al cursor)
+    for(let i=0;i<cols;i++) for(let j=0;j<rows;j++){
+      const p=grid[i][j];
+      const dd=Math.hypot(p.x-mx,p.y-my);
+      const near=Math.max(0,1-dd/(R*1.2));
+      const al=0.06+near*0.5;
+      ctx.strokeStyle=`rgba(96,165,250,${al})`; ctx.lineWidth=near>0.4?1:0.6;
+      if(i<cols-1){ const q=grid[i+1][j]; ctx.beginPath(); ctx.moveTo(p.x,p.y); ctx.lineTo(q.x,q.y); ctx.stroke(); }
+      if(j<rows-1){ const q=grid[i][j+1]; ctx.beginPath(); ctx.moveTo(p.x,p.y); ctx.lineTo(q.x,q.y); ctx.stroke(); }
+    }
+    // nodos de dominio
+    for(let k=0;k<domNodes.length;k++){
+      const dn=domNodes[k]; const gi=Math.min(cols-1,Math.max(0,dn.gi)), gj=Math.min(rows-1,Math.max(0,dn.gj));
+      const p=grid[gi][gj];
+      const g=ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,18); g.addColorStop(0,dn.col); g.addColorStop(1,dn.col+'00');
+      ctx.fillStyle=g; ctx.beginPath(); ctx.arc(p.x,p.y,18,0,6.28); ctx.fill();
+      ctx.fillStyle=dn.col; ctx.beginPath(); ctx.arc(p.x,p.y,4,0,6.28); ctx.fill();
+      labelEls[k].style.left=p.x+'px'; labelEls[k].style.top=(p.y-16)+'px';
+    }
+    requestAnimationFrame(frame);
+  }
+
+  function onMove(x:number,y:number){ const r=section.getBoundingClientRect(); mx=x-r.left; my=y-r.top; if(!hasPointer){hasPointer=true; if(hint)hint.style.opacity='0';} }
+  section.addEventListener('mousemove', e=>onMove(e.clientX,e.clientY));
+  section.addEventListener('mouseleave', ()=>{ hasPointer=false; });
+  section.addEventListener('touchmove', e=>{ if(e.touches[0]) onMove(e.touches[0].clientX,e.touches[0].clientY); }, {passive:true});
+
+  resize();
+  window.addEventListener('resize', resize);
+  const reduce=window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce){ section.style.cursor='auto'; if(hint)hint.style.display='none';
+    // dibujar malla estática
+    ctx.clearRect(0,0,W,H);
+    for(let i=0;i<cols;i++) for(let j=0;j<rows;j++){ const p=grid[i][j]; ctx.strokeStyle='rgba(96,165,250,0.12)'; ctx.lineWidth=0.6; if(i<cols-1){const q=grid[i+1][j];ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.stroke();} if(j<rows-1){const q=grid[i][j+1];ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.stroke();} }
+    for(let k=0;k<domNodes.length;k++){ const dn=domNodes[k]; const p=grid[Math.min(cols-1,dn.gi)][Math.min(rows-1,dn.gj)]; ctx.fillStyle=dn.col; ctx.beginPath(); ctx.arc(p.x,p.y,4,0,6.28); ctx.fill(); labelEls[k].style.left=p.x+'px'; labelEls[k].style.top=(p.y-16)+'px'; }
+  } else { requestAnimationFrame(frame); }
+})();
+</script>
