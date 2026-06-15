@@ -5,10 +5,18 @@ interface Props {
   icon: string;
   features: string[];
   href: string;
+  accent?: string;
   featured?: boolean;
 }
 
-const { title, description, icon, features, href, featured = false } = Astro.props;
+const { title, description, icon, features, href, accent = "#60a5fa", featured = false } = Astro.props;
+
+// rgb del acento para usar en rgba()
+const hx = accent.replace('#', '');
+const aR = parseInt(hx.slice(0, 2), 16);
+const aG = parseInt(hx.slice(2, 4), 16);
+const aB = parseInt(hx.slice(4, 6), 16);
+const accentRgb = `${aR},${aG},${aB}`;
 
 // Texto del botón según el tipo de servicio
 const buttonMap: Record<string, string> = {
@@ -23,7 +31,6 @@ const buttonMap: Record<string, string> = {
   "Soporte Técnico IT":        "Ver soporte IT",
 };
 const buttonText = buttonMap[title] ?? "Ver servicio";
-const isConsultoria = !["Chatbot Inteligente","Gestor Documental IA","Gestor de Citas IA","Atención de Llamadas IA"].includes(title);
 
 // Plan para el botón de presupuesto
 const planMap: Record<string, string> = {
@@ -40,140 +47,172 @@ const planMap: Record<string, string> = {
 const presupuestoPlan = planMap[title] ?? title.replace(/\s+/g, '-');
 ---
 
-<div
-  class={`
-    relative p-6 rounded-2xl border-2 transition-all duration-300 bg-base-50 group flex flex-col h-full
-    ${featured
-      ? 'border-accent-300 shadow-lg hover:shadow-2xl hover:border-accent-400 hover:-translate-y-2'
-      : 'border-base-200 hover:border-accent-300 hover:shadow-xl hover:-translate-y-1'
-    }
-  `}
->
+<div class={`svc-card group${featured ? ' svc-featured' : ''}`} style={`--a:${accent};--argb:${accentRgb};`}>
+
   {featured && (
-    <div class="absolute -top-4 left-8">
-      <span class="bg-gradient-to-r from-accent-600 to-blue-600 text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-md">
-        Más Popular
-      </span>
-    </div>
+    <span class="svc-badge">★ Más popular</span>
   )}
 
-  <div class="flex items-center gap-3 mb-4">
-    <div class="flex-1 min-w-0">
-      <h3 class="text-lg font-bold text-base-900">{title}</h3>
-    </div>
+  <!-- Cabecera: icono + título -->
+  <div class="flex items-center gap-3.5 mb-3">
+    <div class="svc-icon">{icon}</div>
+    <h3 class="svc-title">{title}</h3>
   </div>
 
-  <!-- Icono grande reemplaza al texto descriptivo -->
-  <div class="flex justify-center items-center mb-6">
-    <div class={`service-icon-big transition-transform duration-300 group-hover:scale-105 ${featured ? 'service-icon-featured' : 'service-icon-default'}`}>
-      <span class="service-icon-emoji">{icon}</span>
-      <div class="service-icon-ring"></div>
-    </div>
-  </div>
+  <p class="svc-desc">{description}</p>
 
-  <ul class="space-y-2 mb-6 flex-1">
+  <ul class="svc-feat">
     {features.map((feature) => (
-      <li class="flex items-start gap-3">
-        <svg class="w-5 h-5 text-accent-600 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+      <li>
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
         </svg>
-        <span class="text-base-700 text-sm leading-relaxed">{feature}</span>
+        <span>{feature}</span>
       </li>
     ))}
   </ul>
 
-  <a
-    href={href}
-    class={`
-      inline-flex items-center justify-center w-full px-5 py-3 rounded-xl font-semibold text-sm transition-all duration-200
-      ${featured
-        ? 'bg-gradient-to-r from-accent-600 to-blue-600 text-white shadow-lg hover:shadow-xl hover:-translate-y-0.5 hover:from-accent-700 hover:to-blue-700'
-        : 'bg-base-100 text-base-900 hover:bg-accent-600 border-2 border-base-200 hover:border-accent-600 shadow-sm hover:shadow-md service-card-button'
-      }
-    `}
-    style="color: #FFFFFF;"
-  >
+  <a href={href} class="svc-cta">
     {buttonText}
-    <svg class="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-      {isConsultoria ? (
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-      ) : (
-        <>
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
-        </>
-      )}
+    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" width="16" height="16">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/>
     </svg>
   </a>
 
-  <a
-    href={`/presupuesto?plan=${presupuestoPlan}`}
-    class="inline-flex items-center justify-center w-full px-5 py-2.5 rounded-xl font-semibold text-sm transition-all duration-200 mt-2 border-2 border-accent-200 hover:border-accent-400 hover:bg-accent-50"
-    style="color: #1d4ed8;"
-  >
+  <a href={`/presupuesto?plan=${presupuestoPlan}`} class="svc-cta2">
     Solicitar presupuesto
-    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-    </svg>
   </a>
 </div>
 
 <style>
-  .service-card-button:hover {
-    color: #000000 !important;
-  }
-
-  .service-icon-big {
+  .svc-card {
     position: relative;
-    width: 96px;
-    height: 96px;
-    border-radius: 50%;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    background: rgba(255,255,255,0.035);
+    border: 1px solid rgba(255,255,255,0.08);
+    backdrop-filter: blur(8px);
+    overflow: hidden;
+    transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease, background .25s ease;
   }
-
-  .service-icon-default {
-    background: radial-gradient(circle at 35% 35%, rgba(59,130,246,0.18), rgba(15,23,42,0.9));
-    border: 1.5px solid rgba(59,130,246,0.3);
-    box-shadow:
-      0 0 24px rgba(59,130,246,0.15),
-      inset 0 1px 0 rgba(255,255,255,0.07);
-  }
-
-  .service-icon-featured {
-    background: radial-gradient(circle at 35% 35%, rgba(96,165,250,0.35), rgba(29,78,216,0.85));
-    border: 1.5px solid rgba(96,165,250,0.5);
-    box-shadow:
-      0 0 32px rgba(59,130,246,0.3),
-      0 8px 24px rgba(29,78,216,0.25),
-      inset 0 1px 0 rgba(255,255,255,0.1);
-  }
-
-  .service-icon-emoji {
-    font-size: 2.4rem;
-    line-height: 1;
-    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.4));
-    position: relative;
-    z-index: 1;
-  }
-
-  .service-icon-ring {
+  /* línea de acento superior */
+  .svc-card::before {
+    content: '';
     position: absolute;
-    inset: -6px;
-    border-radius: 50%;
-    border: 1px solid rgba(59,130,246,0.15);
-    animation: icon-ring-pulse 3s ease-in-out infinite;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--a), transparent 80%);
+    opacity: .8;
+  }
+  .svc-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--a);
+    background: rgba(var(--argb), 0.06);
+    box-shadow: 0 18px 50px -16px rgba(var(--argb), 0.55);
+  }
+  .svc-featured {
+    border-color: rgba(var(--argb), 0.5);
+    box-shadow: 0 0 0 1px rgba(var(--argb), 0.18), 0 14px 44px -18px rgba(var(--argb), 0.5);
   }
 
-  @keyframes icon-ring-pulse {
-    0%, 100% { opacity: 0.4; transform: scale(1); }
-    50%       { opacity: 0.8; transform: scale(1.04); }
+  .svc-badge {
+    position: absolute;
+    top: 0.9rem; right: 0.9rem;
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.6rem;
+    border-radius: 9999px;
+    color: #0a0f1a;
+    background: var(--a);
+    box-shadow: 0 4px 14px -4px rgba(var(--argb), 0.8);
   }
 
-  .group:hover .service-icon-ring {
-    border-color: rgba(59,130,246,0.35);
-    animation: none;
-    opacity: 1;
+  .svc-icon {
+    width: 52px; height: 52px;
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.7rem; line-height: 1;
+    flex-shrink: 0;
+    background: rgba(var(--argb), 0.13);
+    border: 1px solid rgba(var(--argb), 0.3);
+    transition: transform .25s ease;
+  }
+  .svc-card:hover .svc-icon { transform: scale(1.08) rotate(-5deg); }
+
+  .svc-title {
+    font-size: 1.08rem;
+    font-weight: 700;
+    color: #f0f6ff;
+    line-height: 1.2;
+  }
+
+  .svc-desc {
+    font-size: 0.85rem;
+    line-height: 1.55;
+    color: rgba(240,246,255,0.62);
+    margin: 0 0 1.1rem;
+  }
+
+  .svc-feat {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    flex: 1;
+  }
+  .svc-feat li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.55rem;
+    font-size: 0.83rem;
+    line-height: 1.4;
+    color: rgba(240,246,255,0.8);
+  }
+  .svc-feat svg {
+    width: 1rem; height: 1rem;
+    color: var(--a);
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .svc-cta {
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.45rem;
+    width: 100%;
+    padding: 0.72rem 1rem;
+    border-radius: 0.7rem;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-decoration: none;
+    color: #0a0f1a;
+    background: var(--a);
+    transition: filter .2s ease, transform .2s ease;
+  }
+  .svc-cta:hover { filter: brightness(1.12); transform: translateY(-1px); }
+
+  .svc-cta2 {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 100%;
+    padding: 0.6rem 1rem;
+    margin-top: 0.55rem;
+    border-radius: 0.7rem;
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-decoration: none;
+    color: #cbd5e1;
+    border: 1px solid rgba(255,255,255,0.14);
+    background: transparent;
+    transition: all .2s ease;
+  }
+  .svc-cta2:hover {
+    border-color: var(--a);
+    color: #fff;
+    background: rgba(var(--argb), 0.08);
   }
 </style>

@@ -27,8 +27,10 @@
       <a href="/servicios/gestor-documental">Gestor documental</a>
       <a href="/servicios/atencion-llamadas">Atención de llamadas con IA</a>
       <a href="/servicios/gestor-citas">Gestor de citas</a>
+      <a href="/consultoria-ia">Consultoría IA</a>
       <a href="/wazuh">Ciberseguridad Wazuh y cumplimiento ENS</a>
-      <a href="/soporte-tecnico">Sistemas IT, email Microsoft 365, backups y soporte</a>
+      <a href="/servicios/desarrollo-web">Desarrollo web</a>
+      <a href="/servicios/geo-posicionamiento">Posicionamiento SEO y GEO</a>
       <a href="/servicios/automatizacion">Automatización de procesos</a>
     </nav>
 
@@ -105,39 +107,48 @@
   let W=0,H=0,DPR=Math.min(window.devicePixelRatio||1,2);
   let mx=-9999,my=-9999,hasPointer=false,t=0;
 
-  type Kind='ia'|'cyber'|'system'|'auto'|'node'|'alert';
-  const COLORS:Record<Kind,string>={ ia:'#60a5fa', cyber:'#818cf8', system:'#a78bfa', auto:'#c084fc', node:'#5b7290', alert:'#ff5564' };
-  interface N{ x:number;y:number;r:number;kind:Kind;label?:string;href?:string;phase:number;vx:number;vy:number; }
+  type Kind='ia'|'cyber'|'system'|'auto'|'node'|'event';
+  const COLORS:Record<Kind,string>={ ia:'#60a5fa', cyber:'#818cf8', system:'#a78bfa', auto:'#c084fc', node:'#5b7290', event:'#7cc0ff' };
+  interface N{ x:number;y:number;r:number;kind:Kind;label?:string;href?:string;color?:string;phase:number;vx:number;vy:number; }
   let nodes:N[]=[]; let links:[number,number][]=[];
 
   function build(){
     nodes=[]; links=[];
-    // Servicios reales agrupados por área (cuadrantes) — cada uno enlaza a su página
+    // Servicios reales — cada nodo enlaza a su página
     const SERVICES:{kind:Kind;label:string;href:string;fx:number;fy:number}[]=[
-      // IA — arriba izquierda
-      { kind:'ia',     label:'Chatbot IA',          href:'/servicios/chatbot',           fx:0.13, fy:0.22 },
-      { kind:'ia',     label:'Gestor documental',   href:'/servicios/gestor-documental', fx:0.27, fy:0.34 },
-      { kind:'ia',     label:'Llamadas IA · ATC',   href:'/servicios/atencion-llamadas', fx:0.10, fy:0.43 },
-      { kind:'ia',     label:'Gestor de citas',     href:'/servicios/gestor-citas',      fx:0.31, fy:0.15 },
+      // IA — izquierda
+      { kind:'ia',     label:'Chatbot IA',          href:'/servicios/chatbot',           fx:0.12, fy:0.22 },
+      { kind:'ia',     label:'Gestor documental',   href:'/servicios/gestor-documental', fx:0.27, fy:0.33 },
+      { kind:'ia',     label:'Llamadas IA · ATC',   href:'/servicios/atencion-llamadas', fx:0.09, fy:0.42 },
+      { kind:'ia',     label:'Gestor de citas',     href:'/servicios/gestor-citas',      fx:0.30, fy:0.14 },
+      { kind:'ia',     label:'Consultoría IA',      href:'/consultoria-ia',              fx:0.18, fy:0.60 },
       // Ciberseguridad — arriba derecha
-      { kind:'cyber',  label:'Wazuh · SIEM',        href:'/wazuh',                       fx:0.88, fy:0.20 },
-      { kind:'cyber',  label:'Cumplimiento ENS',    href:'/wazuh',                       fx:0.71, fy:0.31 },
-      { kind:'cyber',  label:'Antispam',            href:'/soporte-tecnico',             fx:0.92, fy:0.42 },
-      // Sistemas — abajo izquierda
-      { kind:'system', label:'Email Microsoft 365', href:'/soporte-tecnico',             fx:0.14, fy:0.72 },
-      { kind:'system', label:'Copias de seguridad', href:'/soporte-tecnico',             fx:0.30, fy:0.84 },
-      { kind:'system', label:'Servidores',          href:'/soporte-tecnico',             fx:0.07, fy:0.60 },
-      { kind:'system', label:'Soporte remoto',      href:'/soporte-tecnico',             fx:0.32, fy:0.66 },
+      { kind:'cyber',  label:'Wazuh · SIEM',        href:'/wazuh',                       fx:0.87, fy:0.20 },
+      { kind:'cyber',  label:'Cumplimiento ENS',    href:'/wazuh',                       fx:0.72, fy:0.30 },
+      // Web y posicionamiento — abajo izquierda
+      { kind:'system', label:'Desarrollo web',      href:'/servicios/desarrollo-web',    fx:0.12, fy:0.76 },
+      { kind:'system', label:'Posicionamiento SEO', href:'/servicios/geo-posicionamiento', fx:0.31, fy:0.84 },
       // Automatización — abajo derecha
-      { kind:'auto',   label:'Automatización',      href:'/servicios/automatizacion',    fx:0.88, fy:0.82 },
-      { kind:'auto',   label:'Informes',            href:'/servicios/automatizacion',    fx:0.71, fy:0.70 },
-      { kind:'auto',   label:'Integraciones',       href:'/servicios/automatizacion',    fx:0.92, fy:0.60 },
+      { kind:'auto',   label:'Automatización',      href:'/servicios/automatizacion',    fx:0.87, fy:0.80 },
+      { kind:'auto',   label:'Integraciones',       href:'/servicios/automatizacion',    fx:0.73, fy:0.67 },
     ];
     SERVICES.forEach(s=>nodes.push({ x:s.fx*W, y:s.fy*H, r:9, kind:s.kind, label:s.label, href:s.href, phase:Math.random()*6.28, vx:0, vy:0 }));
     const NLAB=nodes.length;
     const SMALL=Math.round((W*H)/34000);
     for(let i=0;i<SMALL;i++) nodes.push({ x:Math.random()*W, y:Math.random()*H, r:Math.random()*2.2+2.2, kind:'node', phase:Math.random()*6.28, vx:(Math.random()-0.5)*0.18, vy:(Math.random()-0.5)*0.18 });
-    for(let i=0;i<5;i++) nodes.push({ x:Math.random()*W, y:(0.15+Math.random()*0.7)*H, r:6, kind:'alert', label:'⚠ amenaza', phase:Math.random()*6.28, vx:0, vy:0 });
+    // Nodos-evento: ejemplos reales de resultados de los servicios (flotan y se descubren con la linterna)
+    const EVENTS:{label:string;color:string}[]=[
+      { label:'✓ Cita reservada con el cliente', color:'#60a5fa' },
+      { label:'✓ Consulta resuelta 24/7',        color:'#60a5fa' },
+      { label:'✓ Contrato hallado en 0,3 s',     color:'#60a5fa' },
+      { label:'✓ Llamada atendida sin esperas',  color:'#60a5fa' },
+      { label:'✓ Amenaza bloqueada',             color:'#818cf8' },
+      { label:'✓ Cumple el ENS',                 color:'#818cf8' },
+      { label:'✓ Web publicada',                 color:'#a78bfa' },
+      { label:'✓ Top 3 en Google',               color:'#a78bfa' },
+      { label:'✓ Factura enviada sola',          color:'#c084fc' },
+    ];
+    EVENTS.forEach(e=>nodes.push({ x:Math.random()*W, y:(0.12+Math.random()*0.76)*H, r:4, kind:'event', label:e.label, color:e.color, phase:Math.random()*6.28, vx:(Math.random()-0.5)*0.12, vy:(Math.random()-0.5)*0.12 }));
     // cada nodo pequeño/alerta se une al servicio más cercano
     for(let i=NLAB;i<nodes.length;i++){ let best=-1,bd=1e9; for(let h=0;h<NLAB;h++){ const dx=nodes[i].x-nodes[h].x,dy=nodes[i].y-nodes[h].y; const d=dx*dx+dy*dy; if(d<bd){bd=d;best=h;} } if(best>=0&&bd<(W*0.32)*(W*0.32)) links.push([i,best]); }
     // vecinos cercanos
@@ -149,10 +160,10 @@
   function drawNetwork(c:CanvasRenderingContext2D, on:boolean){
     for(const [a,b] of links){ const na=nodes[a],nb=nodes[b]; c.beginPath(); c.moveTo(na.x,na.y); c.lineTo(nb.x,nb.y); const col=na.kind!=='node'?COLORS[na.kind]:(nb.kind!=='node'?COLORS[nb.kind]:'#3a4d68'); c.strokeStyle=on?hexA(col,0.55):hexA('#2a3a52',1); c.lineWidth=on?1.1:0.8; c.stroke(); }
     if(on){ for(let k=0;k<links.length;k+=3){ const [a,b]=links[k]; const na=nodes[a],nb=nodes[b]; const p=((t*0.4+k*40)%100)/100; const px=na.x+(nb.x-na.x)*p,py=na.y+(nb.y-na.y)*p; const col=na.kind!=='node'?COLORS[na.kind]:'#7cc0ff'; c.beginPath(); c.arc(px,py,1.8,0,6.28); c.fillStyle=col; c.fill(); } }
-    for(const n of nodes){ const pulse=0.5+0.5*Math.sin(t*0.05+n.phase); const col=COLORS[n.kind];
-      if(n.kind==='alert'){ const s=n.r+(on?pulse*2:0); c.beginPath(); c.moveTo(n.x,n.y-s); c.lineTo(n.x+s,n.y+s); c.lineTo(n.x-s,n.y+s); c.closePath(); c.fillStyle=hexA(col,0.9); c.strokeStyle=on?'#ffd2d6':col; if(on){c.shadowColor=col;c.shadowBlur=16;} c.fill(); c.shadowBlur=0; }
+    for(const n of nodes){ const pulse=0.5+0.5*Math.sin(t*0.05+n.phase); const col=n.color||COLORS[n.kind];
+      if(n.kind==='event'){ if(on){ const g=c.createRadialGradient(n.x,n.y,0,n.x,n.y,n.r*4); g.addColorStop(0,hexA(col,0.55)); g.addColorStop(1,hexA(col,0)); c.fillStyle=g; c.beginPath(); c.arc(n.x,n.y,n.r*4,0,6.28); c.fill(); } c.beginPath(); c.arc(n.x,n.y,n.r,0,6.28); c.fillStyle=on?col:hexA(col,0.7); c.fill(); }
       else { if(on){ const g=c.createRadialGradient(n.x,n.y,0,n.x,n.y,n.r*5); g.addColorStop(0,hexA(col,0.5*pulse+0.2)); g.addColorStop(1,hexA(col,0)); c.fillStyle=g; c.beginPath(); c.arc(n.x,n.y,n.r*5,0,6.28); c.fill(); } c.beginPath(); c.arc(n.x,n.y,n.r,0,6.28); c.fillStyle=on?col:hexA(col,0.9); c.fill(); if(n.kind!=='node'){ c.lineWidth=2; c.strokeStyle=on?'#eaf2ff':hexA(col,0.6); c.stroke(); } }
-      if(on&&n.label){ c.font=n.kind==='alert'?'600 11px Inter,sans-serif':'700 12px Inter,sans-serif'; c.fillStyle=n.kind==='alert'?'#ff8d97':'#eaf2ff'; c.textAlign='center'; c.fillText(n.label,n.x,n.y-n.r-8); } }
+      if(on&&n.label){ c.font=n.kind==='event'?'600 11px Inter,sans-serif':'700 12px Inter,sans-serif'; c.fillStyle=n.kind==='event'?col:'#eaf2ff'; c.textAlign='center'; c.fillText(n.label,n.x,n.y-n.r-8); } }
   }
 
   const R=185;
@@ -162,7 +173,7 @@
 
   function frame(){
     t++;
-    for(const n of nodes){ if(n.kind==='node'){ n.x+=n.vx; n.y+=n.vy; if(n.x<0||n.x>W)n.vx*=-1; if(n.y<0||n.y>H)n.vy*=-1; } }
+    for(const n of nodes){ if(n.kind==='node'||n.kind==='event'){ n.x+=n.vx; n.y+=n.vy; if(n.x<0||n.x>W)n.vx*=-1; if(n.y<0||n.y>H)n.vy*=-1; } }
     // En modo automático (antes de interactuar) la luz es transitoria: limpiamos la máscara.
     // Cuando el usuario mueve el ratón, la máscara se acumula y lo descubierto se queda visible.
     if(!hasPointer){ mx=W*(0.5+0.32*Math.sin(t*0.011)); my=H*(0.55+0.24*Math.sin(t*0.019+1.5)); mctx.clearRect(0,0,W,H); }

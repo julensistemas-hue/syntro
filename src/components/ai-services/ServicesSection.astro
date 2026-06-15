@@ -14,6 +14,7 @@ const services = [
       "Sin compromiso de contratación"
     ],
     href: "/consultoria-ia",
+    accent: "#60a5fa",
     featured: true
   },
   {
@@ -27,7 +28,8 @@ const services = [
       "Ahorra trabajo manual",
       "Cumplimiento normativo automatizado"
     ],
-    href: "/servicios/gestor-documental"
+    href: "/servicios/gestor-documental",
+    accent: "#60a5fa"
   },
   {
     title: "Atención de Llamadas IA",
@@ -39,7 +41,8 @@ const services = [
       "Toma de mensajes inteligente",
       "Derivación contextual de llamadas"
     ],
-    href: "/servicios/atencion-llamadas"
+    href: "/servicios/atencion-llamadas",
+    accent: "#60a5fa"
   },
   {
     title: "Gestor de Citas IA",
@@ -52,7 +55,8 @@ const services = [
       "Disponible 24/7",
       "Integración con calendarios existentes"
     ],
-    href: "/servicios/gestor-citas"
+    href: "/servicios/gestor-citas",
+    accent: "#60a5fa"
   },
   {
     title: "Chatbot Inteligente",
@@ -64,7 +68,8 @@ const services = [
       "Consulta tu ERP o CRM en tiempo real",
       "Escalado automático a agentes humanos"
     ],
-    href: "/servicios/chatbot"
+    href: "/servicios/chatbot",
+    accent: "#60a5fa"
   },
   {
     title: "Diseño Web Profesional",
@@ -76,7 +81,8 @@ const services = [
       "Sin WordPress, sin plugins, sin sustos",
       "Entrega en 5-14 días"
     ],
-    href: "/servicios/desarrollo-web"
+    href: "/servicios/desarrollo-web",
+    accent: "#a78bfa"
   },
   {
     title: "Posicionamiento SEO y GEO",
@@ -89,7 +95,8 @@ const services = [
       "Alta en Google Business Profile",
       "Informes mensuales de posiciones"
     ],
-    href: "/reunion"
+    href: "/servicios/geo-posicionamiento",
+    accent: "#a78bfa"
   },
   {
     title: "Wazuh & Ciberseguridad",
@@ -102,7 +109,8 @@ const services = [
       "Detección de amenazas avanzada",
       "Formación del equipo incluida"
     ],
-    href: "/wazuh"
+    href: "/wazuh",
+    accent: "#818cf8"
   },
   {
     title: "Soporte Técnico IT",
@@ -115,7 +123,8 @@ const services = [
       "Bolsas de horas con descuento",
       "Sin compromiso de permanencia"
     ],
-    href: "/soporte-tecnico"
+    href: "/soporte-tecnico",
+    accent: "#c084fc"
   }
 ];
 ---
@@ -242,6 +251,7 @@ const services = [
           icon={service.icon}
           features={service.features}
           href={service.href}
+          accent={service.accent}
           featured={service.featured}
         />
       ))}
