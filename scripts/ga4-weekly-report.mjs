@@ -49,6 +49,20 @@ const periodoLabel = isAll ? 'Todos los datos disponibles' : 'Últimos 7 días';
 const dateRange     = isAll ? { startDate: '2020-01-01', endDate: 'today' } : { startDate: '7daysAgo',  endDate: 'today' };
 const dateRangePrev = isAll ? null : { startDate: '14daysAgo', endDate: '8daysAgo' };
 
+// Filtro base: excluir páginas de prueba (/prueba-*, /test-*, /draft-*)
+const EXCLUDE_TEST_PAGES = {
+  filter: {
+    fieldName: 'pagePath',
+    stringFilter: { matchType: 'BEGINS_WITH', value: '/prueba-', caseSensitive: false }
+  }
+};
+
+function withExcludeFilter(filters) {
+  const notTestPages = { notExpression: EXCLUDE_TEST_PAGES };
+  if (!filters) return notTestPages;
+  return { andGroup: { expressions: [notTestPages, filters] } };
+}
+
 async function query(dimensions, metrics, filters, range) {
   try {
     const res = await analyticsData.properties.runReport({
@@ -57,7 +71,7 @@ async function query(dimensions, metrics, filters, range) {
         dateRanges: [range || dateRange],
         dimensions: dimensions.map(n => ({ name: n })),
         metrics:    metrics.map(n => ({ name: n })),
-        ...(filters ? { dimensionFilter: filters } : {}),
+        dimensionFilter: withExcludeFilter(filters),
         limit: 20,
         orderBys: [{ metric: { metricName: metrics[0] }, desc: true }],
       },
