@@ -1,10 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
-// Sitio en SSR (output: server): sin esto, getStaticPaths se ignora y Astro.props
-// llega vacío → error 500. Con prerender se generan las páginas de ciudad estáticas.
-export const prerender = true;
-
 interface CiudadData {
   slug: string;
   nombre: string;
@@ -249,15 +245,13 @@ const ciudades: CiudadData[] = [
   },
 ];
 
-export async function getStaticPaths() {
-  return ciudades.map((ciudad) => ({
-    params: { ciudad: ciudad.slug },
-    props: ciudad,
-  }));
+// Sitio en SSR (output: server): resolvemos la ciudad en tiempo de petición.
+// getStaticPaths no puede ver `ciudades` (queda fuera de su scope) → daba error 500.
+const { ciudad: ciudadSlug } = Astro.params;
+const ciudad = ciudades.find((c) => c.slug === ciudadSlug);
+if (!ciudad) {
+  return Astro.redirect("/consultoria-ia", 302);
 }
-
-type Props = CiudadData;
-const ciudad = Astro.props;
 
 const title = `Consultoría de Inteligencia Artificial para Empresas en ${ciudad.nombre} — AI Security`;
 const description = `Implementamos IA en empresas de ${ciudad.nombre} y la ${ciudad.region}: automatización por departamento, formación incluida y ROI visible en 2-3 meses. Primera consulta gratuita.`;
