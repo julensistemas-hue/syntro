@@ -1,0 +1,1464 @@
+- generic [ref=e2]:
+  - generic [ref=e3]:
+    - link "Skip to content" [ref=e4] [cursor=pointer]:
+      - /url: "#start-of-content"
+    - banner "Global Navigation Menu" [ref=e8]:
+      - generic [ref=e9]:
+        - generic [ref=e10]:
+          - button "Open menu" [ref=e12] [cursor=pointer]:
+            - img [ref=e13]
+          - link "Homepage (g then d)" [ref=e15] [cursor=pointer]:
+            - /url: /
+            - img [ref=e16]
+        - generic [ref=e18]:
+          - navigation "Breadcrumbs" [ref=e19]:
+            - list [ref=e20]:
+              - listitem [ref=e21]:
+                - link "julensistemas-hue" [ref=e22] [cursor=pointer]:
+                  - /url: /julensistemas-hue
+                  - generic [ref=e23]: julensistemas-hue
+              - listitem [ref=e24]:
+                - link "syntro" [ref=e25] [cursor=pointer]:
+                  - /url: /julensistemas-hue/syntro
+                  - generic [ref=e26]: syntro
+          - button "Search or jump to… (forward slash)" [ref=e27] [cursor=pointer]:
+            - img [ref=e28]
+        - generic [ref=e30]:
+          - generic [ref=e31]:
+            - generic [ref=e34]:
+              - link "Chat with Copilot" [ref=e36] [cursor=pointer]:
+                - /url: /copilot
+                - img [ref=e37]
+              - button "Open Copilot…" [ref=e41] [cursor=pointer]:
+                - generic:
+                  - img
+            - button "Create new..." [ref=e43] [cursor=pointer]:
+              - generic [ref=e44]:
+                - generic:
+                  - img
+              - generic:
+                - img
+            - generic [ref=e45]:
+              - link "All issues" [ref=e46] [cursor=pointer]:
+                - /url: /issues
+                - img [ref=e47]
+              - link "All pull requests" [ref=e50] [cursor=pointer]:
+                - /url: /pulls
+                - img [ref=e51]
+              - link "All repositories" [ref=e53] [cursor=pointer]:
+                - /url: /repos
+                - img [ref=e54]
+          - link "You have no unread notifications (g then n)" [ref=e56] [cursor=pointer]:
+            - /url: /notifications
+            - img [ref=e57]
+          - button "Open user navigation menu" [ref=e60] [cursor=pointer]:
+            - img "User avatar" [ref=e61]
+      - heading "Repository navigation" [level=2] [ref=e62]
+      - navigation "Repository" [ref=e63]:
+        - list [ref=e64]:
+          - listitem [ref=e65]:
+            - link "Code" [ref=e66] [cursor=pointer]:
+              - /url: /julensistemas-hue/syntro
+              - img [ref=e68]
+              - generic [ref=e70]: Code
+          - listitem [ref=e71]:
+            - link "Issues" [ref=e72] [cursor=pointer]:
+              - /url: /julensistemas-hue/syntro/issues
+              - img [ref=e74]
+              - generic [ref=e77]: Issues
+          - listitem [ref=e78]:
+            - link "Pull requests" [ref=e79] [cursor=pointer]:
+              - /url: /julensistemas-hue/syntro/pulls
+              - img [ref=e81]
+              - generic [ref=e83]: Pull requests
+          - listitem [ref=e84]:
+            - link "Actions" [ref=e85] [cursor=pointer]:
+              - /url: /julensistemas-hue/syntro/actions
+              - img [ref=e87]
+              - generic [ref=e89]: Actions
+          - listitem [ref=e90]:
+            - link "Projects" [ref=e91] [cursor=pointer]:
+              - /url: /julensistemas-hue/syntro/projects
+              - img [ref=e93]
+              - generic [ref=e95]: Projects
+          - listitem [ref=e96]:
+            - link "Security and quality" [ref=e97] [cursor=pointer]:
+              - /url: /julensistemas-hue/syntro/security
+              - img [ref=e99]
+              - generic [ref=e101]: Security and quality
+          - listitem [ref=e102]:
+            - link "Insights" [ref=e103] [cursor=pointer]:
+              - /url: /julensistemas-hue/syntro/pulse
+              - img [ref=e105]
+              - generic [ref=e107]: Insights
+          - listitem [ref=e108]:
+            - link "Settings" [ref=e109] [cursor=pointer]:
+              - /url: /julensistemas-hue/syntro/settings
+              - img [ref=e111]
+              - generic [ref=e113]: Settings
+  - main [ref=e117]:
+    - generic [ref=e130]:
+      - generic [ref=e133]:
+        - generic [ref=e135]:
+          - generic [ref=e137]:
+            - img "Owner avatar" [ref=e138]
+            - strong [ref=e139]:
+              - link "syntro" [ref=e140] [cursor=pointer]:
+                - /url: /julensistemas-hue/syntro
+            - generic [ref=e141]: Public
+          - generic [ref=e142]:
+            - list:
+              - listitem [ref=e143]:
+                - button "Pin" [ref=e146] [cursor=pointer]:
+                  - img [ref=e147]
+                  - text: Pin
+              - listitem [ref=e149]:
+                - 'button "Watch: Participating in julensistemas-hue/syntro" [ref=e152] [cursor=pointer]':
+                  - generic [ref=e153]:
+                    - generic:
+                      - img
+                    - generic [ref=e154]: Watch
+                    - generic:
+                      - generic: "0"
+                      - generic: (0)
+                  - generic:
+                    - img
+              - listitem [ref=e155]:
+                - generic [ref=e156]:
+                  - button "Fork 0" [disabled] [ref=e157]:
+                    - img [ref=e158]
+                    - text: Fork
+                    - generic "0" [ref=e160]
+                  - group [ref=e161]:
+                    - button "See your forks of this repository" [ref=e162] [cursor=pointer]:
+                      - img [ref=e163]
+              - listitem [ref=e165]:
+                - generic [ref=e167]:
+                  - button "Starred, click to unstar this repository (1)" [ref=e169] [cursor=pointer]:
+                    - img [ref=e170]
+                    - text: Starred
+                    - generic "1 user starred this repository" [ref=e172]: "1"
+                  - button "Add this repository to a list" [ref=e176] [cursor=pointer]:
+                    - img
+        - heading "julensistemas-hue/syntro" [level=1] [ref=e179]
+      - generic [ref=e180]:
+        - generic [ref=e183]:
+          - generic [ref=e184]:
+            - generic [ref=e185]:
+              - button "main branch" [ref=e187] [cursor=pointer]:
+                - generic [ref=e188]:
+                  - generic [ref=e190]:
+                    - img [ref=e192]
+                    - generic [ref=e195]: main
+                  - generic:
+                    - img
+              - generic [ref=e196]:
+                - link "Go to Branches page" [ref=e197] [cursor=pointer]:
+                  - /url: /julensistemas-hue/syntro/branches
+                  - img [ref=e198]
+                - link "Go to Tags page" [ref=e200] [cursor=pointer]:
+                  - /url: /julensistemas-hue/syntro/tags
+                  - img [ref=e201]
+            - generic [ref=e203]:
+              - generic [ref=e204]:
+                - button "Go to file" [ref=e206] [cursor=pointer]:
+                  - generic [ref=e208]: Go to file
+                - generic [ref=e209]:
+                  - heading "Add file" [level=2] [ref=e210]
+                  - button "Add file" [ref=e211] [cursor=pointer]:
+                    - img [ref=e214]
+              - button "Code" [ref=e216] [cursor=pointer]:
+                - generic [ref=e217]:
+                  - generic:
+                    - img
+                  - generic [ref=e218]: Code
+                  - generic:
+                    - img
+          - generic [ref=e219]:
+            - generic [ref=e220]:
+              - heading "Folders and files" [level=2] [ref=e221]
+              - table "Folders and files" [ref=e222]:
+                - rowgroup:
+                  - row "Name Last commit message Last commit date":
+                    - columnheader "Name"
+                    - columnheader "Last commit message":
+                      - generic "Last commit message"
+                    - columnheader "Last commit date":
+                      - generic "Last commit date"
+                - rowgroup [ref=e223]:
+                  - 'row "Latest commit unknown unknown unknown and unknown chore: auto-commit [13:04] pending Commit 3cedf10 · Jun 15, 2026now History View commit history for this file." [ref=e224]':
+                    - 'cell "Latest commit unknown unknown unknown and unknown chore: auto-commit [13:04] pending Commit 3cedf10 · Jun 15, 2026now History View commit history for this file." [ref=e225]':
+                      - generic [ref=e226]:
+                        - heading "Latest commit" [level=2] [ref=e227]
+                        - generic [ref=e228]:
+                          - generic [ref=e229]:
+                            - generic [ref=e231]:
+                              - img "unknown" [ref=e232]
+                              - img "unknown" [ref=e233]
+                            - generic "unknown" [ref=e235]
+                            - generic [ref=e236]: and
+                            - generic "unknown" [ref=e238]
+                          - generic [ref=e239]:
+                            - 'link "chore: auto-commit [13:04]" [ref=e242] [cursor=pointer]':
+                              - /url: /julensistemas-hue/syntro/commit/3cedf106578f144b599783d3b9e3fd89528cfb00
+                            - button "pending" [ref=e243] [cursor=pointer]:
+                              - img [ref=e244]
+                        - generic [ref=e246]:
+                          - generic [ref=e248]:
+                            - link "Commit 3cedf10" [ref=e249] [cursor=pointer]:
+                              - /url: /julensistemas-hue/syntro/commit/3cedf106578f144b599783d3b9e3fd89528cfb00
+                              - text: 3cedf10
+                            - text: ·
+                            - generic "Jun 15, 2026, 13:04 GMT+2" [ref=e250]: Jun 15, 2026now
+                          - generic [ref=e251]:
+                            - heading "History" [level=2] [ref=e252]
+                            - link "View commit history for this file." [ref=e254] [cursor=pointer]:
+                              - /url: /julensistemas-hue/syntro/commits/main/
+                              - generic [ref=e255]:
+                                - generic:
+                                  - img
+                  - 'row ".claude, (Directory) feat: automatizaciones — auto-deploy hook + reglas CLAUDE.md + Resend… Jun 14, 202619 hours ago" [ref=e256]':
+                    - cell ".claude, (Directory)" [ref=e257]:
+                      - generic [ref=e258]:
+                        - img [ref=e259]
+                        - link ".claude, (Directory)" [ref=e264] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/tree/main/.claude
+                          - text: .claude
+                    - 'cell "feat: automatizaciones — auto-deploy hook + reglas CLAUDE.md + Resend…" [ref=e265]':
+                      - 'link "feat: automatizaciones — auto-deploy hook + reglas CLAUDE.md + Resend…" [ref=e268] [cursor=pointer]':
+                        - /url: /julensistemas-hue/syntro/commit/0e20263660fb1e17a5ae2bde28b839ea402972cf
+                    - cell "Jun 14, 202619 hours ago" [ref=e269]:
+                      - generic [ref=e270]: Jun 14, 202619 hours ago
+                  - 'row ".github, (Directory) fix: quality check — trim RESEND_API_KEY + manejar PageSpeed rate limit Jun 15, 20262 hours ago" [ref=e271]':
+                    - cell ".github, (Directory)" [ref=e272]:
+                      - generic [ref=e273]:
+                        - img [ref=e274]
+                        - link ".github, (Directory)" [ref=e279] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/tree/main/.github
+                          - text: .github
+                    - 'cell "fix: quality check — trim RESEND_API_KEY + manejar PageSpeed rate limit" [ref=e280]':
+                      - 'link "fix: quality check — trim RESEND_API_KEY + manejar PageSpeed rate limit" [ref=e283] [cursor=pointer]':
+                        - /url: /julensistemas-hue/syntro/commit/7bd21e5420588e282901d1f61dadeda4f3044b12
+                    - cell "Jun 15, 20262 hours ago" [ref=e284]:
+                      - generic [ref=e285]: Jun 15, 20262 hours ago
+                  - 'row ".playwright-mcp, (Directory) chore: auto-commit [13:04] Jun 15, 2026now" [ref=e286]':
+                    - cell ".playwright-mcp, (Directory)" [ref=e287]:
+                      - generic [ref=e288]:
+                        - img [ref=e289]
+                        - link ".playwright-mcp, (Directory)" [ref=e294] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/tree/main/.playwright-mcp
+                          - text: .playwright-mcp
+                    - 'cell "chore: auto-commit [13:04]" [ref=e295]':
+                      - 'link "chore: auto-commit [13:04]" [ref=e298] [cursor=pointer]':
+                        - /url: /julensistemas-hue/syntro/commit/3cedf106578f144b599783d3b9e3fd89528cfb00
+                    - cell "Jun 15, 2026now" [ref=e299]:
+                      - generic [ref=e300]: Jun 15, 2026now
+                  - 'row "docs, (Directory) chore: actualizar datos GSC+GA4 [SEO bot] Jun 15, 20265 hours ago" [ref=e301]':
+                    - cell "docs, (Directory)" [ref=e302]:
+                      - generic [ref=e303]:
+                        - img [ref=e304]
+                        - link "docs, (Directory)" [ref=e309] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/tree/main/docs
+                          - text: docs
+                    - 'cell "chore: actualizar datos GSC+GA4 [SEO bot]" [ref=e310]':
+                      - 'link "chore: actualizar datos GSC+GA4 [SEO bot]" [ref=e313] [cursor=pointer]':
+                        - /url: /julensistemas-hue/syntro/commit/125dc6f6f3b35b287e3d33ed5aeddf5a9bfd4d0e
+                    - cell "Jun 15, 20265 hours ago" [ref=e314]:
+                      - generic [ref=e315]: Jun 15, 20265 hours ago
+                  - 'row "public, (Directory) feat: añadir PDF log_formats soportados Wazuh (recurso lección agente… May 19, 2026last month" [ref=e316]':
+                    - cell "public, (Directory)" [ref=e317]:
+                      - generic [ref=e318]:
+                        - img [ref=e319]
+                        - link "public, (Directory)" [ref=e324] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/tree/main/public
+                          - text: public
+                    - 'cell "feat: añadir PDF log_formats soportados Wazuh (recurso lección agente…" [ref=e325]':
+                      - 'link "feat: añadir PDF log_formats soportados Wazuh (recurso lección agente…" [ref=e328] [cursor=pointer]':
+                        - /url: /julensistemas-hue/syntro/commit/7c395d1314561b76b81ebcad9646e84c511c08a3
+                    - cell "May 19, 2026last month" [ref=e329]:
+                      - generic [ref=e330]: May 19, 2026last month
+                  - 'row "scripts, (Directory) chore: actualizar datos GSC+GA4 [SEO bot] Jun 15, 20265 hours ago" [ref=e331]':
+                    - cell "scripts, (Directory)" [ref=e332]:
+                      - generic [ref=e333]:
+                        - img [ref=e334]
+                        - link "scripts, (Directory)" [ref=e339] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/tree/main/scripts
+                          - text: scripts
+                    - 'cell "chore: actualizar datos GSC+GA4 [SEO bot]" [ref=e340]':
+                      - 'link "chore: actualizar datos GSC+GA4 [SEO bot]" [ref=e343] [cursor=pointer]':
+                        - /url: /julensistemas-hue/syntro/commit/125dc6f6f3b35b287e3d33ed5aeddf5a9bfd4d0e
+                    - cell "Jun 15, 20265 hours ago" [ref=e344]:
+                      - generic [ref=e345]: Jun 15, 20265 hours ago
+                  - 'row "src, (Directory) chore: elimina card Formación Básica de soporte-tecnico Jun 15, 20267 minutes ago" [ref=e346]':
+                    - cell "src, (Directory)" [ref=e347]:
+                      - generic [ref=e348]:
+                        - img [ref=e349]
+                        - link "src, (Directory)" [ref=e354] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/tree/main/src
+                          - text: src
+                    - 'cell "chore: elimina card Formación Básica de soporte-tecnico" [ref=e355]':
+                      - 'link "chore: elimina card Formación Básica de soporte-tecnico" [ref=e358] [cursor=pointer]':
+                        - /url: /julensistemas-hue/syntro/commit/178113ae4e88b635cb6d891760702a71c10d3062
+                    - cell "Jun 15, 20267 minutes ago" [ref=e359]:
+                      - generic [ref=e360]: Jun 15, 20267 minutes ago
+                  - row "wazuh_old/aisecurity.es, (Directory) Add Wazuh AI Security integration Sep 23, 20259 months ago" [ref=e361]:
+                    - cell "wazuh_old/aisecurity.es, (Directory)" [ref=e362]:
+                      - generic [ref=e363]:
+                        - img [ref=e364]
+                        - link "wazuh_old/aisecurity.es, (Directory)" [ref=e369] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/tree/main/wazuh_old/aisecurity.es
+                          - text: wazuh_old/aisecurity.es
+                    - cell "Add Wazuh AI Security integration" [ref=e370]:
+                      - link "Add Wazuh AI Security integration" [ref=e373] [cursor=pointer]:
+                        - /url: /julensistemas-hue/syntro/commit/aa6b6ba9c9cfc85b320f44aa6c2fa851553669df
+                    - cell "Sep 23, 20259 months ago" [ref=e374]:
+                      - generic [ref=e375]: Sep 23, 20259 months ago
+                  - row ".claude.json, (File) Add .claude.json configuration with secure token handling Sep 18, 20259 months ago" [ref=e376]:
+                    - cell ".claude.json, (File)" [ref=e377]:
+                      - generic [ref=e378]:
+                        - img [ref=e379]
+                        - link ".claude.json, (File)" [ref=e384] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/blob/main/.claude.json
+                          - text: .claude.json
+                    - cell "Add .claude.json configuration with secure token handling" [ref=e385]:
+                      - link "Add .claude.json configuration with secure token handling" [ref=e388] [cursor=pointer]:
+                        - /url: /julensistemas-hue/syntro/commit/028fd74cace2ffdf7d1330c543db6c3d5d010f53
+                    - cell "Sep 18, 20259 months ago" [ref=e389]:
+                      - generic [ref=e390]: Sep 18, 20259 months ago
+                  - 'row ".env.example, (File) Actualización página curso Wazuh: fecha 20 Enero y mockup PC Dec 9, 20256 months ago" [ref=e391]':
+                    - cell ".env.example, (File)" [ref=e392]:
+                      - generic [ref=e393]:
+                        - img [ref=e394]
+                        - link ".env.example, (File)" [ref=e399] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/blob/main/.env.example
+                          - text: .env.example
+                    - 'cell "Actualización página curso Wazuh: fecha 20 Enero y mockup PC" [ref=e400]':
+                      - 'link "Actualización página curso Wazuh: fecha 20 Enero y mockup PC" [ref=e403] [cursor=pointer]':
+                        - /url: /julensistemas-hue/syntro/commit/9532b3f621c5d58245d35857357a11b17403bb56
+                    - cell "Dec 9, 20256 months ago" [ref=e404]:
+                      - generic [ref=e405]: Dec 9, 20256 months ago
+                  - 'row ".gitignore, (File) docs: crear carpeta docs/seo con estrategia y automatizaciones SEO Apr 23, 20262 months ago" [ref=e406]':
+                    - cell ".gitignore, (File)" [ref=e407]:
+                      - generic [ref=e408]:
+                        - img [ref=e409]
+                        - link ".gitignore, (File)" [ref=e414] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/blob/main/.gitignore
+                          - text: .gitignore
+                    - 'cell "docs: crear carpeta docs/seo con estrategia y automatizaciones SEO" [ref=e415]':
+                      - 'link "docs: crear carpeta docs/seo con estrategia y automatizaciones SEO" [ref=e418] [cursor=pointer]':
+                        - /url: /julensistemas-hue/syntro/commit/20126b37eda6589317a1621549314ab0d96920bf
+                    - cell "Apr 23, 20262 months ago" [ref=e419]:
+                      - generic [ref=e420]: Apr 23, 20262 months ago
+                  - 'row ".mcp.json, (File) Add blog article: Cómo instalar Agente Wazuh en Linux Feb 25, 20264 months ago" [ref=e421]':
+                    - cell ".mcp.json, (File)" [ref=e422]:
+                      - generic [ref=e423]:
+                        - img [ref=e424]
+                        - link ".mcp.json, (File)" [ref=e429] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/blob/main/.mcp.json
+                          - text: .mcp.json
+                    - 'cell "Add blog article: Cómo instalar Agente Wazuh en Linux" [ref=e430]':
+                      - 'link "Add blog article: Cómo instalar Agente Wazuh en Linux" [ref=e433] [cursor=pointer]':
+                        - /url: /julensistemas-hue/syntro/commit/96a196c54527c35e0cbf8207e11f38052645212b
+                    - cell "Feb 25, 20264 months ago" [ref=e434]:
+                      - generic [ref=e435]: Feb 25, 20264 months ago
+                  - 'row ".node-version, (File) Add: especificar Node.js 22 para Vercel Dec 11, 20256 months ago" [ref=e436]':
+                    - cell ".node-version, (File)" [ref=e437]:
+                      - generic [ref=e438]:
+                        - img [ref=e439]
+                        - link ".node-version, (File)" [ref=e444] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/blob/main/.node-version
+                          - text: .node-version
+                    - 'cell "Add: especificar Node.js 22 para Vercel" [ref=e445]':
+                      - 'link "Add: especificar Node.js 22 para Vercel" [ref=e448] [cursor=pointer]':
+                        - /url: /julensistemas-hue/syntro/commit/823441671c199b03ac3c7a6347a797889d166e85
+                    - cell "Dec 11, 20256 months ago" [ref=e449]:
+                      - generic [ref=e450]: Dec 11, 20256 months ago
+                  - row ".npmrc, (File) Initial commit Sep 12, 20259 months ago" [ref=e451]:
+                    - cell ".npmrc, (File)" [ref=e452]:
+                      - generic [ref=e453]:
+                        - img [ref=e454]
+                        - link ".npmrc, (File)" [ref=e459] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/blob/main/.npmrc
+                          - text: .npmrc
+                    - cell "Initial commit" [ref=e460]:
+                      - link "Initial commit" [ref=e463] [cursor=pointer]:
+                        - /url: /julensistemas-hue/syntro/commit/b853046e5a0d5908fdcd3bcab40f36c6fcd9e899
+                    - cell "Sep 12, 20259 months ago" [ref=e464]:
+                      - generic [ref=e465]: Sep 12, 20259 months ago
+                  - row "CALENDAR_FIXED.md, (File) Replace Wazuh static dashboard image with interactive demo Nov 6, 20257 months ago" [ref=e466]:
+                    - cell "CALENDAR_FIXED.md, (File)" [ref=e467]:
+                      - generic [ref=e468]:
+                        - img [ref=e469]
+                        - link "CALENDAR_FIXED.md, (File)" [ref=e474] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/blob/main/CALENDAR_FIXED.md
+                          - text: CALENDAR_FIXED.md
+                    - cell "Replace Wazuh static dashboard image with interactive demo" [ref=e475]:
+                      - link "Replace Wazuh static dashboard image with interactive demo" [ref=e478] [cursor=pointer]:
+                        - /url: /julensistemas-hue/syntro/commit/f4cc6eac02cce7b6602184c611b294cfe6f80222
+                    - cell "Nov 6, 20257 months ago" [ref=e479]:
+                      - generic [ref=e480]: Nov 6, 20257 months ago
+                  - 'row "CLAUDE.md, (File) feat: automatizaciones — auto-deploy hook + reglas CLAUDE.md + Resend… Jun 14, 202619 hours ago" [ref=e481]':
+                    - cell "CLAUDE.md, (File)" [ref=e482]:
+                      - generic [ref=e483]:
+                        - img [ref=e484]
+                        - link "CLAUDE.md, (File)" [ref=e489] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/blob/main/CLAUDE.md
+                          - text: CLAUDE.md
+                    - 'cell "feat: automatizaciones — auto-deploy hook + reglas CLAUDE.md + Resend…" [ref=e490]':
+                      - 'link "feat: automatizaciones — auto-deploy hook + reglas CLAUDE.md + Resend…" [ref=e493] [cursor=pointer]':
+                        - /url: /julensistemas-hue/syntro/commit/0e20263660fb1e17a5ae2bde28b839ea402972cf
+                    - cell "Jun 14, 202619 hours ago" [ref=e494]:
+                      - generic [ref=e495]: Jun 14, 202619 hours ago
+                  - row "ESTRATEGIA.md, (File) Complete AI SECURITY site implementation with new service pages Nov 1, 20258 months ago" [ref=e496]:
+                    - cell "ESTRATEGIA.md, (File)" [ref=e497]:
+                      - generic [ref=e498]:
+                        - img [ref=e499]
+                        - link "ESTRATEGIA.md, (File)" [ref=e504] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/blob/main/ESTRATEGIA.md
+                          - text: ESTRATEGIA.md
+                    - cell "Complete AI SECURITY site implementation with new service pages" [ref=e505]:
+                      - link "Complete AI SECURITY site implementation with new service pages" [ref=e508] [cursor=pointer]:
+                        - /url: /julensistemas-hue/syntro/commit/7fdd73c3368fc7c82cedb76a7a960ad42650c31b
+                    - cell "Nov 1, 20258 months ago" [ref=e509]:
+                      - generic [ref=e510]: Nov 1, 20258 months ago
+                  - row "LICENSE, (File) Initial commit Sep 12, 20259 months ago" [ref=e511]:
+                    - cell "LICENSE, (File)" [ref=e512]:
+                      - generic [ref=e513]:
+                        - img [ref=e514]
+                        - link "LICENSE, (File)" [ref=e519] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/blob/main/LICENSE
+                          - text: LICENSE
+                    - cell "Initial commit" [ref=e520]:
+                      - link "Initial commit" [ref=e523] [cursor=pointer]:
+                        - /url: /julensistemas-hue/syntro/commit/b853046e5a0d5908fdcd3bcab40f36c6fcd9e899
+                    - cell "Sep 12, 20259 months ago" [ref=e524]:
+                      - generic [ref=e525]: Sep 12, 20259 months ago
+                  - row "README.md, (File) Initial commit Sep 12, 20259 months ago" [ref=e526]:
+                    - cell "README.md, (File)" [ref=e527]:
+                      - generic [ref=e528]:
+                        - img [ref=e529]
+                        - link "README.md, (File)" [ref=e534] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/blob/main/README.md
+                          - text: README.md
+                    - cell "Initial commit" [ref=e535]:
+                      - link "Initial commit" [ref=e538] [cursor=pointer]:
+                        - /url: /julensistemas-hue/syntro/commit/b853046e5a0d5908fdcd3bcab40f36c6fcd9e899
+                    - cell "Sep 12, 20259 months ago" [ref=e539]:
+                      - generic [ref=e540]: Sep 12, 20259 months ago
+                  - 'row "SEO-TITLES-DESCRIPTIONS.md, (File) Implementación completa de SEO: títulos y descripciones personalizados Dec 2, 20257 months ago" [ref=e541]':
+                    - cell "SEO-TITLES-DESCRIPTIONS.md, (File)" [ref=e542]:
+                      - generic [ref=e543]:
+                        - img [ref=e544]
+                        - link "SEO-TITLES-DESCRIPTIONS.md, (File)" [ref=e549] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/blob/main/SEO-TITLES-DESCRIPTIONS.md
+                          - text: SEO-TITLES-DESCRIPTIONS.md
+                    - 'cell "Implementación completa de SEO: títulos y descripciones personalizados" [ref=e550]':
+                      - 'link "Implementación completa de SEO: títulos y descripciones personalizados" [ref=e553] [cursor=pointer]':
+                        - /url: /julensistemas-hue/syntro/commit/ac31666c0d6a33c02351a1151eb7dfba64725988
+                    - cell "Dec 2, 20257 months ago" [ref=e554]:
+                      - generic [ref=e555]: Dec 2, 20257 months ago
+                  - row "SETUP_CALENDAR.md, (File) Replace Wazuh static dashboard image with interactive demo Nov 6, 20257 months ago" [ref=e556]:
+                    - cell "SETUP_CALENDAR.md, (File)" [ref=e557]:
+                      - generic [ref=e558]:
+                        - img [ref=e559]
+                        - link "SETUP_CALENDAR.md, (File)" [ref=e564] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/blob/main/SETUP_CALENDAR.md
+                          - text: SETUP_CALENDAR.md
+                    - cell "Replace Wazuh static dashboard image with interactive demo" [ref=e565]:
+                      - link "Replace Wazuh static dashboard image with interactive demo" [ref=e568] [cursor=pointer]:
+                        - /url: /julensistemas-hue/syntro/commit/f4cc6eac02cce7b6602184c611b294cfe6f80222
+                    - cell "Nov 6, 20257 months ago" [ref=e569]:
+                      - generic [ref=e570]: Nov 6, 20257 months ago
+                  - row "SETUP_EMAIL.md, (File) Complete AI SECURITY site implementation with new service pages Nov 1, 20258 months ago" [ref=e571]:
+                    - cell "SETUP_EMAIL.md, (File)" [ref=e572]:
+                      - generic [ref=e573]:
+                        - img [ref=e574]
+                        - link "SETUP_EMAIL.md, (File)" [ref=e579] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/blob/main/SETUP_EMAIL.md
+                          - text: SETUP_EMAIL.md
+                    - cell "Complete AI SECURITY site implementation with new service pages" [ref=e580]:
+                      - link "Complete AI SECURITY site implementation with new service pages" [ref=e583] [cursor=pointer]:
+                        - /url: /julensistemas-hue/syntro/commit/7fdd73c3368fc7c82cedb76a7a960ad42650c31b
+                    - cell "Nov 1, 20258 months ago" [ref=e584]:
+                      - generic [ref=e585]: Nov 1, 20258 months ago
+                  - row "TROUBLESHOOTING_CALENDAR.md, (File) Replace Wazuh static dashboard image with interactive demo Nov 6, 20257 months ago" [ref=e586]:
+                    - cell "TROUBLESHOOTING_CALENDAR.md, (File)" [ref=e587]:
+                      - generic [ref=e588]:
+                        - img [ref=e589]
+                        - link "TROUBLESHOOTING_CALENDAR.md, (File)" [ref=e594] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/blob/main/TROUBLESHOOTING_CALENDAR.md
+                          - text: TROUBLESHOOTING_CALENDAR.md
+                    - cell "Replace Wazuh static dashboard image with interactive demo" [ref=e595]:
+                      - link "Replace Wazuh static dashboard image with interactive demo" [ref=e598] [cursor=pointer]:
+                        - /url: /julensistemas-hue/syntro/commit/f4cc6eac02cce7b6602184c611b294cfe6f80222
+                    - cell "Nov 6, 20257 months ago" [ref=e599]:
+                      - generic [ref=e600]: Nov 6, 20257 months ago
+                  - 'row "astro.config.mjs, (File) fix: corregir sitemap — eliminar duplicados y páginas privadas May 5, 2026last month" [ref=e601]':
+                    - cell "astro.config.mjs, (File)" [ref=e602]:
+                      - generic [ref=e603]:
+                        - img [ref=e604]
+                        - link "astro.config.mjs, (File)" [ref=e609] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/blob/main/astro.config.mjs
+                          - text: astro.config.mjs
+                    - 'cell "fix: corregir sitemap — eliminar duplicados y páginas privadas" [ref=e610]':
+                      - 'link "fix: corregir sitemap — eliminar duplicados y páginas privadas" [ref=e613] [cursor=pointer]':
+                        - /url: /julensistemas-hue/syntro/commit/ae717d8b98d46765edd80dd68ce655ef8a691fe9
+                    - cell "May 5, 2026last month" [ref=e614]:
+                      - generic [ref=e615]: May 5, 2026last month
+                  - 'row "blog-topics.json, (File) Add trending topic: $96 3D-printed rocket that recalculates its mid-a… Mar 16, 20263 months ago" [ref=e616]':
+                    - cell "blog-topics.json, (File)" [ref=e617]:
+                      - generic [ref=e618]:
+                        - img [ref=e619]
+                        - link "blog-topics.json, (File)" [ref=e624] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/blob/main/blog-topics.json
+                          - text: blog-topics.json
+                    - 'cell "Add trending topic: $96 3D-printed rocket that recalculates its mid-a…" [ref=e625]':
+                      - 'link "Add trending topic: $96 3D-printed rocket that recalculates its mid-a…" [ref=e628] [cursor=pointer]':
+                        - /url: /julensistemas-hue/syntro/commit/8249665a5011e7fc9554b10f00ab7510bea33453
+                    - cell "Mar 16, 20263 months ago" [ref=e629]:
+                      - generic [ref=e630]: Mar 16, 20263 months ago
+                  - 'row "cards-v2.png, (File) chore: auto-commit [10:51] Jun 15, 20262 hours ago" [ref=e631]':
+                    - cell "cards-v2.png, (File)" [ref=e632]:
+                      - generic [ref=e633]:
+                        - img [ref=e634]
+                        - link "cards-v2.png, (File)" [ref=e639] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/blob/main/cards-v2.png
+                          - text: cards-v2.png
+                    - 'cell "chore: auto-commit [10:51]" [ref=e640]':
+                      - 'link "chore: auto-commit [10:51]" [ref=e643] [cursor=pointer]':
+                        - /url: /julensistemas-hue/syntro/commit/4e8b6f226acb30a10ab16d7ffbf8e126eaf0f7cc
+                    - cell "Jun 15, 20262 hours ago" [ref=e644]:
+                      - generic [ref=e645]: Jun 15, 20262 hours ago
+                  - 'row "footer-v2.png, (File) chore: auto-commit [12:42] Jun 15, 202623 minutes ago" [ref=e646]':
+                    - cell "footer-v2.png, (File)" [ref=e647]:
+                      - generic [ref=e648]:
+                        - img [ref=e649]
+                        - link "footer-v2.png, (File)" [ref=e654] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/blob/main/footer-v2.png
+                          - text: footer-v2.png
+                    - 'cell "chore: auto-commit [12:42]" [ref=e655]':
+                      - 'link "chore: auto-commit [12:42]" [ref=e658] [cursor=pointer]':
+                        - /url: /julensistemas-hue/syntro/commit/fa1e6f6274ec02efeb79a8854d4b4fd23ba88514
+                    - cell "Jun 15, 202623 minutes ago" [ref=e659]:
+                      - generic [ref=e660]: Jun 15, 202623 minutes ago
+                  - 'row "fusion-home.png, (File) chore: auto-commit [17:40] Jun 14, 202619 hours ago" [ref=e661]':
+                    - cell "fusion-home.png, (File)" [ref=e662]:
+                      - generic [ref=e663]:
+                        - img [ref=e664]
+                        - link "fusion-home.png, (File)" [ref=e669] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/blob/main/fusion-home.png
+                          - text: fusion-home.png
+                    - 'cell "chore: auto-commit [17:40]" [ref=e670]':
+                      - 'link "chore: auto-commit [17:40]" [ref=e673] [cursor=pointer]':
+                        - /url: /julensistemas-hue/syntro/commit/c0e9bcf543a2d1626bf3c26363f6bd845798e326
+                    - cell "Jun 14, 202619 hours ago" [ref=e674]:
+                      - generic [ref=e675]: Jun 14, 202619 hours ago
+                  - 'row "fusion-hover.png, (File) chore: auto-commit [10:36] Jun 15, 20262 hours ago" [ref=e676]':
+                    - cell "fusion-hover.png, (File)" [ref=e677]:
+                      - generic [ref=e678]:
+                        - img [ref=e679]
+                        - link "fusion-hover.png, (File)" [ref=e684] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/blob/main/fusion-hover.png
+                          - text: fusion-hover.png
+                    - 'cell "chore: auto-commit [10:36]" [ref=e685]':
+                      - 'link "chore: auto-commit [10:36]" [ref=e688] [cursor=pointer]':
+                        - /url: /julensistemas-hue/syntro/commit/f9be618fdf10a3609e22eafcfc62475773cea2bd
+                    - cell "Jun 15, 20262 hours ago" [ref=e689]:
+                      - generic [ref=e690]: Jun 15, 20262 hours ago
+                  - 'row "fusion-mobile.png, (File) chore: auto-commit [17:40] Jun 14, 202619 hours ago" [ref=e691]':
+                    - cell "fusion-mobile.png, (File)" [ref=e692]:
+                      - generic [ref=e693]:
+                        - img [ref=e694]
+                        - link "fusion-mobile.png, (File)" [ref=e699] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/blob/main/fusion-mobile.png
+                          - text: fusion-mobile.png
+                    - 'cell "chore: auto-commit [17:40]" [ref=e700]':
+                      - 'link "chore: auto-commit [17:40]" [ref=e703] [cursor=pointer]':
+                        - /url: /julensistemas-hue/syntro/commit/c0e9bcf543a2d1626bf3c26363f6bd845798e326
+                    - cell "Jun 14, 202619 hours ago" [ref=e704]:
+                      - generic [ref=e705]: Jun 14, 202619 hours ago
+                  - 'row "fusion-persistente.png, (File) chore: auto-commit [10:32] Jun 15, 20262 hours ago" [ref=e706]':
+                    - cell "fusion-persistente.png, (File)" [ref=e707]:
+                      - generic [ref=e708]:
+                        - img [ref=e709]
+                        - link "fusion-persistente.png, (File)" [ref=e714] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/blob/main/fusion-persistente.png
+                          - text: fusion-persistente.png
+                    - 'cell "chore: auto-commit [10:32]" [ref=e715]':
+                      - 'link "chore: auto-commit [10:32]" [ref=e718] [cursor=pointer]':
+                        - /url: /julensistemas-hue/syntro/commit/37e01d6d44bf209ac8ec9378934a827472228450
+                    - cell "Jun 15, 20262 hours ago" [ref=e719]:
+                      - generic [ref=e720]: Jun 15, 20262 hours ago
+                  - 'row "fusion-sistemas.png, (File) chore: auto-commit [10:26] Jun 15, 20262 hours ago" [ref=e721]':
+                    - cell "fusion-sistemas.png, (File)" [ref=e722]:
+                      - generic [ref=e723]:
+                        - img [ref=e724]
+                        - link "fusion-sistemas.png, (File)" [ref=e729] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/blob/main/fusion-sistemas.png
+                          - text: fusion-sistemas.png
+                    - 'cell "chore: auto-commit [10:26]" [ref=e730]':
+                      - 'link "chore: auto-commit [10:26]" [ref=e733] [cursor=pointer]':
+                        - /url: /julensistemas-hue/syntro/commit/02f09783674d6dea43adaedd2383f932204b1cb5
+                    - cell "Jun 15, 20262 hours ago" [ref=e734]:
+                      - generic [ref=e735]: Jun 15, 20262 hours ago
+                  - 'row "fusion-trail.png, (File) chore: auto-commit [10:32] Jun 15, 20262 hours ago" [ref=e736]':
+                    - cell "fusion-trail.png, (File)" [ref=e737]:
+                      - generic [ref=e738]:
+                        - img [ref=e739]
+                        - link "fusion-trail.png, (File)" [ref=e744] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/blob/main/fusion-trail.png
+                          - text: fusion-trail.png
+                    - 'cell "chore: auto-commit [10:32]" [ref=e745]':
+                      - 'link "chore: auto-commit [10:32]" [ref=e748] [cursor=pointer]':
+                        - /url: /julensistemas-hue/syntro/commit/37e01d6d44bf209ac8ec9378934a827472228450
+                    - cell "Jun 15, 20262 hours ago" [ref=e749]:
+                      - generic [ref=e750]: Jun 15, 20262 hours ago
+                  - 'row "fusion-v2.png, (File) chore: auto-commit [10:25] Jun 15, 20262 hours ago" [ref=e751]':
+                    - cell "fusion-v2.png, (File)" [ref=e752]:
+                      - generic [ref=e753]:
+                        - img [ref=e754]
+                        - link "fusion-v2.png, (File)" [ref=e759] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/blob/main/fusion-v2.png
+                          - text: fusion-v2.png
+                    - 'cell "chore: auto-commit [10:25]" [ref=e760]':
+                      - 'link "chore: auto-commit [10:25]" [ref=e763] [cursor=pointer]':
+                        - /url: /julensistemas-hue/syntro/commit/59787c011e1ea9a1cf9f8430b157b856274948a2
+                    - cell "Jun 15, 20262 hours ago" [ref=e764]:
+                      - generic [ref=e765]: Jun 15, 20262 hours ago
+                  - 'row "g-mobile.png, (File) chore: auto-commit [17:40] Jun 14, 202619 hours ago" [ref=e766]':
+                    - cell "g-mobile.png, (File)" [ref=e767]:
+                      - generic [ref=e768]:
+                        - img [ref=e769]
+                        - link "g-mobile.png, (File)" [ref=e774] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/blob/main/g-mobile.png
+                          - text: g-mobile.png
+                    - 'cell "chore: auto-commit [17:40]" [ref=e775]':
+                      - 'link "chore: auto-commit [17:40]" [ref=e778] [cursor=pointer]':
+                        - /url: /julensistemas-hue/syntro/commit/c0e9bcf543a2d1626bf3c26363f6bd845798e326
+                    - cell "Jun 14, 202619 hours ago" [ref=e779]:
+                      - generic [ref=e780]: Jun 14, 202619 hours ago
+                  - 'row "hero-a-full.png, (File) chore: auto-commit [17:40] Jun 14, 202619 hours ago" [ref=e781]':
+                    - cell "hero-a-full.png, (File)" [ref=e782]:
+                      - generic [ref=e783]:
+                        - img [ref=e784]
+                        - link "hero-a-full.png, (File)" [ref=e789] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/blob/main/hero-a-full.png
+                          - text: hero-a-full.png
+                    - 'cell "chore: auto-commit [17:40]" [ref=e790]':
+                      - 'link "chore: auto-commit [17:40]" [ref=e793] [cursor=pointer]':
+                        - /url: /julensistemas-hue/syntro/commit/c0e9bcf543a2d1626bf3c26363f6bd845798e326
+                    - cell "Jun 14, 202619 hours ago" [ref=e794]:
+                      - generic [ref=e795]: Jun 14, 202619 hours ago
+                  - 'row "hero-a-mobile.png, (File) chore: auto-commit [17:40] Jun 14, 202619 hours ago" [ref=e796]':
+                    - cell "hero-a-mobile.png, (File)" [ref=e797]:
+                      - generic [ref=e798]:
+                        - img [ref=e799]
+                        - link "hero-a-mobile.png, (File)" [ref=e804] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/blob/main/hero-a-mobile.png
+                          - text: hero-a-mobile.png
+                    - 'cell "chore: auto-commit [17:40]" [ref=e805]':
+                      - 'link "chore: auto-commit [17:40]" [ref=e808] [cursor=pointer]':
+                        - /url: /julensistemas-hue/syntro/commit/c0e9bcf543a2d1626bf3c26363f6bd845798e326
+                    - cell "Jun 14, 202619 hours ago" [ref=e809]:
+                      - generic [ref=e810]: Jun 14, 202619 hours ago
+                  - 'row "hero-a.png, (File) chore: auto-commit [17:40] Jun 14, 202619 hours ago" [ref=e811]':
+                    - cell "hero-a.png, (File)" [ref=e812]:
+                      - generic [ref=e813]:
+                        - img [ref=e814]
+                        - link "hero-a.png, (File)" [ref=e819] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/blob/main/hero-a.png
+                          - text: hero-a.png
+                    - 'cell "chore: auto-commit [17:40]" [ref=e820]':
+                      - 'link "chore: auto-commit [17:40]" [ref=e823] [cursor=pointer]':
+                        - /url: /julensistemas-hue/syntro/commit/c0e9bcf543a2d1626bf3c26363f6bd845798e326
+                    - cell "Jun 14, 202619 hours ago" [ref=e824]:
+                      - generic [ref=e825]: Jun 14, 202619 hours ago
+                  - 'row "hero-b.png, (File) chore: auto-commit [17:40] Jun 14, 202619 hours ago" [ref=e826]':
+                    - cell "hero-b.png, (File)" [ref=e827]:
+                      - generic [ref=e828]:
+                        - img [ref=e829]
+                        - link "hero-b.png, (File)" [ref=e834] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/blob/main/hero-b.png
+                          - text: hero-b.png
+                    - 'cell "chore: auto-commit [17:40]" [ref=e835]':
+                      - 'link "chore: auto-commit [17:40]" [ref=e838] [cursor=pointer]':
+                        - /url: /julensistemas-hue/syntro/commit/c0e9bcf543a2d1626bf3c26363f6bd845798e326
+                    - cell "Jun 14, 202619 hours ago" [ref=e839]:
+                      - generic [ref=e840]: Jun 14, 202619 hours ago
+                  - 'row "hero-c.png, (File) chore: auto-commit [17:40] Jun 14, 202619 hours ago" [ref=e841]':
+                    - cell "hero-c.png, (File)" [ref=e842]:
+                      - generic [ref=e843]:
+                        - img [ref=e844]
+                        - link "hero-c.png, (File)" [ref=e849] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/blob/main/hero-c.png
+                          - text: hero-c.png
+                    - 'cell "chore: auto-commit [17:40]" [ref=e850]':
+                      - 'link "chore: auto-commit [17:40]" [ref=e853] [cursor=pointer]':
+                        - /url: /julensistemas-hue/syntro/commit/c0e9bcf543a2d1626bf3c26363f6bd845798e326
+                    - cell "Jun 14, 202619 hours ago" [ref=e854]:
+                      - generic [ref=e855]: Jun 14, 202619 hours ago
+                  - 'row "hero-d-auto.png, (File) chore: auto-commit [17:40] Jun 14, 202619 hours ago" [ref=e856]':
+                    - cell "hero-d-auto.png, (File)" [ref=e857]:
+                      - generic [ref=e858]:
+                        - img [ref=e859]
+                        - link "hero-d-auto.png, (File)" [ref=e864] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/blob/main/hero-d-auto.png
+                          - text: hero-d-auto.png
+                    - 'cell "chore: auto-commit [17:40]" [ref=e865]':
+                      - 'link "chore: auto-commit [17:40]" [ref=e868] [cursor=pointer]':
+                        - /url: /julensistemas-hue/syntro/commit/c0e9bcf543a2d1626bf3c26363f6bd845798e326
+                    - cell "Jun 14, 202619 hours ago" [ref=e869]:
+                      - generic [ref=e870]: Jun 14, 202619 hours ago
+                  - 'row "hero-d-lit.png, (File) chore: auto-commit [17:40] Jun 14, 202619 hours ago" [ref=e871]':
+                    - cell "hero-d-lit.png, (File)" [ref=e872]:
+                      - generic [ref=e873]:
+                        - img [ref=e874]
+                        - link "hero-d-lit.png, (File)" [ref=e879] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/blob/main/hero-d-lit.png
+                          - text: hero-d-lit.png
+                    - 'cell "chore: auto-commit [17:40]" [ref=e880]':
+                      - 'link "chore: auto-commit [17:40]" [ref=e883] [cursor=pointer]':
+                        - /url: /julensistemas-hue/syntro/commit/c0e9bcf543a2d1626bf3c26363f6bd845798e326
+                    - cell "Jun 14, 202619 hours ago" [ref=e884]:
+                      - generic [ref=e885]: Jun 14, 202619 hours ago
+                  - 'row "hero-e.png, (File) chore: auto-commit [17:40] Jun 14, 202619 hours ago" [ref=e886]':
+                    - cell "hero-e.png, (File)" [ref=e887]:
+                      - generic [ref=e888]:
+                        - img [ref=e889]
+                        - link "hero-e.png, (File)" [ref=e894] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/blob/main/hero-e.png
+                          - text: hero-e.png
+                    - 'cell "chore: auto-commit [17:40]" [ref=e895]':
+                      - 'link "chore: auto-commit [17:40]" [ref=e898] [cursor=pointer]':
+                        - /url: /julensistemas-hue/syntro/commit/c0e9bcf543a2d1626bf3c26363f6bd845798e326
+                    - cell "Jun 14, 202619 hours ago" [ref=e899]:
+                      - generic [ref=e900]: Jun 14, 202619 hours ago
+                  - 'row "hero-eventos.png, (File) chore: auto-commit [10:56] Jun 15, 20262 hours ago" [ref=e901]':
+                    - cell "hero-eventos.png, (File)" [ref=e902]:
+                      - generic [ref=e903]:
+                        - img [ref=e904]
+                        - link "hero-eventos.png, (File)" [ref=e909] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/blob/main/hero-eventos.png
+                          - text: hero-eventos.png
+                    - 'cell "chore: auto-commit [10:56]" [ref=e910]':
+                      - 'link "chore: auto-commit [10:56]" [ref=e913] [cursor=pointer]':
+                        - /url: /julensistemas-hue/syntro/commit/ae596679991b07d847ff54c8d5a8b0751e1427c2
+                    - cell "Jun 15, 20262 hours ago" [ref=e914]:
+                      - generic [ref=e915]: Jun 15, 20262 hours ago
+                  - 'row "hero-f.png, (File) chore: auto-commit [17:40] Jun 14, 202619 hours ago" [ref=e916]':
+                    - cell "hero-f.png, (File)" [ref=e917]:
+                      - generic [ref=e918]:
+                        - img [ref=e919]
+                        - link "hero-f.png, (File)" [ref=e924] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/blob/main/hero-f.png
+                          - text: hero-f.png
+                    - 'cell "chore: auto-commit [17:40]" [ref=e925]':
+                      - 'link "chore: auto-commit [17:40]" [ref=e928] [cursor=pointer]':
+                        - /url: /julensistemas-hue/syntro/commit/c0e9bcf543a2d1626bf3c26363f6bd845798e326
+                    - cell "Jun 14, 202619 hours ago" [ref=e929]:
+                      - generic [ref=e930]: Jun 14, 202619 hours ago
+                  - 'row "hero-g-disperse.png, (File) chore: auto-commit [17:40] Jun 14, 202619 hours ago" [ref=e931]':
+                    - cell "hero-g-disperse.png, (File)" [ref=e932]:
+                      - generic [ref=e933]:
+                        - img [ref=e934]
+                        - link "hero-g-disperse.png, (File)" [ref=e939] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/blob/main/hero-g-disperse.png
+                          - text: hero-g-disperse.png
+                    - 'cell "chore: auto-commit [17:40]" [ref=e940]':
+                      - 'link "chore: auto-commit [17:40]" [ref=e943] [cursor=pointer]':
+                        - /url: /julensistemas-hue/syntro/commit/c0e9bcf543a2d1626bf3c26363f6bd845798e326
+                    - cell "Jun 14, 202619 hours ago" [ref=e944]:
+                      - generic [ref=e945]: Jun 14, 202619 hours ago
+                  - 'row "hero-g-rest.png, (File) chore: auto-commit [17:40] Jun 14, 202619 hours ago" [ref=e946]':
+                    - cell "hero-g-rest.png, (File)" [ref=e947]:
+                      - generic [ref=e948]:
+                        - img [ref=e949]
+                        - link "hero-g-rest.png, (File)" [ref=e954] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/blob/main/hero-g-rest.png
+                          - text: hero-g-rest.png
+                    - 'cell "chore: auto-commit [17:40]" [ref=e955]':
+                      - 'link "chore: auto-commit [17:40]" [ref=e958] [cursor=pointer]':
+                        - /url: /julensistemas-hue/syntro/commit/c0e9bcf543a2d1626bf3c26363f6bd845798e326
+                    - cell "Jun 14, 202619 hours ago" [ref=e959]:
+                      - generic [ref=e960]: Jun 14, 202619 hours ago
+                  - 'row "hero-g-rest2.png, (File) chore: auto-commit [17:40] Jun 14, 202619 hours ago" [ref=e961]':
+                    - cell "hero-g-rest2.png, (File)" [ref=e962]:
+                      - generic [ref=e963]:
+                        - img [ref=e964]
+                        - link "hero-g-rest2.png, (File)" [ref=e969] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/blob/main/hero-g-rest2.png
+                          - text: hero-g-rest2.png
+                    - 'cell "chore: auto-commit [17:40]" [ref=e970]':
+                      - 'link "chore: auto-commit [17:40]" [ref=e973] [cursor=pointer]':
+                        - /url: /julensistemas-hue/syntro/commit/c0e9bcf543a2d1626bf3c26363f6bd845798e326
+                    - cell "Jun 14, 202619 hours ago" [ref=e974]:
+                      - generic [ref=e975]: Jun 14, 202619 hours ago
+                  - 'row "hero-g-v2-move.png, (File) chore: auto-commit [17:40] Jun 14, 202619 hours ago" [ref=e976]':
+                    - cell "hero-g-v2-move.png, (File)" [ref=e977]:
+                      - generic [ref=e978]:
+                        - img [ref=e979]
+                        - link "hero-g-v2-move.png, (File)" [ref=e984] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/blob/main/hero-g-v2-move.png
+                          - text: hero-g-v2-move.png
+                    - 'cell "chore: auto-commit [17:40]" [ref=e985]':
+                      - 'link "chore: auto-commit [17:40]" [ref=e988] [cursor=pointer]':
+                        - /url: /julensistemas-hue/syntro/commit/c0e9bcf543a2d1626bf3c26363f6bd845798e326
+                    - cell "Jun 14, 202619 hours ago" [ref=e989]:
+                      - generic [ref=e990]: Jun 14, 202619 hours ago
+                  - 'row "hero-g-v2-rest.png, (File) chore: auto-commit [17:40] Jun 14, 202619 hours ago" [ref=e991]':
+                    - cell "hero-g-v2-rest.png, (File)" [ref=e992]:
+                      - generic [ref=e993]:
+                        - img [ref=e994]
+                        - link "hero-g-v2-rest.png, (File)" [ref=e999] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/blob/main/hero-g-v2-rest.png
+                          - text: hero-g-v2-rest.png
+                    - 'cell "chore: auto-commit [17:40]" [ref=e1000]':
+                      - 'link "chore: auto-commit [17:40]" [ref=e1003] [cursor=pointer]':
+                        - /url: /julensistemas-hue/syntro/commit/c0e9bcf543a2d1626bf3c26363f6bd845798e326
+                    - cell "Jun 14, 202619 hours ago" [ref=e1004]:
+                      - generic [ref=e1005]: Jun 14, 202619 hours ago
+                  - 'row "hero-h.png, (File) chore: auto-commit [17:40] Jun 14, 202619 hours ago" [ref=e1006]':
+                    - cell "hero-h.png, (File)" [ref=e1007]:
+                      - generic [ref=e1008]:
+                        - img [ref=e1009]
+                        - link "hero-h.png, (File)" [ref=e1014] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/blob/main/hero-h.png
+                          - text: hero-h.png
+                    - 'cell "chore: auto-commit [17:40]" [ref=e1015]':
+                      - 'link "chore: auto-commit [17:40]" [ref=e1018] [cursor=pointer]':
+                        - /url: /julensistemas-hue/syntro/commit/c0e9bcf543a2d1626bf3c26363f6bd845798e326
+                    - cell "Jun 14, 202619 hours ago" [ref=e1019]:
+                      - generic [ref=e1020]: Jun 14, 202619 hours ago
+                  - 'row "hero-i.png, (File) chore: auto-commit [17:40] Jun 14, 202619 hours ago" [ref=e1021]':
+                    - cell "hero-i.png, (File)" [ref=e1022]:
+                      - generic [ref=e1023]:
+                        - img [ref=e1024]
+                        - link "hero-i.png, (File)" [ref=e1029] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/blob/main/hero-i.png
+                          - text: hero-i.png
+                    - 'cell "chore: auto-commit [17:40]" [ref=e1030]':
+                      - 'link "chore: auto-commit [17:40]" [ref=e1033] [cursor=pointer]':
+                        - /url: /julensistemas-hue/syntro/commit/c0e9bcf543a2d1626bf3c26363f6bd845798e326
+                    - cell "Jun 14, 202619 hours ago" [ref=e1034]:
+                      - generic [ref=e1035]: Jun 14, 202619 hours ago
+                  - 'row "hero-j-hub.png, (File) chore: auto-commit [17:40] Jun 14, 202619 hours ago" [ref=e1036]':
+                    - cell "hero-j-hub.png, (File)" [ref=e1037]:
+                      - generic [ref=e1038]:
+                        - img [ref=e1039]
+                        - link "hero-j-hub.png, (File)" [ref=e1044] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/blob/main/hero-j-hub.png
+                          - text: hero-j-hub.png
+                    - 'cell "chore: auto-commit [17:40]" [ref=e1045]':
+                      - 'link "chore: auto-commit [17:40]" [ref=e1048] [cursor=pointer]':
+                        - /url: /julensistemas-hue/syntro/commit/c0e9bcf543a2d1626bf3c26363f6bd845798e326
+                    - cell "Jun 14, 202619 hours ago" [ref=e1049]:
+                      - generic [ref=e1050]: Jun 14, 202619 hours ago
+                  - 'row "hero-j-hub2.png, (File) chore: auto-commit [17:40] Jun 14, 202619 hours ago" [ref=e1051]':
+                    - cell "hero-j-hub2.png, (File)" [ref=e1052]:
+                      - generic [ref=e1053]:
+                        - img [ref=e1054]
+                        - link "hero-j-hub2.png, (File)" [ref=e1059] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/blob/main/hero-j-hub2.png
+                          - text: hero-j-hub2.png
+                    - 'cell "chore: auto-commit [17:40]" [ref=e1060]':
+                      - 'link "chore: auto-commit [17:40]" [ref=e1063] [cursor=pointer]':
+                        - /url: /julensistemas-hue/syntro/commit/c0e9bcf543a2d1626bf3c26363f6bd845798e326
+                    - cell "Jun 14, 202619 hours ago" [ref=e1064]:
+                      - generic [ref=e1065]: Jun 14, 202619 hours ago
+                  - 'row "hero-j-hub3.png, (File) chore: auto-commit [17:40] Jun 14, 202619 hours ago" [ref=e1066]':
+                    - cell "hero-j-hub3.png, (File)" [ref=e1067]:
+                      - generic [ref=e1068]:
+                        - img [ref=e1069]
+                        - link "hero-j-hub3.png, (File)" [ref=e1074] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/blob/main/hero-j-hub3.png
+                          - text: hero-j-hub3.png
+                    - 'cell "chore: auto-commit [17:40]" [ref=e1075]':
+                      - 'link "chore: auto-commit [17:40]" [ref=e1078] [cursor=pointer]':
+                        - /url: /julensistemas-hue/syntro/commit/c0e9bcf543a2d1626bf3c26363f6bd845798e326
+                    - cell "Jun 14, 202619 hours ago" [ref=e1079]:
+                      - generic [ref=e1080]: Jun 14, 202619 hours ago
+                  - 'row "hero-j-hub4.png, (File) chore: auto-commit [17:40] Jun 14, 202619 hours ago" [ref=e1081]':
+                    - cell "hero-j-hub4.png, (File)" [ref=e1082]:
+                      - generic [ref=e1083]:
+                        - img [ref=e1084]
+                        - link "hero-j-hub4.png, (File)" [ref=e1089] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/blob/main/hero-j-hub4.png
+                          - text: hero-j-hub4.png
+                    - 'cell "chore: auto-commit [17:40]" [ref=e1090]':
+                      - 'link "chore: auto-commit [17:40]" [ref=e1093] [cursor=pointer]':
+                        - /url: /julensistemas-hue/syntro/commit/c0e9bcf543a2d1626bf3c26363f6bd845798e326
+                    - cell "Jun 14, 202619 hours ago" [ref=e1094]:
+                      - generic [ref=e1095]: Jun 14, 202619 hours ago
+                  - 'row "hero-k-final.png, (File) chore: auto-commit [17:40] Jun 14, 202619 hours ago" [ref=e1096]':
+                    - cell "hero-k-final.png, (File)" [ref=e1097]:
+                      - generic [ref=e1098]:
+                        - img [ref=e1099]
+                        - link "hero-k-final.png, (File)" [ref=e1104] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/blob/main/hero-k-final.png
+                          - text: hero-k-final.png
+                    - 'cell "chore: auto-commit [17:40]" [ref=e1105]':
+                      - 'link "chore: auto-commit [17:40]" [ref=e1108] [cursor=pointer]':
+                        - /url: /julensistemas-hue/syntro/commit/c0e9bcf543a2d1626bf3c26363f6bd845798e326
+                    - cell "Jun 14, 202619 hours ago" [ref=e1109]:
+                      - generic [ref=e1110]: Jun 14, 202619 hours ago
+                  - 'row "hero-k.png, (File) chore: auto-commit [17:40] Jun 14, 202619 hours ago" [ref=e1111]':
+                    - cell "hero-k.png, (File)" [ref=e1112]:
+                      - generic [ref=e1113]:
+                        - img [ref=e1114]
+                        - link "hero-k.png, (File)" [ref=e1119] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/blob/main/hero-k.png
+                          - text: hero-k.png
+                    - 'cell "chore: auto-commit [17:40]" [ref=e1120]':
+                      - 'link "chore: auto-commit [17:40]" [ref=e1123] [cursor=pointer]':
+                        - /url: /julensistemas-hue/syntro/commit/c0e9bcf543a2d1626bf3c26363f6bd845798e326
+                    - cell "Jun 14, 202619 hours ago" [ref=e1124]:
+                      - generic [ref=e1125]: Jun 14, 202619 hours ago
+                  - 'row "hero-k2.png, (File) chore: auto-commit [17:40] Jun 14, 202619 hours ago" [ref=e1126]':
+                    - cell "hero-k2.png, (File)" [ref=e1127]:
+                      - generic [ref=e1128]:
+                        - img [ref=e1129]
+                        - link "hero-k2.png, (File)" [ref=e1134] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/blob/main/hero-k2.png
+                          - text: hero-k2.png
+                    - 'cell "chore: auto-commit [17:40]" [ref=e1135]':
+                      - 'link "chore: auto-commit [17:40]" [ref=e1138] [cursor=pointer]':
+                        - /url: /julensistemas-hue/syntro/commit/c0e9bcf543a2d1626bf3c26363f6bd845798e326
+                    - cell "Jun 14, 202619 hours ago" [ref=e1139]:
+                      - generic [ref=e1140]: Jun 14, 202619 hours ago
+                  - 'row "hero-k3.png, (File) chore: auto-commit [17:40] Jun 14, 202619 hours ago" [ref=e1141]':
+                    - cell "hero-k3.png, (File)" [ref=e1142]:
+                      - generic [ref=e1143]:
+                        - img [ref=e1144]
+                        - link "hero-k3.png, (File)" [ref=e1149] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/blob/main/hero-k3.png
+                          - text: hero-k3.png
+                    - 'cell "chore: auto-commit [17:40]" [ref=e1150]':
+                      - 'link "chore: auto-commit [17:40]" [ref=e1153] [cursor=pointer]':
+                        - /url: /julensistemas-hue/syntro/commit/c0e9bcf543a2d1626bf3c26363f6bd845798e326
+                    - cell "Jun 14, 202619 hours ago" [ref=e1154]:
+                      - generic [ref=e1155]: Jun 14, 202619 hours ago
+                  - 'row "hero-l.png, (File) chore: auto-commit [17:40] Jun 14, 202619 hours ago" [ref=e1156]':
+                    - cell "hero-l.png, (File)" [ref=e1157]:
+                      - generic [ref=e1158]:
+                        - img [ref=e1159]
+                        - link "hero-l.png, (File)" [ref=e1164] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/blob/main/hero-l.png
+                          - text: hero-l.png
+                    - 'cell "chore: auto-commit [17:40]" [ref=e1165]':
+                      - 'link "chore: auto-commit [17:40]" [ref=e1168] [cursor=pointer]':
+                        - /url: /julensistemas-hue/syntro/commit/c0e9bcf543a2d1626bf3c26363f6bd845798e326
+                    - cell "Jun 14, 202619 hours ago" [ref=e1169]:
+                      - generic [ref=e1170]: Jun 14, 202619 hours ago
+                  - 'row "hero-m.png, (File) chore: auto-commit [17:40] Jun 14, 202619 hours ago" [ref=e1171]':
+                    - cell "hero-m.png, (File)" [ref=e1172]:
+                      - generic [ref=e1173]:
+                        - img [ref=e1174]
+                        - link "hero-m.png, (File)" [ref=e1179] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/blob/main/hero-m.png
+                          - text: hero-m.png
+                    - 'cell "chore: auto-commit [17:40]" [ref=e1180]':
+                      - 'link "chore: auto-commit [17:40]" [ref=e1183] [cursor=pointer]':
+                        - /url: /julensistemas-hue/syntro/commit/c0e9bcf543a2d1626bf3c26363f6bd845798e326
+                    - cell "Jun 14, 202619 hours ago" [ref=e1184]:
+                      - generic [ref=e1185]: Jun 14, 202619 hours ago
+                  - 'row "hero-v3.png, (File) chore: auto-commit [10:51] Jun 15, 20262 hours ago" [ref=e1186]':
+                    - cell "hero-v3.png, (File)" [ref=e1187]:
+                      - generic [ref=e1188]:
+                        - img [ref=e1189]
+                        - link "hero-v3.png, (File)" [ref=e1194] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/blob/main/hero-v3.png
+                          - text: hero-v3.png
+                    - 'cell "chore: auto-commit [10:51]" [ref=e1195]':
+                      - 'link "chore: auto-commit [10:51]" [ref=e1198] [cursor=pointer]':
+                        - /url: /julensistemas-hue/syntro/commit/4e8b6f226acb30a10ab16d7ffbf8e126eaf0f7cc
+                    - cell "Jun 15, 20262 hours ago" [ref=e1199]:
+                      - generic [ref=e1200]: Jun 15, 20262 hours ago
+                  - 'row "hero-vineta.png, (File) chore: auto-commit [12:14] Jun 15, 202651 minutes ago" [ref=e1201]':
+                    - cell "hero-vineta.png, (File)" [ref=e1202]:
+                      - generic [ref=e1203]:
+                        - img [ref=e1204]
+                        - link "hero-vineta.png, (File)" [ref=e1209] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/blob/main/hero-vineta.png
+                          - text: hero-vineta.png
+                    - 'cell "chore: auto-commit [12:14]" [ref=e1210]':
+                      - 'link "chore: auto-commit [12:14]" [ref=e1213] [cursor=pointer]':
+                        - /url: /julensistemas-hue/syntro/commit/508aeafc48dca4df80fde4ae4c7e23ff67dfe23d
+                    - cell "Jun 15, 202651 minutes ago" [ref=e1214]:
+                      - generic [ref=e1215]: Jun 15, 202651 minutes ago
+                  - 'row "heros-gallery.png, (File) chore: auto-commit [17:40] Jun 14, 202619 hours ago" [ref=e1216]':
+                    - cell "heros-gallery.png, (File)" [ref=e1217]:
+                      - generic [ref=e1218]:
+                        - img [ref=e1219]
+                        - link "heros-gallery.png, (File)" [ref=e1224] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/blob/main/heros-gallery.png
+                          - text: heros-gallery.png
+                    - 'cell "chore: auto-commit [17:40]" [ref=e1225]':
+                      - 'link "chore: auto-commit [17:40]" [ref=e1228] [cursor=pointer]':
+                        - /url: /julensistemas-hue/syntro/commit/c0e9bcf543a2d1626bf3c26363f6bd845798e326
+                    - cell "Jun 14, 202619 hours ago" [ref=e1229]:
+                      - generic [ref=e1230]: Jun 14, 202619 hours ago
+                  - 'row "k-mobile.png, (File) chore: auto-commit [17:40] Jun 14, 202619 hours ago" [ref=e1231]':
+                    - cell "k-mobile.png, (File)" [ref=e1232]:
+                      - generic [ref=e1233]:
+                        - img [ref=e1234]
+                        - link "k-mobile.png, (File)" [ref=e1239] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/blob/main/k-mobile.png
+                          - text: k-mobile.png
+                    - 'cell "chore: auto-commit [17:40]" [ref=e1240]':
+                      - 'link "chore: auto-commit [17:40]" [ref=e1243] [cursor=pointer]':
+                        - /url: /julensistemas-hue/syntro/commit/c0e9bcf543a2d1626bf3c26363f6bd845798e326
+                    - cell "Jun 14, 202619 hours ago" [ref=e1244]:
+                      - generic [ref=e1245]: Jun 14, 202619 hours ago
+                  - 'row "package.json, (File) chore: auto-commit [17:40] Jun 14, 202619 hours ago" [ref=e1246]':
+                    - cell "package.json, (File)" [ref=e1247]:
+                      - generic [ref=e1248]:
+                        - img [ref=e1249]
+                        - link "package.json, (File)" [ref=e1254] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/blob/main/package.json
+                          - text: package.json
+                    - 'cell "chore: auto-commit [17:40]" [ref=e1255]':
+                      - 'link "chore: auto-commit [17:40]" [ref=e1258] [cursor=pointer]':
+                        - /url: /julensistemas-hue/syntro/commit/c0e9bcf543a2d1626bf3c26363f6bd845798e326
+                    - cell "Jun 14, 202619 hours ago" [ref=e1259]:
+                      - generic [ref=e1260]: Jun 14, 202619 hours ago
+                  - 'row "pnpm-lock.yaml, (File) chore: auto-commit [17:40] Jun 14, 202619 hours ago" [ref=e1261]':
+                    - cell "pnpm-lock.yaml, (File)" [ref=e1262]:
+                      - generic [ref=e1263]:
+                        - img [ref=e1264]
+                        - link "pnpm-lock.yaml, (File)" [ref=e1269] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/blob/main/pnpm-lock.yaml
+                          - text: pnpm-lock.yaml
+                    - 'cell "chore: auto-commit [17:40]" [ref=e1270]':
+                      - 'link "chore: auto-commit [17:40]" [ref=e1273] [cursor=pointer]':
+                        - /url: /julensistemas-hue/syntro/commit/c0e9bcf543a2d1626bf3c26363f6bd845798e326
+                    - cell "Jun 14, 202619 hours ago" [ref=e1274]:
+                      - generic [ref=e1275]: Jun 14, 202619 hours ago
+                  - 'row "resultados-cta.png, (File) chore: auto-commit [12:36] Jun 15, 202628 minutes ago" [ref=e1276]':
+                    - cell "resultados-cta.png, (File)" [ref=e1277]:
+                      - generic [ref=e1278]:
+                        - img [ref=e1279]
+                        - link "resultados-cta.png, (File)" [ref=e1284] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/blob/main/resultados-cta.png
+                          - text: resultados-cta.png
+                    - 'cell "chore: auto-commit [12:36]" [ref=e1285]':
+                      - 'link "chore: auto-commit [12:36]" [ref=e1288] [cursor=pointer]':
+                        - /url: /julensistemas-hue/syntro/commit/fde36b41103666fa50204f9103e0a4e5dbcc39ae
+                    - cell "Jun 15, 202628 minutes ago" [ref=e1289]:
+                      - generic [ref=e1290]: Jun 15, 202628 minutes ago
+                  - 'row "resultados.png, (File) chore: auto-commit [12:36] Jun 15, 202628 minutes ago" [ref=e1291]':
+                    - cell "resultados.png, (File)" [ref=e1292]:
+                      - generic [ref=e1293]:
+                        - img [ref=e1294]
+                        - link "resultados.png, (File)" [ref=e1299] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/blob/main/resultados.png
+                          - text: resultados.png
+                    - 'cell "chore: auto-commit [12:36]" [ref=e1300]':
+                      - 'link "chore: auto-commit [12:36]" [ref=e1303] [cursor=pointer]':
+                        - /url: /julensistemas-hue/syntro/commit/fde36b41103666fa50204f9103e0a4e5dbcc39ae
+                    - cell "Jun 15, 202628 minutes ago" [ref=e1304]:
+                      - generic [ref=e1305]: Jun 15, 202628 minutes ago
+                  - 'row "start-happy.bat, (File) fix: actualizar gestor-citas y añadir script de inicio Jun 3, 20262 weeks ago" [ref=e1306]':
+                    - cell "start-happy.bat, (File)" [ref=e1307]:
+                      - generic [ref=e1308]:
+                        - img [ref=e1309]
+                        - link "start-happy.bat, (File)" [ref=e1314] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/blob/main/start-happy.bat
+                          - text: start-happy.bat
+                    - 'cell "fix: actualizar gestor-citas y añadir script de inicio" [ref=e1315]':
+                      - 'link "fix: actualizar gestor-citas y añadir script de inicio" [ref=e1318] [cursor=pointer]':
+                        - /url: /julensistemas-hue/syntro/commit/bd51eedc0b65b0f3d9976e28c7a88287bb82c6fc
+                    - cell "Jun 3, 20262 weeks ago" [ref=e1319]:
+                      - generic [ref=e1320]: Jun 3, 20262 weeks ago
+                  - 'row "supabase-curso-data.sql, (File) Add blog article: Cómo instalar Agente Wazuh en Linux Feb 25, 20264 months ago" [ref=e1321]':
+                    - cell "supabase-curso-data.sql, (File)" [ref=e1322]:
+                      - generic [ref=e1323]:
+                        - img [ref=e1324]
+                        - link "supabase-curso-data.sql, (File)" [ref=e1329] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/blob/main/supabase-curso-data.sql
+                          - text: supabase-curso-data.sql
+                    - 'cell "Add blog article: Cómo instalar Agente Wazuh en Linux" [ref=e1330]':
+                      - 'link "Add blog article: Cómo instalar Agente Wazuh en Linux" [ref=e1333] [cursor=pointer]':
+                        - /url: /julensistemas-hue/syntro/commit/96a196c54527c35e0cbf8207e11f38052645212b
+                    - cell "Feb 25, 20264 months ago" [ref=e1334]:
+                      - generic [ref=e1335]: Feb 25, 20264 months ago
+                  - row "supabase-schema.sql, (File) Hide awareness articles from production blog index Mar 18, 20263 months ago" [ref=e1336]:
+                    - cell "supabase-schema.sql, (File)" [ref=e1337]:
+                      - generic [ref=e1338]:
+                        - img [ref=e1339]
+                        - link "supabase-schema.sql, (File)" [ref=e1344] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/blob/main/supabase-schema.sql
+                          - text: supabase-schema.sql
+                    - cell "Hide awareness articles from production blog index" [ref=e1345]:
+                      - link "Hide awareness articles from production blog index" [ref=e1348] [cursor=pointer]:
+                        - /url: /julensistemas-hue/syntro/commit/ea489932d8286310ab839d5c3b54e0a195b1428f
+                    - cell "Mar 18, 20263 months ago" [ref=e1349]:
+                      - generic [ref=e1350]: Mar 18, 20263 months ago
+                  - row "test-grid.html, (File) Eliminar archivos HTML estáticos obsoletos que sobrescribían página W… Dec 2, 20257 months ago" [ref=e1351]:
+                    - cell "test-grid.html, (File)" [ref=e1352]:
+                      - generic [ref=e1353]:
+                        - img [ref=e1354]
+                        - link "test-grid.html, (File)" [ref=e1359] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/blob/main/test-grid.html
+                          - text: test-grid.html
+                    - cell "Eliminar archivos HTML estáticos obsoletos que sobrescribían página W…" [ref=e1360]:
+                      - link "Eliminar archivos HTML estáticos obsoletos que sobrescribían página W…" [ref=e1363] [cursor=pointer]:
+                        - /url: /julensistemas-hue/syntro/commit/441ebcdffbbc3efa6dc3c61fb6b237c4a21d823d
+                    - cell "Dec 2, 20257 months ago" [ref=e1364]:
+                      - generic [ref=e1365]: Dec 2, 20257 months ago
+                  - row "tsconfig.json, (File) Initial commit Sep 12, 20259 months ago" [ref=e1366]:
+                    - cell "tsconfig.json, (File)" [ref=e1367]:
+                      - generic [ref=e1368]:
+                        - img [ref=e1369]
+                        - link "tsconfig.json, (File)" [ref=e1374] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/blob/main/tsconfig.json
+                          - text: tsconfig.json
+                    - cell "Initial commit" [ref=e1375]:
+                      - link "Initial commit" [ref=e1378] [cursor=pointer]:
+                        - /url: /julensistemas-hue/syntro/commit/b853046e5a0d5908fdcd3bcab40f36c6fcd9e899
+                    - cell "Sep 12, 20259 months ago" [ref=e1379]:
+                      - generic [ref=e1380]: Sep 12, 20259 months ago
+                  - 'row "vercel.json, (File) feat: implementar estándares agent-ready completos Apr 22, 20262 months ago" [ref=e1381]':
+                    - cell "vercel.json, (File)" [ref=e1382]:
+                      - generic [ref=e1383]:
+                        - img [ref=e1384]
+                        - link "vercel.json, (File)" [ref=e1389] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/blob/main/vercel.json
+                          - text: vercel.json
+                    - 'cell "feat: implementar estándares agent-ready completos" [ref=e1390]':
+                      - 'link "feat: implementar estándares agent-ready completos" [ref=e1393] [cursor=pointer]':
+                        - /url: /julensistemas-hue/syntro/commit/94a74939d1674f064cae7857e2cc61c3640d5bf0
+                    - cell "Apr 22, 20262 months ago" [ref=e1394]:
+                      - generic [ref=e1395]: Apr 22, 20262 months ago
+            - generic [ref=e1397]:
+              - generic [ref=e1398]:
+                - heading "Repository files navigation" [level=2] [ref=e1399]
+                - navigation "Repository files" [ref=e1400]:
+                  - list [ref=e1401]:
+                    - listitem [ref=e1402]:
+                      - link "README" [ref=e1403] [cursor=pointer]:
+                        - /url: "#"
+                        - img [ref=e1405]
+                        - generic [ref=e1407]: README
+                    - listitem [ref=e1408]:
+                      - link "GPL-3.0 license" [ref=e1409] [cursor=pointer]:
+                        - /url: "#"
+                        - img [ref=e1411]
+                        - generic [ref=e1413]: GPL-3.0 license
+                - button "Edit file" [ref=e1414] [cursor=pointer]:
+                  - img [ref=e1415]
+                - button "Outline" [ref=e1417] [cursor=pointer]:
+                  - img [ref=e1418]
+              - article [ref=e1421]:
+                - generic [ref=e1422]:
+                  - heading "SaaS & Startup Astro & Tailwind CSS Template" [level=1] [ref=e1423]
+                  - 'link "Permalink: SaaS & Startup Astro & Tailwind CSS Template" [ref=e1424] [cursor=pointer]':
+                    - /url: "#saas--startup-astro--tailwind-css-template"
+                    - img [ref=e1425]
+                - generic [ref=e1427]:
+                  - heading "License" [level=2] [ref=e1428]
+                  - 'link "Permalink: License" [ref=e1429] [cursor=pointer]':
+                    - /url: "#license"
+                    - img [ref=e1430]
+                - paragraph [ref=e1432]:
+                  - text: This template is open-source software licensed under the
+                  - link "GPL-3.0 license" [ref=e1433] [cursor=pointer]:
+                    - /url: https://opensource.org/licenses/GPL-3.0
+                  - text: . You are free to fork, modify, and use it in your projects.
+                - generic [ref=e1434]:
+                  - heading "Attribution" [level=2] [ref=e1435]
+                  - 'link "Permalink: Attribution" [ref=e1436] [cursor=pointer]':
+                    - /url: "#attribution"
+                    - img [ref=e1437]
+                - paragraph [ref=e1439]: Originally created by Michael Andreuzza. Modified, extended, and redistributed by Bektur Aslan with added sections and updated UI/UX for broader usage.
+                - generic [ref=e1440]:
+                  - heading "This template is using Tailwind CSS V4" [level=2] [ref=e1441]
+                  - 'link "Permalink: This template is using Tailwind CSS V4" [ref=e1442] [cursor=pointer]':
+                    - /url: "#this-template-is-using-tailwind-css-v4"
+                    - img [ref=e1443]
+                - paragraph [ref=e1445]:
+                  - text: Now we are using only a CSS file. It's called
+                  - code [ref=e1446]: global.css
+                  - text: and it's located in the src/styles folder. Now we are eimporting Tailwind CSS on the same file instead of using the
+                  - code [ref=e1447]: tailwind.config.cjs
+                  - text: "file. Like this:"
+                - generic [ref=e1448]:
+                  - generic [ref=e1449]: // Importing Tailwind CSS @import "tailwindcss"; // Importing Tailwind plugins @plugin "@tailwindcss/typography"; @plugin "@tailwindcss/forms";
+                  - button "Copy code to clipboard" [ref=e1451] [cursor=pointer]:
+                    - img [ref=e1452]
+                - paragraph [ref=e1455]: "Then to add your styles you will use the @theme directive. Like this:"
+                - generic [ref=e1456]:
+                  - generic [ref=e1457]: "@theme { /* Your CSS goes here, see how styles are written on the global.css file */ }"
+                  - button "Copy code to clipboard" [ref=e1459] [cursor=pointer]:
+                    - img [ref=e1460]
+                - paragraph [ref=e1463]: Remember this is just in Alpha version, so you can use it as you want. Just keep an eye on the changes that Tailwind CSS is going to make.
+                - generic [ref=e1464]:
+                  - heading "Template Structure" [level=2] [ref=e1465]
+                  - 'link "Permalink: Template Structure" [ref=e1466] [cursor=pointer]':
+                    - /url: "#template-structure"
+                    - img [ref=e1467]
+                - paragraph [ref=e1469]: "Inside of your Astro project, you'll see the following folders and files:"
+                - generic [ref=e1470]:
+                  - code [ref=e1472]: / ├── public/ ├── src/ │ └── pages/ │ └── index.astro └── package.json
+                  - button "Copy code to clipboard" [ref=e1474] [cursor=pointer]:
+                    - img [ref=e1475]
+                - paragraph [ref=e1478]:
+                  - text: Astro looks for
+                  - code [ref=e1479]: .astro
+                  - text: or
+                  - code [ref=e1480]: .md
+                  - text: files in the
+                  - code [ref=e1481]: src/pages/
+                  - text: directory. Each page is exposed as a route based on its file name.
+                - paragraph [ref=e1482]:
+                  - text: There's nothing special about
+                  - code [ref=e1483]: src/components/
+                  - text: ", but that's where we like to put any Astro/React/Vue/Svelte/Preact components."
+                - paragraph [ref=e1484]:
+                  - text: Any static assets, like images, can be placed in the
+                  - code [ref=e1485]: public/
+                  - text: directory.
+                - generic [ref=e1486]:
+                  - heading "Commands" [level=2] [ref=e1487]
+                  - 'link "Permalink: Commands" [ref=e1488] [cursor=pointer]':
+                    - /url: "#commands"
+                    - img [ref=e1489]
+                - paragraph [ref=e1491]: "All commands are run from the root of the project, from a terminal:"
+                - table [ref=e1493]:
+                  - rowgroup [ref=e1494]:
+                    - row "Command Action" [ref=e1495]:
+                      - columnheader "Command" [ref=e1496]
+                      - columnheader "Action" [ref=e1497]
+                  - rowgroup [ref=e1498]:
+                    - row "npm install Installs dependencies" [ref=e1499]:
+                      - cell "npm install" [ref=e1500]:
+                        - code [ref=e1501]: npm install
+                      - cell "Installs dependencies" [ref=e1502]
+                    - row "npm run dev Starts local dev server at localhost:3000" [ref=e1503]:
+                      - cell "npm run dev" [ref=e1504]:
+                        - code [ref=e1505]: npm run dev
+                      - cell "Starts local dev server at localhost:3000" [ref=e1506]:
+                        - text: Starts local dev server at
+                        - code [ref=e1507]: localhost:3000
+                    - row "npm run build Build your production site to ./dist/" [ref=e1508]:
+                      - cell "npm run build" [ref=e1509]:
+                        - code [ref=e1510]: npm run build
+                      - cell "Build your production site to ./dist/" [ref=e1511]:
+                        - text: Build your production site to
+                        - code [ref=e1512]: ./dist/
+                    - row "npm run preview Preview your build locally, before deploying" [ref=e1513]:
+                      - cell "npm run preview" [ref=e1514]:
+                        - code [ref=e1515]: npm run preview
+                      - cell "Preview your build locally, before deploying" [ref=e1516]
+                    - row "npm run astro ... Run CLI commands like astro add, astro check" [ref=e1517]:
+                      - cell "npm run astro ..." [ref=e1518]:
+                        - code [ref=e1519]: npm run astro ...
+                      - cell "Run CLI commands like astro add, astro check" [ref=e1520]:
+                        - text: Run CLI commands like
+                        - code [ref=e1521]: astro add
+                        - text: ","
+                        - code [ref=e1522]: astro check
+                    - row "npm run astro --help Get help using the Astro CLI" [ref=e1523]:
+                      - cell "npm run astro --help" [ref=e1524]:
+                        - code [ref=e1525]: npm run astro --help
+                      - cell "Get help using the Astro CLI" [ref=e1526]
+                - generic [ref=e1527]:
+                  - heading "Want to learn more?" [level=2] [ref=e1528]
+                  - 'link "Permalink: Want to learn more?" [ref=e1529] [cursor=pointer]':
+                    - /url: "#want-to-learn-more"
+                    - img [ref=e1530]
+                - paragraph [ref=e1532]:
+                  - text: Feel free to check Astro's
+                  - link "documentation" [ref=e1533] [cursor=pointer]:
+                    - /url: https://docs.astro.build
+                - generic [ref=e1534]:
+                  - heading "Deploy" [level=3] [ref=e1535]
+                  - 'link "Permalink: Deploy" [ref=e1536] [cursor=pointer]':
+                    - /url: "#deploy"
+                    - img [ref=e1537]
+                - paragraph [ref=e1539]:
+                  - link "Deploy with Vercel" [ref=e1540] [cursor=pointer]:
+                    - /url: https://vercel.com/new/clone?repository-url=https://github.com/bekturaslan/syntro-astro
+                    - img "Deploy with Vercel" [ref=e1541]
+                - separator [ref=e1542]
+                - paragraph [ref=e1543]: Maintained & updated by Bektur Aslan. Contributions welcome.
+        - generic [ref=e1547]:
+          - generic [ref=e1549]:
+            - group:
+              - button "Edit repository metadata" [ref=e1550] [cursor=pointer]:
+                - img "Edit repository metadata" [ref=e1552]
+            - generic [ref=e1554]:
+              - heading "About" [level=2] [ref=e1555]
+              - generic [ref=e1556]:
+                - img [ref=e1557]
+                - link "syntro-mocha.vercel.app" [ref=e1560] [cursor=pointer]:
+                  - /url: https://syntro-mocha.vercel.app
+              - heading "Resources" [level=3] [ref=e1561]
+              - link "Readme" [ref=e1563] [cursor=pointer]:
+                - /url: "#readme-ov-file"
+                - img [ref=e1564]
+                - text: Readme
+              - heading "License" [level=3] [ref=e1566]
+              - link "GPL-3.0 license" [ref=e1568] [cursor=pointer]:
+                - /url: "#GPL-3.0-1-ov-file"
+                - img [ref=e1569]
+                - text: GPL-3.0 license
+              - link "Activity" [ref=e1572] [cursor=pointer]:
+                - /url: /julensistemas-hue/syntro/activity
+                - img [ref=e1573]
+                - text: Activity
+              - heading "Stars" [level=3] [ref=e1575]
+              - link "1 star" [ref=e1577] [cursor=pointer]:
+                - /url: /julensistemas-hue/syntro/stargazers
+                - img [ref=e1578]
+                - strong [ref=e1580]: "1"
+                - text: star
+              - heading "Watchers" [level=3] [ref=e1581]
+              - link "0 watching" [ref=e1583] [cursor=pointer]:
+                - /url: /julensistemas-hue/syntro/watchers
+                - img [ref=e1584]
+                - strong [ref=e1586]: "0"
+                - text: watching
+              - heading "Forks" [level=3] [ref=e1587]
+              - link "0 forks" [ref=e1589] [cursor=pointer]:
+                - /url: /julensistemas-hue/syntro/forks
+                - img [ref=e1590]
+                - strong [ref=e1592]: "0"
+                - text: forks
+          - generic [ref=e1594]:
+            - heading "Releases" [level=2] [ref=e1595]:
+              - link "Releases" [ref=e1596] [cursor=pointer]:
+                - /url: /julensistemas-hue/syntro/releases
+            - generic [ref=e1597]: No releases published
+            - link "Create a new release" [ref=e1599] [cursor=pointer]:
+              - /url: /julensistemas-hue/syntro/releases/new
+          - generic [ref=e1601]:
+            - heading "Deployments 476" [level=2] [ref=e1602]:
+              - link "Deployments 476" [ref=e1603] [cursor=pointer]:
+                - /url: /julensistemas-hue/syntro/deployments
+                - text: Deployments
+                - generic "476" [ref=e1604]
+            - list [ref=e1605]:
+              - listitem [ref=e1606]:
+                - img [ref=e1607]
+                - link "Production June 15, 2026 13:041 minute ago" [ref=e1609] [cursor=pointer]:
+                  - /url: /julensistemas-hue/syntro/deployments/Production
+            - link "+ 475 deployments" [ref=e1611] [cursor=pointer]:
+              - /url: /julensistemas-hue/syntro/deployments
+          - generic [ref=e1613]:
+            - heading "Packages" [level=2] [ref=e1614]:
+              - link "Packages" [ref=e1615] [cursor=pointer]:
+                - /url: /users/julensistemas-hue/packages?repo_name=syntro
+            - generic [ref=e1616]:
+              - text: No packages published
+              - link "Publish your first package" [ref=e1617] [cursor=pointer]:
+                - /url: /julensistemas-hue/syntro/packages
+          - generic [ref=e1619]:
+            - heading "Contributors 3" [level=2] [ref=e1620]:
+              - link "Contributors 3" [ref=e1621] [cursor=pointer]:
+                - /url: /julensistemas-hue/syntro/graphs/contributors
+                - text: Contributors
+                - generic "3" [ref=e1622]
+            - list [ref=e1623]:
+              - listitem [ref=e1624]:
+                - link "@claude" [ref=e1625] [cursor=pointer]:
+                  - /url: https://github.com/claude
+                  - img "@claude" [ref=e1626]
+                - link "claude Claude" [ref=e1628] [cursor=pointer]:
+                  - /url: https://github.com/claude
+                  - strong [ref=e1629]: claude
+                  - text: Claude
+              - listitem [ref=e1630]:
+                - link "@julensistemas-hue" [ref=e1631] [cursor=pointer]:
+                  - /url: https://github.com/julensistemas-hue
+                  - img "@julensistemas-hue" [ref=e1632]
+                - link "julensistemas-hue" [ref=e1634] [cursor=pointer]:
+                  - /url: https://github.com/julensistemas-hue
+                  - strong [ref=e1635]: julensistemas-hue
+              - listitem [ref=e1636]:
+                - link "@happy-otter" [ref=e1637] [cursor=pointer]:
+                  - /url: https://github.com/happy-otter
+                  - img "@happy-otter" [ref=e1638]
+                - link "happy-otter Happy" [ref=e1640] [cursor=pointer]:
+                  - /url: https://github.com/happy-otter
+                  - strong [ref=e1641]: happy-otter
+                  - text: Happy
+          - generic [ref=e1643]:
+            - heading "Languages" [level=2] [ref=e1644]
+            - list [ref=e1654]:
+              - listitem [ref=e1655]:
+                - link "Astro 79.1%" [ref=e1656] [cursor=pointer]:
+                  - /url: /julensistemas-hue/syntro/search?l=astro
+                  - img [ref=e1657]
+                  - generic [ref=e1659]: Astro
+                  - generic [ref=e1660]: 79.1%
+              - listitem [ref=e1661]:
+                - link "HTML 7.9%" [ref=e1662] [cursor=pointer]:
+                  - /url: /julensistemas-hue/syntro/search?l=html
+                  - img [ref=e1663]
+                  - generic [ref=e1665]: HTML
+                  - generic [ref=e1666]: 7.9%
+              - listitem [ref=e1667]:
+                - link "JavaScript 5.1%" [ref=e1668] [cursor=pointer]:
+                  - /url: /julensistemas-hue/syntro/search?l=javascript
+                  - img [ref=e1669]
+                  - generic [ref=e1671]: JavaScript
+                  - generic [ref=e1672]: 5.1%
+              - listitem [ref=e1673]:
+                - link "TypeScript 4.8%" [ref=e1674] [cursor=pointer]:
+                  - /url: /julensistemas-hue/syntro/search?l=typescript
+                  - img [ref=e1675]
+                  - generic [ref=e1677]: TypeScript
+                  - generic [ref=e1678]: 4.8%
+              - listitem [ref=e1679]:
+                - link "CSS 2.6%" [ref=e1680] [cursor=pointer]:
+                  - /url: /julensistemas-hue/syntro/search?l=css
+                  - img [ref=e1681]
+                  - generic [ref=e1683]: CSS
+                  - generic [ref=e1684]: 2.6%
+              - listitem [ref=e1685]:
+                - link "PLpgSQL 0.3%" [ref=e1686] [cursor=pointer]:
+                  - /url: /julensistemas-hue/syntro/search?l=plpgsql
+                  - img [ref=e1687]
+                  - generic [ref=e1689]: PLpgSQL
+                  - generic [ref=e1690]: 0.3%
+              - listitem [ref=e1691]:
+                - generic [ref=e1692]:
+                  - img [ref=e1693]
+                  - generic [ref=e1695]: Other
+                  - generic [ref=e1696]: 0.2%
+  - contentinfo [ref=e1698]:
+    - heading "Footer" [level=2] [ref=e1699]
+    - generic [ref=e1700]:
+      - generic [ref=e1701]:
+        - link "GitHub Homepage" [ref=e1702] [cursor=pointer]:
+          - /url: https://github.com
+          - img [ref=e1703]
+        - generic [ref=e1705]: © 2026 GitHub, Inc.
+      - navigation "Footer" [ref=e1706]:
+        - heading "Footer navigation" [level=3] [ref=e1707]
+        - list "Footer navigation" [ref=e1708]:
+          - listitem [ref=e1709]:
+            - link "Terms" [ref=e1710] [cursor=pointer]:
+              - /url: https://docs.github.com/site-policy/github-terms/github-terms-of-service
+          - listitem [ref=e1711]:
+            - link "Privacy" [ref=e1712] [cursor=pointer]:
+              - /url: https://docs.github.com/site-policy/privacy-policies/github-privacy-statement
+          - listitem [ref=e1713]:
+            - link "Security" [ref=e1714] [cursor=pointer]:
+              - /url: https://github.com/security
+          - listitem [ref=e1715]:
+            - link "Status" [ref=e1716] [cursor=pointer]:
+              - /url: https://www.githubstatus.com/
+          - listitem [ref=e1717]:
+            - link "Community" [ref=e1718] [cursor=pointer]:
+              - /url: https://github.community/
+          - listitem [ref=e1719]:
+            - link "Docs" [ref=e1720] [cursor=pointer]:
+              - /url: https://docs.github.com/
+          - listitem [ref=e1721]:
+            - link "Contact" [ref=e1722] [cursor=pointer]:
+              - /url: https://support.github.com?tags=dotcom-footer
+          - listitem [ref=e1723]:
+            - button "Manage cookies" [ref=e1725] [cursor=pointer]
+          - listitem [ref=e1726]:
+            - button "Do not share my personal information" [ref=e1728] [cursor=pointer]
