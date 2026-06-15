@@ -21,6 +21,17 @@
 
     <h1 class="sr-only">AI Security — IA, ciberseguridad y sistemas para empresas. Todo conectado, todo bajo control.</h1>
 
+    <!-- Enlaces accesibles a los servicios (teclado y buscadores) — los nodos del canvas replican estos destinos -->
+    <nav class="sr-only" aria-label="Servicios">
+      <a href="/servicios/chatbot">Chatbot IA</a>
+      <a href="/servicios/gestor-documental">Gestor documental</a>
+      <a href="/servicios/atencion-llamadas">Atención de llamadas con IA</a>
+      <a href="/servicios/gestor-citas">Gestor de citas</a>
+      <a href="/wazuh">Ciberseguridad Wazuh y cumplimiento ENS</a>
+      <a href="/soporte-tecnico">Sistemas IT, email Microsoft 365, backups y soporte</a>
+      <a href="/servicios/automatizacion">Automatización de procesos</a>
+    </nav>
+
     <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold mb-8 border" style="background:rgba(0,0,0,0.45);border-color:rgba(129,140,248,0.3);color:#a5b4fc;letter-spacing:0.16em;text-transform:uppercase;font-family:ui-monospace,monospace;backdrop-filter:blur(2px);">
       <span style="width:7px;height:7px;border-radius:50%;background:#818cf8;box-shadow:0 0 8px #818cf8;display:inline-block;"></span>
       AI Security · partner tecnológico
@@ -96,33 +107,33 @@
 
   type Kind='ia'|'cyber'|'system'|'auto'|'node'|'alert';
   const COLORS:Record<Kind,string>={ ia:'#60a5fa', cyber:'#818cf8', system:'#a78bfa', auto:'#c084fc', node:'#5b7290', alert:'#ff5564' };
-  interface N{ x:number;y:number;r:number;kind:Kind;label?:string;phase:number;vx:number;vy:number; }
+  interface N{ x:number;y:number;r:number;kind:Kind;label?:string;href?:string;phase:number;vx:number;vy:number; }
   let nodes:N[]=[]; let links:[number,number][]=[];
 
   function build(){
     nodes=[]; links=[];
-    // Servicios reales agrupados por área (cuadrantes)
-    const SERVICES:{kind:Kind;label:string;fx:number;fy:number}[]=[
+    // Servicios reales agrupados por área (cuadrantes) — cada uno enlaza a su página
+    const SERVICES:{kind:Kind;label:string;href:string;fx:number;fy:number}[]=[
       // IA — arriba izquierda
-      { kind:'ia',     label:'Chatbot IA',          fx:0.13, fy:0.22 },
-      { kind:'ia',     label:'Gestor documental',   fx:0.27, fy:0.34 },
-      { kind:'ia',     label:'Llamadas IA · ATC',   fx:0.10, fy:0.43 },
-      { kind:'ia',     label:'Gestor de citas',     fx:0.31, fy:0.15 },
+      { kind:'ia',     label:'Chatbot IA',          href:'/servicios/chatbot',           fx:0.13, fy:0.22 },
+      { kind:'ia',     label:'Gestor documental',   href:'/servicios/gestor-documental', fx:0.27, fy:0.34 },
+      { kind:'ia',     label:'Llamadas IA · ATC',   href:'/servicios/atencion-llamadas', fx:0.10, fy:0.43 },
+      { kind:'ia',     label:'Gestor de citas',     href:'/servicios/gestor-citas',      fx:0.31, fy:0.15 },
       // Ciberseguridad — arriba derecha
-      { kind:'cyber',  label:'Wazuh · SIEM',        fx:0.88, fy:0.20 },
-      { kind:'cyber',  label:'Cumplimiento ENS',    fx:0.71, fy:0.31 },
-      { kind:'cyber',  label:'Antispam',            fx:0.92, fy:0.42 },
+      { kind:'cyber',  label:'Wazuh · SIEM',        href:'/wazuh',                       fx:0.88, fy:0.20 },
+      { kind:'cyber',  label:'Cumplimiento ENS',    href:'/wazuh',                       fx:0.71, fy:0.31 },
+      { kind:'cyber',  label:'Antispam',            href:'/soporte-tecnico',             fx:0.92, fy:0.42 },
       // Sistemas — abajo izquierda
-      { kind:'system', label:'Email Microsoft 365', fx:0.14, fy:0.72 },
-      { kind:'system', label:'Copias de seguridad', fx:0.30, fy:0.84 },
-      { kind:'system', label:'Servidores',          fx:0.07, fy:0.60 },
-      { kind:'system', label:'Soporte remoto',      fx:0.32, fy:0.66 },
+      { kind:'system', label:'Email Microsoft 365', href:'/soporte-tecnico',             fx:0.14, fy:0.72 },
+      { kind:'system', label:'Copias de seguridad', href:'/soporte-tecnico',             fx:0.30, fy:0.84 },
+      { kind:'system', label:'Servidores',          href:'/soporte-tecnico',             fx:0.07, fy:0.60 },
+      { kind:'system', label:'Soporte remoto',      href:'/soporte-tecnico',             fx:0.32, fy:0.66 },
       // Automatización — abajo derecha
-      { kind:'auto',   label:'Automatización',      fx:0.88, fy:0.82 },
-      { kind:'auto',   label:'Informes',            fx:0.71, fy:0.70 },
-      { kind:'auto',   label:'Integraciones',       fx:0.92, fy:0.60 },
+      { kind:'auto',   label:'Automatización',      href:'/servicios/automatizacion',    fx:0.88, fy:0.82 },
+      { kind:'auto',   label:'Informes',            href:'/servicios/automatizacion',    fx:0.71, fy:0.70 },
+      { kind:'auto',   label:'Integraciones',       href:'/servicios/automatizacion',    fx:0.92, fy:0.60 },
     ];
-    SERVICES.forEach(s=>nodes.push({ x:s.fx*W, y:s.fy*H, r:9, kind:s.kind, label:s.label, phase:Math.random()*6.28, vx:0, vy:0 }));
+    SERVICES.forEach(s=>nodes.push({ x:s.fx*W, y:s.fy*H, r:9, kind:s.kind, label:s.label, href:s.href, phase:Math.random()*6.28, vx:0, vy:0 }));
     const NLAB=nodes.length;
     const SMALL=Math.round((W*H)/34000);
     for(let i=0;i<SMALL;i++) nodes.push({ x:Math.random()*W, y:Math.random()*H, r:Math.random()*2.2+2.2, kind:'node', phase:Math.random()*6.28, vx:(Math.random()-0.5)*0.18, vy:(Math.random()-0.5)*0.18 });
@@ -145,6 +156,10 @@
   }
 
   const R=185;
+  // ── Detección de servicio bajo el cursor (clicable) ──
+  let hoverNode:N|null=null;
+  function hitTest(){ hoverNode=null; let best=32*32; for(const n of nodes){ if(!n.href) continue; const dx=n.x-mx,dy=n.y-my; const d=dx*dx+dy*dy; if(d<best){ best=d; hoverNode=n; } } }
+
   function frame(){
     t++;
     for(const n of nodes){ if(n.kind==='node'){ n.x+=n.vx; n.y+=n.vy; if(n.x<0||n.x>W)n.vx*=-1; if(n.y<0||n.y>H)n.vy*=-1; } }
@@ -161,13 +176,23 @@
     lctx.drawImage(mask,0,0,W,H); lctx.globalCompositeOperation='source-over';
     ctx.drawImage(lit,0,0,W,H);
     const glow=ctx.createRadialGradient(mx,my,0,mx,my,R*1.1); glow.addColorStop(0,'rgba(124,192,255,0.09)'); glow.addColorStop(1,'rgba(124,192,255,0)'); ctx.fillStyle=glow; ctx.beginPath(); ctx.arc(mx,my,R*1.1,0,6.28); ctx.fill();
+    // resaltado del servicio bajo el cursor + pista "abrir →"
+    if(hoverNode){ const col=COLORS[hoverNode.kind]; const pr=hoverNode.r+7+Math.sin(t*0.15)*1.5;
+      ctx.beginPath(); ctx.arc(hoverNode.x,hoverNode.y,pr,0,6.28); ctx.strokeStyle=col; ctx.lineWidth=2; ctx.shadowColor=col; ctx.shadowBlur=14; ctx.stroke(); ctx.shadowBlur=0;
+      ctx.font='800 11px Inter,sans-serif'; ctx.fillStyle=col; ctx.textAlign='center'; ctx.fillText('abrir →', hoverNode.x, hoverNode.y+hoverNode.r+18); }
     requestAnimationFrame(frame);
   }
 
-  function onMove(x:number,y:number){ const r=section.getBoundingClientRect(); mx=x-r.left; my=y-r.top; if(!hasPointer){ hasPointer=true; cursorEl.style.opacity='1'; if(hint)hint.style.opacity='0'; mctx.clearRect(0,0,W,H); } cursorEl.style.left=mx+'px'; cursorEl.style.top=my+'px'; }
+  function setCursorHover(on:boolean){
+    if(on && hoverNode){ const col=COLORS[hoverNode.kind]; cursorEl.style.width=cursorEl.style.height='34px'; cursorEl.style.background='transparent'; cursorEl.style.border='2px solid '+col; cursorEl.style.boxShadow='0 0 22px '+col; }
+    else { cursorEl.style.width=cursorEl.style.height='16px'; cursorEl.style.background='radial-gradient(circle,#fff,rgba(255,255,255,0.2))'; cursorEl.style.border='none'; cursorEl.style.boxShadow='0 0 24px 6px rgba(124,192,255,0.6)'; }
+  }
+  function onMove(x:number,y:number){ const r=section.getBoundingClientRect(); mx=x-r.left; my=y-r.top; if(!hasPointer){ hasPointer=true; cursorEl.style.opacity='1'; if(hint)hint.style.opacity='0'; mctx.clearRect(0,0,W,H); } cursorEl.style.left=mx+'px'; cursorEl.style.top=my+'px'; hitTest(); setCursorHover(!!hoverNode); }
   section.addEventListener('mousemove', e=>onMove(e.clientX,e.clientY));
   section.addEventListener('mouseleave', ()=>{ hasPointer=false; cursorEl.style.opacity='0'; });
   section.addEventListener('touchmove', e=>{ if(e.touches[0]) onMove(e.touches[0].clientX,e.touches[0].clientY); }, {passive:true});
+  // clic en un nodo de servicio → su página
+  section.addEventListener('click', (e)=>{ if((e.target as HTMLElement)?.closest('a,button')) return; const r=section.getBoundingClientRect(); mx=e.clientX-r.left; my=e.clientY-r.top; hitTest(); if(hoverNode&&hoverNode.href) window.location.href=hoverNode.href; });
 
   resize();
   window.addEventListener('resize', resize);
