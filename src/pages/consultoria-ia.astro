@@ -461,27 +461,6 @@ const departamentos = [
     </div>
   </section>
 
-  <!-- PÁGINAS POR CIUDAD — enlace interno para SEO -->
-  <section style="background: #0a0d1a; padding: 48px 0; border-top: 1px solid rgba(255,255,255,0.05);">
-    <div class="max-w-5xl mx-auto px-6">
-      <p class="text-center text-sm mb-6" style="color: #475569;">Consultoría de Inteligencia Artificial para empresas en toda España</p>
-      <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;">
-        {[
-          {slug:'madrid',nombre:'Madrid'},{slug:'barcelona',nombre:'Barcelona'},
-          {slug:'valencia',nombre:'Valencia'},{slug:'sevilla',nombre:'Sevilla'},
-          {slug:'bilbao',nombre:'Bilbao'},{slug:'zaragoza',nombre:'Zaragoza'},
-          {slug:'malaga',nombre:'Málaga'},{slug:'alicante',nombre:'Alicante'},
-          {slug:'valladolid',nombre:'Valladolid'},{slug:'murcia',nombre:'Murcia'},
-        ].map(c => (
-          <a href={`/consultoria-ia/${c.slug}`}
-            style="padding:8px 16px;background:rgba(255,255,255,0.04);border:1px solid rgba(79,124,255,0.2);border-radius:24px;color:#7da4ff;font-size:0.85rem;text-decoration:none;transition:all 0.2s;">
-            Consultoría IA {c.nombre}
-          </a>
-        ))}
-      </div>
-    </div>
-  </section>
-
 </BaseLayout>
 
 <script define:vars={{ departamentos }} is:inline>
