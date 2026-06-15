@@ -120,7 +120,7 @@ const breadcrumbSchema = {
 };
 ---
 
-<BaseLayout title={title} description={description} canonical={canonical}>
+<BaseLayout title={title} description={description} canonical={canonical} ogImage="https://aisecurity.es/api/og/curso-wazuh">
   <!-- Structured Data -->
   <script is:inline type="application/ld+json" set:html={JSON.stringify(courseSchema)} slot="head" />
   <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} slot="head" />

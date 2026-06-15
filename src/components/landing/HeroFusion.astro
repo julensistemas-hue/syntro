@@ -14,28 +14,28 @@
   <div id="fus-cursor" style="position:absolute;width:16px;height:16px;border-radius:50%;pointer-events:none;z-index:30;transform:translate(-50%,-50%);background:radial-gradient(circle,#fff,rgba(255,255,255,0.2));box-shadow:0 0 24px 6px rgba(124,192,255,0.6);opacity:0;transition:opacity .3s;"></div>
 
   <!-- Línea de escaneo -->
-  <div id="fus-scan" class="absolute left-0 right-0 pointer-events-none" style="height:2px;background:linear-gradient(90deg,transparent,rgba(52,211,153,0.45),transparent);z-index:6;top:0;"></div>
+  <div id="fus-scan" class="absolute left-0 right-0 pointer-events-none" style="height:2px;background:linear-gradient(90deg,transparent,rgba(129,140,248,0.5),transparent);z-index:6;top:0;"></div>
 
   <!-- Contenido -->
   <div class="relative w-full max-w-4xl mx-auto text-center" style="z-index:20;pointer-events:none;">
 
     <h1 class="sr-only">AI Security — IA, ciberseguridad y sistemas para empresas. Todo conectado, todo bajo control.</h1>
 
-    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold mb-8 border" style="background:rgba(0,0,0,0.45);border-color:rgba(52,211,153,0.25);color:#5eead4;letter-spacing:0.16em;text-transform:uppercase;font-family:ui-monospace,monospace;backdrop-filter:blur(2px);">
-      <span style="width:7px;height:7px;border-radius:50%;background:#34d399;box-shadow:0 0 8px #34d399;display:inline-block;"></span>
+    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold mb-8 border" style="background:rgba(0,0,0,0.45);border-color:rgba(129,140,248,0.3);color:#a5b4fc;letter-spacing:0.16em;text-transform:uppercase;font-family:ui-monospace,monospace;backdrop-filter:blur(2px);">
+      <span style="width:7px;height:7px;border-radius:50%;background:#818cf8;box-shadow:0 0 8px #818cf8;display:inline-block;"></span>
       AI Security · partner tecnológico
     </div>
 
     <!-- Titular desencriptable -->
     <div id="fus-h1" aria-hidden="true" class="font-black tracking-tight" style="font-size:clamp(2.1rem,7vw,4.6rem);line-height:1.04;color:#eaf2ff;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;text-shadow:0 2px 40px rgba(3,6,13,0.95),0 0 70px rgba(3,6,13,0.9);">
       <span class="fus-line" data-text="TODO"></span>
-      <span class="fus-line" data-text="CONECTADO"></span>
+      <span class="fus-line" data-text="BAJO CONTROL"></span>
     </div>
 
     <!-- Rotor -->
     <p class="mt-6 font-bold" style="font-size:clamp(1.05rem,3vw,1.7rem);font-family:ui-monospace,monospace;color:#94a3b8;text-shadow:0 2px 24px rgba(3,6,13,0.95);">
-      <span style="color:#5eead4;">&gt;</span> todo
-      <span id="fus-rotor" style="color:#34d399;"></span><span id="fus-caret" style="display:inline-block;width:0.55ch;height:1.05em;background:#34d399;vertical-align:text-bottom;margin-left:2px;animation:fusBlink 1s step-end infinite;"></span>
+      <span style="color:#60a5fa;">&gt;</span> todo
+      <span id="fus-rotor" style="color:#a78bfa;"></span><span id="fus-caret" style="display:inline-block;width:0.55ch;height:1.05em;background:#818cf8;vertical-align:text-bottom;margin-left:2px;animation:fusBlink 1s step-end infinite;"></span>
     </p>
 
     <p class="mx-auto mt-7" style="max-width:40rem;font-size:clamp(0.98rem,2.2vw,1.18rem);line-height:1.6;color:rgba(220,232,255,0.66);text-shadow:0 1px 20px rgba(3,6,13,0.95);">
@@ -43,7 +43,7 @@
     </p>
 
     <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3" style="pointer-events:auto;">
-      <a href="/reunion" id="fus-cta" style="display:inline-flex;align-items:center;gap:0.6rem;background:#34d399;color:#05120b;font-weight:800;padding:0.95rem 2rem;border-radius:0.7rem;text-decoration:none;font-family:ui-monospace,monospace;font-size:0.95rem;cursor:pointer;box-shadow:0 10px 36px -8px rgba(52,211,153,0.55);transition:transform .2s,box-shadow .2s;">
+      <a href="/reunion" id="fus-cta" style="display:inline-flex;align-items:center;gap:0.6rem;background:linear-gradient(135deg,#2563eb 0%,#7c3aed 100%);color:#fff;font-weight:800;padding:0.95rem 2rem;border-radius:0.7rem;text-decoration:none;font-family:ui-monospace,monospace;font-size:0.95rem;cursor:pointer;box-shadow:0 10px 36px -8px rgba(99,102,241,0.6);transition:transform .2s,box-shadow .2s;">
         Solicitar consulta gratuita
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
       </a>
@@ -71,8 +71,8 @@
   #fus-scan { animation:fusScan 8s linear infinite 1.5s; }
   #fus-h1 .fus-line { display:block; }
   #fus-h1 .fus-char { display:inline-block; transition:color .12s; }
-  #fus-h1 .fus-char.scrambling { color:#34d399; text-shadow:0 0 14px rgba(52,211,153,0.7); }
-  #fus-cta:hover { transform:translateY(-2px);box-shadow:0 14px 46px -8px rgba(52,211,153,0.85); }
+  #fus-h1 .fus-char.scrambling { color:#a78bfa; text-shadow:0 0 14px rgba(167,139,250,0.7); }
+  #fus-cta:hover { transform:translateY(-2px);box-shadow:0 14px 46px -8px rgba(124,58,237,0.7); }
   #fus-ghost:hover { color:#fff;border-color:rgba(255,255,255,0.3);background:rgba(255,255,255,0.04); }
   @media (max-width:640px){ #fus-hero{ cursor:auto; } #fus-cursor{ display:none; } }
 </style>
@@ -92,24 +92,42 @@
   let mx=-9999,my=-9999,hasPointer=false,t=0;
 
   type Kind='ia'|'cyber'|'system'|'auto'|'node'|'alert';
-  const COLORS:Record<Kind,string>={ ia:'#60a5fa', cyber:'#34d399', system:'#a78bfa', auto:'#fbbf24', node:'#5b7290', alert:'#ff5564' };
+  const COLORS:Record<Kind,string>={ ia:'#60a5fa', cyber:'#818cf8', system:'#a78bfa', auto:'#c084fc', node:'#5b7290', alert:'#ff5564' };
   interface N{ x:number;y:number;r:number;kind:Kind;label?:string;phase:number;vx:number;vy:number; }
   let nodes:N[]=[]; let links:[number,number][]=[];
 
   function build(){
     nodes=[]; links=[];
-    const hubs:{kind:Kind;label:string;fx:number;fy:number}[]=[
-      { kind:'ia',     label:'IA',             fx:0.18, fy:0.26 },
-      { kind:'cyber',  label:'Ciberseguridad', fx:0.82, fy:0.24 },
-      { kind:'system', label:'Sistemas',       fx:0.14, fy:0.78 },
-      { kind:'auto',   label:'Automatización', fx:0.86, fy:0.80 },
+    // Servicios reales agrupados por área (cuadrantes)
+    const SERVICES:{kind:Kind;label:string;fx:number;fy:number}[]=[
+      // IA — arriba izquierda
+      { kind:'ia',     label:'Chatbot IA',          fx:0.13, fy:0.22 },
+      { kind:'ia',     label:'Gestor documental',   fx:0.27, fy:0.34 },
+      { kind:'ia',     label:'Llamadas IA · ATC',   fx:0.10, fy:0.43 },
+      { kind:'ia',     label:'Gestor de citas',     fx:0.31, fy:0.15 },
+      // Ciberseguridad — arriba derecha
+      { kind:'cyber',  label:'Wazuh · SIEM',        fx:0.88, fy:0.20 },
+      { kind:'cyber',  label:'Cumplimiento ENS',    fx:0.71, fy:0.31 },
+      { kind:'cyber',  label:'Antispam',            fx:0.92, fy:0.42 },
+      // Sistemas — abajo izquierda
+      { kind:'system', label:'Email Microsoft 365', fx:0.14, fy:0.72 },
+      { kind:'system', label:'Copias de seguridad', fx:0.30, fy:0.84 },
+      { kind:'system', label:'Servidores',          fx:0.07, fy:0.60 },
+      { kind:'system', label:'Soporte remoto',      fx:0.32, fy:0.66 },
+      // Automatización — abajo derecha
+      { kind:'auto',   label:'Automatización',      fx:0.88, fy:0.82 },
+      { kind:'auto',   label:'Informes',            fx:0.71, fy:0.70 },
+      { kind:'auto',   label:'Integraciones',       fx:0.92, fy:0.60 },
     ];
-    hubs.forEach(h=>nodes.push({ x:h.fx*W, y:h.fy*H, r:13, kind:h.kind, label:h.label, phase:Math.random()*6.28, vx:0, vy:0 }));
-    const SMALL=Math.round((W*H)/42000);
+    SERVICES.forEach(s=>nodes.push({ x:s.fx*W, y:s.fy*H, r:9, kind:s.kind, label:s.label, phase:Math.random()*6.28, vx:0, vy:0 }));
+    const NLAB=nodes.length;
+    const SMALL=Math.round((W*H)/34000);
     for(let i=0;i<SMALL;i++) nodes.push({ x:Math.random()*W, y:Math.random()*H, r:Math.random()*2.2+2.2, kind:'node', phase:Math.random()*6.28, vx:(Math.random()-0.5)*0.18, vy:(Math.random()-0.5)*0.18 });
     for(let i=0;i<5;i++) nodes.push({ x:Math.random()*W, y:(0.15+Math.random()*0.7)*H, r:6, kind:'alert', label:'⚠ amenaza', phase:Math.random()*6.28, vx:0, vy:0 });
-    for(let i=4;i<nodes.length;i++){ let best=-1,bd=1e9; for(let h=0;h<4;h++){ const dx=nodes[i].x-nodes[h].x,dy=nodes[i].y-nodes[h].y; const d=dx*dx+dy*dy; if(d<bd){bd=d;best=h;} } if(best>=0&&bd<(W*0.42)*(W*0.42)) links.push([i,best]); }
-    for(let i=4;i<nodes.length;i++) for(let j=i+1;j<nodes.length;j++){ const dx=nodes[i].x-nodes[j].x,dy=nodes[i].y-nodes[j].y; if(dx*dx+dy*dy<130*130&&Math.random()<0.5) links.push([i,j]); }
+    // cada nodo pequeño/alerta se une al servicio más cercano
+    for(let i=NLAB;i<nodes.length;i++){ let best=-1,bd=1e9; for(let h=0;h<NLAB;h++){ const dx=nodes[i].x-nodes[h].x,dy=nodes[i].y-nodes[h].y; const d=dx*dx+dy*dy; if(d<bd){bd=d;best=h;} } if(best>=0&&bd<(W*0.32)*(W*0.32)) links.push([i,best]); }
+    // vecinos cercanos
+    for(let i=NLAB;i<nodes.length;i++) for(let j=i+1;j<nodes.length;j++){ const dx=nodes[i].x-nodes[j].x,dy=nodes[i].y-nodes[j].y; if(dx*dx+dy*dy<120*120&&Math.random()<0.5) links.push([i,j]); }
   }
   function resize(){ W=section.clientWidth; H=section.clientHeight; canvas.width=lit.width=W*DPR; canvas.height=lit.height=H*DPR; canvas.style.width=lit.style.width=W+'px'; canvas.style.height=lit.style.height=H+'px'; ctx.setTransform(DPR,0,0,DPR,0,0); lctx.setTransform(DPR,0,0,DPR,0,0); build(); }
   function hexA(hex:string,a:number){ const r=parseInt(hex.slice(1,3),16),g=parseInt(hex.slice(3,5),16),b=parseInt(hex.slice(5,7),16); return `rgba(${r},${g},${b},${a})`; }
@@ -126,7 +144,7 @@
   const R=185;
   function frame(){
     t++;
-    for(let i=4;i<nodes.length;i++){ const n=nodes[i]; if(n.kind==='node'){ n.x+=n.vx; n.y+=n.vy; if(n.x<0||n.x>W)n.vx*=-1; if(n.y<0||n.y>H)n.vy*=-1; } }
+    for(const n of nodes){ if(n.kind==='node'){ n.x+=n.vx; n.y+=n.vy; if(n.x<0||n.x>W)n.vx*=-1; if(n.y<0||n.y>H)n.vy*=-1; } }
     if(!hasPointer){ mx=W*(0.5+0.32*Math.sin(t*0.011)); my=H*(0.55+0.24*Math.sin(t*0.019+1.5)); }
     ctx.clearRect(0,0,W,H); ctx.globalAlpha=0.16; drawNetwork(ctx,false); ctx.globalAlpha=1;
     lctx.clearRect(0,0,W,H); drawNetwork(lctx,true);
@@ -153,9 +171,10 @@
   const h1=document.getElementById('fus-h1') as HTMLElement;
   const rotor=document.getElementById('fus-rotor') as HTMLElement;
   const allChars:{el:HTMLElement;final:string}[]=[];
-  (Array.from(h1.querySelectorAll('.fus-line')) as HTMLElement[]).forEach(line=>{ const text=line.getAttribute('data-text')||''; line.textContent=''; for(const ch of text){ const s=document.createElement('span'); s.className='fus-char'; s.textContent=rnd(); s.dataset.final=ch; line.appendChild(s); allChars.push({el:s,final:ch}); } });
+  (Array.from(h1.querySelectorAll('.fus-line')) as HTMLElement[]).forEach(line=>{ const text=line.getAttribute('data-text')||''; line.textContent=''; for(const ch of text){ const s=document.createElement('span'); s.className='fus-char'; if(ch===' '){ s.innerHTML='&nbsp;'; line.appendChild(s); continue; } s.textContent=rnd(); s.dataset.final=ch; line.appendChild(s); allChars.push({el:s,final:ch}); } });
 
-  async function decryptIn(){ for(let i=0;i<allChars.length;i++){ const {el,final}=allChars[i]; el.classList.add('scrambling'); for(let c=0;c<10;c++){ el.textContent=rnd(); await wait(26); } el.textContent=final; el.classList.remove('scrambling'); } }
+  // Descifrado rápido: revela varios caracteres a la vez para poder leer enseguida
+  async function decryptIn(){ const STEP=3; for(let i=0;i<allChars.length;i+=STEP){ for(let g=0;g<STEP&&i+g<allChars.length;g++) allChars[i+g].el.classList.add('scrambling'); for(let c=0;c<4;c++){ for(let g=0;g<STEP&&i+g<allChars.length;g++) allChars[i+g].el.textContent=rnd(); await wait(12); } for(let g=0;g<STEP&&i+g<allChars.length;g++){ const {el,final}=allChars[i+g]; el.textContent=final; el.classList.remove('scrambling'); } } }
 
   let lastGlitch=0;
   h1.addEventListener('mousemove',(e)=>{ const now=t; if(now-lastGlitch<1) return; lastGlitch=now;
