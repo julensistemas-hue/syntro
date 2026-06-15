@@ -1,0 +1,307 @@
+- generic [ref=e2]:
+  - generic [ref=e3]:
+    - link "Skip to content" [ref=e4] [cursor=pointer]:
+      - /url: "#start-of-content"
+    - banner "Global Navigation Menu" [ref=e8]:
+      - generic [ref=e9]:
+        - generic [ref=e10]:
+          - button "Open menu" [ref=e12] [cursor=pointer]:
+            - img [ref=e13]
+          - link "Homepage (g then d)" [ref=e15] [cursor=pointer]:
+            - /url: /
+            - img [ref=e16]
+        - generic [ref=e18]:
+          - navigation "Breadcrumbs" [ref=e19]:
+            - list [ref=e20]:
+              - listitem [ref=e21]:
+                - link "julensistemas-hue" [ref=e22] [cursor=pointer]:
+                  - /url: /julensistemas-hue
+                  - generic [ref=e23]: julensistemas-hue
+              - listitem [ref=e24]:
+                - link "syntro" [ref=e25] [cursor=pointer]:
+                  - /url: /julensistemas-hue/syntro
+                  - generic [ref=e26]: syntro
+          - button "Search or jump to… (forward slash)" [ref=e27] [cursor=pointer]:
+            - img [ref=e28]
+        - generic [ref=e30]:
+          - generic [ref=e31]:
+            - generic [ref=e34]:
+              - link "Chat with Copilot" [ref=e36] [cursor=pointer]:
+                - /url: /copilot
+                - img [ref=e37]
+              - button "Open Copilot…" [ref=e41] [cursor=pointer]:
+                - generic:
+                  - img
+            - button "Create new..." [ref=e43] [cursor=pointer]:
+              - generic [ref=e44]:
+                - generic:
+                  - img
+              - generic:
+                - img
+            - generic [ref=e45]:
+              - link "All issues" [ref=e46] [cursor=pointer]:
+                - /url: /issues
+                - img [ref=e47]
+              - link "All pull requests" [ref=e50] [cursor=pointer]:
+                - /url: /pulls
+                - img [ref=e51]
+              - link "All repositories" [ref=e53] [cursor=pointer]:
+                - /url: /repos
+                - img [ref=e54]
+          - link "You have no unread notifications (g then n)" [ref=e56] [cursor=pointer]:
+            - /url: /notifications
+            - img [ref=e57]
+          - button "Open user navigation menu" [ref=e60] [cursor=pointer]:
+            - img "User avatar" [ref=e61]
+      - heading "Repository navigation" [level=2] [ref=e62]
+      - navigation "Repository" [ref=e63]:
+        - list [ref=e64]:
+          - listitem [ref=e65]:
+            - link "Code" [ref=e66] [cursor=pointer]:
+              - /url: /julensistemas-hue/syntro
+              - img [ref=e68]
+              - generic [ref=e70]: Code
+          - listitem [ref=e71]:
+            - link "Issues" [ref=e72] [cursor=pointer]:
+              - /url: /julensistemas-hue/syntro/issues
+              - img [ref=e74]
+              - generic [ref=e77]: Issues
+          - listitem [ref=e78]:
+            - link "Pull requests" [ref=e79] [cursor=pointer]:
+              - /url: /julensistemas-hue/syntro/pulls
+              - img [ref=e81]
+              - generic [ref=e83]: Pull requests
+          - listitem [ref=e84]:
+            - link "Actions" [ref=e85] [cursor=pointer]:
+              - /url: /julensistemas-hue/syntro/actions
+              - img [ref=e87]
+              - generic [ref=e89]: Actions
+          - listitem [ref=e90]:
+            - link "Projects" [ref=e91] [cursor=pointer]:
+              - /url: /julensistemas-hue/syntro/projects
+              - img [ref=e93]
+              - generic [ref=e95]: Projects
+          - listitem [ref=e96]:
+            - link "Security and quality" [ref=e97] [cursor=pointer]:
+              - /url: /julensistemas-hue/syntro/security
+              - img [ref=e99]
+              - generic [ref=e101]: Security and quality
+          - listitem [ref=e102]:
+            - link "Insights" [ref=e103] [cursor=pointer]:
+              - /url: /julensistemas-hue/syntro/pulse
+              - img [ref=e105]
+              - generic [ref=e107]: Insights
+          - listitem [ref=e108]:
+            - link "Settings" [ref=e109] [cursor=pointer]:
+              - /url: /julensistemas-hue/syntro/settings
+              - img [ref=e111]
+              - generic [ref=e113]: Settings
+  - main [ref=e116]:
+    - generic [ref=e118]:
+      - 'heading "Settings: julensistemas-hue/syntro" [level=1] [ref=e119]'
+      - generic [ref=e121]:
+        - navigation "General settings" [ref=e124]:
+          - list [ref=e126]:
+            - listitem [ref=e127]:
+              - link "General" [ref=e128] [cursor=pointer]:
+                - /url: /julensistemas-hue/syntro/settings
+                - generic:
+                  - img
+                - generic [ref=e129]: General
+            - listitem [ref=e130]
+            - listitem [ref=e131]:
+              - generic [ref=e134]:
+                - heading "Access" [level=2] [ref=e136]
+                - list "Access" [ref=e137]:
+                  - listitem [ref=e138]:
+                    - link "Collaborators" [ref=e139] [cursor=pointer]:
+                      - /url: /julensistemas-hue/syntro/settings/access
+                      - generic:
+                        - img
+                      - generic [ref=e140]: Collaborators
+                  - listitem [ref=e141]:
+                    - button "Moderation options" [ref=e142] [cursor=pointer]:
+                      - generic:
+                        - img
+                      - generic [ref=e143]: Moderation options
+                      - generic:
+                        - img
+            - listitem [ref=e144]
+            - listitem [ref=e145]:
+              - generic [ref=e148]:
+                - heading "Code and automation" [level=2] [ref=e150]
+                - list "Code and automation" [ref=e151]:
+                  - listitem [ref=e152]:
+                    - link "Branches" [ref=e153] [cursor=pointer]:
+                      - /url: /julensistemas-hue/syntro/settings/branches
+                      - generic:
+                        - img
+                      - generic [ref=e154]: Branches
+                  - listitem [ref=e155]:
+                    - link "Tags" [ref=e156] [cursor=pointer]:
+                      - /url: /julensistemas-hue/syntro/settings/tag_protection
+                      - generic:
+                        - img
+                      - generic [ref=e157]: Tags
+                  - listitem [ref=e158]:
+                    - button "Rules" [ref=e159] [cursor=pointer]:
+                      - generic:
+                        - img
+                      - generic [ref=e160]: Rules
+                      - generic:
+                        - img
+                  - listitem [ref=e161]:
+                    - button "Actions" [ref=e162] [cursor=pointer]:
+                      - generic:
+                        - img
+                      - generic [ref=e163]: Actions
+                      - generic:
+                        - img
+                  - listitem [ref=e164]:
+                    - link "Models Preview feature" [ref=e165] [cursor=pointer]:
+                      - /url: /julensistemas-hue/syntro/settings/models/access-policy
+                      - generic:
+                        - img
+                      - generic [ref=e166]: Models
+                      - generic:
+                        - generic "Preview feature": Preview
+                  - listitem [ref=e167]:
+                    - link "Webhooks" [ref=e168] [cursor=pointer]:
+                      - /url: /julensistemas-hue/syntro/settings/hooks
+                      - generic:
+                        - img
+                      - generic [ref=e169]: Webhooks
+                  - listitem [ref=e170]:
+                    - button "Copilot" [ref=e171] [cursor=pointer]:
+                      - generic:
+                        - img
+                      - generic [ref=e172]: Copilot
+                      - generic:
+                        - img
+                  - listitem [ref=e173]:
+                    - link "Environments" [ref=e174] [cursor=pointer]:
+                      - /url: /julensistemas-hue/syntro/settings/environments
+                      - generic:
+                        - img
+                      - generic [ref=e175]: Environments
+                  - listitem [ref=e176]:
+                    - link "Codespaces" [ref=e177] [cursor=pointer]:
+                      - /url: /julensistemas-hue/syntro/settings/codespaces
+                      - generic:
+                        - img
+                      - generic [ref=e178]: Codespaces
+                  - listitem [ref=e179]:
+                    - link "Pages" [ref=e180] [cursor=pointer]:
+                      - /url: /julensistemas-hue/syntro/settings/pages
+                      - generic:
+                        - img
+                      - generic [ref=e181]: Pages
+            - listitem [ref=e182]
+            - listitem [ref=e183]:
+              - generic [ref=e186]:
+                - heading "Security and quality" [level=2] [ref=e188]
+                - list "Security and quality" [ref=e189]:
+                  - listitem [ref=e190]:
+                    - link "Advanced Security" [ref=e191] [cursor=pointer]:
+                      - /url: /julensistemas-hue/syntro/settings/security_analysis
+                      - generic:
+                        - img
+                      - generic [ref=e192]: Advanced Security
+                  - listitem [ref=e193]:
+                    - link "Deploy keys" [ref=e194] [cursor=pointer]:
+                      - /url: /julensistemas-hue/syntro/settings/keys
+                      - generic:
+                        - img
+                      - generic [ref=e195]: Deploy keys
+                  - listitem [ref=e196]:
+                    - button "Secrets and variables" [expanded] [ref=e197] [cursor=pointer]:
+                      - generic:
+                        - img
+                      - generic [ref=e198]: Secrets and variables
+                      - generic:
+                        - img
+                    - list "Secrets and variables" [ref=e199]:
+                      - listitem [ref=e200]:
+                        - link "Actions" [ref=e201] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/settings/secrets/actions
+                          - generic [ref=e202]: Actions
+                      - listitem [ref=e203]:
+                        - link "Agents" [ref=e204] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/settings/secrets/agents
+                          - generic [ref=e205]: Agents
+                      - listitem [ref=e206]:
+                        - link "Codespaces" [ref=e207] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/settings/secrets/codespaces
+                          - generic [ref=e208]: Codespaces
+                      - listitem [ref=e209]:
+                        - link "Dependabot" [ref=e210] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/settings/secrets/dependabot
+                          - generic [ref=e211]: Dependabot
+            - listitem [ref=e212]
+            - listitem [ref=e213]:
+              - generic [ref=e216]:
+                - heading "Integrations" [level=2] [ref=e218]
+                - list "Integrations" [ref=e219]:
+                  - listitem [ref=e220]:
+                    - link "GitHub Apps" [ref=e221] [cursor=pointer]:
+                      - /url: /julensistemas-hue/syntro/settings/installations
+                      - generic:
+                        - img
+                      - generic [ref=e222]: GitHub Apps
+                  - listitem [ref=e223]:
+                    - link "Email notifications" [ref=e224] [cursor=pointer]:
+                      - /url: /julensistemas-hue/syntro/settings/notifications
+                      - generic:
+                        - img
+                      - generic [ref=e225]: Email notifications
+        - generic [ref=e228]:
+          - heading "Actions secrets / New secret" [level=2] [ref=e230]:
+            - link "Actions secrets" [ref=e231] [cursor=pointer]:
+              - /url: /julensistemas-hue/syntro/settings/secrets/actions
+            - text: / New secret
+          - generic [ref=e233]:
+            - generic [ref=e235]:
+              - generic [ref=e236]: Name *
+              - textbox "Name" [ref=e238]:
+                - /placeholder: YOUR_SECRET_NAME
+            - generic [ref=e241]:
+              - generic [ref=e242]: Secret *
+              - textbox "Secret" [ref=e244]
+            - button "Add secret" [ref=e246] [cursor=pointer]:
+              - generic [ref=e248]: Add secret
+  - contentinfo [ref=e249]:
+    - heading "Footer" [level=2] [ref=e250]
+    - generic [ref=e251]:
+      - generic [ref=e252]:
+        - link "GitHub Homepage" [ref=e253] [cursor=pointer]:
+          - /url: https://github.com
+          - img [ref=e254]
+        - generic [ref=e256]: © 2026 GitHub, Inc.
+      - navigation "Footer" [ref=e257]:
+        - heading "Footer navigation" [level=3] [ref=e258]
+        - list "Footer navigation" [ref=e259]:
+          - listitem [ref=e260]:
+            - link "Terms" [ref=e261] [cursor=pointer]:
+              - /url: https://docs.github.com/site-policy/github-terms/github-terms-of-service
+          - listitem [ref=e262]:
+            - link "Privacy" [ref=e263] [cursor=pointer]:
+              - /url: https://docs.github.com/site-policy/privacy-policies/github-privacy-statement
+          - listitem [ref=e264]:
+            - link "Security" [ref=e265] [cursor=pointer]:
+              - /url: https://github.com/security
+          - listitem [ref=e266]:
+            - link "Status" [ref=e267] [cursor=pointer]:
+              - /url: https://www.githubstatus.com/
+          - listitem [ref=e268]:
+            - link "Community" [ref=e269] [cursor=pointer]:
+              - /url: https://github.community/
+          - listitem [ref=e270]:
+            - link "Docs" [ref=e271] [cursor=pointer]:
+              - /url: https://docs.github.com/
+          - listitem [ref=e272]:
+            - link "Contact" [ref=e273] [cursor=pointer]:
+              - /url: https://support.github.com?tags=dotcom-footer
+          - listitem [ref=e274]:
+            - button "Manage cookies" [ref=e276] [cursor=pointer]
+          - listitem [ref=e277]:
+            - button "Do not share my personal information" [ref=e279] [cursor=pointer]

@@ -1,0 +1,365 @@
+- generic [ref=e1]:
+  - generic [ref=e7]:
+    - generic [ref=e8]:
+      - complementary [ref=e625]:
+        - link [ref=e626] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e11]: Ir al contenido principal
+        - button [ref=e627]:
+          - generic [ref=e13]: Combinación de teclas para acceso directo
+        - link [ref=e628] [cursor=pointer]:
+          - /url: https://cloud.google.com/docs/accessibility?hl=es_419
+          - generic [ref=e15]:
+            - text: Ayuda sobre la accesibilidad
+            - img [ref=e630]:
+              - img [ref=e18]
+        - link [ref=e631] [cursor=pointer]:
+          - /url: https://support.google.com/accessibility/contact/feedback?hl=es_419
+          - generic [ref=e21]:
+            - text: Comentarios sobre accesibilidad
+            - img [ref=e633]:
+              - img [ref=e24]
+      - banner [ref=e27]:
+        - generic [ref=e28]:
+          - navigation [ref=e31]:
+            - button [ref=e634] [cursor=pointer]:
+              - img [ref=e34]
+          - link [ref=e635] [cursor=pointer]:
+            - /url: /
+            - generic:
+              - img
+          - button [ref=e636]:
+            - generic [ref=e235]:
+              - img [ref=e237]
+              - generic [ref=e240]: julensistemas
+        - button [ref=e637] [cursor=pointer]:
+          - img [ref=e53]
+        - generic [ref=e55]:
+          - generic [ref=e56]:
+            - button [ref=e638] [cursor=pointer]:
+              - img [ref=e246]
+            - button [ref=e639] [cursor=pointer]:
+              - img [ref=e253]
+            - button [ref=e640] [cursor=pointer]:
+              - img [ref=e257]
+            - button [ref=e641] [cursor=pointer]:
+              - img [ref=e65]
+            - button [ref=e642] [cursor=pointer]:
+              - img [ref=e73]
+          - button [ref=e643]:
+            - img [ref=e262]
+    - generic [ref=e97]:
+      - navigation [ref=e644]:
+        - generic [ref=e105]:
+          - heading [level=2] [ref=e645]:
+            - link [ref=e646] [cursor=pointer]:
+              - /url: /apis
+              - img [ref=e111]
+              - generic [ref=e115]: APIs y servicios
+          - list [ref=e647]:
+            - listitem [ref=e120]:
+              - generic [ref=e123]:
+                - link [ref=e648] [cursor=pointer]:
+                  - /url: /apis/dashboard
+                  - generic [ref=e125]:
+                    - img [ref=e128]
+                    - generic [ref=e130]: APIs y servicios habilitados
+                - button [ref=e649] [cursor=pointer]:
+                  - img [ref=e134]
+            - listitem [ref=e136]:
+              - generic [ref=e139]:
+                - link [ref=e650] [cursor=pointer]:
+                  - /url: /apis/library
+                  - generic [ref=e141]:
+                    - img [ref=e144]
+                    - generic [ref=e146]: Biblioteca
+                - button [ref=e651] [cursor=pointer]:
+                  - img [ref=e150]
+            - listitem [ref=e152]:
+              - generic [ref=e155]:
+                - link [ref=e652] [cursor=pointer]:
+                  - /url: /apis/credentials
+                  - generic [ref=e157]:
+                    - img [ref=e160]
+                    - generic [ref=e162]: Credenciales
+                - button [ref=e653] [cursor=pointer]:
+                  - img [ref=e166]
+            - listitem [ref=e168]:
+              - generic [ref=e171]:
+                - link [ref=e654] [cursor=pointer]:
+                  - /url: /apis/credentials/consent
+                  - generic [ref=e173]:
+                    - img [ref=e176]
+                    - generic [ref=e178]: Pantalla de consentimiento de OAuth
+                - button [ref=e655] [cursor=pointer]:
+                  - img [ref=e182]
+            - listitem [ref=e184]:
+              - generic [ref=e187]:
+                - link [ref=e656] [cursor=pointer]:
+                  - /url: /apis/agreements
+                  - generic [ref=e189]:
+                    - img [ref=e192]
+                    - generic [ref=e195]: Acuerdos de uso de páginas
+                - button [ref=e657] [cursor=pointer]:
+                  - img [ref=e199]
+          - button [pressed] [ref=e658] [cursor=pointer]:
+            - img [ref=e205]
+      - main [ref=e208]:
+        - generic [ref=e268]:
+          - generic [ref=e271]:
+            - heading [level=1] [ref=e659]:
+              - generic [ref=e275]: Credenciales
+            - generic [ref=e278]:
+              - generic [ref=e280]:
+                - button [ref=e660]:
+                  - generic [ref=e283]:
+                    - img [ref=e285]:
+                      - img [ref=e286]
+                    - text: Crear credenciales
+                  - img [ref=e289]
+                - button [disabled] [ref=e661]:
+                  - img [ref=e295]:
+                    - img [ref=e296]
+                  - generic [ref=e298]: Borrar
+              - button [ref=e662] [cursor=pointer]:
+                - img [ref=e302]:
+                  - img [ref=e303]
+          - generic [ref=e312]:
+            - paragraph [ref=e314]:
+              - text: Crea credenciales para acceder a tus API habilitadas.
+              - link [ref=e663] [cursor=pointer]:
+                - /url: https://cloud.google.com/docs/authentication?hl=es_419
+                - text: Más información
+                - img [ref=e664]:
+                  - img [ref=e317]
+            - generic [ref=e319]:
+              - heading [level=2] [ref=e665]: Claves de API
+              - grid [ref=e666]:
+                - rowgroup [ref=e334]:
+                  - row [ref=e667] [cursor=pointer]:
+                    - gridcell [ref=e668]:
+                      - checkbox [ref=e669]
+                    - columnheader [ref=e670]:
+                      - img [ref=e342]
+                    - columnheader [ref=e671]:
+                      - generic [ref=e346]:
+                        - generic [ref=e347]: Nombre
+                        - button [ref=e672]:
+                          - img [ref=e350]
+                    - columnheader [ref=e673]:
+                      - generic [ref=e354]:
+                        - generic [ref=e355]:
+                          - text: Bound account
+                          - button [ref=e674]:
+                            - img [ref=e359]
+                        - button [ref=e675]:
+                          - img [ref=e363]
+                    - columnheader [ref=e676]:
+                      - generic [ref=e367]:
+                        - generic [ref=e368]: Fecha de creación
+                        - button [ref=e677]:
+                          - img [ref=e371]
+                    - columnheader [ref=e678]:
+                      - generic [ref=e375]:
+                        - generic [ref=e376]: Restricciones
+                        - button [ref=e679]:
+                          - img [ref=e379]
+                    - columnheader [ref=e680]:
+                      - generic [ref=e383]: Acciones
+                - rowgroup [ref=e384]:
+                  - row [ref=e681] [cursor=pointer]:
+                    - gridcell [ref=e682]:
+                      - checkbox [ref=e683]
+                    - gridcell [ref=e684]:
+                      - img [ref=e685]:
+                        - img [ref=e393]
+                    - rowheader [ref=e686]:
+                      - link [ref=e687]:
+                        - /url: /apis/credentials/key/37ed30b0-90d1-462a-a8ae-ba58d1358966?project=julensistemas
+                        - text: pagespeed autom
+                    - gridcell [ref=e688]: —
+                    - gridcell [ref=e689]: 1 dic 2025
+                    - gridcell [ref=e690]:
+                      - generic [ref=e401]: —
+                    - gridcell [ref=e691]:
+                      - button [ref=e692]:
+                        - generic [ref=e407]: Mostrar clave
+                      - button [ref=e693]:
+                        - img [ref=e412]:
+                          - img [ref=e413]
+            - generic [ref=e415]:
+              - heading [level=2] [ref=e694]: IDs de clientes de OAuth 2.0
+              - grid [ref=e695]:
+                - rowgroup [ref=e429]:
+                  - row [ref=e696] [cursor=pointer]:
+                    - gridcell [ref=e697]:
+                      - checkbox [ref=e698]
+                    - columnheader [ref=e699]:
+                      - generic [ref=e435]:
+                        - generic [ref=e436]: Nombre
+                        - button [ref=e700]:
+                          - img [ref=e439]
+                    - columnheader [ref=e701]:
+                      - generic [ref=e443]:
+                        - generic [ref=e444]: Fecha de creación
+                        - button [ref=e702]:
+                          - img [ref=e447]
+                    - columnheader [ref=e703]:
+                      - generic [ref=e451]:
+                        - generic [ref=e452]: Tipo
+                        - button [ref=e704]:
+                          - img [ref=e455]
+                    - columnheader [ref=e705]:
+                      - generic [ref=e459]:
+                        - generic [ref=e460]: ID de cliente
+                        - button [ref=e706]:
+                          - img [ref=e463]
+                    - columnheader [ref=e707]:
+                      - generic [ref=e467]: Acciones
+                - rowgroup [ref=e468]:
+                  - row [ref=e708] [cursor=pointer]:
+                    - gridcell [ref=e709]:
+                      - checkbox [ref=e710]
+                    - rowheader [ref=e711]:
+                      - img [ref=e713]:
+                        - img [ref=e477]
+                      - link [ref=e714]:
+                        - /url: /apis/credentials/oauthclient/858300829489-a3dcnqvdnt4kprmb0eoign0r85uenu85.apps.googleusercontent.com?project=julensistemas
+                        - text: aisecurity
+                    - gridcell [ref=e715]: 11 ene 2026
+                    - gridcell [ref=e716]: Escritorio
+                    - gridcell [ref=e717]:
+                      - code [ref=e483]: 858300829489-a3dc...
+                      - button [ref=e718]:
+                        - img [ref=e486]:
+                          - img [ref=e487]
+                    - gridcell [ref=e719]:
+                      - link [ref=e720]:
+                        - /url: /apis/credentials/oauthclient/858300829489-a3dcnqvdnt4kprmb0eoign0r85uenu85.apps.googleusercontent.com?project=julensistemas
+                        - img [ref=e492]:
+                          - img [ref=e493]
+                      - button [ref=e721]:
+                        - img [ref=e499]:
+                          - img [ref=e500]
+            - generic [ref=e502]:
+              - generic [ref=e503]:
+                - heading [level=2] [ref=e722]: Cuentas de servicio
+                - link [ref=e723] [cursor=pointer]:
+                  - /url: /iam-admin/serviceaccounts?project=julensistemas
+                  - text: Administrar cuentas de servicio
+              - grid [ref=e724]:
+                - rowgroup [ref=e518]:
+                  - row [ref=e725] [cursor=pointer]:
+                    - gridcell [ref=e726]:
+                      - checkbox [ref=e727]
+                    - columnheader [ref=e728]:
+                      - generic [ref=e524]:
+                        - generic [ref=e525]: Correo electrónico
+                        - button [ref=e729]:
+                          - img [ref=e528]
+                    - columnheader [ref=e730]:
+                      - generic [ref=e532]:
+                        - generic [ref=e533]: Nombre
+                        - button [ref=e731]:
+                          - img [ref=e536]
+                    - columnheader [ref=e732]:
+                      - generic [ref=e540]: Acciones
+                - rowgroup [ref=e541]:
+                  - row [ref=e733] [cursor=pointer]:
+                    - gridcell [ref=e734]:
+                      - checkbox [ref=e735]
+                    - gridcell [ref=e736]:
+                      - link [ref=e737]:
+                        - /url: /iam-admin/serviceaccounts/details/108684802400928483124;edit=true?previousPage=%2Fapis%2Fcredentials%3Fproject%3Djulensistemas&project=julensistemas
+                        - text: aisecurity-calenda@julensistemas.iam.gserviceaccount.com
+                    - rowheader [ref=e548]
+                    - gridcell [ref=e738]:
+                      - link [ref=e739]:
+                        - /url: /iam-admin/serviceaccounts/details/108684802400928483124;edit=true?previousPage=%2Fapis%2Fcredentials%3Fproject%3Djulensistemas&project=julensistemas
+                        - img [ref=e552]:
+                          - img [ref=e553]
+                      - button [ref=e740]:
+                        - img [ref=e559]:
+                          - img [ref=e560]
+                  - row [ref=e741] [cursor=pointer]:
+                    - gridcell [ref=e742]:
+                      - checkbox [ref=e743]
+                    - gridcell [ref=e744]:
+                      - link [ref=e745]:
+                        - /url: /iam-admin/serviceaccounts/details/102421116572219099725;edit=true?previousPage=%2Fapis%2Fcredentials%3Fproject%3Djulensistemas&project=julensistemas
+                        - text: blog-indexing-bot@julensistemas.iam.gserviceaccount.com
+                    - rowheader [ref=e746]: blog-indexing-bot
+                    - gridcell [ref=e747]:
+                      - link [ref=e748]:
+                        - /url: /iam-admin/serviceaccounts/details/102421116572219099725;edit=true?previousPage=%2Fapis%2Fcredentials%3Fproject%3Djulensistemas&project=julensistemas
+                        - img [ref=e572]:
+                          - img [ref=e573]
+                      - button [ref=e749]:
+                        - img [ref=e579]:
+                          - img [ref=e580]
+                  - row [ref=e750] [cursor=pointer]:
+                    - gridcell [ref=e751]:
+                      - checkbox [ref=e752]
+                    - gridcell [ref=e753]:
+                      - link [ref=e754]:
+                        - /url: /iam-admin/serviceaccounts/details/100044182591842194477;edit=true?previousPage=%2Fapis%2Fcredentials%3Fproject%3Djulensistemas&project=julensistemas
+                        - text: ga4-analytics-reporter@julensistemas.iam.gserviceaccount.com
+                    - rowheader [ref=e755]: ga4-analytics-reporter
+                    - gridcell [ref=e756]:
+                      - link [ref=e757]:
+                        - /url: /iam-admin/serviceaccounts/details/100044182591842194477;edit=true?previousPage=%2Fapis%2Fcredentials%3Fproject%3Djulensistemas&project=julensistemas
+                        - img [ref=e592]:
+                          - img [ref=e593]
+                      - button [ref=e758]:
+                        - img [ref=e599]:
+                          - img [ref=e600]
+                  - row [ref=e759] [cursor=pointer]:
+                    - gridcell [ref=e760]:
+                      - checkbox [ref=e761]
+                    - gridcell [ref=e762]:
+                      - link [ref=e763]:
+                        - /url: /iam-admin/serviceaccounts/details/100225573935800477146;edit=true?previousPage=%2Fapis%2Fcredentials%3Fproject%3Djulensistemas&project=julensistemas
+                        - text: seo-automation@julensistemas.iam.gserviceaccount.com
+                    - rowheader [ref=e764]: seo-automation
+                    - gridcell [ref=e765]:
+                      - link [ref=e766]:
+                        - /url: /iam-admin/serviceaccounts/details/100225573935800477146;edit=true?previousPage=%2Fapis%2Fcredentials%3Fproject%3Djulensistemas&project=julensistemas
+                        - img [ref=e612]:
+                          - img [ref=e613]
+                      - button [ref=e767]:
+                        - img [ref=e619]:
+                          - img [ref=e620]
+  - iframe [ref=e232]:
+    
+  - iframe [ref=e623]:
+    
+  - iframe [ref=e624]:
+    
+  - paragraph [ref=e768]: Cargando
+  - dialog "pagespeed autom" [ref=e772]:
+    - generic [ref=e775]:
+      - heading "pagespeed autom" [active] [level=1] [ref=e776]
+      - generic [ref=e777]:
+        - paragraph [ref=e778]:
+          - text: Para usar esta clave en tu aplicación, debes pasarla con el parámetro
+          - generic [ref=e779]: key=API_KEY
+          - text: .
+        - generic [ref=e784] [cursor=pointer]:
+          - generic [ref=e785]: Tu clave de API
+          - textbox "Tu clave de API" [ref=e787]: AIzaSyCZAowSSre6YHNtQ2t7CNGwGHm0wmljJe4
+          - button "Copiar clave" [ref=e792]:
+            - img [ref=e794]
+        - paragraph [ref=e796]:
+          - img [ref=e798]
+          - generic [ref=e800]:
+            - text: Esta clave no tiene restricciones. A fin de evitar el uso no autorizado, te recomendamos restringir dónde y para qué APIs se puede usar.
+            - link "Edita la clave de API" [ref=e801] [cursor=pointer]:
+              - /url: /apis/credentials/key/37ed30b0-90d1-462a-a8ae-ba58d1358966?project=julensistemas
+            - text: para agregar restricciones.
+            - link "Más información para restringir las claves de API externo, se abre en una ventana nueva" [ref=e802] [cursor=pointer]:
+              - /url: https://cloud.google.com/docs/authentication/api-keys?hl=es_419#securing
+              - text: Más información
+              - img "externo, se abre en una ventana nueva" [ref=e803]:
+                - img [ref=e804]
+      - button "Cerrar" [ref=e807]:
+        - generic [ref=e808]: Cerrar

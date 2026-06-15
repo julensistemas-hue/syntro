@@ -1,0 +1,431 @@
+- generic [ref=e2]:
+  - generic [ref=e3]:
+    - link "Skip to content" [ref=e4] [cursor=pointer]:
+      - /url: "#start-of-content"
+    - banner "Global Navigation Menu" [ref=e8]:
+      - generic [ref=e9]:
+        - generic [ref=e10]:
+          - button "Open menu" [ref=e12] [cursor=pointer]:
+            - img [ref=e13]
+          - link "Homepage (g then d)" [ref=e15] [cursor=pointer]:
+            - /url: /
+            - img [ref=e16]
+        - generic [ref=e18]:
+          - navigation "Breadcrumbs" [ref=e19]:
+            - list [ref=e20]:
+              - listitem [ref=e21]:
+                - link "julensistemas-hue" [ref=e22] [cursor=pointer]:
+                  - /url: /julensistemas-hue
+                  - generic [ref=e23]: julensistemas-hue
+              - listitem [ref=e24]:
+                - link "syntro" [ref=e25] [cursor=pointer]:
+                  - /url: /julensistemas-hue/syntro
+                  - generic [ref=e26]: syntro
+          - button "Search or jump to… (forward slash)" [ref=e27] [cursor=pointer]:
+            - img [ref=e28]
+        - generic [ref=e30]:
+          - generic [ref=e31]:
+            - generic [ref=e34]:
+              - link "Chat with Copilot" [ref=e36] [cursor=pointer]:
+                - /url: /copilot
+                - img [ref=e37]
+              - button "Open Copilot…" [ref=e41] [cursor=pointer]:
+                - generic:
+                  - img
+            - button "Create new..." [ref=e43] [cursor=pointer]:
+              - generic [ref=e44]:
+                - generic:
+                  - img
+              - generic:
+                - img
+            - generic [ref=e45]:
+              - link "All issues" [ref=e46] [cursor=pointer]:
+                - /url: /issues
+                - img [ref=e47]
+              - link "All pull requests" [ref=e50] [cursor=pointer]:
+                - /url: /pulls
+                - img [ref=e51]
+              - link "All repositories" [ref=e53] [cursor=pointer]:
+                - /url: /repos
+                - img [ref=e54]
+          - link "You have unread notifications (g then n)" [ref=e56] [cursor=pointer]:
+            - /url: /notifications
+            - img [ref=e57]
+          - button "Open user navigation menu" [ref=e60] [cursor=pointer]:
+            - img "User avatar" [ref=e61]
+      - heading "Repository navigation" [level=2] [ref=e62]
+      - navigation "Repository" [ref=e63]:
+        - list [ref=e64]:
+          - listitem [ref=e65]:
+            - link "Code" [ref=e66] [cursor=pointer]:
+              - /url: /julensistemas-hue/syntro
+              - img [ref=e68]
+              - generic [ref=e70]: Code
+          - listitem [ref=e71]:
+            - link "Issues" [ref=e72] [cursor=pointer]:
+              - /url: /julensistemas-hue/syntro/issues
+              - img [ref=e74]
+              - generic [ref=e77]: Issues
+          - listitem [ref=e78]:
+            - link "Pull requests" [ref=e79] [cursor=pointer]:
+              - /url: /julensistemas-hue/syntro/pulls
+              - img [ref=e81]
+              - generic [ref=e83]: Pull requests
+          - listitem [ref=e84]:
+            - link "Actions" [ref=e85] [cursor=pointer]:
+              - /url: /julensistemas-hue/syntro/actions
+              - img [ref=e87]
+              - generic [ref=e89]: Actions
+          - listitem [ref=e90]:
+            - link "Projects" [ref=e91] [cursor=pointer]:
+              - /url: /julensistemas-hue/syntro/projects
+              - img [ref=e93]
+              - generic [ref=e95]: Projects
+          - listitem [ref=e96]:
+            - link "Security and quality" [ref=e97] [cursor=pointer]:
+              - /url: /julensistemas-hue/syntro/security
+              - img [ref=e99]
+              - generic [ref=e101]: Security and quality
+          - listitem [ref=e102]:
+            - link "Insights" [ref=e103] [cursor=pointer]:
+              - /url: /julensistemas-hue/syntro/pulse
+              - img [ref=e105]
+              - generic [ref=e107]: Insights
+          - listitem [ref=e108]:
+            - link "Settings" [ref=e109] [cursor=pointer]:
+              - /url: /julensistemas-hue/syntro/settings
+              - img [ref=e111]
+              - generic [ref=e113]: Settings
+  - generic [ref=e117]:
+    - button "Dismiss this message" [active] [ref=e118] [cursor=pointer]:
+      - img [ref=e119]
+    - alert [ref=e121]: Repository secret added.
+  - main [ref=e124]:
+    - generic [ref=e126]:
+      - 'heading "Settings: julensistemas-hue/syntro" [level=1] [ref=e127]'
+      - generic [ref=e129]:
+        - navigation "General settings" [ref=e132]:
+          - list [ref=e134]:
+            - listitem [ref=e135]:
+              - link "General" [ref=e136] [cursor=pointer]:
+                - /url: /julensistemas-hue/syntro/settings
+                - generic:
+                  - img
+                - generic [ref=e137]: General
+            - listitem [ref=e138]
+            - listitem [ref=e139]:
+              - generic [ref=e142]:
+                - heading "Access" [level=2] [ref=e144]
+                - list "Access" [ref=e145]:
+                  - listitem [ref=e146]:
+                    - link "Collaborators" [ref=e147] [cursor=pointer]:
+                      - /url: /julensistemas-hue/syntro/settings/access
+                      - generic:
+                        - img
+                      - generic [ref=e148]: Collaborators
+                  - listitem [ref=e149]:
+                    - button "Moderation options" [ref=e150] [cursor=pointer]:
+                      - generic:
+                        - img
+                      - generic [ref=e151]: Moderation options
+                      - generic:
+                        - img
+            - listitem [ref=e152]
+            - listitem [ref=e153]:
+              - generic [ref=e156]:
+                - heading "Code and automation" [level=2] [ref=e158]
+                - list "Code and automation" [ref=e159]:
+                  - listitem [ref=e160]:
+                    - link "Branches" [ref=e161] [cursor=pointer]:
+                      - /url: /julensistemas-hue/syntro/settings/branches
+                      - generic:
+                        - img
+                      - generic [ref=e162]: Branches
+                  - listitem [ref=e163]:
+                    - link "Tags" [ref=e164] [cursor=pointer]:
+                      - /url: /julensistemas-hue/syntro/settings/tag_protection
+                      - generic:
+                        - img
+                      - generic [ref=e165]: Tags
+                  - listitem [ref=e166]:
+                    - button "Rules" [ref=e167] [cursor=pointer]:
+                      - generic:
+                        - img
+                      - generic [ref=e168]: Rules
+                      - generic:
+                        - img
+                  - listitem [ref=e169]:
+                    - button "Actions" [ref=e170] [cursor=pointer]:
+                      - generic:
+                        - img
+                      - generic [ref=e171]: Actions
+                      - generic:
+                        - img
+                  - listitem [ref=e172]:
+                    - link "Models Preview feature" [ref=e173] [cursor=pointer]:
+                      - /url: /julensistemas-hue/syntro/settings/models/access-policy
+                      - generic:
+                        - img
+                      - generic [ref=e174]: Models
+                      - generic:
+                        - generic "Preview feature": Preview
+                  - listitem [ref=e175]:
+                    - link "Webhooks" [ref=e176] [cursor=pointer]:
+                      - /url: /julensistemas-hue/syntro/settings/hooks
+                      - generic:
+                        - img
+                      - generic [ref=e177]: Webhooks
+                  - listitem [ref=e178]:
+                    - button "Copilot" [ref=e179] [cursor=pointer]:
+                      - generic:
+                        - img
+                      - generic [ref=e180]: Copilot
+                      - generic:
+                        - img
+                  - listitem [ref=e181]:
+                    - link "Environments" [ref=e182] [cursor=pointer]:
+                      - /url: /julensistemas-hue/syntro/settings/environments
+                      - generic:
+                        - img
+                      - generic [ref=e183]: Environments
+                  - listitem [ref=e184]:
+                    - link "Codespaces" [ref=e185] [cursor=pointer]:
+                      - /url: /julensistemas-hue/syntro/settings/codespaces
+                      - generic:
+                        - img
+                      - generic [ref=e186]: Codespaces
+                  - listitem [ref=e187]:
+                    - link "Pages" [ref=e188] [cursor=pointer]:
+                      - /url: /julensistemas-hue/syntro/settings/pages
+                      - generic:
+                        - img
+                      - generic [ref=e189]: Pages
+            - listitem [ref=e190]
+            - listitem [ref=e191]:
+              - generic [ref=e194]:
+                - heading "Security and quality" [level=2] [ref=e196]
+                - list "Security and quality" [ref=e197]:
+                  - listitem [ref=e198]:
+                    - link "Advanced Security" [ref=e199] [cursor=pointer]:
+                      - /url: /julensistemas-hue/syntro/settings/security_analysis
+                      - generic:
+                        - img
+                      - generic [ref=e200]: Advanced Security
+                  - listitem [ref=e201]:
+                    - link "Deploy keys" [ref=e202] [cursor=pointer]:
+                      - /url: /julensistemas-hue/syntro/settings/keys
+                      - generic:
+                        - img
+                      - generic [ref=e203]: Deploy keys
+                  - listitem [ref=e204]:
+                    - button "Secrets and variables" [expanded] [ref=e205] [cursor=pointer]:
+                      - generic:
+                        - img
+                      - generic [ref=e206]: Secrets and variables
+                      - generic:
+                        - img
+                    - list "Secrets and variables" [ref=e207]:
+                      - listitem [ref=e208]:
+                        - link "Actions" [ref=e209] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/settings/secrets/actions
+                          - generic [ref=e210]: Actions
+                      - listitem [ref=e211]:
+                        - link "Agents" [ref=e212] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/settings/secrets/agents
+                          - generic [ref=e213]: Agents
+                      - listitem [ref=e214]:
+                        - link "Codespaces" [ref=e215] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/settings/secrets/codespaces
+                          - generic [ref=e216]: Codespaces
+                      - listitem [ref=e217]:
+                        - link "Dependabot" [ref=e218] [cursor=pointer]:
+                          - /url: /julensistemas-hue/syntro/settings/secrets/dependabot
+                          - generic [ref=e219]: Dependabot
+            - listitem [ref=e220]
+            - listitem [ref=e221]:
+              - generic [ref=e224]:
+                - heading "Integrations" [level=2] [ref=e226]
+                - list "Integrations" [ref=e227]:
+                  - listitem [ref=e228]:
+                    - link "GitHub Apps" [ref=e229] [cursor=pointer]:
+                      - /url: /julensistemas-hue/syntro/settings/installations
+                      - generic:
+                        - img
+                      - generic [ref=e230]: GitHub Apps
+                  - listitem [ref=e231]:
+                    - link "Email notifications" [ref=e232] [cursor=pointer]:
+                      - /url: /julensistemas-hue/syntro/settings/notifications
+                      - generic:
+                        - img
+                      - generic [ref=e233]: Email notifications
+        - generic [ref=e236]:
+          - heading "Actions secrets and variables" [level=2] [ref=e238]
+          - paragraph [ref=e239]:
+            - text: Secrets and variables allow you to manage reusable configuration data. Secrets are
+            - strong [ref=e240]: encrypted
+            - text: and are used for sensitive data.
+            - link "Learn more about encrypted secrets" [ref=e241] [cursor=pointer]:
+              - /url: https://docs.github.com/actions/automating-your-workflow-with-github-actions/creating-and-using-encrypted-secrets
+            - text: . Variables are shown as plain text and are used for
+            - strong [ref=e242]: non-sensitive
+            - text: data.
+            - link "Learn more about variables" [ref=e243] [cursor=pointer]:
+              - /url: https://docs.github.com/actions/learn-github-actions/variables
+            - text: .
+          - paragraph [ref=e244]: Anyone with collaborator access to this repository can use these secrets and variables for actions. They are not passed to workflows that are triggered by a pull request from a fork.
+          - navigation "Secrets or variables tab" [ref=e245]:
+            - list [ref=e246]:
+              - listitem [ref=e247]:
+                - link "Secrets" [ref=e248] [cursor=pointer]:
+                  - /url: /julensistemas-hue/syntro/settings/secrets/actions
+              - listitem [ref=e249]:
+                - link "Variables" [ref=e250] [cursor=pointer]:
+                  - /url: /julensistemas-hue/syntro/settings/variables/actions
+          - heading "Secrets" [level=3] [ref=e251]
+          - generic [ref=e254]:
+            - heading "Environment secrets" [level=2] [ref=e255]
+            - generic [ref=e258]:
+              - paragraph [ref=e259]:
+                - generic [ref=e260]: This environment has no secrets.
+              - link "Manage environment secrets" [ref=e262] [cursor=pointer]:
+                - /url: /julensistemas-hue/syntro/settings/environments
+                - generic [ref=e264]: Manage environment secrets
+          - generic [ref=e269]:
+            - heading "Repository secrets" [level=2] [ref=e270]
+            - link "New repository secret" [ref=e272] [cursor=pointer]:
+              - /url: /julensistemas-hue/syntro/settings/secrets/actions/new
+              - generic [ref=e274]: New repository secret
+            - table "Repository secrets" [ref=e276]:
+              - rowgroup [ref=e277]:
+                - row "Name Last updated sort ascending Actions" [ref=e278]:
+                  - columnheader "Name" [ref=e279]:
+                    - button "Name" [ref=e280] [cursor=pointer]:
+                      - text: Name
+                      - img [ref=e281]
+                  - columnheader "Last updated sort ascending" [ref=e283]:
+                    - button "Last updated sort ascending" [ref=e284] [cursor=pointer]:
+                      - generic "Last updated" [ref=e285]
+                      - generic [ref=e286]: sort ascending
+                  - columnheader "Actions" [ref=e287]:
+                    - generic [ref=e288]: Actions
+              - rowgroup [ref=e289]:
+                - row "GOOGLE_CREDENTIALS_JSON May 5, 2026last month Edit GOOGLE_CREDENTIALS_JSON Delete GOOGLE_CREDENTIALS_JSON" [ref=e290]:
+                  - cell "GOOGLE_CREDENTIALS_JSON" [ref=e291]:
+                    - generic "GOOGLE_CREDENTIALS_JSON" [ref=e292]:
+                      - img [ref=e293]
+                      - code [ref=e295]: GOOGLE_CREDENTIALS_JSON
+                  - cell "May 5, 2026last month" [ref=e296]:
+                    - generic "5/5/2026" [ref=e297]: May 5, 2026last month
+                  - cell "Edit GOOGLE_CREDENTIALS_JSON Delete GOOGLE_CREDENTIALS_JSON" [ref=e298]:
+                    - generic [ref=e299]:
+                      - link "Edit GOOGLE_CREDENTIALS_JSON" [ref=e301] [cursor=pointer]:
+                        - /url: /julensistemas-hue/syntro/settings/secrets/actions/GOOGLE_CREDENTIALS_JSON
+                        - img [ref=e302]
+                      - button "Delete GOOGLE_CREDENTIALS_JSON" [ref=e305] [cursor=pointer]:
+                        - img [ref=e306]
+                - row "GOOGLE_PRIVATE_KEY Apr 29, 20262 months ago Edit GOOGLE_PRIVATE_KEY Delete GOOGLE_PRIVATE_KEY" [ref=e308]:
+                  - cell "GOOGLE_PRIVATE_KEY" [ref=e309]:
+                    - generic "GOOGLE_PRIVATE_KEY" [ref=e310]:
+                      - img [ref=e311]
+                      - code [ref=e313]: GOOGLE_PRIVATE_KEY
+                  - cell "Apr 29, 20262 months ago" [ref=e314]:
+                    - generic "4/29/2026" [ref=e315]: Apr 29, 20262 months ago
+                  - cell "Edit GOOGLE_PRIVATE_KEY Delete GOOGLE_PRIVATE_KEY" [ref=e316]:
+                    - generic [ref=e317]:
+                      - link "Edit GOOGLE_PRIVATE_KEY" [ref=e319] [cursor=pointer]:
+                        - /url: /julensistemas-hue/syntro/settings/secrets/actions/GOOGLE_PRIVATE_KEY
+                        - img [ref=e320]
+                      - button "Delete GOOGLE_PRIVATE_KEY" [ref=e323] [cursor=pointer]:
+                        - img [ref=e324]
+                - row "GOOGLE_SERVICE_ACCOUNT_EMAIL May 5, 2026last month Edit GOOGLE_SERVICE_ACCOUNT_EMAIL Delete GOOGLE_SERVICE_ACCOUNT_EMAIL" [ref=e326]:
+                  - cell "GOOGLE_SERVICE_ACCOUNT_EMAIL" [ref=e327]:
+                    - generic "GOOGLE_SERVICE_ACCOUNT_EMAIL" [ref=e328]:
+                      - img [ref=e329]
+                      - code [ref=e331]: GOOGLE_SERVICE_ACCOUNT_EMAIL
+                  - cell "May 5, 2026last month" [ref=e332]:
+                    - generic "5/5/2026" [ref=e333]: May 5, 2026last month
+                  - cell "Edit GOOGLE_SERVICE_ACCOUNT_EMAIL Delete GOOGLE_SERVICE_ACCOUNT_EMAIL" [ref=e334]:
+                    - generic [ref=e335]:
+                      - link "Edit GOOGLE_SERVICE_ACCOUNT_EMAIL" [ref=e337] [cursor=pointer]:
+                        - /url: /julensistemas-hue/syntro/settings/secrets/actions/GOOGLE_SERVICE_ACCOUNT_EMAIL
+                        - img [ref=e338]
+                      - button "Delete GOOGLE_SERVICE_ACCOUNT_EMAIL" [ref=e341] [cursor=pointer]:
+                        - img [ref=e342]
+                - row "GOOGLE_SERVICE_ACCOUNT_JSON May 5, 2026last month Edit GOOGLE_SERVICE_ACCOUNT_JSON Delete GOOGLE_SERVICE_ACCOUNT_JSON" [ref=e344]:
+                  - cell "GOOGLE_SERVICE_ACCOUNT_JSON" [ref=e345]:
+                    - generic "GOOGLE_SERVICE_ACCOUNT_JSON" [ref=e346]:
+                      - img [ref=e347]
+                      - code [ref=e349]: GOOGLE_SERVICE_ACCOUNT_JSON
+                  - cell "May 5, 2026last month" [ref=e350]:
+                    - generic "5/5/2026" [ref=e351]: May 5, 2026last month
+                  - cell "Edit GOOGLE_SERVICE_ACCOUNT_JSON Delete GOOGLE_SERVICE_ACCOUNT_JSON" [ref=e352]:
+                    - generic [ref=e353]:
+                      - link "Edit GOOGLE_SERVICE_ACCOUNT_JSON" [ref=e355] [cursor=pointer]:
+                        - /url: /julensistemas-hue/syntro/settings/secrets/actions/GOOGLE_SERVICE_ACCOUNT_JSON
+                        - img [ref=e356]
+                      - button "Delete GOOGLE_SERVICE_ACCOUNT_JSON" [ref=e359] [cursor=pointer]:
+                        - img [ref=e360]
+                - row "PAGESPEED_API_KEY Jun 15, 2026now Edit PAGESPEED_API_KEY Delete PAGESPEED_API_KEY" [ref=e362]:
+                  - cell "PAGESPEED_API_KEY" [ref=e363]:
+                    - generic "PAGESPEED_API_KEY" [ref=e364]:
+                      - img [ref=e365]
+                      - code [ref=e367]: PAGESPEED_API_KEY
+                  - cell "Jun 15, 2026now" [ref=e368]:
+                    - generic "6/15/2026" [ref=e369]: Jun 15, 2026now
+                  - cell "Edit PAGESPEED_API_KEY Delete PAGESPEED_API_KEY" [ref=e370]:
+                    - generic [ref=e371]:
+                      - link "Edit PAGESPEED_API_KEY" [ref=e373] [cursor=pointer]:
+                        - /url: /julensistemas-hue/syntro/settings/secrets/actions/PAGESPEED_API_KEY
+                        - img [ref=e374]
+                      - button "Delete PAGESPEED_API_KEY" [ref=e377] [cursor=pointer]:
+                        - img [ref=e378]
+                - row "RESEND_API_KEY Apr 29, 20262 months ago Edit RESEND_API_KEY Delete RESEND_API_KEY" [ref=e380]:
+                  - cell "RESEND_API_KEY" [ref=e381]:
+                    - generic "RESEND_API_KEY" [ref=e382]:
+                      - img [ref=e383]
+                      - code [ref=e385]: RESEND_API_KEY
+                  - cell "Apr 29, 20262 months ago" [ref=e386]:
+                    - generic "4/29/2026" [ref=e387]: Apr 29, 20262 months ago
+                  - cell "Edit RESEND_API_KEY Delete RESEND_API_KEY" [ref=e388]:
+                    - generic [ref=e389]:
+                      - link "Edit RESEND_API_KEY" [ref=e391] [cursor=pointer]:
+                        - /url: /julensistemas-hue/syntro/settings/secrets/actions/RESEND_API_KEY
+                        - img [ref=e392]
+                      - button "Delete RESEND_API_KEY" [ref=e395] [cursor=pointer]:
+                        - img [ref=e396]
+  - contentinfo [ref=e398]:
+    - heading "Footer" [level=2] [ref=e399]
+    - generic [ref=e400]:
+      - generic [ref=e401]:
+        - link "GitHub Homepage" [ref=e402] [cursor=pointer]:
+          - /url: https://github.com
+          - img [ref=e403]
+        - generic [ref=e405]: © 2026 GitHub, Inc.
+      - navigation "Footer" [ref=e406]:
+        - heading "Footer navigation" [level=3] [ref=e407]
+        - list "Footer navigation" [ref=e408]:
+          - listitem [ref=e409]:
+            - link "Terms" [ref=e410] [cursor=pointer]:
+              - /url: https://docs.github.com/site-policy/github-terms/github-terms-of-service
+          - listitem [ref=e411]:
+            - link "Privacy" [ref=e412] [cursor=pointer]:
+              - /url: https://docs.github.com/site-policy/privacy-policies/github-privacy-statement
+          - listitem [ref=e413]:
+            - link "Security" [ref=e414] [cursor=pointer]:
+              - /url: https://github.com/security
+          - listitem [ref=e415]:
+            - link "Status" [ref=e416] [cursor=pointer]:
+              - /url: https://www.githubstatus.com/
+          - listitem [ref=e417]:
+            - link "Community" [ref=e418] [cursor=pointer]:
+              - /url: https://github.community/
+          - listitem [ref=e419]:
+            - link "Docs" [ref=e420] [cursor=pointer]:
+              - /url: https://docs.github.com/
+          - listitem [ref=e421]:
+            - link "Contact" [ref=e422] [cursor=pointer]:
+              - /url: https://support.github.com?tags=dotcom-footer
+          - listitem [ref=e423]:
+            - button "Manage cookies" [ref=e425] [cursor=pointer]
+          - listitem [ref=e426]:
+            - button "Do not share my personal information" [ref=e428] [cursor=pointer]

@@ -1,0 +1,232 @@
+- generic [ref=e1]:
+  - region "console.cloud.google.com usa cookies de Google para brindar sus servicios, mejorar su calidad y analizar el tráfico." [ref=e2]:
+    - paragraph [ref=e3]:
+      - text: console.cloud.google.com usa cookies de Google para brindar sus servicios, mejorar su calidad y analizar el tráfico.
+      - link "Obtenga más información sobre cómo Google utiliza las cookies. Se abrirá en una nueva pestaña." [ref=e4] [cursor=pointer]:
+        - /url: https://policies.google.com/technologies/cookies
+        - text: Más información
+    - button "Entendido" [ref=e5] [cursor=pointer]
+  - generic [ref=e7]:
+    - generic [ref=e8]:
+      - complementary "Omitir vínculos" [ref=e9]:
+        - link "Ir al contenido principal" [ref=e10] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e11]: Ir al contenido principal
+        - button "Combinación de teclas para acceso directo" [ref=e12]:
+          - generic [ref=e13]: Combinación de teclas para acceso directo
+        - link "Ayuda sobre la accesibilidad externo, se abre en una ventana nueva" [ref=e14] [cursor=pointer]:
+          - /url: https://cloud.google.com/docs/accessibility?hl=es_419
+          - generic [ref=e15]:
+            - text: Ayuda sobre la accesibilidad
+            - generic "externo, se abre en una ventana nueva" [ref=e16]:
+              - img "externo, se abre en una ventana nueva" [ref=e17]:
+                - img [ref=e18]
+        - link "Comentarios sobre accesibilidad externo, se abre en una ventana nueva" [ref=e20] [cursor=pointer]:
+          - /url: https://support.google.com/accessibility/contact/feedback?hl=es_419
+          - generic [ref=e21]:
+            - text: Comentarios sobre accesibilidad
+            - generic "externo, se abre en una ventana nueva" [ref=e22]:
+              - img "externo, se abre en una ventana nueva" [ref=e23]:
+                - img [ref=e24]
+      - banner [ref=e27]:
+        - generic [ref=e28]:
+          - navigation [ref=e31]:
+            - button "Menú de navegación (.)" [ref=e32] [cursor=pointer]:
+              - img [ref=e34]
+          - link "Google Cloud Platform - Página principal" [ref=e36] [cursor=pointer]:
+            - /url: /
+            - generic:
+              - img
+          - button "Actualmente, estás trabajando en julensistemas. Presiona Intro para cambiar de proyecto, de carpeta o de organización." [ref=e244]:
+            - generic [ref=e45]:
+              - img [ref=e246]
+              - generic [ref=e47]: julensistemas
+        - button "Abrir la búsqueda" [ref=e54] [cursor=pointer]:
+          - img [ref=e56]
+        - generic [ref=e58]:
+          - generic [ref=e59]:
+            - button "Abrir chat de Gemini AI (Alt G)" [ref=e63] [cursor=pointer]:
+              - img [ref=e65]
+            - button "Estado de la prueba gratuita" [ref=e251] [cursor=pointer]:
+              - img [ref=e253]
+            - button "Activar Cloud Shell (G then S)" [ref=e255] [cursor=pointer]:
+              - img [ref=e257]
+            - button "Abrir notificaciones" [ref=e73] [cursor=pointer]:
+              - img [ref=e75]
+            - button "Configuración y utilidades" [ref=e81] [cursor=pointer]:
+              - img [ref=e83]
+          - 'button "Cuenta: Julen Vergara Moles (julen.sistemas@gmail.com)" [ref=e261]':
+            - img [ref=e262]
+    - generic [ref=e107]:
+      - navigation "APIs y servicios" [ref=e114]:
+        - generic [ref=e115]:
+          - heading "APIs y servicios" [level=2] [ref=e117]:
+            - link "APIs y servicios" [ref=e118] [cursor=pointer]:
+              - /url: /apis
+              - img [ref=e121]
+              - generic [ref=e125]: APIs y servicios
+          - list "APIs y servicios habilitados, 1 de 5 Más opciones Biblioteca, 2 de 5 Más opciones Credenciales, 3 de 5 Más opciones Pantalla de consentimiento de OAuth, 4 de 5 Más opciones Acuerdos de uso de páginas, 5 de 5 Más opciones" [ref=e129]:
+            - listitem [ref=e130]:
+              - generic [ref=e133]:
+                - link "APIs y servicios habilitados, 1 de 5" [ref=e134] [cursor=pointer]:
+                  - /url: /apis/dashboard
+                  - generic [ref=e135]:
+                    - img [ref=e138]
+                    - generic [ref=e140]: APIs y servicios habilitados
+                - button "Más opciones" [ref=e142] [cursor=pointer]:
+                  - img [ref=e144]
+            - listitem [ref=e146]:
+              - generic [ref=e149]:
+                - link "Biblioteca, 2 de 5" [ref=e150] [cursor=pointer]:
+                  - /url: /apis/library
+                  - generic [ref=e151]:
+                    - img [ref=e154]
+                    - generic [ref=e156]: Biblioteca
+                - button "Más opciones" [ref=e158] [cursor=pointer]:
+                  - img [ref=e160]
+            - listitem [ref=e162]:
+              - generic [ref=e165]:
+                - link "Credenciales, 3 de 5" [ref=e166] [cursor=pointer]:
+                  - /url: /apis/credentials
+                  - generic [ref=e167]:
+                    - img [ref=e170]
+                    - generic [ref=e172]: Credenciales
+                - button "Más opciones" [ref=e174] [cursor=pointer]:
+                  - img [ref=e176]
+            - listitem [ref=e178]:
+              - generic [ref=e181]:
+                - link "Pantalla de consentimiento de OAuth, 4 de 5" [ref=e182] [cursor=pointer]:
+                  - /url: /apis/credentials/consent
+                  - generic [ref=e183]:
+                    - img [ref=e186]
+                    - generic [ref=e188]: Pantalla de consentimiento de OAuth
+                - button "Más opciones" [ref=e190] [cursor=pointer]:
+                  - img [ref=e192]
+            - listitem [ref=e194]:
+              - generic [ref=e197]:
+                - link "Acuerdos de uso de páginas, 5 de 5" [ref=e198] [cursor=pointer]:
+                  - /url: /apis/agreements
+                  - generic [ref=e199]:
+                    - img [ref=e202]
+                    - generic [ref=e205]: Acuerdos de uso de páginas
+                - button "Más opciones" [ref=e207] [cursor=pointer]:
+                  - img [ref=e209]
+          - button "Activar o desactivar el menú de navegación de APIs y servicios" [pressed] [ref=e212] [cursor=pointer]:
+            - img [ref=e215]
+      - main [active] [ref=e218]:
+        - generic [ref=e631]:
+          - generic [ref=e634]:
+            - button "Volver a página anterior" [ref=e638] [cursor=pointer]:
+              - img [ref=e640]
+            - heading "Editar clave de API" [level=1] [ref=e644]:
+              - generic [ref=e646]: Editar clave de API
+            - toolbar "Editar clave de API" [ref=e649]:
+              - generic [ref=e650]:
+                - generic [ref=e651]:
+                  - button "Rotar clave" [disabled] [ref=e652]:
+                    - img [ref=e654]:
+                      - img [ref=e655]
+                    - generic [ref=e657]: Rotar clave
+                  - button "Crear una copia" [disabled] [ref=e658]:
+                    - img [ref=e660]:
+                      - img [ref=e661]
+                    - generic [ref=e663]: Crear una copia
+                - button "Más acciones Editar clave de API" [ref=e665] [cursor=pointer]:
+                  - img [ref=e667]:
+                    - img [ref=e668]
+              - button "Información y resumen" [ref=e673] [cursor=pointer]:
+                - img [ref=e675]
+          - generic [ref=e685]:
+            - generic [ref=e686]:
+              - generic [ref=e688] [cursor=pointer]:
+                - generic [ref=e689]:
+                  - text: Nombre
+                  - generic [ref=e690]: "*"
+                - textbox "Nombre" [ref=e692]: pagespeed autom
+              - generic [ref=e695]: Usa un nombre único para identificar tu clave de API
+            - generic [ref=e697]:
+              - generic [ref=e698]:
+                - heading "APIs a las que se puede acceder con esta clave" [level=2] [ref=e699]
+                - button "Ayuda con las restricciones de APIs" [ref=e701] [cursor=pointer]:
+                  - img [ref=e703]
+              - generic [ref=e706]:
+                - img "Información" [ref=e707]:
+                  - img [ref=e708]
+                - generic [ref=e712]:
+                  - text: "Creación de claves nuevas: Para usar las APIs de Agent Platform (Vertex) o Gemini con una clave de API, debes vincularla a una cuenta de servicio seleccionando \"Autenticar las llamadas a la API a través de una cuenta de servicio\" antes de aplicar la restricción de la API."
+                  - text: "Nota: Una"
+                  - link "política de la organización" [ref=e713] [cursor=pointer]:
+                    - /url: /iam-admin/orgpolicies/iam-managed.disableServiceAccountApiKeyCreation?project=julensistemas
+                  - text: rige la creación de claves de API vinculadas a una cuenta de servicio para proyectos con una organización de Google Cloud.
+                  - link "Más información externo, se abre en una ventana nueva" [ref=e714] [cursor=pointer]:
+                    - /url: https://docs.cloud.google.com/docs/authentication/api-keys?hl=es_419#api-keys-bound-sa
+                    - text: Más información
+                    - img "externo, se abre en una ventana nueva" [ref=e715]:
+                      - img [ref=e716]
+              - generic [ref=e718]:
+                - generic [ref=e720] [cursor=pointer]:
+                  - generic [ref=e721]:
+                    - text: Elige las restricciones de API
+                    - generic [ref=e722]: "*"
+                  - combobox "Elige las restricciones de API" [ref=e724]:
+                    - generic [ref=e725]:
+                      - generic [ref=e727]: No se seleccionó ninguna API
+                      - img [ref=e729]
+                - generic [ref=e733]:
+                  - text: Esta lista solo incluye las APIs habilitadas en este proyecto. Si no encuentras la API que necesitas, visita la
+                  - link "Biblioteca de APIs" [ref=e734] [cursor=pointer]:
+                    - /url: /apis/library?project=julensistemas
+                  - text: para habilitarla.
+              - list
+            - group [ref=e736]:
+              - heading "Restricciones de clave" [level=2] [ref=e737]
+              - paragraph [ref=e738]:
+                - text: Agrega restricciones para reducir el riesgo de seguridad y evitar el uso no autorizado.
+                - link "Más información sobre las restricciones de la clave de API externo, se abre en una ventana nueva" [ref=e739] [cursor=pointer]:
+                  - /url: https://cloud.google.com/docs/authentication/api-keys?hl=es_419#securing
+                  - generic [ref=e740]: Más información
+                  - img "externo, se abre en una ventana nueva" [ref=e741]:
+                    - img [ref=e742]
+              - status [ref=e746]:
+                - img "Advertencia" [ref=e747]:
+                  - img [ref=e748]
+                - generic [ref=e752]:
+                  - text: "Acción recomendada: Actualmente, esta clave se puede usar con cualquier aplicación. Restringe dónde se puede usar para mejorar la seguridad."
+                  - link "Más información sobre las restricciones de la clave de API externo, se abre en una ventana nueva" [ref=e753] [cursor=pointer]:
+                    - /url: https://cloud.google.com/docs/authentication/api-keys?hl=es_419#securing
+                    - generic [ref=e754]: Más información
+                    - img "externo, se abre en una ventana nueva" [ref=e755]:
+                      - img [ref=e756]
+              - generic [ref=e758]:
+                - heading "Restricciones de aplicaciones" [level=3] [ref=e759]
+                - button "Ayuda con las restricciones de aplicaciones" [ref=e761] [cursor=pointer]:
+                  - img [ref=e763]
+              - radiogroup "Restricciones de aplicaciones" [ref=e766]:
+                - generic [ref=e768]:
+                  - radio "Ninguno" [checked] [ref=e770] [cursor=pointer]
+                  - generic [ref=e774] [cursor=pointer]: Ninguno
+                - generic [ref=e776]:
+                  - radio "Sitios web" [ref=e778] [cursor=pointer]
+                  - generic [ref=e781] [cursor=pointer]: Sitios web
+                - generic [ref=e783]:
+                  - radio "Direcciones IP" [ref=e785] [cursor=pointer]
+                  - generic [ref=e788] [cursor=pointer]: Direcciones IP
+                - generic [ref=e790]:
+                  - radio "Apps para Android" [ref=e792] [cursor=pointer]
+                  - generic [ref=e795] [cursor=pointer]: Apps para Android
+                - generic [ref=e797]:
+                  - radio "Apps para iOS" [ref=e799] [cursor=pointer]
+                  - generic [ref=e802] [cursor=pointer]: Apps para iOS
+            - generic [ref=e803]:
+              - paragraph [ref=e804]: "Nota: Es posible que la configuración tarde hasta 5 minutos en aplicarse."
+              - button "Guardar" [ref=e807]:
+                - generic [ref=e808]: Guardar
+              - button "Cancelar" [ref=e809]:
+                - generic [ref=e810]: Cancelar
+  - iframe [ref=e242]:
+    
+  - iframe [ref=e623]:
+    
+  - iframe [ref=e624]:
+    
+  - paragraph

@@ -1,6 +1,10 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
+// Sitio en SSR (output: server): sin esto, getStaticPaths se ignora y Astro.props
+// llega vacío → error 500. Con prerender se generan las páginas de ciudad estáticas.
+export const prerender = true;
+
 interface CiudadData {
   slug: string;
   nombre: string;

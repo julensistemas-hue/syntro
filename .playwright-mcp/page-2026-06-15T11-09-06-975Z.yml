@@ -1,0 +1,333 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e7]:
+    - generic [ref=e8]:
+      - complementary "Omitir vínculos" [ref=e9]:
+        - link "Ir al contenido principal" [ref=e10] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e11]: Ir al contenido principal
+        - button "Combinación de teclas para acceso directo" [ref=e12]:
+          - generic [ref=e13]: Combinación de teclas para acceso directo
+        - link "Ayuda sobre la accesibilidad externo, se abre en una ventana nueva" [ref=e14] [cursor=pointer]:
+          - /url: https://cloud.google.com/docs/accessibility?hl=es_419
+          - generic [ref=e15]:
+            - text: Ayuda sobre la accesibilidad
+            - generic "externo, se abre en una ventana nueva" [ref=e16]:
+              - img "externo, se abre en una ventana nueva" [ref=e17]:
+                - img [ref=e18]
+        - link "Comentarios sobre accesibilidad externo, se abre en una ventana nueva" [ref=e20] [cursor=pointer]:
+          - /url: https://support.google.com/accessibility/contact/feedback?hl=es_419
+          - generic [ref=e21]:
+            - text: Comentarios sobre accesibilidad
+            - generic "externo, se abre en una ventana nueva" [ref=e22]:
+              - img "externo, se abre en una ventana nueva" [ref=e23]:
+                - img [ref=e24]
+      - banner [ref=e27]:
+        - generic [ref=e28]:
+          - navigation [ref=e31]:
+            - button "Menú de navegación (.)" [ref=e32] [cursor=pointer]:
+              - img [ref=e34]
+          - link "Google Cloud Platform - Página principal" [ref=e36] [cursor=pointer]:
+            - /url: /
+            - generic:
+              - img
+          - button "Actualmente, estás trabajando en julensistemas. Presiona Intro para cambiar de proyecto, de carpeta o de organización." [ref=e234]:
+            - generic [ref=e235]:
+              - img [ref=e237]
+              - generic [ref=e240]: julensistemas
+        - button "Abrir la búsqueda" [ref=e51] [cursor=pointer]:
+          - img [ref=e53]
+        - generic [ref=e55]:
+          - generic [ref=e56]:
+            - button "Abrir chat de Gemini AI (Alt G)" [ref=e244] [cursor=pointer]:
+              - img [ref=e246]
+            - button "Estado de la prueba gratuita" [ref=e251] [cursor=pointer]:
+              - img [ref=e253]
+            - button "Activar Cloud Shell (G then S)" [ref=e255] [cursor=pointer]:
+              - img [ref=e257]
+            - button "Abrir notificaciones" [ref=e63] [cursor=pointer]:
+              - img [ref=e65]
+            - button "Configuración y utilidades" [ref=e71] [cursor=pointer]:
+              - img [ref=e73]
+          - 'button "Cuenta: Julen Vergara Moles (julen.sistemas@gmail.com)" [ref=e261]':
+            - img [ref=e262]
+    - generic [ref=e97]:
+      - navigation "APIs y servicios" [ref=e104]:
+        - generic [ref=e105]:
+          - heading "APIs y servicios" [level=2] [ref=e107]:
+            - link "APIs y servicios" [ref=e108] [cursor=pointer]:
+              - /url: /apis
+              - img [ref=e111]
+              - generic [ref=e115]: APIs y servicios
+          - list "APIs y servicios habilitados, 1 de 5 Más opciones Biblioteca, 2 de 5 Más opciones Credenciales, 3 de 5 Más opciones Pantalla de consentimiento de OAuth, 4 de 5 Más opciones Acuerdos de uso de páginas, 5 de 5 Más opciones" [ref=e119]:
+            - listitem [ref=e120]:
+              - generic [ref=e123]:
+                - link "APIs y servicios habilitados, 1 de 5" [ref=e124] [cursor=pointer]:
+                  - /url: /apis/dashboard
+                  - generic [ref=e125]:
+                    - img [ref=e128]
+                    - generic [ref=e130]: APIs y servicios habilitados
+                - button "Más opciones" [ref=e132] [cursor=pointer]:
+                  - img [ref=e134]
+            - listitem [ref=e136]:
+              - generic [ref=e139]:
+                - link "Biblioteca, 2 de 5" [ref=e140] [cursor=pointer]:
+                  - /url: /apis/library
+                  - generic [ref=e141]:
+                    - img [ref=e144]
+                    - generic [ref=e146]: Biblioteca
+                - button "Más opciones" [ref=e148] [cursor=pointer]:
+                  - img [ref=e150]
+            - listitem [ref=e152]:
+              - generic [ref=e155]:
+                - link "Credenciales, 3 de 5" [ref=e156] [cursor=pointer]:
+                  - /url: /apis/credentials
+                  - generic [ref=e157]:
+                    - img [ref=e160]
+                    - generic [ref=e162]: Credenciales
+                - button "Más opciones" [ref=e164] [cursor=pointer]:
+                  - img [ref=e166]
+            - listitem [ref=e168]:
+              - generic [ref=e171]:
+                - link "Pantalla de consentimiento de OAuth, 4 de 5" [ref=e172] [cursor=pointer]:
+                  - /url: /apis/credentials/consent
+                  - generic [ref=e173]:
+                    - img [ref=e176]
+                    - generic [ref=e178]: Pantalla de consentimiento de OAuth
+                - button "Más opciones" [ref=e180] [cursor=pointer]:
+                  - img [ref=e182]
+            - listitem [ref=e184]:
+              - generic [ref=e187]:
+                - link "Acuerdos de uso de páginas, 5 de 5" [ref=e188] [cursor=pointer]:
+                  - /url: /apis/agreements
+                  - generic [ref=e189]:
+                    - img [ref=e192]
+                    - generic [ref=e195]: Acuerdos de uso de páginas
+                - button "Más opciones" [ref=e197] [cursor=pointer]:
+                  - img [ref=e199]
+          - button "Activar o desactivar el menú de navegación de APIs y servicios" [pressed] [ref=e202] [cursor=pointer]:
+            - img [ref=e205]
+      - main [ref=e208]:
+        - generic [ref=e268]:
+          - generic [ref=e271]:
+            - heading "Credenciales" [level=1] [ref=e274]:
+              - generic [ref=e275]: Credenciales
+            - generic [ref=e278]:
+              - generic [ref=e280]:
+                - button "Crear credencial" [ref=e282]:
+                  - generic [ref=e283]:
+                    - img [ref=e285]:
+                      - img [ref=e286]
+                    - text: Crear credenciales
+                  - img [ref=e289]
+                - button "Borrar la credencial" [disabled] [ref=e293]:
+                  - img [ref=e295]:
+                    - img [ref=e296]
+                  - generic [ref=e298]: Borrar
+              - button "Más acciones Credenciales" [ref=e300] [cursor=pointer]:
+                - img [ref=e302]:
+                  - img [ref=e303]
+          - generic [ref=e312]:
+            - paragraph [ref=e314]:
+              - text: Crea credenciales para acceder a tus API habilitadas.
+              - link "Más información sobre esta función externo, se abre en una ventana nueva" [ref=e315] [cursor=pointer]:
+                - /url: https://cloud.google.com/docs/authentication?hl=es_419
+                - text: Más información
+                - img "externo, se abre en una ventana nueva" [ref=e316]:
+                  - img [ref=e317]
+            - generic [ref=e319]:
+              - heading "Claves de API" [level=2] [ref=e321]
+              - grid "Claves de API , Navega por la tabla con las teclas de flecha. Ingresa la tecla para interactuar con la celda. Presiona Tab para navegar por la celda. Presiona Escape para salir de la celda." [ref=e325]:
+                - rowgroup [ref=e334]:
+                  - row "Selección de filas Estado Nombre Cuenta vinculada Fecha de creación Restricciones Acciones" [ref=e335] [cursor=pointer]:
+                    - gridcell "Selección de filas" [ref=e336]:
+                      - checkbox "Seleccionar todas las filas" [ref=e337]
+                    - columnheader "Estado" [ref=e338]:
+                      - img [ref=e342]
+                    - columnheader "Nombre" [ref=e344]:
+                      - generic [ref=e346]:
+                        - generic [ref=e347]: Nombre
+                        - button "Ordenar por Nombre" [ref=e348]:
+                          - img [ref=e350]
+                    - columnheader "Cuenta vinculada" [ref=e352]:
+                      - generic [ref=e354]:
+                        - generic [ref=e355]:
+                          - text: Bound account
+                          - button "Ayuda con la cuenta vinculada" [ref=e357]:
+                            - img [ref=e359]
+                        - button "Ordenar por Cuenta vinculada" [ref=e361]:
+                          - img [ref=e363]
+                    - columnheader "Fecha de creación" [ref=e365]:
+                      - generic [ref=e367]:
+                        - generic [ref=e368]: Fecha de creación
+                        - button "Ordenar por Fecha de creación" [ref=e369]:
+                          - img [ref=e371]
+                    - columnheader "Restricciones" [ref=e373]:
+                      - generic [ref=e375]:
+                        - generic [ref=e376]: Restricciones
+                        - button "Ordenar por Restricciones" [ref=e377]:
+                          - img [ref=e379]
+                    - columnheader "Acciones" [ref=e381]:
+                      - generic [ref=e383]: Acciones
+                - rowgroup [ref=e384]:
+                  - row "pagespeed autom Advertencia. Presiona Intro para obtener más información pagespeed autom — 1 dic 2025 — Mostrar clave Acciones" [ref=e385] [cursor=pointer]:
+                    - gridcell "pagespeed autom" [ref=e386]:
+                      - checkbox "pagespeed autom" [ref=e388]
+                    - gridcell "Advertencia. Presiona Intro para obtener más información" [ref=e389]:
+                      - img "Advertencia. Presiona Intro para obtener más información" [ref=e392]:
+                        - img [ref=e393]
+                    - rowheader "pagespeed autom" [ref=e395]:
+                      - link "pagespeed autom" [ref=e397]:
+                        - /url: /apis/credentials/key/37ed30b0-90d1-462a-a8ae-ba58d1358966?project=julensistemas
+                    - gridcell "—" [ref=e398]
+                    - gridcell "1 dic 2025" [ref=e399]
+                    - gridcell "—" [ref=e400]:
+                      - generic [ref=e401]: —
+                    - gridcell "Mostrar clave Acciones" [ref=e402]:
+                      - button "Mostrar clave" [ref=e406]:
+                        - generic [ref=e407]: Mostrar clave
+                      - button "Acciones" [ref=e410]:
+                        - img [ref=e412]:
+                          - img [ref=e413]
+            - generic [ref=e415]:
+              - heading "IDs de clientes de OAuth 2.0" [level=2] [ref=e417]
+              - grid "IDs de clientes de OAuth 2.0 , Navega por la tabla con las teclas de flecha. Ingresa la tecla para interactuar con la celda. Presiona Tab para navegar por la celda. Presiona Escape para salir de la celda." [ref=e421]:
+                - rowgroup [ref=e429]:
+                  - row "Selección de filas Nombre Fecha de creación Tipo ID de cliente Acciones" [ref=e430] [cursor=pointer]:
+                    - gridcell "Selección de filas" [ref=e431]:
+                      - checkbox "Seleccionar todas las filas" [ref=e432]
+                    - columnheader "Nombre" [ref=e433]:
+                      - generic [ref=e435]:
+                        - generic [ref=e436]: Nombre
+                        - button "Ordenar por Nombre" [ref=e437]:
+                          - img [ref=e439]
+                    - columnheader "Fecha de creación" [ref=e441]:
+                      - generic [ref=e443]:
+                        - generic [ref=e444]: Fecha de creación
+                        - button "Ordenar por Fecha de creación" [ref=e445]:
+                          - img [ref=e447]
+                    - columnheader "Tipo" [ref=e449]:
+                      - generic [ref=e451]:
+                        - generic [ref=e452]: Tipo
+                        - button "Ordenar por Tipo" [ref=e453]:
+                          - img [ref=e455]
+                    - columnheader "ID de cliente" [ref=e457]:
+                      - generic [ref=e459]:
+                        - generic [ref=e460]: ID de cliente
+                        - button "Ordenar por ID de cliente" [ref=e461]:
+                          - img [ref=e463]
+                    - columnheader "Acciones" [ref=e465]:
+                      - generic [ref=e467]: Acciones
+                - rowgroup [ref=e468]:
+                  - row "aisecurity advertencia de cliente no utilizadoaisecurity 11 ene 2026 Escritorio 858300829489-a3dc... Haz clic para copiar el cliente de OAuth Haz clic para editar el cliente de OAuth Haz clic para borrar el cliente de OAuth" [ref=e469] [cursor=pointer]:
+                    - gridcell "aisecurity" [ref=e470]:
+                      - checkbox "aisecurity" [ref=e472]
+                    - rowheader "advertencia de cliente no utilizadoaisecurity" [ref=e473]:
+                      - generic "advertencia de cliente no utilizado" [ref=e474]:
+                        - img "Advertencia. Presiona Intro para obtener más información" [ref=e476]:
+                          - img [ref=e477]
+                      - link "aisecurity" [ref=e479]:
+                        - /url: /apis/credentials/oauthclient/858300829489-a3dcnqvdnt4kprmb0eoign0r85uenu85.apps.googleusercontent.com?project=julensistemas
+                    - gridcell "11 ene 2026" [ref=e480]
+                    - gridcell "Escritorio" [ref=e481]
+                    - gridcell "858300829489-a3dc... Haz clic para copiar el cliente de OAuth" [ref=e482]:
+                      - code [ref=e483]: 858300829489-a3dc...
+                      - button "Haz clic para copiar el cliente de OAuth" [ref=e484]:
+                        - img [ref=e486]:
+                          - img [ref=e487]
+                    - gridcell "Haz clic para editar el cliente de OAuth Haz clic para borrar el cliente de OAuth" [ref=e489]:
+                      - link "Haz clic para editar el cliente de OAuth" [ref=e490]:
+                        - /url: /apis/credentials/oauthclient/858300829489-a3dcnqvdnt4kprmb0eoign0r85uenu85.apps.googleusercontent.com?project=julensistemas
+                        - img [ref=e492]:
+                          - img [ref=e493]
+                      - button "Haz clic para borrar el cliente de OAuth" [ref=e497]:
+                        - img [ref=e499]:
+                          - img [ref=e500]
+            - generic [ref=e502]:
+              - generic [ref=e503]:
+                - heading "Cuentas de servicio" [level=2] [ref=e504]
+                - link "Administrar cuentas de servicio" [ref=e508] [cursor=pointer]:
+                  - /url: /iam-admin/serviceaccounts?project=julensistemas
+              - grid "Cuentas de servicio , Navega por la tabla con las teclas de flecha. Ingresa la tecla para interactuar con la celda. Presiona Tab para navegar por la celda. Presiona Escape para salir de la celda." [ref=e512]:
+                - rowgroup [ref=e518]:
+                  - row "Selección de filas Correo electrónico Nombre Acciones" [ref=e519] [cursor=pointer]:
+                    - gridcell "Selección de filas" [ref=e520]:
+                      - checkbox "Seleccionar todas las filas" [ref=e521]
+                    - columnheader "Correo electrónico" [ref=e522]:
+                      - generic [ref=e524]:
+                        - generic [ref=e525]: Correo electrónico
+                        - button "Ordenar por Correo electrónico" [ref=e526]:
+                          - img [ref=e528]
+                    - columnheader "Nombre" [ref=e530]:
+                      - generic [ref=e532]:
+                        - generic [ref=e533]: Nombre
+                        - button "Ordenar por Nombre" [ref=e534]:
+                          - img [ref=e536]
+                    - columnheader "Acciones" [ref=e538]:
+                      - generic [ref=e540]: Acciones
+                - rowgroup [ref=e541]:
+                  - row "Seleccionar fila aisecurity-calenda@julensistemas.iam.gserviceaccount.com Haz clic para editar la cuenta de servicio Haz clic para borrar la cuenta de servicio" [ref=e542] [cursor=pointer]:
+                    - gridcell "Seleccionar fila" [ref=e543]:
+                      - checkbox "Seleccionar fila" [ref=e545]
+                    - gridcell "aisecurity-calenda@julensistemas.iam.gserviceaccount.com" [ref=e546]:
+                      - link "aisecurity-calenda@julensistemas.iam.gserviceaccount.com" [ref=e547]:
+                        - /url: /iam-admin/serviceaccounts/details/108684802400928483124;edit=true?previousPage=%2Fapis%2Fcredentials%3Fproject%3Djulensistemas&project=julensistemas
+                    - rowheader [ref=e548]
+                    - gridcell "Haz clic para editar la cuenta de servicio Haz clic para borrar la cuenta de servicio" [ref=e549]:
+                      - link "Haz clic para editar la cuenta de servicio" [ref=e550]:
+                        - /url: /iam-admin/serviceaccounts/details/108684802400928483124;edit=true?previousPage=%2Fapis%2Fcredentials%3Fproject%3Djulensistemas&project=julensistemas
+                        - img [ref=e552]:
+                          - img [ref=e553]
+                      - button "Haz clic para borrar la cuenta de servicio" [ref=e557]:
+                        - img [ref=e559]:
+                          - img [ref=e560]
+                  - row "blog-indexing-bot blog-indexing-bot@julensistemas.iam.gserviceaccount.com blog-indexing-bot Haz clic para editar la cuenta de servicio Haz clic para borrar la cuenta de servicio" [ref=e562] [cursor=pointer]:
+                    - gridcell "blog-indexing-bot" [ref=e563]:
+                      - checkbox "blog-indexing-bot" [ref=e565]
+                    - gridcell "blog-indexing-bot@julensistemas.iam.gserviceaccount.com" [ref=e566]:
+                      - link "blog-indexing-bot@julensistemas.iam.gserviceaccount.com" [ref=e567]:
+                        - /url: /iam-admin/serviceaccounts/details/102421116572219099725;edit=true?previousPage=%2Fapis%2Fcredentials%3Fproject%3Djulensistemas&project=julensistemas
+                    - rowheader "blog-indexing-bot" [ref=e568]
+                    - gridcell "Haz clic para editar la cuenta de servicio Haz clic para borrar la cuenta de servicio" [ref=e569]:
+                      - link "Haz clic para editar la cuenta de servicio" [ref=e570]:
+                        - /url: /iam-admin/serviceaccounts/details/102421116572219099725;edit=true?previousPage=%2Fapis%2Fcredentials%3Fproject%3Djulensistemas&project=julensistemas
+                        - img [ref=e572]:
+                          - img [ref=e573]
+                      - button "Haz clic para borrar la cuenta de servicio" [ref=e577]:
+                        - img [ref=e579]:
+                          - img [ref=e580]
+                  - row "ga4-analytics-reporter ga4-analytics-reporter@julensistemas.iam.gserviceaccount.com ga4-analytics-reporter Haz clic para editar la cuenta de servicio Haz clic para borrar la cuenta de servicio" [ref=e582] [cursor=pointer]:
+                    - gridcell "ga4-analytics-reporter" [ref=e583]:
+                      - checkbox "ga4-analytics-reporter" [ref=e585]
+                    - gridcell "ga4-analytics-reporter@julensistemas.iam.gserviceaccount.com" [ref=e586]:
+                      - link "ga4-analytics-reporter@julensistemas.iam.gserviceaccount.com" [ref=e587]:
+                        - /url: /iam-admin/serviceaccounts/details/100044182591842194477;edit=true?previousPage=%2Fapis%2Fcredentials%3Fproject%3Djulensistemas&project=julensistemas
+                    - rowheader "ga4-analytics-reporter" [ref=e588]
+                    - gridcell "Haz clic para editar la cuenta de servicio Haz clic para borrar la cuenta de servicio" [ref=e589]:
+                      - link "Haz clic para editar la cuenta de servicio" [ref=e590]:
+                        - /url: /iam-admin/serviceaccounts/details/100044182591842194477;edit=true?previousPage=%2Fapis%2Fcredentials%3Fproject%3Djulensistemas&project=julensistemas
+                        - img [ref=e592]:
+                          - img [ref=e593]
+                      - button "Haz clic para borrar la cuenta de servicio" [ref=e597]:
+                        - img [ref=e599]:
+                          - img [ref=e600]
+                  - row "seo-automation seo-automation@julensistemas.iam.gserviceaccount.com seo-automation Haz clic para editar la cuenta de servicio Haz clic para borrar la cuenta de servicio" [ref=e602] [cursor=pointer]:
+                    - gridcell "seo-automation" [ref=e603]:
+                      - checkbox "seo-automation" [ref=e605]
+                    - gridcell "seo-automation@julensistemas.iam.gserviceaccount.com" [ref=e606]:
+                      - link "seo-automation@julensistemas.iam.gserviceaccount.com" [ref=e607]:
+                        - /url: /iam-admin/serviceaccounts/details/100225573935800477146;edit=true?previousPage=%2Fapis%2Fcredentials%3Fproject%3Djulensistemas&project=julensistemas
+                    - rowheader "seo-automation" [ref=e608]
+                    - gridcell "Haz clic para editar la cuenta de servicio Haz clic para borrar la cuenta de servicio" [ref=e609]:
+                      - link "Haz clic para editar la cuenta de servicio" [ref=e610]:
+                        - /url: /iam-admin/serviceaccounts/details/100225573935800477146;edit=true?previousPage=%2Fapis%2Fcredentials%3Fproject%3Djulensistemas&project=julensistemas
+                        - img [ref=e612]:
+                          - img [ref=e613]
+                      - button "Haz clic para borrar la cuenta de servicio" [ref=e617]:
+                        - img [ref=e619]:
+                          - img [ref=e620]
+  - iframe [ref=e232]:
+    
+  - iframe [ref=e623]:
+    
+  - iframe [ref=e624]:
+    

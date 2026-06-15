@@ -1,0 +1,118 @@
+- generic [active] [ref=e1]:
+  - region "console.cloud.google.com usa cookies de Google para brindar sus servicios, mejorar su calidad y analizar el tráfico." [ref=e2]:
+    - paragraph [ref=e3]:
+      - text: console.cloud.google.com usa cookies de Google para brindar sus servicios, mejorar su calidad y analizar el tráfico.
+      - link "Obtenga más información sobre cómo Google utiliza las cookies. Se abrirá en una nueva pestaña." [ref=e4] [cursor=pointer]:
+        - /url: https://policies.google.com/technologies/cookies
+        - text: Más información
+    - button "Entendido" [ref=e5] [cursor=pointer]
+  - generic [ref=e7]:
+    - generic [ref=e8]:
+      - complementary "Omitir vínculos" [ref=e9]:
+        - link "Ir al contenido principal" [ref=e10] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e11]: Ir al contenido principal
+        - button "Combinación de teclas para acceso directo" [ref=e12]:
+          - generic [ref=e13]: Combinación de teclas para acceso directo
+        - link "Ayuda sobre la accesibilidad externo, se abre en una ventana nueva" [ref=e14] [cursor=pointer]:
+          - /url: https://cloud.google.com/docs/accessibility?hl=es_419
+          - generic [ref=e15]:
+            - text: Ayuda sobre la accesibilidad
+            - generic "externo, se abre en una ventana nueva" [ref=e16]:
+              - img "externo, se abre en una ventana nueva" [ref=e17]:
+                - img [ref=e18]
+        - link "Comentarios sobre accesibilidad externo, se abre en una ventana nueva" [ref=e20] [cursor=pointer]:
+          - /url: https://support.google.com/accessibility/contact/feedback?hl=es_419
+          - generic [ref=e21]:
+            - text: Comentarios sobre accesibilidad
+            - generic "externo, se abre en una ventana nueva" [ref=e22]:
+              - img "externo, se abre en una ventana nueva" [ref=e23]:
+                - img [ref=e24]
+      - banner [ref=e27]:
+        - generic [ref=e28]:
+          - navigation [ref=e31]:
+            - button "Menú de navegación (.)" [ref=e32] [cursor=pointer]:
+              - img [ref=e34]
+          - link "Google Cloud Platform - Página principal" [ref=e36] [cursor=pointer]:
+            - /url: /
+            - generic:
+              - img
+          - button "No se seleccionó ningún proyecto. Presiona Intro para seleccionar un proyecto, una carpeta o una organización." [ref=e44]
+        - button "Abrir la búsqueda" [ref=e51] [cursor=pointer]:
+          - img [ref=e53]
+        - generic [ref=e55]:
+          - generic [ref=e56]:
+            - generic [ref=e59]:
+              - button "Activar Cloud Shell (G then S)" [disabled]:
+                - generic:
+                  - img
+            - button "Abrir notificaciones" [ref=e63] [cursor=pointer]:
+              - img [ref=e65]
+            - button "Configuración y utilidades" [ref=e71] [cursor=pointer]:
+              - img [ref=e73]
+          - img [ref=e77]
+    - generic [ref=e97]:
+      - navigation "APIs y servicios" [ref=e104]:
+        - generic [ref=e105]:
+          - heading "APIs y servicios" [level=2] [ref=e107]:
+            - link "APIs y servicios" [ref=e108] [cursor=pointer]:
+              - /url: /apis
+              - img [ref=e111]
+              - generic [ref=e115]: APIs y servicios
+          - list "APIs y servicios habilitados, 1 de 5 Más opciones Biblioteca, 2 de 5 Más opciones Credenciales, 3 de 5 Más opciones Pantalla de consentimiento de OAuth, 4 de 5 Más opciones Acuerdos de uso de páginas, 5 de 5 Más opciones" [ref=e119]:
+            - listitem [ref=e120]:
+              - generic [ref=e123]:
+                - link "APIs y servicios habilitados, 1 de 5" [ref=e124] [cursor=pointer]:
+                  - /url: /apis/dashboard
+                  - generic [ref=e125]:
+                    - img [ref=e128]
+                    - generic [ref=e130]: APIs y servicios habilitados
+                - button "Más opciones" [ref=e132] [cursor=pointer]:
+                  - img [ref=e134]
+            - listitem [ref=e136]:
+              - generic [ref=e139]:
+                - link "Biblioteca, 2 de 5" [ref=e140] [cursor=pointer]:
+                  - /url: /apis/library
+                  - generic [ref=e141]:
+                    - img [ref=e144]
+                    - generic [ref=e146]: Biblioteca
+                - button "Más opciones" [ref=e148] [cursor=pointer]:
+                  - img [ref=e150]
+            - listitem [ref=e152]:
+              - generic [ref=e155]:
+                - link "Credenciales, 3 de 5" [ref=e156] [cursor=pointer]:
+                  - /url: /apis/credentials
+                  - generic [ref=e157]:
+                    - img [ref=e160]
+                    - generic [ref=e162]: Credenciales
+                - button "Más opciones" [ref=e164] [cursor=pointer]:
+                  - img [ref=e166]
+            - listitem [ref=e168]:
+              - generic [ref=e171]:
+                - link "Pantalla de consentimiento de OAuth, 4 de 5" [ref=e172] [cursor=pointer]:
+                  - /url: /apis/credentials/consent
+                  - generic [ref=e173]:
+                    - img [ref=e176]
+                    - generic [ref=e178]: Pantalla de consentimiento de OAuth
+                - button "Más opciones" [ref=e180] [cursor=pointer]:
+                  - img [ref=e182]
+            - listitem [ref=e184]:
+              - generic [ref=e187]:
+                - link "Acuerdos de uso de páginas, 5 de 5" [ref=e188] [cursor=pointer]:
+                  - /url: /apis/agreements
+                  - generic [ref=e189]:
+                    - img [ref=e192]
+                    - generic [ref=e195]: Acuerdos de uso de páginas
+                - button "Más opciones" [ref=e197] [cursor=pointer]:
+                  - img [ref=e199]
+          - button "Activar o desactivar el menú de navegación de APIs y servicios" [pressed] [ref=e202] [cursor=pointer]:
+            - img [ref=e205]
+      - main [ref=e208]:
+        - progressbar [ref=e216]:
+          - img [ref=e218]
+          - generic [ref=e221]:
+            - img [ref=e223]
+            - img [ref=e226]
+            - img [ref=e229]
+  - iframe [ref=e232]:
+    
