@@ -10,6 +10,9 @@
   <!-- Capa linterna -->
   <canvas id="fus-canvas" class="absolute inset-0" style="width:100%;height:100%;display:block;z-index:1;"></canvas>
 
+  <!-- Viñeta central: atenúa nodos y líneas detrás del texto para que destaque -->
+  <div class="absolute inset-0 pointer-events-none" style="z-index:2;background:radial-gradient(ellipse 44% 40% at 50% 47%, rgba(3,6,13,0.92) 0%, rgba(3,6,13,0.78) 38%, rgba(3,6,13,0.4) 60%, transparent 75%);"></div>
+
   <!-- Foco visual que sigue al cursor -->
   <div id="fus-cursor" style="position:absolute;width:16px;height:16px;border-radius:50%;pointer-events:none;z-index:30;transform:translate(-50%,-50%);background:radial-gradient(circle,#fff,rgba(255,255,255,0.2));box-shadow:0 0 24px 6px rgba(124,192,255,0.6);opacity:0;transition:opacity .3s;"></div>
 
