@@ -176,31 +176,103 @@ const localBusinessSchema = {
   "serviceType": "Consultoría de Inteligencia Artificial",
   "provider": { "@type": "Organization", "name": "AI Security", "url": "https://aisecurity.es" },
 };
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://aisecurity.es/" },
+    { "@type": "ListItem", "position": 2, "name": "Consultoría IA", "item": "https://aisecurity.es/consultoria-ia" },
+    { "@type": "ListItem", "position": 3, "name": `Consultoría IA ${nombre}`, "item": canonical },
+  ],
+};
+
+// ─── GENÉRICO: ¿te suena esto? (dolores de quien aún no automatiza) ───
+const dolores = [
+  { icon: "⏳", texto: "Tu equipo pierde horas cada semana en tareas repetitivas: facturas, emails, informes, copiar datos de un sitio a otro." },
+  { icon: "📞", texto: "Se escapan llamadas, mensajes y oportunidades fuera de horario porque no hay quien los atienda." },
+  { icon: "🔎", texto: "La información está dispersa y encontrar un documento o un dato concreto lleva demasiado tiempo." },
+  { icon: "🚀", texto: "Sabes que la IA puede ayudar, pero no sabes por dónde empezar — y tu competencia ya la usa." },
+];
+
+// ─── GENÉRICO: resultados con cifras ───
+const resultados = [
+  { c: "#60a5fa", num: "+15 h", label: "ahorradas a la semana", sub: "automatizando tareas repetitivas" },
+  { c: "#818cf8", num: "24/7",  label: "atención sin descanso",  sub: "chatbot y llamadas con IA" },
+  { c: "#a78bfa", num: "2-3 meses", label: "para ver el retorno", sub: "con resultados medibles" },
+  { c: "#c084fc", num: "0 €",   label: "primera consulta",        sub: "y sin permanencia" },
+];
 ---
 
 <BaseLayout title={title} description={description} canonical={canonical}>
 
   <script slot="head" type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />
   <script type="application/ld+json" is:inline set:html={JSON.stringify(localBusinessSchema)} />
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbSchema)} />
 
   <!-- HERO -->
   <section class="relative overflow-hidden" style="background: linear-gradient(135deg, #0a0d1a 0%, #0f1628 50%, #0a0d1a 100%); padding: 80px 0 60px;">
     <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(circle at 20% 50%, #4f7cff 0%, transparent 50%), radial-gradient(circle at 80% 50%, #8b5cf6 0%, transparent 50%);"></div>
     <div class="max-w-5xl mx-auto px-6 text-center relative z-10">
+      <!-- Breadcrumb visible (SEO + orientación) -->
+      <nav aria-label="Migas de pan" class="mb-6 flex justify-center">
+        <ol class="flex items-center gap-2 text-xs" style="color:#64748b;">
+          <li><a href="/" style="color:#7da4ff;text-decoration:none;">Inicio</a></li>
+          <li aria-hidden="true">/</li>
+          <li><a href="/consultoria-ia" style="color:#7da4ff;text-decoration:none;">Consultoría IA</a></li>
+          <li aria-hidden="true">/</li>
+          <li style="color:#94a3b8;">{nombre}</li>
+        </ol>
+      </nav>
+
       <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium mb-6" style="background: rgba(79,124,255,0.15); border: 1px solid rgba(79,124,255,0.3); color: #7da4ff;">
         <span>📍</span> Consultoría IA · {nombre}
       </div>
       <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight" style="color: #fff;">
-        Consultoría de IA para empresas<br/>
-        <span style="background: linear-gradient(90deg, #4f7cff, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">en {nombre}</span>
+        Automatiza procesos con IA<br/>
+        en tu empresa de <span style="background: linear-gradient(90deg, #4f7cff, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">{nombre}</span>
       </h1>
-      <p class="text-lg max-w-3xl mx-auto mb-8" style="color: #94a3b8; line-height: 1.7;">{heroIntro}</p>
+      <p class="text-lg max-w-3xl mx-auto mb-7" style="color: #94a3b8; line-height: 1.7;">{heroIntro}</p>
+
+      <!-- Chips de confianza -->
+      <div class="flex flex-wrap justify-center gap-2.5 mb-8">
+        {["Primera consulta gratis", "Formación del equipo incluida", "Sin permanencia", "Resultados medibles"].map((b) => (
+          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold" style="background:rgba(255,255,255,0.05);border:1px solid rgba(124,192,255,0.25);color:#cbd5e1;">
+            <svg width="13" height="13" fill="none" stroke="#60a5fa" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+            {b}
+          </span>
+        ))}
+      </div>
+
       <div class="flex flex-wrap gap-4 justify-center">
         <a href={`/presupuesto?plan=${planSlug}`} class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all" style="background: linear-gradient(135deg, #4f7cff, #7c3aed); color: #ffffff;">
           Consulta gratuita en {nombre} →
         </a>
         <a href="/consultoria-ia" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold" style="background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15); color: #cbd5e1;">
           Ver todos los servicios IA →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ¿TE SUENA ESTO? — conecta con quien aún no automatiza -->
+  <section style="background: #0f1117; padding: 72px 0; border-top: 1px solid #1e2130;">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold mb-3" style="color: #e2e8f0;">¿Te suena esto en tu empresa de {nombre}?</h2>
+        <p style="color: #64748b; max-width: 560px; margin: 0 auto;">Si te identificas con alguno de estos puntos, la IA puede ayudarte. Y empieza con una conversación, sin compromiso.</p>
+      </div>
+      <div class="grid sm:grid-cols-2 gap-4">
+        {dolores.map((d) => (
+          <div class="flex items-start gap-4 rounded-xl p-5" style="background:#1a1d27;border:1px solid #2a2d3a;">
+            <span style="font-size:26px;line-height:1;flex-shrink:0;">{d.icon}</span>
+            <p style="color:#cbd5e1;font-size:0.92rem;line-height:1.6;margin:0;">{d.texto}</p>
+          </div>
+        ))}
+      </div>
+      <div class="text-center mt-10">
+        <a href={`/presupuesto?plan=${planSlug}`} class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all" style="background: linear-gradient(135deg, #4f7cff, #7c3aed); color: #ffffff;">
+          Cuéntanos tu caso — primera consulta gratis →
         </a>
       </div>
     </div>
@@ -300,8 +372,27 @@ const localBusinessSchema = {
     </div>
   </section>
 
+  <!-- RESULTADOS CON CIFRAS -->
+  <section style="background: #0f1117; padding: 72px 0; border-top: 1px solid #1e2130;">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold mb-3" style="color: #e2e8f0;">Lo que gana tu empresa al automatizar con IA</h2>
+        <p style="color: #64748b; max-width: 520px; margin: 0 auto;">No vendemos tecnología por tecnología. Vendemos tiempo recuperado y procesos que funcionan solos.</p>
+      </div>
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        {resultados.map((r) => (
+          <div class="rounded-xl p-6 text-center" style={`background:#1a1d27;border:1px solid #2a2d3a;border-top:3px solid ${r.c};`}>
+            <div style={`font-size:2rem;font-weight:900;line-height:1;color:${r.c};margin-bottom:8px;`}>{r.num}</div>
+            <div style="font-size:0.92rem;font-weight:700;color:#e2e8f0;margin-bottom:4px;">{r.label}</div>
+            <div style="font-size:0.78rem;color:#64748b;line-height:1.4;">{r.sub}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <!-- CÓMO TRABAJAMOS -->
-  <section style="background: #0f1117; padding: 80px 0; border-top: 1px solid #1e2130;">
+  <section style="background: #0a0d1a; padding: 80px 0; border-top: 1px solid #1e2130;">
     <div class="max-w-5xl mx-auto px-6">
       <div class="text-center mb-12">
         <h2 class="text-3xl font-bold mb-3" style="color: #e2e8f0;">Cómo trabajamos con empresas en {nombre}</h2>
