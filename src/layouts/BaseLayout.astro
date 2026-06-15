@@ -25,14 +25,27 @@ const {
   lang="es"
   class="scroll-smooth selection:bg-accent-500 selection:text-white no-touchevents hydrated">
   <head>
-    <!-- Analytics diferido: carga tras primera interacción para no penalizar LCP/TBT -->
+    <!-- GA4 directo — CRÍTICO: inicializar dataLayer antes que cualquier gtag() call -->
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-QZ1G3QDQCC', { send_page_view: true });
+    </script>
+
+    <!-- Analytics diferido: GA4 script + GTM + Clarity tras primera interacción -->
     <script is:inline>
     (function(){
       var loaded = false;
       function loadAnalytics() {
         if (loaded) return;
         loaded = true;
-        // Google Tag Manager
+        // GA4 directo — garantiza que gtag('event',...) llega a GA4 sin depender de GTM
+        var ga4 = document.createElement('script');
+        ga4.async = true;
+        ga4.src = 'https://www.googletagmanager.com/gtag/js?id=G-QZ1G3QDQCC';
+        document.head.appendChild(ga4);
+        // Google Tag Manager (para otras integraciones)
         (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
         new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
         j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
@@ -45,11 +58,10 @@ const {
           y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
         })(window,document,"clarity","script","w9l643hh32");
       }
-      // Cargar tras primera interacción o 4s de inactividad
       ['click','scroll','keydown','touchstart','mousemove'].forEach(function(e){
         window.addEventListener(e, loadAnalytics, {once:true, passive:true});
       });
-      setTimeout(loadAnalytics, 4000);
+      setTimeout(loadAnalytics, 3000);
     })();
     </script>
     <BaseHead
@@ -71,43 +83,51 @@ const {
     <Mascot />
     <Analytics />
     <SpeedInsights />
-    <!-- GA4 diferido junto con GTM -->
-    <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      // Se inicializa cuando loadAnalytics() inyecte el script de GTM
-      window.addEventListener('gtm.js', function() {
-        gtag('js', new Date());
-        gtag('config', 'G-QZ1G3QDQCC', { send_page_view: false });
-      }, {once: true});
-    </script>
-    <!-- Tracking global de clics para GA4 -->
+    <!-- Tracking global: clics, scroll, tiempo, formularios -->
     <script is:inline>
     (function () {
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-
-      function sendEvent(name, params) {
-        gtag('event', name, params);
+      // gtag ya definido en <head>
+      function ev(name, params) {
+        if (typeof gtag === 'function') gtag('event', name, params);
       }
 
+      // ── Tipo de página ────────────────────────────────────────────────────
+      function pageType() {
+        var p = window.location.pathname;
+        if (p === '/')                    return 'home';
+        if (p.startsWith('/blog/'))       return 'blog_post';
+        if (p === '/blog')                return 'blog_index';
+        if (p.startsWith('/servicios/'))  return 'servicio';
+        if (p.startsWith('/consultoria')) return 'consultoria';
+        if (p.startsWith('/curso'))       return 'curso';
+        if (p.startsWith('/wazuh'))       return 'wazuh';
+        if (p === '/reunion')             return 'reunion';
+        if (p === '/presupuesto')         return 'presupuesto';
+        return 'otra';
+      }
+      var PAGE_TYPE = pageType();
+
+      // ── Categoría de enlace ───────────────────────────────────────────────
       function getCategory(href) {
         if (!href) return 'ui';
-        if (href.includes('/reunion'))         return 'lead';
-        if (href.includes('/contacto'))        return 'lead';
-        if (href.includes('/abrir-ticket'))    return 'lead';
-        if (href.includes('mailto:'))          return 'email';
-        if (href.includes('tel:'))             return 'phone';
-        if (href.includes('/curso-wazuh'))     return 'curso';
-        if (href.includes('/wazuh'))           return 'wazuh';
+        if (href.includes('/reunion') || href.includes('/contacto') || href.includes('/abrir-ticket')) return 'lead';
+        if (href.includes('mailto:'))  return 'email';
+        if (href.includes('tel:'))     return 'phone';
+        if (href.includes('/presupuesto')) return 'presupuesto';
+        if (href.includes('/curso-wazuh') || href.includes('/curso-seo') || href.includes('/curso')) return 'curso';
+        if (href.includes('/wazuh'))        return 'wazuh';
         if (href.includes('/soporte-tecnico')) return 'soporte';
-        if (href.includes('/servicios/'))      return 'servicio';
-        if (href.includes('/blog'))            return 'blog';
+        if (href.includes('/servicios/'))   return 'servicio';
+        if (href.includes('/consultoria'))  return 'consultoria';
+        if (href.includes('/blog'))         return 'blog';
         if (href.includes('stripe.com') || href.includes('buy.stripe')) return 'pago';
         if (href.startsWith('http') && !href.includes('aisecurity.es')) return 'externo';
         return 'navegacion';
       }
 
+      var page = window.location.pathname;
+
+      // ── Clics en enlaces y botones ────────────────────────────────────────
       document.addEventListener('click', function (e) {
         var el = e.target.closest('a, button');
         if (!el) return;
@@ -116,44 +136,75 @@ const {
         var href     = el.getAttribute('href') || '';
         var label    = (el.textContent || el.getAttribute('aria-label') || '').trim().replace(/\s+/g, ' ').slice(0, 100);
         var category = getCategory(href);
-        var page     = window.location.pathname;
+
+        var base = { event_category: category, event_label: label, page_path: page, page_type: PAGE_TYPE };
 
         if (tag === 'a' && href) {
-          sendEvent('click_link', {
-            event_category: category,
-            event_label: label,
-            link_url: href,
-            page_path: page,
-          });
-          if (category === 'lead' || category === 'email' || category === 'phone') {
-            sendEvent('conversion_click', {
-              event_category: category,
-              event_label: label,
-              page_path: page,
-            });
+          ev('click_link', Object.assign({}, base, { link_url: href }));
+          if (category === 'lead' || category === 'presupuesto' || category === 'pago' || category === 'email' || category === 'phone') {
+            ev('conversion_click', base);
           }
         } else if (tag === 'button') {
-          sendEvent('click_button', {
-            event_category: category,
-            event_label: label,
-            page_path: page,
-          });
+          ev('click_button', base);
+          if (category === 'lead' || category === 'presupuesto') {
+            ev('conversion_click', base);
+          }
         }
       }, true);
 
+      // ── Formularios ───────────────────────────────────────────────────────
       document.addEventListener('submit', function (e) {
         var form = e.target;
-        var id   = form.id || form.getAttribute('name') || form.action || 'form';
-        sendEvent('form_submit', {
-          event_category: 'lead',
-          event_label: id,
-          page_path: window.location.pathname,
-        });
-        sendEvent('conversion_form', {
-          event_category: 'lead',
-          event_label: id,
-        });
+        var id   = form.id || form.getAttribute('name') || 'form';
+        ev('form_submit', { event_category: 'lead', event_label: id, page_path: page, page_type: PAGE_TYPE });
+        ev('conversion_form', { event_category: 'lead', event_label: id, page_type: PAGE_TYPE });
       }, true);
+
+      // ── Scroll depth (25 / 50 / 75 / 90%) ────────────────────────────────
+      var scrollFired = {};
+      var DEPTHS = [25, 50, 75, 90];
+      window.addEventListener('scroll', function () {
+        var scrolled = window.scrollY + window.innerHeight;
+        var total    = document.documentElement.scrollHeight;
+        var pct      = Math.round((scrolled / total) * 100);
+        DEPTHS.forEach(function (d) {
+          if (!scrollFired[d] && pct >= d) {
+            scrollFired[d] = true;
+            ev('scroll_depth', { event_category: 'engagement', event_label: d + '%', page_path: page, page_type: PAGE_TYPE, value: d });
+          }
+        });
+      }, { passive: true });
+
+      // ── Tiempo en página (30s / 60s / 3min / 5min) ───────────────────────
+      [[30,'30s'],[60,'1min'],[180,'3min'],[300,'5min']].forEach(function(t) {
+        setTimeout(function() {
+          ev('time_on_page', { event_category: 'engagement', event_label: t[1], page_path: page, page_type: PAGE_TYPE, value: t[0] });
+        }, t[0] * 1000);
+      });
+
+      // ── Secciones clave visibles (IntersectionObserver) ───────────────────
+      if ('IntersectionObserver' in window) {
+        var sectionMap = {
+          '#servicios':     'seccion_servicios',
+          '#faq':           'seccion_faq',
+          '[id*="pricing"]':'seccion_pricing',
+          '.hero-main-card':'seccion_hero_chat',
+        };
+        Object.keys(sectionMap).forEach(function(sel) {
+          var el = document.querySelector(sel);
+          if (!el) return;
+          var eventName = sectionMap[sel];
+          var obs = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+              if (entry.isIntersecting) {
+                ev('section_view', { event_category: 'engagement', event_label: eventName, page_path: page, page_type: PAGE_TYPE });
+                obs.disconnect();
+              }
+            });
+          }, { threshold: 0.3 });
+          obs.observe(el);
+        });
+      }
     })();
     </script>
     <!-- WebMCP: expone acciones del sitio a agentes IA via navigator.modelContext -->
