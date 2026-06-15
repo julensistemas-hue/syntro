@@ -1,0 +1,172 @@
+---
+// GA4 + tracking de comportamiento — componente único compartido por todos los layouts.
+// IMPORTANTE: gtag.js se carga DIRECTO (async), no diferido. Diferirlo tras la primera
+// interacción hacía que los eventos de clic en enlaces se perdieran al navegar la página
+// antes de que la librería llegara a enviarlos (rompió el tracking el 2026-05-12).
+// GTM y Clarity sí van diferidos: no son necesarios para los eventos custom de GA4.
+---
+
+<!-- GA4 directo (async, no bloquea render) -->
+<script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-QZ1G3QDQCC"></script>
+<script is:inline>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  // transport_type:'beacon' → garantiza que el evento se envía aunque la página navegue justo después del clic
+  gtag('config', 'G-QZ1G3QDQCC', { send_page_view: true, transport_type: 'beacon' });
+</script>
+
+<!-- GTM + Microsoft Clarity diferidos tras primera interacción (no críticos para GA4) -->
+<script is:inline>
+(function(){
+  var loaded = false;
+  function loadDeferred() {
+    if (loaded) return;
+    loaded = true;
+    // Google Tag Manager (otras integraciones)
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-KG5KMRL8');
+    // Microsoft Clarity
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window,document,"clarity","script","w9l643hh32");
+  }
+  ['click','scroll','keydown','touchstart','mousemove'].forEach(function(e){
+    window.addEventListener(e, loadDeferred, {once:true, passive:true});
+  });
+  setTimeout(loadDeferred, 3000);
+})();
+</script>
+
+<!-- Tracking global de comportamiento: clics, conversiones, formularios, scroll, tiempo, secciones -->
+<script is:inline>
+(function () {
+  function ev(name, params) {
+    if (typeof gtag === 'function') gtag('event', name, params);
+  }
+  function ready(fn) {
+    if (document.readyState !== 'loading') fn();
+    else document.addEventListener('DOMContentLoaded', fn);
+  }
+
+  // ── Tipo de página ──────────────────────────────────────────────────────
+  function pageType() {
+    var p = window.location.pathname;
+    if (p === '/')                    return 'home';
+    if (p.startsWith('/blog/'))       return 'blog_post';
+    if (p === '/blog')                return 'blog_index';
+    if (p.startsWith('/servicios/'))  return 'servicio';
+    if (p.startsWith('/consultoria')) return 'consultoria';
+    if (p.startsWith('/curso'))       return 'curso';
+    if (p.startsWith('/wazuh'))       return 'wazuh';
+    if (p === '/reunion')             return 'reunion';
+    if (p === '/presupuesto')         return 'presupuesto';
+    return 'otra';
+  }
+  var PAGE_TYPE = pageType();
+  var page = window.location.pathname;
+
+  // ── Categoría de enlace ───────────────────────────────────────────────────
+  function getCategory(href) {
+    if (!href) return 'ui';
+    if (href.includes('/reunion') || href.includes('/contacto') || href.includes('/abrir-ticket')) return 'lead';
+    if (href.includes('mailto:'))  return 'email';
+    if (href.includes('tel:'))     return 'phone';
+    if (href.includes('/presupuesto')) return 'presupuesto';
+    if (href.includes('/curso-wazuh') || href.includes('/curso-seo') || href.includes('/curso')) return 'curso';
+    if (href.includes('/wazuh'))        return 'wazuh';
+    if (href.includes('/soporte-tecnico')) return 'soporte';
+    if (href.includes('/servicios/'))   return 'servicio';
+    if (href.includes('/consultoria'))  return 'consultoria';
+    if (href.includes('/blog'))         return 'blog';
+    if (href.includes('stripe.com') || href.includes('buy.stripe')) return 'pago';
+    if (href.startsWith('http') && !href.includes('aisecurity.es')) return 'externo';
+    return 'navegacion';
+  }
+
+  // ── Clics en enlaces y botones ────────────────────────────────────────────
+  document.addEventListener('click', function (e) {
+    var el = e.target.closest('a, button');
+    if (!el) return;
+
+    var tag      = el.tagName.toLowerCase();
+    var href     = el.getAttribute('href') || '';
+    var label    = (el.textContent || el.getAttribute('aria-label') || '').trim().replace(/\s+/g, ' ').slice(0, 100);
+    var category = getCategory(href);
+
+    var base = { event_category: category, event_label: label, page_path: page, page_type: PAGE_TYPE };
+
+    if (tag === 'a' && href) {
+      ev('click_link', Object.assign({}, base, { link_url: href }));
+      if (category === 'lead' || category === 'presupuesto' || category === 'pago' || category === 'email' || category === 'phone') {
+        ev('conversion_click', base);
+      }
+    } else if (tag === 'button') {
+      ev('click_button', base);
+      if (category === 'lead' || category === 'presupuesto') {
+        ev('conversion_click', base);
+      }
+    }
+  }, true);
+
+  // ── Formularios ─────────────────────────────────────────────────────────
+  document.addEventListener('submit', function (e) {
+    var form = e.target;
+    var id   = form.id || form.getAttribute('name') || 'form';
+    ev('form_submit', { event_category: 'lead', event_label: id, page_path: page, page_type: PAGE_TYPE });
+    ev('conversion_form', { event_category: 'lead', event_label: id, page_type: PAGE_TYPE });
+  }, true);
+
+  // ── Scroll depth (25 / 50 / 75 / 90%) ──────────────────────────────────────
+  var scrollFired = {};
+  var DEPTHS = [25, 50, 75, 90];
+  window.addEventListener('scroll', function () {
+    var scrolled = window.scrollY + window.innerHeight;
+    var total    = document.documentElement.scrollHeight;
+    var pct      = Math.round((scrolled / total) * 100);
+    DEPTHS.forEach(function (d) {
+      if (!scrollFired[d] && pct >= d) {
+        scrollFired[d] = true;
+        ev('scroll_depth', { event_category: 'engagement', event_label: d + '%', page_path: page, page_type: PAGE_TYPE, value: d });
+      }
+    });
+  }, { passive: true });
+
+  // ── Tiempo en página (30s / 60s / 3min / 5min) ─────────────────────────────
+  [[30,'30s'],[60,'1min'],[180,'3min'],[300,'5min']].forEach(function(t) {
+    setTimeout(function() {
+      ev('time_on_page', { event_category: 'engagement', event_label: t[1], page_path: page, page_type: PAGE_TYPE, value: t[0] });
+    }, t[0] * 1000);
+  });
+
+  // ── Secciones clave visibles (IntersectionObserver) ─────────────────────────
+  ready(function () {
+    if (!('IntersectionObserver' in window)) return;
+    var sectionMap = {
+      '#servicios':     'seccion_servicios',
+      '#faq':           'seccion_faq',
+      '[id*="pricing"]':'seccion_pricing',
+      '.hero-main-card':'seccion_hero_chat',
+    };
+    Object.keys(sectionMap).forEach(function(sel) {
+      var el = document.querySelector(sel);
+      if (!el) return;
+      var eventName = sectionMap[sel];
+      var obs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            ev('section_view', { event_category: 'engagement', event_label: eventName, page_path: page, page_type: PAGE_TYPE });
+            obs.disconnect();
+          }
+        });
+      }, { threshold: 0.3 });
+      obs.observe(el);
+    });
+  });
+})();
+</script>
