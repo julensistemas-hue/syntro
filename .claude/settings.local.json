@@ -62,14 +62,24 @@
       "PowerShell(head -3)",
       "PowerShell(cd c:\\\\Users\\\\Jul\\\\Documents\\\\Project\\\\aisecurity.es\\\\web\\\\syntro; $env:PLAYWRIGHT_BROWSERS_PATH=\"0\"; npx playwright@1.60.0 --version 2>&1 | Select-Object -First 1; node -e \"require\\('@playwright/test'\\)\" 2>&1 | Select-Object -First 2)",
       "Bash(Read \"C:\\\\Users\\\\Jul\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-Jul-Documents-Project-aisecurity-es-web-syntro\\\\a10e4311-eab9-45b0-84fd-03801334b014\\\\tasks\\\\bqb8503ur.output\")",
-      "WebFetch(domain:cybernoz.com)",
-      "WebFetch(domain:gokhansobay.medium.com)"
+      "Skill(update-config)",
+      "Skill(update-config:*)",
+      "mcp__playwright__browser_navigate",
+      "mcp__playwright__browser_click",
+      "mcp__playwright__browser_take_screenshot",
+      "mcp__playwright__browser_evaluate",
+      "Skill(deep-research)",
+      "Skill(deep-research:*)",
+      "WebFetch(domain:wazuh.com)",
+      "WebFetch(domain:wazuh-documentation-49-master.readthedocs.io)",
+      "WebFetch(domain:opennix.org)"
     ],
     "deny": [],
     "ask": [],
     "additionalDirectories": [
       "\\tmp",
-      "c:\\tmp"
+      "c:\\tmp",
+      "C:\\Users\\Jul\\.claude"
     ]
   },
   "enableAllProjectMcpServers": true,
@@ -90,17 +100,6 @@
           {
             "type": "command",
             "command": "curl -s -X POST \"http://localhost:${MCP_VOICE_HOOKS_PORT:-5111}/api/hooks/stop\" || echo '{}'"
-          }
-        ]
-      },
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "shell": "powershell",
-            "command": "$proj = 'c:\\Users\\Jul\\Documents\\Project\\aisecurity.es\\web\\syntro'; if (-not (Test-Path $proj)) { exit 0 }; Push-Location $proj; try { $st = git status --porcelain 2>$null; if ($st) { git add -A; $msg = 'chore: auto-commit [' + (Get-Date -Format 'HH:mm') + ']'; git commit -m $msg 2>$null | Out-Null }; $ahead = [int](git rev-list --count '@{u}..HEAD' 2>$null); if ($ahead -gt 0) { git push origin main 2>$null | Out-Null; Write-Output '{\"systemMessage\": \"🚀 Auto-pushed to production\"}' } } finally { Pop-Location }",
-            "timeout": 30
           }
         ]
       }

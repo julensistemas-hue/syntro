@@ -124,11 +124,14 @@ async function buildReport() {
   const curr = await queryTotals(dateRange);
   const prev = isAll ? null : await queryTotals(dateRangePrev);
 
-  // 1. Top botones clicados — con página de origen
+  // 1. Top botones/links clicados — con página de origen
   const clicks = await query(
     ['customEvent:event_label', 'customEvent:event_category', 'pagePath'],
     ['eventCount'],
-    { filter: { fieldName: 'eventName', stringFilter: { value: 'click_link' } } }
+    { filter: { fieldName: 'eventName', orGroup: { expressions: [
+      { filter: { fieldName: 'eventName', stringFilter: { value: 'click_link' } } },
+      { filter: { fieldName: 'eventName', stringFilter: { value: 'click_button' } } },
+    ] } } }
   );
 
   // 2. Clicks por categoría
@@ -141,7 +144,7 @@ async function buildReport() {
     ] } } }
   );
 
-  // 3. Conversiones (leads) — con página de origen y texto del botón
+  // 3. Conversiones (leads/presupuesto/pago) — con página de origen y texto del botón
   const conversions = await query(
     ['customEvent:event_label', 'pagePath'],
     ['eventCount'],
@@ -155,7 +158,21 @@ async function buildReport() {
     { filter: { fieldName: 'eventName', stringFilter: { value: 'form_submit' } } }
   );
 
-  // 5. Páginas más visitadas
+  // 5. Scroll depth promedio por tipo de página
+  const scrollDepth = await query(
+    ['customEvent:page_type'],
+    ['eventCount'],
+    { filter: { fieldName: 'eventName', stringFilter: { value: 'scroll_depth' } } }
+  );
+
+  // 6. Secciones más vistas
+  const sectionViews = await query(
+    ['customEvent:event_label'],
+    ['eventCount'],
+    { filter: { fieldName: 'eventName', stringFilter: { value: 'section_view' } } }
+  );
+
+  // 7. Páginas más visitadas
   const pages = await query(['pagePath'], ['screenPageViews'], null);
 
   const now = new Date().toLocaleDateString('es-ES', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
@@ -225,6 +242,24 @@ async function buildReport() {
   ${section('Clicks por categoría', '📂',
     ['Categoría', 'Total clicks'],
     byCategory.map(r => row([
+      r.dimensionValues[0].value || '-',
+      r.metricValues[0].value,
+    ])).join('')
+  )}
+
+  <!-- Scroll depth -->
+  ${section('Engagement por tipo de página (scroll)', '📊',
+    ['Tipo de página', 'Eventos scroll'],
+    scrollDepth.map(r => row([
+      r.dimensionValues[0].value || '-',
+      r.metricValues[0].value,
+    ])).join('')
+  )}
+
+  <!-- Secciones vistas -->
+  ${section('Secciones más vistas', '👁️',
+    ['Sección', 'Veces vista'],
+    sectionViews.map(r => row([
       r.dimensionValues[0].value || '-',
       r.metricValues[0].value,
     ])).join('')
