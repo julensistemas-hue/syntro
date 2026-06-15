@@ -1,93 +1,173 @@
 {
-  "generatedAt": "2026-06-08T06:12:12.527Z",
+  "generatedAt": "2026-06-15T06:06:51.236Z",
   "propertyId": "519124169",
   "period": {
-    "startDate": "2026-05-31",
-    "endDate": "2026-06-07"
+    "startDate": "2026-06-07",
+    "endDate": "2026-06-14"
   },
   "summary": {
-    "totalSessions": 54,
-    "organicSessions": 17,
-    "organicPct": "31.5"
+    "totalSessions": 47,
+    "organicSessions": 11,
+    "organicPct": "23.4"
   },
   "topPages": [
     {
       "page": "/curso-wazuh",
       "sessions": 24,
-      "activeUsers": 15,
+      "activeUsers": 20,
       "bounceRate": 0,
-      "avgDuration": 181.65606470833333,
-      "pageViews": 24,
-      "prevSessions": 16,
-      "sessionsDiff": 8
+      "avgDuration": 121.289546375,
+      "pageViews": 26,
+      "prevSessions": 24,
+      "sessionsDiff": 0
     },
     {
       "page": "/",
-      "sessions": 19,
-      "activeUsers": 14,
+      "sessions": 15,
+      "activeUsers": 11,
+      "bounceRate": 0.06666666666666667,
+      "avgDuration": 139.99593886666668,
+      "pageViews": 19,
+      "prevSessions": 19,
+      "sessionsDiff": -4
+    },
+    {
+      "page": "/blog",
+      "sessions": 3,
+      "activeUsers": 3,
       "bounceRate": 0,
-      "avgDuration": 215.5337914736842,
-      "pageViews": 53,
-      "prevSessions": 25,
-      "sessionsDiff": -6
+      "avgDuration": 104.80573199999999,
+      "pageViews": 3,
+      "prevSessions": 0,
+      "sessionsDiff": 3
     },
     {
       "page": "/consultoria-ia",
-      "sessions": 7,
-      "activeUsers": 6,
-      "bounceRate": 0,
-      "avgDuration": 27.238305857142855,
-      "pageViews": 10,
-      "prevSessions": 5,
-      "sessionsDiff": 2
+      "sessions": 3,
+      "activeUsers": 3,
+      "bounceRate": 0.3333333333333333,
+      "avgDuration": 10.917392333333334,
+      "pageViews": 3,
+      "prevSessions": 7,
+      "sessionsDiff": -4
     },
     {
-      "page": "/servicios/gestor-citas",
-      "sessions": 4,
-      "activeUsers": 3,
-      "bounceRate": 0,
-      "avgDuration": 36.2213325,
-      "pageViews": 3,
-      "prevSessions": 2,
-      "sessionsDiff": 2
+      "page": "/prueba-hero-g",
+      "sessions": 3,
+      "activeUsers": 2,
+      "bounceRate": 0.6666666666666666,
+      "avgDuration": 1174.2392816666668,
+      "pageViews": 12,
+      "prevSessions": 0,
+      "sessionsDiff": 3
     },
     {
       "page": "/curso-techai-boost",
       "sessions": 2,
-      "activeUsers": 2,
+      "activeUsers": 1,
       "bounceRate": 0,
-      "avgDuration": 1716.1325725,
-      "pageViews": 4,
-      "prevSessions": 1,
-      "sessionsDiff": 1
-    },
-    {
-      "page": "/presupuesto",
-      "sessions": 2,
-      "activeUsers": 2,
-      "bounceRate": 0,
-      "avgDuration": 89.3031315,
-      "pageViews": 4,
+      "avgDuration": 860.676194,
+      "pageViews": 2,
       "prevSessions": 2,
       "sessionsDiff": 0
     },
     {
-      "page": "/reunion",
+      "page": "/prueba-hero-d",
       "sessions": 2,
-      "activeUsers": 1,
-      "bounceRate": 0,
-      "avgDuration": 351.8989965,
+      "activeUsers": 2,
+      "bounceRate": 0.5,
+      "avgDuration": 646.780276,
+      "pageViews": 5,
+      "prevSessions": 0,
+      "sessionsDiff": 2
+    },
+    {
+      "page": "/prueba-hero-e",
+      "sessions": 2,
+      "activeUsers": 2,
+      "bounceRate": 1,
+      "avgDuration": 436.7543015,
       "pageViews": 2,
       "prevSessions": 0,
       "sessionsDiff": 2
     },
     {
-      "page": "/servicios/automatizacion",
+      "page": "/prueba-hero-f",
       "sessions": 2,
-      "activeUsers": 1,
-      "bounceRate": 0,
-      "avgDuration": 150.6561665,
+      "activeUsers": 2,
+      "bounceRate": 0.5,
+      "avgDuration": 360.20393399999995,
+      "pageViews": 2,
+      "prevSessions": 0,
+      "sessionsDiff": 2
+    },
+    {
+      "page": "/prueba-hero-h",
+      "sessions": 2,
+      "activeUsers": 2,
+      "bounceRate": 1,
+      "avgDuration": 424.3142335,
+      "pageViews": 3,
+      "prevSessions": 0,
+      "sessionsDiff": 2
+    },
+    {
+      "page": "/prueba-hero-i",
+      "sessions": 2,
+      "activeUsers": 2,
+      "bounceRate": 0.5,
+      "avgDuration": 524.00388,
+      "pageViews": 4,
+      "prevSessions": 0,
+      "sessionsDiff": 2
+    },
+    {
+      "page": "/prueba-hero-j",
+      "sessions": 2,
+      "activeUsers": 2,
+      "bounceRate": 1,
+      "avgDuration": 1909.097159,
+      "pageViews": 13,
+      "prevSessions": 0,
+      "sessionsDiff": 2
+    },
+    {
+      "page": "/prueba-hero-k",
+      "sessions": 2,
+      "activeUsers": 2,
+      "bounceRate": 1,
+      "avgDuration": 1761.9802125,
+      "pageViews": 14,
+      "prevSessions": 0,
+      "sessionsDiff": 2
+    },
+    {
+      "page": "/prueba-hero-l",
+      "sessions": 2,
+      "activeUsers": 2,
+      "bounceRate": 1,
+      "avgDuration": 1160.477586,
       "pageViews": 5,
+      "prevSessions": 0,
+      "sessionsDiff": 2
+    },
+    {
+      "page": "/prueba-hero-m",
+      "sessions": 2,
+      "activeUsers": 2,
+      "bounceRate": 1,
+      "avgDuration": 1618.105199,
+      "pageViews": 5,
+      "prevSessions": 0,
+      "sessionsDiff": 2
+    },
+    {
+      "page": "/prueba-heros",
+      "sessions": 2,
+      "activeUsers": 2,
+      "bounceRate": 0.5,
+      "avgDuration": 1628.3004765,
+      "pageViews": 24,
       "prevSessions": 0,
       "sessionsDiff": 2
     },
@@ -96,78 +176,38 @@
       "sessions": 1,
       "activeUsers": 1,
       "bounceRate": 0,
-      "avgDuration": 34.846455,
+      "avgDuration": 144.90194,
       "pageViews": 2,
       "prevSessions": 1,
       "sessionsDiff": 0
     },
     {
-      "page": "/consultoria-ia-castellon",
+      "page": "/curso-seo-geo-claude",
       "sessions": 1,
       "activeUsers": 1,
       "bounceRate": 0,
-      "avgDuration": 61.02024,
+      "avgDuration": 0,
       "pageViews": 1,
       "prevSessions": 0,
       "sessionsDiff": 1
     },
     {
-      "page": "/contacto",
+      "page": "/presupuesto",
       "sessions": 1,
       "activeUsers": 1,
       "bounceRate": 0,
-      "avgDuration": 215.867626,
-      "pageViews": 1,
-      "prevSessions": 0,
-      "sessionsDiff": 1
-    },
-    {
-      "page": "/servicios/atencion-llamadas",
-      "sessions": 1,
-      "activeUsers": 1,
-      "bounceRate": 0,
-      "avgDuration": 1885.577788,
-      "pageViews": 21,
-      "prevSessions": 3,
-      "sessionsDiff": -2
-    },
-    {
-      "page": "/servicios/chatbot",
-      "sessions": 1,
-      "activeUsers": 1,
-      "bounceRate": 0,
-      "avgDuration": 26.12157,
+      "avgDuration": 2.073449,
       "pageViews": 1,
       "prevSessions": 2,
       "sessionsDiff": -1
     },
     {
-      "page": "/servicios/geo-posicionamiento",
+      "page": "/prueba-hero-a",
       "sessions": 1,
       "activeUsers": 1,
       "bounceRate": 0,
-      "avgDuration": 0.300679,
-      "pageViews": 1,
-      "prevSessions": 0,
-      "sessionsDiff": 1
-    },
-    {
-      "page": "/servicios/gestor-documental",
-      "sessions": 1,
-      "activeUsers": 1,
-      "bounceRate": 0,
-      "avgDuration": 8.279386,
-      "pageViews": 1,
-      "prevSessions": 1,
-      "sessionsDiff": 0
-    },
-    {
-      "page": "/soporte-tecnico",
-      "sessions": 1,
-      "activeUsers": 1,
-      "bounceRate": 0,
-      "avgDuration": 13.574996,
-      "pageViews": 1,
+      "avgDuration": 31.228479,
+      "pageViews": 5,
       "prevSessions": 0,
       "sessionsDiff": 1
     }
@@ -175,102 +215,94 @@
   "channels": [
     {
       "channel": "Direct",
-      "sessions": 25,
-      "activeUsers": 20,
+      "sessions": 19,
+      "activeUsers": 14,
       "bounceRate": 0,
-      "conversions": 234
+      "conversions": 79
     },
     {
       "channel": "Organic Search",
-      "sessions": 17,
-      "activeUsers": 12,
+      "sessions": 11,
+      "activeUsers": 8,
       "bounceRate": 0,
-      "conversions": 67
+      "conversions": 48
     },
     {
       "channel": "Organic Video",
-      "sessions": 7,
-      "activeUsers": 3,
+      "sessions": 8,
+      "activeUsers": 7,
       "bounceRate": 0,
-      "conversions": 21
+      "conversions": 36
     },
     {
-      "channel": "Referral",
-      "sessions": 4,
+      "channel": "Unassigned",
+      "sessions": 5,
       "activeUsers": 3,
-      "bounceRate": 0,
-      "conversions": 17
+      "bounceRate": 1,
+      "conversions": 198
     },
     {
       "channel": "Organic Shopping",
-      "sessions": 1,
-      "activeUsers": 0,
+      "sessions": 3,
+      "activeUsers": 1,
       "bounceRate": 0,
-      "conversions": 2
+      "conversions": 16
+    },
+    {
+      "channel": "Referral",
+      "sessions": 1,
+      "activeUsers": 1,
+      "bounceRate": 0,
+      "conversions": 3
     }
   ],
   "events": [
     {
       "event": "page_view",
-      "count": 134,
-      "users": 40
+      "count": 155,
+      "users": 31
     },
     {
       "event": "user_engagement",
-      "count": 97,
-      "users": 26
+      "count": 143,
+      "users": 28
     },
     {
       "event": "session_start",
-      "count": 54,
-      "users": 41
+      "count": 42,
+      "users": 31
     },
     {
       "event": "first_visit",
-      "count": 34,
-      "users": 34
+      "count": 26,
+      "users": 26
     },
     {
       "event": "scroll",
-      "count": 20,
-      "users": 7
-    },
-    {
-      "event": "form_start",
-      "count": 2,
-      "users": 1
+      "count": 14,
+      "users": 9
     }
   ],
   "countries": [
     {
       "country": "Spain",
-      "sessions": 30,
-      "users": 23
+      "sessions": 26,
+      "users": 17
     },
     {
       "country": "Argentina",
       "sessions": 6,
-      "users": 2
+      "users": 6
     },
     {
-      "country": "El Salvador",
+      "country": "Mexico",
       "sessions": 3,
-      "users": 0
-    },
-    {
-      "country": "Cuba",
-      "sessions": 2,
-      "users": 1
-    },
-    {
-      "country": "Iran",
-      "sessions": 2,
-      "users": 1
-    },
-    {
-      "country": "Netherlands",
-      "sessions": 2,
       "users": 2
+    },
+    {
+      "country": "Peru",
+      "sessions": 2,
+      "users": 1
     },
     {
       "country": "United States",
@@ -278,7 +310,17 @@
       "users": 2
     },
     {
-      "country": "Chile",
+      "country": "Dominican Republic",
+      "sessions": 1,
+      "users": 1
+    },
+    {
+      "country": "El Salvador",
+      "sessions": 1,
+      "users": 1
+    },
+    {
+      "country": "India",
       "sessions": 1,
       "users": 1
     }
@@ -286,14 +328,14 @@
   "devices": [
     {
       "device": "desktop",
-      "sessions": 46,
-      "users": 31,
+      "sessions": 40,
+      "users": 29,
       "bounceRate": 0
     },
     {
       "device": "mobile",
-      "sessions": 8,
-      "users": 6,
+      "sessions": 2,
+      "users": 2,
       "bounceRate": 0
     }
   ]

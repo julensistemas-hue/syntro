@@ -1,87 +1,81 @@
 # Search Console Data — aisecurity.es
-**Generado:** 8/6/2026, 6:12:06
-**Período actual:** 2026-05-29 → 2026-06-05
+**Generado:** 15/6/2026, 6:06:45
+**Período actual:** 2026-06-05 → 2026-06-12
 
 ## Totales (3 días)
 | | Actual | Anterior | Cambio |
 |--|--|--|--|
-| Clicks | 21 | 12 | +75.0% |
-| Impresiones | 1121 | 1144 | - |
+| Clicks | 12 | 21 | -42.9% |
+| Impresiones | 309 | 1121 | - |
 
 ## Top 15 Keywords (3 días)
 | Keyword | Clicks | Impresiones | CTR | Posición | vs anterior |
 |---------|--------|-------------|-----|----------|-------------|
-| instalar wazuh en ubuntu | 4 | 9 | 44.4% | 3.6 | 📈 +4 |
-| curso wazuh | 2 | 2 | 100.0% | 3.0 | 📈 +1 |
-| instalar wazuh en ubuntu 24.04 | 2 | 6 | 33.3% | 1.2 | 📈 +2 |
-| wazuh | 2 | 601 | 0.3% | 7.7 | 📈 +1 |
-| wazuh ia | 2 | 12 | 16.7% | 3.8 | 🆕 nueva |
-| aisecurity | 1 | 1 | 100.0% | 1.0 | 🆕 nueva |
-| ia castellon | 1 | 2 | 50.0% | 18.5 | 📈 +1 |
-| ia security | 1 | 6 | 16.7% | 19.2 | 📈 +1 |
-| instalar wazuh en ubuntu server | 1 | 6 | 16.7% | 2.8 | ➡️ |
-| instalar wazuh en windows | 1 | 4 | 25.0% | 4.0 | 📈 +1 |
-| install wazuh ubuntu 24.04 | 1 | 1 | 100.0% | 1.0 | 🆕 nueva |
-| wazuh curso | 1 | 2 | 50.0% | 1.5 | 🆕 nueva |
-| wazuh para que sirve | 1 | 6 | 16.7% | 2.7 | 🆕 nueva |
-| wazuh que es | 1 | 117 | 0.9% | 7.7 | 🆕 nueva |
-| agencia ia alicante | 0 | 8 | 0.0% | 34.4 | ➡️ |
+| como instalar wazuh en ubuntu server | 2 | 2 | 100.0% | 1.0 | 📈 +2 |
+| instalar wazuh en ubuntu | 2 | 14 | 14.3% | 5.0 | 📉 -2 |
+| instalar wazuh en ubuntu 24.04 | 2 | 3 | 66.7% | 1.0 | ➡️ |
+| wazuh para que sirve | 2 | 11 | 18.2% | 1.8 | 📈 +1 |
+| aisecurity | 1 | 1 | 100.0% | 1.0 | ➡️ |
+| curso wazuh | 1 | 2 | 50.0% | 2.5 | 📉 -1 |
+| wazuh ia | 1 | 3 | 33.3% | 5.3 | 📉 -1 |
+| xdr open source | 1 | 7 | 14.3% | 9.0 | 🆕 nueva |
+| abrir correo corporativo | 0 | 1 | 0.0% | 29.0 | 🆕 nueva |
+| administrador de wazuh | 0 | 4 | 0.0% | 13.5 | 🆕 nueva |
+| agencia ia alicante | 0 | 7 | 0.0% | 31.1 | ➡️ |
+| agencia ia castellon | 0 | 2 | 0.0% | 16.0 | ➡️ |
+| agencia ia valencia | 0 | 6 | 0.0% | 28.0 | ➡️ |
+| agencia inteligencia artificial alicante | 0 | 4 | 0.0% | 38.3 | ➡️ |
+| agencia inteligencia artificial almeria | 0 | 2 | 0.0% | 69.0 | 🆕 nueva |
 
 ## Top Páginas (3 días)
 | Página | Clicks | CTR | Posición | vs anterior |
 |--------|--------|-----|----------|-------------|
-| /blog/como-instalar-wazuh-en-linux | 17 | 5.9% | 5.7 | 📈 +1 |
-| /blog/que-es-wazuh-para-que-sirve | 7 | 0.5% | 7.2 | 📉 -3 |
-| /curso-wazuh | 5 | 10.0% | 20.5 | 📈 +1 |
-| /blog/como-instalar-agente-wazuh-en-linux | 4 | 2.3% | 6.0 | ➡️ |
-| /blog/como-instalar-agente-wazuh-en-windows | 4 | 1.0% | 6.4 | 📉 -3 |
-| /blog/ia-threat-hunting-wazuh | 4 | 3.9% | 7.1 | ➡️ |
-| /wazuh | 3 | 3.7% | 11.3 | 📉 -1 |
-| / | 2 | 4.1% | 29.7 | 📈 +1 |
-| /blog/como-monitorizar-tu-tenant-de-office365-registros-de-exchange-sharepoint | 2 | 11.1% | 4.1 | 📉 -1 |
-| /servicios/gestor-citas | 2 | 2.2% | 21.8 | ➡️ |
-| /blog/configurar-alertas-correo-wazuh-postfix-gmail | 1 | 1.1% | 4.8 | 📉 -1 |
-| /blog/configurar-correo-corporativo-outlook-movil | 1 | 2.3% | 9.0 | 📈 +1 |
+| /blog/como-instalar-wazuh-en-linux | 19 | 5.8% | 4.9 | 📈 +2 |
+| /blog/como-instalar-agente-wazuh-en-windows | 10 | 1.8% | 6.2 | 📈 +6 |
+| /blog/ia-threat-hunting-wazuh | 7 | 7.1% | 7.4 | 📈 +3 |
+| /blog/que-es-wazuh-para-que-sirve | 6 | 0.4% | 6.8 | 📉 -1 |
+| /blog/configurar-correo-corporativo-outlook-movil | 4 | 1.8% | 7.9 | 📈 +3 |
+| /blog/wazuh-elastic-security-configuracion-de-siem-completo | 4 | 3.6% | 8.7 | 📈 +4 |
+| /curso-wazuh | 4 | 5.6% | 17.8 | 📉 -1 |
+| /blog/como-instalar-agente-wazuh-en-linux | 3 | 1.6% | 5.7 | 📉 -1 |
+| /blog/configurar-alertas-correo-wazuh-postfix-gmail | 3 | 2.6% | 5.5 | 📈 +2 |
+| / | 2 | 1.4% | 41.7 | ➡️ |
+| /blog/configurar-equipos-sin-agente-wazuh-syslog | 2 | 5.4% | 6.2 | 📈 +2 |
+| /blog/monitorizacion-de-contenedores-docker-con-wazuh | 2 | 2.7% | 7.4 | 📈 +2 |
 
 ## Oportunidades CTR (impresiones altas, clicks bajos)
 | Keyword | Impresiones | CTR | Posición |
 |---------|-------------|-----|----------|
-| wazuh | 601 | 0.3% | 7.7 |
-| wazuh que es | 117 | 0.9% | 7.7 |
-| agencia ia castellon | 17 | 0.0% | 19.5 |
-| agente wazuh | 11 | 0.0% | 8.2 |
-| chatbot gestion de citas | 10 | 0.0% | 17.8 |
-| consultoría ia alicante | 10 | 0.0% | 12.2 |
-| como instalar wazuh | 9 | 0.0% | 9.1 |
-| como instalar wazuh en ubuntu server | 9 | 0.0% | 6.0 |
-| chatbots alicante | 8 | 0.0% | 13.0 |
-| consultoría ia en alicante | 8 | 0.0% | 12.4 |
+| agente wazuh | 11 | 0.0% | 7.3 |
+| para que sirve wazuh | 11 | 0.0% | 2.5 |
+| instalar wazuh | 9 | 0.0% | 7.9 |
+| autoservicio de ia para it | 8 | 0.0% | 19.4 |
+| ai security | 7 | 0.0% | 10.3 |
+| como instalar wazuh | 7 | 0.0% | 6.4 |
+| consultoría ia alicante | 7 | 0.0% | 11.9 |
+| instalar agente wazuh en windows | 6 | 0.0% | 4.7 |
+| chatbots alicante | 5 | 0.0% | 7.4 |
+| consultoría ia en alicante | 5 | 0.0% | 12.0 |
 
 ## Keywords cerca del Top 3 (posición 4-15)
-- **wazuh** — pos 7.7, 601 impresiones
-- **wazuh que es** — pos 7.7, 117 impresiones
-- **agente wazuh** — pos 8.2, 11 impresiones
-- **consultoría ia alicante** — pos 12.2, 10 impresiones
-- **como instalar wazuh** — pos 9.1, 9 impresiones
-- **como instalar wazuh en ubuntu server** — pos 6.0, 9 impresiones
-- **chatbots alicante** — pos 13.0, 8 impresiones
-- **consultoría ia en alicante** — pos 12.4, 8 impresiones
-- **consultoría ia valencia** — pos 13.8, 8 impresiones
-- **como funciona wazuh** — pos 8.9, 7 impresiones
+- **instalar wazuh en ubuntu** — pos 5.0, 14 impresiones
+- **agente wazuh** — pos 7.3, 11 impresiones
+- **instalar wazuh** — pos 7.9, 9 impresiones
+- **xdr open source** — pos 9.0, 7 impresiones
+- **ai security** — pos 10.3, 7 impresiones
+- **como instalar wazuh** — pos 6.4, 7 impresiones
+- **consultoría ia alicante** — pos 11.9, 7 impresiones
+- **instalar agente wazuh en windows** — pos 4.7, 6 impresiones
+- **chatbots alicante** — pos 7.4, 5 impresiones
+- **consultoría ia en alicante** — pos 12.0, 5 impresiones
 
 ## Keywords nuevas esta semana
-- **wazuh que es** — 117 impresiones, pos 7.7
-- **wazuh ia** — 12 impresiones, pos 3.8
-- **wazuh para que sirve** — 6 impresiones, pos 2.7
-- **instalar agente wazuh en windows** — 5 impresiones, pos 2.8
-- **auditoria de seguridad en alicante** — 4 impresiones, pos 78.5
-- **ai consultant valencia** — 3 impresiones, pos 70.3
-- **ai consultants valencia** — 3 impresiones, pos 63.3
-- **curso sistema siem** — 3 impresiones, pos 12.7
-- **elastic wazuh** — 3 impresiones, pos 5.7
-- **wazuh curso** — 2 impresiones, pos 1.5
-- **chatbot atencion al cliente granada** — 2 impresiones, pos 23.5
-- **curso sysadmin** — 2 impresiones, pos 8.0
-- **ia sec** — 2 impresiones, pos 9.0
-- **install wazuh in ubuntu** — 2 impresiones, pos 5.0
-- **install wazuh linux** — 2 impresiones, pos 6.0
+- **autoservicio de ia para it** — 8 impresiones, pos 19.4
+- **xdr open source** — 7 impresiones, pos 9.0
+- **backup para pymes** — 5 impresiones, pos 49.0
+- **administrador de wazuh** — 4 impresiones, pos 13.5
+- **configurar correo corporativo outlook en celular** — 4 impresiones, pos 13.0
+- **agencia inteligencia artificial almeria** — 2 impresiones, pos 69.0
+- **busqueda inteligente de documentos** — 2 impresiones, pos 23.0
+- **chatbot atención cliente pyme** — 2 impresiones, pos 55.0
+- **correu corporatiu** — 2 impresiones, pos 46.0

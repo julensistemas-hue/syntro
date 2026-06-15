@@ -1,59 +1,59 @@
 # Google Analytics 4 — aisecurity.es
-**Generado:** 8/6/2026, 6:12:12
-**Período:** 2026-05-31 → 2026-06-07 (3 días)
+**Generado:** 15/6/2026, 6:06:51
+**Período:** 2026-06-07 → 2026-06-14 (3 días)
 
 ## Resumen
-- Sesiones totales: **54**
-- Sesiones orgánicas: **17** (31.5% del total)
+- Sesiones totales: **47**
+- Sesiones orgánicas: **11** (23.4% del total)
 
 ## Canales de tráfico
 | Canal | Sesiones | Usuarios | Bounce | Conversiones |
 |-------|----------|----------|--------|--------------|
-| Direct | 25 | 20 | 0.0% | 234 |
-| Organic Search | 17 | 12 | 0.0% | 67 |
-| Organic Video | 7 | 3 | 0.0% | 21 |
-| Referral | 4 | 3 | 0.0% | 17 |
-| Organic Shopping | 1 | 0 | 0.0% | 2 |
+| Direct | 19 | 14 | 0.0% | 79 |
+| Organic Search | 11 | 8 | 0.0% | 48 |
+| Organic Video | 8 | 7 | 0.0% | 36 |
+| Unassigned | 5 | 3 | 100.0% | 198 |
+| Organic Shopping | 3 | 1 | 0.0% | 16 |
+| Referral | 1 | 1 | 0.0% | 3 |
 
 ## Top Páginas (3 días)
 | Página | Sesiones | Usuarios | Bounce | Duración media | vs anterior |
 |--------|----------|----------|--------|----------------|-------------|
-| /curso-wazuh | 24 | 15 | 0.0% | 3m 2s | 📈 +8 |
-| / | 19 | 14 | 0.0% | 3m 36s | 📉 -6 |
-| /consultoria-ia | 7 | 6 | 0.0% | 0m 27s | 📈 +2 |
-| /servicios/gestor-citas | 4 | 3 | 0.0% | 0m 36s | 📈 +2 |
-| /curso-techai-boost | 2 | 2 | 0.0% | 28m 36s | 📈 +1 |
-| /presupuesto | 2 | 2 | 0.0% | 1m 29s | ➡️ |
-| /reunion | 2 | 1 | 0.0% | 5m 52s | 📈 +2 |
-| /servicios/automatizacion | 2 | 1 | 0.0% | 2m 31s | 📈 +2 |
-| /consultoria-ia-alicante | 1 | 1 | 0.0% | 0m 35s | ➡️ |
-| /consultoria-ia-castellon | 1 | 1 | 0.0% | 1m 1s | 📈 +1 |
-| /contacto | 1 | 1 | 0.0% | 3m 36s | 📈 +1 |
-| /servicios/atencion-llamadas | 1 | 1 | 0.0% | 31m 26s | 📉 -2 |
-| /servicios/chatbot | 1 | 1 | 0.0% | 0m 26s | 📉 -1 |
-| /servicios/geo-posicionamiento | 1 | 1 | 0.0% | 0m 0s | 📈 +1 |
-| /servicios/gestor-documental | 1 | 1 | 0.0% | 0m 8s | ➡️ |
+| /curso-wazuh | 24 | 20 | 0.0% | 2m 1s | ➡️ |
+| / | 15 | 11 | 6.7% | 2m 20s | 📉 -4 |
+| /blog | 3 | 3 | 0.0% | 1m 45s | 📈 +3 |
+| /consultoria-ia | 3 | 3 | 33.3% | 0m 11s | 📉 -4 |
+| /prueba-hero-g | 3 | 2 | 66.7% | 19m 34s | 📈 +3 |
+| /curso-techai-boost | 2 | 1 | 0.0% | 14m 21s | ➡️ |
+| /prueba-hero-d | 2 | 2 | 50.0% | 10m 47s | 📈 +2 |
+| /prueba-hero-e | 2 | 2 | 100.0% | 7m 17s | 📈 +2 |
+| /prueba-hero-f | 2 | 2 | 50.0% | 6m 0s | 📈 +2 |
+| /prueba-hero-h | 2 | 2 | 100.0% | 7m 4s | 📈 +2 |
+| /prueba-hero-i | 2 | 2 | 50.0% | 8m 44s | 📈 +2 |
+| /prueba-hero-j | 2 | 2 | 100.0% | 31m 49s | 📈 +2 |
+| /prueba-hero-k | 2 | 2 | 100.0% | 29m 22s | 📈 +2 |
+| /prueba-hero-l | 2 | 2 | 100.0% | 19m 20s | 📈 +2 |
+| /prueba-hero-m | 2 | 2 | 100.0% | 26m 58s | 📈 +2 |
 
 ## Eventos y conversiones
 | Evento | Disparos | Usuarios |
 |--------|----------|----------|
-| page_view | 134 | 40 |
-| user_engagement | 97 | 26 |
-| session_start | 54 | 41 |
-| first_visit | 34 | 34 |
-| scroll | 20 | 7 |
-| form_start | 2 | 1 |
+| page_view | 155 | 31 |
+| user_engagement | 143 | 28 |
+| session_start | 42 | 31 |
+| first_visit | 26 | 26 |
+| scroll | 14 | 9 |
 
 ## Países
-- **Spain**: 30 sesiones
+- **Spain**: 26 sesiones
 - **Argentina**: 6 sesiones
-- **El Salvador**: 3 sesiones
-- **Cuba**: 2 sesiones
-- **Iran**: 2 sesiones
-- **Netherlands**: 2 sesiones
+- **Mexico**: 3 sesiones
+- **Peru**: 2 sesiones
 - **United States**: 2 sesiones
-- **Chile**: 1 sesiones
+- **Dominican Republic**: 1 sesiones
+- **El Salvador**: 1 sesiones
+- **India**: 1 sesiones
 
 ## Dispositivos
-- **desktop**: 46 sesiones, bounce 0.0%
-- **mobile**: 8 sesiones, bounce 0.0%
+- **desktop**: 40 sesiones, bounce 0.0%
+- **mobile**: 2 sesiones, bounce 0.0%
