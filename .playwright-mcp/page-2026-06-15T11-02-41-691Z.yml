@@ -1,0 +1,93 @@
+- generic [ref=e1]:
+  - generic:
+    - generic:
+      - generic: Cargando...
+  - generic [ref=e8]:
+    - generic [ref=e16]:
+      - main [ref=e17]:
+        - generic [ref=e18]:
+          - generic [ref=e21]:
+            - generic [ref=e24]:
+              - heading "Inicio" [active] [level=1] [ref=e29]
+              - generic [ref=e34]:
+                - generic "Ver anotaciones" [ref=e35]:
+                  - button "Ver anotaciones" [ref=e36] [cursor=pointer]:
+                    - img [ref=e38]:
+                      - img [ref=e39]
+                - generic "Estadísticas" [ref=e43]:
+                  - button "Estadísticas" [ref=e44] [cursor=pointer]:
+                    - img [ref=e46]:
+                      - img [ref=e47]
+            - generic [ref=e55]:
+              - progressbar [ref=e69]:
+                - img [ref=e71]
+                - generic [ref=e74]:
+                  - img [ref=e76]
+                  - img [ref=e79]
+                  - img [ref=e82]
+              - generic [ref=e86]:
+                - heading "Accesos recientes" [level=2] [ref=e89]:
+                  - generic [ref=e90]: Accesos recientes
+                - generic [ref=e93]:
+                  - button "Mover zona desplazable hacia atrás" [disabled]:
+                    - img: keyboard_arrow_left
+                  - progressbar [ref=e104]:
+                    - img [ref=e106]
+                    - generic [ref=e109]:
+                      - img [ref=e111]
+                      - img [ref=e114]
+                      - img [ref=e117]
+                  - button "Mover zona desplazable hacia delante" [disabled]:
+                    - img: keyboard_arrow_right
+              - generic [ref=e121]:
+                - heading "Sugerencias personalizadas" [level=2] [ref=e124]:
+                  - generic "Sugerencias personalizadas" [ref=e125]:
+                    - button "Mensaje que explica cómo se muestran las tarjetas de esta sección." [ref=e126]: Sugerencias personalizadas
+                - generic [ref=e129]:
+                  - button "Mover zona desplazable hacia atrás" [disabled]:
+                    - img: keyboard_arrow_left
+                  - progressbar [ref=e140]:
+                    - img [ref=e142]
+                    - generic [ref=e145]:
+                      - img [ref=e147]
+                      - img [ref=e150]
+                      - img [ref=e153]
+                  - button "Mover zona desplazable hacia delante" [disabled]:
+                    - img: keyboard_arrow_right
+              - generic [ref=e157]:
+                - generic [ref=e158]:
+                  - heading "Estadísticas y recomendaciones" [level=2] [ref=e160]:
+                    - generic [ref=e161]: Estadísticas y recomendaciones
+                  - link "Ver todas las estadísticas" [ref=e162] [cursor=pointer]:
+                    - /url: "#/a379939565p519124169/insights/hub"
+                    - generic [ref=e163]: Ver todas las estadísticas
+                    - img [ref=e164]: arrow_right_alt
+                - generic [ref=e169]:
+                  - button "Mover zona desplazable hacia atrás" [disabled]:
+                    - img: keyboard_arrow_left
+                  - progressbar [ref=e180]:
+                    - img [ref=e182]
+                    - generic [ref=e185]:
+                      - img [ref=e187]
+                      - img [ref=e190]
+                      - img [ref=e193]
+                  - button "Mover zona desplazable hacia delante" [disabled]:
+                    - img: keyboard_arrow_right
+          - generic [ref=e197]:
+            - text: ©2026 Google |
+            - link "Página principal de Analytics" [ref=e198] [cursor=pointer]:
+              - /url: https://www.google.com/analytics/?hl=es
+            - text: "|"
+            - link "Términos del Servicio" [ref=e199] [cursor=pointer]:
+              - /url: https://www.google.com/analytics/tos.html?hl=es
+            - text: "|"
+            - link "Política de Privacidad" [ref=e200] [cursor=pointer]:
+              - /url: https://www.google.com/policies/privacy/?hl=es
+            - text: "|"
+            - button "Enviar comentarios" [ref=e201] [cursor=pointer]:
+              - img [ref=e202]: feedback
+              - generic [ref=e203]: Enviar comentarios
+      - generic:
+        - complementary
+    - generic:
+      - button "Abrir el menú contextual"
