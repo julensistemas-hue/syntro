@@ -1,0 +1,330 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e4]:
+      - link "AI SECURITY logo AI SECURITY" [ref=e6] [cursor=pointer]:
+        - /url: /
+        - img "AI SECURITY logo" [ref=e7]
+        - generic [ref=e8]: AI SECURITY
+      - navigation "Navegación principal" [ref=e9]:
+        - link "Consultoría IA" [ref=e10] [cursor=pointer]:
+          - /url: /consultoria-ia
+        - link "Posicionamiento SEO" [ref=e11] [cursor=pointer]:
+          - /url: /servicios/geo-posicionamiento
+        - button "Wazuh" [ref=e13] [cursor=pointer]:
+          - generic [ref=e14]: Wazuh
+          - img [ref=e15]
+        - button "Servicios" [ref=e18] [cursor=pointer]:
+          - generic [ref=e19]: Servicios
+          - img [ref=e20]
+        - link "Blog" [ref=e22] [cursor=pointer]:
+          - /url: /blog
+        - link "Solicitar Reunión GRATIS" [ref=e23] [cursor=pointer]:
+          - /url: /reunion
+          - text: Solicitar Reunión
+          - generic [ref=e24]: GRATIS
+  - main [ref=e25]:
+    - generic [ref=e28]:
+      - generic [ref=e29]:
+        - generic [ref=e30]: 🤖
+        - text: Consultoría de Inteligencia Artificial
+      - heading "IA aplicada a tu empresa, departamento a departamento" [level=1] [ref=e31]:
+        - text: IA aplicada a tu empresa,
+        - text: departamento a departamento
+      - paragraph [ref=e32]: Analizamos tu empresa, entendemos cómo trabajáis y os implementamos las mejores herramientas de IA del mercado. Siempre actualizados. Con formación para tu equipo incluida.
+      - generic [ref=e33]:
+        - link "Solicitar consulta gratuita →" [ref=e34] [cursor=pointer]:
+          - /url: /presupuesto?plan=Consultoria-IA
+        - link "¿Necesitas Consultoría IT? →" [ref=e35] [cursor=pointer]:
+          - /url: /consultoria-it
+    - generic [ref=e37]:
+      - generic [ref=e38]:
+        - heading "¿Qué IA puede usar cada departamento?" [level=2] [ref=e39]
+        - paragraph [ref=e40]: Selecciona un departamento para ver las herramientas y el ahorro estimado
+      - generic [ref=e41]:
+        - img [ref=e43]:
+          - generic [ref=e49]:
+            - generic [ref=e52]: Tu
+            - generic [ref=e53]: Empresa
+            - generic [ref=e54]: + IA
+          - generic [ref=e55]:
+            - generic [ref=e56] [cursor=pointer]:
+              - generic [ref=e58]: 🎨
+              - generic [ref=e59]: Comunicación
+            - generic [ref=e60] [cursor=pointer]:
+              - generic [ref=e62]: 📊
+              - generic [ref=e63]: Comercial
+              - generic [ref=e64]: "& SEO"
+            - generic [ref=e65] [cursor=pointer]:
+              - generic [ref=e67]: 📞
+              - generic [ref=e68]: Call Center
+              - generic [ref=e69]: "& Soporte"
+            - generic [ref=e70] [cursor=pointer]:
+              - generic [ref=e72]: 📋
+              - generic [ref=e73]: Gestión de
+              - generic [ref=e74]: Proyectos
+            - generic [ref=e75] [cursor=pointer]:
+              - generic [ref=e77]: 🧾
+              - generic [ref=e78]: Administración
+            - generic [ref=e79] [cursor=pointer]:
+              - generic [ref=e81]: 💻
+              - generic [ref=e82]: Desarrollo
+            - generic [ref=e83] [cursor=pointer]:
+              - generic [ref=e85]: ⚙️
+              - generic [ref=e86]: DevOps
+            - generic [ref=e87] [cursor=pointer]:
+              - generic [ref=e89]: 🖥️
+              - generic [ref=e90]: Sistemas
+        - generic [ref=e92]:
+          - generic [ref=e93]:
+            - generic [ref=e94]: 💻
+            - generic [ref=e95]:
+              - heading "Desarrollo" [level=3] [ref=e96]
+              - paragraph [ref=e97]: Acelera tu equipo de desarrollo con IA en cada paso del ciclo
+          - generic [ref=e98]:
+            - paragraph [ref=e99]: Qué gana tu empresa
+            - generic [ref=e100]:
+              - generic [ref=e101]:
+                - generic [ref=e102]: 🚀
+                - generic [ref=e103]: Multiplica por 2-3x la velocidad de entrega de features
+              - generic [ref=e104]:
+                - generic [ref=e105]: 🛡️
+                - generic [ref=e106]: Reduce un 60% los bugs que llegan a producción
+          - generic [ref=e107]:
+            - paragraph [ref=e108]: Herramientas que utilizamos
+            - generic [ref=e109]:
+              - generic [ref=e110]:
+                - generic [ref=e111]: Claude Code
+                - generic [ref=e112]: Agente de desarrollo que lee tu repo y ejecuta tareas completas
+              - generic [ref=e113]:
+                - generic [ref=e114]: GitHub Copilot
+                - generic [ref=e115]: Autocompletado de código en tiempo real en el IDE
+              - generic [ref=e116]:
+                - generic [ref=e117]: GitHub Actions + IA
+                - generic [ref=e118]: Pipelines que generan tests y detectan bugs automáticamente
+          - link "Quiero implementar esto →" [ref=e120] [cursor=pointer]:
+            - /url: /presupuesto?plan=Consultoria-IA
+    - generic [ref=e122]:
+      - generic [ref=e123]:
+        - heading "Cómo trabajamos contigo" [level=2] [ref=e124]
+        - paragraph [ref=e125]: Sin humo. Sin herramientas genéricas. Con resultados medibles.
+      - generic [ref=e126]:
+        - generic [ref=e127]:
+          - generic [ref=e128]: 🔍
+          - generic [ref=e129]: PASO 01
+          - heading "Diagnóstico" [level=3] [ref=e130]
+          - paragraph [ref=e131]: Nos reunimos con tu equipo, entendemos qué herramientas usáis, cómo es el día a día y dónde se pierde más tiempo.
+        - generic [ref=e132]:
+          - generic [ref=e133]: 📐
+          - generic [ref=e134]: PASO 02
+          - heading "Propuesta" [level=3] [ref=e135]
+          - paragraph [ref=e136]: "Diseñamos un plan específico para tu empresa: qué herramientas implementar, en qué orden y con qué inversión."
+        - generic [ref=e137]:
+          - generic [ref=e138]: 🛠️
+          - generic [ref=e139]: PASO 03
+          - heading "Implementación" [level=3] [ref=e140]
+          - paragraph [ref=e141]: Configuramos cada herramienta en vuestro entorno real, con pruebas y ajustes hasta que funciona exactamente como necesitáis.
+        - generic [ref=e142]:
+          - generic [ref=e143]: 🎓
+          - generic [ref=e144]: PASO 04
+          - heading "Formación" [level=3] [ref=e145]
+          - paragraph [ref=e146]: Formamos a los trabajadores que usarán cada herramienta. Con guías, sesiones prácticas y soporte post-implantación.
+      - generic [ref=e147]:
+        - generic [ref=e148]:
+          - generic [ref=e149]: 🔄
+          - heading "Siempre con las mejores herramientas" [level=3] [ref=e150]
+          - paragraph [ref=e151]: El ecosistema IA cambia cada semana. Nos encargamos de estar al día y recomendarte solo lo que ya ha demostrado funcionar en entornos empresariales reales.
+        - generic [ref=e152]:
+          - generic [ref=e153]: 🎯
+          - heading "Implementación personalizada" [level=3] [ref=e154]
+          - paragraph [ref=e155]: No vendemos herramientas genéricas. Nos sentamos con tu equipo, entendemos vuestro día a día y proponemos exactamente qué implementar y cómo integrarlo en vuestros procesos actuales.
+        - generic [ref=e156]:
+          - generic [ref=e157]: 🎓
+          - heading "Formación real del equipo" [level=3] [ref=e158]
+          - paragraph [ref=e159]: La herramienta más cara no sirve de nada si nadie la usa bien. Formamos a tus trabajadores para que saquen el máximo partido desde el primer día.
+    - generic [ref=e162]:
+      - generic [ref=e163]:
+        - paragraph [ref=e164]: Comunitat Valenciana
+        - heading "Consultoría IA en tu provincia" [level=2] [ref=e165]
+        - paragraph [ref=e166]: Trabajamos con empresas de Valencia, Castellón y Alicante. Cada página incluye contenido específico para los sectores de tu zona.
+      - generic [ref=e167]:
+        - link "Valencia Ver página →" [ref=e168] [cursor=pointer]:
+          - /url: /consultoria-ia-valencia
+          - generic [ref=e169]: Valencia
+          - generic [ref=e170]: Ver página →
+        - link "Castellón Ver página →" [ref=e171] [cursor=pointer]:
+          - /url: /consultoria-ia-castellon
+          - generic [ref=e172]: Castellón
+          - generic [ref=e173]: Ver página →
+        - link "Alicante Ver página →" [ref=e174] [cursor=pointer]:
+          - /url: /consultoria-ia-alicante
+          - generic [ref=e175]: Alicante
+          - generic [ref=e176]: Ver página →
+    - generic [ref=e178]:
+      - generic [ref=e179]:
+        - heading "Preguntas frecuentes" [level=2] [ref=e180]
+        - paragraph [ref=e181]: Lo que suelen preguntarnos antes de empezar.
+      - generic [ref=e182]:
+        - generic [ref=e183]:
+          - heading "¿Necesito tener conocimientos técnicos para trabajar con vosotros?" [level=3] [ref=e184]
+          - paragraph [ref=e185]: "No. Nos encargamos de toda la parte técnica: configuración, integración con tus herramientas actuales y puesta en marcha. Tu equipo solo necesita aprender a usar las soluciones, que es precisamente lo que cubrimos en la formación."
+        - generic [ref=e186]:
+          - heading "¿Cuánto tarda en implementarse una solución de IA?" [level=3] [ref=e187]
+          - paragraph [ref=e188]: Depende de la complejidad. Un chatbot básico o un flujo de automatización puede estar funcionando en 2-3 semanas. Una implementación completa por departamentos puede llevar 2-3 meses. En la propuesta siempre indicamos plazos concretos.
+        - generic [ref=e189]:
+          - heading "¿Trabajáis con empresas pequeñas o solo con grandes corporaciones?" [level=3] [ref=e190]
+          - paragraph [ref=e191]: La mayoría de nuestros clientes son PyMEs de 10 a 150 empleados. Adaptamos la propuesta y la inversión al tamaño real de cada empresa. No tiene sentido instalar un sistema complejo donde no se va a aprovechar.
+        - generic [ref=e192]:
+          - heading "¿Qué pasa si una herramienta de IA deja de funcionar o queda obsoleta?" [level=3] [ref=e193]
+          - paragraph [ref=e194]: El ecosistema IA cambia constantemente. Por eso ofrecemos mantenimiento y revisión periódica. Si una herramienta queda obsoleta o aparece una mejor alternativa, te lo comunicamos y gestionamos la transición.
+        - generic [ref=e195]:
+          - heading "¿Tengo que cambiar el software que ya uso en mi empresa?" [level=3] [ref=e196]
+          - paragraph [ref=e197]: "No necesariamente. Integramos las soluciones de IA con las herramientas que ya tenéis: ERP, CRM, email, Google Workspace, etc. El objetivo es añadir automatización por encima de lo que ya funciona, no reemplazar todo."
+        - generic [ref=e198]:
+          - heading "¿Cuándo se nota el retorno de la inversión?" [level=3] [ref=e199]
+          - paragraph [ref=e200]: Depende de la solución. Un flujo de automatización de facturas o emails suele amortizarse en el primer mes. Soluciones más completas como gestores documentales o chatbots integrados con ERP, en 2-4 meses. En la propuesta siempre incluimos una estimación de ahorro mensual.
+        - generic [ref=e201]:
+          - heading "¿La consultoría incluye formación para mi equipo?" [level=3] [ref=e202]
+          - paragraph [ref=e203]: Sí, siempre. No entregamos una herramienta y desaparecemos. Formamos a las personas que la van a usar con sesiones prácticas adaptadas a su nivel, guías de uso y soporte durante el periodo de adaptación.
+    - generic [ref=e205]:
+      - heading "¿Listo para ver qué IA puede hacer por tu empresa?" [level=2] [ref=e206]
+      - paragraph [ref=e207]: Primera consulta gratuita. Sin compromiso. Te decimos honestamente qué tiene sentido implementar en tu caso.
+      - link "Solicitar consulta gratuita" [ref=e208] [cursor=pointer]:
+        - /url: /presupuesto?plan=Consultoria-IA
+  - contentinfo [ref=e209]:
+    - generic [ref=e211]:
+      - generic [ref=e212]:
+        - generic [ref=e213]:
+          - link "AI SECURITY logo AI SECURITY" [ref=e214] [cursor=pointer]:
+            - /url: /
+            - img "AI SECURITY logo" [ref=e215]
+            - generic [ref=e216]: AI SECURITY
+          - paragraph [ref=e217]: "Tu partner tecnológico: IA, ciberseguridad y sistemas bajo un mismo equipo. Todo conectado, todo bajo control."
+          - link "info@aisecurity.es" [ref=e218] [cursor=pointer]:
+            - /url: mailto:info@aisecurity.es
+            - img [ref=e219]
+            - text: info@aisecurity.es
+          - link "Canal de YouTube" [ref=e222] [cursor=pointer]:
+            - /url: https://www.youtube.com/@Systems_Boy
+            - img [ref=e223]
+        - generic [ref=e226]:
+          - generic [ref=e227]:
+            - heading "¿Hablamos?" [level=3] [ref=e228]
+            - paragraph [ref=e229]: Cuéntanos tu proyecto y te ayudamos a automatizar tu negocio con IA a medida. La primera consulta es gratis.
+          - generic [ref=e230]:
+            - button "Te llamamos" [ref=e231] [cursor=pointer]:
+              - img [ref=e232]
+              - text: Te llamamos
+            - link "Agendar reunión" [ref=e234] [cursor=pointer]:
+              - /url: /reunion
+              - img [ref=e235]
+              - text: Agendar reunión
+      - generic [ref=e237]:
+        - generic [ref=e238]:
+          - heading "Servicios" [level=4] [ref=e239]
+          - list [ref=e240]:
+            - listitem [ref=e241]:
+              - link "Chatbot Inteligente" [ref=e242] [cursor=pointer]:
+                - /url: /servicios/chatbot
+            - listitem [ref=e243]:
+              - link "Gestor Documental IA" [ref=e244] [cursor=pointer]:
+                - /url: /servicios/gestor-documental
+            - listitem [ref=e245]:
+              - link "Gestor de Citas IA" [ref=e246] [cursor=pointer]:
+                - /url: /servicios/gestor-citas
+            - listitem [ref=e247]:
+              - link "Atención de Llamadas" [ref=e248] [cursor=pointer]:
+                - /url: /servicios/atencion-llamadas
+            - listitem [ref=e249]:
+              - link "Automatización" [ref=e250] [cursor=pointer]:
+                - /url: /servicios/automatizacion
+            - listitem [ref=e251]:
+              - link "Consultoría IA" [ref=e252] [cursor=pointer]:
+                - /url: /consultoria-ia
+        - generic [ref=e253]:
+          - heading "Empresa" [level=4] [ref=e254]
+          - list [ref=e255]:
+            - listitem [ref=e256]:
+              - link "Solicitar Reunión" [ref=e257] [cursor=pointer]:
+                - /url: /reunion
+            - listitem [ref=e258]:
+              - link "FAQ" [ref=e259] [cursor=pointer]:
+                - /url: /faq
+            - listitem [ref=e260]:
+              - link "Términos de Servicio" [ref=e261] [cursor=pointer]:
+                - /url: /terms
+            - listitem [ref=e262]:
+              - link "Política de Privacidad" [ref=e263] [cursor=pointer]:
+                - /url: /privacy
+        - generic [ref=e264]:
+          - heading "Seguridad" [level=4] [ref=e265]
+          - list [ref=e266]:
+            - listitem [ref=e267]:
+              - link "Wazuh & ENS" [ref=e268] [cursor=pointer]:
+                - /url: /wazuh
+            - listitem [ref=e269]:
+              - link "Consultoría IA" [ref=e270] [cursor=pointer]:
+                - /url: /consultoria-ia
+        - generic [ref=e271]:
+          - heading "Contacto" [level=4] [ref=e272]
+          - list [ref=e273]:
+            - listitem [ref=e274]:
+              - link "Email" [ref=e275] [cursor=pointer]:
+                - /url: mailto:info@aisecurity.es
+            - listitem [ref=e276]:
+              - link "Agendar Consulta" [ref=e277] [cursor=pointer]:
+                - /url: /reunion
+      - generic [ref=e278]:
+        - paragraph [ref=e279]: © 2026 AI SECURITY · Todos los derechos reservados.
+        - generic [ref=e280]:
+          - link "Términos" [ref=e281] [cursor=pointer]:
+            - /url: /terms
+          - link "Privacidad" [ref=e282] [cursor=pointer]:
+            - /url: /privacy
+          - generic [ref=e283]:
+            - text: Hecho en España
+            - generic [ref=e284]: 🇪🇸
+  - button "Abrir asistente" [ref=e285] [cursor=pointer]:
+    - generic [ref=e286]: ¿Te ayudo? 👋
+    - img [ref=e287]:
+      - generic [ref=e315]:
+        - generic [ref=e316]: z
+        - generic [ref=e317]: z
+        - generic [ref=e318]: Z
+  - generic:
+    - generic:
+      - generic:
+        - generic: 🤖
+        - generic:
+          - generic: Asistente AI Security
+          - generic: Responde al instante
+      - button: ✕
+    - generic:
+      - generic:
+        - text: 🤖
+        - generic:
+          - text: ¡Hola! 👋 Soy el asistente de
+          - strong: AI Security
+          - text: . ¿En qué puedo ayudarte hoy?
+    - generic:
+      - button: 🤖 Servicios de IA
+      - button: 🖥️ Soporte técnico
+      - button: 🛡️ Wazuh / Seguridad
+      - button: 💰 Precios
+      - button: 👤 Hablar con un humano
+    - generic:
+      - textbox:
+        - /placeholder: Escribe tu pregunta...
+      - button: →
+  - generic [ref=e321]:
+    - button "Menu" [ref=e322]:
+      - img [ref=e324]
+      - generic: Menu
+    - button "Inspect" [ref=e328]:
+      - img [ref=e330]
+      - generic: Inspect
+    - button "Audit" [ref=e332]:
+      - img [ref=e334]
+      - generic: Audit
+    - button "Settings" [ref=e337]:
+      - img [ref=e339]
+      - generic: Settings
