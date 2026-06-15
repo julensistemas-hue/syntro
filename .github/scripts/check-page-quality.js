@@ -4,9 +4,9 @@
 const https = require('https');
 
 const SITE_URL    = 'https://aisecurity.es';
-const RESEND_KEY  = process.env.RESEND_API_KEY  || '';
-const PS_KEY      = process.env.PAGESPEED_API_KEY || '';
-const EMAIL_TO    = process.env.EMAIL_TO || 'julen.sistemas@gmail.com';
+const RESEND_KEY  = (process.env.RESEND_API_KEY  || '').trim().replace(/[\r\n\t]/g, '');
+const PS_KEY      = (process.env.PAGESPEED_API_KEY || '').trim().replace(/[\r\n\t]/g, '');
+const EMAIL_TO    = (process.env.EMAIL_TO || 'julen.sistemas@gmail.com').trim();
 const FILES_RAW   = process.env.CHANGED_FILES || '';
 
 // ── URL mapping ────────────────────────────────────────────────────────────
@@ -56,10 +56,13 @@ async function getPageSpeed(url) {
   try {
     const res = await fetchUrl(apiUrl);
     const d = JSON.parse(res.body);
+    if (d.error) { console.log(`  ⚠️ PageSpeed API error: ${d.error.message}`); return null; }
     const cats   = d.lighthouseResult?.categories || {};
     const audits = d.lighthouseResult?.audits || {};
+    const perf = Math.round((cats.performance?.score || 0) * 100);
+    if (perf === 0 && !cats.performance) { console.log('  ⚠️ PageSpeed sin datos (rate limit)'); return null; }
     return {
-      perf:   Math.round((cats.performance?.score   || 0) * 100),
+      perf,
       seo:    Math.round((cats.seo?.score            || 0) * 100),
       a11y:   Math.round((cats.accessibility?.score  || 0) * 100),
       bp:     Math.round((cats['best-practices']?.score || 0) * 100),
@@ -67,7 +70,7 @@ async function getPageSpeed(url) {
       cls:    audits['cumulative-layout-shift']?.displayValue  || 'N/A',
       tbt:    audits['total-blocking-time']?.displayValue       || 'N/A',
     };
-  } catch { return null; }
+  } catch (e) { console.log(`  ⚠️ PageSpeed error: ${e.message}`); return null; }
 }
 
 // ── SEO checks ─────────────────────────────────────────────────────────────
