@@ -157,6 +157,14 @@ const departamentos = [
 <BaseLayout title={title} description={description} canonical={canonical}>
 
   <!-- ===================== ESCENARIO 3D ===================== -->
+  <!--
+    Modelos 3D (todos CC0 / dominio público):
+      · Edificios: Kenney City Kit — https://kenney.nl (CC0)
+      · Props de oficina: The Office Pack vía poly.pizza (CC0)
+      · Personajes: Quaternius vía poly.pizza (CC0)
+    Cargados con three.js GLTFLoader y reconvertidos a MeshToonMaterial (cel-shading).
+  -->
+
   <div id="demo-stage">
     <canvas id="planet-canvas"></canvas>
 
@@ -455,6 +463,8 @@ const departamentos = [
 
 <script type="module" define:vars={{ departamentos }} is:inline>
 import * as THREE from 'three';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { clone as cloneSkeleton } from 'three/addons/utils/SkeletonUtils.js';
 
 // ============================================================
 //  CONFIGURACIÓN GENERAL
@@ -583,9 +593,67 @@ const anchors = [];
 
 // Materiales/geometrías compartidos para los puestos
 const deskMat = toon(0x6b4f3a);
-const screenOffMat = toon(0x10141f);
-const chairMat = toon(0x2c2f44);
 const boxGeo = new THREE.BoxGeometry(1, 1, 1);
+
+// ============================================================
+//  CARGA DE MODELOS glTF (Kenney City Kit + The Office Pack + Quaternius, CC0)
+// ============================================================
+const gltfLoader = new GLTFLoader();
+const ASSETS = {};
+
+// Convierte los materiales del modelo a MeshToonMaterial para unificar el cel-shading
+function toonify(root) {
+  root.traverse((o) => {
+    if (!o.isMesh) return;
+    const arr = Array.isArray(o.material) ? o.material : [o.material];
+    const conv = arr.map((m) => new THREE.MeshToonMaterial({
+      color: m && m.color ? m.color.clone() : new THREE.Color(0xffffff),
+      map: m ? m.map || null : null,
+      gradientMap: GRAD,
+      vertexColors: !!(o.geometry.attributes && o.geometry.attributes.color),
+      transparent: m ? m.transparent : false,
+      opacity: m ? m.opacity : 1,
+    }));
+    o.material = Array.isArray(o.material) ? conv : conv[0];
+  });
+  return root;
+}
+function loadGLB(url) {
+  return new Promise((res, rej) => gltfLoader.load(url, (g) => res(toonify(g.scene)), undefined, rej));
+}
+
+// Clona un modelo, lo centra en XZ con la base en y=0 y lo escala a un tamaño objetivo
+function fitClone(proto, opts) {
+  const obj = cloneSkeleton(proto);
+  const box = new THREE.Box3().setFromObject(obj);
+  const size = new THREE.Vector3(); box.getSize(size);
+  const center = new THREE.Vector3(); box.getCenter(center);
+  const base = opts.mode === 'height' ? size.y : Math.max(size.x, size.z);
+  const s = opts.target / (base || 1);
+  obj.position.set(-center.x, -box.min.y, -center.z);
+  const g = new THREE.Group();
+  g.add(obj); g.scale.setScalar(s);
+  return { node: g, size: size.clone().multiplyScalar(s) };
+}
+
+// Qué edificio usa cada departamento (variedad de siluetas)
+const STATION_BUILDINGS = {
+  comunicacion: 'small_a', comercial: 'large_a', callcenter: 'low_wide', proyectos: 'large_b',
+  administracion: 'small_b', desarrollo: 'skyscraper_a', devops: 'skyscraper_b', sistemas: 'low_a',
+};
+const ASSET_URLS = {
+  small_a: '/models/citykit/small_a.glb', large_a: '/models/citykit/large_a.glb',
+  low_wide: '/models/citykit/low_wide.glb', large_b: '/models/citykit/large_b.glb',
+  small_b: '/models/citykit/small_b.glb', skyscraper_a: '/models/citykit/skyscraper_a.glb',
+  skyscraper_b: '/models/citykit/skyscraper_b.glb', low_a: '/models/citykit/low_a.glb',
+  skyscraper_hq: '/models/citykit/skyscraper_hq.glb',
+  screen: '/models/office/screen.glb', plant: '/models/office/plant.glb',
+  trash: '/models/office/trash.glb', printer: '/models/office/printer.glb',
+  woman_headset: '/models/people/woman_headset.glb', businessman: '/models/people/businessman.glb',
+};
+async function loadAllAssets() {
+  await Promise.all(Object.entries(ASSET_URLS).map(async ([k, u]) => { ASSETS[k] = await loadGLB(u); }));
+}
 
 // Construye un puesto de trabajo + NPC en un departamento
 function buildStation(dep, dir) {
@@ -606,36 +674,16 @@ function buildStation(dep, dir) {
   const path = new THREE.Mesh(boxGeo, toon(0x5a627e));
   path.scale.set(1.8, 0.12, 4.2); path.position.set(0, 0.2, 3.4); group.add(path);
 
-  // ---- Edificio del departamento (fachada acristalada con ventanas) ----
-  const floors = 3 + (dep.nombre.length % 3);   // 3-5 plantas → variedad de alturas
-  const fH = 1.7, bW = 5.4, bD = 3.4, bH = floors * fH;
-  const building = new THREE.Mesh(boxGeo, toon(0xffffff, { map: makeFacade(accent, floors) }));
-  building.scale.set(bW, bH, bD); building.position.set(0, bH / 2 + 0.4, -3.6); group.add(building);
+  // ---- Edificio del departamento (modelo glTF de Kenney City Kit, CC0) ----
+  const fitted = fitClone(ASSETS[STATION_BUILDINGS[dep.id] || 'large_a'], { target: 6.2, mode: 'footprint' });
+  fitted.node.position.set(0, 0.55, -3.4);
+  group.add(fitted.node);
+  const bH = fitted.size.y + 0.55;
+  // Cimentación + plinto del color corporativo bajo el edificio
   const found = new THREE.Mesh(boxGeo, toon(0x2a3047));
-  found.scale.set(bW + 0.6, 0.6, bD + 0.6); found.position.set(0, 0.3, -3.6); group.add(found);
-  const roof = new THREE.Mesh(boxGeo, toon(0x363c54));
-  roof.scale.set(bW + 0.3, 0.4, bD + 0.3); roof.position.set(0, bH + 0.6, -3.6); group.add(roof);
-  // Equipos de cubierta (HVAC) + antena + depósito de agua
-  for (const ox of [-1.4, 1.2]) {
-    const hvac = new THREE.Mesh(boxGeo, toon(0x9aa3bd));
-    hvac.scale.set(1.0, 0.5, 0.9); hvac.position.set(ox, bH + 1.05, -3.6 + (ox > 0 ? 0.5 : -0.5)); group.add(hvac);
-  }
-  const ant = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.04, 1.8, 6), toon(0xcdd3e6));
-  ant.position.set(1.9, bH + 1.7, -4.4); group.add(ant);
-  const tank = new THREE.Mesh(new THREE.CylinderGeometry(0.5, 0.5, 0.7, 10), toon(0xb9c0d6));
-  tank.position.set(-1.8, bH + 1.15, -4.4); group.add(tank);
-
-  // ---- Entrada: puerta de cristal, marquesina, escalones y banda-rótulo ----
-  const door = new THREE.Mesh(boxGeo, toon(0x12305a));
-  door.scale.set(1.6, 2.2, 0.2); door.position.set(0, 1.45, -1.92); group.add(door);
-  const canopy = new THREE.Mesh(boxGeo, toon(accent));
-  canopy.scale.set(2.6, 0.18, 1.2); canopy.position.set(0, 2.7, -1.4); group.add(canopy);
-  for (let s = 0; s < 2; s++) {
-    const step = new THREE.Mesh(boxGeo, toon(0x6b7390));
-    step.scale.set(2.8 - s * 0.5, 0.18, 0.5); step.position.set(0, 0.45 + s * 0.18, -1.5 + s * 0.4); group.add(step);
-  }
+  found.scale.set(fitted.size.x + 1.0, 0.6, fitted.size.z + 1.0); found.position.set(0, 0.3, -3.4); group.add(found);
   const band = new THREE.Mesh(boxGeo, toon(accent));
-  band.scale.set(bW * 0.9, 0.55, 0.14); band.position.set(0, bH - 0.1, -1.88); group.add(band);
+  band.scale.set(fitted.size.x + 1.0, 0.18, fitted.size.z + 1.0); band.position.set(0, 0.6, -3.4); group.add(band);
 
   // Mesa
   const desk = new THREE.Mesh(boxGeo, deskMat);
@@ -646,41 +694,31 @@ function buildStation(dep, dir) {
     leg.position.set(sx * 1.05, 0.55, -0.4 + sz * 0.42); group.add(leg);
   }
 
-  // Monitor (pantalla emisiva con el color del depto)
-  const stand = new THREE.Mesh(boxGeo, screenOffMat);
-  stand.scale.set(0.12, 0.4, 0.12); stand.position.set(0, 1.45, -0.7); group.add(stand);
-  const screen = new THREE.Mesh(boxGeo, screenOffMat);
-  screen.scale.set(1.5, 0.95, 0.08); screen.position.set(0, 2.0, -0.72); group.add(screen);
+  // ---- Ordenador sobre la mesa (glTF) + brillo de pantalla con el color del depto ----
+  const computer = fitClone(ASSETS.screen, { target: 0.95, mode: 'height' });
+  computer.node.position.set(0, 1.19, -0.55);
+  group.add(computer.node);
   const glow = new THREE.Mesh(
-    new THREE.PlaneGeometry(1.35, 0.8),
+    new THREE.PlaneGeometry(0.78, 0.5),
     new THREE.MeshBasicMaterial({ color: accent })
   );
-  glow.position.set(0, 2.0, -0.67); group.add(glow);
+  glow.position.set(0, 1.62, -0.49); group.add(glow);
 
-  // Silla
-  const seat = new THREE.Mesh(boxGeo, chairMat);
-  seat.scale.set(0.8, 0.15, 0.8); seat.position.set(0, 0.9, 0.7); group.add(seat);
-  const back = new THREE.Mesh(boxGeo, chairMat);
-  back.scale.set(0.8, 0.9, 0.15); back.position.set(0, 1.3, 1.05); group.add(back);
+  // ---- Persona trabajando (personaje glTF CC0 de Quaternius) ----
+  const charKey = departamentos.indexOf(dep) % 2 === 0 ? 'woman_headset' : 'businessman';
+  const person = fitClone(ASSETS[charKey], { target: 1.7, mode: 'height' });
+  person.node.position.set(0, 0.3, -1.25);
+  person.node.rotation.y = Math.PI;   // mira hacia la mesa y el visitante
+  group.add(person.node);
+  const npc = person.node, head = person.node;
 
-  // NPC sentado (figura low-poly)
-  const npc = new THREE.Group();
-  const skin = toon(0xe8b48c);
-  const shirt = toon(accent);
-  const body = new THREE.Mesh(boxGeo, shirt);
-  body.scale.set(0.7, 0.85, 0.5); body.position.y = 1.35; npc.add(body);
-  const head = new THREE.Mesh(new THREE.SphereGeometry(0.32, 16, 16), skin);
-  head.position.y = 2.0; npc.add(head);
-  const hair = new THREE.Mesh(new THREE.SphereGeometry(0.34, 16, 12, 0, Math.PI * 2, 0, Math.PI / 1.7), toon(0x2a2320));
-  hair.position.y = 2.05; npc.add(hair);
-  // brazos hacia la mesa (escribiendo)
-  for (const sx of [-1, 1]) {
-    const arm = new THREE.Mesh(boxGeo, shirt);
-    arm.scale.set(0.18, 0.5, 0.18);
-    arm.position.set(sx * 0.35, 1.35, -0.35); arm.rotation.x = -0.8; npc.add(arm);
-  }
-  npc.position.set(0, 0, 0.55);
-  group.add(npc);
+  // ---- Props glTF de detalle (planta, papelera, impresora) ----
+  const plant = fitClone(ASSETS.plant, { target: 1.0, mode: 'height' });
+  plant.node.position.set(2.7, 0.3, -1.6); group.add(plant.node);
+  const trash = fitClone(ASSETS.trash, { target: 0.7, mode: 'height' });
+  trash.node.position.set(-2.6, 0.3, -1.4); group.add(trash.node);
+  const printer = fitClone(ASSETS.printer, { target: 0.8, mode: 'height' });
+  printer.node.position.set(1.7, 0.3, -2.0); printer.node.rotation.y = -0.4; group.add(printer.node);
 
   // ---- Rótulo flotante sobre el edificio (reconocible de lejos) ----
   const sign = makeSign(dep);
@@ -765,28 +803,7 @@ function roundRect(ctx, x, y, w, h, r) {
   ctx.closePath();
 }
 
-// Textura de fachada: cuadrícula de ventanas (algunas encendidas con el color del depto)
-function makeFacade(accent, floors) {
-  const cols = 5, rows = Math.max(3, floors);
-  const c = document.createElement('canvas');
-  c.width = 320; c.height = 64 * rows;
-  const ctx = c.getContext('2d');
-  ctx.fillStyle = '#2c324a'; ctx.fillRect(0, 0, c.width, c.height);
-  const mx = 16, my = 16;
-  const gw = (c.width - mx * (cols + 1)) / cols;
-  const gh = (c.height - my * (rows + 1)) / rows;
-  const hexA = '#' + accent.getHexString();
-  for (let r = 0; r < rows; r++) for (let col = 0; col < cols; col++) {
-    const k = Math.random();
-    ctx.fillStyle = k > 0.78 ? hexA : (k > 0.45 ? '#dbe7ff' : '#161b2e');
-    ctx.fillRect(mx + col * (gw + mx), my + r * (gh + my), gw, gh);
-  }
-  const tex = new THREE.CanvasTexture(c);
-  tex.colorSpace = THREE.SRGBColorSpace;
-  return tex;
-}
-
-const stations = departamentos.map((dep, i) => buildStation(dep, anchors[i]));
+let stations = [];   // se rellena cuando terminan de cargar los modelos glTF
 
 // ============================================================
 //  PAISAJISMO DEL CAMPUS (instancing) — mobiliario urbano por todo el planeta
@@ -845,23 +862,24 @@ const stations = departamentos.map((dep, i) => buildStation(dep, anchors[i]));
 // ============================================================
 //  SEDE CENTRAL — torre corporativa en el polo sur (landmark)
 // ============================================================
-{
+function buildHQ() {
   const dir = new THREE.Vector3(0, -1, 0);
   const g = new THREE.Group();
   g.position.copy(dir).multiplyScalar(surfaceRadius(dir));
   alignToSurface(g, dir);
   scene.add(g);
-  const brand = new THREE.Color(0x4f7cff);
   const plaza = new THREE.Mesh(new THREE.CylinderGeometry(6.5, 6.7, 0.4, 36), toon(0x3f465f));
   plaza.position.y = 0.2; g.add(plaza);
   const plazaRing = new THREE.Mesh(new THREE.TorusGeometry(6.5, 0.14, 8, 48), toon(0x4f7cff));
   plazaRing.rotation.x = Math.PI / 2; plazaRing.position.y = 0.42; g.add(plazaRing);
-  const tower = new THREE.Mesh(boxGeo, toon(0xffffff, { map: makeFacade(brand, 8) }));
-  tower.scale.set(3.6, 13, 3.6); tower.position.y = 6.9; g.add(tower);
+  // Torre = rascacielos glTF escalado a lo grande
+  const tower = fitClone(ASSETS.skyscraper_hq, { target: 8, mode: 'footprint' });
+  tower.node.position.y = 0.4; g.add(tower.node);
+  const towerH = tower.size.y + 0.4;
   const crown = new THREE.Mesh(boxGeo, toon(0x4f7cff));
-  crown.scale.set(4.0, 0.6, 4.0); crown.position.y = 13.6; g.add(crown);
+  crown.scale.set(tower.size.x + 0.6, 0.6, tower.size.z + 0.6); crown.position.y = towerH + 0.3; g.add(crown);
   const sign = makeSign({ icon: '🛡️', nombre: 'AI Security', color: '#7da4ff' });
-  sign.scale.set(5.0, 2.5, 1); sign.position.y = 15.6; g.add(sign);
+  sign.scale.set(5.0, 2.5, 1); sign.position.y = towerH + 2.2; g.add(sign);
   // Fuente central
   const basin = new THREE.Mesh(new THREE.CylinderGeometry(1.8, 2.0, 0.6, 24), toon(0x5a627e));
   basin.position.set(0, 0.5, 5.0); g.add(basin);
@@ -1087,9 +1105,17 @@ function start() {
 }
 document.getElementById('start-btn').addEventListener('click', start);
 
-// quita el loader cuando el primer frame esté listo
-requestAnimationFrame(() => {
-  animate();
-  setTimeout(() => document.getElementById('loader').classList.add('hidden'), 300);
-});
+// Render inmediato (planeta + paisajismo); los edificios/personas aparecen al cargar los glTF
+animate();
+loadAllAssets()
+  .then(() => {
+    stations = departamentos.map((dep, i) => buildStation(dep, anchors[i]));
+    buildHQ();
+    document.getElementById('loader').classList.add('hidden');
+  })
+  .catch((err) => {
+    console.error('Error cargando modelos glTF', err);
+    const p = document.querySelector('#loader p');
+    if (p) p.textContent = 'No se pudieron cargar los modelos 3D';
+  });
 </script>
