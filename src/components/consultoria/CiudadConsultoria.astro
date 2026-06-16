@@ -136,13 +136,13 @@ const implementaciones = [
   { icon: "🤖", titulo: "Asistentes IA para el equipo", desc: "Configuramos Claude, ChatGPT o Gemini con el contexto de tu empresa para que todo el equipo trabaje con el mismo asistente entrenado en vuestros procesos.", ahorro: "Multiplica la productividad de cada empleado" },
 ];
 
-// ─── GENÉRICO: cómo trabajamos (con nombre de ciudad interpolado) ───
-const pasos = [
-  { paso: "01", titulo: "Diagnóstico", desc: `Nos reunimos (presencial en ${nombre} o videoconferencia) y analizamos dónde pierde tiempo tu equipo y qué procesos son automatizables.`, icon: "🔍" },
-  { paso: "02", titulo: "Propuesta", desc: "Diseñamos un plan concreto: qué implementar, en qué orden y con qué inversión. Sin sorpresas.", icon: "📐" },
-  { paso: "03", titulo: "Implementación", desc: "Configuramos cada herramienta en vuestro entorno real con pruebas hasta que funciona exactamente como necesitáis.", icon: "🛠️" },
-  { paso: "04", titulo: "Formación", desc: `Formamos a tu equipo en ${nombre}. Sesiones prácticas, guías y soporte post-implantación incluidos.`, icon: "🎓" },
+// ─── GENÉRICO: servicios IA mencionados en el hero ───
+const serviciosIA = [
+  "Chatbots IA", "Gestor documental", "Llamadas IA · ATC", "Gestión de citas",
+  "Automatización de procesos", "Ciberseguridad · Wazuh", "Desarrollo web", "Posicionamiento SEO",
 ];
+// Acentos para las tarjetas de soluciones
+const accents = ["#60a5fa", "#818cf8", "#a78bfa", "#c084fc", "#60a5fa", "#818cf8"];
 
 // FAQ visible: llega por props (cada ciudad tiene su propia FAQ con valor SEO local)
 
@@ -234,14 +234,16 @@ const resultados = [
       </h1>
       <p class="text-lg max-w-3xl mx-auto mb-7" style="color: #94a3b8; line-height: 1.7;">{heroIntro}</p>
 
-      <!-- Chips de confianza -->
-      <div class="flex flex-wrap justify-center gap-2.5 mb-8">
-        {["Primera consulta gratis", "Formación del equipo incluida", "Sin permanencia", "Resultados medibles"].map((b) => (
-          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold" style="background:rgba(255,255,255,0.05);border:1px solid rgba(124,192,255,0.25);color:#cbd5e1;">
-            <svg width="13" height="13" fill="none" stroke="#60a5fa" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
-            {b}
-          </span>
-        ))}
+      <!-- Servicios IA que implementamos -->
+      <div class="mb-7">
+        <p style="font-size:0.7rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#64748b;margin-bottom:14px;">Servicios de IA que implementamos en {nombre}</p>
+        <div class="flex flex-wrap justify-center gap-2" style="max-width:760px;margin:0 auto;">
+          {serviciosIA.map((s) => (
+            <span class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs font-semibold" style="background:rgba(79,124,255,0.08);border:1px solid rgba(124,140,248,0.22);color:#c5d2ee;">
+              <span style="width:5px;height:5px;border-radius:50%;background:#818cf8;display:inline-block;flex-shrink:0;"></span>{s}
+            </span>
+          ))}
+        </div>
       </div>
 
       <div class="flex flex-wrap gap-4 justify-center">
@@ -252,6 +254,7 @@ const resultados = [
           Ver todos los servicios IA →
         </a>
       </div>
+      <p class="mt-5 text-xs" style="color:#64748b;">✓ Primera consulta gratis &nbsp;·&nbsp; ✓ Formación incluida &nbsp;·&nbsp; ✓ Sin permanencia &nbsp;·&nbsp; ✓ Resultados medibles</p>
     </div>
   </section>
 
@@ -278,41 +281,37 @@ const resultados = [
     </div>
   </section>
 
-  <!-- SECTORES -->
-  <section style="background: #0a0d1a; padding: 80px 0;">
-    <div class="max-w-5xl mx-auto px-6">
+  <!-- QUÉ AUTOMATIZAMOS (soluciones + sectores unificado) -->
+  <section style="background: #0a0d1a; padding: 80px 0; border-top: 1px solid #1e2130;">
+    <div class="max-w-6xl mx-auto px-6">
       <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold mb-3" style="color: #e2e8f0;">Sectores en {nombre} donde implementamos IA</h2>
-        <p style="color: #64748b; max-width: 520px; margin: 0 auto;">{sectoresIntro}</p>
+        <h2 class="text-3xl md:text-4xl font-bold mb-3" style="color: #e2e8f0;">
+          Qué podemos automatizar con IA en tu empresa de <span style="background:linear-gradient(90deg,#60a5fa,#a78bfa);-webkit-background-clip:text;background-clip:text;color:transparent;">{nombre}</span>
+        </h2>
+        <p style="color: #64748b; max-width: 520px; margin: 0 auto;">Soluciones reales con resultados medibles desde el primer mes.</p>
       </div>
-      <div class="grid md:grid-cols-3 gap-5">
-        {sectores.map((s) => (
-          <div class="rounded-xl p-5" style="background: #1a1d27; border: 1px solid #2a2d3a;">
-            <div style="font-size: 28px; margin-bottom: 10px;">{s.icon}</div>
-            <h3 style="font-size: 1rem; font-weight: 700; color: #e2e8f0; margin-bottom: 6px;">{s.nombre}</h3>
-            <p style="color: #64748b; font-size: 0.875rem; line-height: 1.6;">{s.uso}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
 
-  <!-- QUÉ IMPLEMENTAMOS -->
-  <section style="background: #0f1117; padding: 80px 0; border-top: 1px solid #1e2130;">
-    <div class="max-w-5xl mx-auto px-6">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold mb-3" style="color: #e2e8f0;">¿Qué IA implementamos en tu empresa?</h2>
-        <p style="color: #64748b; max-width: 480px; margin: 0 auto;">Herramientas reales con resultados medibles desde el primer mes.</p>
-      </div>
-      <div class="grid md:grid-cols-2 gap-6">
-        {implementaciones.map((item) => (
-          <div class="rounded-xl p-6" style="background: #1a1d27; border: 1px solid #2a2d3a;">
-            <div style="font-size: 28px; margin-bottom: 12px;">{item.icon}</div>
-            <h3 style="font-size: 1.05rem; font-weight: 700; color: #e2e8f0; margin-bottom: 8px;">{item.titulo}</h3>
-            <p style="color: #64748b; font-size: 0.875rem; line-height: 1.6; margin-bottom: 10px;">{item.desc}</p>
-            <div style="font-size: 0.8rem; font-weight: 600; color: #86efac; background: rgba(34,197,94,0.08); border: 1px solid rgba(34,197,94,0.2); padding: 6px 10px; border-radius: 8px;">💡 {item.ahorro}</div>
+      <!-- Tarjetas de soluciones (compactas) -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {implementaciones.map((item, i) => (
+          <div class="sol-card" style={`--c:${accents[i % accents.length]};`}>
+            <div class="sol-icon">{item.icon}</div>
+            <h3 class="sol-title">{item.titulo}</h3>
+            <p class="sol-benefit">{item.ahorro}</p>
           </div>
         ))}
+      </div>
+
+      <!-- Sectores como chips compactos -->
+      <div class="mt-12 text-center">
+        <p style="font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#64748b;margin-bottom:14px;">Trabajamos con empresas de todos los sectores en {nombre}</p>
+        <div class="flex flex-wrap justify-center gap-2.5" style="max-width:820px;margin:0 auto;">
+          {sectores.map((s) => (
+            <span class="inline-flex items-center gap-2 px-3.5 py-2 rounded-full text-sm font-medium" style="background:#1a1d27;border:1px solid #2a2d3a;color:#cbd5e1;">
+              <span style="font-size:16px;line-height:1;">{s.icon}</span>{s.nombre}
+            </span>
+          ))}
+        </div>
       </div>
     </div>
   </section>
@@ -385,26 +384,6 @@ const resultados = [
             <div style={`font-size:2rem;font-weight:900;line-height:1;color:${r.c};margin-bottom:8px;`}>{r.num}</div>
             <div style="font-size:0.92rem;font-weight:700;color:#e2e8f0;margin-bottom:4px;">{r.label}</div>
             <div style="font-size:0.78rem;color:#64748b;line-height:1.4;">{r.sub}</div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- CÓMO TRABAJAMOS -->
-  <section style="background: #0a0d1a; padding: 80px 0; border-top: 1px solid #1e2130;">
-    <div class="max-w-5xl mx-auto px-6">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold mb-3" style="color: #e2e8f0;">Cómo trabajamos con empresas en {nombre}</h2>
-        <p style="color: #64748b; max-width: 480px; margin: 0 auto;">Sin humo. Sin herramientas genéricas. Con resultados medibles.</p>
-      </div>
-      <div class="grid md:grid-cols-4 gap-6">
-        {pasos.map((item) => (
-          <div style="text-align: center;">
-            <div style="font-size: 32px; margin-bottom: 12px;">{item.icon}</div>
-            <div style="font-size: 0.75rem; font-weight: 700; color: #4f7cff; letter-spacing: 0.1em; margin-bottom: 6px;">PASO {item.paso}</div>
-            <h3 style="font-size: 1rem; font-weight: 700; color: #e2e8f0; margin-bottom: 8px;">{item.titulo}</h3>
-            <p style="color: #64748b; font-size: 0.875rem; line-height: 1.6;">{item.desc}</p>
           </div>
         ))}
       </div>
@@ -586,3 +565,30 @@ const resultados = [
   document.addEventListener('DOMContentLoaded', () => selectDep('desarrollo'));
   if (document.readyState === 'complete' || document.readyState === 'interactive') { selectDep('desarrollo'); }
 </script>
+
+<style>
+  .sol-card {
+    background: #1a1d27;
+    border: 1px solid #2a2d3a;
+    border-top: 3px solid var(--c);
+    border-radius: 14px;
+    padding: 1.4rem;
+    transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+  }
+  .sol-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--c);
+    box-shadow: 0 16px 38px -18px var(--c);
+  }
+  .sol-icon {
+    width: 46px; height: 46px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: 0.9rem;
+    background: color-mix(in srgb, var(--c) 14%, transparent);
+    border: 1px solid color-mix(in srgb, var(--c) 30%, transparent);
+  }
+  .sol-title { font-size: 1rem; font-weight: 700; color: #e2e8f0; margin-bottom: 0.4rem; line-height: 1.25; }
+  .sol-benefit { font-size: 0.85rem; line-height: 1.5; color: #94a3b8; margin: 0; }
+</style>
