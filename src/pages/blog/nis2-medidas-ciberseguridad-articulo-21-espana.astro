@@ -1,0 +1,218 @@
+---
+import BlogLayout from "../../layouts/BlogLayout.astro";
+---
+
+<BlogLayout
+  title="Las 10 medidas de ciberseguridad que exige la NIS2 (Artículo 21)"
+  description="Guía técnica y práctica de las 10 medidas obligatorias del artículo 21 de NIS2: gestión de riesgos, continuidad de negocio, seguridad de cadena de suministro, MFA y más."
+  publishDate="2026-06-16"
+  modifiedDate="2026-06-16"
+  author="AI Security"
+  readTime="13 min"
+  tags={["NIS2", "Ciberseguridad", "Artículo 21", "Medidas Técnicas", "España"]}
+  canonical="https://aisecurity.es/blog/nis2-medidas-ciberseguridad-articulo-21-espana">
+
+  <p>El artículo 21 de la Directiva NIS2 es el corazón técnico de toda la norma. Define las 10 categorías de medidas que toda entidad obligada debe implementar. No son recomendaciones ni mejores prácticas: son obligaciones legales cuyo incumplimiento puede suponer multas de millones de euros y responsabilidad personal de la dirección.</p>
+
+  <p>Esta guía explica qué implica cada medida en la práctica, qué suele fallar en las empresas y qué tienes que tener documentado.</p>
+
+  <h2>El principio base: proporcionalidad y enfoque de riesgo</h2>
+
+  <p>Antes de entrar en las 10 medidas, hay que entender el enfoque de NIS2: <strong>proporcionalidad</strong>. No exige lo mismo a un hospital que a una empresa de distribución de alimentos, ni a una gran empresa que a una mediana. Las medidas deben ser proporcionales al riesgo real, teniendo en cuenta:</p>
+  <ul>
+    <li>La exposición de la entidad a los riesgos</li>
+    <li>El tamaño de la organización</li>
+    <li>La probabilidad de que se materialicen los riesgos</li>
+    <li>La gravedad de los incidentes, incluidas sus consecuencias sociales y económicas</li>
+  </ul>
+
+  <p>Proporcionalidad no significa que las pymes medianas puedan ignorar NIS2. Significa que las medidas deben adaptarse a su contexto, pero deben existir.</p>
+
+  <h2>Las 10 medidas del artículo 21</h2>
+
+  <h3>Medida 1: Políticas de análisis de riesgos y seguridad de los sistemas de información</h3>
+
+  <p>Esta es la medida fundacional. Tienes que tener un proceso documentado y sistemático para identificar, evaluar y gestionar los riesgos de ciberseguridad de tu organización.</p>
+
+  <p><strong>Qué implica en la práctica:</strong></p>
+  <ul>
+    <li>Inventario actualizado de activos de información (sistemas, aplicaciones, datos)</li>
+    <li>Análisis de amenazas y vulnerabilidades para cada activo crítico</li>
+    <li>Evaluación del impacto potencial y la probabilidad de cada riesgo</li>
+    <li>Decisiones documentadas sobre cómo tratar cada riesgo: mitigar, transferir, aceptar o evitar</li>
+    <li>Política de seguridad de la información aprobada por la dirección</li>
+  </ul>
+
+  <p><strong>Lo que suele fallar:</strong> Muchas empresas tienen antivirus y firewall pero no tienen un análisis formal de riesgos. Si mañana llega un inspector, no basta con decir "tenemos seguridad". Hay que mostrar el documento.</p>
+
+  <h3>Medida 2: Gestión de incidentes</h3>
+
+  <p>NIS2 exige tener un proceso formal y probado para detectar, responder y notificar incidentes de ciberseguridad.</p>
+
+  <p><strong>Qué implica en la práctica:</strong></p>
+  <ul>
+    <li>Procedimiento documentado de respuesta a incidentes: quién hace qué, en qué orden</li>
+    <li>Mecanismos de detección: logs centralizados, alertas, monitorización de red</li>
+    <li>Definición de "incidente significativo" según los criterios de NIS2</li>
+    <li>Proceso de notificación en los plazos legales: alerta en 24h, notificación formal en 72h, informe final en 1 mes</li>
+    <li>Registro de incidentes histórico, aunque no sean significativos</li>
+    <li>Pruebas regulares del procedimiento (ejercicios de simulación)</li>
+  </ul>
+
+  <div style="background:rgba(99,102,241,0.12);border-left:4px solid #6366f1;padding:1rem;margin:1.5rem 0;border-radius:0 0.5rem 0.5rem 0;">
+    <p class="m-0" style="color:rgba(255,255,255,0.9);"><strong style="color:#a5b4fc;">Incidente significativo:</strong> NIS2 define un incidente como significativo cuando causa o puede causar una perturbación grave de la prestación del servicio, afecta a otras entidades, implica pérdidas financieras considerables o daño reputacional importante. Si tienes dudas, notifica. La falta de notificación se sanciona por separado del incidente.</p>
+  </div>
+
+  <h3>Medida 3: Continuidad de negocio y gestión de crisis</h3>
+
+  <p>Si un ciberataque paraliza tus sistemas, ¿cuánto tiempo tardas en volver a operar? NIS2 exige que tengas una respuesta documentada para esa pregunta.</p>
+
+  <p><strong>Qué implica en la práctica:</strong></p>
+  <ul>
+    <li>Plan de continuidad de negocio (BCP) que contemple escenarios de ciberincidente</li>
+    <li>Plan de recuperación ante desastres (DRP) con objetivos de recuperación (RTO/RPO) definidos</li>
+    <li>Copias de seguridad regulares, offline y verificadas (el 32% de las empresas descubre que sus backups no funcionan cuando los necesita)</li>
+    <li>Pruebas periódicas de restauración (al menos anual)</li>
+    <li>Plan de gestión de crisis: comunicación interna, clientes, proveedores y autoridades</li>
+    <li>Inventario de sistemas críticos y sus dependencias</li>
+  </ul>
+
+  <h3>Medida 4: Seguridad de la cadena de suministro</h3>
+
+  <p>Esta medida es una de las más nuevas respecto a NIS1 y de las que más trabajo genera. Tienes que gestionar los riesgos que vienen de tus proveedores tecnológicos.</p>
+
+  <p><strong>Qué implica en la práctica:</strong></p>
+  <ul>
+    <li>Inventario de proveedores críticos: software, SaaS, infraestructura, servicios gestionados</li>
+    <li>Evaluación de seguridad antes de contratar a nuevos proveedores tecnológicos</li>
+    <li>Cláusulas contractuales de ciberseguridad: obligaciones, notificación de incidentes, auditoría</li>
+    <li>Revisión periódica de proveedores existentes</li>
+    <li>Plan de contingencia si un proveedor crítico sufre un incidente o falla</li>
+  </ul>
+
+  <p><strong>Lo que implica para tus proveedores:</strong> Si eres proveedor tecnológico de una entidad NIS2, puedes esperar recibir cuestionarios de seguridad, solicitudes de certificaciones y cláusulas contractuales más exigentes. No cumplir esas exigencias puede costarte el contrato.</p>
+
+  <h3>Medida 5: Seguridad en el desarrollo y adquisición de sistemas</h3>
+
+  <p>Si tu empresa desarrolla software o adquiere sistemas tecnológicos, tienes que asegurarte de que la seguridad se considera desde el diseño.</p>
+
+  <p><strong>Qué implica en la práctica:</strong></p>
+  <ul>
+    <li>Política de desarrollo seguro (si desarrollas software): revisión de código, pruebas de seguridad, gestión de dependencias</li>
+    <li>Criterios de seguridad en los procesos de adquisición de software y hardware</li>
+    <li>Gestión de vulnerabilidades: proceso para aplicar parches de seguridad en tiempo razonable</li>
+    <li>Control de cambios en sistemas críticos</li>
+    <li>Pruebas de seguridad antes de desplegar nuevos sistemas</li>
+  </ul>
+
+  <h3>Medida 6: Evaluación de la eficacia de las medidas</h3>
+
+  <p>No basta con implementar medidas de seguridad: tienes que medir si funcionan. NIS2 exige un proceso de evaluación continua.</p>
+
+  <p><strong>Qué implica en la práctica:</strong></p>
+  <ul>
+    <li>Auditorías internas de ciberseguridad (al menos anual)</li>
+    <li>Pruebas de penetración periódicas en sistemas críticos</li>
+    <li>Indicadores (KPIs) de seguridad monitorizados regularmente</li>
+    <li>Revisión de incidentes pasados y lecciones aprendidas</li>
+    <li>Para entidades esenciales: auditoría externa obligatoria al menos cada 2 años</li>
+  </ul>
+
+  <h3>Medida 7: Higiene básica de ciberseguridad y formación</h3>
+
+  <p>La tecnología no sirve de nada si las personas no saben cómo comportarse de forma segura. NIS2 hace de la formación una obligación legal.</p>
+
+  <p><strong>Qué implica en la práctica:</strong></p>
+  <ul>
+    <li>Programa de formación en ciberseguridad para todos los empleados (al menos anual)</li>
+    <li>Formación específica para el personal técnico y de TI</li>
+    <li>Formación obligatoria para la dirección y el consejo de administración</li>
+    <li>Políticas de uso aceptable de sistemas y dispositivos</li>
+    <li>Simulaciones de phishing periódicas</li>
+    <li>Concienciación sobre ingeniería social y amenazas actuales</li>
+  </ul>
+
+  <div style="background:rgba(245,158,11,0.12);border-left:4px solid #f59e0b;padding:1rem;margin:1.5rem 0;border-radius:0 0.5rem 0.5rem 0;">
+    <p class="m-0" style="color:rgba(255,255,255,0.9);"><strong style="color:#fcd34d;">La dirección también tiene que formarse:</strong> NIS2 exige expresamente que los miembros del órgano de dirección reciban formación periódica en ciberseguridad. Un directivo que no puede explicar qué es un ataque de ransomware o qué implica un incidente bajo NIS2 puede ser considerado negligente.</p>
+  </div>
+
+  <h3>Medida 8: Políticas y procedimientos de criptografía y cifrado</h3>
+
+  <p>El cifrado ya no es opcional. NIS2 exige una política formal que defina cuándo y cómo se usa la criptografía.</p>
+
+  <p><strong>Qué implica en la práctica:</strong></p>
+  <ul>
+    <li>Política de cifrado documentada: qué datos deben cifrarse (en tránsito y en reposo)</li>
+    <li>Cifrado de datos sensibles en bases de datos y almacenamiento</li>
+    <li>TLS/HTTPS en todas las comunicaciones de sistemas críticos</li>
+    <li>Gestión de claves criptográficas: generación, almacenamiento, rotación y revocación</li>
+    <li>VPN o equivalente para acceso remoto</li>
+    <li>Cifrado de dispositivos de almacenamiento portátiles</li>
+  </ul>
+
+  <h3>Medida 9: Seguridad de los recursos humanos y control de accesos</h3>
+
+  <p>Esta medida cubre todo el ciclo de vida del empleado desde la perspectiva de la seguridad, y también el control estricto de quién puede acceder a qué.</p>
+
+  <p><strong>Qué implica en la práctica:</strong></p>
+  <ul>
+    <li>Verificación de antecedentes para puestos con acceso a sistemas críticos</li>
+    <li>Principio de mínimo privilegio: cada usuario solo accede a lo que necesita para su trabajo</li>
+    <li>Gestión de accesos privilegiados (administradores, bases de datos, sistemas críticos)</li>
+    <li>Proceso de baja de empleados: revocación inmediata de accesos al finalizar la relación laboral</li>
+    <li>Gestión de cuentas de servicio y cuentas compartidas</li>
+    <li>Revisión periódica de permisos y accesos</li>
+  </ul>
+
+  <h3>Medida 10: Autenticación multifactor y comunicaciones seguras</h3>
+
+  <p>MFA (Multi-Factor Authentication) pasa de ser una recomendación a ser una obligación legal bajo NIS2. Esto aplica especialmente a sistemas críticos y acceso remoto.</p>
+
+  <p><strong>Qué implica en la práctica:</strong></p>
+  <ul>
+    <li>MFA obligatorio para acceso a sistemas de administración y gestión</li>
+    <li>MFA para acceso remoto (VPN, escritorio remoto, acceso a cloud)</li>
+    <li>MFA para correo electrónico corporativo</li>
+    <li>Comunicaciones de voz y vídeo seguras para información sensible</li>
+    <li>Sistemas de mensajería seguros para comunicación interna crítica</li>
+  </ul>
+
+  <div style="background:rgba(239,68,68,0.12);border-left:4px solid #ef4444;padding:1rem;margin:1.5rem 0;border-radius:0 0.5rem 0.5rem 0;">
+    <p class="m-0" style="color:rgba(255,255,255,0.9);"><strong style="color:#fca5a5;">Caso real:</strong> El 80% de las brechas de seguridad involucran credenciales comprometidas. Sin MFA, una contraseña robada es suficiente para que un atacante acceda a sistemas críticos. NIS2 convierte en sancionable lo que antes era simplemente imprudente.</p>
+  </div>
+
+  <h2>¿Cómo documentar el cumplimiento?</h2>
+
+  <p>Implementar medidas sin documentarlas es casi tan malo como no implementarlas. Cuando llegue una inspección, necesitarás demostrar el cumplimiento con documentos concretos:</p>
+
+  <ul>
+    <li>Política de seguridad de la información aprobada y firmada por la dirección</li>
+    <li>Resultados del análisis de riesgos actualizado</li>
+    <li>Registro de incidentes (aunque estén gestionados internamente)</li>
+    <li>Plan de continuidad de negocio y pruebas de restauración</li>
+    <li>Contratos con proveedores críticos con cláusulas de seguridad</li>
+    <li>Registros de formación del personal</li>
+    <li>Resultados de auditorías internas o externas</li>
+    <li>Inventario de activos actualizado</li>
+    <li>Evidencias de configuración de MFA en sistemas críticos</li>
+  </ul>
+
+  <h2>¿Por dónde empezar?</h2>
+
+  <p>Si tienes que priorizar, este es el orden recomendado para la mayoría de empresas medianas:</p>
+
+  <ol>
+    <li><strong>Inventario de activos</strong> (base de todo lo demás)</li>
+    <li><strong>Análisis de riesgos</strong> inicial aunque sea simplificado</li>
+    <li><strong>MFA</strong> en sistemas críticos y acceso remoto (impacto máximo, implementación rápida)</li>
+    <li><strong>Copias de seguridad</strong> verificadas y procedimiento de restauración</li>
+    <li><strong>Plan de gestión de incidentes</strong> con los plazos NIS2</li>
+    <li><strong>Contratos con proveedores</strong>: revisar cláusulas de seguridad</li>
+    <li>Resto de medidas según el análisis de riesgos</li>
+  </ol>
+
+  <div style="background:rgba(16,185,129,0.12);border-left:4px solid #10b981;padding:1rem;margin:1.5rem 0;border-radius:0 0.5rem 0.5rem 0;">
+    <p class="m-0" style="color:rgba(255,255,255,0.9);"><strong style="color:#6ee7b7;">Plan completo:</strong> Para construir tu hoja de ruta de cumplimiento NIS2 con un checklist detallado, consulta nuestro <a href="/blog/nis2-plan-accion-cumplimiento-empresas-espana" style="color:#7c3aed;">plan de acción paso a paso</a>.</p>
+  </div>
+
+</BlogLayout>
