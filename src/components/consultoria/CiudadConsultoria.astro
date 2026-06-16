@@ -46,6 +46,8 @@ const dolores = [
   { icon: "⏳", texto: "Tu equipo pierde horas en tareas repetitivas: facturas, emails, informes, copiar datos." },
   { icon: "📞", texto: "Se escapan llamadas y oportunidades fuera de horario porque no hay quien las atienda." },
   { icon: "🔎", texto: "La información está dispersa y encontrar un documento concreto lleva demasiado tiempo." },
+  { icon: "💬", texto: "Respondes las mismas preguntas una y otra vez por email, teléfono y WhatsApp." },
+  { icon: "📉", texto: "Tu web no aparece en Google y apenas te llegan clientes nuevos por internet." },
   { icon: "🚀", texto: "Sabes que la IA puede ayudar, pero no sabes por dónde empezar — y tu competencia ya la usa." },
 ];
 
@@ -174,26 +176,6 @@ const provincias = [
       </div>
     </section>
 
-    <!-- ═══ ¿TE SUENA ESTO? ═══ -->
-    <section class="cc-sec" style="background:#0a0f1c;border-top:1px solid rgba(255,255,255,0.06);">
-      <div class="cc-wrap">
-        <div class="cc-head">
-          <span class="cc-eyebrow">A quién ayudamos</span>
-          <h2 class="cc-h2">¿Te suena esto en tu empresa de {nombre}?</h2>
-          <p class="cc-sub">Si te identificas con alguno de estos puntos, la IA puede ayudarte. Empieza con una conversación, sin compromiso.</p>
-        </div>
-        <div class="cc-pain-grid">
-          {dolores.map((d) => (
-            <div class="cc-pain">
-              <span class="cc-pain-ic">{d.icon}</span>
-              <p>{d.texto}</p>
-            </div>
-          ))}
-        </div>
-        <div class="cc-center"><a href={`/presupuesto?plan=${planSlug}`} class="cc-btn-primary">Cuéntanos tu caso — gratis →</a></div>
-      </div>
-    </section>
-
     <!-- ═══ DIAGRAMA INTERACTIVO ═══ -->
     <section class="cc-sec" style="background:#070b14;border-top:1px solid rgba(255,255,255,0.06);">
       <div class="cc-wrap-wide">
@@ -246,6 +228,26 @@ const provincias = [
       </div>
     </section>
 
+    <!-- ═══ ¿TE SUENA ESTO? ═══ -->
+    <section class="cc-sec" style="background:#0a0f1c;border-top:1px solid rgba(255,255,255,0.06);">
+      <div class="cc-wrap">
+        <div class="cc-head">
+          <span class="cc-eyebrow">A quién ayudamos</span>
+          <h2 class="cc-h2">¿Te suena esto en tu empresa de {nombre}?</h2>
+          <p class="cc-sub">Si te identificas con alguno de estos puntos, la IA puede ayudarte. Empieza con una conversación, sin compromiso.</p>
+        </div>
+        <div class="cc-pain-grid">
+          {dolores.map((d) => (
+            <div class="cc-pain">
+              <span class="cc-pain-ic">{d.icon}</span>
+              <p>{d.texto}</p>
+            </div>
+          ))}
+        </div>
+        <div class="cc-center"><a href={`/presupuesto?plan=${planSlug}`} class="cc-btn-primary">Cuéntanos tu caso — gratis →</a></div>
+      </div>
+    </section>
+
     <!-- ═══ RESULTADOS ═══ -->
     <section class="cc-sec" style="background:#0a0f1c;border-top:1px solid rgba(255,255,255,0.06);">
       <div class="cc-wrap">
@@ -261,20 +263,6 @@ const provincias = [
               <div class="cc-metric-l">{r.label}</div>
               <div class="cc-metric-s">{r.sub}</div>
             </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══ SECTORES ═══ -->
-    <section class="cc-sec" style="background:#070b14;border-top:1px solid rgba(255,255,255,0.06);">
-      <div class="cc-wrap cc-center">
-        <span class="cc-eyebrow">Sectores</span>
-        <h2 class="cc-h2">Trabajamos con empresas de todos los sectores en {nombre}</h2>
-        <p class="cc-sub" style="margin-bottom:28px;">{sectoresIntro}</p>
-        <div class="cc-chips">
-          {sectores.map((s) => (
-            <span class="cc-chip"><span style="font-size:17px;">{s.icon}</span>{s.nombre}</span>
           ))}
         </div>
       </div>
