@@ -1,4 +1,4 @@
----
+﻿---
 // CiudadConsultoria — plantilla GENÉRICA de las páginas de consultoría IA por ciudad.
 // Diseño moderno (glass + gradientes azul→morado) alineado con la home.
 // Cada página pasa solo sus DATOS (nombre, meta, intro, sectores, FAQ).
@@ -58,35 +58,35 @@ const resultados = [
 
 // ─── GENÉRICO: departamentos (diagrama interactivo) ───
 const departamentos = [
-  { id: "comunicacion", nombre: "Comunicación", icon: "🎨", color: "#84cc16",
+  { id: "comunicacion", nombre: "Comunicación", icon: "🎨", color: "#38bdf8",
     resumen: "Contenido visual, vídeos y creatividades con IA generativa",
     objetivos: [ { icono: "⏱️", texto: "Reduce un 70% el tiempo de producción de contenido visual" }, { icono: "📈", texto: "Multiplica por 10 el volumen de publicaciones" } ],
     herramientas: [ { nombre: "Midjourney", uso: "Imágenes y creatividades por prompt" }, { nombre: "HeyGen", uso: "Avatares de vídeo con voz natural" }, { nombre: "Canva AI", uso: "Diseño asistido y redimensionado" } ] },
-  { id: "comercial", nombre: "Comercial & SEO", icon: "📊", color: "#f59e0b",
+  { id: "comercial", nombre: "Comercial & SEO", icon: "📊", color: "#4f7cff",
     resumen: "Analítica automática, SEO con IA y seguimiento de oportunidades",
     objetivos: [ { icono: "📬", texto: "Informes semanales automáticos a tu email" }, { icono: "🎯", texto: "Detecta oportunidades antes que la competencia" } ],
     herramientas: [ { nombre: "Claude + Excel/Word", uso: "Propuestas y análisis de ventas por chat" }, { nombre: "GSC + GA4 Automation", uso: "Análisis web semanal con IA" }, { nombre: "n8n + LLM", uso: "Seguimiento de leads y CRM" } ] },
-  { id: "callcenter", nombre: "Call Center & Soporte", icon: "📞", color: "#10b981",
+  { id: "callcenter", nombre: "Call Center & Soporte", icon: "📞", color: "#60a5fa",
     resumen: "Atención telefónica y chat con IA que nunca descansa",
     objetivos: [ { icono: "🤖", texto: "Resuelve el 80% de consultas sin intervención" }, { icono: "🕐", texto: "Disponible 24/7 sin coste de personal" } ],
     herramientas: [ { nombre: "Atención Llamadas IA", uso: "Recepcionista virtual 24/7" }, { nombre: "Chatbot Empresarial IA", uso: "Acceso a tu base de datos y ERP" }, { nombre: "ElevenLabs", uso: "Voces IA ultra-realistas en español" } ] },
-  { id: "proyectos", nombre: "Gestión de Proyectos", icon: "📋", color: "#3b82f6",
+  { id: "proyectos", nombre: "Gestión de Proyectos", icon: "📋", color: "#6366f1",
     resumen: "IA integrada en tu herramienta de proyectos para acelerar entregas",
     objetivos: [ { icono: "⚡", texto: "Reduce un 50% el tiempo de planificación" }, { icono: "🔍", texto: "Detecta bloqueos antes de que impacten" } ],
     herramientas: [ { nombre: "Jira + Atlassian Intelligence", uso: "Subtareas y resumen de issues" }, { nombre: "Notion AI", uso: "Documentación que se actualiza sola" }, { nombre: "n8n", uso: "Notificaciones y reportes automáticos" } ] },
-  { id: "administracion", nombre: "Administración", icon: "🧾", color: "#ef4444",
+  { id: "administracion", nombre: "Administración", icon: "🧾", color: "#818cf8",
     resumen: "Facturas, presupuestos y contabilidad de forma automática",
     objetivos: [ { icono: "🧾", texto: "Procesa facturas en segundos" }, { icono: "✅", texto: "Elimina errores de introducción manual" } ],
     herramientas: [ { nombre: "Claude + Excel/Word", uso: "Presupuestos y análisis por chat" }, { nombre: "Mindee", uso: "OCR que extrae datos de facturas" }, { nombre: "n8n + ChatGPT", uso: "Clasifica y registra facturas" } ] },
-  { id: "desarrollo", nombre: "Desarrollo", icon: "💻", color: "#06b6d4",
+  { id: "desarrollo", nombre: "Desarrollo", icon: "💻", color: "#8b5cf6",
     resumen: "Acelera tu equipo de desarrollo con IA en cada paso",
     objetivos: [ { icono: "🚀", texto: "Multiplica por 2-3x la velocidad de entrega" }, { icono: "🛡️", texto: "Reduce un 60% los bugs en producción" } ],
     herramientas: [ { nombre: "Claude Code", uso: "Agente que lee tu repo y ejecuta tareas" }, { nombre: "GitHub Copilot", uso: "Autocompletado en el IDE" }, { nombre: "GitHub Actions + IA", uso: "Tests y detección de bugs" } ] },
-  { id: "devops", nombre: "DevOps", icon: "⚙️", color: "#f97316",
+  { id: "devops", nombre: "DevOps", icon: "⚙️", color: "#a78bfa",
     resumen: "Infraestructura como código y despliegues automáticos con IA",
     objetivos: [ { icono: "📡", texto: "Resuelve incidencias hasta 3x más rápido" }, { icono: "🔄", texto: "Despliegues continuos sin downtime" } ],
     herramientas: [ { nombre: "Ansible + IA", uso: "Playbooks generados automáticamente" }, { nombre: "Kubernetes + K8sGPT", uso: "Diagnóstico automático de clústeres" }, { nombre: "Datadog AI", uso: "Detección de anomalías y alertas" } ] },
-  { id: "sistemas", nombre: "Sistemas", icon: "🖥️", color: "#8b5cf6",
+  { id: "sistemas", nombre: "Sistemas", icon: "🖥️", color: "#c084fc",
     resumen: "Administración de sistemas con documentación y seguridad IA",
     objetivos: [ { icono: "🛡️", texto: "Detección de amenazas con cumplimiento ENS" }, { icono: "📝", texto: "Cada cambio genera documentación automática" } ],
     herramientas: [ { nombre: "Wazuh", uso: "SIEM: amenazas y cumplimiento ENS" }, { nombre: "Ansible + LLM", uso: "Tareas de administración por lenguaje natural" }, { nombre: "Netdata", uso: "Monitorización en tiempo real con IA" } ] },
@@ -364,7 +364,13 @@ const provincias = [
   #diagram-svg { display:block; max-width:100%; height:auto; }
   #info-panel { width:100%; max-width:480px; }
   .cc-panel { background:rgba(255,255,255,0.035); border:1px solid rgba(255,255,255,0.1); border-radius:18px; padding:32px; text-align:center; }
-  #node-svg g { transition:transform .15s ease; }
+  /* Nodos del diagrama: animación al seleccionar */
+  #nodes g { transition: transform .35s cubic-bezier(0.34,1.56,0.64,1), opacity .25s ease, filter .25s ease; transform-box: fill-box; transform-origin: center; }
+  #nodes g.cc-active { transform: scale(1.24); }
+  #lines line { transition: opacity .25s ease, stroke-width .25s ease; }
+  @keyframes ccDash { to { stroke-dashoffset: -22; } }
+  #lines line.cc-active { stroke-dasharray: 7 5; animation: ccDash .8s linear infinite; }
+  @media (prefers-reduced-motion: reduce) { #nodes g { transition:none; } #lines line.cc-active { animation:none; } }
   @media (min-width:1024px) { .cc-diagram { flex-direction:row; align-items:flex-start; gap:40px; } #info-panel { position:sticky; top:24px; } }
 
   /* Métricas */
@@ -461,8 +467,8 @@ const provincias = [
       }
     }
     g.addEventListener('click', () => selectDep(dep.id));
-    g.addEventListener('mouseenter', () => { if (activeId !== dep.id) { bg.setAttribute('opacity', '1'); bg.setAttribute('stroke-width', '2'); } });
-    g.addEventListener('mouseleave', () => { if (activeId !== dep.id) { bg.setAttribute('opacity', '0.85'); bg.setAttribute('stroke-width', '1.5'); } });
+    g.addEventListener('mouseenter', () => { if (activeId !== dep.id) { g.style.opacity = '0.78'; bg.setAttribute('stroke-width', '2'); } });
+    g.addEventListener('mouseleave', () => { if (activeId !== dep.id) { g.style.opacity = '0.38'; bg.setAttribute('stroke-width', '1.5'); } });
     nodesGroup.appendChild(g);
   });
 
@@ -471,13 +477,14 @@ const provincias = [
     const dep = departamentos.find(d => d.id === id);
     if (!dep) return;
     departamentos.forEach(d => {
-      const bg = document.getElementById(`bg-${d.id}`); const line = document.getElementById(`line-${d.id}`);
-      if (bg) { bg.setAttribute('opacity', '0.85'); bg.setAttribute('stroke-width', '1.5'); bg.setAttribute('fill', '#0d1424'); }
-      if (line) { line.setAttribute('opacity', '0.3'); line.setAttribute('stroke-width', '1.5'); }
+      const g = document.getElementById(`node-${d.id}`);
+      const bg = document.getElementById(`bg-${d.id}`);
+      const line = document.getElementById(`line-${d.id}`);
+      const on = d.id === id;
+      if (g) { g.classList.toggle('cc-active', on); g.style.opacity = on ? '1' : '0.38'; g.style.filter = on ? `drop-shadow(0 0 12px ${dep.color})` : 'none'; }
+      if (bg) { bg.setAttribute('fill', on ? dep.color + '40' : '#0d1424'); bg.setAttribute('stroke-width', on ? '3.5' : '1.5'); bg.setAttribute('opacity', '1'); }
+      if (line) { line.classList.toggle('cc-active', on); line.setAttribute('opacity', on ? '1' : '0.12'); line.setAttribute('stroke-width', on ? '3' : '1.5'); }
     });
-    const activeBg = document.getElementById(`bg-${id}`); const activeLine = document.getElementById(`line-${id}`);
-    if (activeBg) { activeBg.setAttribute('opacity', '1'); activeBg.setAttribute('stroke-width', '3'); activeBg.setAttribute('fill', dep.color + '22'); }
-    if (activeLine) { activeLine.setAttribute('opacity', '0.85'); activeLine.setAttribute('stroke-width', '2.5'); }
     panelDefault.style.display = 'none';
     panelActive.style.display = 'block';
     panelActive.style.border = `1px solid ${dep.color}40`;
