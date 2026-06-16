@@ -1,0 +1,954 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const title = "Demo interactiva: pasea por la empresa con IA por departamentos | AI Security";
+const description = "Explora un planeta 3D donde cada departamento tiene a alguien trabajando. Habla con ellos, descubre sus tareas manuales repetitivas y qué IA las elimina. Demo interactiva de consultoría IA.";
+const canonical = "https://aisecurity.es/consultoria-ia-demo";
+
+// 8 departamentos con su NPC (persona trabajando + su queja sobre trabajo manual repetitivo)
+const departamentos = [
+  {
+    id: "comunicacion",
+    nombre: "Comunicación",
+    icon: "🎨",
+    color: "#84cc16",
+    npc: { nombre: "Marta", rol: "Diseñadora de contenido" },
+    problema: "Me paso el día montando creatividades a mano. Cada post para redes me lleva una hora en el editor, y necesito diez al día. Los vídeos de producto ni te cuento: grabar, editar, subtitular… se me va la semana entera.",
+    objetivos: [
+      "Reduce un 70% el tiempo de producción visual",
+      "Multiplica por 10 las publicaciones sin ampliar equipo",
+    ],
+    herramientas: [
+      { nombre: "Midjourney", uso: "Imágenes y creatividades profesionales por prompt" },
+      { nombre: "HeyGen", uso: "Avatares de vídeo con voz natural en español" },
+      { nombre: "Canva AI", uso: "Diseño asistido y redimensionado inteligente" },
+    ],
+    ahorro: "Hasta un 70% menos de tiempo en producción de contenido visual",
+  },
+  {
+    id: "comercial",
+    nombre: "Comercial & SEO",
+    icon: "📊",
+    color: "#f59e0b",
+    npc: { nombre: "Javi", rol: "Responsable comercial" },
+    problema: "Cada lunes exporto datos de Search Console y Analytics a mano, los pego en Excel y monto el informe. Tres horas que se van antes de empezar a vender de verdad. Y seguro que se me escapan oportunidades.",
+    objetivos: [
+      "Informes semanales automáticos en tu email",
+      "Detecta oportunidades antes que la competencia",
+    ],
+    herramientas: [
+      { nombre: "Claude + Excel", uso: "Genera propuestas y analiza datos de ventas por chat" },
+      { nombre: "GSC + GA4 Automation", uso: "Scripts propios que analizan tu web cada semana" },
+      { nombre: "n8n + LLM", uso: "Flujos de seguimiento de leads y CRM" },
+    ],
+    ahorro: "Informes semanales sin dedicar horas a exportar datos",
+  },
+  {
+    id: "callcenter",
+    nombre: "Call Center & Soporte",
+    icon: "📞",
+    color: "#10b981",
+    npc: { nombre: "Lucía", rol: "Atención al cliente" },
+    problema: "El teléfono no para. El 80% son las mismas cinco preguntas una y otra vez. Para cuando atiendo lo importante, ya es tarde y tengo veinte llamadas en cola.",
+    objetivos: [
+      "Resuelve el 80% de consultas sin intervención humana",
+      "Disponible 24/7 sin coste extra de personal",
+    ],
+    herramientas: [
+      { nombre: "Atención Llamadas IA", uso: "Recepcionista virtual 24/7 con voz natural" },
+      { nombre: "Chatbot Empresarial IA", uso: "Chat con acceso a tu ERP en tiempo real" },
+      { nombre: "ElevenLabs", uso: "Voces IA ultra-realistas en español" },
+    ],
+    ahorro: "Atiende el 80% de consultas comunes sin coste de personal",
+  },
+  {
+    id: "proyectos",
+    nombre: "Gestión de Proyectos",
+    icon: "📋",
+    color: "#3b82f6",
+    npc: { nombre: "Diego", rol: "Project Manager" },
+    problema: "Media jornada creando tareas en Jira, copiando estados de una herramienta a otra y montando el reporte del sprint. Tareas mecánicas que no aportan nada, pero que alguien tiene que hacer.",
+    objetivos: [
+      "Reduce un 50% el tiempo de planificación y reporting",
+      "Detecta bloqueos y riesgos antes de que impacten",
+    ],
+    herramientas: [
+      { nombre: "Jira + Atlassian Intelligence", uso: "Subtareas y resúmenes automáticos" },
+      { nombre: "Notion AI", uso: "Documentación y wikis que se actualizan solas" },
+      { nombre: "n8n", uso: "Automatiza notificaciones y asignaciones" },
+    ],
+    ahorro: "Hasta un 50% menos de tiempo en planificación y reporting",
+  },
+  {
+    id: "administracion",
+    nombre: "Administración",
+    icon: "🧾",
+    color: "#ef4444",
+    npc: { nombre: "Carmen", rol: "Administración" },
+    problema: "Meto las facturas de proveedores una a una, cinco o diez minutos cada documento. Y por mucho cuidado que ponga, siempre se cuela algún error de tecleo que luego hay que perseguir.",
+    objetivos: [
+      "Procesa facturas en segundos, no en minutos",
+      "Elimina errores de tecleo en datos contables",
+    ],
+    herramientas: [
+      { nombre: "Mindee", uso: "OCR que extrae datos de facturas y recibos solo" },
+      { nombre: "Claude + Excel", uso: "Redacta presupuestos y resume contratos por chat" },
+      { nombre: "n8n + ChatGPT", uso: "Clasifica, registra y notifica facturas entrantes" },
+    ],
+    ahorro: "Procesa facturas en segundos en vez de 5-10 minutos cada una",
+  },
+  {
+    id: "desarrollo",
+    nombre: "Desarrollo",
+    icon: "💻",
+    color: "#06b6d4",
+    npc: { nombre: "Álex", rol: "Desarrollador" },
+    problema: "Escribo el mismo boilerplate mil veces, documento a mano cuando me acuerdo y los tests siempre se quedan para el final. Tareas repetitivas que me roban el tiempo de resolver lo difícil.",
+    objetivos: [
+      "Multiplica por 2-3x la velocidad de entrega",
+      "Reduce un 60% los bugs que llegan a producción",
+    ],
+    herramientas: [
+      { nombre: "Claude Code", uso: "Agente que lee tu repo y ejecuta tareas completas" },
+      { nombre: "GitHub Copilot", uso: "Autocompletado de código en el IDE" },
+      { nombre: "GitHub Actions + IA", uso: "Pipelines que generan tests y detectan bugs" },
+    ],
+    ahorro: "2-3x más velocidad de entrega de features",
+  },
+  {
+    id: "devops",
+    nombre: "DevOps",
+    icon: "⚙️",
+    color: "#f97316",
+    npc: { nombre: "Sara", rol: "Ingeniera DevOps" },
+    problema: "Reviso logs a mano buscando la anomalía entre miles de líneas, y cada despliegue lo hago con el corazón en un puño. Lo repetitivo me come el tiempo de prevenir incidencias de verdad.",
+    objetivos: [
+      "Resuelve incidencias hasta 3x más rápido",
+      "Despliegues continuos sin downtime",
+    ],
+    herramientas: [
+      { nombre: "Kubernetes + K8sGPT", uso: "Diagnóstico automático de errores en clústeres" },
+      { nombre: "Datadog AI", uso: "Detección de anomalías y alertas inteligentes" },
+      { nombre: "Ansible + IA", uso: "Playbooks de configuración generados solos" },
+    ],
+    ahorro: "Incidencias hasta 3x más rápidas y despliegues sin downtime",
+  },
+  {
+    id: "sistemas",
+    nombre: "Sistemas",
+    icon: "🖥️",
+    color: "#8b5cf6",
+    npc: { nombre: "Pablo", rol: "Administrador de sistemas" },
+    problema: "Cada cambio en un servidor habría que documentarlo… y nunca da tiempo. La seguridad la reviso a mano cuando puedo. Sé que se me escapa algo, pero soy una persona para todo.",
+    objetivos: [
+      "Detección de amenazas en tiempo real con ENS",
+      "Cada cambio genera documentación automática",
+    ],
+    herramientas: [
+      { nombre: "Wazuh", uso: "SIEM open-source: amenazas y cumplimiento ENS" },
+      { nombre: "Ansible + LLM", uso: "Automatiza tareas repetitivas por lenguaje natural" },
+      { nombre: "Netdata", uso: "Monitorización en tiempo real con IA predictiva" },
+    ],
+    ahorro: "Documenta cambios solo y reduce incidencias por error humano",
+  },
+];
+---
+
+<BaseLayout title={title} description={description} canonical={canonical}>
+
+  <!-- ===================== ESCENARIO 3D ===================== -->
+  <div id="demo-stage">
+    <canvas id="planet-canvas"></canvas>
+
+    <!-- Loader -->
+    <div id="loader">
+      <div class="loader-inner">
+        <div class="loader-ring"></div>
+        <p>Construyendo el planeta…</p>
+      </div>
+    </div>
+
+    <!-- Intro overlay -->
+    <div id="intro-overlay">
+      <div class="intro-card">
+        <div class="intro-badge">🪐 Demo interactiva</div>
+        <h1>La IA, departamento a departamento</h1>
+        <p class="intro-lead">
+          Pasea por este pequeño planeta. En cada departamento hay alguien trabajando.
+          Acércate y habla con ellos: te contarán qué tareas manuales y repetitivas les
+          comen el día… y qué IA se las quita de encima.
+        </p>
+        <div class="intro-controls">
+          <div class="ctrl"><span class="keys"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd></span> Moverte por la superficie</div>
+          <div class="ctrl"><span class="keys"><kbd>E</kbd></span> Hablar con la persona cercana</div>
+          <div class="ctrl"><span class="keys">táctil</span> Usa los botones de pantalla en el móvil</div>
+        </div>
+        <button id="start-btn">Empezar a explorar →</button>
+        <a href="/consultoria-ia" class="intro-skip">Prefiero la versión clásica</a>
+      </div>
+    </div>
+
+    <!-- HUD: nombre del departamento más cercano -->
+    <div id="hud-progress">
+      <span id="hud-count">0</span><span class="hud-total">/8 departamentos visitados</span>
+    </div>
+
+    <!-- Prompt de interacción -->
+    <div id="interact-prompt">
+      <span class="prompt-key"><kbd>E</kbd></span>
+      <span>Hablar con <strong id="prompt-name">—</strong></span>
+    </div>
+
+    <!-- Controles táctiles -->
+    <div id="touch-controls">
+      <div class="dpad">
+        <button class="tbtn" data-dir="up">▲</button>
+        <div class="dpad-mid">
+          <button class="tbtn" data-dir="left">◀</button>
+          <button class="tbtn" data-dir="right">▶</button>
+        </div>
+        <button class="tbtn" data-dir="down">▼</button>
+      </div>
+      <button id="touch-talk" class="tbtn-talk">Hablar</button>
+    </div>
+
+    <!-- Panel de diálogo -->
+    <div id="dialogue" aria-hidden="true">
+      <div class="dlg-card">
+        <button id="dlg-close" aria-label="Cerrar">✕</button>
+        <div class="dlg-head">
+          <div class="dlg-avatar" id="dlg-avatar">🎨</div>
+          <div>
+            <div class="dlg-dept" id="dlg-dept">Departamento</div>
+            <div class="dlg-name" id="dlg-name">Nombre · Rol</div>
+          </div>
+        </div>
+
+        <div class="dlg-section">
+          <div class="dlg-label dlg-label-pain">El problema</div>
+          <p class="dlg-problema" id="dlg-problema">…</p>
+        </div>
+
+        <div class="dlg-section">
+          <div class="dlg-label dlg-label-fix">Cómo lo resolvemos con IA</div>
+          <div class="dlg-objetivos" id="dlg-objetivos"></div>
+          <div class="dlg-tools" id="dlg-tools"></div>
+        </div>
+
+        <div class="dlg-ahorro" id="dlg-ahorro">…</div>
+
+        <div class="dlg-actions">
+          <a id="dlg-cta" href="/presupuesto?plan=Consultoria-IA">Quiero implementar esto →</a>
+          <button id="dlg-continue">Seguir explorando</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== CTA bajo el demo ===================== -->
+  <section style="background: linear-gradient(135deg, #0f1628, #1a0a2e); padding: 64px 0; border-top: 1px solid #1e2130;">
+    <div class="max-w-3xl mx-auto px-6 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4" style="color:#fff;">¿Y en tu empresa, dónde se pierde el tiempo?</h2>
+      <p class="text-lg mb-8" style="color:#94a3b8;">Primera consulta gratuita. Analizamos tu día a día por departamentos y te decimos honestamente qué IA tiene sentido implementar.</p>
+      <a href="/presupuesto?plan=Consultoria-IA"
+        class="inline-flex items-center gap-3 px-8 py-4 rounded-xl font-bold text-lg"
+        style="background: linear-gradient(135deg,#4f7cff,#7c3aed); color:#fff;">
+        Solicitar consulta gratuita
+      </a>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style is:global>
+  #demo-stage {
+    position: relative;
+    width: 100%;
+    height: 100svh;
+    min-height: 560px;
+    overflow: hidden;
+    background: radial-gradient(circle at 50% 30%, #131a3a 0%, #070a18 60%, #04060f 100%);
+    touch-action: none;
+    user-select: none;
+  }
+  #planet-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+
+  /* Loader */
+  #loader {
+    position: absolute; inset: 0; z-index: 30;
+    display: flex; align-items: center; justify-content: center;
+    background: #070a18; transition: opacity .6s ease;
+  }
+  #loader.hidden { opacity: 0; pointer-events: none; }
+  .loader-inner { text-align: center; color: #94a3b8; font-size: .95rem; }
+  .loader-ring {
+    width: 48px; height: 48px; margin: 0 auto 16px;
+    border: 3px solid rgba(79,124,255,.2); border-top-color: #4f7cff;
+    border-radius: 50%; animation: spin 1s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* Intro */
+  #intro-overlay {
+    position: absolute; inset: 0; z-index: 25;
+    display: flex; align-items: center; justify-content: center;
+    padding: 24px;
+    background: radial-gradient(circle at 50% 40%, rgba(15,22,40,.55), rgba(4,6,15,.85));
+    backdrop-filter: blur(4px);
+    transition: opacity .5s ease;
+  }
+  #intro-overlay.hidden { opacity: 0; pointer-events: none; }
+  .intro-card {
+    max-width: 560px; text-align: center;
+    background: rgba(18,22,40,.78); border: 1px solid rgba(79,124,255,.25);
+    border-radius: 20px; padding: 40px 36px;
+    box-shadow: 0 30px 80px rgba(0,0,0,.5);
+  }
+  .intro-badge {
+    display: inline-block; font-size: .8rem; font-weight: 600; color: #7da4ff;
+    background: rgba(79,124,255,.15); border: 1px solid rgba(79,124,255,.3);
+    padding: 6px 14px; border-radius: 999px; margin-bottom: 18px;
+  }
+  .intro-card h1 { font-size: 1.9rem; font-weight: 800; color: #fff; margin-bottom: 14px; line-height: 1.15; }
+  .intro-lead { color: #a9b4cc; line-height: 1.65; margin-bottom: 24px; font-size: 1.02rem; }
+  .intro-controls { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+  .ctrl { display: flex; align-items: center; gap: 12px; justify-content: center; color: #cbd5e1; font-size: .9rem; }
+  .keys { display: inline-flex; gap: 4px; min-width: 132px; justify-content: flex-end; }
+  kbd {
+    display: inline-block; background: #1f2540; border: 1px solid #38406a;
+    border-bottom-width: 2px; border-radius: 6px; padding: 2px 8px;
+    font-family: ui-monospace, monospace; font-size: .8rem; color: #e2e8f0;
+  }
+  .keys:not(:has(kbd)) , .ctrl .keys { } /* noop */
+  .ctrl .keys span, .keys:only-child {}
+  #start-btn {
+    background: linear-gradient(135deg,#4f7cff,#7c3aed); color: #fff;
+    border: none; border-radius: 12px; padding: 14px 30px;
+    font-size: 1.05rem; font-weight: 700; cursor: pointer;
+    transition: transform .15s ease, box-shadow .2s ease;
+    box-shadow: 0 10px 30px rgba(79,124,255,.35);
+  }
+  #start-btn:hover { transform: translateY(-2px); box-shadow: 0 16px 40px rgba(79,124,255,.5); }
+  .intro-skip { display: block; margin-top: 16px; color: #64748b; font-size: .85rem; text-decoration: none; }
+  .intro-skip:hover { color: #94a3b8; }
+
+  /* HUD */
+  #hud-progress {
+    position: absolute; top: 18px; left: 50%; transform: translateX(-50%); z-index: 15;
+    background: rgba(10,13,26,.7); border: 1px solid rgba(255,255,255,.1);
+    border-radius: 999px; padding: 8px 18px; color: #cbd5e1; font-size: .85rem;
+    opacity: 0; transition: opacity .4s ease; pointer-events: none;
+  }
+  #hud-progress.show { opacity: 1; }
+  #hud-count { color: #7da4ff; font-weight: 700; }
+  .hud-total { color: #64748b; }
+
+  /* Interact prompt */
+  #interact-prompt {
+    position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(12px);
+    z-index: 15; display: flex; align-items: center; gap: 10px;
+    background: rgba(10,13,26,.85); border: 1px solid rgba(79,124,255,.4);
+    border-radius: 12px; padding: 10px 18px; color: #e2e8f0; font-size: .92rem;
+    opacity: 0; transition: opacity .25s ease, transform .25s ease; pointer-events: none;
+  }
+  #interact-prompt.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+  #interact-prompt strong { color: #7da4ff; }
+  .prompt-key kbd { background: #4f7cff; border-color: #6d8eff; color: #fff; }
+
+  /* Touch controls */
+  #touch-controls {
+    position: absolute; bottom: 20px; left: 0; right: 0; z-index: 16;
+    display: none; align-items: flex-end; justify-content: space-between;
+    padding: 0 22px; pointer-events: none;
+  }
+  #touch-controls.show { display: flex; }
+  .dpad { display: flex; flex-direction: column; align-items: center; gap: 6px; pointer-events: auto; }
+  .dpad-mid { display: flex; gap: 44px; }
+  .tbtn {
+    width: 56px; height: 56px; border-radius: 14px; font-size: 1.3rem;
+    background: rgba(20,26,46,.8); border: 1px solid rgba(255,255,255,.18);
+    color: #e2e8f0; cursor: pointer; -webkit-tap-highlight-color: transparent;
+  }
+  .tbtn:active { background: rgba(79,124,255,.5); }
+  .tbtn-talk {
+    pointer-events: auto; align-self: flex-end;
+    background: linear-gradient(135deg,#4f7cff,#7c3aed); color: #fff;
+    border: none; border-radius: 14px; padding: 0 26px; height: 56px;
+    font-weight: 700; font-size: 1rem; opacity: .45; transition: opacity .2s;
+  }
+  .tbtn-talk.active { opacity: 1; }
+
+  /* Dialogue */
+  #dialogue {
+    position: absolute; inset: 0; z-index: 20;
+    display: flex; align-items: center; justify-content: center; padding: 20px;
+    background: rgba(4,6,15,.6); backdrop-filter: blur(3px);
+    opacity: 0; pointer-events: none; transition: opacity .3s ease;
+  }
+  #dialogue.open { opacity: 1; pointer-events: auto; }
+  .dlg-card {
+    position: relative; width: 100%; max-width: 520px; max-height: 88svh; overflow-y: auto;
+    background: #12162a; border: 1px solid #2a3050; border-radius: 18px; padding: 26px 26px 22px;
+    box-shadow: 0 30px 90px rgba(0,0,0,.6); transform: translateY(16px); transition: transform .3s ease;
+  }
+  #dialogue.open .dlg-card { transform: translateY(0); }
+  #dlg-close {
+    position: absolute; top: 14px; right: 14px; width: 32px; height: 32px;
+    border-radius: 8px; background: rgba(255,255,255,.06); border: none;
+    color: #94a3b8; cursor: pointer; font-size: 1rem;
+  }
+  #dlg-close:hover { background: rgba(255,255,255,.12); color: #fff; }
+  .dlg-head { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
+  .dlg-avatar {
+    width: 54px; height: 54px; border-radius: 14px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center; font-size: 28px;
+    background: rgba(255,255,255,.06);
+  }
+  .dlg-dept { font-size: .78rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+  .dlg-name { color: #e2e8f0; font-size: 1.05rem; font-weight: 700; margin-top: 2px; }
+  .dlg-section { margin-bottom: 18px; }
+  .dlg-label { font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 8px; }
+  .dlg-label-pain { color: #fca5a5; }
+  .dlg-label-fix { color: #7da4ff; }
+  .dlg-problema {
+    color: #cbd5e1; line-height: 1.65; font-size: .96rem; font-style: italic;
+    border-left: 3px solid rgba(252,165,165,.5); padding-left: 14px;
+  }
+  .dlg-objetivos { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
+  .dlg-obj { display: flex; gap: 8px; align-items: flex-start; color: #e2e8f0; font-size: .88rem; line-height: 1.45; }
+  .dlg-obj::before { content: "✓"; color: #34d399; font-weight: 700; flex-shrink: 0; }
+  .dlg-tools { display: flex; flex-direction: column; gap: 8px; }
+  .dlg-tool { background: rgba(255,255,255,.04); border-radius: 8px; padding: 9px 12px; }
+  .dlg-tool-n { font-size: .85rem; font-weight: 600; color: #e2e8f0; }
+  .dlg-tool-u { font-size: .78rem; color: #64748b; margin-top: 1px; }
+  .dlg-ahorro {
+    background: rgba(52,211,153,.1); border: 1px solid rgba(52,211,153,.25); border-radius: 10px;
+    padding: 12px 14px; color: #6ee7b7; font-size: .88rem; font-weight: 600; margin-bottom: 18px;
+  }
+  .dlg-actions { display: flex; flex-direction: column; gap: 10px; }
+  #dlg-cta {
+    display: block; text-align: center; background: linear-gradient(135deg,#4f7cff,#7c3aed);
+    color: #fff; border-radius: 10px; padding: 13px; font-size: .95rem; font-weight: 700; text-decoration: none;
+  }
+  #dlg-continue {
+    background: transparent; border: 1px solid #2a3050; color: #94a3b8;
+    border-radius: 10px; padding: 11px; font-size: .9rem; cursor: pointer;
+  }
+  #dlg-continue:hover { border-color: #4f7cff; color: #cbd5e1; }
+
+  @media (max-width: 640px) {
+    .intro-card { padding: 30px 22px; }
+    .intro-card h1 { font-size: 1.5rem; }
+    .keys { min-width: 0; }
+  }
+</style>
+
+<!-- Three.js vía importmap CDN (no añade dependencia al build) -->
+<script type="importmap" is:inline>
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.169.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.169.0/examples/jsm/"
+  }
+}
+</script>
+
+<script type="module" define:vars={{ departamentos }} is:inline>
+import * as THREE from 'three';
+
+// ============================================================
+//  CONFIGURACIÓN GENERAL
+// ============================================================
+const R = 22;                 // radio del planeta
+const PLAYER_H = 1.6;         // altura del personaje sobre el suelo
+const WALK_SPEED = 0.9;       // rad/s tangencial (se divide por R internamente)
+const TURN_SPEED = 1.9;       // rad/s de giro
+const INTERACT_ANGLE = 0.20;  // distancia angular para poder hablar
+
+const canvas = document.getElementById('planet-canvas');
+const stage = document.getElementById('demo-stage');
+
+// ---- Renderer ----
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+renderer.setClearColor(0x04060f, 0);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+// ---- Escena + cámara ----
+const scene = new THREE.Scene();
+scene.fog = new THREE.FogExp2(0x070a18, 0.012);
+const camera = new THREE.PerspectiveCamera(55, 1, 0.1, 600);
+
+// ---- Luz (clave para el cel-shading) ----
+const sun = new THREE.DirectionalLight(0xfff4e0, 2.2);
+sun.position.set(40, 60, 30);
+scene.add(sun);
+scene.add(new THREE.HemisphereLight(0x9fb8ff, 0x1a1530, 0.7));
+scene.add(new THREE.AmbientLight(0x404a6b, 0.5));
+
+// ---- Gradiente toon (cel-shading por pasos) ----
+function toonGradient(steps = 4) {
+  const data = new Uint8Array(steps);
+  for (let i = 0; i < steps; i++) data[i] = Math.round((i / (steps - 1)) * 255);
+  const tex = new THREE.DataTexture(data, steps, 1, THREE.RedFormat);
+  tex.needsUpdate = true;
+  return tex;
+}
+const GRAD = toonGradient(4);
+function toon(color, opts = {}) {
+  return new THREE.MeshToonMaterial({ color, gradientMap: GRAD, ...opts });
+}
+
+// ============================================================
+//  PLANETA (icosaedro low-poly + relieve por ruido)
+// ============================================================
+function valueNoise(v) {
+  // ruido pseudo-aleatorio barato a partir de la posición normalizada
+  return (
+    Math.sin(v.x * 1.5 + v.y * 2.3) * 0.5 +
+    Math.sin(v.y * 2.1 + v.z * 1.7) * 0.4 +
+    Math.sin(v.z * 1.9 + v.x * 2.7) * 0.35
+  );
+}
+
+const planetGeo = new THREE.IcosahedronGeometry(R, 9);
+{
+  const pos = planetGeo.attributes.position;
+  const v = new THREE.Vector3();
+  for (let i = 0; i < pos.count; i++) {
+    v.fromBufferAttribute(pos, i).normalize();
+    const h = valueNoise(v) * 0.5; // relieve suave
+    const r = R + h;
+    pos.setXYZ(i, v.x * r, v.y * r, v.z * r);
+  }
+  planetGeo.computeVertexNormals();
+}
+const planet = new THREE.Mesh(planetGeo, toon(0x2e8b57, { flatShading: true }));
+scene.add(planet);
+
+// Océano / base brillante un pelín por debajo del relieve
+const ocean = new THREE.Mesh(
+  new THREE.IcosahedronGeometry(R - 0.25, 4),
+  toon(0x1e5fa8, { flatShading: true })
+);
+scene.add(ocean);
+
+// Atmósfera (glow)
+const atmo = new THREE.Mesh(
+  new THREE.SphereGeometry(R + 3.5, 32, 32),
+  new THREE.MeshBasicMaterial({ color: 0x4f7cff, transparent: true, opacity: 0.08, side: THREE.BackSide })
+);
+scene.add(atmo);
+
+// Estrellas
+{
+  const N = 900, arr = new Float32Array(N * 3), v = new THREE.Vector3();
+  for (let i = 0; i < N; i++) {
+    v.set(Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5).normalize().multiplyScalar(180 + Math.random() * 200);
+    arr[i * 3] = v.x; arr[i * 3 + 1] = v.y; arr[i * 3 + 2] = v.z;
+  }
+  const g = new THREE.BufferGeometry();
+  g.setAttribute('position', new THREE.BufferAttribute(arr, 3));
+  scene.add(new THREE.Points(g, new THREE.PointsMaterial({ color: 0xcdd6ff, size: 0.7, sizeAttenuation: true })));
+}
+
+// ============================================================
+//  UTILIDADES DE ORIENTACIÓN SOBRE LA ESFERA
+// ============================================================
+const UP_Y = new THREE.Vector3(0, 1, 0);
+// orienta un objeto para que su +Y local apunte según la normal `dir`
+function alignToSurface(obj, dir) {
+  obj.quaternion.setFromUnitVectors(UP_Y, dir.clone().normalize());
+}
+// altura real del terreno en una dirección dada (para posar objetos)
+function surfaceRadius(dir) {
+  return R + valueNoise(dir.clone().normalize()) * 0.5;
+}
+
+// ============================================================
+//  DEPARTAMENTOS: posiciones repartidas (espiral de Fibonacci)
+// ============================================================
+const anchors = [];
+{
+  const n = departamentos.length;
+  const golden = Math.PI * (3 - Math.sqrt(5));
+  for (let i = 0; i < n; i++) {
+    const y = 1 - (i / (n - 1)) * 1.5;      // de 1 a -0.5 (evita el polo sur)
+    const rad = Math.sqrt(Math.max(0, 1 - y * y));
+    const th = golden * i;
+    const dir = new THREE.Vector3(Math.cos(th) * rad, y, Math.sin(th) * rad).normalize();
+    anchors.push(dir);
+  }
+}
+
+// Materiales/geometrías compartidos para los puestos
+const deskMat = toon(0x6b4f3a);
+const screenOffMat = toon(0x10141f);
+const chairMat = toon(0x2c2f44);
+const boxGeo = new THREE.BoxGeometry(1, 1, 1);
+
+// Construye un puesto de trabajo + NPC en un departamento
+function buildStation(dep, dir) {
+  const group = new THREE.Group();
+  const rTerrain = surfaceRadius(dir);
+  group.position.copy(dir).multiplyScalar(rTerrain);
+  alignToSurface(group, dir);
+  scene.add(group);
+
+  const accent = new THREE.Color(dep.color);
+
+  // Plataforma circular
+  const pad = new THREE.Mesh(new THREE.CylinderGeometry(3.4, 3.6, 0.4, 24), toon(0x3a4060));
+  pad.position.y = 0.2; group.add(pad);
+  const ring = new THREE.Mesh(new THREE.TorusGeometry(3.4, 0.12, 8, 32), toon(accent));
+  ring.rotation.x = Math.PI / 2; ring.position.y = 0.42; group.add(ring);
+
+  // Mesa
+  const desk = new THREE.Mesh(boxGeo, deskMat);
+  desk.scale.set(2.4, 0.18, 1.1); desk.position.set(0, 1.1, -0.4); group.add(desk);
+  for (const sx of [-1, 1]) for (const sz of [-1, 1]) {
+    const leg = new THREE.Mesh(boxGeo, deskMat);
+    leg.scale.set(0.14, 1.0, 0.14);
+    leg.position.set(sx * 1.05, 0.55, -0.4 + sz * 0.42); group.add(leg);
+  }
+
+  // Monitor (pantalla emisiva con el color del depto)
+  const stand = new THREE.Mesh(boxGeo, screenOffMat);
+  stand.scale.set(0.12, 0.4, 0.12); stand.position.set(0, 1.45, -0.7); group.add(stand);
+  const screen = new THREE.Mesh(boxGeo, screenOffMat);
+  screen.scale.set(1.5, 0.95, 0.08); screen.position.set(0, 2.0, -0.72); group.add(screen);
+  const glow = new THREE.Mesh(
+    new THREE.PlaneGeometry(1.35, 0.8),
+    new THREE.MeshBasicMaterial({ color: accent })
+  );
+  glow.position.set(0, 2.0, -0.67); group.add(glow);
+
+  // Silla
+  const seat = new THREE.Mesh(boxGeo, chairMat);
+  seat.scale.set(0.8, 0.15, 0.8); seat.position.set(0, 0.9, 0.7); group.add(seat);
+  const back = new THREE.Mesh(boxGeo, chairMat);
+  back.scale.set(0.8, 0.9, 0.15); back.position.set(0, 1.3, 1.05); group.add(back);
+
+  // NPC sentado (figura low-poly)
+  const npc = new THREE.Group();
+  const skin = toon(0xe8b48c);
+  const shirt = toon(accent);
+  const body = new THREE.Mesh(boxGeo, shirt);
+  body.scale.set(0.7, 0.85, 0.5); body.position.y = 1.35; npc.add(body);
+  const head = new THREE.Mesh(new THREE.SphereGeometry(0.32, 16, 16), skin);
+  head.position.y = 2.0; npc.add(head);
+  const hair = new THREE.Mesh(new THREE.SphereGeometry(0.34, 16, 12, 0, Math.PI * 2, 0, Math.PI / 1.7), toon(0x2a2320));
+  hair.position.y = 2.05; npc.add(hair);
+  // brazos hacia la mesa (escribiendo)
+  for (const sx of [-1, 1]) {
+    const arm = new THREE.Mesh(boxGeo, shirt);
+    arm.scale.set(0.18, 0.5, 0.18);
+    arm.position.set(sx * 0.35, 1.35, -0.35); arm.rotation.x = -0.8; npc.add(arm);
+  }
+  npc.position.set(0, 0, 0.55);
+  group.add(npc);
+
+  // Cartel flotante con icono + nombre del departamento (CanvasTexture)
+  const sign = makeSign(dep);
+  sign.position.set(0, 3.7, 0);
+  group.add(sign);
+
+  // Indicador "!" que aparece cuando puedes hablar
+  const mark = new THREE.Sprite(new THREE.SpriteMaterial({ map: makeMark(accent), transparent: true }));
+  mark.scale.set(0.9, 0.9, 0.9); mark.position.set(0, 4.6, 0); mark.visible = false;
+  group.add(mark);
+
+  return { dep, dir, group, npc, head, glow, sign, mark, baseGlow: accent.clone() };
+}
+
+// Cartel: panel con icono grande + nombre
+function makeSign(dep) {
+  const c = document.createElement('canvas');
+  c.width = 512; c.height = 256;
+  const ctx = c.getContext('2d');
+  ctx.fillStyle = 'rgba(12,16,30,0.92)';
+  roundRect(ctx, 8, 8, 496, 240, 28); ctx.fill();
+  ctx.lineWidth = 6; ctx.strokeStyle = dep.color; ctx.stroke();
+  ctx.textAlign = 'center';
+  ctx.font = '110px serif';
+  ctx.fillText(dep.icon, 256, 128);
+  ctx.fillStyle = '#fff'; ctx.font = 'bold 40px sans-serif';
+  ctx.fillText(dep.nombre, 256, 210);
+  const tex = new THREE.CanvasTexture(c);
+  const spr = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex, transparent: true }));
+  spr.scale.set(3.2, 1.6, 1);
+  return spr;
+}
+function makeMark(color) {
+  const c = document.createElement('canvas'); c.width = c.height = 128;
+  const ctx = c.getContext('2d');
+  ctx.fillStyle = '#' + color.getHexString();
+  ctx.beginPath(); ctx.arc(64, 64, 60, 0, Math.PI * 2); ctx.fill();
+  ctx.fillStyle = '#fff'; ctx.font = 'bold 90px sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  ctx.fillText('!', 64, 70);
+  return new THREE.CanvasTexture(c);
+}
+function roundRect(ctx, x, y, w, h, r) {
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.arcTo(x + w, y, x + w, y + h, r);
+  ctx.arcTo(x + w, y + h, x, y + h, r);
+  ctx.arcTo(x, y + h, x, y, r);
+  ctx.arcTo(x, y, x + w, y, r);
+  ctx.closePath();
+}
+
+const stations = departamentos.map((dep, i) => buildStation(dep, anchors[i]));
+
+// ============================================================
+//  VEGETACIÓN (instancing) — árboles low-poly esparcidos
+// ============================================================
+{
+  const N = 160;
+  const trunkMat = toon(0x6b4f2a);
+  const leafMat = toon(0x2f8f4f, { flatShading: true });
+  const trunk = new THREE.InstancedMesh(new THREE.CylinderGeometry(0.12, 0.16, 0.8, 6), trunkMat, N);
+  const leaf = new THREE.InstancedMesh(new THREE.ConeGeometry(0.7, 1.6, 7), leafMat, N);
+  const dummy = new THREE.Object3D();
+  const dir = new THREE.Vector3();
+  let placed = 0, tries = 0;
+  while (placed < N && tries < N * 6) {
+    tries++;
+    dir.set(Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5).normalize();
+    // no plantar encima de los departamentos
+    let tooClose = false;
+    for (const a of anchors) if (dir.angleTo(a) < 0.28) { tooClose = true; break; }
+    if (tooClose) continue;
+    const rT = surfaceRadius(dir);
+    const s = 0.7 + Math.random() * 0.9;
+    // tronco
+    dummy.position.copy(dir).multiplyScalar(rT + 0.4 * s);
+    dummy.quaternion.setFromUnitVectors(UP_Y, dir);
+    dummy.scale.setScalar(s);
+    dummy.updateMatrix(); trunk.setMatrixAt(placed, dummy.matrix);
+    // copa
+    dummy.position.copy(dir).multiplyScalar(rT + 1.2 * s);
+    dummy.updateMatrix(); leaf.setMatrixAt(placed, dummy.matrix);
+    placed++;
+  }
+  trunk.count = leaf.count = placed;
+  scene.add(trunk); scene.add(leaf);
+}
+
+// ============================================================
+//  JUGADOR + GRAVEDAD RADIAL
+// ============================================================
+// Empezamos cerca del primer departamento
+let playerDir = anchors[0].clone().applyAxisAngle(
+  new THREE.Vector3(1, 0, 0).cross(anchors[0]).normalize(), 0.35
+).normalize();
+// vector "forward" tangente inicial (apuntando hacia el depto)
+let forward = new THREE.Vector3().subVectors(anchors[0], playerDir);
+forward.sub(playerDir.clone().multiplyScalar(forward.dot(playerDir))).normalize();
+
+// Personaje del jugador
+const player = new THREE.Group();
+{
+  const shirt = toon(0x4f7cff);
+  const body = new THREE.Mesh(boxGeo, shirt);
+  body.scale.set(0.6, 0.8, 0.45); body.position.y = 0.85; player.add(body);
+  const head = new THREE.Mesh(new THREE.SphereGeometry(0.3, 16, 16), toon(0xe8b48c));
+  head.position.y = 1.45; player.add(head);
+  const hair = new THREE.Mesh(new THREE.SphereGeometry(0.32, 16, 12, 0, Math.PI * 2, 0, Math.PI / 1.8), toon(0x3a2d22));
+  hair.position.y = 1.5; player.add(hair);
+  for (const sx of [-1, 1]) {
+    const leg = new THREE.Mesh(boxGeo, toon(0x2c2f44));
+    leg.scale.set(0.2, 0.6, 0.22); leg.position.set(sx * 0.16, 0.3, 0); player.add(leg);
+    leg.userData.sx = sx;
+  }
+}
+scene.add(player);
+
+// ---- Input ----
+const keys = {};
+addEventListener('keydown', (e) => {
+  const k = e.key.toLowerCase();
+  keys[k] = true;
+  if (k === 'e') tryTalk();
+});
+addEventListener('keyup', (e) => { keys[e.key.toLowerCase()] = false; });
+
+// Controles táctiles
+const touch = { up: false, down: false, left: false, right: false };
+document.querySelectorAll('.tbtn[data-dir]').forEach((btn) => {
+  const d = btn.dataset.dir;
+  const on = (e) => { e.preventDefault(); touch[d] = true; };
+  const off = (e) => { e.preventDefault(); touch[d] = false; };
+  btn.addEventListener('touchstart', on, { passive: false });
+  btn.addEventListener('touchend', off); btn.addEventListener('touchcancel', off);
+  btn.addEventListener('mousedown', on); btn.addEventListener('mouseup', off); btn.addEventListener('mouseleave', off);
+});
+document.getElementById('touch-talk').addEventListener('click', tryTalk);
+
+if (matchMedia('(pointer: coarse)').matches) {
+  document.getElementById('touch-controls').classList.add('show');
+}
+
+// ============================================================
+//  HUD / DIÁLOGO
+// ============================================================
+const prompt = document.getElementById('interact-prompt');
+const promptName = document.getElementById('prompt-name');
+const dialogue = document.getElementById('dialogue');
+const touchTalk = document.getElementById('touch-talk');
+const hud = document.getElementById('hud-progress');
+const hudCount = document.getElementById('hud-count');
+let nearest = null;
+let dialogueOpen = false;
+const visited = new Set();
+
+function tryTalk() {
+  if (dialogueOpen || !nearest) return;
+  openDialogue(nearest.dep);
+}
+
+function openDialogue(dep) {
+  dialogueOpen = true;
+  visited.add(dep.id);
+  hudCount.textContent = visited.size;
+  document.getElementById('dlg-avatar').textContent = dep.icon;
+  document.getElementById('dlg-avatar').style.background = dep.color + '22';
+  const deptEl = document.getElementById('dlg-dept');
+  deptEl.textContent = dep.nombre; deptEl.style.color = dep.color;
+  document.getElementById('dlg-name').textContent = `${dep.npc.nombre} · ${dep.npc.rol}`;
+  document.getElementById('dlg-problema').textContent = '«' + dep.problema + '»';
+  document.getElementById('dlg-objetivos').innerHTML =
+    dep.objetivos.map((o) => `<div class="dlg-obj">${o}</div>`).join('');
+  document.getElementById('dlg-tools').innerHTML =
+    dep.herramientas.map((h) => `<div class="dlg-tool"><div class="dlg-tool-n">${h.nombre}</div><div class="dlg-tool-u">${h.uso}</div></div>`).join('');
+  document.getElementById('dlg-ahorro').textContent = '💡 ' + dep.ahorro;
+  document.getElementById('dlg-cta').href = '/presupuesto?plan=Consultoria-IA';
+  dialogue.classList.add('open');
+  dialogue.setAttribute('aria-hidden', 'false');
+}
+function closeDialogue() {
+  dialogueOpen = false;
+  dialogue.classList.remove('open');
+  dialogue.setAttribute('aria-hidden', 'true');
+}
+document.getElementById('dlg-close').addEventListener('click', closeDialogue);
+document.getElementById('dlg-continue').addEventListener('click', closeDialogue);
+dialogue.addEventListener('click', (e) => { if (e.target === dialogue) closeDialogue(); });
+addEventListener('keydown', (e) => { if (e.key === 'Escape') closeDialogue(); });
+
+// ============================================================
+//  BUCLE PRINCIPAL
+// ============================================================
+const clock = new THREE.Clock();
+const tmpQ = new THREE.Quaternion();
+const camPos = new THREE.Vector3();
+const camTarget = new THREE.Vector3();
+let started = false;
+let walkPhase = 0;
+
+function resize() {
+  const w = stage.clientWidth, h = stage.clientHeight;
+  renderer.setSize(w, h, false);
+  camera.aspect = w / h; camera.updateProjectionMatrix();
+}
+addEventListener('resize', resize);
+resize();
+
+function animate() {
+  requestAnimationFrame(animate);
+  const dt = Math.min(clock.getDelta(), 0.05);
+
+  const up = playerDir; // normal de superficie = dirección desde el centro
+  // re-ortogonaliza forward respecto a up
+  forward.sub(up.clone().multiplyScalar(forward.dot(up))).normalize();
+  const right = new THREE.Vector3().crossVectors(forward, up).normalize();
+
+  let moving = false;
+  if (started && !dialogueOpen) {
+    const fwd = (keys['w'] || keys['arrowup'] || touch.up ? 1 : 0) - (keys['s'] || keys['arrowdown'] || touch.down ? 1 : 0);
+    const turn = (keys['a'] || keys['arrowleft'] || touch.left ? 1 : 0) - (keys['d'] || keys['arrowright'] || touch.right ? 1 : 0);
+
+    // Giro: rota forward alrededor de up
+    if (turn !== 0) {
+      tmpQ.setFromAxisAngle(up, turn * TURN_SPEED * dt);
+      forward.applyQuaternion(tmpQ).normalize();
+    }
+    // Avance: rota la posición (y forward) sobre la esfera por el eje right
+    if (fwd !== 0) {
+      const axis = new THREE.Vector3().crossVectors(up, forward).normalize();
+      tmpQ.setFromAxisAngle(axis, -fwd * (WALK_SPEED) * dt);
+      playerDir.applyQuaternion(tmpQ).normalize();
+      forward.applyQuaternion(tmpQ).normalize();
+      moving = true;
+    }
+  }
+
+  // Posa al jugador sobre el terreno
+  const rT = surfaceRadius(playerDir);
+  player.position.copy(playerDir).multiplyScalar(rT);
+  // orienta: +Y a la normal, -Z al forward
+  const m = new THREE.Matrix4();
+  const z = forward.clone().negate();
+  const x = new THREE.Vector3().crossVectors(up, z).normalize();
+  m.makeBasis(x, up, z);
+  player.quaternion.setFromRotationMatrix(m);
+
+  // animación de caminar (piernas)
+  if (moving) {
+    walkPhase += dt * 9;
+    player.children.forEach((c) => { if (c.userData.sx) c.rotation.x = Math.sin(walkPhase) * 0.5 * c.userData.sx; });
+  } else {
+    player.children.forEach((c) => { if (c.userData.sx) c.rotation.x *= 0.8; });
+  }
+
+  // Cámara tercera persona (detrás y arriba, alineada con la superficie)
+  camTarget.copy(playerDir).multiplyScalar(rT + PLAYER_H);
+  camPos.copy(playerDir).multiplyScalar(rT + 4.5).addScaledVector(forward, -7.5);
+  camera.position.lerp(camPos, started ? 0.08 : 1);
+  camera.up.copy(up);
+  camera.lookAt(camTarget);
+
+  // Departamento más cercano
+  let best = null, bestAng = Infinity;
+  for (const st of stations) {
+    const ang = playerDir.angleTo(st.dir);
+    if (ang < bestAng) { bestAng = ang; best = st; }
+    // efecto de pantalla pulsante + cartel mirando a cámara
+    st.glow.material.color.copy(st.baseGlow).multiplyScalar(0.7 + Math.sin(clock.elapsedTime * 3 + st.dir.x * 5) * 0.3);
+    st.mark.material.opacity = 0.6 + Math.sin(clock.elapsedTime * 4) * 0.4;
+  }
+
+  if (best && bestAng < INTERACT_ANGLE) {
+    if (nearest !== best) { nearest = best; }
+    promptName.textContent = `${best.dep.npc.nombre} (${best.dep.nombre})`;
+    if (started && !dialogueOpen) prompt.classList.add('show');
+    touchTalk.classList.add('active');
+    stations.forEach((s) => (s.mark.visible = s === best));
+  } else {
+    nearest = null;
+    prompt.classList.remove('show');
+    touchTalk.classList.remove('active');
+    stations.forEach((s) => (s.mark.visible = false));
+  }
+
+  // rotación suave de la atmósfera/estrellas para dar vida
+  atmo.rotation.y += dt * 0.01;
+
+  renderer.render(scene, camera);
+}
+
+// ============================================================
+//  ARRANQUE
+// ============================================================
+function start() {
+  started = true;
+  document.getElementById('intro-overlay').classList.add('hidden');
+  hud.classList.add('show');
+}
+document.getElementById('start-btn').addEventListener('click', start);
+
+// quita el loader cuando el primer frame esté listo
+requestAnimationFrame(() => {
+  animate();
+  setTimeout(() => document.getElementById('loader').classList.add('hidden'), 300);
+});
+</script>

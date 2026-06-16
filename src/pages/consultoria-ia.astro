@@ -1,4 +1,4 @@
----
+﻿---
 import BaseLayout from "../layouts/BaseLayout.astro";
 
 const title = "Consultoría de Inteligencia Artificial para Empresas — IA por Departamentos | AI Security";
@@ -10,7 +10,7 @@ const departamentos = [
     id: "comunicacion",
     nombre: "Comunicación",
     icon: "🎨",
-    color: "#84cc16",
+    color: "#38bdf8",
     resumen: "Genera contenido visual, vídeos y creatividades con IA generativa",
     descripcion: "Transforma la producción de contenido visual de tu equipo. Crear imágenes profesionales, vídeos de producto o creatividades para redes sociales pasa de horas a minutos.",
     objetivos: [
@@ -28,7 +28,7 @@ const departamentos = [
     id: "comercial",
     nombre: "Comercial & SEO",
     icon: "📊",
-    color: "#f59e0b",
+    color: "#4f7cff",
     resumen: "Analítica automática, SEO con IA y seguimiento de oportunidades",
     descripcion: "Scripts que recogen datos de Google Search Console y Analytics cada semana, generan informes y detectan oportunidades de negocio sin intervención manual.",
     objetivos: [
@@ -46,7 +46,7 @@ const departamentos = [
     id: "callcenter",
     nombre: "Call Center & Soporte",
     icon: "📞",
-    color: "#10b981",
+    color: "#60a5fa",
     resumen: "Atención telefónica y chat con IA que nunca descansa",
     descripcion: "Recepcionistas virtuales y chatbots que gestionan el 80% de las consultas habituales. Voz natural en español, integración con CRM y derivación a agente humano cuando es necesario.",
     objetivos: [
@@ -64,7 +64,7 @@ const departamentos = [
     id: "proyectos",
     nombre: "Gestión de Proyectos",
     icon: "📋",
-    color: "#3b82f6",
+    color: "#6366f1",
     resumen: "IA integrada en tu herramienta de proyectos para acelerar entregas",
     descripcion: "Conectamos tu gestor de proyectos con IA para generar tareas automáticamente, resumir el estado del sprint y detectar bloqueos sin reuniones extra.",
     objetivos: [
@@ -82,7 +82,7 @@ const departamentos = [
     id: "administracion",
     nombre: "Administración",
     icon: "🧾",
-    color: "#ef4444",
+    color: "#818cf8",
     resumen: "Facturas, presupuestos y contabilidad gestionados de forma automática",
     descripcion: "Automatizamos la captura de facturas de proveedores, la generación de presupuestos y el seguimiento de pagos. El equipo deja de hacer trabajo repetitivo.",
     objetivos: [
@@ -100,7 +100,7 @@ const departamentos = [
     id: "desarrollo",
     nombre: "Desarrollo",
     icon: "💻",
-    color: "#06b6d4",
+    color: "#8b5cf6",
     resumen: "Acelera tu equipo de desarrollo con IA en cada paso del ciclo",
     descripcion: "Desde la generación de código hasta la documentación automática y los pipelines de CI/CD. Todos los devs trabajando al mismo ritmo con IA.",
     objetivos: [
@@ -118,7 +118,7 @@ const departamentos = [
     id: "devops",
     nombre: "DevOps",
     icon: "⚙️",
-    color: "#f97316",
+    color: "#a78bfa",
     resumen: "Infraestructura como código y automatización de despliegues con IA",
     descripcion: "La IA detecta anomalías antes de que sean incidencias y propone soluciones de escalado automáticamente. Despliegues sin downtime.",
     objetivos: [
@@ -136,7 +136,7 @@ const departamentos = [
     id: "sistemas",
     nombre: "Sistemas",
     icon: "🖥️",
-    color: "#8b5cf6",
+    color: "#c084fc",
     resumen: "Administración de sistemas con documentación automática y seguridad IA",
     descripcion: "Cada cambio en un servidor queda documentado automáticamente. La seguridad se monitoriza en tiempo real con Wazuh y las automatizaciones reducen las tareas repetitivas.",
     objetivos: [
@@ -277,6 +277,11 @@ const departamentos = [
           ¿Qué IA puede usar cada departamento?
         </h2>
         <p style="color: #64748b; font-size: 1.05rem; max-width: 480px; margin: 0 auto;">Selecciona un departamento para ver las herramientas y el ahorro estimado</p>
+        <a href="/consultoria-ia-demo"
+          class="inline-flex items-center gap-2 mt-6 px-5 py-3 rounded-xl font-semibold transition-all"
+          style="background: rgba(79,124,255,0.12); border: 1px solid rgba(79,124,255,0.35); color: #7da4ff;">
+          🪐 Explorar la demo interactiva en 3D →
+        </a>
       </div>
 
       <!-- Diagram + Panel layout -->
@@ -567,10 +572,10 @@ const departamentos = [
 
     g.addEventListener('click', () => selectDep(dep.id));
     g.addEventListener('mouseenter', () => {
-      if (activeId !== dep.id) { bg.setAttribute('opacity', '1'); bg.setAttribute('stroke-width', '2'); }
+      if (activeId !== dep.id) { g.style.opacity = '0.78'; bg.setAttribute('stroke-width', '2'); }
     });
     g.addEventListener('mouseleave', () => {
-      if (activeId !== dep.id) { bg.setAttribute('opacity', '0.8'); bg.setAttribute('stroke-width', '1.5'); }
+      if (activeId !== dep.id) { g.style.opacity = '0.38'; bg.setAttribute('stroke-width', '1.5'); }
     });
 
     nodesGroup.appendChild(g);
@@ -582,20 +587,14 @@ const departamentos = [
     if (!dep) return;
 
     departamentos.forEach(d => {
+      const g = document.getElementById(`node-${d.id}`);
       const bg = document.getElementById(`bg-${d.id}`);
       const line = document.getElementById(`line-${d.id}`);
-      if (bg) { bg.setAttribute('opacity', '0.8'); bg.setAttribute('stroke-width', '1.5'); bg.setAttribute('fill', '#1a1d27'); }
-      if (line) { line.setAttribute('opacity', '0.3'); line.setAttribute('stroke-width', '1.5'); }
+      const on = d.id === id;
+      if (g) { g.classList.toggle('cc-active', on); g.style.opacity = on ? '1' : '0.38'; g.style.filter = on ? `drop-shadow(0 0 12px ${dep.color})` : 'none'; }
+      if (bg) { bg.setAttribute('fill', on ? dep.color + '40' : '#1a1d27'); bg.setAttribute('stroke-width', on ? '3.5' : '1.5'); bg.setAttribute('opacity', '1'); }
+      if (line) { line.classList.toggle('cc-active', on); line.setAttribute('opacity', on ? '1' : '0.12'); line.setAttribute('stroke-width', on ? '3' : '1.5'); }
     });
-
-    const activeBg = document.getElementById(`bg-${id}`);
-    const activeLine = document.getElementById(`line-${id}`);
-    if (activeBg) {
-      activeBg.setAttribute('opacity', '1');
-      activeBg.setAttribute('stroke-width', '3');
-      activeBg.setAttribute('fill', dep.color + '22');
-    }
-    if (activeLine) { activeLine.setAttribute('opacity', '0.8'); activeLine.setAttribute('stroke-width', '2.5'); }
 
     panelDefault.style.display = 'none';
     panelActive.style.display = 'block';
@@ -630,10 +629,32 @@ const departamentos = [
 
   }
 
-  // Activar "Desarrollo" por defecto al cargar
-  document.addEventListener('DOMContentLoaded', () => selectDep('desarrollo'));
-  // Fallback por si DOMContentLoaded ya pasó
-  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+  // Activar "Desarrollo" por defecto + auto-rotación cada 10 s
+  let ccStarted = false;
+  function ccInit() {
+    if (ccStarted) return; ccStarted = true;
     selectDep('desarrollo');
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) return;
+    const ids = departamentos.map(d => d.id);
+    function ccNext() { const i = ids.indexOf(activeId); selectDep(ids[(i + 1) % ids.length]); }
+    let autoTimer = setInterval(ccNext, 10000);
+    const parent = nodesGroup.closest('section') || document.getElementById('diagram-container');
+    if (parent) {
+      parent.addEventListener('mouseenter', () => { if (autoTimer) { clearInterval(autoTimer); autoTimer = null; } });
+      parent.addEventListener('mouseleave', () => { if (!autoTimer) autoTimer = setInterval(ccNext, 10000); });
+    }
   }
+  document.addEventListener('DOMContentLoaded', ccInit);
+  if (document.readyState === 'complete' || document.readyState === 'interactive') { ccInit(); }
 </script>
+
+<style is:global>
+  /* Animación del diagrama de departamentos (aplica a nodos SVG creados por JS) */
+  #nodes g { transition: transform .35s cubic-bezier(0.34,1.56,0.64,1), opacity .25s ease, filter .25s ease; transform-box: fill-box; transform-origin: center; }
+  #nodes g.cc-active { transform: scale(1.24); }
+  #lines line { transition: opacity .25s ease, stroke-width .25s ease; }
+  @keyframes ccDash { to { stroke-dashoffset: -22; } }
+  #lines line.cc-active { stroke-dasharray: 7 5; animation: ccDash .8s linear infinite; }
+  @media (prefers-reduced-motion: reduce){ #nodes g{ transition:none; } #lines line.cc-active{ animation:none; } }
+</style>
