@@ -1,106 +1,121 @@
 ---
 import BlogLayout from "../../layouts/BlogLayout.astro";
+
+const faqs = [
+  {
+    question: "¿Obliga NIS2 a los proveedores que no están en los sectores regulados?",
+    answer: "NIS2 no obliga directamente a los proveedores fuera de los 18 sectores. Pero las entidades obligadas deben gestionar el riesgo de su cadena de suministro, lo que en la práctica significa que exigirán a sus proveedores tecnológicos evaluaciones de seguridad, cláusulas contractuales y evidencias de controles."
+  },
+  {
+    question: "¿Qué tipo de proveedores están más expuestos al efecto NIS2?",
+    answer: "Los más expuestos son los MSP (gestión IT), proveedores de software crítico, empresas de mantenimiento industrial con acceso a sistemas OT/SCADA, consultoras IT con acceso a sistemas, y proveedores de telecomunicaciones. Los MSP además están directamente en el Anexo I de NIS2."
+  },
+  {
+    question: "¿Qué me puede pedir mi cliente NIS2 como proveedor?",
+    answer: "Un cliente sujeto a NIS2 puede pedirte: cuestionarios de seguridad, cláusulas contractuales con obligación de notificar incidentes, derecho a auditoría, certificaciones como ISO 27001, informes de pentesting recientes y garantías sobre tus subcontratistas."
+  },
+  {
+    question: "¿Están los MSP directamente obligados por NIS2?",
+    answer: "Sí. Los proveedores de servicios gestionados (MSP) y de seguridad gestionada (MSSP) están directamente en el Anexo I de NIS2 como 'gestión de servicios TIC B2B'. Si superan 50 empleados o 10 M€ de facturación, están directamente regulados y no solo afectados indirectamente."
+  },
+  {
+    question: "¿Qué medidas puede tomar una pyme proveedora para prepararse para NIS2?",
+    answer: "Las medidas más eficientes para una pyme proveedora son: activar MFA en todas las cuentas, tener backups verificados, documentar una política básica de seguridad, crear un procedimiento de notificación de incidentes al cliente, y revisar contratos con sus propios subcontratistas."
+  }
+];
 ---
 
 <BlogLayout
-  title="NIS2 y la cadena de suministro: por qué tu empresa puede estar obligada sin saberlo"
-  description="NIS2 arrastra a miles de pymes proveedoras a través de sus clientes. Descubre cómo la cadena de suministro extiende la normativa más allá de los sectores directamente regulados."
+  title="NIS2 cadena de suministro: impacto en proveedores"
+  description="NIS2 arrastra a miles de pymes proveedoras. Descubre si tu empresa está obligada indirectamente y qué te exigirán tus clientes grandes."
   publishDate="2026-06-16"
   modifiedDate="2026-06-16"
   author="AI Security"
   readTime="10 min"
   tags={["NIS2", "Cadena de Suministro", "Pymes", "Proveedores", "España"]}
-  canonical="https://aisecurity.es/blog/nis2-cadena-suministro-proveedores-pymes-espana">
+  canonical="https://aisecurity.es/blog/nis2-cadena-suministro-proveedores-pymes-espana"
+  faqSchema={faqs}>
 
-  <p>Tu empresa tiene 30 empleados, factura 4 millones de euros y no estás en ninguno de los sectores del Anexo I o II de NIS2. En teoría, estás fuera de la norma. Pero uno de tus clientes principales es una empresa eléctrica, otra es un hospital y la tercera es un operador logístico. ¿Significa eso que NIS2 no te afecta en absoluto?</p>
+  <p>Tu empresa tiene 30 empleados, factura 4 millones de euros y no estás en ninguno de los sectores del Anexo I o II de NIS2. En teoría, estás fuera. Pero uno de tus clientes principales es una empresa eléctrica, otro es un hospital y el tercero es un operador logístico. ¿Significa eso que NIS2 no te afecta en absoluto?</p>
 
-  <p>No. Y este es uno de los aspectos de NIS2 que menos empresas conocen y que más consecuencias prácticas va a tener en España durante 2026.</p>
+  <p>No. Este es uno de los aspectos de NIS2 que menos empresas conocen y que más consecuencias prácticas tendrá en España durante 2026.</p>
 
-  <h2>¿Cómo arrastra NIS2 a los proveedores?</h2>
+  <h2>¿Cómo arrastra NIS2 a los proveedores fuera de los sectores regulados?</h2>
 
-  <p>El artículo 21 de NIS2 obliga a todas las entidades reguladas a gestionar los riesgos de su cadena de suministro. Esto no es opcional ni decorativo: la autoridad puede sancionar a una entidad esencial que no haya evaluado adecuadamente la seguridad de sus proveedores críticos.</p>
-
-  <p>Eso crea una cadena de responsabilidad que funciona así:</p>
+  <p>El artículo 21 de NIS2 obliga a todas las entidades reguladas a gestionar los riesgos de su cadena de suministro. Esto crea una cadena de responsabilidad:</p>
 
   <ol>
     <li><strong>La entidad NIS2</strong> (hospital, empresa energética, banco) debe evaluar y gestionar el riesgo de sus proveedores tecnológicos</li>
     <li>Para hacerlo, <strong>exige a sus proveedores</strong> evidencias de sus controles de seguridad</li>
     <li>Los proveedores que no puedan demostrar esas evidencias <strong>pierden contratos o no consiguen nuevos</strong></li>
-    <li>En muchos casos, la entidad NIS2 <strong>incluye cláusulas contractuales</strong> que hacen obligatoria la notificación de incidentes y el cumplimiento de estándares mínimos</li>
+    <li>La entidad NIS2 <strong>incluye cláusulas contractuales</strong> que hacen obligatoria la notificación de incidentes</li>
   </ol>
 
   <div style="background:rgba(245,158,11,0.12);border-left:4px solid #f59e0b;padding:1rem;margin:1.5rem 0;border-radius:0 0.5rem 0.5rem 0;">
-    <p class="m-0" style="color:rgba(255,255,255,0.9);"><strong style="color:#fcd34d;">En la práctica:</strong> No será INCIBE quien te inspeccione directamente si eres proveedor pequeño. Será tu cliente quien te exija cuestionarios de seguridad, certificaciones y cláusulas contractuales. Perder ese contrato puede doler más que cualquier multa.</p>
+    <p class="m-0" style="color:rgba(255,255,255,0.9);"><strong style="color:#fcd34d;">En la práctica:</strong> No será INCIBE quien te inspeccione si eres proveedor pequeño. Será tu cliente quien te exija cuestionarios, certificaciones y cláusulas contractuales. Perder ese contrato puede doler más que cualquier multa.</p>
   </div>
 
-  <h2>¿Qué tipo de proveedores están más expuestos?</h2>
+  <h2>¿Qué tipo de proveedores están más expuestos a NIS2?</h2>
 
-  <p>No todos los proveedores de una entidad NIS2 tienen el mismo nivel de exposición. Los que más la sienten son los que gestionan o tienen acceso a sistemas críticos:</p>
+  <p>No todos los proveedores tienen el mismo nivel de exposición. Los que más la sienten son los que gestionan o tienen acceso a sistemas críticos:</p>
 
   <ul>
-    <li><strong>MSP (Managed Service Providers)</strong>: si gestionas la infraestructura IT de una empresa obligada, eres proveedor crítico por definición. De hecho, los MSP están directamente en el Anexo I como sector regulado si superan los umbrales de tamaño.</li>
-    <li><strong>Proveedores de software</strong>: cualquier aplicación que use una entidad NIS2 para su servicio esencial. ERP, CRM, software de gestión hospitalaria, plataformas operativas.</li>
-    <li><strong>Empresas de mantenimiento industrial</strong>: si mantienes sistemas OT, SCADA o equipos críticos de energía, transporte o agua.</li>
-    <li><strong>Consultoras y empresas de servicios IT</strong>: auditorías, desarrollo, soporte técnico con acceso a sistemas.</li>
-    <li><strong>Proveedores de telecomunicaciones</strong>: conectividad, VPN, servicios de comunicación para organizaciones críticas.</li>
-    <li><strong>Empresas de logística</strong>: si formas parte de la cadena de suministro crítica de alimentos, medicamentos o energía.</li>
+    <li><strong>MSP (Managed Service Providers)</strong>: si gestionas la infraestructura IT de una empresa obligada, eres proveedor crítico. Además, los MSP están directamente en el Anexo I si superan los umbrales.</li>
+    <li><strong>Proveedores de software</strong>: cualquier aplicación que use una entidad NIS2 para su servicio esencial (ERP, CRM, software hospitalario, plataformas operativas)</li>
+    <li><strong>Empresas de mantenimiento industrial</strong>: si mantienes sistemas OT, SCADA o equipos críticos de energía, transporte o agua</li>
+    <li><strong>Consultoras y empresas de servicios IT</strong>: auditorías, desarrollo, soporte técnico con acceso a sistemas</li>
+    <li><strong>Proveedores de telecomunicaciones</strong>: conectividad, VPN, comunicación para organizaciones críticas</li>
+    <li><strong>Empresas de logística</strong>: cadena de suministro crítica de alimentos, medicamentos o energía</li>
   </ul>
 
-  <h2>¿Qué te van a exigir en la práctica?</h2>
+  <h2>¿Qué te van a exigir en la práctica tus clientes NIS2?</h2>
 
-  <p>Las entidades NIS2 están empezando a desarrollar programas de gestión de riesgos en la cadena de suministro. Dependiendo del sector y la madurez de tu cliente, pueden pedirte:</p>
+  <h3>¿Qué tipo de cuestionarios de seguridad hay que responder?</h3>
+  <p>Los cuestionarios habituales preguntan sobre: uso de MFA, gestión de parches, cifrado de datos, plan de continuidad, certificaciones, incidentes pasados y políticas internas. Algunos clientes usan cuestionarios estándar como el SIG (Standardized Information Gathering) o el CAIQ de CSA.</p>
 
-  <h3>Cuestionarios de seguridad</h3>
-  <p>Los formularios más habituales preguntan sobre: controles de acceso (¿usas MFA?), gestión de parches, cifrado de datos, plan de continuidad, certificaciones, incidentes pasados y políticas internas. Algunos clientes grandes usan estándares propios; otros adoptan cuestionarios como el SIG (Standardized Information Gathering) o el CAIQ de CSA.</p>
-
-  <h3>Cláusulas contractuales de seguridad</h3>
-  <p>Espera ver en los contratos cláusulas que incluyan:</p>
+  <h3>¿Qué cláusulas contractuales incluirán los contratos NIS2?</h3>
+  <p>Espera ver en los contratos:</p>
   <ul>
-    <li>Obligación de notificarte en un plazo determinado (24–72h) si sufres un incidente que pueda afectar al cliente</li>
+    <li>Obligación de notificar en un plazo determinado (24–72h) si sufres un incidente que pueda afectar al cliente</li>
     <li>Derecho del cliente a auditar tu seguridad</li>
-    <li>Obligación de implementar y mantener ciertos controles mínimos</li>
+    <li>Obligación de implementar y mantener controles mínimos de seguridad</li>
     <li>Penalizaciones contractuales por incumplimiento de seguridad</li>
-    <li>Gestión de subcontratistas: si subcontratas parte del servicio, tienes que asegurarte de que ellos también cumplen</li>
+    <li>Gestión de subcontratistas: también tienes que asegurar que ellos cumplen</li>
   </ul>
 
-  <h3>Certificaciones y evidencias</h3>
-  <p>Algunos clientes irán más allá y pedirán certificaciones formales:</p>
+  <h3>¿Qué certificaciones o evidencias pueden pedirte?</h3>
   <ul>
-    <li><strong>ISO 27001</strong>: el estándar internacional de gestión de seguridad de la información. Es la certificación más valorada y la que mejor sirve para demostrar cumplimiento NIS2.</li>
-    <li><strong>Informe de pentesting reciente</strong>: prueba de que tus sistemas han sido auditados externamente</li>
+    <li><strong>ISO 27001</strong>: el estándar más valorado y el que mejor demuestra cumplimiento NIS2</li>
+    <li><strong>Informe de pentesting reciente</strong>: prueba de auditoría externa de tus sistemas</li>
     <li><strong>SOC 2 Type II</strong>: más habitual en proveedores cloud o de software SaaS</li>
-    <li><strong>ENS</strong> (si el cliente es administración pública o empresa que opera bajo ENS)</li>
+    <li><strong>ENS</strong>: si el cliente es administración pública o empresa bajo ENS</li>
   </ul>
 
-  <h2>La paradoja del proveedor pequeño</h2>
+  <h2>¿Por qué los atacantes apuntan a proveedores pequeños para llegar a los grandes?</h2>
 
-  <p>Aquí está el problema central para muchas pymes españolas: las empresas más pequeñas, las que tienen menos recursos para implementar controles de seguridad, son precisamente las que tienen mayor riesgo de sufrir un incidente que afecte a su cliente grande.</p>
+  <p>Los atacantes lo saben: las empresas más pequeñas tienen menos defensas. Muchos de los ataques más importantes de los últimos años —SolarWinds, Kaseya, Colonial Pipeline— llegaron al objetivo final a través de un proveedor con menos defensas.</p>
 
-  <p>Los atacantes lo saben. Muchos de los ataques más importantes de los últimos años —SolarWinds, Kaseya, el ataque al oleoducto Colonial Pipeline— no llegaron directamente al objetivo final. Llegaron a través de un proveedor con menos defensas.</p>
+  <p>NIS2 reconoce esto y obliga a las grandes organizaciones a no solo protegerse a sí mismas, sino a asegurarse de que sus proveedores no son el eslabón débil de la cadena.</p>
 
-  <p>NIS2 reconoce esto y obliga a las grandes organizaciones a no solo preocuparse de su propia seguridad, sino de asegurarse de que sus proveedores no son el eslabón débil de la cadena.</p>
+  <h2>¿Qué puede hacer una pyme proveedora para prepararse para NIS2?</h2>
 
-  <h2>¿Qué puede hacer una pyme proveedora para prepararse?</h2>
-
-  <p>El objetivo no es certificarse en ISO 27001 de la noche a la mañana (aunque es el camino más robusto a medio plazo). El objetivo es poder demostrar a tus clientes que tienes controles razonables y un nivel de madurez de seguridad adecuado.</p>
-
-  <h3>Medidas de alto impacto y bajo coste</h3>
+  <h3>¿Qué medidas de alto impacto pueden implementarse rápidamente?</h3>
   <ul>
-    <li><strong>MFA en todas las cuentas</strong>: Microsoft 365, Google Workspace, acceso remoto. Es la medida con mayor retorno de inversión en seguridad y la más fácil de demostrar.</li>
-    <li><strong>Backups verificados</strong>: copias de seguridad de datos críticos, idealmente offline o en nube separada, con restauración probada.</li>
-    <li><strong>Inventario de accesos</strong>: saber exactamente quién tiene acceso a qué sistema, y revisar que solo tienen el acceso que necesitan.</li>
-    <li><strong>Política básica de seguridad</strong>: un documento de 2–3 páginas que defina las reglas básicas. Muchos cuestionarios solo piden confirmar que existe.</li>
+    <li><strong>MFA en todas las cuentas</strong>: Microsoft 365, Google Workspace, acceso remoto. Mayor retorno de inversión en seguridad y la más fácil de demostrar</li>
+    <li><strong>Backups verificados</strong>: copias de datos críticos con restauración probada</li>
+    <li><strong>Inventario de accesos</strong>: saber exactamente quién accede a qué sistema</li>
+    <li><strong>Política básica de seguridad</strong>: un documento de 2–3 páginas. Muchos cuestionarios solo piden confirmar que existe</li>
   </ul>
 
-  <h3>Medidas a implementar en 3–6 meses</h3>
+  <h3>¿Qué medidas implementar en 3–6 meses?</h3>
   <ul>
     <li>Análisis de riesgos simplificado</li>
-    <li>Procedimiento de notificación de incidentes al cliente (¿cuándo y cómo les avisas si algo pasa?)</li>
+    <li>Procedimiento de notificación de incidentes al cliente</li>
     <li>Revisión de contratos con tus propios subcontratistas</li>
     <li>Formación básica en ciberseguridad para el equipo</li>
   </ul>
 
-  <h3>Inversión a largo plazo</h3>
+  <h3>¿Cuál es la inversión a largo plazo más eficiente?</h3>
   <ul>
     <li>Certificación ISO 27001 (si tienes varios clientes grandes en sectores críticos)</li>
     <li>CISO virtual externo para supervisar el programa de seguridad</li>
@@ -108,32 +123,30 @@ import BlogLayout from "../../layouts/BlogLayout.astro";
   </ul>
 
   <div style="background:rgba(99,102,241,0.12);border-left:4px solid #6366f1;padding:1rem;margin:1.5rem 0;border-radius:0 0.5rem 0.5rem 0;">
-    <p class="m-0" style="color:rgba(255,255,255,0.9);"><strong style="color:#a5b4fc;">Oportunidad de diferenciación:</strong> Las empresas proveedoras que se preparen para NIS2 antes de que sus clientes lo exijan tendrán una ventaja competitiva real. "Cumplimos con los requisitos de seguridad NIS2" es un argumento de venta en licitaciones y renovaciones de contrato con grandes clientes.</p>
+    <p class="m-0" style="color:rgba(255,255,255,0.9);"><strong style="color:#a5b4fc;">Oportunidad:</strong> Las empresas proveedoras que se preparen para NIS2 antes de que sus clientes lo exijan tendrán ventaja competitiva real en licitaciones y renovaciones de contrato con grandes clientes.</p>
   </div>
 
-  <h2>NIS2 y los servicios gestionados (MSP/MSSP)</h2>
+  <h2>¿Qué pasa si eres MSP o MSSP en España?</h2>
 
-  <p>Este es el caso más extremo del efecto cadena de suministro. Si eres MSP o MSSP, no solo estás expuesto a la presión de tus clientes: estás directamente en el Anexo I de NIS2 como "gestión de servicios TIC de empresa a empresa" si superas los 50 empleados o 10 M€ de facturación.</p>
+  <p>Este es el caso más extremo. Si eres MSP o MSSP no solo estás expuesto a la presión de tus clientes: estás directamente en el Anexo I de NIS2 como "gestión de servicios TIC de empresa a empresa" si superas 50 empleados o 10 M€ de facturación.</p>
 
   <p>Esto significa:</p>
   <ul>
     <li>Estás obligado directamente por NIS2, no solo indirectamente</li>
-    <li>Tienes que cumplir el artículo 21 en tu propia operación</li>
+    <li>Debes cumplir el artículo 21 en tu propia operación</li>
     <li>Tus clientes NIS2 te van a pedir evidencias como proveedor crítico</li>
-    <li>Un incidente en tus sistemas que afecte a varios clientes esenciales puede ser notificado por cada uno de ellos, generando un escrutinio muy alto</li>
+    <li>Un incidente en tus sistemas que afecte a varios clientes esenciales genera escrutinio muy alto</li>
   </ul>
 
-  <p>Para los MSP/MSSP españoles, NIS2 es una transformación de negocio, no solo un ejercicio de cumplimiento. Requiere revisar cómo se segregan los entornos de clientes, cómo se gestionan los accesos privilegiados, cómo se notifican incidentes y cómo se audita la propia operación.</p>
+  <p>Para los MSP/MSSP españoles, NIS2 requiere revisar cómo se segregan los entornos de clientes, cómo se gestionan los accesos privilegiados y cómo se notifican incidentes.</p>
 
-  <h2>Cómo hablar con tus clientes sobre NIS2</h2>
-
-  <p>Si tus clientes aún no te han preguntado sobre NIS2, es cuestión de tiempo. Puedes tomar la iniciativa:</p>
+  <h2>¿Cómo hablar con tus clientes sobre NIS2 antes de que te lo pidan?</h2>
 
   <ol>
-    <li><strong>Identifica cuáles de tus clientes están en el ámbito de NIS2</strong>. Si un cliente grande es energética, hospital o MSP, probablemente está regulado.</li>
-    <li><strong>Revisa tus contratos actuales</strong>. ¿Hay obligaciones de seguridad? ¿Plazos de notificación? Si no los hay, en 2026 van a pedirte que los añadas.</li>
-    <li><strong>Prepara un one-pager de tus controles de seguridad</strong>. Un documento de una página describiendo tus principales controles de seguridad demuestra que lo tienes pensado.</li>
-    <li><strong>No esperes a que te lo pidan</strong>. Proactividad en seguridad es una señal de madurez que tus clientes valorarán.</li>
+    <li><strong>Identifica cuáles de tus clientes están en el ámbito de NIS2.</strong> Si un cliente grande es energética, hospital o MSP, probablemente está regulado.</li>
+    <li><strong>Revisa tus contratos actuales.</strong> ¿Hay obligaciones de seguridad? Si no, en 2026 van a pedirte que los actualices.</li>
+    <li><strong>Prepara un one-pager de tus controles de seguridad.</strong> Un documento de una página describe tus principales controles y demuestra que lo tienes pensado.</li>
+    <li><strong>No esperes a que te lo pidan.</strong> Proactividad en seguridad es una señal de madurez que tus clientes valorarán.</li>
   </ol>
 
   <div style="background:rgba(16,185,129,0.12);border-left:4px solid #10b981;padding:1rem;margin:1.5rem 0;border-radius:0 0.5rem 0.5rem 0;">

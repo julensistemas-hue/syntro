@@ -1,44 +1,59 @@
 ---
 import BlogLayout from "../../layouts/BlogLayout.astro";
+
+const faqs = [
+  {
+    question: "¿Por qué no puedo esperar a que la ley NIS2 española sea definitiva para prepararme?",
+    answer: "Implementar controles de seguridad NIS2 lleva meses. Cuando la ley entre en vigor habrá un período de inspecciones: las empresas preparadas las pasan sin problema; las que empiecen entonces pagarán multas y correrán. Además, un ciberataque no espera a que la ley esté aprobada."
+  },
+  {
+    question: "¿Qué es un gap analysis de NIS2?",
+    answer: "Un gap analysis de NIS2 es una evaluación que compara el estado actual de seguridad de tu empresa con los requisitos del artículo 21 de la directiva. Identifica qué medidas ya existen, cuáles están incompletas y qué hay que crear desde cero, generando una lista priorizada de brechas a cerrar."
+  },
+  {
+    question: "¿Cuánto cuesta cumplir NIS2 para una empresa mediana?",
+    answer: "Para una empresa mediana que parte de nivel básico: herramientas técnicas 5.000-30.000 €/año, servicios profesionales (gap analysis, políticas) 5.000-25.000 € de inversión inicial, auditoría externa 10.000-40.000 €, formación 1.000-5.000 €/año. Comparado con multas potenciales de hasta millones de euros, la inversión es racional."
+  },
+  {
+    question: "¿Quién debe ser el responsable de seguridad bajo NIS2?",
+    answer: "NIS2 exige designar un responsable de seguridad identificado con responsabilidades claras. No tiene que ser empleado a jornada completa. Para pymes, la figura del CISO virtual externo (consultor IT que ejerce de CISO) es perfectamente válida y mucho más asequible que contratar un CISO interno."
+  },
+  {
+    question: "¿Qué documentación hay que tener para demostrar el cumplimiento de NIS2?",
+    answer: "La documentación mínima incluye: política de seguridad aprobada por la dirección, resultados del análisis de riesgos, procedimiento de gestión de incidentes, plan de continuidad de negocio, contratos con proveedores con cláusulas de seguridad, registros de formación del personal y resultados de auditorías."
+  }
+];
 ---
 
 <BlogLayout
-  title="Plan de acción NIS2: cómo preparar tu empresa paso a paso (2026)"
-  description="Hoja de ruta práctica para cumplir la Directiva NIS2 en España. Gap analysis, priorización de medidas, plazos y checklist completo para empresas de todos los tamaños."
+  title="Plan de cumplimiento NIS2: pasos y checklist 2026"
+  description="Hoja de ruta para cumplir NIS2 en España. Gap analysis, priorización de medidas y checklist completo para empresas medianas y grandes."
   publishDate="2026-06-16"
   modifiedDate="2026-06-16"
   author="AI Security"
   readTime="12 min"
-  tags={["NIS2", "Plan de Acción", "Cumplimiento Normativo", "Checklist", "España"]}
-  canonical="https://aisecurity.es/blog/nis2-plan-accion-cumplimiento-empresas-espana">
+  tags={["NIS2", "Plan de Acción", "Checklist", "Cumplimiento Normativo", "España"]}
+  canonical="https://aisecurity.es/blog/nis2-plan-accion-cumplimiento-empresas-espana"
+  faqSchema={faqs}>
 
-  <p>Saber que NIS2 aplica a tu empresa es el primer paso. El segundo es hacer algo con esa información antes de que llegue una inspección o, peor, un ciberataque. Esta guía es un plan de trabajo concreto: qué hacer primero, qué documentar, cómo medir el progreso y cómo evitar los errores más comunes.</p>
+  <p>Saber que NIS2 aplica a tu empresa es el primer paso. El segundo es hacer algo con esa información antes de que llegue una inspección o, peor, un ciberataque. Esta guía es un plan de trabajo concreto: qué hacer primero, qué documentar, cómo medir el progreso y los errores más comunes.</p>
 
-  <h2>Por qué el "ya lo haré cuando salga la ley" es una mala estrategia</h2>
+  <h2>¿Por qué el "ya lo haré cuando salga la ley" es una mala estrategia?</h2>
 
-  <p>El argumento más habitual para no empezar es: "La ley española de transposición todavía no está aprobada, esperaré". El problema con ese razonamiento es múltiple:</p>
+  <p>El argumento más habitual para no empezar es: "La ley española de transposición todavía no está aprobada, esperaré". El problema es múltiple:</p>
 
   <ul>
     <li>Implementar controles de seguridad lleva tiempo. Un plan de continuidad de negocio serio no se hace en un fin de semana.</li>
     <li>Los cambios organizativos (formación, políticas, responsabilidades) son los que más tardan.</li>
-    <li>Cuando la ley entre en vigor, habrá un período de inspecciones. Las empresas preparadas pasarán sin problema. Las que empiecen entonces, no.</li>
+    <li>Cuando la ley entre en vigor, habrá inspecciones. Las empresas preparadas las pasan sin problema.</li>
     <li>Un ciberataque mientras esperas no tiene en cuenta si la ley está aprobada o no.</li>
   </ul>
 
   <p>La ventana actual es una oportunidad: puedes hacer las cosas bien en lugar de corriendo.</p>
 
-  <h2>Fase 1: Diagnóstico — ¿Dónde estás ahora?</h2>
+  <h2>¿Cómo hacer un gap analysis de NIS2?</h2>
 
-  <h3>Paso 1.1: Confirmar el ámbito de aplicación</h3>
-  <p>Antes de hacer nada más, confirma que NIS2 aplica a tu empresa y en qué categoría:</p>
-  <ul>
-    <li>¿Tu actividad principal está en los Anexos I o II? → <a href="/blog/nis2-a-quien-aplica-sectores-empresas-espana" style="color:#7c3aed;">Ver guía de sectores</a></li>
-    <li>¿Tienes 50+ empleados o más de 10 M€ de facturación?</li>
-    <li>¿Eres entidad esencial o importante? (determina el nivel de supervisión)</li>
-  </ul>
-
-  <h3>Paso 1.2: Gap analysis — análisis de brechas</h3>
-  <p>El gap analysis es la herramienta central del plan. Consiste en comparar tu estado actual con lo que exige NIS2 y documentar las diferencias. Para cada una de las 10 medidas del artículo 21, necesitas saber:</p>
+  <p>El gap analysis es la herramienta central del plan. Compara tu estado actual con lo que exige NIS2 y documenta las diferencias. Para cada una de las 10 medidas del artículo 21, necesitas saber:</p>
 
   <ul>
     <li>¿Existe alguna medida equivalente? ¿Está documentada?</li>
@@ -48,169 +63,140 @@ import BlogLayout from "../../layouts/BlogLayout.astro";
 
   <p>El resultado es una lista de brechas priorizada por criticidad y esfuerzo.</p>
 
-  <h3>Paso 1.3: Inventario de activos</h3>
-  <p>Sin saber qué tienes, no puedes protegerlo. El inventario de activos incluye:</p>
+  <h2>¿Qué inventario de activos hay que hacer para NIS2?</h2>
+
+  <p>Sin saber qué tienes, no puedes protegerlo. El inventario incluye:</p>
   <ul>
-    <li>Sistemas y servidores (físicos y virtuales, cloud incluido)</li>
+    <li>Sistemas y servidores (físicos, virtuales y cloud)</li>
     <li>Aplicaciones críticas para el negocio</li>
-    <li>Datos y bases de datos (con clasificación de sensibilidad)</li>
+    <li>Datos y bases de datos con clasificación de sensibilidad</li>
     <li>Dispositivos de red (routers, switches, firewalls)</li>
     <li>Dispositivos de usuario (portátiles, móviles)</li>
     <li>Proveedores tecnológicos y los sistemas que gestionan</li>
   </ul>
 
   <div style="background:rgba(99,102,241,0.12);border-left:4px solid #6366f1;padding:1rem;margin:1.5rem 0;border-radius:0 0.5rem 0.5rem 0;">
-    <p class="m-0" style="color:rgba(255,255,255,0.9);"><strong style="color:#a5b4fc;">Herramienta:</strong> Para empresas sin un SIEM implementado, Wazuh es una solución open source que combina monitorización de activos, detección de incidentes y cumplimiento normativo. <a href="/blog/que-es-wazuh-para-que-sirve" style="color:#7c3aed;">Qué es Wazuh y para qué sirve →</a></p>
+    <p class="m-0" style="color:rgba(255,255,255,0.9);"><strong style="color:#a5b4fc;">Herramienta:</strong> Para empresas sin SIEM implementado, Wazuh es una solución open source que combina monitorización de activos, detección de incidentes y cumplimiento normativo. <a href="/blog/que-es-wazuh-para-que-sirve" style="color:#7c3aed;">Qué es Wazuh →</a></p>
   </div>
 
-  <h2>Fase 2: Planificación — Construir la hoja de ruta</h2>
+  <h2>¿Cómo priorizar las brechas de cumplimiento NIS2?</h2>
 
-  <h3>Paso 2.1: Priorizar las brechas</h3>
-  <p>No todas las brechas son iguales. Usa una matriz de impacto vs esfuerzo para priorizar:</p>
+  <p>No todas las brechas son iguales. Una matriz de impacto vs esfuerzo te ayuda a priorizar:</p>
 
   <ul>
-    <li><strong>Alta prioridad, bajo esfuerzo</strong>: activar MFA, revisar backups, actualizar software crítico → hacer ya</li>
+    <li><strong>Alta prioridad, bajo esfuerzo</strong>: activar MFA, verificar backups, parchear sistemas críticos → hacer ya</li>
     <li><strong>Alta prioridad, alto esfuerzo</strong>: plan de continuidad, análisis de riesgos, seguridad en contratos → planificar con recursos</li>
-    <li><strong>Baja prioridad, bajo esfuerzo</strong>: documentar políticas existentes, registrar incidentes menores → hacer en segunda oleada</li>
+    <li><strong>Baja prioridad, bajo esfuerzo</strong>: documentar políticas existentes → segunda oleada</li>
     <li><strong>Baja prioridad, alto esfuerzo</strong>: mejoras de largo plazo → planificar con más tiempo</li>
   </ul>
 
-  <h3>Paso 2.2: Asignar responsabilidades</h3>
-  <p>NIS2 requiere que haya personas identificadas con responsabilidades claras en ciberseguridad. Para muchas empresas esto implicará:</p>
+  <h2>¿A quién hay que asignar la responsabilidad de seguridad NIS2?</h2>
+
+  <p>NIS2 requiere personas identificadas con responsabilidades claras. Para muchas empresas esto implica:</p>
   <ul>
-    <li>Designar un responsable de seguridad (puede ser interno o un CISO virtual externo)</li>
-    <li>Definir qué rol aprueba las políticas (normalmente dirección o el consejo)</li>
+    <li>Designar un responsable de seguridad (interno o CISO virtual externo)</li>
+    <li>Definir qué rol aprueba las políticas (normalmente dirección o consejo)</li>
     <li>Establecer quién notifica incidentes a las autoridades</li>
-    <li>Definir el comité o persona que activa el plan de crisis</li>
+    <li>Definir quién activa el plan de crisis</li>
   </ul>
 
-  <h3>Paso 2.3: Estimar el presupuesto</h3>
-  <p>El coste de cumplir NIS2 varía enormemente según el punto de partida. Para una empresa mediana que parte de un nivel de seguridad básico:</p>
+  <h2>¿Cuánto cuesta cumplir NIS2 para una empresa mediana?</h2>
+
+  <p>El coste varía según el punto de partida. Para una empresa mediana que parte de nivel básico:</p>
   <ul>
-    <li><strong>Herramientas técnicas</strong>: SIEM/monitorización, MFA, gestión de parches → 5.000–30.000 €/año</li>
-    <li><strong>Servicios profesionales</strong>: gap analysis, políticas, formación → 5.000–25.000 € (inversión inicial)</li>
+    <li><strong>Herramientas técnicas</strong> (SIEM, MFA, gestión de parches): 5.000–30.000 €/año</li>
+    <li><strong>Servicios profesionales</strong> (gap analysis, políticas, formación): 5.000–25.000 € (inversión inicial)</li>
     <li><strong>Auditoría externa</strong> (entidades esenciales): 10.000–40.000 € según tamaño</li>
     <li><strong>Formación del personal</strong>: 1.000–5.000 €/año</li>
   </ul>
 
-  <p>Comparado con las multas potenciales de NIS2 (desde 140.000 € hasta millones), la inversión en cumplimiento es racional.</p>
+  <p>Comparado con las multas potenciales (desde 100.000 € hasta millones), la inversión en cumplimiento es completamente racional.</p>
 
-  <h2>Fase 3: Implementación — Ejecutar el plan</h2>
+  <h2>¿Cuál es el plan de implementación por fases?</h2>
 
-  <h3>Bloque A: Gobernanza (mes 1–2)</h3>
+  <h3>¿Qué hacer en los primeros 2 meses (gobernanza)?</h3>
   <ul>
-    <li>Política de seguridad de la información aprobada por dirección</li>
-    <li>Designación del responsable de seguridad</li>
+    <li>Política de seguridad aprobada por dirección</li>
+    <li>Responsable de seguridad designado</li>
     <li>Procedimiento de gestión de incidentes con plazos NIS2</li>
     <li>Formación inicial para la dirección sobre NIS2 y sus responsabilidades</li>
   </ul>
 
-  <h3>Bloque B: Controles técnicos urgentes (mes 1–3)</h3>
+  <h3>¿Qué controles técnicos urgentes hay que activar en los primeros 3 meses?</h3>
   <ul>
-    <li>Activar MFA en sistemas críticos y acceso remoto</li>
-    <li>Verificar que las copias de seguridad funcionan (restauración de prueba)</li>
-    <li>Actualizar sistemas con vulnerabilidades críticas conocidas</li>
-    <li>Revisar cuentas con privilegios excesivos (principio de mínimo privilegio)</li>
-    <li>Activar logs en sistemas críticos y asegurarse de que se retienen</li>
+    <li>MFA en sistemas críticos y acceso remoto</li>
+    <li>Verificación de copias de seguridad (restauración de prueba)</li>
+    <li>Parches de seguridad en sistemas con vulnerabilidades críticas conocidas</li>
+    <li>Revisión de cuentas con privilegios excesivos</li>
+    <li>Activación de logs en sistemas críticos</li>
   </ul>
 
-  <h3>Bloque C: Procesos y documentación (mes 2–4)</h3>
+  <h3>¿Qué procesos y documentación hay que tener en el mes 4?</h3>
   <ul>
-    <li>Completar el inventario de activos</li>
+    <li>Inventario de activos completo</li>
     <li>Análisis de riesgos formal (puede ser simplificado para medianas empresas)</li>
     <li>Plan de continuidad de negocio básico</li>
-    <li>Revisión de contratos con proveedores tecnológicos: añadir cláusulas de seguridad</li>
-    <li>Política de uso aceptable de sistemas</li>
-    <li>Política de gestión de contraseñas y MFA</li>
+    <li>Revisión de contratos con proveedores tecnológicos</li>
+    <li>Políticas de uso aceptable y gestión de contraseñas</li>
   </ul>
 
-  <h3>Bloque D: Formación y cultura (mes 3–6)</h3>
+  <h3>¿Cómo abordar la formación y cultura de seguridad en el mes 6?</h3>
   <ul>
     <li>Formación en ciberseguridad para todos los empleados</li>
     <li>Simulaciones de phishing</li>
     <li>Formación específica para el personal técnico</li>
-    <li>Comunicar al equipo qué es NIS2 y qué cambia</li>
+    <li>Comunicar al equipo qué es NIS2 y qué cambia en su día a día</li>
   </ul>
 
-  <h3>Bloque E: Verificación y mejora continua (mes 6+)</h3>
+  <h2>¿Cuál es el checklist completo de cumplimiento NIS2?</h2>
+
+  <h3>¿Qué hay que tener en gobernanza?</h3>
   <ul>
-    <li>Auditoría interna de cumplimiento</li>
-    <li>Test de penetración en sistemas críticos</li>
-    <li>Revisión del plan de continuidad con simulacro</li>
-    <li>Registro ante la autoridad competente (cuando el procedimiento esté disponible)</li>
-  </ul>
-
-  <h2>Checklist de cumplimiento NIS2</h2>
-
-  <p>Usa esta lista para hacer seguimiento del progreso:</p>
-
-  <h3>Gobernanza</h3>
-  <ul>
-    <li>☐ Confirmado que NIS2 aplica y en qué categoría</li>
+    <li>☐ Confirmado si aplica NIS2 y en qué categoría</li>
     <li>☐ Responsable de seguridad designado</li>
-    <li>☐ Dirección formada y comprometida</li>
+    <li>☐ Dirección formada y comprometida formalmente</li>
     <li>☐ Política de seguridad aprobada por dirección</li>
     <li>☐ Procedimiento de notificación de incidentes documentado</li>
   </ul>
 
-  <h3>Análisis de riesgos</h3>
-  <ul>
-    <li>☐ Inventario de activos actualizado</li>
-    <li>☐ Gap analysis realizado</li>
-    <li>☐ Análisis de riesgos formal documentado</li>
-    <li>☐ Riesgos priorizados y asignados</li>
-  </ul>
-
-  <h3>Controles técnicos</h3>
+  <h3>¿Qué controles técnicos son obligatorios?</h3>
   <ul>
     <li>☐ MFA activado en sistemas críticos y acceso remoto</li>
-    <li>☐ Copias de seguridad verificadas y proceso de restauración probado</li>
+    <li>☐ Copias de seguridad verificadas con restauración probada</li>
     <li>☐ Cifrado de datos sensibles en reposo y en tránsito</li>
     <li>☐ Gestión de parches al día en sistemas críticos</li>
     <li>☐ Monitorización y logs centralizados</li>
     <li>☐ Control de accesos con principio de mínimo privilegio</li>
   </ul>
 
-  <h3>Continuidad</h3>
+  <h3>¿Qué documentación de riesgos y continuidad hay que tener?</h3>
   <ul>
+    <li>☐ Inventario de activos actualizado</li>
+    <li>☐ Análisis de riesgos formal documentado</li>
     <li>☐ Plan de continuidad de negocio documentado</li>
     <li>☐ Plan de recuperación ante desastres con RTO/RPO definidos</li>
     <li>☐ Simulacro de crisis realizado</li>
   </ul>
 
-  <h3>Cadena de suministro</h3>
+  <h3>¿Qué hay que revisar en la cadena de suministro?</h3>
   <ul>
     <li>☐ Inventario de proveedores tecnológicos críticos</li>
     <li>☐ Evaluación de seguridad de proveedores críticos</li>
-    <li>☐ Contratos actualizados con cláusulas de seguridad</li>
+    <li>☐ Contratos actualizados con cláusulas de seguridad NIS2</li>
   </ul>
 
-  <h3>Formación</h3>
-  <ul>
-    <li>☐ Formación anual para todos los empleados</li>
-    <li>☐ Simulaciones de phishing realizadas</li>
-    <li>☐ Registro de participación en formaciones</li>
-  </ul>
-
-  <h3>Registro y auditoría</h3>
-  <ul>
-    <li>☐ Registro ante la autoridad competente</li>
-    <li>☐ Auditoría interna realizada</li>
-    <li>☐ Auditoría externa realizada (entidades esenciales)</li>
-  </ul>
-
-  <h2>Los errores más comunes en la preparación NIS2</h2>
+  <h2>¿Cuáles son los errores más comunes en la preparación de NIS2?</h2>
 
   <ol>
-    <li><strong>Tratar NIS2 como un proyecto de IT, no como un proyecto de negocio.</strong> La dirección tiene que estar involucrada desde el principio. Si el CEO o el consejo no aprueban las políticas, la empresa no cumple NIS2.</li>
-    <li><strong>Olvidar la documentación.</strong> Puedes tener todos los controles técnicos del mundo, pero si no puedes demostrarlo con documentos, desde el punto de vista de la inspección es como si no los tuvieras.</li>
-    <li><strong>Ignorar los proveedores.</strong> El 60% de los ciberataques graves en empresas llegan a través de un proveedor comprometido. NIS2 obliga a gestionarlo.</li>
-    <li><strong>No probar los backups.</strong> Tener backups que no has restaurado nunca es casi tan malo como no tenerlos. El día del incidente no es el momento de descubrir que el backup está corrupto.</li>
-    <li><strong>Hacer la formación "para cumplir el expediente".</strong> Una formación de 20 minutos al año que nadie recuerda no protege a nadie y no demuestra cultura de seguridad ante una inspección.</li>
+    <li><strong>Tratar NIS2 como un proyecto de IT, no de negocio.</strong> La dirección tiene que estar involucrada desde el principio.</li>
+    <li><strong>Olvidar la documentación.</strong> Los controles sin documentar no existen desde el punto de vista de la inspección.</li>
+    <li><strong>Ignorar los proveedores.</strong> El 60% de los ciberataques graves llegan a través de un proveedor comprometido.</li>
+    <li><strong>No probar los backups.</strong> Descubrir que el backup está corrupto el día del incidente es un error muy frecuente.</li>
+    <li><strong>Hacer la formación "para cumplir el expediente".</strong> Una formación de 20 minutos al año no protege y no demuestra cultura de seguridad.</li>
   </ol>
 
   <div style="background:rgba(16,185,129,0.12);border-left:4px solid #10b981;padding:1rem;margin:1.5rem 0;border-radius:0 0.5rem 0.5rem 0;">
-    <p class="m-0" style="color:rgba(255,255,255,0.9);"><strong style="color:#6ee7b7;">¿Necesitas ayuda con el plan?</strong> En AI Security hacemos el gap analysis inicial, diseñamos el plan de cumplimiento y lo acompañamos en la implementación. <a href="/reunion" style="color:#7c3aed;">Consulta gratuita sin compromiso →</a></p>
+    <p class="m-0" style="color:rgba(255,255,255,0.9);"><strong style="color:#6ee7b7;">¿Necesitas ayuda con el plan?</strong> En AI Security hacemos el gap analysis inicial, diseñamos el plan de cumplimiento y lo acompañamos en la implementación. <a href="/reunion" style="color:#7c3aed;">Consulta gratuita →</a></p>
   </div>
 
 </BlogLayout>
