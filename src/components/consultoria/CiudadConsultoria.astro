@@ -510,7 +510,32 @@ const provincias = [
     });
   }
 
-  document.addEventListener('DOMContentLoaded', () => selectDep('desarrollo'));
-  if (document.readyState === 'complete' || document.readyState === 'interactive') { selectDep('desarrollo'); }
+  let ccStarted = false;
+  function ccInit() {
+    if (ccStarted) return; ccStarted = true;
+    selectDep('desarrollo');
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) return;
+    const ids = departamentos.map(d => d.id);
+    function ccNext() { const i = ids.indexOf(activeId); selectDep(ids[(i + 1) % ids.length]); }
+    let autoTimer = setInterval(ccNext, 10000);
+    const parent = nodesGroup.closest('section');
+    if (parent) {
+      parent.addEventListener('mouseenter', () => { if (autoTimer) { clearInterval(autoTimer); autoTimer = null; } });
+      parent.addEventListener('mouseleave', () => { if (!autoTimer) autoTimer = setInterval(ccNext, 10000); });
+    }
+  }
+  document.addEventListener('DOMContentLoaded', ccInit);
+  if (document.readyState === 'complete' || document.readyState === 'interactive') { ccInit(); }
   }
 </script>
+
+<style is:global>
+  /* Animación del diagrama (aplica a los nodos SVG creados por JS) */
+  #nodes g { transition: transform .35s cubic-bezier(0.34,1.56,0.64,1), opacity .25s ease, filter .25s ease; transform-box: fill-box; transform-origin: center; }
+  #nodes g.cc-active { transform: scale(1.24); }
+  #lines line { transition: opacity .25s ease, stroke-width .25s ease; }
+  @keyframes ccDash { to { stroke-dashoffset: -22; } }
+  #lines line.cc-active { stroke-dasharray: 7 5; animation: ccDash .8s linear infinite; }
+  @media (prefers-reduced-motion: reduce){ #nodes g{ transition:none; } #lines line.cc-active{ animation:none; } }
+</style>

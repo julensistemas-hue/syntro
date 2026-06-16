@@ -10,22 +10,26 @@ interface Props {
   title: string;
   description: string;
   publishDate: string;
+  modifiedDate?: string;
   author?: string;
   readTime?: string;
   tags?: string[];
   canonical?: string;
   ogImage?: string;
+  faqSchema?: Array<{question: string; answer: string}>;
 }
 
 const {
   title,
   description,
   publishDate,
+  modifiedDate,
   author = "AI Security",
   readTime = "5 min",
   tags = [],
   canonical,
-  ogImage = "https://aisecurity.es/og-image.png"
+  ogImage = "https://aisecurity.es/og-image.png",
+  faqSchema
 } = Astro.props;
 
 const fullTitle = `${title} | Blog AI Security`;
@@ -63,7 +67,7 @@ const isWazuh = tags.some((t: string) => t.toLowerCase() === 'wazuh');
         }
       },
       "datePublished": publishDate,
-      "dateModified": publishDate,
+      "dateModified": modifiedDate || publishDate,
       "mainEntityOfPage": {
         "@type": "WebPage",
         "@id": canonical
@@ -71,6 +75,20 @@ const isWazuh = tags.some((t: string) => t.toLowerCase() === 'wazuh');
       "image": ogImage,
       "keywords": tags.join(", ")
     })} />
+    {faqSchema && faqSchema.length > 0 && (
+      <script is:inline type="application/ld+json" set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": faqSchema.map((faq: {question: string; answer: string}) => ({
+          "@type": "Question",
+          "name": faq.question,
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": faq.answer
+          }
+        }))
+      })} />
+    )}
   </head>
   <body class="flex flex-col min-h-svh">
     <Navigation />

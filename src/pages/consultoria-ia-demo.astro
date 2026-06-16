@@ -464,6 +464,7 @@ const PLAYER_H = 1.6;         // altura del personaje sobre el suelo
 const WALK_SPEED = 0.9;       // rad/s tangencial (se divide por R internamente)
 const TURN_SPEED = 1.9;       // rad/s de giro
 const INTERACT_ANGLE = 0.20;  // distancia angular para poder hablar
+const RELIEF = 0.06;          // relieve del suelo (casi plano: es una oficina)
 
 const canvas = document.getElementById('planet-canvas');
 const stage = document.getElementById('demo-stage');
@@ -510,27 +511,27 @@ function valueNoise(v) {
   );
 }
 
+// Suelo de oficina: esfera casi lisa, gris azulado corporativo (moqueta)
 const planetGeo = new THREE.IcosahedronGeometry(R, 9);
 {
   const pos = planetGeo.attributes.position;
   const v = new THREE.Vector3();
   for (let i = 0; i < pos.count; i++) {
     v.fromBufferAttribute(pos, i).normalize();
-    const h = valueNoise(v) * 0.5; // relieve suave
-    const r = R + h;
+    const r = R + valueNoise(v) * RELIEF; // casi plano
     pos.setXYZ(i, v.x * r, v.y * r, v.z * r);
   }
   planetGeo.computeVertexNormals();
 }
-const planet = new THREE.Mesh(planetGeo, toon(0x2e8b57, { flatShading: true }));
+const planet = new THREE.Mesh(planetGeo, toon(0x33384a, { flatShading: true }));
 scene.add(planet);
 
-// Océano / base brillante un pelín por debajo del relieve
-const ocean = new THREE.Mesh(
-  new THREE.IcosahedronGeometry(R - 0.25, 4),
-  toon(0x1e5fa8, { flatShading: true })
+// Canto sólido del "edificio-planeta" bajo el suelo
+const base = new THREE.Mesh(
+  new THREE.IcosahedronGeometry(R - 0.6, 3),
+  toon(0x21263a, { flatShading: true })
 );
-scene.add(ocean);
+scene.add(base);
 
 // Atmósfera (glow)
 const atmo = new THREE.Mesh(
@@ -561,7 +562,7 @@ function alignToSurface(obj, dir) {
 }
 // altura real del terreno en una dirección dada (para posar objetos)
 function surfaceRadius(dir) {
-  return R + valueNoise(dir.clone().normalize()) * 0.5;
+  return R + valueNoise(dir.clone().normalize()) * RELIEF;
 }
 
 // ============================================================
@@ -596,11 +597,24 @@ function buildStation(dep, dir) {
 
   const accent = new THREE.Color(dep.color);
 
-  // Plataforma circular
-  const pad = new THREE.Mesh(new THREE.CylinderGeometry(3.4, 3.6, 0.4, 24), toon(0x3a4060));
-  pad.position.y = 0.2; group.add(pad);
+  // Plataforma del puesto (baldosa de oficina)
+  const pad = new THREE.Mesh(new THREE.CylinderGeometry(3.4, 3.6, 0.3, 24), toon(0x424a63));
+  pad.position.y = 0.15; group.add(pad);
   const ring = new THREE.Mesh(new THREE.TorusGeometry(3.4, 0.12, 8, 32), toon(accent));
-  ring.rotation.x = Math.PI / 2; ring.position.y = 0.42; group.add(ring);
+  ring.rotation.x = Math.PI / 2; ring.position.y = 0.32; group.add(ring);
+
+  // Mamparas de cubículo (trasera + laterales) con remate del color del depto
+  const partMat = toon(0x4c5470);
+  const wallBack = new THREE.Mesh(boxGeo, partMat);
+  wallBack.scale.set(4.8, 2.1, 0.16); wallBack.position.set(0, 1.2, -1.9); group.add(wallBack);
+  const trim = new THREE.Mesh(boxGeo, toon(accent));
+  trim.scale.set(4.8, 0.14, 0.2); trim.position.set(0, 2.28, -1.9); group.add(trim);
+  for (const sx of [-1, 1]) {
+    const wall = new THREE.Mesh(boxGeo, partMat);
+    wall.scale.set(0.16, 2.1, 3.2); wall.position.set(sx * 2.35, 1.2, -0.5); group.add(wall);
+    const t = new THREE.Mesh(boxGeo, toon(accent));
+    t.scale.set(0.2, 0.14, 3.2); t.position.set(sx * 2.35, 2.28, -0.5); group.add(t);
+  }
 
   // Mesa
   const desk = new THREE.Mesh(boxGeo, deskMat);
@@ -700,38 +714,60 @@ function roundRect(ctx, x, y, w, h, r) {
 const stations = departamentos.map((dep, i) => buildStation(dep, anchors[i]));
 
 // ============================================================
-//  VEGETACIÓN (instancing) — árboles low-poly esparcidos
+//  MOBILIARIO DE OFICINA (instancing) — plantas, archivadores, dispensadores
 // ============================================================
 {
-  const N = 160;
-  const trunkMat = toon(0x6b4f2a);
-  const leafMat = toon(0x2f8f4f, { flatShading: true });
-  const trunk = new THREE.InstancedMesh(new THREE.CylinderGeometry(0.12, 0.16, 0.8, 6), trunkMat, N);
-  const leaf = new THREE.InstancedMesh(new THREE.ConeGeometry(0.7, 1.6, 7), leafMat, N);
-  const dummy = new THREE.Object3D();
+  // Posiciones esparcidas que no pisen los departamentos
+  const TOTAL = 78;
+  const spots = [];
   const dir = new THREE.Vector3();
-  let placed = 0, tries = 0;
-  while (placed < N && tries < N * 6) {
+  let tries = 0;
+  while (spots.length < TOTAL && tries < TOTAL * 6) {
     tries++;
     dir.set(Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5).normalize();
-    // no plantar encima de los departamentos
     let tooClose = false;
-    for (const a of anchors) if (dir.angleTo(a) < 0.28) { tooClose = true; break; }
+    for (const a of anchors) if (dir.angleTo(a) < 0.27) { tooClose = true; break; }
     if (tooClose) continue;
-    const rT = surfaceRadius(dir);
-    const s = 0.7 + Math.random() * 0.9;
-    // tronco
-    dummy.position.copy(dir).multiplyScalar(rT + 0.4 * s);
-    dummy.quaternion.setFromUnitVectors(UP_Y, dir);
-    dummy.scale.setScalar(s);
-    dummy.updateMatrix(); trunk.setMatrixAt(placed, dummy.matrix);
-    // copa
-    dummy.position.copy(dir).multiplyScalar(rT + 1.2 * s);
-    dummy.updateMatrix(); leaf.setMatrixAt(placed, dummy.matrix);
-    placed++;
+    spots.push({ dir: dir.clone(), yaw: Math.random() * Math.PI * 2, s: 0.85 + Math.random() * 0.4 });
   }
-  trunk.count = leaf.count = placed;
-  scene.add(trunk); scene.add(leaf);
+
+  const dummy = new THREE.Object3D();
+  function placeOn(mesh, list, lift) {
+    list.forEach((p, i) => {
+      const rT = surfaceRadius(p.dir);
+      dummy.position.copy(p.dir).multiplyScalar(rT + lift * p.s);
+      dummy.quaternion.setFromUnitVectors(UP_Y, p.dir);
+      dummy.rotateY(p.yaw);
+      dummy.scale.setScalar(p.s);
+      dummy.updateMatrix();
+      mesh.setMatrixAt(i, dummy.matrix);
+    });
+    mesh.count = list.length;
+    mesh.instanceMatrix.needsUpdate = true;
+    scene.add(mesh);
+  }
+
+  // Reparto: 1/3 plantas, 1/3 archivadores, 1/3 dispensadores
+  const plants = spots.filter((_, i) => i % 3 === 0);
+  const cabinets = spots.filter((_, i) => i % 3 === 1);
+  const coolers = spots.filter((_, i) => i % 3 === 2);
+
+  // Plantas de interior: maceta + copa redonda
+  const pot = new THREE.InstancedMesh(new THREE.CylinderGeometry(0.28, 0.34, 0.55, 8), toon(0x8a5a3c), plants.length);
+  const bush = new THREE.InstancedMesh(new THREE.IcosahedronGeometry(0.5, 0), toon(0x2f8f4f, { flatShading: true }), plants.length);
+  placeOn(pot, plants, 0.27);
+  placeOn(bush, plants, 0.95);
+
+  // Archivadores (cajoneras)
+  const cab = new THREE.InstancedMesh(new THREE.BoxGeometry(0.8, 1.1, 0.6), toon(0x59607d), cabinets.length);
+  placeOn(cab, cabinets, 0.55);
+
+  // Dispensadores de agua (columna + garrafa azul)
+  const colMat = toon(0xd9dee8), jugMat = toon(0x4f9fe0);
+  const col = new THREE.InstancedMesh(new THREE.BoxGeometry(0.45, 1.0, 0.45), colMat, coolers.length);
+  const jug = new THREE.InstancedMesh(new THREE.CylinderGeometry(0.22, 0.26, 0.5, 8), jugMat, coolers.length);
+  placeOn(col, coolers, 0.5);
+  placeOn(jug, coolers, 1.2);
 }
 
 // ============================================================

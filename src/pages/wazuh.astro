@@ -304,10 +304,10 @@ const canonical = "https://aisecurity.es/wazuh";
           Implementamos Wazuh listo para detectar y bloquear amenazas desde el primer día, configurado para el ENS y sin curva de aprendizaje para tu equipo.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 mb-6">
-          <a href="#demo" class="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-xl transition-all duration-200 hover:-translate-y-1" style="background:linear-gradient(135deg,#3b82f6,#6366f1);color:white;box-shadow:0 4px 32px rgba(99,102,241,0.4);">
+          <button type="button" id="wazuh-demo-btn" class="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-xl transition-all duration-200 hover:-translate-y-1" style="background:linear-gradient(135deg,#3b82f6,#6366f1);color:white;box-shadow:0 4px 32px rgba(99,102,241,0.4);cursor:pointer;">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
             Ver Demo Interactiva
-          </a>
+          </button>
           <a href="/presupuesto?plan=wazuh-consultoria" class="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-xl border transition-all duration-200 hover:-translate-y-1" style="border-color:rgba(255,255,255,0.12);color:white;background:rgba(255,255,255,0.04);">
             Consulta Gratuita
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
@@ -1210,7 +1210,89 @@ const canonical = "https://aisecurity.es/wazuh";
       { "@type": "Question", "name": "¿Qué pasa si ya tengo Wazuh instalado pero necesito ayuda?", "acceptedAnswer": { "@type": "Answer", "text": "Podemos auditar tu instalación actual, identificar mejoras, configurar cumplimiento ENS u ofrecer soporte continuo adaptado a tu caso específico." } }
     ]
   }`}</script>
+
+  <!-- ══ MODAL: solicitar demo de Wazuh ══ -->
+  <div id="wazuh-demo-modal" class="fixed inset-0 z-[9998] hidden items-center justify-center p-4" style="background:rgba(2,6,16,0.78);backdrop-filter:blur(4px);">
+    <div id="wazuh-demo-card" role="dialog" aria-modal="true" aria-label="Solicitar demo de Wazuh" style="width:min(460px,calc(100vw - 2rem));background:linear-gradient(155deg,#0b1020 0%,#111a33 60%,#0b1020 100%);border:1px solid rgba(99,102,241,0.35);border-radius:20px;box-shadow:0 30px 80px rgba(0,0,0,0.7),0 0 60px -20px rgba(99,102,241,0.5);overflow:hidden;">
+      <div style="height:4px;background:linear-gradient(90deg,#3b82f6,#6366f1,#a78bfa);"></div>
+      <div style="padding:1.8rem 1.8rem 2rem;position:relative;">
+        <button id="wazuh-demo-close" type="button" aria-label="Cerrar" style="position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:#94a3b8;cursor:pointer;display:flex;align-items:center;justify-content:center;">✕</button>
+
+        <div style="width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:rgba(99,102,241,0.15);border:1px solid rgba(99,102,241,0.35);margin-bottom:16px;">
+          <svg width="26" height="26" fill="none" stroke="#818cf8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+        </div>
+
+        <h3 style="font-size:1.35rem;font-weight:800;color:#f0f6ff;margin:0 0 8px;line-height:1.2;">Demo funcional de Wazuh</h3>
+        <p style="font-size:0.92rem;line-height:1.6;color:#94a3b8;margin:0 0 18px;">Déjanos tu email y nos pondremos en contacto contigo para enseñarte una <strong style="color:#cbd5e1;">demo funcional</strong> y ver en directo los usos de Wazuh en tu empresa.</p>
+
+        <form id="wazuh-demo-form">
+          <input type="email" id="wazuh-demo-email" name="email" required placeholder="tu@empresa.com" autocomplete="email"
+            style="width:100%;padding:13px 16px;border-radius:12px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.14);color:#f0f6ff;font-size:0.95rem;outline:none;margin-bottom:12px;" />
+          <div id="wazuh-demo-msg" style="display:none;font-size:0.85rem;margin-bottom:12px;"></div>
+          <button type="submit" id="wazuh-demo-submit"
+            style="width:100%;padding:14px;border-radius:12px;border:none;cursor:pointer;font-weight:800;font-size:0.95rem;color:#fff;background:linear-gradient(135deg,#3b82f6,#6366f1);box-shadow:0 10px 30px -10px rgba(99,102,241,0.7);">
+            Quiero ver la demo →
+          </button>
+        </form>
+        <p style="font-size:0.72rem;color:#64748b;text-align:center;margin:14px 0 0;">Sin compromiso · Solo te contactamos para la demo</p>
+      </div>
+    </div>
+  </div>
 </WazuhLayout>
+
+<script>
+  (function () {
+    const modal = document.getElementById('wazuh-demo-modal');
+    const card = document.getElementById('wazuh-demo-card');
+    const openBtn = document.getElementById('wazuh-demo-btn');
+    const closeBtn = document.getElementById('wazuh-demo-close');
+    const form = document.getElementById('wazuh-demo-form');
+    const emailInput = document.getElementById('wazuh-demo-email');
+    const submitBtn = document.getElementById('wazuh-demo-submit');
+    const msg = document.getElementById('wazuh-demo-msg');
+    if (!modal || !openBtn) return;
+
+    function open() { modal.classList.remove('hidden'); modal.classList.add('flex'); document.body.style.overflow = 'hidden'; setTimeout(() => emailInput && emailInput.focus(), 50); }
+    function close() { modal.classList.add('hidden'); modal.classList.remove('flex'); document.body.style.overflow = ''; }
+
+    openBtn.addEventListener('click', open);
+    closeBtn && closeBtn.addEventListener('click', close);
+    modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+
+    form && form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = (emailInput.value || '').trim();
+      msg.style.display = 'none';
+      if (!email || !email.includes('@')) {
+        emailInput.style.borderColor = 'rgba(239,68,68,0.6)';
+        return;
+      }
+      emailInput.style.borderColor = 'rgba(255,255,255,0.14)';
+      submitBtn.disabled = true; submitBtn.textContent = 'Enviando...';
+      try {
+        const fd = new FormData();
+        fd.append('email', email);
+        const res = await fetch('/api/demo-wazuh', { method: 'POST', body: fd });
+        if (res.ok) {
+          form.style.display = 'none';
+          msg.style.display = 'block';
+          msg.style.color = '#6ee7b7';
+          msg.innerHTML = '✓ ¡Recibido! Nos pondremos en contacto contigo muy pronto para enseñarte la demo funcional de Wazuh.';
+        } else {
+          const d = await res.json().catch(() => ({}));
+          msg.style.display = 'block'; msg.style.color = '#fca5a5';
+          msg.textContent = d.error || 'No se pudo enviar. Inténtalo de nuevo.';
+          submitBtn.disabled = false; submitBtn.textContent = 'Quiero ver la demo →';
+        }
+      } catch {
+        msg.style.display = 'block'; msg.style.color = '#fca5a5';
+        msg.textContent = 'Error de conexión. Escríbenos a info@aisecurity.es';
+        submitBtn.disabled = false; submitBtn.textContent = 'Quiero ver la demo →';
+      }
+    });
+  })();
+</script>
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {

@@ -1,48 +1,72 @@
 ---
 import BlogLayout from "../../layouts/BlogLayout.astro";
+
+const faqs = [
+  {
+    question: "¿A quién aplica la Directiva NIS2 en España?",
+    answer: "NIS2 aplica a empresas con 50 o más empleados o más de 10 M€ de facturación que operen en alguno de los 18 sectores de los Anexos I y II. También obliga independientemente del tamaño a MSP, DNS, proveedores de servicios de confianza, cloud y redes de comunicaciones."
+  },
+  {
+    question: "¿Cuántas empresas están afectadas por NIS2 en España?",
+    answer: "Se estima que entre 5.000 y 50.000 entidades en España podrían estar afectadas por NIS2, frente a los aproximadamente 500 operadores que cubrió NIS1."
+  },
+  {
+    question: "¿Las pymes están obligadas por NIS2?",
+    answer: "Las pymes pequeñas (menos de 50 empleados y menos de 10 M€) generalmente están excluidas de NIS2 salvo excepciones: proveedores únicos de servicios esenciales, entidades con impacto sistémico, DNS, servicios de confianza o proveedores de comunicaciones. Además, si son proveedoras de entidades obligadas, sufrirán presión contractual indirecta."
+  },
+  {
+    question: "¿Cuál es la diferencia entre entidad esencial e importante en NIS2?",
+    answer: "Las entidades esenciales son grandes empresas del Anexo I. Tienen supervisión activa con inspecciones regulares y auditorías cada 2 años, y multas de hasta 10 M€ o 2% de facturación. Las entidades importantes son medianas empresas de cualquier Anexo, con supervisión reactiva y multas de hasta 7 M€ o 1,4% de facturación."
+  },
+  {
+    question: "¿Los MSP y proveedores cloud están obligados por NIS2?",
+    answer: "Sí. Los proveedores de servicios gestionados (MSP), proveedores de seguridad gestionada (MSSP), servicios cloud, centros de datos y CDN están directamente en el Anexo I de NIS2 como 'infraestructura digital' o 'gestión de servicios TIC'. Si superan 50 empleados o 10 M€ de facturación, están obligados."
+  }
+];
 ---
 
 <BlogLayout
-  title="¿A quién aplica la NIS2 en España? Sectores y criterios de tamaño"
-  description="Descubre si tu empresa está obligada por la Directiva NIS2. Lista completa de los 18 sectores afectados, criterios de empleados y facturación, y diferencia entre entidades esenciales e importantes."
+  title="¿A quién aplica la NIS2 en España? Guía 2026"
+  description="Lista de los 18 sectores NIS2, criterios de tamaño y diferencia entre entidades esenciales e importantes. Comprueba si tu empresa está obligada."
   publishDate="2026-06-16"
   modifiedDate="2026-06-16"
   author="AI Security"
   readTime="11 min"
-  tags={["NIS2", "Sectores Afectados", "Cumplimiento Normativo", "España", "Entidades Esenciales"]}
-  canonical="https://aisecurity.es/blog/nis2-a-quien-aplica-sectores-empresas-espana">
+  tags={["NIS2", "Sectores Afectados", "Entidades Esenciales", "España"]}
+  canonical="https://aisecurity.es/blog/nis2-a-quien-aplica-sectores-empresas-espana"
+  faqSchema={faqs}>
 
-  <p>La primera pregunta que tiene que hacerse cualquier empresa cuando escucha "NIS2" es: <em>¿me afecta a mí?</em> La respuesta depende de dos cosas: el sector en el que operas y el tamaño de tu organización. Esta guía explica exactamente cómo funciona ese filtro, sector por sector.</p>
+  <p>La primera pregunta que tiene que hacerse cualquier empresa cuando escucha "NIS2" es: <em>¿me afecta a mí?</em> La respuesta depende de dos cosas: el sector en el que operas y el tamaño de tu organización. Esta guía explica exactamente cómo funciona ese filtro, con la lista completa de los 18 sectores.</p>
 
-  <h2>El sistema de doble filtro de NIS2</h2>
+  <h2>¿Cómo determina NIS2 quién está obligado?</h2>
 
-  <p>A diferencia de normas como el RGPD, que aplica a prácticamente cualquier empresa que trate datos personales, NIS2 usa dos criterios acumulativos:</p>
+  <p>A diferencia del RGPD, que aplica a prácticamente cualquier empresa que trate datos personales, NIS2 usa dos criterios acumulativos:</p>
 
   <ol>
     <li><strong>Sector</strong>: tu actividad principal tiene que estar en los Anexos I o II de la directiva</li>
     <li><strong>Tamaño</strong>: tienes que superar los umbrales de empleados o facturación (con excepciones importantes)</li>
   </ol>
 
-  <p>Si no cumples ambos, en principio no estás directamente obligada. Aunque, como veremos, la cadena de suministro puede arrastrarte de todas formas.</p>
+  <p>Si no cumples ambos, en principio no estás directamente obligada. Aunque la cadena de suministro puede arrastrarte de todas formas.</p>
 
-  <h2>El criterio de tamaño: ¿cuándo aplica NIS2?</h2>
+  <h2>¿Qué criterio de tamaño usa NIS2?</h2>
 
   <p>NIS2 usa la clasificación europea de tamaño de empresa:</p>
 
   <ul>
-    <li><strong>Microempresa</strong>: menos de 10 empleados y menos de 2 M€ de facturación → <em>generalmente excluida</em></li>
-    <li><strong>Pequeña empresa</strong>: 10–49 empleados o 2–10 M€ de facturación → <em>generalmente excluida</em> (salvo excepciones)</li>
-    <li><strong>Mediana empresa</strong>: 50–249 empleados o 10–50 M€ de facturación → <em>puede estar obligada</em> como entidad importante</li>
-    <li><strong>Gran empresa</strong>: 250+ empleados o más de 50 M€ de facturación → <em>puede estar obligada</em> como entidad esencial o importante</li>
+    <li><strong>Microempresa</strong>: menos de 10 empleados y menos de 2 M€ → <em>excluida</em></li>
+    <li><strong>Pequeña empresa</strong>: 10–49 empleados o 2–10 M€ → <em>excluida</em> (salvo excepciones)</li>
+    <li><strong>Mediana empresa</strong>: 50–249 empleados o 10–50 M€ → puede ser <em>entidad importante</em></li>
+    <li><strong>Gran empresa</strong>: 250+ empleados o más de 50 M€ → puede ser <em>entidad esencial o importante</em></li>
   </ul>
 
   <div style="background:rgba(245,158,11,0.12);border-left:4px solid #f59e0b;padding:1rem;margin:1.5rem 0;border-radius:0 0.5rem 0.5rem 0;">
-    <p class="m-0" style="color:rgba(255,255,255,0.9);"><strong style="color:#fcd34d;">Atención con la facturación:</strong> El criterio es facturación <em>o</em> empleados, no los dos a la vez. Una empresa con 45 empleados pero 15 M€ de facturación entra en el umbral de mediana empresa.</p>
+    <p class="m-0" style="color:rgba(255,255,255,0.9);"><strong style="color:#fcd34d;">Atención:</strong> El criterio es empleados <em>o</em> facturación, no los dos a la vez. Una empresa con 45 empleados pero 15 M€ de facturación entra en el umbral de mediana empresa.</p>
   </div>
 
-  <h2>Las excepciones al criterio de tamaño</h2>
+  <h2>¿Qué excepciones al criterio de tamaño existen en NIS2?</h2>
 
-  <p>Esta es la parte que mucha gente no conoce. NIS2 obliga directamente a ciertas organizaciones <strong>independientemente de su tamaño</strong>:</p>
+  <p>NIS2 obliga directamente a ciertas organizaciones <strong>independientemente de su tamaño</strong>:</p>
 
   <ul>
     <li>Prestadores cualificados de servicios de confianza (certificados digitales, firma electrónica)</li>
@@ -55,147 +79,73 @@ import BlogLayout from "../../layouts/BlogLayout.astro";
 
   <p>Una empresa de 12 empleados que gestione el DNS de un sector crítico puede estar perfectamente en el ámbito de NIS2.</p>
 
-  <h2>Entidades esenciales vs entidades importantes: ¿qué cambia?</h2>
+  <h2>¿Qué diferencia hay entre entidades esenciales e importantes en NIS2?</h2>
 
-  <p>Todas las empresas obligadas por NIS2 deben cumplir los mismos requisitos técnicos. Lo que cambia es el régimen de supervisión y el techo de sanciones:</p>
+  <p>Todas las empresas obligadas deben cumplir los mismos requisitos técnicos. Lo que cambia es el régimen de supervisión y el techo de sanciones:</p>
 
-  <h3>Entidades esenciales</h3>
+  <h3>¿Qué obligaciones especiales tienen las entidades esenciales?</h3>
   <ul>
-    <li>Supervisión <strong>activa y preventiva</strong>: la autoridad puede hacer inspecciones, auditorías y análisis sin esperar a que pase nada</li>
+    <li>Supervisión <strong>activa y preventiva</strong>: inspecciones y auditorías sin esperar a que pase nada</li>
     <li>Auditorías de seguridad obligatorias al menos cada 2 años</li>
-    <li>Multas máximas: <strong>10 millones de euros o 2% de la facturación anual global</strong></li>
-    <li>¿Quiénes? Grandes empresas del Anexo I + entidades de tamaño independiente listadas anteriormente</li>
+    <li>Multas máximas: <strong>10 millones € o 2% de la facturación anual global</strong></li>
+    <li>Son entidades esenciales: grandes empresas del Anexo I y los tipos de tamaño independiente</li>
   </ul>
 
-  <h3>Entidades importantes</h3>
+  <h3>¿Qué obligaciones tienen las entidades importantes?</h3>
   <ul>
-    <li>Supervisión <strong>reactiva</strong>: la autoridad actúa tras un incidente, denuncia o evidencia de incumplimiento</li>
-    <li>Multas máximas: <strong>7 millones de euros o 1,4% de la facturación anual global</strong></li>
-    <li>¿Quiénes? Medianas empresas de cualquier anexo + grandes empresas del Anexo II</li>
+    <li>Supervisión <strong>reactiva</strong>: la autoridad actúa tras incidente, denuncia o evidencia</li>
+    <li>Multas máximas: <strong>7 millones € o 1,4% de la facturación anual global</strong></li>
+    <li>Son entidades importantes: medianas empresas de cualquier Anexo y grandes empresas del Anexo II</li>
   </ul>
 
-  <h2>Los 18 sectores: análisis sector por sector</h2>
+  <h2>¿Cuáles son los 18 sectores que cubre NIS2?</h2>
 
-  <h3>Anexo I: Sectores de alta criticidad</h3>
+  <h3>¿Qué sectores están en el Anexo I de alta criticidad?</h3>
 
-  <h3>1. Energía</h3>
-  <p>Es uno de los sectores más amplios. Incluye:</p>
-  <ul>
-    <li>Electricidad: productores, operadores de redes de transporte y distribución, agregadores, comercializadores</li>
-    <li>Calefacción urbana y refrigeración urbana: operadores</li>
-    <li>Petróleo: operadores de oleoductos, instalaciones de producción y almacenamiento, refinerías</li>
-    <li>Gas natural: empresas de suministro, distribución, transporte, almacenamiento y GNL</li>
-    <li>Hidrógeno: productores, almacenistas y distribuidores</li>
-  </ul>
+  <ol>
+    <li><strong>Energía</strong> — productores, distribuidores y operadores de electricidad, gas, petróleo, hidrógeno y calefacción urbana</li>
+    <li><strong>Transporte</strong> — operadores aéreos, ferroviarios, marítimos y de carretera; gestores de infraestructuras de transporte</li>
+    <li><strong>Banca</strong> — entidades de crédito (bancos, cajas, cooperativas de crédito)</li>
+    <li><strong>Infraestructura de mercados financieros</strong> — centros de negociación, contrapartes centrales (CCP), depositarios de valores</li>
+    <li><strong>Sanidad</strong> — hospitales, laboratorios de referencia, fabricantes de medicamentos y dispositivos médicos críticos</li>
+    <li><strong>Agua potable</strong> — proveedores y distribuidores de agua para consumo humano</li>
+    <li><strong>Aguas residuales</strong> — empresas de recogida, depuración y tratamiento</li>
+    <li><strong>Infraestructura digital</strong> — IXP, DNS, TLD, cloud, centros de datos, CDN, servicios de confianza, redes de comunicaciones</li>
+    <li><strong>Gestión de servicios TIC B2B</strong> — proveedores de servicios gestionados (MSP) y de seguridad gestionada (MSSP)</li>
+    <li><strong>Administración pública</strong> — administración central y regional (excluido poder judicial, parlamentos y bancos centrales)</li>
+    <li><strong>Espacio</strong> — operadores de infraestructuras terrestres de apoyo a servicios espaciales</li>
+  </ol>
 
-  <h3>2. Transporte</h3>
-  <ul>
-    <li><strong>Aéreo</strong>: transportistas aéreos, aeropuertos, organismos de control del tráfico aéreo</li>
-    <li><strong>Ferroviario</strong>: administradores de infraestructuras, empresas ferroviarias</li>
-    <li><strong>Marítimo y fluvial</strong>: compañías de navegación, operadores portuarios, servicios de tráfico marítimo</li>
-    <li><strong>Carretera</strong>: autoridades viales, operadores de Sistemas Inteligentes de Transporte (ITS)</li>
-  </ul>
+  <h3>¿Qué sectores están en el Anexo II de otros sectores críticos?</h3>
 
-  <h3>3. Banca</h3>
-  <p>Entidades de crédito según la Directiva 2013/36/UE. Bancos, cajas, cooperativas de crédito. Nota: el sector financiero tiene su propia normativa de ciberseguridad en paralelo (DORA, que entró en vigor en enero de 2025), más exigente en algunos aspectos.</p>
-
-  <h3>4. Infraestructura de mercados financieros</h3>
-  <p>Centros de negociación, contrapartes centrales (CCP) y depositarios centrales de valores. No los brokers o fondos de inversión habituales, sino la infraestructura que hace funcionar los mercados.</p>
-
-  <h3>5. Sanidad</h3>
-  <p>Este sector tiene un alcance amplio en NIS2:</p>
-  <ul>
-    <li>Hospitales y clínicas que presten servicios de asistencia sanitaria</li>
-    <li>Laboratorios de referencia de la UE</li>
-    <li>Fabricantes de productos farmacéuticos, incluidas las vacunas</li>
-    <li>Fabricantes de dispositivos médicos críticos (según el Reglamento UE 2017/745)</li>
-    <li>Entidades que realizan actividades de I+D en medicamentos</li>
-  </ul>
-
-  <h3>6. Agua potable</h3>
-  <p>Proveedores y distribuidores de agua destinada al consumo humano, excluyendo distribuidores para los que el suministro de agua no sea la actividad principal.</p>
-
-  <h3>7. Aguas residuales</h3>
-  <p>Empresas que recojan, depuren o traten aguas residuales urbanas o industriales, a excepción de las que lo hagan como actividad marginal.</p>
-
-  <h3>8. Infraestructura digital</h3>
-  <p>Es uno de los sectores más amplios y relevantes para empresas tecnológicas:</p>
-  <ul>
-    <li>Puntos de intercambio de Internet (IXP)</li>
-    <li>Proveedores de servicios DNS (cualquier tamaño)</li>
-    <li>Registros de nombres de dominio de nivel superior (TLD)</li>
-    <li>Proveedores de servicios en la nube (cloud computing)</li>
-    <li>Proveedores de servicios de centros de datos</li>
-    <li>Redes de distribución de contenidos (CDN)</li>
-    <li>Proveedores de servicios de confianza (cualquier tamaño)</li>
-    <li>Proveedores de redes públicas de comunicaciones electrónicas (cualquier tamaño)</li>
-  </ul>
-
-  <h3>9. Gestión de servicios TIC (B2B)</h3>
-  <p>Esta categoría es especialmente importante para el sector IT español:</p>
-  <ul>
-    <li>Proveedores de servicios gestionados (MSP)</li>
-    <li>Proveedores de servicios de seguridad gestionada (MSSP)</li>
-  </ul>
-  <p>Si tu empresa gestiona la infraestructura IT de otras empresas, probablemente estés en este sector.</p>
-
-  <h3>10. Administración pública</h3>
-  <p>Administración pública a nivel central. Los estados miembros pueden extenderlo a nivel regional y local. Se excluyen expresamente el poder judicial, los parlamentos y los bancos centrales.</p>
-
-  <h3>11. Espacio</h3>
-  <p>Operadores de infraestructuras terrestres de apoyo a servicios espaciales, incluidos los servicios de posicionamiento, navegación y temporización por satélite. Excluyendo los propietarios o explotadores de infraestructuras de satélite.</p>
-
-  <h3>Anexo II: Otros sectores críticos</h3>
-
-  <h3>12. Servicios postales y de mensajería</h3>
-  <p>Prestadores de servicios postales y empresas de mensajería urgente según la Directiva 97/67/CE.</p>
-
-  <h3>13. Gestión de residuos</h3>
-  <p>Empresas que gestionen residuos peligrosos o no peligrosos, excluyendo las que lo hagan como actividad no principal.</p>
-
-  <h3>14. Fabricación</h3>
-  <p>Fabricantes de:</p>
-  <ul>
-    <li>Productos químicos (sustancias y mezclas peligrosas)</li>
-    <li>Dispositivos médicos considerados críticos</li>
-    <li>Ordenadores, electrónica y productos ópticos</li>
-    <li>Equipos eléctricos</li>
-    <li>Maquinaria y equipo</li>
-    <li>Vehículos de motor, remolques y semirremolques</li>
-    <li>Otro material de transporte</li>
-  </ul>
-
-  <h3>15. Producción y distribución de alimentos</h3>
-  <p>Empresas de producción alimentaria o distribución al por mayor, con especial foco en las que formen parte de la cadena crítica de suministro de alimentos.</p>
-
-  <h3>16. Proveedores de servicios digitales</h3>
-  <ul>
-    <li>Mercados en línea (marketplaces)</li>
-    <li>Motores de búsqueda en línea</li>
-    <li>Plataformas de redes sociales</li>
-  </ul>
-
-  <h3>17. Investigación</h3>
-  <p>Organizaciones de investigación cuya actividad principal sea la investigación científica y la realización de actividades de investigación y desarrollo experimental.</p>
+  <ol>
+    <li><strong>Servicios postales y mensajería</strong> — operadores postales y de paquetería urgente</li>
+    <li><strong>Gestión de residuos</strong> — empresas que gestionan residuos como actividad principal</li>
+    <li><strong>Fabricación</strong> — productos químicos, dispositivos médicos, electrónica, maquinaria, vehículos</li>
+    <li><strong>Producción y distribución de alimentos</strong> — producción alimentaria y distribución al por mayor</li>
+    <li><strong>Proveedores de servicios digitales</strong> — marketplaces, motores de búsqueda, redes sociales</li>
+    <li><strong>Investigación</strong> — organizaciones cuya actividad principal es la investigación científica</li>
+    <li><strong>Química</strong> — fabricación y distribución de sustancias y mezclas peligrosas</li>
+  </ol>
 
   <div style="background:rgba(99,102,241,0.12);border-left:4px solid #6366f1;padding:1rem;margin:1.5rem 0;border-radius:0 0.5rem 0.5rem 0;">
-    <p class="m-0" style="color:rgba(255,255,255,0.9);"><strong style="color:#a5b4fc;">¿Qué pasa con la química?</strong> Los productos químicos aparecen en el Anexo II en la categoría "Fabricación", pero la directiva también menciona expresamente "fabricación, producción y distribución de sustancias y mezclas químicas peligrosas". Es un sector que España puede interpretar de forma más amplia en su transposición.</p>
+    <p class="m-0" style="color:rgba(255,255,255,0.9);"><strong style="color:#a5b4fc;">MSP y proveedores cloud:</strong> Los MSP y MSSP están directamente en el Anexo I. Si tu empresa gestiona la infraestructura IT de otras empresas y superas los umbrales de tamaño, estás directamente regulado — no solo indirectamente por ser proveedor de alguien.</p>
   </div>
 
-  <h2>¿Cómo saber si mi empresa está en el ámbito de NIS2?</h2>
+  <h2>¿Cómo saber exactamente si NIS2 aplica a mi empresa?</h2>
 
   <p>Tres preguntas en orden:</p>
 
   <ol>
-    <li><strong>¿Mi actividad principal está en alguno de los 18 sectores listados?</strong> Si no, en principio no aplica NIS2 directamente.</li>
-    <li><strong>¿Tengo 50 o más empleados O facturo más de 10 M€?</strong> Si no, en principio no aplica (salvo excepciones de tamaño independiente).</li>
-    <li><strong>¿Soy proveedor de servicios tecnológicos, MSP o MSSP?</strong> Si sí, probablemente estás en el sector 9 (gestión de servicios TIC).</li>
+    <li><strong>¿Mi actividad principal está en alguno de los 18 sectores?</strong> Si no, en principio NIS2 no aplica directamente.</li>
+    <li><strong>¿Tengo 50 o más empleados O facturo más de 10 M€?</strong> Si no, en principio excluida (salvo excepciones de tamaño independiente).</li>
+    <li><strong>¿Soy MSP, MSSP, proveedor DNS, cloud o de servicios de confianza?</strong> Si sí, probablemente estás en el Anexo I independientemente del tamaño.</li>
   </ol>
 
-  <p>Pero hay un cuarto factor que mucha gente ignora: la cadena de suministro. Si eres proveedor de software, IT o servicios a una empresa obligada por NIS2, tu cliente deberá exigirte garantías contractuales de seguridad. Aunque no estés directamente bajo NIS2, las consecuencias prácticas serán similares.</p>
+  <p>Hay un cuarto factor que mucha gente ignora: la cadena de suministro. Si eres proveedor de software, IT o servicios a una empresa obligada por NIS2, tu cliente deberá exigirte garantías contractuales de seguridad. <a href="/blog/nis2-cadena-suministro-proveedores-pymes-espana" style="color:#7c3aed;">Ver cómo NIS2 arrastra a los proveedores →</a></p>
 
   <div style="background:rgba(16,185,129,0.12);border-left:4px solid #10b981;padding:1rem;margin:1.5rem 0;border-radius:0 0.5rem 0.5rem 0;">
-    <p class="m-0" style="color:rgba(255,255,255,0.9);"><strong style="color:#6ee7b7;">Siguiente paso:</strong> Una vez confirmado que aplica, el siguiente artículo que debes leer es <a href="/blog/nis2-medidas-ciberseguridad-articulo-21-espana" style="color:#7c3aed;">las 10 medidas técnicas que exige el artículo 21</a>. Son el núcleo de lo que hay que implementar.</p>
+    <p class="m-0" style="color:rgba(255,255,255,0.9);"><strong style="color:#6ee7b7;">Siguiente paso:</strong> Confirmado que aplica, el siguiente artículo es <a href="/blog/nis2-medidas-ciberseguridad-articulo-21-espana" style="color:#7c3aed;">las 10 medidas técnicas del artículo 21</a>. Son el núcleo de lo que hay que implementar.</p>
   </div>
 
 </BlogLayout>
