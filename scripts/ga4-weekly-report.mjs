@@ -142,20 +142,14 @@ async function buildReport() {
   const clicks = await query(
     ['customEvent:event_label', 'customEvent:event_category', 'pagePath'],
     ['eventCount'],
-    { filter: { fieldName: 'eventName', orGroup: { expressions: [
-      { filter: { fieldName: 'eventName', stringFilter: { value: 'click_link' } } },
-      { filter: { fieldName: 'eventName', stringFilter: { value: 'click_button' } } },
-    ] } } }
+    { filter: { fieldName: 'eventName', inListFilter: { values: ['click_link', 'click_button'] } } }
   );
 
   // 2. Clicks por categoría
   const byCategory = await query(
     ['customEvent:event_category'],
     ['eventCount'],
-    { filter: { fieldName: 'eventName', orGroup: { expressions: [
-      { filter: { fieldName: 'eventName', stringFilter: { value: 'click_link' } } },
-      { filter: { fieldName: 'eventName', stringFilter: { value: 'click_button' } } },
-    ] } } }
+    { filter: { fieldName: 'eventName', inListFilter: { values: ['click_link', 'click_button'] } } }
   );
 
   // 3. Conversiones (leads/presupuesto/pago) — con página de origen y texto del botón
