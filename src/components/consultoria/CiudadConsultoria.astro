@@ -137,12 +137,6 @@ const provincias = [
       <div class="cc-orb cc-orb-1"></div>
       <div class="cc-orb cc-orb-2"></div>
       <div class="cc-hero-inner">
-        <nav aria-label="Migas de pan" class="cc-bc">
-          <a href="/">Inicio</a><span>/</span>
-          <a href="/consultoria-ia">Consultoría IA</a><span>/</span>
-          <span class="cc-bc-cur">{nombre}</span>
-        </nav>
-
         <span class="cc-badge"><span class="cc-dot"></span>Consultoría IA · {nombre}</span>
 
         <h1 class="cc-h1">
@@ -345,15 +339,21 @@ const provincias = [
   .cc-orb-3 { width:500px; height:500px; background:rgba(99,102,241,0.25); top:50%; left:50%; transform:translate(-50%,-50%); }
   @keyframes ccFloat { 0%,100%{ transform:translate(0,0); } 50%{ transform:translate(30px,-24px); } }
   .cc-hero-inner { position:relative; z-index:2; max-width:880px; margin:0 auto; padding:0 24px; text-align:center; }
-  .cc-bc { display:flex; align-items:center; justify-content:center; gap:8px; font-size:0.78rem; color:#64748b; margin-bottom:22px; }
-  .cc-bc a { color:#7da4ff; text-decoration:none; } .cc-bc a:hover{ text-decoration:underline; }
-  .cc-bc-cur { color:#94a3b8; }
+  /* Animación de entrada escalonada del hero */
+  @keyframes ccUp { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
+  .cc-hero-inner > * { animation:ccUp .65s cubic-bezier(0.22,1,0.36,1) both; }
+  .cc-hero-inner > *:nth-child(1){ animation-delay:.05s; }
+  .cc-hero-inner > *:nth-child(2){ animation-delay:.15s; }
+  .cc-hero-inner > *:nth-child(3){ animation-delay:.25s; }
+  .cc-hero-inner > *:nth-child(4){ animation-delay:.35s; }
+  .cc-hero-inner > *:nth-child(5){ animation-delay:.45s; }
+  @media (prefers-reduced-motion: reduce){ .cc-hero-inner > *{ animation:none; } }
   .cc-badge { display:inline-flex; align-items:center; gap:8px; padding:7px 16px; border-radius:9999px; font-size:0.8rem; font-weight:600; color:#a5b4fc; background:rgba(79,124,255,0.1); border:1px solid rgba(124,140,248,0.3); margin-bottom:24px; }
   .cc-dot { width:7px; height:7px; border-radius:50%; background:#818cf8; box-shadow:0 0 8px #818cf8; }
   .cc-h1 { font-size:clamp(2.1rem,5.5vw,3.7rem); font-weight:900; line-height:1.08; color:#f0f6ff; letter-spacing:-0.02em; margin-bottom:20px; }
   .cc-lead { font-size:clamp(1rem,2.2vw,1.2rem); line-height:1.65; color:rgba(240,246,255,0.66); max-width:42rem; margin:0 auto 28px; }
   .cc-cta-row { display:flex; flex-wrap:wrap; gap:14px; justify-content:center; }
-  .cc-trust { margin-top:18px; font-size:0.8rem; color:#64748b; }
+  .cc-trust { margin-top:18px; font-size:0.8rem; color:#64748b; text-align:center; }
 
   /* Botones */
   .cc-btn-primary { display:inline-flex; align-items:center; gap:8px; padding:14px 28px; border-radius:12px; font-weight:700; font-size:0.95rem; text-decoration:none; color:#fff; background:linear-gradient(135deg,#2563eb 0%,#7c3aed 100%); box-shadow:0 12px 34px -10px rgba(99,102,241,0.7); transition:transform .2s ease,box-shadow .2s ease; }
