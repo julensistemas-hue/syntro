@@ -7,6 +7,13 @@ export default defineConfig({
   output: "server",
   adapter: vercel(),
   site: "https://aisecurity.es",
+  i18n: {
+    defaultLocale: "es",
+    locales: ["es", "en"],
+    routing: {
+      prefixDefaultLocale: false,
+    },
+  },
   integrations: [
     sitemap({
       filter: (page) =>

@@ -4,8 +4,15 @@ import Navigation from "../components/global/Navigation.astro";
 import Footer from "../components/global/Footer.astro";
 import Mascot from "../components/global/Mascot.astro";
 import GoogleAnalytics from "../components/global/GoogleAnalytics.astro";
+import LanguageBanner from "../components/global/LanguageBanner.astro";
 import Analytics from "@vercel/analytics/astro";
 import SpeedInsights from "@vercel/speed-insights/astro";
+import {
+  getLocaleFromPath,
+  stripLocale,
+  localizePath,
+  hasTranslation,
+} from "../i18n/config";
 
 interface Props {
   title?: string;
@@ -20,10 +27,16 @@ const {
   canonical,
   ogImage = "https://aisecurity.es/og-image.png"
 } = Astro.props;
+
+const locale = getLocaleFromPath(Astro.url.pathname);
+const canonicalPath = stripLocale(Astro.url.pathname);
+const showAlternates = hasTranslation(canonicalPath);
+const esUrl = new URL(canonicalPath, Astro.site).href;
+const enUrl = new URL(localizePath(canonicalPath, "en"), Astro.site).href;
 ---
 
 <html
-  lang="es"
+  lang={locale}
   class="scroll-smooth selection:bg-accent-500 selection:text-white no-touchevents hydrated">
   <head>
     <GoogleAnalytics />
@@ -33,6 +46,13 @@ const {
       canonical={canonical}
       ogImage={ogImage}
     />
+    {showAlternates && (
+      <>
+        <link rel="alternate" hreflang="es" href={esUrl} />
+        <link rel="alternate" hreflang="en" href={enUrl} />
+        <link rel="alternate" hreflang="x-default" href={esUrl} />
+      </>
+    )}
     <slot name="head" />
   </head>
   <body class="bg-base-50 flex flex-col min-h-svh">
@@ -40,6 +60,7 @@ const {
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KG5KMRL8"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
+    <LanguageBanner />
     <Navigation />
     <main class="grow"><slot /></main>
     <Footer />

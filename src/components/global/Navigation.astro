@@ -1,9 +1,16 @@
 ---
 import OptimizedImage from "../../layouts/utilities/OptimizedImage.astro";
+import NavigationEn from "./NavigationEn.astro";
+import { getLocaleFromPath, stripLocale, hasTranslation } from "../../i18n/config";
 
 const currentPath = Astro.url.pathname;
+const locale = getLocaleFromPath(currentPath);
+const canonicalPath = stripLocale(currentPath);
+const showEnSwitch = locale === "es" && hasTranslation(canonicalPath);
 ---
 
+{locale === "en" ? <NavigationEn /> : (
+<Fragment>
 <header
   id="main-header"
   class="sticky top-0 z-50 transition-all duration-300"
@@ -275,6 +282,19 @@ const currentPath = Astro.url.pathname;
           Blog
         </a>
 
+        <!-- Language switcher: solo en páginas con versión inglesa -->
+        {showEnSwitch && (
+          <a
+            href={`/en${canonicalPath}`}
+            hreflang="en"
+            class="nav-link w-full lg:w-auto text-[11px] font-semibold tracking-wider uppercase transition-all duration-200 px-3 py-3 inline-flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/>
+            </svg>
+            EN
+          </a>
+        )}
+
         <!-- CTA Button -->
         <a
           href="/reunion"
@@ -349,3 +369,5 @@ const currentPath = Astro.url.pathname;
     }
   });
 </script>
+</Fragment>
+)}

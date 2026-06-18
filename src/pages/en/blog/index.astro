@@ -1,0 +1,318 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+
+const title = "Technical Blog — Wazuh, SIEM & AI for IT | AI Security";
+const description = "Practical guides on Wazuh, SIEM and AI applied to IT systems and cybersecurity. Real configurations and hands-on tutorials, no unnecessary theory.";
+const canonical = "https://aisecurity.es/en/blog";
+
+// Array of blog articles (English translations coming soon — keep empty for now)
+const articles = ([] as const).sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime());
+
+// Available categories
+const categories = ["All", "Awareness", "Wazuh & Security", "AI for IT"];
+
+const hasArticles = articles.length > 0;
+---
+
+<BaseLayout title={title} description={description} canonical={canonical}>
+  <!-- Hero Section -->
+  <section class="py-16 md:py-20 relative overflow-hidden" style="background:#050f1f;border-bottom:1px solid rgba(255,255,255,0.08);">
+    <!-- Particle animation canvas -->
+    <canvas id="blog-hero-canvas" class="absolute inset-0 w-full h-full" style="opacity:0.5;"></canvas>
+    <!-- Top/bottom gradient to blend with the rest -->
+    <div class="absolute inset-x-0 bottom-0 h-16" style="background:linear-gradient(to bottom,transparent,#020817);"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-6 md:px-12">
+      <div class="max-w-3xl">
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm text-white rounded-full text-sm font-semibold border border-white/20 mb-6">
+          <span class="text-xl">📰</span>
+          Technical blog
+        </div>
+
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+          News & Tutorials
+        </h1>
+
+        <p class="text-xl text-white/80 leading-relaxed">
+          Technical articles on <strong class="text-white">AI applied to IT systems</strong> and <strong class="text-white">cybersecurity with Wazuh</strong>.
+          Practical guides, real configurations and use cases without unnecessary theory.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <script is:inline>
+  (function() {
+    const canvas = document.getElementById('blog-hero-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+
+    function resize() {
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    const NODES = 60;
+    const MAX_DIST = 140;
+    const nodes = Array.from({ length: NODES }, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      vx: (Math.random() - 0.5) * 0.4,
+      vy: (Math.random() - 0.5) * 0.4,
+      r: Math.random() * 1.5 + 1,
+      // pulse phase
+      phase: Math.random() * Math.PI * 2,
+    }));
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Update
+      nodes.forEach(n => {
+        n.x += n.vx;
+        n.y += n.vy;
+        n.phase += 0.02;
+        if (n.x < 0 || n.x > canvas.width) n.vx *= -1;
+        if (n.y < 0 || n.y > canvas.height) n.vy *= -1;
+      });
+
+      // Lines
+      for (let i = 0; i < NODES; i++) {
+        for (let j = i + 1; j < NODES; j++) {
+          const dx = nodes[i].x - nodes[j].x;
+          const dy = nodes[i].y - nodes[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < MAX_DIST) {
+            const alpha = (1 - dist / MAX_DIST) * 0.25;
+            ctx.beginPath();
+            ctx.moveTo(nodes[i].x, nodes[i].y);
+            ctx.lineTo(nodes[j].x, nodes[j].y);
+            ctx.strokeStyle = `rgba(96,165,250,${alpha})`;
+            ctx.lineWidth = 0.8;
+            ctx.stroke();
+          }
+        }
+      }
+
+      // Nodes
+      nodes.forEach(n => {
+        const pulse = 0.5 + 0.5 * Math.sin(n.phase);
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, n.r + pulse * 0.8, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(129,140,248,${0.4 + pulse * 0.4})`;
+        ctx.fill();
+      });
+
+      requestAnimationFrame(draw);
+    }
+    draw();
+  })();
+  </script>
+
+  {hasArticles && (
+    <!-- Categories Filter -->
+    <section class="py-6 border-b sticky top-[73px] z-40" style="background:#020817;border-color:rgba(255,255,255,0.08)">
+      <div class="max-w-7xl mx-auto px-6 md:px-12">
+        <div class="flex flex-wrap gap-2">
+          {categories.map((category, index) => (
+            <button
+              data-category={category}
+              class={`px-4 py-1.5 rounded-full font-medium text-sm transition-all duration-200 ${
+                index === 0
+                  ? 'bg-accent-600 text-white'
+                  : 'text-white/60 border hover:text-white hover:border-white/30'
+              }`}
+              style={index !== 0 ? 'border-color:rgba(255,255,255,0.15);background:rgba(255,255,255,0.05)' : ''}>
+              {category}
+            </button>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Articles Grid -->
+  <section class="py-16 md:py-20 relative overflow-hidden" style="background:#020817;">
+    <div class="relative z-10 max-w-7xl mx-auto px-6 md:px-12">
+      {hasArticles ? (
+        <>
+          <!-- Stats -->
+          <div class="mb-12 flex items-center justify-between">
+            <p id="article-count" class="text-white/70">
+              <span class="font-semibold text-white">{articles.length}</span> articles published
+            </p>
+          </div>
+
+          <!-- Articles List -->
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {articles.map(article => (
+              <article
+                class="blog-card group flex flex-col rounded-xl border border-white/10 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:border-white/20 hover:shadow-xl hover:shadow-black/40 cursor-pointer"
+                style="background:rgba(255,255,255,0.04);"
+                data-article-category={article.category}
+                onclick={`window.location.href='/en/blog/${article.slug}'`}>
+
+                <!-- Top accent line by category -->
+                <div class="h-0.5 w-full" style={
+                  article.category === 'Wazuh & Security' ? 'background:linear-gradient(90deg,#60a5fa,#818cf8)' :
+                  article.category === 'Awareness' ? 'background:linear-gradient(90deg,#f59e0b,#f97316)' :
+                  article.category === 'Tech Support' ? 'background:linear-gradient(90deg,#10b981,#14b8a6)' :
+                  'background:linear-gradient(90deg,#a78bfa,#60a5fa)'
+                }></div>
+
+                <div class="p-5 flex flex-col flex-1">
+                  <!-- Category + read time row -->
+                  <div class="flex items-center justify-between mb-3">
+                    <span class="text-xs font-semibold px-2.5 py-1 rounded-full" style={
+                      article.category === 'Wazuh & Security' ? 'background:rgba(96,165,250,0.15);color:#93c5fd;' :
+                      article.category === 'Awareness' ? 'background:rgba(245,158,11,0.15);color:#fcd34d;' :
+                      article.category === 'Tech Support' ? 'background:rgba(16,185,129,0.15);color:#6ee7b7;' :
+                      'background:rgba(167,139,250,0.15);color:#c4b5fd;'
+                    }>
+                      {article.category}
+                    </span>
+                    <span class="flex items-center gap-1 text-xs text-white/40">
+                      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                      </svg>
+                      {article.readTime}
+                    </span>
+                  </div>
+
+                  <!-- Title -->
+                  <a href={`/en/blog/${article.slug}`} class="block mb-2 group-hover:text-accent-300 transition-colors">
+                    <p class="font-bold text-white leading-snug" style="font-size:1rem;">
+                      {article.title}
+                    </p>
+                  </a>
+
+                  <!-- Description -->
+                  <p class="text-white/55 text-sm leading-relaxed mb-4 flex-1" style="font-size:0.8rem;">
+                    {article.description}
+                  </p>
+
+                  <!-- Tags -->
+                  <div class="flex flex-wrap gap-1.5 mb-4">
+                    {article.tags.slice(0, 3).map(tag => (
+                      <span class="text-xs text-white/40 bg-white/5 px-2 py-0.5 rounded border border-white/10">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  <!-- Footer -->
+                  <div class="pt-3 border-t border-white/10">
+                    <time class="text-xs text-white/35" datetime={article.publishDate}>
+                      {new Date(article.publishDate).toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'short',
+                        day: 'numeric'
+                      })}
+                    </time>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <!-- Empty State (when no articles match the filter) -->
+          <div id="empty-state" class="hidden text-center py-16">
+            <div class="text-6xl mb-4">📭</div>
+            <h3 class="text-xl font-semibold text-white mb-2">No articles in this category</h3>
+            <p class="text-white/70">Try another category or come back later</p>
+          </div>
+        </>
+      ) : (
+        <!-- No translated articles yet -->
+        <div class="max-w-2xl mx-auto text-center py-12 md:py-16">
+          <div class="text-6xl mb-6">🌐</div>
+          <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">
+            English articles are on the way
+          </h2>
+          <p class="text-lg text-white/70 leading-relaxed mb-10">
+            We're translating our technical articles into English. New guides on
+            Wazuh, SIEM and IT security are coming soon.
+          </p>
+
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a
+              href="/en/wazuh"
+              class="inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold text-white transition-all duration-200 hover:-translate-y-0.5"
+              style="background:#2563eb;">
+              Explore Wazuh
+            </a>
+            <a
+              href="/blog"
+              class="inline-flex items-center gap-1 text-white/70 hover:text-white font-medium transition-colors">
+              Read our Spanish articles →
+            </a>
+          </div>
+        </div>
+      )}
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  // Category filter (only active when articles are rendered)
+  document.addEventListener('DOMContentLoaded', () => {
+    const categoryButtons = document.querySelectorAll('[data-category]');
+    const articles = document.querySelectorAll('[data-article-category]');
+    const emptyState = document.getElementById('empty-state');
+    const articleCount = document.getElementById('article-count');
+
+    if (categoryButtons.length === 0) return;
+
+    // Update the counter
+    const updateCount = (count: number) => {
+      if (articleCount) {
+        articleCount.innerHTML = `<span class="font-semibold text-white">${count}</span> ${count === 1 ? 'article published' : 'articles published'}`;
+      }
+    };
+
+    categoryButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const selectedCategory = button.getAttribute('data-category');
+
+        // Update button styles
+        categoryButtons.forEach(btn => {
+          if (btn === button) {
+            btn.classList.add('bg-accent-600', 'text-white');
+            btn.classList.remove('text-white/60', 'border', 'hover:text-white', 'hover:border-white/30');
+            (btn as HTMLElement).style.borderColor = '';
+            (btn as HTMLElement).style.background = '';
+          } else {
+            btn.classList.remove('bg-accent-600', 'text-white');
+            btn.classList.add('text-white/60', 'border', 'hover:text-white', 'hover:border-white/30');
+            (btn as HTMLElement).style.borderColor = 'rgba(255,255,255,0.15)';
+            (btn as HTMLElement).style.background = 'rgba(255,255,255,0.05)';
+          }
+        });
+
+        // Filter articles
+        let visibleCount = 0;
+        articles.forEach(article => {
+          const articleCategory = article.getAttribute('data-article-category');
+          if (selectedCategory === 'All' || articleCategory === selectedCategory) {
+            article.classList.remove('hidden');
+            visibleCount++;
+          } else {
+            article.classList.add('hidden');
+          }
+        });
+
+        // Update counter
+        updateCount(visibleCount);
+
+        // Show/hide empty state
+        if (visibleCount === 0) {
+          emptyState?.classList.remove('hidden');
+        } else {
+          emptyState?.classList.add('hidden');
+        }
+      });
+    });
+  });
+</script>

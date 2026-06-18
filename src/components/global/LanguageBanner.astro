@@ -1,0 +1,79 @@
+---
+// Banner de sugerencia de idioma — NO redirige ni cambia el contenido de la URL.
+// Solo aparece si la página existe en ambos idiomas y el idioma del navegador
+// (Accept-Language) difiere del idioma servido. Descartable y discreto.
+import {
+  getLocaleFromPath,
+  stripLocale,
+  localizePath,
+  hasTranslation,
+} from "../../i18n/config";
+import { t } from "../../i18n/ui";
+
+const locale = getLocaleFromPath(Astro.url.pathname);
+const canonicalPath = stripLocale(Astro.url.pathname);
+
+// Idioma preferido del navegador (primer subtag de Accept-Language).
+const accept = Astro.request.headers.get("accept-language") ?? "";
+const prefers = accept.toLowerCase().split(",")[0]?.split("-")[0]?.trim();
+
+// ¿Sugerir el otro idioma?
+const suggestEn = locale === "es" && prefers === "en";
+const suggestEs = locale === "en" && prefers === "es";
+const show = hasTranslation(canonicalPath) && (suggestEn || suggestEs);
+
+const targetLocale = suggestEn ? "en" : "es";
+const targetUrl = localizePath(canonicalPath, targetLocale);
+const message = suggestEn ? t("en", "banner.toEn") : t("es", "banner.toEs");
+const cta = suggestEn ? t("en", "banner.toEnCta") : t("es", "banner.toEsCta");
+---
+
+{
+  show && (
+    <div
+      id="lang-banner"
+      data-banner-key={`lang-banner:${canonicalPath}:${targetLocale}`}
+      class="hidden"
+      style="background: linear-gradient(135deg, #0f1117 0%, #161b25 100%); border-bottom: 1px solid rgba(255,255,255,0.08);"
+    >
+      <div class="max-w-7xl mx-auto px-6 py-2.5 flex items-center justify-center gap-3 text-sm">
+        <span style="color: rgba(203,213,225,0.9);">{message}</span>
+        <a
+          href={targetUrl}
+          class="font-semibold inline-flex items-center gap-1"
+          style="color: #60a5fa;"
+        >
+          {cta}
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+        <button
+          id="lang-banner-close"
+          type="button"
+          aria-label="Cerrar"
+          class="ml-2"
+          style="color: rgba(148,163,184,0.7);"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  )
+}
+
+<script>
+  const banner = document.getElementById("lang-banner");
+  if (banner) {
+    const key = banner.getAttribute("data-banner-key") || "lang-banner";
+    if (localStorage.getItem(key) !== "dismissed") {
+      banner.classList.remove("hidden");
+    }
+    document.getElementById("lang-banner-close")?.addEventListener("click", () => {
+      banner.classList.add("hidden");
+      localStorage.setItem(key, "dismissed");
+    });
+  }
+</script>
