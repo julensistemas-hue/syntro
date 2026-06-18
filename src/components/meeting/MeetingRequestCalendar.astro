@@ -289,6 +289,9 @@
       const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
       const today = new Date();
       today.setHours(0, 0, 0, 0);
+      // No se permite reservar el mismo día: el mínimo es mañana
+      const minDate = new Date(today);
+      minDate.setDate(minDate.getDate() + 1);
 
       const offset = firstDay === 0 ? 6 : firstDay - 1;
       for (let i = 0; i < offset; i++) {
@@ -303,7 +306,7 @@
         dayButton.type = 'button';
         dayButton.textContent = day.toString();
 
-        const isPast = date < today;
+        const isPast = date < minDate; // hoy y días anteriores quedan deshabilitados
         const isToday = date.getTime() === today.getTime();
         const isSelected = selectedDate && date.getTime() === selectedDate.getTime();
 

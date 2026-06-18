@@ -35,6 +35,17 @@ export const POST: APIRoute = async ({ request }) => {
           { status: 400, headers: { 'Content-Type': 'application/json' } }
         );
       }
+      // No se permite reservar el mismo día (ni días pasados): mínimo mañana
+      const hoyMadrid = new Date(new Date().toLocaleDateString('en-US', { timeZone: 'Europe/Madrid' }));
+      const minFecha = new Date(hoyMadrid);
+      minFecha.setDate(minFecha.getDate() + 1);
+      const fechaElegida = new Date(selectedDate + 'T00:00:00');
+      if (isNaN(fechaElegida.getTime()) || fechaElegida < minFecha) {
+        return new Response(
+          JSON.stringify({ error: 'Solo puedes reservar a partir de mañana. Elige otro día.' }),
+          { status: 400, headers: { 'Content-Type': 'application/json' } }
+        );
+      }
     }
 
     // Mapeo de servicios para mejor presentación
