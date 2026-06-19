@@ -1,0 +1,286 @@
+---
+import BlogLayoutEn from "../../../layouts/BlogLayoutEn.astro";
+---
+
+<BlogLayoutEn
+  title="How to Install Wazuh on Linux (Ubuntu 24.04)"
+  description="Learn how to install Wazuh on Ubuntu, Debian, CentOS and Rocky Linux. Step-by-step guide with the all-in-one method and separate component install. Requirements and commands."
+  publishDate="2026-02-18"
+  author="AI Security"
+  readTime="18 min"
+  tags={["Wazuh", "Linux", "Ubuntu", "Installation", "SIEM", "Cybersecurity"]}
+  canonical="https://aisecurity.es/en/blog/como-instalar-wazuh-en-linux">
+
+  <p>To install Wazuh on Linux, use the official all-in-one installation script: download <code>wazuh-install.sh</code>, run it, and in 15-20 minutes you'll have the Wazuh Indexer, Server and Dashboard up and running. Compatible with Ubuntu 24.04, 22.04, Debian 12, CentOS 8/9 and Rocky Linux.</p>
+
+  <h2>Which Wazuh components are installed and which do you need?</h2>
+
+  <p>
+    In this guide I'll show you <strong>how to install Wazuh on a Linux server</strong> quickly and easily. We'll cover both the <strong>all-in-one</strong> method (all components on a single server) and the <strong>separate component installation</strong> for larger production environments. This guide works for <strong>Ubuntu 24.04, 22.04, Debian 12, CentOS 8/9 and Rocky Linux</strong>.
+  </p>
+
+  <!-- Video del curso bloqueado -->
+  <div class="my-8">
+    <div class="relative w-full rounded-xl overflow-hidden" style="border: 2px solid #2d3748;">
+      <!-- Video thumbnail con blur -->
+      <div class="relative" style="padding-bottom: 56.25%;">
+        <!-- Miniatura de fondo -->
+        <img
+          src="/images/miniatura/instalacionLinux_miniatura.jpg"
+          alt="Video: Installing Wazuh on Linux"
+          class="absolute inset-0 w-full h-full object-cover"
+          style="filter: blur(2px) brightness(0.4);"
+        />
+        <div class="absolute inset-0 flex items-center justify-center" style="background: linear-gradient(135deg, rgba(0,101,255,0.2) 0%, rgba(0,0,0,0.7) 100%);">
+          <!-- Icono de play bloqueado -->
+          <div class="text-center">
+            <div class="w-20 h-20 mx-auto mb-4 rounded-full flex items-center justify-center" style="background-color: rgba(255,255,255,0.1); border: 2px solid rgba(255,255,255,0.2);">
+              <svg class="w-10 h-10" style="color: rgba(255,255,255,0.5);" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold mb-2" style="color: #ffffff;">Video: Installing Wazuh on Linux</h3>
+            <p class="text-sm mb-4" style="color: #9ca3af;">18 minutes - Step by step with hands-on examples</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2>Wazuh architecture: which components do you need?</h2>
+
+  <p>
+    Before installing, it's important to understand the <strong>three main components</strong> of Wazuh:
+  </p>
+
+  <ul>
+    <li><strong>Wazuh Indexer:</strong> Stores and lets you search all events and alerts. Based on OpenSearch.</li>
+    <li><strong>Wazuh Server (Manager):</strong> Receives data from the agents, analyzes logs, runs detection rules and generates alerts.</li>
+    <li><strong>Wazuh Dashboard:</strong> Web interface to visualize alerts, search events, manage agents and generate reports.</li>
+  </ul>
+
+  <p>
+    In addition, you'll need to install <strong>Wazuh Agents</strong> on every server or endpoint you want to monitor.
+  </p>
+
+  <h2>Installation methods</h2>
+
+  <p>
+    You have two main options to install Wazuh:
+  </p>
+
+  <h3>1. All-in-One installation (recommended to get started)</h3>
+
+  <p>
+    The <strong>all-in-one</strong> method installs the three components (Indexer, Server and Dashboard) on a single server with <strong>one command</strong>. It's perfect for:
+  </p>
+
+  <ul>
+    <li>Test and lab environments</li>
+    <li>Small businesses (up to 50-100 agents)</li>
+    <li>Learning to use Wazuh before deploying it in production</li>
+  </ul>
+
+  <div style="background:rgba(16,185,129,0.12);border-left:4px solid #10b981;padding:1rem;margin:1.5rem 0;border-radius:0 0.5rem 0.5rem 0;">
+    <p class="m-0" style="color:rgba(255,255,255,0.9);"><strong style="color:rgba(255,255,255,0.9);">Advantage:</strong> In less than 10 minutes you have Wazuh fully running, ready to add agents.</p>
+  </div>
+
+  <h3>2. Installing components separately</h3>
+
+  <p>
+    For production environments with high availability or many agents, it's better to install each component on dedicated servers:
+  </p>
+
+  <ul>
+    <li>A server (or cluster) for the <strong>Wazuh Indexer</strong></li>
+    <li>A server (or cluster) for the <strong>Wazuh Server</strong></li>
+    <li>A server for the <strong>Wazuh Dashboard</strong></li>
+  </ul>
+
+  <p>
+    This lets you scale each component independently based on your needs.
+  </p>
+
+  <h2>System requirements</h2>
+
+  <p>
+    For an all-in-one installation, these are the <strong>minimum requirements</strong>:
+  </p>
+
+  <div class="overflow-x-auto my-6">
+    <table class="w-full border-collapse rounded-lg overflow-hidden" style="background-color: #1a1f26;">
+      <thead>
+        <tr style="background-color: #0065ff;">
+          <th class="px-4 py-3 text-left font-semibold" style="color: #ffffff;">Resource</th>
+          <th class="px-4 py-3 text-left font-semibold" style="color: #ffffff;">Minimum</th>
+          <th class="px-4 py-3 text-left font-semibold" style="color: #ffffff;">Recommended</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom: 1px solid #2d3748;">
+          <td class="px-4 py-3" style="color: #e5e7eb;">CPU</td>
+          <td class="px-4 py-3" style="color: #9ca3af;">2 cores</td>
+          <td class="px-4 py-3" style="color: #4ade80;">4 cores</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #2d3748;">
+          <td class="px-4 py-3" style="color: #e5e7eb;">RAM</td>
+          <td class="px-4 py-3" style="color: #9ca3af;">4 GB</td>
+          <td class="px-4 py-3" style="color: #4ade80;">8 GB</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #2d3748;">
+          <td class="px-4 py-3" style="color: #e5e7eb;">Disk</td>
+          <td class="px-4 py-3" style="color: #9ca3af;">50 GB</td>
+          <td class="px-4 py-3" style="color: #4ade80;">100 GB SSD</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-3" style="color: #e5e7eb;">Operating System</td>
+          <td class="px-4 py-3" colspan="2" style="color: #9ca3af;">Ubuntu 22.04/24.04, Debian 11/12, CentOS 8/9, Rocky Linux 8/9</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div style="background:rgba(245,158,11,0.12);border-left:4px solid #f59e0b;padding:1rem;margin:1.5rem 0;border-radius:0 0.5rem 0.5rem 0;">
+    <p class="m-0" style="color:rgba(255,255,255,0.9);"><strong style="color:rgba(255,255,255,0.9);">Important:</strong> An SSD disk is highly recommended because the Indexer performs many read/write operations. With a traditional HDD, performance will be noticeably worse.</p>
+  </div>
+
+  <h2>All-in-One installation step by step</h2>
+
+  <p>
+    Let's install Wazuh using the all-in-one method. You need root or sudo access to the server.
+  </p>
+
+  <h3>Step 1: Prepare the server</h3>
+
+  <p>
+    First, make sure the system is up to date:
+  </p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;"># Ubuntu/Debian
+sudo apt update && sudo apt upgrade -y
+
+# CentOS/Rocky Linux
+sudo dnf update -y</code></pre>
+
+  <h3>Step 2: Download and run the installer</h3>
+
+  <p>
+    Wazuh provides an official script that automates the whole process. With <strong>a single command</strong> you download the script and run it:
+  </p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">curl -sO https://packages.wazuh.com/4.7/wazuh-install.sh && sudo bash ./wazuh-install.sh -a</code></pre>
+
+  <p>
+    The <code>-a</code> flag indicates an all-in-one installation. The script:
+  </p>
+
+  <ul>
+    <li>Automatically detects your operating system</li>
+    <li>Installs all the required dependencies</li>
+    <li>Configures the Wazuh Indexer, Server and Dashboard</li>
+    <li>Generates SSL certificates automatically</li>
+    <li>Starts all the services</li>
+  </ul>
+
+  <p>
+    The process takes between <strong>5 and 15 minutes</strong> depending on the speed of your server and your internet connection.
+  </p>
+
+  <h3>Step 3: Save the credentials</h3>
+
+  <p>
+    When the installation finishes, the script will show you the <strong>access credentials</strong> for the Dashboard:
+  </p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">INFO: --- Summary ---
+INFO: You can access the web interface https://&lt;wazuh-dashboard-ip&gt;
+    User: admin
+    Password: &lt;GENERATED_PASSWORD&gt;</code></pre>
+
+  <div style="background:rgba(239,68,68,0.12);border-left:4px solid #ef4444;padding:1rem;margin:1.5rem 0;border-radius:0 0.5rem 0.5rem 0;">
+    <p class="m-0" style="color:rgba(255,255,255,0.9);"><strong style="color:rgba(255,255,255,0.9);">Important:</strong> Store this password somewhere safe. If you lose it, you'll have to reset it manually.</p>
+  </div>
+
+  <h3>Step 4: Access the Dashboard</h3>
+
+  <p>
+    Open your browser and go to:
+  </p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">https://&lt;YOUR_SERVER_IP&gt;</code></pre>
+
+  <p>
+    Enter the user <code>admin</code> and the password you saved. You now have Wazuh up and running!
+  </p>
+
+  <h2>Installing components separately</h2>
+
+  <p>
+    If you need a distributed architecture, you can install each component on a different server. Wazuh provides detailed documentation for each case:
+  </p>
+
+  <ul>
+    <li><a href="https://documentation.wazuh.com/current/installation-guide/wazuh-indexer/index.html" target="_blank" rel="noopener" style="color: #38b1ff;">Install Wazuh Indexer</a></li>
+    <li><a href="https://documentation.wazuh.com/current/installation-guide/wazuh-server/index.html" target="_blank" rel="noopener" style="color: #38b1ff;">Install Wazuh Server</a></li>
+    <li><a href="https://documentation.wazuh.com/current/installation-guide/wazuh-dashboard/index.html" target="_blank" rel="noopener" style="color: #38b1ff;">Install Wazuh Dashboard</a></li>
+  </ul>
+
+  <p>
+    The process is similar: you download specific scripts and run them on each server. The main difference is that you must configure the communication between components (IPs, certificates, etc.).
+  </p>
+
+  <h2>Next step: install agents</h2>
+
+  <p>
+    With Wazuh installed, the next step is to install <strong>agents</strong> on the servers and endpoints you want to monitor. The agents collect logs, monitor files, detect vulnerabilities and send all that information to the Wazuh Server.
+  </p>
+
+  <p>
+    You can install agents on:
+  </p>
+
+  <ul>
+    <li>Linux servers (Ubuntu, Debian, CentOS, Rocky, RHEL...)</li>
+    <li>Windows servers (Server 2016, 2019, 2022)</li>
+    <li>Windows 10/11 workstations</li>
+    <li>macOS</li>
+    <li>Docker containers</li>
+  </ul>
+
+  <p>
+    Check the official documentation: <a href="https://documentation.wazuh.com/current/installation-guide/wazuh-agent/index.html" target="_blank" rel="noopener" style="color: #38b1ff;">Install Wazuh Agent</a>
+  </p>
+
+  <h2>Additional resources</h2>
+
+  <ul>
+    <li><a href="https://documentation.wazuh.com/current/quickstart.html" target="_blank" rel="noopener" style="color: #38b1ff;">Official Wazuh Quickstart guide</a></li>
+    <li><a href="/en/blog/que-es-wazuh-para-que-sirve">What is Wazuh and what is it used for?</a></li>
+    <li><a href="/en/blog/monitorizacion-de-contenedores-docker-con-wazuh">Monitoring Docker containers with Wazuh</a></li>
+  </ul>
+
+  <hr />
+
+  <p class="text-sm text-base-600">
+    <strong>Related articles:</strong>
+  </p>
+  <ul class="text-sm">
+    <li><a href="/en/blog/que-es-wazuh-para-que-sirve">What is Wazuh and what is it used for?</a></li>
+    <li><a href="/en/blog/ia-threat-hunting-wazuh">AI for Threat Hunting in Wazuh</a></li>
+    <li><a href="/en/blog/monitorizacion-de-contenedores-docker-con-wazuh">Monitoring Docker containers with Wazuh</a></li>
+  </ul>
+  <hr />
+
+  <div class="bg-accent-50 border border-accent-200 rounded-xl p-6 my-8">
+    <h3 class="text-accent-800 mt-0">Get Wazuh deployed the right way</h3>
+    <p class="text-base-700 mb-4">
+      This article is just the beginning. We can configure agents, build custom rules, integrate with other tools and much more as part of a professional implementation.
+    </p>
+    <div class="flex flex-wrap gap-4">
+      <a style="color: black;" href="/en/wazuh" class="inline-flex items-center gap-2 px-6 py-3 bg-white text-accent-700 font-semibold rounded-lg border border-accent-300 hover:bg-accent-50 transition-colors">
+        Professional implementation
+      </a>
+    </div>
+  </div>
+
+</BlogLayoutEn>

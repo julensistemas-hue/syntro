@@ -1,0 +1,288 @@
+---
+// Contact form for migration/service inquiries (English) — dark theme (mismo estilo que /wazuh)
+---
+
+<section class="relative min-h-screen py-12 pb-24 overflow-hidden" style="background:#020817;">
+  <!-- Grid de fondo -->
+  <div class="absolute inset-0 pointer-events-none" style="background-image:linear-gradient(rgba(59,130,246,0.12) 1px,transparent 1px),linear-gradient(90deg,rgba(59,130,246,0.12) 1px,transparent 1px);background-size:40px 40px;opacity:0.6;"></div>
+  <!-- Gradiente radial -->
+  <div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(ellipse 80% 60% at 50% 20%,rgba(37,99,235,0.15) 0%,transparent 65%);"></div>
+
+  <div class="relative max-w-2xl mx-auto px-6 md:px-10">
+
+    <!-- Header -->
+    <div class="text-center mb-12">
+      <h1 class="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight" style="color:#f0f6ff;">
+        Request information about your project
+      </h1>
+      <p class="text-lg max-w-xl mx-auto" style="color:rgba(240,246,255,0.65);">
+        Fill in the form and we'll get back to you with a free analysis and cost estimate for your project.
+      </p>
+    </div>
+
+    <!-- Alert Container -->
+    <div id="alert-container" class="mb-6 hidden"></div>
+
+    <!-- Card formulario -->
+    <div class="rounded-2xl overflow-hidden" style="background:rgba(255,255,255,0.03);border:1px solid rgba(59,130,246,0.2);backdrop-filter:blur(12px);">
+
+      <!-- Header card -->
+      <div class="px-6 py-4 flex items-center gap-3" style="background:rgba(37,99,235,0.15);border-bottom:1px solid rgba(59,130,246,0.2);">
+        <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background:rgba(59,130,246,0.2);">
+          <svg class="w-4 h-4" fill="none" stroke="#60a5fa" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+          </svg>
+        </div>
+        <div>
+          <h3 class="text-sm font-bold" style="color:#f0f6ff;">Tell us about your project</h3>
+          <p class="text-xs" style="color:rgba(240,246,255,0.5);">Fields marked with * are required</p>
+        </div>
+      </div>
+
+      <div class="p-7">
+        <!-- Plan seleccionado -->
+        <div id="plan-display" class="hidden mb-6 p-3 rounded-xl flex items-center gap-3" style="background:rgba(59,130,246,0.08);border:1px solid rgba(59,130,246,0.25);">
+          <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="#60a5fa" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+          </svg>
+          <p class="text-sm" style="color:rgba(240,246,255,0.7);">
+            Selected service: <span id="plan-name" class="font-bold" style="color:#93c5fd;"></span>
+          </p>
+        </div>
+
+        <form id="migration-contact-form" class="space-y-5">
+          <input type="hidden" id="plan-selected" name="plan" value="">
+
+          <!-- Nombre -->
+          <div>
+            <label class="block text-xs font-semibold uppercase tracking-wider mb-2" style="color:rgba(240,246,255,0.5);">Name *</label>
+            <input type="text" id="nombre" name="nombre" required
+              class="w-full px-4 py-3 rounded-xl text-sm font-medium outline-none transition-all"
+              style="background:rgba(255,255,255,0.05);border:1px solid rgba(59,130,246,0.2);color:#f0f6ff;"
+              placeholder="Your name"
+              onfocus="this.style.borderColor='rgba(59,130,246,0.6)';this.style.boxShadow='0 0 0 3px rgba(59,130,246,0.1)'"
+              onblur="this.style.borderColor='rgba(59,130,246,0.2)';this.style.boxShadow='none'"
+            />
+          </div>
+
+          <!-- Empresa -->
+          <div>
+            <label class="block text-xs font-semibold uppercase tracking-wider mb-2" style="color:rgba(240,246,255,0.5);">Company (optional)</label>
+            <input type="text" id="empresa" name="empresa"
+              class="w-full px-4 py-3 rounded-xl text-sm font-medium outline-none transition-all"
+              style="background:rgba(255,255,255,0.05);border:1px solid rgba(59,130,246,0.2);color:#f0f6ff;"
+              placeholder="Your company name"
+              onfocus="this.style.borderColor='rgba(59,130,246,0.6)';this.style.boxShadow='0 0 0 3px rgba(59,130,246,0.1)'"
+              onblur="this.style.borderColor='rgba(59,130,246,0.2)';this.style.boxShadow='none'"
+            />
+          </div>
+
+          <!-- Email -->
+          <div>
+            <label class="block text-xs font-semibold uppercase tracking-wider mb-2" style="color:rgba(240,246,255,0.5);">Email (optional)</label>
+            <input type="email" id="email" name="email"
+              class="w-full px-4 py-3 rounded-xl text-sm font-medium outline-none transition-all"
+              style="background:rgba(255,255,255,0.05);border:1px solid rgba(59,130,246,0.2);color:#f0f6ff;"
+              placeholder="you@email.com"
+              onfocus="this.style.borderColor='rgba(59,130,246,0.6)';this.style.boxShadow='0 0 0 3px rgba(59,130,246,0.1)'"
+              onblur="this.style.borderColor='rgba(59,130,246,0.2)';this.style.boxShadow='none'"
+            />
+          </div>
+
+          <!-- Teléfono -->
+          <div>
+            <label class="block text-xs font-semibold uppercase tracking-wider mb-2" style="color:rgba(240,246,255,0.5);">Phone *</label>
+            <input type="tel" id="telefono" name="telefono" required
+              class="w-full px-4 py-3 rounded-xl text-sm font-medium outline-none transition-all"
+              style="background:rgba(255,255,255,0.05);border:1px solid rgba(59,130,246,0.2);color:#f0f6ff;"
+              placeholder="+1 555 000 0000"
+              onfocus="this.style.borderColor='rgba(59,130,246,0.6)';this.style.boxShadow='0 0 0 3px rgba(59,130,246,0.1)'"
+              onblur="this.style.borderColor='rgba(59,130,246,0.2)';this.style.boxShadow='none'"
+            />
+          </div>
+
+          <!-- URL WordPress (condicional) -->
+          <div id="wordpress-url-field" class="hidden">
+            <label class="block text-xs font-semibold uppercase tracking-wider mb-2" style="color:rgba(240,246,255,0.5);">URL of your current WordPress (optional)</label>
+            <input type="url" id="wordpress-url" name="wordpress_url"
+              class="w-full px-4 py-3 rounded-xl text-sm font-medium outline-none transition-all"
+              style="background:rgba(255,255,255,0.05);border:1px solid rgba(59,130,246,0.2);color:#f0f6ff;"
+              placeholder="https://yoursite.com"
+              onfocus="this.style.borderColor='rgba(59,130,246,0.6)';this.style.boxShadow='0 0 0 3px rgba(59,130,246,0.1)'"
+              onblur="this.style.borderColor='rgba(59,130,246,0.2)';this.style.boxShadow='none'"
+            />
+          </div>
+
+          <!-- Mensaje -->
+          <div>
+            <label class="block text-xs font-semibold uppercase tracking-wider mb-2" style="color:rgba(240,246,255,0.5);">Additional message (optional)</label>
+            <textarea id="mensaje" name="mensaje" rows="4"
+              class="w-full px-4 py-3 rounded-xl text-sm font-medium outline-none transition-all resize-none"
+              style="background:rgba(255,255,255,0.05);border:1px solid rgba(59,130,246,0.2);color:#f0f6ff;"
+              placeholder="Tell us about your project, current pages, special features..."
+              onfocus="this.style.borderColor='rgba(59,130,246,0.6)';this.style.boxShadow='0 0 0 3px rgba(59,130,246,0.1)'"
+              onblur="this.style.borderColor='rgba(59,130,246,0.2)';this.style.boxShadow='none'"
+            ></textarea>
+          </div>
+
+          <!-- Submit -->
+          <button type="submit" id="submit-btn"
+            class="w-full px-6 py-4 rounded-xl font-bold text-sm transition-all"
+            style="background:linear-gradient(135deg,#2563eb,#1d4ed8);color:white;box-shadow:0 6px 20px rgba(37,99,235,0.4);"
+            onmouseover="this.style.opacity='0.92';this.style.transform='translateY(-1px)'"
+            onmouseout="this.style.opacity='1';this.style.transform='translateY(0)'">
+            <span id="btn-text">Send request</span>
+            <span id="btn-spinner" class="hidden inline-flex items-center gap-2">
+              <svg class="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+              Sending...
+            </span>
+          </button>
+        </form>
+
+        <!-- Success -->
+        <div id="success-message" class="hidden mt-6">
+          <div class="rounded-2xl p-6 text-center" style="background:linear-gradient(135deg,rgba(34,197,94,0.12),rgba(16,185,129,0.08));border:1px solid rgba(74,222,128,0.28);">
+            <div class="text-5xl mb-3">✅</div>
+            <h4 class="text-xl font-bold mb-2" style="color:#f0f6ff;">Request sent!</h4>
+            <p class="text-sm font-medium" style="color:#4ade80;">We'll get back to you within 24 hours.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Info pills debajo -->
+    <div class="flex flex-wrap justify-center gap-4 mt-8">
+      <div class="flex items-center gap-2 text-sm" style="color:rgba(240,246,255,0.5);">
+        <svg class="w-4 h-4" fill="none" stroke="#4ade80" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+        </svg>
+        Free analysis
+      </div>
+      <div class="flex items-center gap-2 text-sm" style="color:rgba(240,246,255,0.5);">
+        <svg class="w-4 h-4" fill="none" stroke="#60a5fa" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+        Reply in &lt;24h
+      </div>
+      <div class="flex items-center gap-2 text-sm" style="color:rgba(240,246,255,0.5);">
+        <svg class="w-4 h-4" fill="none" stroke="#a5b4fc" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/>
+        </svg>
+        No commitment
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  input::placeholder, textarea::placeholder { color: rgba(240,246,255,0.25); }
+</style>
+
+<script>
+  const urlParams = new URLSearchParams(window.location.search);
+  const plan = urlParams.get('plan');
+
+  if (plan) {
+    const planInput = document.getElementById('plan-selected') as HTMLInputElement;
+    const planDisplay = document.getElementById('plan-display');
+    const planName = document.getElementById('plan-name');
+
+    if (planInput) planInput.value = plan;
+    if (planDisplay && planName) {
+      planDisplay.classList.remove('hidden');
+
+      const planNames: { [key: string]: string } = {
+        'landing': 'Landing Page (€450)',
+        'corporativa': 'Corporate Website (€800)',
+        'personalizada': 'Custom Website (€1,000 - €2,000)',
+        'wazuh-implementacion': 'Wazuh Implementation',
+        'wazuh-basico': 'Wazuh Basic',
+        'wazuh-empresarial': 'Wazuh Enterprise',
+        'wazuh-avanzado': 'Wazuh Advanced',
+        'wazuh-consultoria': 'Wazuh Consulting',
+        'wazuh-soporte': 'Wazuh Support',
+        'consultoria-ia': 'AI Consulting',
+        'desarrollo-web': 'Web Development',
+        'automatizacion': 'Process Automation',
+        'concienciacion': 'Cybersecurity Awareness',
+        'chatbot': 'Intelligent AI Chatbot',
+        'gestor-documental': 'AI Document Manager',
+        'gestor-citas': 'AI Appointment Manager',
+        'atencion-llamadas': 'AI Call Handling'
+      };
+
+      planName.textContent = planNames[plan] || plan;
+
+      const wordpressUrlField = document.getElementById('wordpress-url-field');
+      if (wordpressUrlField && ['landing', 'corporativa', 'personalizada'].includes(plan)) {
+        wordpressUrlField.classList.remove('hidden');
+      }
+    }
+  }
+
+  const form = document.getElementById('migration-contact-form') as HTMLFormElement;
+  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+  const btnText = document.getElementById('btn-text');
+  const btnSpinner = document.getElementById('btn-spinner');
+  const successMessage = document.getElementById('success-message');
+  const alertContainer = document.getElementById('alert-container');
+
+  function showAlert(message: string, type: 'success' | 'error' = 'success') {
+    if (!alertContainer) return;
+    alertContainer.style.cssText = type === 'success'
+      ? 'background:rgba(74,222,128,0.08);border:1px solid rgba(74,222,128,0.25);color:#4ade80;padding:12px 16px;border-radius:12px;'
+      : 'background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.25);color:#fca5a5;padding:12px 16px;border-radius:12px;';
+    alertContainer.innerHTML = `<p class="text-sm font-medium">${message}</p>`;
+    alertContainer.classList.remove('hidden');
+    setTimeout(() => alertContainer.classList.add('hidden'), 5000);
+  }
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    if (submitBtn) { submitBtn.disabled = true; submitBtn.style.opacity = '0.6'; }
+    if (btnText) btnText.classList.add('hidden');
+    if (btnSpinner) btnSpinner.classList.remove('hidden');
+
+    const formData = new FormData(form);
+    const data = {
+      nombre: formData.get('nombre'),
+      email: formData.get('email'),
+      telefono: formData.get('telefono'),
+      wordpress_url: formData.get('wordpress_url'),
+      empresa: formData.get('empresa') || '',
+      mensaje: formData.get('mensaje') || '',
+      plan: formData.get('plan') || 'No especificado'
+    };
+
+    try {
+      const response = await fetch('/api/send-migration-contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        form.classList.add('hidden');
+        if (successMessage) {
+          successMessage.classList.remove('hidden');
+          successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      } else {
+        throw new Error(result.error || 'Error sending the form');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      showAlert('❌ Error sending the request. Please try again.', 'error');
+      if (submitBtn) { submitBtn.disabled = false; submitBtn.style.opacity = '1'; }
+      if (btnText) btnText.classList.remove('hidden');
+      if (btnSpinner) btnSpinner.classList.add('hidden');
+    }
+  });
+</script>

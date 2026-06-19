@@ -1,0 +1,195 @@
+---
+import BlogLayoutEn from "../../../layouts/BlogLayoutEn.astro";
+---
+
+<BlogLayoutEn
+  title="How to Create Custom Rules in Wazuh: Detect Access and Actions"
+  description="Learn how to write custom Wazuh rules to detect folder access, specific users or Delete/Write actions. Practical examples with NAS logs and dynamic variables."
+  publishDate="2026-03-06"
+  author="AI Security"
+  readTime="10 min"
+  tags={["Wazuh", "Rules", "Alerts", "NAS", "SIEM", "Cybersecurity"]}
+  canonical="https://aisecurity.es/en/blog/crear-reglas-personalizadas-wazuh">
+
+  <p>Custom Wazuh rules are written in XML inside <code>/var/ossec/etc/rules/local_rules.xml</code>. Each rule defines a unique ID (above 100000), the severity level, the log field that must match and the description of the alert you will see in the dashboard.</p>
+
+  <h2>How do you create custom Wazuh rules step by step?</h2>
+
+  <p>
+    Custom rules in Wazuh let you detect specific patterns in your logs and trigger alerts when certain conditions are met. In this article we go through practical examples using NAS logs: detecting folder access, specific users and actions such as Delete or Write.
+  </p>
+
+  <!-- Locked course video -->
+  <div class="my-8">
+    <div class="relative w-full rounded-xl overflow-hidden" style="border: 2px solid #2d3748;">
+      <div class="relative" style="padding-bottom: 56.25%;">
+        <img
+          src="https://img.youtube.com/vi/q_uimgSJGGw/maxresdefault.jpg"
+          alt="Video: Creating Custom Rules"
+          class="absolute inset-0 w-full h-full object-cover"
+          style="filter: blur(2px) brightness(0.4);"
+        />
+        <div class="absolute inset-0 flex items-center justify-center" style="background: linear-gradient(135deg, rgba(0,101,255,0.2) 0%, rgba(0,0,0,0.7) 100%);">
+          <div class="text-center">
+            <div class="w-20 h-20 mx-auto mb-4 rounded-full flex items-center justify-center" style="background-color: rgba(255,255,255,0.1); border: 2px solid rgba(255,255,255,0.2);">
+              <svg class="w-10 h-10" style="color: rgba(255,255,255,0.5);" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/>
+              </svg>
+            </div>
+            <div class="mb-2">
+              <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-medium" style="background-color: rgba(245, 158, 11, 0.2); color: #fbbf24;">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                </svg>
+                Course content
+              </span>
+            </div>
+            <h3 class="text-xl font-bold mb-2" style="color: #ffffff;">Video: Custom Rules</h3>
+            <p class="text-sm mb-4" style="color: #9ca3af;">15 minutes - Practical examples with NAS</p>
+            <a
+              href="/en/wazuh"
+              class="inline-flex items-center gap-2 px-6 py-3 font-semibold rounded-lg transition-all hover:scale-105"
+              style="background: linear-gradient(135deg, #0065ff 0%, #0052cc 100%); color: #ffffff;">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+              </svg>
+              See it on the Wazuh page
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="text-center text-base-600 mt-3 text-sm">
+      Get the full video with our Wazuh services
+    </p>
+  </div>
+
+  <h2>Basic structure of a rule</h2>
+
+  <p>
+    Wazuh rules are defined in XML files inside <code>/var/ossec/etc/rules/</code>. The basic structure is:
+  </p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">&lt;rule id="100071" level="10"&gt;
+  &lt;if_sid&gt;100070&lt;/if_sid&gt;
+  &lt;field name="campo"&gt;valor&lt;/field&gt;
+  &lt;description&gt;Descripción de la alerta&lt;/description&gt;
+&lt;/rule&gt;</code></pre>
+
+  <p><strong>Components:</strong></p>
+  <ul>
+    <li><code>id</code>: Unique rule identifier (100000+ for custom rules)</li>
+    <li><code>level</code>: Alert severity (0-15)</li>
+    <li><code>if_sid</code>: Parent rule it inherits from (the decoder)</li>
+    <li><code>field</code>: Field extracted by the decoder to evaluate</li>
+    <li><code>description</code>: Alert text that appears in the dashboard</li>
+  </ul>
+
+  <h2>Example 1: Detect access to a specific folder</h2>
+
+  <p><strong>Input log:</strong></p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">NAS: Users: marialopez, Source IP: 192.168.1.100, Computer name: MariaPC, Connection type: SMB, Accessed resources: Dpto_direccion/Certificados/CertificadoDigital.pfc, Action: Write</code></pre>
+
+  <p><strong>Rule:</strong></p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">&lt;rule id="100071" level="10"&gt;
+  &lt;if_sid&gt;100070&lt;/if_sid&gt;
+  &lt;field name="resource"&gt;Dpto_direccion&lt;/field&gt;
+  &lt;description&gt;Acceso a carpeta Direccion en NAS&lt;/description&gt;
+&lt;/rule&gt;</code></pre>
+
+  <p><strong>How it works:</strong></p>
+  <ul>
+    <li>Inherits from rule 100070 (the generic NAS decoder)</li>
+    <li>Filters on the <code>resource</code> field that contains "Dpto_direccion"</li>
+    <li>Triggers a level 10 alert whenever any user accesses that folder</li>
+  </ul>
+
+  <h2>Example 2: User + specific action</h2>
+
+  <p><strong>Input log:</strong></p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">NAS: Users: Juan, Source IP: 192.168.1.100, Computer name: MariaPC, Connection type: SMB, Accessed resources: sdsds/Certificados/CertificadoDigital.pfc, Action: Delete</code></pre>
+
+  <p><strong>Rule:</strong></p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">&lt;rule id="100072" level="10"&gt;
+  &lt;if_sid&gt;100070&lt;/if_sid&gt;
+  &lt;field name="srcusernas"&gt;Juan&lt;/field&gt;
+  &lt;field name="actionNas"&gt;Delete&lt;/field&gt;
+  &lt;description&gt;El usuario Juan ha eliminado un fichero&lt;/description&gt;
+&lt;/rule&gt;</code></pre>
+
+  <p><strong>How it works:</strong></p>
+  <ul>
+    <li>Uses <strong>two fields</strong> for greater precision</li>
+    <li>Only fires if the user is "Juan" <strong>AND</strong> the action is "Delete"</li>
+    <li>Useful for auditing the actions of specific users</li>
+  </ul>
+
+  <h2>Example 3: IP + action with dynamic variables</h2>
+
+  <p><strong>Input log:</strong></p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">NAS: Users: marialopez, Source IP: 192.168.1.155, Computer name: MariaPC, Connection type: SMB, Accessed resources: sdsds/Certificados/CertificadoDigital.pfc, Action: Write</code></pre>
+
+  <p><strong>Rule:</strong></p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">&lt;rule id="100073" level="10"&gt;
+  &lt;if_sid&gt;100070&lt;/if_sid&gt;
+  &lt;field name="srcipNas"&gt;192.168.1.155&lt;/field&gt;
+  &lt;field name="actionNas"&gt;Write&lt;/field&gt;
+  &lt;description&gt;El equipo con la IP $(srcipNas) ha modificado el fichero $(resource)&lt;/description&gt;
+&lt;/rule&gt;</code></pre>
+
+  <p><strong>How it works:</strong></p>
+  <ul>
+    <li>Filters on a specific source IP + the Write action</li>
+    <li>Uses <strong>dynamic variables</strong> <code>$(field)</code> in the description</li>
+    <li>The alert will include the real values from the log: IP and affected resource</li>
+  </ul>
+
+  <h2>Syntax summary</h2>
+
+  <div style="background: linear-gradient(135deg, #1a1f2e 0%, #0f1419 100%); border: 1px solid #2d3748; border-radius: 12px; padding: 24px; margin: 24px 0;">
+    <table style="width: 100%; border-collapse: collapse; color: #e5e7eb;">
+      <tr style="border-bottom: 1px solid #2d3748;">
+        <td style="padding: 12px; font-weight: bold; color: #60a5fa;">Element</td>
+        <td style="padding: 12px; font-weight: bold; color: #60a5fa;">Use</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #2d3748;">
+        <td style="padding: 12px;"><code>if_sid</code></td>
+        <td style="padding: 12px;">Inherits from a parent rule (decoder)</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #2d3748;">
+        <td style="padding: 12px;"><code>field name="x"</code></td>
+        <td style="padding: 12px;">Filters on a field extracted by the decoder</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #2d3748;">
+        <td style="padding: 12px;"><code>$(field)</code></td>
+        <td style="padding: 12px;">Dynamic variable in the description</td>
+      </tr>
+      <tr>
+        <td style="padding: 12px;"><code>level</code></td>
+        <td style="padding: 12px;">Severity: 0-3 info, 4-7 medium, 8-15 critical</td>
+      </tr>
+    </table>
+  </div>
+
+  <h2>Where to add the rules</h2>
+
+  <p>
+    Custom rules are added in <code>/var/ossec/etc/rules/local_rules.xml</code>. After editing the file, restart the manager:
+  </p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">systemctl restart wazuh-manager</code></pre>
+
+  <h2>Next steps</h2>
+
+  <p>
+    Building custom decoders to extract the fields you need is part of a full Wazuh deployment. <a href="/en/wazuh">Discover our Wazuh services</a>.
+  </p>
+
+</BlogLayoutEn>

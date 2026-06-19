@@ -5,6 +5,7 @@ import Footer from "../components/global/Footer.astro";
 import GoogleAnalytics from "../components/global/GoogleAnalytics.astro";
 import Analytics from "@vercel/analytics/astro";
 import SpeedInsights from "@vercel/speed-insights/astro";
+import { stripLocale, localizePath, hasTranslation } from "../i18n/config";
 
 interface Props {
   title: string;
@@ -34,6 +35,12 @@ const {
 
 const fullTitle = `${title} | Blog AI Security`;
 const isWazuh = tags.some((t: string) => t.toLowerCase() === 'wazuh');
+
+// hreflang automático si este post tiene versión inglesa (mismo slug bajo /en)
+const canonicalPath = stripLocale(Astro.url.pathname);
+const showAlternates = hasTranslation(canonicalPath);
+const esAltUrl = new URL(canonicalPath, Astro.site).href;
+const enAltUrl = new URL(localizePath(canonicalPath, "en"), Astro.site).href;
 ---
 
 <html
@@ -47,6 +54,13 @@ const isWazuh = tags.some((t: string) => t.toLowerCase() === 'wazuh');
       canonical={canonical}
       ogImage={ogImage}
     />
+    {showAlternates && (
+      <>
+        <link rel="alternate" hreflang="es" href={esAltUrl} />
+        <link rel="alternate" hreflang="en" href={enAltUrl} />
+        <link rel="alternate" hreflang="x-default" href={esAltUrl} />
+      </>
+    )}
     <!-- Article Schema.org for SEO -->
     <script is:inline type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",

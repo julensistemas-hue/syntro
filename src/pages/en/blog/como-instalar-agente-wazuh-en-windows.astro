@@ -1,0 +1,212 @@
+---
+import BlogLayoutEn from "../../../layouts/BlogLayoutEn.astro";
+---
+
+<BlogLayoutEn
+  title="Install Wazuh Agent on Windows: Complete Guide 2026"
+  description="How to install the Wazuh agent on Windows step by step: MSI download, install command, ossec.conf configuration, localfile and syscheck. Up and running in 15 minutes."
+  publishDate="2026-02-25"
+
+  author="AI Security"
+  readTime="10 min"
+  tags={["Wazuh", "Windows", "Agent", "SIEM", "Monitoring", "Cybersecurity"]}
+  canonical="https://aisecurity.es/en/blog/como-instalar-agente-wazuh-en-windows">
+
+  <p>To install the Wazuh agent on Windows, download the MSI installer from the Wazuh portal, run it with the <code>WAZUH_MANAGER=SERVER_IP</code> parameter, and the agent registers and connects to the server automatically. The whole process takes less than 5 minutes.</p>
+
+  <h2>How to install the Wazuh agent on Windows step by step?</h2>
+
+  <p>
+    In this guide I'll show you <strong>how to install the Wazuh agent on Windows</strong> and configure the most important parts of the <code>ossec.conf</code> file. The agent is the component that collects logs, monitors file integrity and sends all the information to the Wazuh server.
+  </p>
+
+  <!-- Video del curso bloqueado -->
+  <div class="my-8">
+    <div class="relative w-full rounded-xl overflow-hidden" style="border: 2px solid #2d3748;">
+      <div class="relative" style="padding-bottom: 56.25%;">
+        <img
+          src="/images/instalación agnete windows.jpg"
+          alt="Video: Installing the Wazuh Agent on Windows"
+          class="absolute inset-0 w-full h-full object-cover"
+          style="filter: blur(2px) brightness(0.4);"
+        />
+        <div class="absolute inset-0 flex items-center justify-center" style="background: linear-gradient(135deg, rgba(0,101,255,0.2) 0%, rgba(0,0,0,0.7) 100%);">
+          <div class="text-center">
+            <div class="w-20 h-20 mx-auto mb-4 rounded-full flex items-center justify-center" style="background-color: rgba(255,255,255,0.1); border: 2px solid rgba(255,255,255,0.2);">
+              <svg class="w-10 h-10" style="color: rgba(255,255,255,0.5);" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold mb-2" style="color: #ffffff;">Video: Installing the Windows Agent</h3>
+            <p class="text-sm mb-4" style="color: #9ca3af;">10 minutes - Installation and ossec.conf configuration</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2>Prerequisite: connectivity with the server</h2>
+
+  <div style="background:rgba(245,158,11,0.12);border-left:4px solid #f59e0b;padding:1rem;margin:1.5rem 0;border-radius:0 0.5rem 0.5rem 0;">
+    <p class="m-0" style="color:rgba(255,255,255,0.9);"><strong style="color:rgba(255,255,255,0.9);">Important:</strong> Before installing the agent, make sure the Windows machine has <strong style="color:rgba(255,255,255,0.9);">connectivity with the Wazuh server</strong>. The agent needs to communicate with the server to send logs and receive its configuration.</p>
+  </div>
+
+  <p>
+    You can verify connectivity in several ways:
+  </p>
+
+  <h3>1. Ping the server</h3>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">ping SERVER_IP</code></pre>
+
+  <h3>2. Check access to the Dashboard (port 443)</h3>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;"># Using PowerShell
+Invoke-WebRequest -Uri https://SERVER_IP -SkipCertificateCheck
+
+# Or open it in the browser
+https://SERVER_IP</code></pre>
+
+  <p>
+    If the Dashboard loads correctly, there's connectivity. If it doesn't work, check:
+  </p>
+
+  <ul>
+    <li>The server firewall (ports 443 and 1514 open)</li>
+    <li>The Windows firewall on the client</li>
+    <li>Network/VPN configuration if they are on different networks</li>
+  </ul>
+
+  <h2>Installation command</h2>
+
+  <p>
+    Run this command in <strong>PowerShell as Administrator</strong>. You must replace the following values with the ones for your environment:
+  </p>
+
+  <ul>
+    <li><strong>WAZUH_MANAGER:</strong> IP or hostname of your Wazuh server</li>
+    <li><strong>WAZUH_AGENT_NAME:</strong> Identifying name for this agent (e.g.: PC-ACCOUNTING, SERVER-WEB, etc.)</li>
+  </ul>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">Invoke-WebRequest -Uri https://packages.wazuh.com/4.x/windows/wazuh-agent-4.7.0-1.msi -OutFile wazuh-agent.msi; Start-Process msiexec.exe -ArgumentList "/i wazuh-agent.msi /q WAZUH_MANAGER=YOUR_SERVER_IP WAZUH_AGENT_NAME=AGENT_NAME" -Wait</code></pre>
+
+  <div style="background:rgba(245,158,11,0.12);border-left:4px solid #f59e0b;padding:1rem;margin:1.5rem 0;border-radius:0 0.5rem 0.5rem 0;">
+    <p class="m-0" style="color:rgba(255,255,255,0.9);"><strong style="color:rgba(255,255,255,0.9);">Real example:</strong> If your Wazuh server is at 192.168.1.100 and you want to name the agent "PC-OFFICE":</p>
+    <pre style="background:#0f1419;padding:16px;border-radius:8px;margin-top:12px;overflow-x:auto;"><code style="color: #e5e7eb;">Invoke-WebRequest -Uri https://packages.wazuh.com/4.x/windows/wazuh-agent-4.7.0-1.msi -OutFile wazuh-agent.msi; Start-Process msiexec.exe -ArgumentList "/i wazuh-agent.msi /q WAZUH_MANAGER=192.168.1.100 WAZUH_AGENT_NAME=PC-OFFICE" -Wait</code></pre>
+  </div>
+
+  <h2>The ossec.conf configuration file</h2>
+
+  <p>
+    The agent's configuration file is located at:
+  </p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">C:\Program Files (x86)\ossec-agent\ossec.conf</code></pre>
+
+  <p>
+    This XML file holds the entire agent configuration. The two most important sections are <code>localfile</code> and <code>syscheck</code>.
+  </p>
+
+  <h2>The localfile section - log monitoring</h2>
+
+  <p>
+    The <code>&lt;localfile&gt;</code> section defines <strong>which Windows system logs you want to send to Wazuh</strong>. By default, the agent monitors the main Event Logs:
+  </p>
+
+  <ul>
+    <li><strong>Security:</strong> Security events (logons, failed access, permission changes, etc.)</li>
+    <li><strong>System:</strong> Operating system events (boot, service stops, hardware errors)</li>
+    <li><strong>Application:</strong> Events from installed applications</li>
+  </ul>
+
+  <p>
+    Example configuration in ossec.conf:
+  </p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">&lt;localfile&gt;
+  &lt;location&gt;Security&lt;/location&gt;
+  &lt;log_format&gt;eventchannel&lt;/log_format&gt;
+&lt;/localfile&gt;
+
+&lt;localfile&gt;
+  &lt;location&gt;System&lt;/location&gt;
+  &lt;log_format&gt;eventchannel&lt;/log_format&gt;
+&lt;/localfile&gt;</code></pre>
+
+  <h2>The syscheck section - File Integrity Monitoring (FIM)</h2>
+
+  <p>
+    The <code>&lt;syscheck&gt;</code> section configures <strong>File Integrity Monitoring</strong>. This feature detects changes in critical system files and folders:
+  </p>
+
+  <ul>
+    <li><strong>Creation</strong> of new files</li>
+    <li><strong>Modification</strong> of existing files</li>
+    <li><strong>Deletion</strong> of files</li>
+    <li><strong>Permission changes</strong></li>
+    <li><strong>Changes to the Windows registry</strong></li>
+  </ul>
+
+  <div style="background:rgba(16,185,129,0.12);border-left:4px solid #10b981;padding:1rem;margin:1.5rem 0;border-radius:0 0.5rem 0.5rem 0;">
+    <p class="m-0" style="color:rgba(255,255,255,0.9);"><strong style="color:rgba(255,255,255,0.9);">What is it for?</strong> FIM is crucial for detecting malware, ransomware or unauthorized changes. If an attacker modifies system files or ransomware starts encrypting documents, Wazuh will generate alerts immediately.</p>
+  </div>
+
+  <p>
+    Example configuration:
+  </p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">&lt;syscheck&gt;
+  &lt;frequency&gt;300&lt;/frequency&gt;
+  &lt;directories check_all="yes"&gt;C:\Windows\System32&lt;/directories&gt;
+  &lt;directories check_all="yes"&gt;C:\Users\*\Documents&lt;/directories&gt;
+  &lt;windows_registry&gt;HKEY_LOCAL_MACHINE\Software&lt;/windows_registry&gt;
+&lt;/syscheck&gt;</code></pre>
+
+  <h2>Useful commands</h2>
+
+  <p>
+    Some PowerShell commands to manage the agent:
+  </p>
+
+  <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;"># Restart the agent service
+Restart-Service WazuhSvc
+
+# Check the service status
+Get-Service WazuhSvc
+
+# View the agent logs (last 50 lines)
+Get-Content "C:\Program Files (x86)\ossec-agent\ossec.log" -Tail 50</code></pre>
+
+  <h2>Additional resources</h2>
+
+  <ul>
+    <li><a href="https://documentation.wazuh.com/current/installation-guide/wazuh-agent/wazuh-agent-package-windows.html" target="_blank" rel="noopener" style="color: #38b1ff;">Official documentation: Windows agent</a></li>
+    <li><a href="https://documentation.wazuh.com/current/user-manual/capabilities/file-integrity/index.html" target="_blank" rel="noopener" style="color: #38b1ff;">File Integrity Monitoring in Wazuh</a></li>
+    <li><a href="/en/blog/como-instalar-wazuh-en-linux">Installing Wazuh Server on Linux</a></li>
+  </ul>
+
+  <hr />
+
+  <p class="text-sm text-base-600">
+    <strong>Related articles:</strong>
+  </p>
+  <ul class="text-sm">
+    <li><a href="/en/blog/como-instalar-wazuh-en-linux">How to Install Wazuh on Linux (Ubuntu 24.04)</a></li>
+    <li><a href="/en/blog/como-instalar-wazuh-con-docker">How to Install Wazuh with Docker Compose</a></li>
+    <li><a href="/en/blog/que-es-wazuh-para-que-sirve">What is Wazuh and what is it used for?</a></li>
+  </ul>
+  <hr />
+
+  <div class="bg-accent-50 border border-accent-200 rounded-xl p-6 my-8">
+    <h3 class="text-accent-800 mt-0">Get Wazuh deployed the right way</h3>
+    <p class="text-base-700 mb-4">
+      We can configure agents, build custom rules, integrate with other tools and much more as part of a professional implementation.
+    </p>
+    <div class="flex flex-wrap gap-4">
+      <a style="color: black;" href="/en/wazuh" class="inline-flex items-center gap-2 px-6 py-3 bg-white text-accent-700 font-semibold rounded-lg border border-accent-300 hover:bg-accent-50 transition-colors">
+        Professional implementation
+      </a>
+    </div>
+  </div>
+
+</BlogLayoutEn>

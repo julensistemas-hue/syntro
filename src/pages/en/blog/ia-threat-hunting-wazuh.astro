@@ -1,0 +1,235 @@
+---
+import BlogLayoutEn from "../../../layouts/BlogLayoutEn.astro";
+---
+
+<BlogLayoutEn
+  title="AI Threat Hunting in Wazuh: Installation Guide with Ollama"
+  description="Integrate AI into Wazuh for threat hunting. Install Ollama with a local LLM, connect it to your Wazuh logs and query security events in natural language, fully on-prem."
+  publishDate="2025-12-02"
+  author="AI Security"
+  readTime="8 min"
+  tags={["Wazuh", "Artificial Intelligence", "Cybersecurity", "Threat Hunting"]}
+  canonical="https://aisecurity.es/en/blog/ia-threat-hunting-wazuh">
+
+
+
+  <p>To use AI for threat hunting with Wazuh, install Ollama with a local LLM (Llama 3), connect a Python script to the Wazuh event files and run natural-language queries against your security logs. Everything runs locally, without sending data outside.</p>
+
+  <h2>What do we achieve with this integration?</h2>
+
+  <ul>
+    <li><strong>Conversational analysis</strong>: Query security logs in natural language ("Have there been any failed SSH attempts today?")</li>
+    <li><strong>Smart detection</strong>: The AI identifies suspicious patterns that could go unnoticed</li>
+    <li><strong>Fast response</strong>: Reduces investigation time from hours to minutes</li>
+    <li><strong>Total privacy</strong>: Everything runs locally, without sending data to third parties</li>
+  </ul>
+
+
+
+  <h2>How do you enable the JSON event file in Wazuh?</h2>
+
+  <p>
+    Wazuh needs to store all events in JSON format so the AI can analyze them. Edit the server configuration:
+  </p>
+
+  <pre><code class="language-bash"># Edit Wazuh configuration
+sudo nano /var/ossec/etc/ossec.conf
+
+# Find the &lt;global&gt; section and make sure it is configured:
+&lt;global&gt;
+  &lt;jsonout_output&gt;yes&lt;/jsonout_output&gt;
+  &lt;alerts_log&gt;yes&lt;/alerts_log&gt;
+  &lt;logall&gt;yes&lt;/logall&gt;
+  &lt;logall_json&gt;yes&lt;/logall_json&gt;
+&lt;/global&gt;
+
+# Restart Wazuh
+sudo systemctl restart wazuh-manager</code></pre>
+
+  <p>
+    This will create the <code>/var/ossec/logs/archives/archives.json</code> file with all the security logs.
+  </p>
+
+  <h2>How do you install Ollama and a local LLM?</h2>
+
+  <p>
+    <strong>Ollama</strong> is a tool that lets you run language models (LLMs) locally with ease. We are going to install Ollama and download the <strong>Llama 3</strong> model:
+  </p>
+
+  <pre><code class="language-bash"># Install Ollama
+curl -fsSL https://ollama.com/install.sh | sh
+
+# Download the Llama 3 model (8B parameters, ~4.7GB)
+ollama pull llama3
+
+# Verify it works
+ollama run llama3</code></pre>
+
+  <p>
+    <strong>Note</strong>: The first <code>ollama pull</code> will download several GB. If your server has little RAM, you can use lighter models such as <code>llama3:7b</code> or <code>phi3:mini</code>.
+  </p>
+
+  <h2>Which Python dependencies do you need to install?</h2>
+
+  <p>
+    The threat hunting chatbot is written in Python and uses several libraries for natural language processing:
+  </p>
+
+  <pre><code class="language-bash"># Update system and install Python
+sudo apt update && sudo apt install python3 python3-pip -y
+
+# Install the required dependencies
+pip3 install paramiko python-daemon langchain langchain-community \
+  langchain-ollama langchain-huggingface faiss-cpu sentence-transformers \
+  transformers pytz fastapi uvicorn</code></pre>
+
+  <p>
+    This will install:
+  </p>
+
+  <ul>
+    <li><strong>LangChain</strong>: Framework for building applications with LLMs</li>
+    <li><strong>FAISS</strong>: Vector search engine for embeddings</li>
+    <li><strong>FastAPI</strong>: Web framework for the chatbot</li>
+    <li><strong>Transformers</strong>: HuggingFace NLP models</li>
+  </ul>
+
+  <h2>How do you download and install the AI threat hunting script?</h2>
+
+  <p>
+    The <code>threat_hunter.py</code> script is the heart of the integration. We will download it from the official Wazuh repository:
+  </p>
+
+  <pre><code class="language-bash"># Download the script
+cd /var/ossec/integrations/
+sudo wget https://raw.githubusercontent.com/wazuh/wazuh-tools/master/ai-threat-hunting/threat_hunter.py
+
+# Grant execution permissions
+sudo chmod +x threat_hunter.py
+sudo chown root:wazuh threat_hunter.py</code></pre>
+
+  <h2>How do you configure the Wazuh credentials for the script?</h2>
+
+  <p>
+    Before running the chatbot, you need to configure the access credentials. Open the script and find the following lines to modify them:
+  </p>
+
+  <pre><code class="language-python"># Edit the script
+sudo nano /var/ossec/integrations/threat_hunter.py
+
+# Find and replace:
+USERNAME = "admin"  # User to access the chatbot
+PASSWORD = "YourSecurePassword123"  # Chatbot password
+
+# If Wazuh is on another server (optional):
+SSH_HOST = "192.168.1.100"  # IP of the Wazuh server
+SSH_USERNAME = "wazuh"
+SSH_PASSWORD = "password_ssh"</code></pre>
+
+  <p>
+    <strong>Important</strong>: Use a strong password for the chatbot, since it will have access to all the security logs.
+  </p>
+
+  <h2>How do you start the AI threat hunting chatbot?</h2>
+
+  <p>
+    Everything is ready! Now let's start the chatbot:
+  </p>
+
+  <pre><code class="language-bash"># Run the chatbot (in the foreground for testing)
+sudo python3 /var/ossec/integrations/threat_hunter.py
+
+# You will see a message like:
+# INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)</code></pre>
+
+  <p>
+    Open your browser and go to: <strong>http://&lt;SERVER_IP&gt;:8000</strong>
+  </p>
+
+  <h2>How do you use the threat hunting chatbot to analyze logs?</h2>
+
+  <p>
+    Once inside the chatbot, you can ask questions in natural language. Some useful commands:
+  </p>
+
+  <ul>
+    <li><code>/help</code> - Shows the help menu</li>
+    <li><code>/set days 7</code> - Analyzes events from the last 7 days (range: 1-365)</li>
+    <li><code>/reload</code> - Reloads the vector database with new events</li>
+  </ul>
+
+  <p><strong>Example questions:</strong></p>
+
+  <ul>
+    <li>"Have there been any failed SSH access attempts in the last 24 hours?"</li>
+    <li>"Show me critical alerts of level 12 or higher"</li>
+    <li>"Which users have modified system files recently?"</li>
+    <li>"Analyze suspicious activity on the web-prod-01 server"</li>
+  </ul>
+
+  <h2>How do you run the AI chatbot as a service on Linux?</h2>
+
+  <p>
+    To keep the chatbot running permanently in the background, create it as a systemd service:
+  </p>
+
+  <pre><code class="language-bash"># Create service file
+sudo nano /etc/systemd/system/wazuh-threat-hunter.service
+
+# Content:
+[Unit]
+Description=Wazuh AI Threat Hunter Chatbot
+After=network.target wazuh-manager.service
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/var/ossec/integrations
+ExecStart=/usr/bin/python3 /var/ossec/integrations/threat_hunter.py
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
+
+# Enable and start the service
+sudo systemctl daemon-reload
+sudo systemctl enable wazuh-threat-hunter.service
+sudo systemctl start wazuh-threat-hunter.service
+
+# Check status
+sudo systemctl status wazuh-threat-hunter.service</code></pre>
+
+  <h2>What can you do next with this integration?</h2>
+
+  <p>
+    In upcoming articles I will publish <strong>real screenshots</strong> showing:
+  </p>
+
+  <ul>
+    <li>Examples of chatbot queries and responses</li>
+    <li>Practical use cases for threat detection</li>
+    <li>Advanced configurations and performance tuning</li>
+    <li>Integration with custom Wazuh dashboards</li>
+  </ul>
+
+  <h2>Conclusion</h2>
+
+  <p>
+    Integrating AI into Wazuh transforms the way you do threat hunting: from manually searching logs for hours, to asking questions in natural language and receiving contextualized analysis in seconds.
+  </p>
+
+  <p>
+    <strong>The best part</strong>: Everything runs locally with open-source models, without depending on external services or compromising the privacy of your security data.
+  </p>
+
+  <p>
+    If you need help with the professional implementation of Wazuh or this AI integration in your company, <a href="/en/reunion">request a free consultation here</a>.
+  </p>
+
+  <hr />
+
+  <p class="text-sm text-base-600">
+    <strong>Original source</strong>: <a href="https://wazuh.com/blog/leveraging-artificial-intelligence-for-threat-hunting-in-wazuh/" target="_blank" rel="noopener noreferrer">Wazuh Blog - Leveraging Artificial Intelligence for Threat Hunting</a>
+  </p>
+</BlogLayoutEn>

@@ -1,0 +1,78 @@
+---
+import BlogLayoutEn from "../../../layouts/BlogLayoutEn.astro";
+---
+
+<BlogLayoutEn
+  title="Wazuh + Elastic Security: Complete SIEM Setup Guide"
+  description="Build a complete SIEM by integrating Wazuh with Elastic Security. Step-by-step install of Elasticsearch, Kibana and Filebeat plus real-time alert dashboards."
+  publishDate="2025-12-22"
+  author="AI Security"
+  readTime="8 min"
+  tags={["Elasticsearch", "Kibana", "SIEM", "dashboards", "visualization", "Wazuh", "Cybersecurity"]}
+  canonical="https://aisecurity.es/en/blog/wazuh-elastic-security-configuracion-de-siem-completo">
+
+<div>
+<p>To integrate Wazuh with Elastic Security, install Elasticsearch and Kibana 8.x, deploy the Wazuh Manager and connect them through the Filebeat module configured with the Wazuh template. The result is a complete SIEM that centralizes alerts, visualizes events in real time and correlates threats from a single dashboard.</p>
+
+<h2>How do you integrate Wazuh with Elastic Security for a complete SIEM?</h2>
+<p>The need for a robust Security Information and Event Management (SIEM) system is critical. Wazuh, as an open-source security platform, delivers threat detection and file integrity monitoring, but its true potential is unlocked when combined with the Elastic stack (Elasticsearch, Kibana) for storage, analysis and visualization. This guide takes you from installation to working dashboards for a complete SIEM.</p>
+
+<h2>When does a business need Wazuh with Elastic?</h2>
+<p>An e-commerce company needs to monitor unauthorized access attempts to its web servers in real time, detect changes in critical configuration files and correlate alerts across multiple firewalls. A SIEM integrated with Wazuh and Elastic Security centralizes these logs, applies correlation rules and presents incidents in visual panels so the SOC team can respond in minutes, reducing threat detection time.</p>
+
+<h2>What do you need to integrate Wazuh with Elastic Security?</h2>
+<ul>
+<li>Ubuntu 22.04 LTS server (minimum 8GB RAM, 4 CPU cores).</li>
+<li>Root access or a user with sudo privileges.</li>
+<li>Internet connection to download packages.</li>
+<li>Domain or public IP to access Kibana (with proper firewall configuration).</li>
+</ul>
+
+<h2>How do you install Wazuh + Elasticsearch + Kibana step by step?</h2>
+<p>First, install Elasticsearch and Kibana 8.x. Then deploy the Wazuh manager server and finally integrate both using the Wazuh connector for Elastic.</p>
+<pre><code class="language-bash"># 1. Install Elasticsearch
+wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo gpg --dearmor -o /usr/share/keyrings/elastic-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/elastic-keyring.gpg] https://artifacts.elastic.co/packages/8.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-8.x.list
+sudo apt update
+sudo apt install elasticsearch=8.13.4
+sudo systemctl daemon-reload
+sudo systemctl enable elasticsearch
+sudo systemctl start elasticsearch
+
+# 2. Install Kibana
+sudo apt install kibana=8.13.4
+sudo systemctl enable kibana
+sudo systemctl start kibana
+
+# 3. Install Wazuh Manager
+curl -sO https://packages.wazuh.com/4.7/wazuh-install.sh
+sudo bash wazuh-install.sh --wazuh-indexer node-1
+# During installation you will be asked to set up credentials. Save them.
+
+# 4. Install the Wazuh connector for Elastic
+sudo apt install filebeat=8.13.4
+curl -so /etc/filebeat/wazuh-template.json https://packages.wazuh.com/4.7/filebeat/wazuh-template.json
+sudo filebeat setup --index-management -E output.logstash.enabled=false -E 'output.elasticsearch.hosts=["localhost:9200"]'
+sudo systemctl daemon-reload
+sudo systemctl enable filebeat
+sudo systemctl start filebeat</code></pre>
+
+<h2>How do you visualize Wazuh alerts in Kibana dashboards?</h2>
+<p>Once installed, access Kibana (http://YOUR_SERVER:5601) and navigate to the "Security" application. Here you can see Wazuh alerts classified by severity. To build a useful dashboard that shows failed SSH events by source, use the following query in Kibana's "Discover":</p>
+<pre><code class="language-bash">rule.groups:"authentication_failed" AND data.win.eventdata.ipAddress:*
+</code></pre>
+<p>To visualize brute-force attempts, create a line chart with the "Terms" aggregation on the `data.win.eventdata.ipAddress` field and a date/histogram sub-bucket. Another useful query to detect changes in sensitive files is:</p>
+<pre><code class="language-bash">rule.groups:"syscheck" AND syscheck.event:"modified"
+</code></pre>
+<p>Set up these charts in a new Kibana dashboard, adding a heat map of events by security rule and a table with the top 10 agents with the most alerts. This provides an immediate operational view of your security posture.</p>
+
+<h2>Conclusion</h2>
+<p>The combination of Wazuh and Elastic Security forms an enterprise-grade, open-source, scalable and highly visual SIEM. From log ingestion to forensic investigation in interactive dashboards, this stack covers the full detection and response cycle. The key lies in a solid initial configuration and in designing visualizations that respond to the specific threats your organization faces. Need help deploying or customizing your SIEM? <a href="/en/reunion">Request a free consultation</a> with our experts.</p>
+</div>
+
+  <hr />
+
+  <p class="text-sm text-base-600">
+    <strong>Need to implement this solution?</strong> <a href="/en/reunion">Request a free consultation here</a>.
+  </p>
+</BlogLayoutEn>
