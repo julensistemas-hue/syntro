@@ -2,6 +2,7 @@
 import BaseHead from "../components/BaseHead.astro";
 import Navigation from "../components/global/Navigation.astro";
 import Footer from "../components/global/Footer.astro";
+import FooterEn from "../components/global/FooterEn.astro";
 import Mascot from "../components/global/Mascot.astro";
 import GoogleAnalytics from "../components/global/GoogleAnalytics.astro";
 import LanguageBanner from "../components/global/LanguageBanner.astro";
@@ -63,7 +64,7 @@ const enUrl = new URL(localizePath(canonicalPath, "en"), Astro.site).href;
     <LanguageBanner />
     <Navigation />
     <main class="grow"><slot /></main>
-    <Footer />
+    {locale === "en" ? <FooterEn /> : <Footer />}
     <Mascot />
     <Analytics />
     <SpeedInsights />

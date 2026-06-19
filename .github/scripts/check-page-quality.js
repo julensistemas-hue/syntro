@@ -117,8 +117,8 @@ function checkSEO(html) {
   if (noAlt > 0) s.push(`${noAlt} imagen(es) sin alt text`);
 
   // lang
-  c.lang = /html[^>]+lang=["']es/i.test(html);
-  if (!c.lang) s.push('html sin lang="es"');
+  c.lang = /html[^>]+lang=["'](es|en)/i.test(html);
+  if (!c.lang) s.push('html sin lang válido (es/en)');
 
   // robots noindex
   c.noindex = /<meta[^>]+content=["'][^"']*noindex/i.test(html);

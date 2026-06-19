@@ -1,0 +1,6 @@
+---
+// La experiencia inglesa no tiene homepage propia todavía: /en redirige a la
+// landing principal en inglés (Wazuh). Resuelve el logo del nav y el breadcrumb
+// "Home" de los posts, que apuntan a /en.
+return Astro.redirect("/en/wazuh", 302);
+---
