@@ -274,6 +274,13 @@ ${T.textContactLabel}: info@aisecurity.es
                       <h1 style="margin: 0; color: #ffffff; font-size: 28px; font-weight: 700;">
                         Nueva Solicitud de Consulta
                       </h1>
+                      ${lang === 'en' ? `
+                      <p style="margin: 12px 0 0;">
+                        <span style="display: inline-block; padding: 5px 14px; background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.4); border-radius: 999px; color: #ffffff; font-size: 13px; font-weight: 700;">
+                          🌐 Lead desde la web en INGLÉS (/en)
+                        </span>
+                      </p>
+                      ` : ''}
                       ${calendarEvent ? `
                       <p style="margin: 12px 0 0; color: #e0f2fe; font-size: 15px;">
                         Reunion agendada: ${formatDate(meetingDate!)} a las ${selectedTime}h
@@ -411,7 +418,7 @@ Fecha: ${new Date().toLocaleString('es-ES', { timeZone: 'Europe/Madrid' })}
       from: 'AI Security <info@aisecurity.es>',
       to: 'info@aisecurity.es',
       replyTo: email || undefined,
-      subject: `Nueva solicitud de consulta - ${nombre || email}${empresa ? ` (${empresa})` : ''}`,
+      subject: `${lang === 'en' ? '🌐 [EN] ' : ''}Nueva solicitud de consulta - ${nombre || email}${empresa ? ` (${empresa})` : ''}`,
       html: adminEmailHtml,
       text: adminTextFallback,
     });

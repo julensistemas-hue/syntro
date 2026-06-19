@@ -197,6 +197,13 @@ ${lang === 'en' ? 'Contact' : 'Contacto'}: info@aisecurity.es
                       <h1 style="margin: 0; color: #ffffff; font-size: 28px; font-weight: 700;">
                         Nueva Solicitud de Proyecto
                       </h1>
+                      ${lang === 'en' ? `
+                      <p style="margin: 12px 0 0;">
+                        <span style="display: inline-block; padding: 5px 14px; background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.4); border-radius: 999px; color: #ffffff; font-size: 13px; font-weight: 700;">
+                          🌐 Lead desde la web en INGLÉS (/en)
+                        </span>
+                      </p>
+                      ` : ''}
                       <p style="margin: 12px 0 0; color: #ede9fe; font-size: 15px;">
                         Solicitud de información sobre ${planTexto}
                       </p>
@@ -320,7 +327,7 @@ Fecha: ${new Date().toLocaleString('es-ES', { timeZone: 'Europe/Madrid' })}
       from: 'AI Security <info@aisecurity.es>',
       to: 'julen.sistemas@gmail.com',
       replyTo: email || undefined,
-      subject: `Nueva solicitud proyecto: ${planTexto}`,
+      subject: `${lang === 'en' ? '🌐 [EN] ' : ''}Nueva solicitud proyecto: ${planTexto}`,
       html: adminEmailHtml,
       text: adminTextFallback,
     });
