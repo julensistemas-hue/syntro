@@ -9,7 +9,29 @@ import BlogLayoutEn from "../../../layouts/BlogLayoutEn.astro";
   author="AI Security"
   readTime="10 min"
   tags={["Wazuh", "SIEM", "XDR", "Cybersecurity", "Open Source", "Monitoring"]}
-  canonical="https://aisecurity.es/en/blog/que-es-wazuh-para-que-sirve">
+  canonical="https://aisecurity.es/en/blog/que-es-wazuh-para-que-sirve"
+  faqSchema={[
+    {
+      question: "Is Wazuh really free?",
+      answer: "Yes. Wazuh is fully open source under the GPLv2 license, with no per-agent fees or paid tiers. You can monitor unlimited servers and endpoints without licensing costs; you only pay for the infrastructure you run it on or for optional professional support."
+    },
+    {
+      question: "What is the difference between a SIEM and an XDR in Wazuh?",
+      answer: "The SIEM side collects, stores and correlates logs to detect and investigate threats, while the XDR side adds extended detection and automated response across endpoints. Wazuh combines both in a single platform, so it not only finds threats but can also react to them automatically."
+    },
+    {
+      question: "Which compliance standards does Wazuh help with?",
+      answer: "Wazuh's Security Configuration Assessment (SCA) module audits your systems against CIS Benchmarks, PCI-DSS, HIPAA, GDPR and Spain's ENS framework. It produces reports with specific remediation steps, which is useful for passing audits."
+    },
+    {
+      question: "How fast does Wazuh detect a new vulnerability?",
+      answer: "Wazuh keeps a live inventory of installed software and cross-references it against CVE databases in near real time. When a critical exploit like Log4j is published at 10:00, Wazuh can flag the affected vulnerable servers within about 15 minutes."
+    },
+    {
+      question: "Can Wazuh respond to incidents automatically?",
+      answer: "Yes. Through active response rules Wazuh can block an IP on the firewall, isolate a machine, disable a user or run custom scripts. A common rule is to block an IP for 30 minutes after 5 failed logins in 2 minutes."
+    }
+  ]}>
 
   <p>
     <strong>Wazuh</strong> is an open source security platform that works as a SIEM and XDR: it centralizes the logs from all your servers and devices, detects threats in real time, monitors the integrity of critical files and generates automatic alerts. It's free, complies with standards like ENS and ISO 27001, and it's the most widely used option among SMBs that need real cybersecurity without paid licenses.
@@ -169,6 +191,33 @@ import BlogLayoutEn from "../../../layouts/BlogLayoutEn.astro";
   </div>
 
 
+
+  <h2>Frequently Asked Questions</h2>
+
+  <h3>Is Wazuh really free?</h3>
+  <p>
+    Yes. Wazuh is fully open source under the GPLv2 license, with no per-agent fees or paid tiers. You can monitor unlimited servers and endpoints without licensing costs; you only pay for the infrastructure you run it on or for optional professional support.
+  </p>
+
+  <h3>What is the difference between a SIEM and an XDR in Wazuh?</h3>
+  <p>
+    The SIEM side collects, stores and correlates logs to detect and investigate threats, while the XDR side adds extended detection and automated response across endpoints. Wazuh combines both in a single platform, so it not only finds threats but can also react to them automatically.
+  </p>
+
+  <h3>Which compliance standards does Wazuh help with?</h3>
+  <p>
+    Wazuh's Security Configuration Assessment (SCA) module audits your systems against CIS Benchmarks, PCI-DSS, HIPAA, GDPR and Spain's ENS framework. It produces reports with specific remediation steps, which is useful for passing audits.
+  </p>
+
+  <h3>How fast does Wazuh detect a new vulnerability?</h3>
+  <p>
+    Wazuh keeps a live inventory of installed software and cross-references it against CVE databases in near real time. When a critical exploit like Log4j is published at 10:00, Wazuh can flag the affected vulnerable servers within about 15 minutes.
+  </p>
+
+  <h3>Can Wazuh respond to incidents automatically?</h3>
+  <p>
+    Yes. Through active response rules Wazuh can block an IP on the firewall, isolate a machine, disable a user or run custom scripts. A common rule is to block an IP for 30 minutes after 5 failed logins in 2 minutes.
+  </p>
 
   <hr />
 

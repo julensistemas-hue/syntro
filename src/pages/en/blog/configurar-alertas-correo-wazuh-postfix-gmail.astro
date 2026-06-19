@@ -9,7 +9,29 @@ import BlogLayoutEn from "../../../layouts/BlogLayoutEn.astro";
   author="AI Security"
   readTime="12 min"
   tags={["Wazuh", "Alerts", "Postfix", "Gmail", "SMTP", "Email", "ENS", "ISO 27001"]}
-  canonical="https://aisecurity.es/en/blog/configurar-alertas-correo-wazuh-postfix-gmail">
+  canonical="https://aisecurity.es/en/blog/configurar-alertas-correo-wazuh-postfix-gmail"
+  faqSchema={[
+    {
+      question: "Why does Wazuh need Postfix to send email alerts?",
+      answer: "Wazuh's internal mail client only relays to a local SMTP server. Postfix acts as that local relay (smtp_server localhost) and forwards the message to Gmail or Microsoft 365 over port 587 with TLS, handling the SASL authentication that Wazuh itself cannot perform."
+    },
+    {
+      question: "Do I need an app password for Gmail SMTP?",
+      answer: "Yes. Gmail blocks your normal account password for SMTP. You must enable two-step verification and then generate a 16-character app password at myaccount.google.com/apppasswords, which you store in /etc/postfix/sasl_passwd."
+    },
+    {
+      question: "Which SMTP server and port should I use for Gmail and Microsoft 365?",
+      answer: "Both providers use port 587 with STARTTLS. Gmail uses smtp.gmail.com:587 and Microsoft 365 uses smtp.office365.com:587. You set this value as the relayhost in /etc/postfix/main.cf."
+    },
+    {
+      question: "From which alert level does Wazuh send emails by default?",
+      answer: "By default Wazuh sends email for alerts of level 7 and above. You can override this per rule with an <email_alerts> block that targets a specific rule_id, so even a lower-level rule can notify a dedicated recipient."
+    },
+    {
+      question: "Which ISO 27001 and ENS controls do email alerts cover?",
+      answer: "Email alerts support ISO 27001:2022 controls A.5.24, A.5.25, A.5.26, A.8.15 and A.8.16, and ENS (RD 311/2022) measures op.mon.1, op.mon.3, op.exp.7 and op.exp.9, all related to incident detection, notification and logging."
+    }
+  ]}>
 
   <p>
     To configure email alerts in Wazuh you need to install <strong>Postfix</strong> as a local SMTP relay and connect it to Gmail or Microsoft 365 using an app password. Then you define in <code>ossec.conf</code> which rules trigger the email and who the recipient is.
@@ -308,7 +330,24 @@ systemctl restart postfix</code></pre>
   <h2>Next steps</h2>
 
   <p>
-    Sending alerts to Discord and Slack via webhooks is another option worth setting up. <a href="/en/wazuh">Discover our Wazuh services</a>.
+    Sending alerts to Discord and Slack via webhooks is another option worth setting up. A common refinement is to keep email for high-severity events (level 12+ such as rule 100072, "user deletes a file") while routing level 8-11 alerts to a chat channel, so the inbox stays reserved for events that genuinely require human action. In practice this routing cuts the average detection-to-response time from hours to minutes, which is exactly the evidence an ENS or ISO 27001 auditor expects to see. <a href="/en/wazuh">Discover our Wazuh services</a>.
   </p>
+
+  <h2>Frequently Asked Questions</h2>
+
+  <h3>Why does Wazuh need Postfix to send email alerts?</h3>
+  <p>Wazuh's internal mail client only relays to a local SMTP server. Postfix acts as that local relay (<code>smtp_server localhost</code>) and forwards the message to Gmail or Microsoft 365 over port 587 with TLS, handling the SASL authentication that Wazuh itself cannot perform.</p>
+
+  <h3>Do I need an app password for Gmail SMTP?</h3>
+  <p>Yes. Gmail blocks your normal account password for SMTP. You must enable two-step verification and then generate a 16-character app password at <a href="https://myaccount.google.com/apppasswords" target="_blank" rel="noopener">myaccount.google.com/apppasswords</a>, which you store in <code>/etc/postfix/sasl_passwd</code>.</p>
+
+  <h3>Which SMTP server and port should I use for Gmail and Microsoft 365?</h3>
+  <p>Both providers use port 587 with STARTTLS. Gmail uses <code>smtp.gmail.com:587</code> and Microsoft 365 uses <code>smtp.office365.com:587</code>. You set this value as the <code>relayhost</code> in <code>/etc/postfix/main.cf</code>.</p>
+
+  <h3>From which alert level does Wazuh send emails by default?</h3>
+  <p>By default Wazuh sends email for alerts of level 7 and above. You can override this per rule with an <code>&lt;email_alerts&gt;</code> block that targets a specific <code>rule_id</code>, so even a lower-level rule can notify a dedicated recipient.</p>
+
+  <h3>Which ISO 27001 and ENS controls do email alerts cover?</h3>
+  <p>Email alerts support ISO 27001:2022 controls A.5.24, A.5.25, A.5.26, A.8.15 and A.8.16, and ENS (RD 311/2022) measures op.mon.1, op.mon.3, op.exp.7 and op.exp.9, all related to incident detection, notification and logging.</p>
 
 </BlogLayoutEn>

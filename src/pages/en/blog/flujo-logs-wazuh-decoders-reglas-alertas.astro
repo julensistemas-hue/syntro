@@ -9,7 +9,29 @@ import BlogLayoutEn from "../../../layouts/BlogLayoutEn.astro";
   author="AI Security"
   readTime="12 min"
   tags={["Wazuh", "Decoders", "Rules", "Alerts", "SIEM", "Logs"]}
-  canonical="https://aisecurity.es/en/blog/flujo-logs-wazuh-decoders-reglas-alertas">
+  canonical="https://aisecurity.es/en/blog/flujo-logs-wazuh-decoders-reglas-alertas"
+  faqSchema={[
+    {
+      question: "What are the phases a log goes through in Wazuh?",
+      answer: "A log goes through pre-decoder (extracts timestamp, hostname and program), decoder (extracts specific fields like user, IP and port using regex), rules (evaluates the event and assigns a severity level from 0 to 15), indexing (stores it if it exceeds the threshold) and alert generation (notifies via email, Discord, Slack and other channels)."
+    },
+    {
+      question: "What is the difference between the pre-decoder and the decoder?",
+      answer: "The pre-decoder normalizes the log and extracts basic fields common to almost any entry: timestamp, hostname and program name. The decoder then analyzes the message body with regular expressions to extract specific variables such as the user, the source IP, the port or the action."
+    },
+    {
+      question: "What do the Wazuh rule severity levels mean?",
+      answer: "Wazuh assigns each matched event a level from 0 to 15. Levels 0-3 are informational and usually not indexed, 4-7 are events of interest that get indexed, 8-11 are important alerts, and 12-15 are critical events that require immediate action."
+    },
+    {
+      question: "Where are decoders, rules and alert settings stored?",
+      answer: "Decoders live in /var/ossec/etc/decoders/, rules live in /var/ossec/etc/rules/, and alert integrations are configured in the manager's /var/ossec/etc/ossec.conf using the integration block."
+    },
+    {
+      question: "Which channels can Wazuh send alerts to?",
+      answer: "Wazuh can notify through email (SMTP configured in ossec.conf), Discord and Slack via webhook integrations, TheHive to create cases automatically, and PagerDuty for incident escalation."
+    }
+  ]}>
 
   <p>When a log reaches Wazuh, it goes through four phases: <strong>pre-decoder</strong> (extracts the date and program), <strong>decoder</strong> (extracts fields with regex), <strong>rules</strong> (checks whether the event is relevant) and <strong>alert generation</strong> (if the rule matches, Wazuh notifies by email, Discord or Slack).</p>
 
@@ -65,7 +87,7 @@ import BlogLayoutEn from "../../../layouts/BlogLayoutEn.astro";
     </p>
   </div>
 
-  <h2>Log processing flow</h2>
+  <h2>What does the log processing flow look like?</h2>
 
   <div style="background: linear-gradient(135deg, #1a1f2e 0%, #0f1419 100%); border: 1px solid #2d3748; border-radius: 12px; padding: 24px; margin: 24px 0;">
     <div style="display: flex; flex-direction: column; gap: 16px;">
@@ -96,7 +118,7 @@ import BlogLayoutEn from "../../../layouts/BlogLayoutEn.astro";
     </div>
   </div>
 
-  <h2>1. Pre-decoder</h2>
+  <h2>What does the pre-decoder do (phase 1)?</h2>
 
   <p>
     The first processing phase. The pre-decoder extracts the basic fields from the log:
@@ -112,7 +134,7 @@ import BlogLayoutEn from "../../../layouts/BlogLayoutEn.astro";
     It normalizes the format so the decoder can work with a structured log.
   </p>
 
-  <h2>2. Decoder</h2>
+  <h2>What does the decoder extract (phase 2)?</h2>
 
   <p>
     Analyzes the log content and extracts specific variables using regular expressions. For example, from an SSH log:
@@ -129,7 +151,7 @@ import BlogLayoutEn from "../../../layouts/BlogLayoutEn.astro";
     <li><strong>Result</strong>: Failed (failed attempt)</li>
   </ul>
 
-  <h2>3. Rules</h2>
+  <h2>How do rules evaluate the event (phase 3)?</h2>
 
   <p>
     Rules evaluate the fields extracted by the decoder. If the log matches a rule, an event is generated with a <strong>severity level (0-15)</strong>.
@@ -146,13 +168,13 @@ import BlogLayoutEn from "../../../layouts/BlogLayoutEn.astro";
     Rules can inherit from other parent rules using <code>if_sid</code>, allowing you to build detection hierarchies.
   </p>
 
-  <h2>4. Indexing</h2>
+  <h2>When are events indexed (phase 4)?</h2>
 
   <p>
     Events that exceed the configured level threshold are indexed in the database (Elasticsearch/OpenSearch) and appear in the Wazuh dashboard.
   </p>
 
-  <h2>5. Alerts</h2>
+  <h2>How are alerts generated and sent (phase 5)?</h2>
 
   <p>
     Depending on the configuration, events can trigger alerts through different channels:
@@ -170,7 +192,7 @@ import BlogLayoutEn from "../../../layouts/BlogLayoutEn.astro";
     Alert configuration is done in the manager's <code>ossec.conf</code>, using the <code>&lt;integration&gt;</code> block.
   </p>
 
-  <h2>Flow summary</h2>
+  <h2>What does the full flow look like at a glance?</h2>
 
   <div style="background: linear-gradient(135deg, #1a1f2e 0%, #0f1419 100%); border: 1px solid #2d3748; border-radius: 12px; padding: 24px; margin: 24px 0;">
     <table style="width: 100%; border-collapse: collapse; color: #e5e7eb;">
@@ -201,6 +223,23 @@ import BlogLayoutEn from "../../../layouts/BlogLayoutEn.astro";
       </tr>
     </table>
   </div>
+
+  <h2>Frequently Asked Questions</h2>
+
+  <h3>What are the phases a log goes through in Wazuh?</h3>
+  <p>A log goes through <strong>pre-decoder</strong> (extracts timestamp, hostname and program), <strong>decoder</strong> (extracts specific fields like user, IP and port using regex), <strong>rules</strong> (evaluates the event and assigns a severity level from 0 to 15), <strong>indexing</strong> (stores it if it exceeds the threshold) and <strong>alert generation</strong> (notifies via email, Discord, Slack and other channels).</p>
+
+  <h3>What is the difference between the pre-decoder and the decoder?</h3>
+  <p>The pre-decoder normalizes the log and extracts basic fields common to almost any entry: timestamp, hostname and program name. The decoder then analyzes the message body with regular expressions to extract specific variables such as the user, the source IP, the port or the action.</p>
+
+  <h3>What do the Wazuh rule severity levels mean?</h3>
+  <p>Wazuh assigns each matched event a level from <strong>0 to 15</strong>. Levels 0-3 are informational and usually not indexed, 4-7 are events of interest that get indexed, 8-11 are important alerts, and 12-15 are critical events that require immediate action.</p>
+
+  <h3>Where are decoders, rules and alert settings stored?</h3>
+  <p>Decoders live in <code>/var/ossec/etc/decoders/</code>, rules live in <code>/var/ossec/etc/rules/</code>, and alert integrations are configured in the manager's <code>/var/ossec/etc/ossec.conf</code> using the <code>&lt;integration&gt;</code> block.</p>
+
+  <h3>Which channels can Wazuh send alerts to?</h3>
+  <p>Wazuh can notify through email (SMTP configured in ossec.conf), Discord and Slack via webhook integrations, TheHive to create cases automatically, and PagerDuty for incident escalation.</p>
 
   <h2>Next steps</h2>
 

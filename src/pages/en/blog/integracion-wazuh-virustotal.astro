@@ -9,7 +9,29 @@ import BlogLayoutEn from "../../../layouts/BlogLayoutEn.astro";
   author="AI Security"
   readTime="8 min"
   tags={["Wazuh", "VirusTotal", "Malware", "FIM", "SIEM", "Cybersecurity", "Integrations"]}
-  canonical="https://aisecurity.es/en/blog/integracion-wazuh-virustotal">
+  canonical="https://aisecurity.es/en/blog/integracion-wazuh-virustotal"
+  faqSchema={[
+    {
+      question: "How does the Wazuh and VirusTotal integration work?",
+      answer: "FIM (File Integrity Monitoring) detects new or modified files in the directories you watch and computes their SHA256 hash. The VirusTotal integration, configured on the Wazuh Manager with your API key, sends that hash to VirusTotal, which checks it against more than 70 antivirus engines. If any engine flags the file as malicious, Wazuh raises rule ID 87105 in the Malware Detection dashboard within 30 to 60 seconds."
+    },
+    {
+      question: "What are the limits of the free VirusTotal API?",
+      answer: "The free VirusTotal API allows 4 requests per minute and 500 requests per day. Because of this, you should only enable report_changes=\"yes\" on high-risk directories like /tmp and /root, so you don't burn through the daily quota in a few hours. Since October 2025 the paid Lite plan starts at $5,000 per year, but for labs and mid-sized environments the free tier is enough when configured surgically."
+    },
+    {
+      question: "Which Wazuh rule IDs trigger the VirusTotal lookup?",
+      answer: "Rule ID 550 fires when FIM detects a new file and rule ID 554 fires when it detects a modified file. Both are referenced in the <integration> block with rule_id 550,554, so any change in a watched directory sends the hash to VirusTotal. The resulting VirusTotal alert is rule ID 87105."
+    },
+    {
+      question: "What is the EICAR file and why use it to test the integration?",
+      answer: "The EICAR test file is an industry-standard string that every antivirus engine intentionally flags as malicious, even though it is completely harmless. It lets you validate the full detection chain (FIM, VirusTotal, dashboard alert) without using real malware. After creating it in /tmp and confirming the alert, you simply delete the file."
+    },
+    {
+      question: "Which directories should send files to VirusTotal?",
+      answer: "Only directories where malware typically lands, such as /tmp and /root, should use report_changes=\"yes\" and reach VirusTotal. System directories like /etc and /bin change for legitimate reasons (updates, configuration) and would waste your API quota, so they should use regular FIM without the VirusTotal lookup."
+    }
+  ]}>
 
   <p>To integrate Wazuh with VirusTotal, enable FIM to monitor key directories, add the integration with your VirusTotal API key in <code>ossec.conf</code>, and Wazuh will automatically send the hash of every new or modified file to VirusTotal's 70+ antivirus engines.</p>
 
@@ -65,7 +87,7 @@ import BlogLayoutEn from "../../../layouts/BlogLayoutEn.astro";
     </p>
   </div>
 
-  <h2>Free API limits</h2>
+  <h2>What are the limits of the free API?</h2>
 
   <p>
     Before configuring anything, get to know the limits because they determine which directories to watch:
@@ -128,7 +150,7 @@ systemctl status wazuh-manager</code></pre>
 
   <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">tail -f /var/ossec/logs/integrations.log</code></pre>
 
-  <h2>Step 3: Configure FIM on the Agent</h2>
+  <h2>Step 3: How do you configure FIM on the Agent?</h2>
 
   <p>
     On the agent, edit <code>/var/ossec/etc/ossec.conf</code> and set which directories FIM watches. <strong>Only directories with <code>report_changes="yes"</code></strong> will send hashes to VirusTotal:
@@ -154,7 +176,7 @@ systemctl status wazuh-manager</code></pre>
 
   <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">systemctl restart wazuh-agent</code></pre>
 
-  <h2>Step 4: Test with an EICAR file</h2>
+  <h2>Step 4: How do you test with an EICAR file?</h2>
 
   <p>
     The <strong>EICAR test file</strong> is a standard for testing antivirus without real malware. Every engine intentionally flags it as malicious.
@@ -208,6 +230,33 @@ systemctl status wazuh-manager</code></pre>
       </tr>
     </table>
   </div>
+
+  <h2>How do you keep the integration sustainable over time?</h2>
+
+  <p>
+    The most common mistake is enabling <code>report_changes="yes"</code> across broad directories and exhausting the 500 daily requests before lunchtime. A well-tuned setup typically sends fewer than 50 hashes per day, leaving plenty of headroom inside the free quota. When a real detection fires, the alert reaches the dashboard in roughly 30 to 60 seconds and includes a direct VirusTotal permalink showing how many of the 70+ engines flagged the file, which is invaluable evidence during an incident.
+  </p>
+
+  <p>
+    For production environments we recommend pairing this integration with an automated active response, so that a file flagged by multiple engines is quarantined or the agent isolated automatically, rather than waiting for an analyst to react. That turns a passive detection into a containment action measured in seconds instead of hours.
+  </p>
+
+  <h2>Frequently Asked Questions</h2>
+
+  <h3>How does the Wazuh and VirusTotal integration work?</h3>
+  <p>FIM (File Integrity Monitoring) detects new or modified files in the directories you watch and computes their SHA256 hash. The VirusTotal integration, configured on the Wazuh Manager with your API key, sends that hash to VirusTotal, which checks it against more than 70 antivirus engines. If any engine flags the file as malicious, Wazuh raises rule ID 87105 in the Malware Detection dashboard within 30 to 60 seconds.</p>
+
+  <h3>What are the limits of the free VirusTotal API?</h3>
+  <p>The free VirusTotal API allows 4 requests per minute and 500 requests per day. Because of this, you should only enable <code>report_changes="yes"</code> on high-risk directories like <code>/tmp</code> and <code>/root</code>, so you don't burn through the daily quota in a few hours. Since October 2025 the paid Lite plan starts at $5,000 per year, but for labs and mid-sized environments the free tier is enough when configured surgically.</p>
+
+  <h3>Which Wazuh rule IDs trigger the VirusTotal lookup?</h3>
+  <p>Rule ID 550 fires when FIM detects a new file and rule ID 554 fires when it detects a modified file. Both are referenced in the <code>&lt;integration&gt;</code> block with <code>rule_id 550,554</code>, so any change in a watched directory sends the hash to VirusTotal. The resulting VirusTotal alert is rule ID 87105.</p>
+
+  <h3>What is the EICAR file and why use it to test the integration?</h3>
+  <p>The EICAR test file is an industry-standard string that every antivirus engine intentionally flags as malicious, even though it is completely harmless. It lets you validate the full detection chain (FIM, VirusTotal, dashboard alert) without using real malware. After creating it in <code>/tmp</code> and confirming the alert, you simply delete the file.</p>
+
+  <h3>Which directories should send files to VirusTotal?</h3>
+  <p>Only directories where malware typically lands, such as <code>/tmp</code> and <code>/root</code>, should use <code>report_changes="yes"</code> and reach VirusTotal. System directories like <code>/etc</code> and <code>/bin</code> change for legitimate reasons (updates, configuration) and would waste your API quota, so they should use regular FIM without the VirusTotal lookup.</p>
 
   <h2>Next steps</h2>
 

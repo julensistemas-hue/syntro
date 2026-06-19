@@ -9,7 +9,29 @@ import BlogLayoutEn from "../../../layouts/BlogLayoutEn.astro";
   author="AI Security"
   readTime="10 min"
   tags={["Wazuh", "Groups", "Configuration", "SIEM", "Management", "Cybersecurity"]}
-  canonical="https://aisecurity.es/en/blog/configuracion-de-grupos-en-wazuh">
+  canonical="https://aisecurity.es/en/blog/configuracion-de-grupos-en-wazuh"
+  faqSchema={[
+    {
+      question: "What are groups in Wazuh used for?",
+      answer: "Groups let you organize agents by type or function (Windows, Linux, databases, web servers) and apply a centralized configuration to all of them at once. Instead of editing each agent individually, you define the configuration once at the group level and every agent in the group receives it automatically."
+    },
+    {
+      question: "Can a single agent belong to more than one group?",
+      answer: "Yes. An agent can belong to several groups at the same time. For example, a server can be in the linux group and also in webservers and production, inheriting the merged configuration from all of them."
+    },
+    {
+      question: "Where are group configurations stored on the Wazuh server?",
+      answer: "Group configurations live under /var/ossec/etc/shared/, with one subfolder per group (default, windows, linux, databases, etc.). Each group folder contains an agent.conf file with the configuration pushed to its agents."
+    },
+    {
+      question: "Do agents need to be restarted after changing a group's agent.conf?",
+      answer: "No. After you modify a group's agent.conf on the server, agents receive the new configuration automatically. Propagation usually takes a few minutes and no manual restart of the agents is required."
+    },
+    {
+      question: "How do I assign an agent to a group during installation?",
+      answer: "Use the WAZUH_AGENT_GROUP environment variable in the install command, for example WAZUH_AGENT_GROUP=\"linux\". To assign multiple groups at once, separate them with commas, such as WAZUH_AGENT_GROUP=\"linux,webservers,production\"."
+    }
+  ]}>
 
   <p>Groups in Wazuh let you apply a centralized <code>ossec.conf</code> configuration to multiple agents at once. Create a group from the dashboard or with the CLI, assign agents, and the server automatically distributes the configuration without touching each machine individually.</p>
 
@@ -75,7 +97,7 @@ import BlogLayoutEn from "../../../layouts/BlogLayoutEn.astro";
     Instead of configuring each agent individually, you define the configuration once at the group level and every agent that belongs to that group receives it automatically.
   </p>
 
-  <h2>Examples of groups by system type</h2>
+  <h2>What groups can you create by system type?</h2>
 
   <p>
     Some typical examples of groups you can create:
@@ -95,13 +117,13 @@ import BlogLayoutEn from "../../../layouts/BlogLayoutEn.astro";
     <p class="m-0" style="color:rgba(255,255,255,0.9);"><strong style="color:rgba(255,255,255,0.9);">Tip:</strong> An agent can belong to <strong style="color:rgba(255,255,255,0.9);">several groups</strong>. For example, a server can be in the "linux" group and also in "webservers" and "production".</p>
   </div>
 
-  <h2>Centralized configuration per group</h2>
+  <h2>How does centralized configuration per group work?</h2>
 
   <p>
-    The main advantage of groups is that you can define an <code>ossec.conf</code> configuration that is automatically applied to <strong>every agent in the group</strong>. When you modify the group configuration on the server, all agents receive it.
+    The main advantage of groups is that you can define an <code>ossec.conf</code> configuration that is automatically applied to <strong>every agent in the group</strong>. When you modify the group configuration on the server, all agents receive it. In production environments with <strong>50 to 100 agents</strong>, this turns what would be dozens of manual edits into a single change, and propagation typically completes within a few minutes of the next agent check-in.
   </p>
 
-  <h3>Location of group configurations (on the Wazuh server)</h3>
+  <h3>Where are group configurations located on the Wazuh server?</h3>
 
   <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">/var/ossec/etc/shared/</code></pre>
 
@@ -115,7 +137,7 @@ import BlogLayoutEn from "../../../layouts/BlogLayoutEn.astro";
 /var/ossec/etc/shared/databases/    # databases group
 /var/ossec/etc/shared/webservers/   # webservers group</code></pre>
 
-  <h3>The agent.conf file</h3>
+  <h3>What is the agent.conf file?</h3>
 
   <p>
     Each group has an <code>agent.conf</code> file containing the configuration that will be pushed to the agents in that group:
@@ -183,7 +205,7 @@ import BlogLayoutEn from "../../../layouts/BlogLayoutEn.astro";
   &lt;/syscheck&gt;
 &lt;/agent_config&gt;</code></pre>
 
-  <h2>Create groups from the Dashboard</h2>
+  <h2>How do you create groups from the Dashboard?</h2>
 
   <p>
     You can create and manage groups from the Wazuh web interface:
@@ -197,7 +219,7 @@ import BlogLayoutEn from "../../../layouts/BlogLayoutEn.astro";
     <li>Save the group</li>
   </ol>
 
-  <h2>Assign agents to groups</h2>
+  <h2>How do you assign agents to groups?</h2>
 
   <p>
     Agents can be assigned to groups in two ways:
@@ -224,7 +246,7 @@ WAZUH_MANAGER="192.168.1.100" WAZUH_AGENT_GROUP="linux,webservers,production" ap
     <li>Assign the groups you want</li>
   </ol>
 
-  <h2>Verify the configuration received by the agent</h2>
+  <h2>How do you verify the configuration an agent received?</h2>
 
   <p>
     To check which configuration a Linux agent has received from its group, log in to the agent and run:
@@ -242,6 +264,23 @@ ls -la /var/ossec/etc/shared/</code></pre>
   <div style="background:rgba(245,158,11,0.12);border-left:4px solid #f59e0b;padding:1rem;margin:1.5rem 0;border-radius:0 0.5rem 0.5rem 0;">
     <p class="m-0" style="color:rgba(255,255,255,0.9);"><strong style="color:rgba(255,255,255,0.9);">Important:</strong> After modifying a group's <code style="color: #000000; background-color: rgba(0,0,0,0.1);">agent.conf</code> on the server, agents receive the new configuration automatically (it may take a few minutes). There's no need to restart the agents manually.</p>
   </div>
+
+  <h2>Frequently Asked Questions</h2>
+
+  <h3>What are groups in Wazuh used for?</h3>
+  <p>Groups let you organize agents by type or function (Windows, Linux, databases, web servers) and apply a centralized configuration to all of them at once. Instead of editing each agent individually, you define the configuration once at the group level and every agent in the group receives it automatically.</p>
+
+  <h3>Can a single agent belong to more than one group?</h3>
+  <p>Yes. An agent can belong to several groups at the same time. For example, a server can be in the <strong>linux</strong> group and also in <strong>webservers</strong> and <strong>production</strong>, inheriting the merged configuration from all of them.</p>
+
+  <h3>Where are group configurations stored on the Wazuh server?</h3>
+  <p>Group configurations live under <code>/var/ossec/etc/shared/</code>, with one subfolder per group (default, windows, linux, databases, etc.). Each group folder contains an <code>agent.conf</code> file with the configuration pushed to its agents.</p>
+
+  <h3>Do agents need to be restarted after changing a group's agent.conf?</h3>
+  <p>No. After you modify a group's <code>agent.conf</code> on the server, agents receive the new configuration automatically. Propagation usually takes a few minutes and no manual restart of the agents is required.</p>
+
+  <h3>How do I assign an agent to a group during installation?</h3>
+  <p>Use the <code>WAZUH_AGENT_GROUP</code> environment variable in the install command, for example <code>WAZUH_AGENT_GROUP="linux"</code>. To assign multiple groups at once, separate them with commas, such as <code>WAZUH_AGENT_GROUP="linux,webservers,production"</code>.</p>
 
   <h2>Additional resources</h2>
 

@@ -9,7 +9,14 @@ import BlogLayoutEn from "../../../layouts/BlogLayoutEn.astro";
   author="AI Security"
   readTime="8 min"
   tags={["Elasticsearch", "Kibana", "SIEM", "dashboards", "visualization", "Wazuh", "Cybersecurity"]}
-  canonical="https://aisecurity.es/en/blog/wazuh-elastic-security-configuracion-de-siem-completo">
+  canonical="https://aisecurity.es/en/blog/wazuh-elastic-security-configuracion-de-siem-completo"
+  faqSchema={[
+    {question: "How do you integrate Wazuh with Elastic Security?", answer: "Install Elasticsearch and Kibana 8.x, deploy the Wazuh Manager and connect them through the Filebeat module configured with the Wazuh template. Filebeat ships the alerts.json events into Elasticsearch indices that Kibana then visualizes in real time."},
+    {question: "What are the minimum hardware requirements for a Wazuh + Elastic SIEM?", answer: "For a starter lab or small deployment plan for an Ubuntu 22.04 LTS server with at least 8 GB of RAM and 4 CPU cores. Elasticsearch is JVM-based and memory-hungry, so production environments handling more than a few hundred agents typically need 16-32 GB of RAM and dedicated indexer nodes."},
+    {question: "Which versions of Elasticsearch and Kibana are compatible with Wazuh 4.7?", answer: "Wazuh 4.7 is validated against the Elastic 8.x line. The guide pins Elasticsearch, Kibana and Filebeat to 8.13.4 so all three components share the same index templates and avoid mapping conflicts during ingestion."},
+    {question: "How long does it take to detect a threat with this SIEM?", answer: "Once correlation rules and dashboards are in place, a properly tuned Wazuh + Elastic SIEM surfaces critical alerts to the SOC within minutes of the event, cutting mean time to detect from the hours typical of manual log review."},
+    {question: "Is Wazuh with Elastic Security free and open source?", answer: "Yes. Both Wazuh and the core Elastic stack components used here are open source, so there are no per-agent licensing fees. The main cost is the infrastructure and the engineering time to deploy, tune and maintain the platform."}
+  ]}>
 
 <div>
 <p>To integrate Wazuh with Elastic Security, install Elasticsearch and Kibana 8.x, deploy the Wazuh Manager and connect them through the Filebeat module configured with the Wazuh template. The result is a complete SIEM that centralizes alerts, visualizes events in real time and correlates threats from a single dashboard.</p>
@@ -66,8 +73,29 @@ sudo systemctl start filebeat</code></pre>
 </code></pre>
 <p>Set up these charts in a new Kibana dashboard, adding a heat map of events by security rule and a table with the top 10 agents with the most alerts. This provides an immediate operational view of your security posture.</p>
 
+<h2>What are the best practices for running Wazuh with Elastic in production?</h2>
+<p>Pinning all three components to the same minor version (8.13.4 in this guide) is the single most important step: a mismatch between the Filebeat template and the Elasticsearch mapping is the most common cause of events failing to index. Beyond version alignment, plan your index lifecycle from day one. A medium-sized environment ingesting 50-100 GB of alerts per day will fill a single node within weeks, so configure an ILM policy that rolls indices over daily and moves data to a warm tier after 7-14 days, keeping hot storage lean and queries fast.</p>
+<p>On the detection side, resist the urge to alert on everything. Start by enabling correlation rules for the threats that actually matter to your business — failed authentication bursts, file integrity changes on sensitive directories and privilege escalations — and tune their levels so that anything at level 12 or above pages the on-call analyst. Combined with role-based access in Kibana and TLS between every tier, this turns the stack from a noisy log bucket into a SOC-grade detection platform that an analyst can trust.</p>
+
 <h2>Conclusion</h2>
 <p>The combination of Wazuh and Elastic Security forms an enterprise-grade, open-source, scalable and highly visual SIEM. From log ingestion to forensic investigation in interactive dashboards, this stack covers the full detection and response cycle. The key lies in a solid initial configuration and in designing visualizations that respond to the specific threats your organization faces. Need help deploying or customizing your SIEM? <a href="/en/reunion">Request a free consultation</a> with our experts.</p>
+
+<h2>Frequently Asked Questions</h2>
+
+<h3>How do you integrate Wazuh with Elastic Security?</h3>
+<p>Install Elasticsearch and Kibana 8.x, deploy the Wazuh Manager and connect them through the Filebeat module configured with the Wazuh template. Filebeat ships the alerts.json events into Elasticsearch indices that Kibana then visualizes in real time.</p>
+
+<h3>What are the minimum hardware requirements for a Wazuh + Elastic SIEM?</h3>
+<p>For a starter lab or small deployment plan for an Ubuntu 22.04 LTS server with at least 8 GB of RAM and 4 CPU cores. Elasticsearch is JVM-based and memory-hungry, so production environments handling more than a few hundred agents typically need 16-32 GB of RAM and dedicated indexer nodes.</p>
+
+<h3>Which versions of Elasticsearch and Kibana are compatible with Wazuh 4.7?</h3>
+<p>Wazuh 4.7 is validated against the Elastic 8.x line. The guide pins Elasticsearch, Kibana and Filebeat to 8.13.4 so all three components share the same index templates and avoid mapping conflicts during ingestion.</p>
+
+<h3>How long does it take to detect a threat with this SIEM?</h3>
+<p>Once correlation rules and dashboards are in place, a properly tuned Wazuh + Elastic SIEM surfaces critical alerts to the SOC within minutes of the event, cutting mean time to detect from the hours typical of manual log review.</p>
+
+<h3>Is Wazuh with Elastic Security free and open source?</h3>
+<p>Yes. Both Wazuh and the core Elastic stack components used here are open source, so there are no per-agent licensing fees. The main cost is the infrastructure and the engineering time to deploy, tune and maintain the platform.</p>
 </div>
 
   <hr />

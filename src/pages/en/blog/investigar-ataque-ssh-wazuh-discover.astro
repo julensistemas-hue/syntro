@@ -9,7 +9,29 @@ import BlogLayoutEn from "../../../layouts/BlogLayoutEn.astro";
   author="AI Security"
   readTime="12 min"
   tags={["Wazuh", "Discover", "Threat Hunting", "SSH", "Incidents", "Forensics"]}
-  canonical="https://aisecurity.es/en/blog/investigar-ataque-ssh-wazuh-discover">
+  canonical="https://aisecurity.es/en/blog/investigar-ataque-ssh-wazuh-discover"
+  faqSchema={[
+    {
+      question: "How do you investigate an SSH brute-force attack with Wazuh?",
+      answer: "Start in the Threat Hunting panel to confirm the brute-force pattern by counting failed versus successful authentications, then switch to the Discover panel to build precise queries and reconstruct the timeline event by event: the failed attempts, the attacker's successful login, the password change, and any attempts against other hosts. In this case study Threat Hunting revealed 362 failed and 7 successful authentications concentrated between 1:43 AM and 2:15 AM."
+    },
+    {
+      question: "What is the difference between the Threat Hunting and Discover panels?",
+      answer: "Threat Hunting is designed for proactive, high-level hunting: filtering by host and event type to spot patterns such as an abnormal ratio of authentication failures to successes. Discover gives direct access to Wazuh's search engine for detailed forensic analysis, letting you write specific queries to pinpoint the exact moment of compromise and correlate individual events."
+    },
+    {
+      question: "How do you identify the exact moment of an SSH compromise in Wazuh?",
+      answer: "In the Discover panel you filter by the affected machine and authentication group (for example agent.name and rule.groups: \"authentication\") to get the full timeline, then narrow the query to the successful SSH login for the targeted user. In this incident the attacker's first successful login was at 2:08 AM, followed by a password change for the user jperez at 2:10 AM."
+    },
+    {
+      question: "How do you stop SSH brute-force attacks after an incident?",
+      answer: "Two measures neutralize them. Fail2ban automatically bans an IP after a set number of failed attempts (for example 5 attempts in 10 minutes, banned for 1 hour). More definitively, disabling password authentication and switching to public-key authentication in sshd_config removes the attack surface entirely, since there is no password to guess."
+    },
+    {
+      question: "Which compliance controls does an SSH incident investigation cover?",
+      answer: "It covers the full ISO 27001 incident-management cycle: A.5.24 (planning and preparation), A.5.25 (assessment of events), A.5.26 (response), A.5.27 (learning), and A.5.28 (collection of evidence). For the Spanish ENS framework it satisfies op.exp.7 (security incident management), because Wazuh provides the detection, analysis, and documentation the regulation requires."
+    }
+  ]}>
 
   <p>
     To investigate an SSH attack with Wazuh, use the <strong>Threat Hunting</strong> panel to detect the brute-force pattern and the <strong>Discover</strong> panel to trace every event chronologically: failed attempts, the attacker's successful login, and password changes.
@@ -255,6 +277,33 @@ PubkeyAuthentication yes</code></pre>
       </tr>
     </table>
   </div>
+
+  <h2>What does this case study teach about detection speed?</h2>
+
+  <p>
+    The most uncomfortable lesson is in the timeline: the attacker began at 1:43 AM, broke in at 2:08 AM after 362 failed attempts, and locked out the legitimate user with a password change at 2:10 AM, yet the breach was only noticed at 8:30 AM when the user couldn't log in. That is a detection gap of more than six hours during which the intruder had full control. Wazuh recorded every step in real time, but recording is not the same as reacting.
+  </p>
+
+  <p>
+    This is precisely why an automated active response matters. With Fail2ban the same source IP would have been blocked after 5 failed attempts in 10 minutes, well before reaching 362; with public-key-only authentication the dictionary attack would have been impossible from the start. The forensic value of Discover and Threat Hunting is in reconstructing what happened, but the real win is configuring the environment so the next attempt never gets past the first few minutes.
+  </p>
+
+  <h2>Frequently Asked Questions</h2>
+
+  <h3>How do you investigate an SSH brute-force attack with Wazuh?</h3>
+  <p>Start in the Threat Hunting panel to confirm the brute-force pattern by counting failed versus successful authentications, then switch to the Discover panel to build precise queries and reconstruct the timeline event by event: the failed attempts, the attacker's successful login, the password change, and any attempts against other hosts. In this case study Threat Hunting revealed 362 failed and 7 successful authentications concentrated between 1:43 AM and 2:15 AM.</p>
+
+  <h3>What is the difference between the Threat Hunting and Discover panels?</h3>
+  <p>Threat Hunting is designed for proactive, high-level hunting: filtering by host and event type to spot patterns such as an abnormal ratio of authentication failures to successes. Discover gives direct access to Wazuh's search engine for detailed forensic analysis, letting you write specific queries to pinpoint the exact moment of compromise and correlate individual events.</p>
+
+  <h3>How do you identify the exact moment of an SSH compromise in Wazuh?</h3>
+  <p>In the Discover panel you filter by the affected machine and authentication group (for example <code>agent.name</code> and <code>rule.groups: "authentication"</code>) to get the full timeline, then narrow the query to the successful SSH login for the targeted user. In this incident the attacker's first successful login was at 2:08 AM, followed by a password change for the user jperez at 2:10 AM.</p>
+
+  <h3>How do you stop SSH brute-force attacks after an incident?</h3>
+  <p>Two measures neutralize them. Fail2ban automatically bans an IP after a set number of failed attempts (for example 5 attempts in 10 minutes, banned for 1 hour). More definitively, disabling password authentication and switching to public-key authentication in <code>sshd_config</code> removes the attack surface entirely, since there is no password to guess.</p>
+
+  <h3>Which compliance controls does an SSH incident investigation cover?</h3>
+  <p>It covers the full ISO 27001 incident-management cycle: A.5.24 (planning and preparation), A.5.25 (assessment of events), A.5.26 (response), A.5.27 (learning), and A.5.28 (collection of evidence). For the Spanish ENS framework it satisfies op.exp.7 (security incident management), because Wazuh provides the detection, analysis, and documentation the regulation requires.</p>
 
   <h2>Next steps</h2>
 

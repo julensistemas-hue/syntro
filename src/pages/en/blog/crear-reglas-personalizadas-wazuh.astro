@@ -9,7 +9,29 @@ import BlogLayoutEn from "../../../layouts/BlogLayoutEn.astro";
   author="AI Security"
   readTime="10 min"
   tags={["Wazuh", "Rules", "Alerts", "NAS", "SIEM", "Cybersecurity"]}
-  canonical="https://aisecurity.es/en/blog/crear-reglas-personalizadas-wazuh">
+  canonical="https://aisecurity.es/en/blog/crear-reglas-personalizadas-wazuh"
+  faqSchema={[
+    {
+      question: "Where are custom Wazuh rules stored?",
+      answer: "Custom rules live in /var/ossec/etc/rules/local_rules.xml on the Wazuh manager. After editing the file you must restart the service with systemctl restart wazuh-manager for the changes to take effect."
+    },
+    {
+      question: "What rule ID range should I use for custom rules?",
+      answer: "Wazuh reserves IDs below 100000 for its built-in ruleset (around 3,000 rules ship by default). Always assign your own rules an ID of 100000 or higher to avoid collisions with future updates of the official rules."
+    },
+    {
+      question: "What does the level attribute mean in a Wazuh rule?",
+      answer: "The level sets the alert severity from 0 to 15: 0-3 is informational, 4-7 is medium, and 8-15 is critical. By default Wazuh only emails alerts at level 7 or above, so the level also controls which events trigger notifications."
+    },
+    {
+      question: "How do I match more than one field in a single rule?",
+      answer: "Add multiple <field name=\"...\"> tags inside the same <rule> block. All of them must match for the rule to fire, which works as a logical AND, for example matching a specific user and the Delete action at the same time."
+    },
+    {
+      question: "What are dynamic variables in a Wazuh rule description?",
+      answer: "Dynamic variables use the $(field) syntax inside the <description> tag. Wazuh substitutes them with the real value extracted by the decoder, so the alert shows the actual source IP or affected resource instead of static text."
+    }
+  ]}>
 
   <p>Custom Wazuh rules are written in XML inside <code>/var/ossec/etc/rules/local_rules.xml</code>. Each rule defines a unique ID (above 100000), the severity level, the log field that must match and the description of the alert you will see in the dashboard.</p>
 
@@ -65,10 +87,10 @@ import BlogLayoutEn from "../../../layouts/BlogLayoutEn.astro";
     </p>
   </div>
 
-  <h2>Basic structure of a rule</h2>
+  <h2>What does the basic structure of a rule look like?</h2>
 
   <p>
-    Wazuh rules are defined in XML files inside <code>/var/ossec/etc/rules/</code>. The basic structure is:
+    Wazuh rules are defined in XML files inside <code>/var/ossec/etc/rules/</code>. Out of the box Wazuh ships with roughly 3,000 built-in rules using IDs below 100000, so every custom rule you write must use an ID of 100000 or higher to survive future updates. The basic structure is:
   </p>
 
   <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">&lt;rule id="100071" level="10"&gt;
@@ -86,7 +108,7 @@ import BlogLayoutEn from "../../../layouts/BlogLayoutEn.astro";
     <li><code>description</code>: Alert text that appears in the dashboard</li>
   </ul>
 
-  <h2>Example 1: Detect access to a specific folder</h2>
+  <h2>How do you detect access to a specific folder?</h2>
 
   <p><strong>Input log:</strong></p>
 
@@ -107,7 +129,7 @@ import BlogLayoutEn from "../../../layouts/BlogLayoutEn.astro";
     <li>Triggers a level 10 alert whenever any user accesses that folder</li>
   </ul>
 
-  <h2>Example 2: User + specific action</h2>
+  <h2>How do you match a specific user and action together?</h2>
 
   <p><strong>Input log:</strong></p>
 
@@ -129,7 +151,7 @@ import BlogLayoutEn from "../../../layouts/BlogLayoutEn.astro";
     <li>Useful for auditing the actions of specific users</li>
   </ul>
 
-  <h2>Example 3: IP + action with dynamic variables</h2>
+  <h2>How do you use dynamic variables for IP and action?</h2>
 
   <p><strong>Input log:</strong></p>
 
@@ -178,7 +200,7 @@ import BlogLayoutEn from "../../../layouts/BlogLayoutEn.astro";
     </table>
   </div>
 
-  <h2>Where to add the rules</h2>
+  <h2>Where do you add the rules and how do you apply them?</h2>
 
   <p>
     Custom rules are added in <code>/var/ossec/etc/rules/local_rules.xml</code>. After editing the file, restart the manager:
@@ -189,7 +211,24 @@ import BlogLayoutEn from "../../../layouts/BlogLayoutEn.astro";
   <h2>Next steps</h2>
 
   <p>
-    Building custom decoders to extract the fields you need is part of a full Wazuh deployment. <a href="/en/wazuh">Discover our Wazuh services</a>.
+    Building custom decoders to extract the fields you need is part of a full Wazuh deployment. A decoder turns a raw log line into named fields such as <code>resource</code>, <code>srcusernas</code> or <code>actionNas</code>, and only then can a rule like the ones above filter on them. In a typical NAS audit project we pair one decoder with five to ten focused rules so that high-value folders, privileged users and destructive actions each get their own severity level, which keeps the dashboard signal-to-noise ratio high. <a href="/en/wazuh">Discover our Wazuh services</a>.
   </p>
+
+  <h2>Frequently Asked Questions</h2>
+
+  <h3>Where are custom Wazuh rules stored?</h3>
+  <p>Custom rules live in <code>/var/ossec/etc/rules/local_rules.xml</code> on the Wazuh manager. After editing the file you must restart the service with <code>systemctl restart wazuh-manager</code> for the changes to take effect.</p>
+
+  <h3>What rule ID range should I use for custom rules?</h3>
+  <p>Wazuh reserves IDs below 100000 for its built-in ruleset (around 3,000 rules ship by default). Always assign your own rules an ID of 100000 or higher to avoid collisions with future updates of the official rules.</p>
+
+  <h3>What does the level attribute mean in a Wazuh rule?</h3>
+  <p>The level sets the alert severity from 0 to 15: 0-3 is informational, 4-7 is medium, and 8-15 is critical. By default Wazuh only emails alerts at level 7 or above, so the level also controls which events trigger notifications.</p>
+
+  <h3>How do I match more than one field in a single rule?</h3>
+  <p>Add multiple <code>&lt;field name="..."&gt;</code> tags inside the same <code>&lt;rule&gt;</code> block. All of them must match for the rule to fire, which works as a logical AND, for example matching a specific user and the Delete action at the same time.</p>
+
+  <h3>What are dynamic variables in a Wazuh rule description?</h3>
+  <p>Dynamic variables use the <code>$(field)</code> syntax inside the <code>&lt;description&gt;</code> tag. Wazuh substitutes them with the real value extracted by the decoder, so the alert shows the actual source IP or affected resource instead of static text.</p>
 
 </BlogLayoutEn>

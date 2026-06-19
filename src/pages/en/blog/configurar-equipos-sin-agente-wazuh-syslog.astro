@@ -9,10 +9,42 @@ import BlogLayoutEn from "../../../layouts/BlogLayoutEn.astro";
   author="AI Security"
   readTime="8 min"
   tags={["Wazuh", "Syslog", "rsyslog", "Agentless", "SIEM", "Networking"]}
-  canonical="https://aisecurity.es/en/blog/configurar-equipos-sin-agente-wazuh-syslog">
+  canonical="https://aisecurity.es/en/blog/configurar-equipos-sin-agente-wazuh-syslog"
+  faqSchema={[
+    {
+      question: "Why can't you install a Wazuh agent on a router or switch?",
+      answer: "Network appliances, NAS units and firewalls run closed firmware where you cannot install third-party software like the Wazuh agent. Instead they support the Syslog protocol, so they forward their logs over the network to a collector that the Wazuh agent then reads."
+    },
+    {
+      question: "Which port does Syslog use to receive logs?",
+      answer: "Syslog uses port 514, over UDP by default and optionally over TCP for more reliable delivery. In this setup rsyslog listens on port 514 with both imudp and imtcp modules enabled, and the firewall should allow it only from authorized device IPs."
+    },
+    {
+      question: "What is rsyslog's role in monitoring agentless devices?",
+      answer: "rsyslog acts as a Syslog Collector on a Linux server: it receives logs on port 514, applies templates and IF filters to separate them by source, and writes them into organized files under /var/log/remote/. The local Wazuh agent then monitors those files and forwards events to the SIEM server."
+    },
+    {
+      question: "How do I make Wazuh read the collected syslog files?",
+      answer: "Add a localfile block in /var/ossec/etc/ossec.conf for each remote log file (for example /var/log/remote/router.log) with log_format syslog, then restart the agent with systemctl restart wazuh-agent so it begins forwarding those events."
+    },
+    {
+      question: "Which devices can be monitored without an agent?",
+      answer: "Any device with syslog support: routers (Cisco, MikroTik, Ubiquiti), switches (HP, Dell, Cisco), firewalls (pfSense, FortiGate, OPNsense), NAS units (Synology, QNAP, TrueNAS), network printers, and IoT or legacy systems."
+    }
+  ]}>
 
   <p>
     To monitor agentless devices in Wazuh (routers, switches, NAS, firewalls), set up a Linux server with <strong>rsyslog</strong> as a Syslog Collector: the device sends its logs to port 514, rsyslog organizes them into files, and the Wazuh agent forwards them to the SIEM server.
+  </p>
+
+  <h2>Why do some devices need agentless monitoring?</h2>
+
+  <p>
+    Many critical pieces of infrastructure run on closed firmware where you simply cannot install a Wazuh agent: managed switches, routers, firewalls, NAS units and network printers. Leaving them unmonitored creates blind spots, because these are often the first devices an attacker probes. The Syslog protocol solves this: practically every network appliance can forward its logs over <strong>UDP or TCP port 514</strong>, so a single Linux collector running <strong>rsyslog</strong> can centralize events from dozens of agentless devices and feed them into Wazuh through one installed agent.
+  </p>
+
+  <p>
+    This architecture keeps the load off the appliances themselves and scales well: one collector can comfortably handle the syslog traffic of an entire branch office. Because rsyslog writes each source to its own file under <code>/var/log/remote/</code>, you preserve a clean separation between, say, firewall logs and NAS logs, which makes it far easier to write targeted Wazuh decoders and rules later on.
   </p>
 
   <h2>What does the architecture of the solution look like?</h2>
@@ -222,6 +254,23 @@ systemctl restart wazuh-agent</code></pre>
     <li>Network <strong>printers</strong> with syslog support</li>
     <li><strong>IoT devices</strong> and legacy systems</li>
   </ul>
+
+  <h2>Frequently Asked Questions</h2>
+
+  <h3>Why can't you install a Wazuh agent on a router or switch?</h3>
+  <p>Network appliances, NAS units and firewalls run closed firmware where you cannot install third-party software like the Wazuh agent. Instead they support the Syslog protocol, so they forward their logs over the network to a collector that the Wazuh agent then reads.</p>
+
+  <h3>Which port does Syslog use to receive logs?</h3>
+  <p>Syslog uses port <strong>514</strong>, over UDP by default and optionally over TCP for more reliable delivery. In this setup rsyslog listens on port 514 with both <code>imudp</code> and <code>imtcp</code> modules enabled, and the firewall should allow it only from authorized device IPs.</p>
+
+  <h3>What is rsyslog's role in monitoring agentless devices?</h3>
+  <p>rsyslog acts as a Syslog Collector on a Linux server: it receives logs on port 514, applies templates and IF filters to separate them by source, and writes them into organized files under <code>/var/log/remote/</code>. The local Wazuh agent then monitors those files and forwards events to the SIEM server.</p>
+
+  <h3>How do I make Wazuh read the collected syslog files?</h3>
+  <p>Add a <code>localfile</code> block in <code>/var/ossec/etc/ossec.conf</code> for each remote log file (for example <code>/var/log/remote/router.log</code>) with <code>log_format syslog</code>, then restart the agent with <code>systemctl restart wazuh-agent</code> so it begins forwarding those events.</p>
+
+  <h3>Which devices can be monitored without an agent?</h3>
+  <p>Any device with syslog support: routers (Cisco, MikroTik, Ubiquiti), switches (HP, Dell, Cisco), firewalls (pfSense, FortiGate, OPNsense), NAS units (Synology, QNAP, TrueNAS), network printers, and IoT or legacy systems.</p>
 
   <hr />
 

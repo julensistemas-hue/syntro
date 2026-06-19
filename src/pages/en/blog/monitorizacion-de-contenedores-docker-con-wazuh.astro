@@ -9,7 +9,29 @@ import BlogLayoutEn from "../../../layouts/BlogLayoutEn.astro";
   author="AI Security"
   readTime="12 min"
   tags={["Docker", "containers", "Wazuh", "security", "monitoring", "FIM", "logs", "Cybersecurity"]}
-  canonical="https://aisecurity.es/en/blog/monitorizacion-de-contenedores-docker-con-wazuh">
+  canonical="https://aisecurity.es/en/blog/monitorizacion-de-contenedores-docker-con-wazuh"
+  faqSchema={[
+    {
+      question: "What can Wazuh monitor on a Docker server?",
+      answer: "Installing the Wazuh agent on the Linux host gives you four layers of visibility without any agent inside the containers: Docker API events (start, stop, exec, image pulls) through the docker-listener module, container logs collected from the host filesystem, file integrity (FIM) over the Docker configuration, and image vulnerabilities through integration with Trivy or Grype."
+    },
+    {
+      question: "Do you need to install a Wazuh agent inside each container?",
+      answer: "No. A single Wazuh agent on the Docker host monitors the daemon and every container running on it. The docker-listener module talks to the Docker API, container logs are read from /var/lib/docker/containers on the host, and FIM watches the Docker configuration. You never install anything inside the containers themselves."
+    },
+    {
+      question: "Why use log_format syslog instead of json for Docker container logs?",
+      answer: "Even though Docker's json-file driver writes JSON, you should use log_format syslog so Wazuh reads each full line and lets its decoders extract the fields. If you set log_format json, the parser tries to interpret Docker's wrapper (the log, stream, and time fields) and can break on the actual log content inside."
+    },
+    {
+      question: "How do you detect a suspicious interactive shell in a container with Wazuh?",
+      answer: "When someone runs docker exec to open a shell, Wazuh captures exec_create and exec_start events; the latter triggers rule 87907 at level 5. You can add a custom rule (id 100110) on the manager that raises it to level 12 and maps it to MITRE ATT&CK T1609, matching shells like /bin/sh or /bin/bash, so an interactive access generates a high-severity alert."
+    },
+    {
+      question: "Should FIM monitor the whole /var/lib/docker directory?",
+      answer: "No. You should monitor Docker's configuration files like /etc/docker, the socket, and the binaries, but explicitly ignore /var/lib/docker/overlay2, /var/lib/docker/containers, and /var/lib/docker/tmp. Those data directories can grow to hundreds of GB and change constantly with overlay2 layers, which would generate thousands of false FIM alerts."
+    }
+  ]}>
 
 <div>
 
@@ -37,7 +59,7 @@ import BlogLayoutEn from "../../../layouts/BlogLayoutEn.astro";
   <li>Python 3.8–3.12 on the host</li>
 </ul>
 
-<h2>Step 1: Install the Python dependencies for the wodle</h2>
+<h2>Step 1: How do you install the Python dependencies for the wodle?</h2>
 
 <p>The <code>docker-listener</code> module is a Python script that uses the <code>docker</code> library to connect to the daemon API. <strong>Without this step the wodle won't start.</strong> The exact versions matter:</p>
 
@@ -51,7 +73,7 @@ import BlogLayoutEn from "../../../layouts/BlogLayoutEn.astro";
 <pre><code>python3 -c "import docker; c = docker.from_env(); print(c.ping())"
 # Should return: True</code></pre>
 
-<h2>Step 2: Grant the wazuh user access to the Docker socket</h2>
+<h2>Step 2: How do you grant the wazuh user access to the Docker socket?</h2>
 
 <p>The wodle runs as the <code>wazuh</code> user. So it can access the Docker socket:</p>
 
@@ -60,7 +82,7 @@ import BlogLayoutEn from "../../../layouts/BlogLayoutEn.astro";
 <p>Apply the group change without rebooting:</p>
 <pre><code>sudo systemctl restart wazuh-agent</code></pre>
 
-<h2>Step 3: Enable the Docker Listener (wodle)</h2>
+<h2>Step 3: How do you enable the Docker Listener (wodle)?</h2>
 
 <p>The <code>docker-listener</code> module connects to the Docker API and captures, in real time, every daemon event: container creation, starts, stops, command execution, image pulls, network connections, and more.</p>
 
@@ -85,7 +107,7 @@ import BlogLayoutEn from "../../../layouts/BlogLayoutEn.astro";
 
 <p>The Wazuh rules for these events are in <code>/var/ossec/ruleset/rules/0560-docker_integration_rules.xml</code> (IDs 87901–87920).</p>
 
-<h2>Step 4: Collect the container logs</h2>
+<h2>Step 4: How do you collect the container logs?</h2>
 
 <p>Docker, with the default driver (<code>json-file</code>), stores each container's logs in:</p>
 
@@ -107,7 +129,7 @@ import BlogLayoutEn from "../../../layouts/BlogLayoutEn.astro";
   &lt;location&gt;journald&lt;/location&gt;
 &lt;/localfile&gt;</code></pre>
 
-<h2>Step 5: FIM over the Docker configuration</h2>
+<h2>Step 5: How should FIM watch the Docker configuration?</h2>
 
 <p>The file integrity module (syscheck) should monitor Docker's configuration files, but <strong>not</strong> the entire <code>/var/lib/docker</code> directory: it can grow to hundreds of GB and changes constantly with the overlay2 layers, generating thousands of false alerts.</p>
 
@@ -145,7 +167,7 @@ sudo tail -f /var/ossec/logs/ossec.log | grep docker</code></pre>
 <pre><code>INFO: wazuh-modulesd:docker-listener: Module Docker Listener started.
 INFO: wazuh-modulesd:docker-listener: Listening to Docker events.</code></pre>
 
-<h2>Key alerts you'll see in the dashboard</h2>
+<h2>Which key alerts will you see in the dashboard?</h2>
 
 <p>With this configuration, the Wazuh dashboard will show alerts like these:</p>
 
@@ -261,6 +283,23 @@ trivy image nginx:latest</code></pre>
   &lt;ignore&gt;/var/lib/docker/containers&lt;/ignore&gt;
   &lt;ignore&gt;/var/lib/docker/tmp&lt;/ignore&gt;
 &lt;/syscheck&gt;</code></pre>
+
+<h2>Frequently Asked Questions</h2>
+
+<h3>What can Wazuh monitor on a Docker server?</h3>
+<p>Installing the Wazuh agent on the Linux host gives you four layers of visibility without any agent inside the containers: Docker API events (start, stop, exec, image pulls) through the <code>docker-listener</code> module, container logs collected from the host filesystem, file integrity (FIM) over the Docker configuration, and image vulnerabilities through integration with Trivy or Grype.</p>
+
+<h3>Do you need to install a Wazuh agent inside each container?</h3>
+<p>No. A single Wazuh agent on the Docker host monitors the daemon and every container running on it. The <code>docker-listener</code> module talks to the Docker API, container logs are read from <code>/var/lib/docker/containers</code> on the host, and FIM watches the Docker configuration. You never install anything inside the containers themselves.</p>
+
+<h3>Why use log_format syslog instead of json for Docker container logs?</h3>
+<p>Even though Docker's <code>json-file</code> driver writes JSON, you should use <code>log_format syslog</code> so Wazuh reads each full line and lets its decoders extract the fields. If you set <code>log_format json</code>, the parser tries to interpret Docker's wrapper (the <code>log</code>, <code>stream</code>, and <code>time</code> fields) and can break on the actual log content inside.</p>
+
+<h3>How do you detect a suspicious interactive shell in a container with Wazuh?</h3>
+<p>When someone runs <code>docker exec</code> to open a shell, Wazuh captures <code>exec_create</code> and <code>exec_start</code> events; the latter triggers rule 87907 at level 5. You can add a custom rule (id 100110) on the manager that raises it to level 12 and maps it to MITRE ATT&CK T1609, matching shells like <code>/bin/sh</code> or <code>/bin/bash</code>, so an interactive access generates a high-severity alert.</p>
+
+<h3>Should FIM monitor the whole /var/lib/docker directory?</h3>
+<p>No. You should monitor Docker's configuration files like <code>/etc/docker</code>, the socket, and the binaries, but explicitly ignore <code>/var/lib/docker/overlay2</code>, <code>/var/lib/docker/containers</code>, and <code>/var/lib/docker/tmp</code>. Those data directories can grow to hundreds of GB and change constantly with overlay2 layers, which would generate thousands of false FIM alerts.</p>
 
 <h2>Conclusion</h2>
 

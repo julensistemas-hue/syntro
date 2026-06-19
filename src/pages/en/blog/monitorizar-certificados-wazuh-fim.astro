@@ -9,7 +9,29 @@ import BlogLayoutEn from "../../../layouts/BlogLayoutEn.astro";
   author="AI Security"
   readTime="10 min"
   tags={["Wazuh", "FIM", "Certificates", "ISO 27001", "ENS", "Compliance", "Cybersecurity"]}
-  canonical="https://aisecurity.es/en/blog/monitorizar-certificados-wazuh-fim">
+  canonical="https://aisecurity.es/en/blog/monitorizar-certificados-wazuh-fim"
+  faqSchema={[
+    {
+      question: "What is FIM in Wazuh and how does it protect certificates?",
+      answer: "FIM (File Integrity Monitoring) is the syscheck module. It computes a SHA256 hash and records the permissions, owner and size of each watched file, then alerts whenever any of those change or the file is deleted, which lets you protect .pfx, .p12, .cer and .key certificates."
+    },
+    {
+      question: "How do I enable real-time certificate monitoring on Windows?",
+      answer: "In the Windows agent ossec.conf, add a <directories> entry with realtime=\"yes\", check_all=\"yes\" and report_changes=\"yes\" pointing at the certificate path, then restart the agent with Restart-Service WazuhSvc. With scan_on_start and a 300-second frequency you also get periodic baseline scans."
+    },
+    {
+      question: "Why does the certificate deletion rule use level 13?",
+      answer: "Level 13 is one of the highest severities in Wazuh's 0-15 scale, reserved for critical events. Deleting a cryptographic certificate can break authentication or signing and maps to MITRE ATT&CK technique T1485 (Data Destruction), so it warrants the highest-priority alert."
+    },
+    {
+      question: "Which compliance frameworks does this setup cover?",
+      answer: "Monitoring certificate integrity covers ISO 27001 A.8.24, ENS mp.com.3, PCI-DSS 11.5 and GDPR Article 5.1.f. The custom rule also carries compliance group tags for GDPR, HIPAA 164.312.c.1 and PCI-DSS so the evidence is labelled automatically."
+    },
+    {
+      question: "What information does the FIM dashboard show after a change?",
+      answer: "The Endpoint Security to File Integrity Monitoring dashboard shows the event type (added, modified or deleted), the full file path, the SHA256 hash before and after, the user who acted, the exact timestamp and any permission changes."
+    }
+  ]}>
 
   <p>To monitor digital certificates with Wazuh FIM, configure the <code>syscheck</code> module to watch the paths where <code>.pfx</code>, <code>.p12</code> and <code>.cer</code> files are stored. Any modification or deletion triggers an immediate alert and meets ISO 27001 A.8.24 and ENS mp.com.3.</p>
 
@@ -65,7 +87,7 @@ import BlogLayoutEn from "../../../layouts/BlogLayoutEn.astro";
     </p>
   </div>
 
-  <h2>Regulatory framework: why it is mandatory</h2>
+  <h2>Why is monitoring certificates mandatory under ISO 27001 and ENS?</h2>
 
   <div style="background: linear-gradient(135deg, #1a1f2e 0%, #0f1419 100%); border: 1px solid #2d3748; border-radius: 12px; padding: 24px; margin: 24px 0;">
     <h3 style="color: #60a5fa; margin-top: 0;">ISO 27001 - Control A.8.24</h3>
@@ -83,7 +105,7 @@ import BlogLayoutEn from "../../../layouts/BlogLayoutEn.astro";
     <strong>In practice:</strong> If an auditor asks whether you control who can touch your certificates and whether you keep a record of any modification, the answer has to be yes. This lab is exactly that demonstration.
   </p>
 
-  <h2>syscheck configuration on the Windows agent</h2>
+  <h2>How do you configure syscheck on the Windows agent?</h2>
 
   <p>
     Edit the <code>ossec.conf</code> file of the Windows agent:
@@ -117,7 +139,7 @@ import BlogLayoutEn from "../../../layouts/BlogLayoutEn.astro";
 
   <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">Restart-Service WazuhSvc</code></pre>
 
-  <h2>Custom rule for critical certificates</h2>
+  <h2>How do you write a custom rule for critical certificates?</h2>
 
   <p>
     On the Wazuh server, edit the local rules file:
@@ -154,7 +176,7 @@ import BlogLayoutEn from "../../../layouts/BlogLayoutEn.astro";
 
   <pre style="background:#0f1419;padding:16px;border-radius:8px;overflow-x:auto;"><code style="color: #e5e7eb;">systemctl restart wazuh-manager</code></pre>
 
-  <h2>FIM dashboard: what information it provides</h2>
+  <h2>What information does the FIM dashboard provide?</h2>
 
   <p>
     When a certificate is modified or deleted, the <strong>Endpoint Security → File Integrity Monitoring</strong> dashboard shows:
@@ -201,10 +223,33 @@ import BlogLayoutEn from "../../../layouts/BlogLayoutEn.astro";
     </table>
   </div>
 
+  <h2>How does the certificate alert reach the response team?</h2>
+
+  <p>
+    The level 13 rule fires the moment FIM detects that a <code>.pfx</code>, <code>.p12</code>, <code>.cer</code> or <code>.key</code> file has been removed. Because Wazuh emails every alert at level 7 and above by default, a critical level 13 event is delivered immediately to the security mailbox, and the MITRE tag <code>T1485</code> lets your threat-hunting queries group it with other data-destruction activity. With <code>realtime="yes"</code> the notification typically arrives within seconds of the deletion, and the periodic 300-second baseline scan acts as a safety net in case a real-time event is ever missed. That combination is what turns "we think our certificates are protected" into auditable proof.
+  </p>
+
   <h2>Next steps</h2>
 
   <p>
     A full Wazuh deployment also covers dashboards like Configuration Assessment, Malware Detection and Threat Hunting. <a href="/en/wazuh">Discover our Wazuh services</a>.
   </p>
+
+  <h2>Frequently Asked Questions</h2>
+
+  <h3>What is FIM in Wazuh and how does it protect certificates?</h3>
+  <p>FIM (File Integrity Monitoring) is the <code>syscheck</code> module. It computes a SHA256 hash and records the permissions, owner and size of each watched file, then alerts whenever any of those change or the file is deleted, which lets you protect <code>.pfx</code>, <code>.p12</code>, <code>.cer</code> and <code>.key</code> certificates.</p>
+
+  <h3>How do I enable real-time certificate monitoring on Windows?</h3>
+  <p>In the Windows agent <code>ossec.conf</code>, add a <code>&lt;directories&gt;</code> entry with <code>realtime="yes"</code>, <code>check_all="yes"</code> and <code>report_changes="yes"</code> pointing at the certificate path, then restart the agent with <code>Restart-Service WazuhSvc</code>. With <code>scan_on_start</code> and a 300-second frequency you also get periodic baseline scans.</p>
+
+  <h3>Why does the certificate deletion rule use level 13?</h3>
+  <p>Level 13 is one of the highest severities in Wazuh's 0-15 scale, reserved for critical events. Deleting a cryptographic certificate can break authentication or signing and maps to MITRE ATT&amp;CK technique T1485 (Data Destruction), so it warrants the highest-priority alert.</p>
+
+  <h3>Which compliance frameworks does this setup cover?</h3>
+  <p>Monitoring certificate integrity covers ISO 27001 A.8.24, ENS mp.com.3, PCI-DSS 11.5 and GDPR Article 5.1.f. The custom rule also carries compliance group tags for GDPR, HIPAA 164.312.c.1 and PCI-DSS so the evidence is labelled automatically.</p>
+
+  <h3>What information does the FIM dashboard show after a change?</h3>
+  <p>The Endpoint Security to File Integrity Monitoring dashboard shows the event type (added, modified or deleted), the full file path, the SHA256 hash before and after, the user who acted, the exact timestamp and any permission changes.</p>
 
 </BlogLayoutEn>

@@ -9,7 +9,14 @@ import BlogLayoutEn from "../../../layouts/BlogLayoutEn.astro";
   author="AI Security"
   readTime="8 min"
   tags={["Wazuh", "Artificial Intelligence", "Cybersecurity", "Threat Hunting"]}
-  canonical="https://aisecurity.es/en/blog/ia-threat-hunting-wazuh">
+  canonical="https://aisecurity.es/en/blog/ia-threat-hunting-wazuh"
+  faqSchema={[
+    {question: "How do you use AI for threat hunting in Wazuh?", answer: "Install Ollama with a local LLM such as Llama 3, enable JSON event output in Wazuh so events are written to archives.json, then run a Python script that loads those logs into a vector store and answers natural-language questions about your security events. Everything runs on-prem without sending data to third parties."},
+    {question: "Which LLM model should you use for local threat hunting?", answer: "Llama 3 8B is a solid default and downloads at around 4.7 GB. If your server has limited RAM you can switch to lighter models such as llama3:7b or phi3:mini, trading some reasoning quality for lower memory and faster responses."},
+    {question: "Does AI threat hunting with Wazuh keep my data private?", answer: "Yes. The LLM runs locally through Ollama and the Python script reads logs straight from the Wazuh server, so no security data is sent to any external cloud or API. This makes the approach suitable for environments with strict data-residency requirements."},
+    {question: "What configuration does Wazuh need to feed events to the AI?", answer: "In ossec.conf you enable jsonout_output, alerts_log, logall and logall_json inside the global section, then restart the manager. Wazuh then writes every event to /var/ossec/logs/archives/archives.json, which the threat-hunting script ingests."},
+    {question: "How much does AI threat hunting reduce investigation time?", answer: "By replacing manual log review with conversational queries, analysts can go from spending hours grepping logs to receiving contextualized answers in seconds, dramatically shortening the time it takes to confirm or rule out suspicious activity."}
+  ]}>
 
 
 
@@ -226,6 +233,33 @@ sudo systemctl status wazuh-threat-hunter.service</code></pre>
   <p>
     If you need help with the professional implementation of Wazuh or this AI integration in your company, <a href="/en/reunion">request a free consultation here</a>.
   </p>
+
+  <h2>What hardware do you need to run this locally?</h2>
+
+  <p>
+    The whole point of this setup is that it never leaves your network, so the constraint is local compute rather than an API bill. The Llama 3 8B model weighs roughly <strong>4.7 GB</strong> on disk and comfortably needs around <strong>8 GB of RAM</strong> to run with acceptable latency; on a CPU-only server, expect responses in the tens of seconds, while a modest GPU brings that down to a couple of seconds. If you are tight on memory, dropping to <code>phi3:mini</code> keeps the assistant usable on a 4 GB machine at the cost of some reasoning depth. Because FAISS holds the event embeddings in memory, the size of your analysis window — set with <code>/set days</code>, which accepts a range of 1 to 365 — also drives RAM usage, so start with a 7-day window and widen it only when an investigation calls for it.
+  </p>
+
+  <p>
+    A practical best practice is to run the chatbot as a dedicated <code>systemd</code> service under a least-privilege account and to schedule a periodic <code>/reload</code> so the vector database stays in sync with new alerts. Keep the chatbot password strong and the port firewalled to your SOC subnet — the assistant can read every security log on the box, so its access should be guarded as carefully as the Wazuh dashboard itself.
+  </p>
+
+  <h2>Frequently Asked Questions</h2>
+
+  <h3>How do you use AI for threat hunting in Wazuh?</h3>
+  <p>Install Ollama with a local LLM such as Llama 3, enable JSON event output in Wazuh so events are written to archives.json, then run a Python script that loads those logs into a vector store and answers natural-language questions about your security events. Everything runs on-prem without sending data to third parties.</p>
+
+  <h3>Which LLM model should you use for local threat hunting?</h3>
+  <p>Llama 3 8B is a solid default and downloads at around 4.7 GB. If your server has limited RAM you can switch to lighter models such as llama3:7b or phi3:mini, trading some reasoning quality for lower memory and faster responses.</p>
+
+  <h3>Does AI threat hunting with Wazuh keep my data private?</h3>
+  <p>Yes. The LLM runs locally through Ollama and the Python script reads logs straight from the Wazuh server, so no security data is sent to any external cloud or API. This makes the approach suitable for environments with strict data-residency requirements.</p>
+
+  <h3>What configuration does Wazuh need to feed events to the AI?</h3>
+  <p>In ossec.conf you enable jsonout_output, alerts_log, logall and logall_json inside the global section, then restart the manager. Wazuh then writes every event to /var/ossec/logs/archives/archives.json, which the threat-hunting script ingests.</p>
+
+  <h3>How much does AI threat hunting reduce investigation time?</h3>
+  <p>By replacing manual log review with conversational queries, analysts can go from spending hours grepping logs to receiving contextualized answers in seconds, dramatically shortening the time it takes to confirm or rule out suspicious activity.</p>
 
   <hr />
 

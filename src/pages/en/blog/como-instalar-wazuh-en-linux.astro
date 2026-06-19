@@ -9,7 +9,29 @@ import BlogLayoutEn from "../../../layouts/BlogLayoutEn.astro";
   author="AI Security"
   readTime="18 min"
   tags={["Wazuh", "Linux", "Ubuntu", "Installation", "SIEM", "Cybersecurity"]}
-  canonical="https://aisecurity.es/en/blog/como-instalar-wazuh-en-linux">
+  canonical="https://aisecurity.es/en/blog/como-instalar-wazuh-en-linux"
+  faqSchema={[
+    {
+      question: "How long does it take to install Wazuh on Linux?",
+      answer: "Using the all-in-one script the full installation takes between 5 and 15 minutes, depending on the server speed and internet connection. After that you have the Indexer, Server and Dashboard running and ready to add agents."
+    },
+    {
+      question: "What are the minimum requirements to install Wazuh?",
+      answer: "For an all-in-one setup the minimum is 2 CPU cores, 4 GB of RAM and 50 GB of disk. The recommended configuration is 4 cores, 8 GB of RAM and 100 GB of SSD, since the Indexer performs heavy read/write operations."
+    },
+    {
+      question: "Which Linux distributions are supported?",
+      answer: "The official script supports Ubuntu 22.04 and 24.04, Debian 11 and 12, CentOS 8 and 9, and Rocky Linux 8 and 9. The installer automatically detects your operating system and installs the right packages."
+    },
+    {
+      question: "Should I use the all-in-one method or install components separately?",
+      answer: "The all-in-one method puts all three components on one server and is ideal for testing, labs and small businesses with up to 50-100 agents. For high availability or many agents, install the Indexer, Server and Dashboard on dedicated servers so each can scale independently."
+    },
+    {
+      question: "How do I access the Wazuh Dashboard after installing?",
+      answer: "Open https://YOUR_SERVER_IP in a browser and log in with the user 'admin' and the auto-generated password shown at the end of the installation. Store that password safely, because if you lose it you have to reset it manually."
+    }
+  ]}>
 
   <p>To install Wazuh on Linux, use the official all-in-one installation script: download <code>wazuh-install.sh</code>, run it, and in 15-20 minutes you'll have the Wazuh Indexer, Server and Dashboard up and running. Compatible with Ubuntu 24.04, 22.04, Debian 12, CentOS 8/9 and Rocky Linux.</p>
 
@@ -63,7 +85,7 @@ import BlogLayoutEn from "../../../layouts/BlogLayoutEn.astro";
     In addition, you'll need to install <strong>Wazuh Agents</strong> on every server or endpoint you want to monitor.
   </p>
 
-  <h2>Installation methods</h2>
+  <h2>What installation methods are available?</h2>
 
   <p>
     You have two main options to install Wazuh:
@@ -101,7 +123,7 @@ import BlogLayoutEn from "../../../layouts/BlogLayoutEn.astro";
     This lets you scale each component independently based on your needs.
   </p>
 
-  <h2>System requirements</h2>
+  <h2>What are the system requirements?</h2>
 
   <p>
     For an all-in-one installation, these are the <strong>minimum requirements</strong>:
@@ -144,13 +166,13 @@ import BlogLayoutEn from "../../../layouts/BlogLayoutEn.astro";
     <p class="m-0" style="color:rgba(255,255,255,0.9);"><strong style="color:rgba(255,255,255,0.9);">Important:</strong> An SSD disk is highly recommended because the Indexer performs many read/write operations. With a traditional HDD, performance will be noticeably worse.</p>
   </div>
 
-  <h2>All-in-One installation step by step</h2>
+  <h2>How do you install Wazuh all-in-one step by step?</h2>
 
   <p>
     Let's install Wazuh using the all-in-one method. You need root or sudo access to the server.
   </p>
 
-  <h3>Step 1: Prepare the server</h3>
+  <h3>Step 1: How do you prepare the server?</h3>
 
   <p>
     First, make sure the system is up to date:
@@ -162,7 +184,7 @@ sudo apt update && sudo apt upgrade -y
 # CentOS/Rocky Linux
 sudo dnf update -y</code></pre>
 
-  <h3>Step 2: Download and run the installer</h3>
+  <h3>Step 2: How do you download and run the installer?</h3>
 
   <p>
     Wazuh provides an official script that automates the whole process. With <strong>a single command</strong> you download the script and run it:
@@ -186,7 +208,7 @@ sudo dnf update -y</code></pre>
     The process takes between <strong>5 and 15 minutes</strong> depending on the speed of your server and your internet connection.
   </p>
 
-  <h3>Step 3: Save the credentials</h3>
+  <h3>Step 3: Where do you find and save the credentials?</h3>
 
   <p>
     When the installation finishes, the script will show you the <strong>access credentials</strong> for the Dashboard:
@@ -201,7 +223,7 @@ INFO: You can access the web interface https://&lt;wazuh-dashboard-ip&gt;
     <p class="m-0" style="color:rgba(255,255,255,0.9);"><strong style="color:rgba(255,255,255,0.9);">Important:</strong> Store this password somewhere safe. If you lose it, you'll have to reset it manually.</p>
   </div>
 
-  <h3>Step 4: Access the Dashboard</h3>
+  <h3>Step 4: How do you access the Dashboard?</h3>
 
   <p>
     Open your browser and go to:
@@ -258,6 +280,33 @@ INFO: You can access the web interface https://&lt;wazuh-dashboard-ip&gt;
     <li><a href="/en/blog/que-es-wazuh-para-que-sirve">What is Wazuh and what is it used for?</a></li>
     <li><a href="/en/blog/monitorizacion-de-contenedores-docker-con-wazuh">Monitoring Docker containers with Wazuh</a></li>
   </ul>
+
+  <h2>Frequently Asked Questions</h2>
+
+  <h3>How long does it take to install Wazuh on Linux?</h3>
+  <p>
+    Using the all-in-one script the full installation takes between 5 and 15 minutes, depending on the server speed and internet connection. After that you have the Indexer, Server and Dashboard running and ready to add agents.
+  </p>
+
+  <h3>What are the minimum requirements to install Wazuh?</h3>
+  <p>
+    For an all-in-one setup the minimum is 2 CPU cores, 4 GB of RAM and 50 GB of disk. The recommended configuration is 4 cores, 8 GB of RAM and 100 GB of SSD, since the Indexer performs heavy read/write operations.
+  </p>
+
+  <h3>Which Linux distributions are supported?</h3>
+  <p>
+    The official script supports Ubuntu 22.04 and 24.04, Debian 11 and 12, CentOS 8 and 9, and Rocky Linux 8 and 9. The installer automatically detects your operating system and installs the right packages.
+  </p>
+
+  <h3>Should I use the all-in-one method or install components separately?</h3>
+  <p>
+    The all-in-one method puts all three components on one server and is ideal for testing, labs and small businesses with up to 50-100 agents. For high availability or many agents, install the Indexer, Server and Dashboard on dedicated servers so each can scale independently.
+  </p>
+
+  <h3>How do I access the Wazuh Dashboard after installing?</h3>
+  <p>
+    Open https://YOUR_SERVER_IP in a browser and log in with the user <code>admin</code> and the auto-generated password shown at the end of the installation. Store that password safely, because if you lose it you have to reset it manually.
+  </p>
 
   <hr />
 

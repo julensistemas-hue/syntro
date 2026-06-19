@@ -9,7 +9,29 @@ import BlogLayoutEn from "../../../layouts/BlogLayoutEn.astro";
   author="AI Security"
   readTime="8 min"
   tags={["Wazuh", "Windows", "Rules", "Software", "Auditing", "SIEM", "ENS", "ISO 27001"]}
-  canonical="https://aisecurity.es/en/blog/detectar-instalaciones-software-windows-wazuh">
+  canonical="https://aisecurity.es/en/blog/detectar-instalaciones-software-windows-wazuh"
+  faqSchema={[
+    {
+      question: "Which Windows Event IDs signal a software install or uninstall?",
+      answer: "Windows Installer (MsiInstaller) writes Event ID 11707 to the Application log on a successful install and Event ID 11724 on a successful uninstall. Both events include the product name, which Wazuh surfaces through the win.eventdata.data field."
+    },
+    {
+      question: "Why assign a higher severity level to uninstalls than to installs?",
+      answer: "In the example rules the install rule uses level 8 and the uninstall rule uses level 12. Uninstalls deserve a higher level because removing software can mean an attacker is disabling antivirus or security tooling, hiding activity, or preparing to deploy malware."
+    },
+    {
+      question: "Do I need a custom decoder to detect software events?",
+      answer: "No. The events arrive already parsed in the Windows event channel, so you only filter on win.system.eventID with if_group windows. Two small rules in local_rules.xml are enough; no custom decoder is required."
+    },
+    {
+      question: "Which ISO 27001:2022 controls does this monitoring cover?",
+      answer: "It maps to A.8.19 (installation of software on operational systems), A.8.9 (configuration management), A.8.15 (logging), A.8.16 (monitoring activities) and A.5.36 (compliance with policies and standards)."
+    },
+    {
+      question: "How long must I keep these logs for ENS compliance?",
+      answer: "The ENS requires a minimum log retention of 2 years. Measures op.mon.1 and op.mon.2 are mandatory from the MEDIUM ENS level, and these Wazuh rules satisfy them automatically while keeping auditable evidence."
+    }
+  ]}>
 
   <p>
     Wazuh detects software installs and uninstalls in Windows by capturing <strong>Event IDs 11707 and 11724</strong> from the Application log. Adding just two custom rules in <code>local_rules.xml</code> is enough to receive real-time alerts with the software name, the machine and the user involved.
@@ -278,7 +300,24 @@ import BlogLayoutEn from "../../../layouts/BlogLayoutEn.astro";
   <h2>Next steps</h2>
 
   <p>
-    Building custom decoders for your own application logs is another part of a complete Wazuh deployment. <a href="/en/wazuh">Discover our Wazuh services</a>.
+    Building custom decoders for your own application logs is another part of a complete Wazuh deployment. Once installs and uninstalls are flowing in, a useful refinement is to add an allow-list rule that lowers the level for approved products (your standard browser, your antivirus updater) so the level 12 uninstall alert is reserved for genuinely suspicious removals. Because Wazuh is open source with zero licensing cost, this kind of policy control scales to hundreds of Windows agents without per-endpoint fees, which is why it fits SMEs that still need to prove ISO 27001 and ENS compliance to auditors. <a href="/en/wazuh">Discover our Wazuh services</a>.
   </p>
+
+  <h2>Frequently Asked Questions</h2>
+
+  <h3>Which Windows Event IDs signal a software install or uninstall?</h3>
+  <p>Windows Installer (MsiInstaller) writes Event ID 11707 to the Application log on a successful install and Event ID 11724 on a successful uninstall. Both events include the product name, which Wazuh surfaces through the <code>win.eventdata.data</code> field.</p>
+
+  <h3>Why assign a higher severity level to uninstalls than to installs?</h3>
+  <p>In the example rules the install rule uses level 8 and the uninstall rule uses level 12. Uninstalls deserve a higher level because removing software can mean an attacker is disabling antivirus or security tooling, hiding activity, or preparing to deploy malware.</p>
+
+  <h3>Do I need a custom decoder to detect software events?</h3>
+  <p>No. The events arrive already parsed in the Windows event channel, so you only filter on <code>win.system.eventID</code> with <code>if_group windows</code>. Two small rules in <code>local_rules.xml</code> are enough; no custom decoder is required.</p>
+
+  <h3>Which ISO 27001:2022 controls does this monitoring cover?</h3>
+  <p>It maps to A.8.19 (installation of software on operational systems), A.8.9 (configuration management), A.8.15 (logging), A.8.16 (monitoring activities) and A.5.36 (compliance with policies and standards).</p>
+
+  <h3>How long must I keep these logs for ENS compliance?</h3>
+  <p>The ENS requires a minimum log retention of 2 years. Measures op.mon.1 and op.mon.2 are mandatory from the MEDIUM ENS level, and these Wazuh rules satisfy them automatically while keeping auditable evidence.</p>
 
 </BlogLayoutEn>

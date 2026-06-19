@@ -9,7 +9,29 @@ import BlogLayoutEn from "../../../layouts/BlogLayoutEn.astro";
   author="AI Security"
   readTime="12 min"
   tags={["Wazuh", "Docker", "Docker Compose", "Containers", "SIEM", "Cybersecurity"]}
-  canonical="https://aisecurity.es/en/blog/como-instalar-wazuh-con-docker">
+  canonical="https://aisecurity.es/en/blog/como-instalar-wazuh-con-docker"
+  faqSchema={[
+    {
+      question: "What do I need before installing Wazuh with Docker?",
+      answer: "You need Docker version 20.10 or higher, Docker Compose 2.0 or higher, and Git to clone the repository. The minimum hardware is 2 CPU cores, 4 GB of RAM and 20 GB of disk, with 4 cores, 8 GB and 50 GB SSD recommended."
+    },
+    {
+      question: "How many commands does it take to deploy Wazuh on Docker?",
+      answer: "Just 4: clone the official wazuh-docker repository, enter the single-node directory, generate the SSL certificates, and run 'docker compose up -d'. In a few minutes the Indexer, Server and Dashboard are running."
+    },
+    {
+      question: "What are the default Wazuh Docker credentials?",
+      answer: "The default login is the user 'admin' with the password 'SecretPassword'. You should change this password in production by editing the docker-compose.yml file before bringing up the containers."
+    },
+    {
+      question: "What is the difference between single-node and multi-node?",
+      answer: "The single-node directory deploys all components on one server, which is ideal for testing and small environments. The multi-node directory is for distributed production deployments where components run across several hosts for scalability and high availability."
+    },
+    {
+      question: "How do I check the status of the Wazuh containers?",
+      answer: "Run 'docker compose ps' to see the container status, 'docker compose logs -f' to follow logs in real time, and 'docker compose down' or 'docker compose restart' to stop or restart the deployment."
+    }
+  ]}>
 
   <p>To install Wazuh with Docker Compose, clone the official repository, run <code>docker-compose up -d</code> and in minutes you'll have the three components up: Indexer, Server and Dashboard. You only need Docker and Docker Compose installed on the server.</p>
 
@@ -47,7 +69,7 @@ import BlogLayoutEn from "../../../layouts/BlogLayoutEn.astro";
     </div>
   </div>
 
-  <h2>Why use Docker for Wazuh?</h2>
+  <h2>Why should you use Docker for Wazuh?</h2>
 
   <p>
     Docker offers several advantages for deploying Wazuh:
@@ -61,7 +83,7 @@ import BlogLayoutEn from "../../../layouts/BlogLayoutEn.astro";
     <li><strong>Ideal for testing:</strong> Perfect for labs and development environments</li>
   </ul>
 
-  <h2>Prerequisites</h2>
+  <h2>What do you need before you start?</h2>
 
   <p>
     Before you start, you need to have installed:
@@ -102,7 +124,7 @@ import BlogLayoutEn from "../../../layouts/BlogLayoutEn.astro";
     </table>
   </div>
 
-  <h2>Installation commands</h2>
+  <h2>What are the installation commands?</h2>
 
   <p>
     The installation is done in <strong>4 simple steps</strong>:
@@ -148,7 +170,7 @@ docker compose -f generate-indexer-certs.yml run --rm generator
 docker compose up -d</code></pre>
   </div>
 
-  <h2>Access the Dashboard</h2>
+  <h2>How do you access the Dashboard?</h2>
 
   <p>
     Once the containers are up, access the Dashboard at:
@@ -165,7 +187,7 @@ docker compose up -d</code></pre>
     <li><strong>Password:</strong> SecretPassword</li>
   </ul>
 
-  <h3>Get container information</h3>
+  <h3>How do you get container information?</h3>
 
   <p>
     To see the configuration and environment variables of the server container:
@@ -195,6 +217,16 @@ docker compose down
 # Restart the containers
 docker compose restart</code></pre>
 
+  <h2>What should you watch out for in production?</h2>
+
+  <p>
+    Docker is the fastest way to get a lab running, but a production deployment needs a few extra precautions. First, raise the host's <code>vm.max_map_count</code> kernel parameter to at least <strong>262144</strong>, or the Indexer container will fail to start. Second, the named volumes hold all your indexed alerts, so back them up and never run <code>docker compose down -v</code> on a live system, since the <code>-v</code> flag deletes the data volumes. Finally, restrict the exposed ports (the Dashboard on <strong>443</strong> and the agent listener on <strong>1514/1515</strong>) with a firewall so only trusted networks can reach them.
+  </p>
+
+  <p>
+    For environments beyond a small lab, plan for resource limits and log rotation. The Indexer can consume several gigabytes of RAM under load, so set explicit memory limits in <code>docker-compose.yml</code> and monitor disk usage, because indexed data grows continuously. When it is time to upgrade, change the version tag (for example from <strong>v4.14.3</strong> to a newer release), pull the new images and recreate the containers; your data persists in the volumes between versions.
+  </p>
+
   <h2>Additional resources</h2>
 
   <ul>
@@ -202,6 +234,33 @@ docker compose restart</code></pre>
     <li><a href="https://github.com/wazuh/wazuh-docker" target="_blank" rel="noopener" style="color: #38b1ff;">wazuh-docker repository on GitHub</a></li>
     <li><a href="/en/blog/como-instalar-wazuh-en-linux">Installing Wazuh on Linux (without Docker)</a></li>
   </ul>
+
+  <h2>Frequently Asked Questions</h2>
+
+  <h3>What do I need before installing Wazuh with Docker?</h3>
+  <p>
+    You need Docker version 20.10 or higher, Docker Compose 2.0 or higher, and Git to clone the repository. The minimum hardware is 2 CPU cores, 4 GB of RAM and 20 GB of disk, with 4 cores, 8 GB and 50 GB SSD recommended.
+  </p>
+
+  <h3>How many commands does it take to deploy Wazuh on Docker?</h3>
+  <p>
+    Just 4: clone the official wazuh-docker repository, enter the single-node directory, generate the SSL certificates, and run <code>docker compose up -d</code>. In a few minutes the Indexer, Server and Dashboard are running.
+  </p>
+
+  <h3>What are the default Wazuh Docker credentials?</h3>
+  <p>
+    The default login is the user <code>admin</code> with the password <code>SecretPassword</code>. You should change this password in production by editing the docker-compose.yml file before bringing up the containers.
+  </p>
+
+  <h3>What is the difference between single-node and multi-node?</h3>
+  <p>
+    The single-node directory deploys all components on one server, which is ideal for testing and small environments. The multi-node directory is for distributed production deployments where components run across several hosts for scalability and high availability.
+  </p>
+
+  <h3>How do I check the status of the Wazuh containers?</h3>
+  <p>
+    Run <code>docker compose ps</code> to see the container status, <code>docker compose logs -f</code> to follow logs in real time, and <code>docker compose down</code> or <code>docker compose restart</code> to stop or restart the deployment.
+  </p>
 
   <hr />
 

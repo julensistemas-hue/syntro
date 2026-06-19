@@ -9,7 +9,14 @@ import BlogLayoutEn from "../../../layouts/BlogLayoutEn.astro";
   author="AI Security"
   readTime="10 min"
   tags={["Wazuh", "Claude", "MCP", "AI", "SIEM", "Cybersecurity", "Integrations"]}
-  canonical="https://aisecurity.es/en/blog/wazuh-mcp-server-claude-ia">
+  canonical="https://aisecurity.es/en/blog/wazuh-mcp-server-claude-ia"
+  faqSchema={[
+    {question: "What is the Wazuh MCP Server?", answer: "The Wazuh MCP Server is an open-source server that exposes the Wazuh REST API as tools Claude can invoke through the Model Context Protocol (MCP). It lets you query alerts and vulnerabilities and run active responses in natural language from Claude Code, without remembering API commands or opening the dashboard."},
+    {question: "Which ports does the Wazuh MCP Server need?", answer: "It connects to the Wazuh REST API on port 55000 and to the OpenSearch indexer on port 9200, and it exposes its own HTTP endpoint on port 3000 for the /auth/token and /mcp routes that Claude Code uses."},
+    {question: "Should you use AUTH_MODE bearer or none?", answer: "Use bearer in almost every case: the server issues JWT tokens with an expiration and is the recommended mode even locally. AUTH_MODE none disables authentication entirely and is only acceptable on a fully isolated test network, never in production."},
+    {question: "When should you disable WAZUH_VERIFY_SSL?", answer: "Wazuh installs a self-signed certificate by default, so verification fails out of the box and you set WAZUH_VERIFY_SSL to false to connect. If your environment uses a certificate signed by a trusted CA, set it to true to keep verification on."},
+    {question: "Is the Wazuh MCP Server safe to run in production?", answer: "It can be, provided you use bearer authentication, valid TLS certificates, network restrictions on port 3000 and least-privilege Wazuh API credentials. Because Claude can trigger active responses such as isolating a host, treat the access token as a powerful secret and audit every action it performs."}
+  ]}>
 
   <p>The Wazuh MCP Server is an open-source server that exposes the Wazuh API as tools that Claude can invoke directly through the Model Context Protocol (MCP). With it you can ask "what critical alerts do I have today?" or "isolate this server" in natural language from Claude Code, without remembering API commands or opening the Wazuh dashboard.</p>
 
@@ -206,5 +213,32 @@ WAZUH_VERIFY_SSL=false</code></pre>
   <p>
     This integration is part of the <strong>Integrations</strong> area of our Wazuh expertise. If you want to master Wazuh from installation to advanced use cases like this one, learn more about <a href="/en/wazuh">our Wazuh services at aisecurity.es</a>.
   </p>
+
+  <h2>How do you secure the Wazuh MCP Server in production?</h2>
+
+  <p>
+    Because the MCP Server lets Claude not only read but also <strong>act</strong> on your infrastructure — isolating hosts, killing processes, triggering active responses — the access token is effectively an administrator credential. Keep <code>AUTH_MODE</code> set to <strong>bearer</strong> so every JWT expires, never expose port <strong>3000</strong> to the public internet, and front the server with a reverse proxy that enforces TLS instead of leaving <code>WAZUH_VERIFY_SSL=false</code> in place once you have a CA-signed certificate. Scope the Wazuh API user to the minimum permissions the workflows need, and rotate both the API key and the JWT regularly.
+  </p>
+
+  <p>
+    The operational payoff is real: instead of context-switching between the dashboard, the API documentation and a terminal, an analyst asks one question in plain English and Claude correlates agents, alerts and CVEs in a single response. In a triage workflow that can cut the time to answer "is this host compromised and what do I do about it?" from several minutes of manual querying down to seconds. Because every tool call maps to a documented Wazuh API endpoint, the actions remain fully auditable in the Wazuh logs — you get conversational speed without losing the paper trail a SOC needs.
+  </p>
+
+  <h2>Frequently Asked Questions</h2>
+
+  <h3>What is the Wazuh MCP Server?</h3>
+  <p>The Wazuh MCP Server is an open-source server that exposes the Wazuh REST API as tools Claude can invoke through the Model Context Protocol (MCP). It lets you query alerts and vulnerabilities and run active responses in natural language from Claude Code, without remembering API commands or opening the dashboard.</p>
+
+  <h3>Which ports does the Wazuh MCP Server need?</h3>
+  <p>It connects to the Wazuh REST API on port 55000 and to the OpenSearch indexer on port 9200, and it exposes its own HTTP endpoint on port 3000 for the /auth/token and /mcp routes that Claude Code uses.</p>
+
+  <h3>Should you use AUTH_MODE bearer or none?</h3>
+  <p>Use bearer in almost every case: the server issues JWT tokens with an expiration and is the recommended mode even locally. AUTH_MODE none disables authentication entirely and is only acceptable on a fully isolated test network, never in production.</p>
+
+  <h3>When should you disable WAZUH_VERIFY_SSL?</h3>
+  <p>Wazuh installs a self-signed certificate by default, so verification fails out of the box and you set WAZUH_VERIFY_SSL to false to connect. If your environment uses a certificate signed by a trusted CA, set it to true to keep verification on.</p>
+
+  <h3>Is the Wazuh MCP Server safe to run in production?</h3>
+  <p>It can be, provided you use bearer authentication, valid TLS certificates, network restrictions on port 3000 and least-privilege Wazuh API credentials. Because Claude can trigger active responses such as isolating a host, treat the access token as a powerful secret and audit every action it performs.</p>
 
 </BlogLayoutEn>

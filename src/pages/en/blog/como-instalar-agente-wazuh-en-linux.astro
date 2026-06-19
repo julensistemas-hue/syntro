@@ -9,7 +9,29 @@ import BlogLayoutEn from "../../../layouts/BlogLayoutEn.astro";
   author="AI Security"
   readTime="8 min"
   tags={["Wazuh", "Linux", "Agent", "SIEM", "Monitoring", "Cybersecurity"]}
-  canonical="https://aisecurity.es/en/blog/como-instalar-agente-wazuh-en-linux">
+  canonical="https://aisecurity.es/en/blog/como-instalar-agente-wazuh-en-linux"
+  faqSchema={[
+    {
+      question: "How long does it take to install the Wazuh agent on Linux?",
+      answer: "The full process takes less than 10 minutes: downloading the .deb package, installing it with the WAZUH_MANAGER and WAZUH_AGENT_NAME variables, and starting the service with systemctl. The agent registers automatically with the server if connectivity exists."
+    },
+    {
+      question: "Which ports does the Wazuh agent need open?",
+      answer: "The agent communicates with the server over TCP port 1514 to send events, and uses port 1515 only during the initial enrollment. Port 443 is used to access the dashboard. Make sure both the server and client firewalls allow these ports."
+    },
+    {
+      question: "Where is the Wazuh agent configuration file located?",
+      answer: "The configuration file is at /var/ossec/etc/ossec.conf. It is an XML file where the two most important sections are localfile (which logs to collect) and syscheck (File Integrity Monitoring)."
+    },
+    {
+      question: "Do I need to restart the agent after editing ossec.conf?",
+      answer: "Yes. After modifying ossec.conf you must run sudo systemctl restart wazuh-agent for the changes to take effect, then check the result with systemctl status wazuh-agent."
+    },
+    {
+      question: "How do I verify the agent is connected to the Wazuh server?",
+      answer: "Run sudo tail -f /var/ossec/logs/ossec.log and look for a 'Connected to the server' message. You can also list the agent status from the server with /var/ossec/bin/agent_control -i, or confirm the agent appears as Active in the dashboard."
+    }
+  ]}>
 
   <p>To install the Wazuh agent on Linux (Debian/Ubuntu), add the official repository, install the <code>wazuh-agent</code> package, set the server IP in <code>ossec.conf</code> and start the service with <code>systemctl start wazuh-agent</code>. The whole process takes less than 10 minutes.</p>
 
@@ -65,7 +87,7 @@ import BlogLayoutEn from "../../../layouts/BlogLayoutEn.astro";
     </p>
   </div>
 
-  <h2>Prerequisite: connectivity with the server</h2>
+  <h2>Why does the agent need connectivity with the server first?</h2>
 
   <div style="background:rgba(245,158,11,0.12);border-left:4px solid #f59e0b;padding:1rem;margin:1.5rem 0;border-radius:0 0.5rem 0.5rem 0;">
     <p class="m-0" style="color:rgba(255,255,255,0.9);"><strong style="color:rgba(255,255,255,0.9);">Important:</strong> Before installing the agent, make sure the machine has <strong style="color:rgba(255,255,255,0.9);">connectivity with the Wazuh server</strong>. The agent needs to communicate with the server to send logs and receive its configuration.</p>
@@ -97,10 +119,10 @@ https://IP_SERVIDOR</code></pre>
     <li>Network/VPN configuration if they are on different networks</li>
   </ul>
 
-  <h2>Installation command</h2>
+  <h2>What is the command to install the Wazuh agent?</h2>
 
   <p>
-    Run these commands as <strong>root or with sudo</strong>. You must replace the following values with the ones from your environment:
+    Run these commands as <strong>root or with sudo</strong>. This guide uses <strong>Wazuh 4.9.2</strong>, the version pinned in the package URL below; if you run a different server version, match the agent package to it. You must replace the following values with the ones from your environment:
   </p>
 
   <ul>
@@ -123,7 +145,7 @@ https://IP_SERVIDOR</code></pre>
 sudo systemctl enable wazuh-agent
 sudo systemctl start wazuh-agent</code></pre>
 
-  <h2>The ossec.conf configuration file</h2>
+  <h2>Where is the ossec.conf configuration file?</h2>
 
   <p>
     The agent configuration file is located at:
@@ -135,7 +157,7 @@ sudo systemctl start wazuh-agent</code></pre>
     This XML file contains the entire agent configuration. The two most important sections are <code>localfile</code> and <code>syscheck</code>.
   </p>
 
-  <h2>The localfile section - log monitoring</h2>
+  <h2>What does the localfile section do for log monitoring?</h2>
 
   <p>
     The <code>&lt;localfile&gt;</code> section defines <strong>which system logs you want to send to Wazuh</strong>. By default the agent monitors system logs, but you can add logs from specific applications.
@@ -173,10 +195,10 @@ sudo systemctl start wazuh-agent</code></pre>
     </ul>
   </div>
 
-  <h2>The syscheck section - File Integrity Monitoring (FIM)</h2>
+  <h2>What is the syscheck section for File Integrity Monitoring?</h2>
 
   <p>
-    The <code>&lt;syscheck&gt;</code> section configures <strong>File Integrity Monitoring</strong>. This feature detects changes in critical system files and folders.
+    The <code>&lt;syscheck&gt;</code> section configures <strong>File Integrity Monitoring</strong>. This feature detects changes in critical system files and folders. In the example below the <code>&lt;frequency&gt;</code> value is <strong>300 seconds</strong> (every 5 minutes), which is the default scan interval; lower it for higher-sensitivity directories or raise it to reduce CPU usage on busy servers.
   </p>
 
   <p>
@@ -190,7 +212,7 @@ sudo systemctl start wazuh-agent</code></pre>
   &lt;directories check_all="yes"&gt;/var/www&lt;/directories&gt;
 &lt;/syscheck&gt;</code></pre>
 
-  <h2>Restart the agent service</h2>
+  <h2>How do you restart the agent service after changes?</h2>
 
   <p>
     After modifying the <code>ossec.conf</code> file, you must restart the service to apply the changes:
@@ -205,7 +227,7 @@ sudo systemctl status wazuh-agent
 # Enable automatic startup
 sudo systemctl enable wazuh-agent</code></pre>
 
-  <h2>Useful commands</h2>
+  <h2>Which commands are useful to manage the agent?</h2>
 
   <p>
     Some additional commands to manage the agent:
@@ -219,6 +241,23 @@ sudo /var/ossec/bin/agent-auth -m IP_SERVIDOR
 
 # View agent information
 sudo /var/ossec/bin/agent_control -i</code></pre>
+
+  <h2>Frequently Asked Questions</h2>
+
+  <h3>How long does it take to install the Wazuh agent on Linux?</h3>
+  <p>The full process takes less than 10 minutes: downloading the .deb package, installing it with the <code>WAZUH_MANAGER</code> and <code>WAZUH_AGENT_NAME</code> variables, and starting the service with <code>systemctl</code>. The agent registers automatically with the server if connectivity exists.</p>
+
+  <h3>Which ports does the Wazuh agent need open?</h3>
+  <p>The agent communicates with the server over TCP port <strong>1514</strong> to send events, and uses port <strong>1515</strong> only during the initial enrollment. Port <strong>443</strong> is used to access the dashboard. Make sure both the server and client firewalls allow these ports.</p>
+
+  <h3>Where is the Wazuh agent configuration file located?</h3>
+  <p>The configuration file is at <code>/var/ossec/etc/ossec.conf</code>. It is an XML file where the two most important sections are <code>localfile</code> (which logs to collect) and <code>syscheck</code> (File Integrity Monitoring).</p>
+
+  <h3>Do I need to restart the agent after editing ossec.conf?</h3>
+  <p>Yes. After modifying <code>ossec.conf</code> you must run <code>sudo systemctl restart wazuh-agent</code> for the changes to take effect, then check the result with <code>systemctl status wazuh-agent</code>.</p>
+
+  <h3>How do I verify the agent is connected to the Wazuh server?</h3>
+  <p>Run <code>sudo tail -f /var/ossec/logs/ossec.log</code> and look for a "Connected to the server" message. You can also list the agent status from the server with <code>/var/ossec/bin/agent_control -i</code>, or confirm the agent appears as Active in the dashboard.</p>
 
   <h2>Additional resources</h2>
 
