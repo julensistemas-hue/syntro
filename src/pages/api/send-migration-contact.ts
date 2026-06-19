@@ -4,6 +4,7 @@ import { Resend } from 'resend';
 const resend = new Resend(import.meta.env.RESEND_API_KEY);
 
 export const POST: APIRoute = async ({ request }) => {
+  let lang: 'en' | 'es' = 'es';
   try {
     const data = await request.json();
 
@@ -14,11 +15,15 @@ export const POST: APIRoute = async ({ request }) => {
     const wordpress_url = data.wordpress_url;
     const mensaje = data.mensaje;
     const plan = data.plan;
+    lang = data.lang === 'en' ? 'en' : 'es';
+
+    // Strings localizados de error para el usuario final
+    const errBasic = lang === 'en' ? 'Name and phone are required' : 'Nombre y teléfono son obligatorios';
 
     // Validación básica
     if (!nombre || !telefono) {
       return new Response(
-        JSON.stringify({ error: 'Nombre y teléfono son obligatorios' }),
+        JSON.stringify({ error: errBasic }),
         { status: 400, headers: { 'Content-Type': 'application/json' } }
       );
     }
@@ -44,7 +49,39 @@ export const POST: APIRoute = async ({ request }) => {
       'automatizacion': 'Automatización de Procesos'
     };
 
-    const planTexto = plan ? planesMap[plan] || plan : 'No especificado';
+    const noEspecificado = lang === 'en' ? 'Not specified' : 'No especificado';
+    const planTexto = plan ? planesMap[plan] || plan : noEspecificado;
+
+    // Strings localizados para el usuario final (cliente)
+    const T = lang === 'en'
+      ? {
+          requestReceived: 'Request Received',
+          headerSubtitle: 'WordPress to Astro migration',
+          greeting: `Hi ${nombre}, thank you for your interest in ${planTexto}. We've received your request successfully.`,
+          selectedPlan: 'Selected plan',
+          nextStepLabel: 'Next step:',
+          nextStepBody: "We'll get in touch with you within the next 24-48 hours to analyze your site and provide you with a detailed quote.",
+          anyQuestions: "If you have any questions, don't hesitate to contact us.",
+          textGreeting: `Hi ${nombre}, thank you for your interest in ${planTexto}.`,
+          textNextStep: "Next step: We'll get in touch with you within the next 24-48 hours to provide you with more information and a detailed quote.",
+          servicePlan: 'Service/Plan',
+          subject: 'Migration request received - AI Security',
+          successMessage: 'Request sent successfully',
+        }
+      : {
+          requestReceived: 'Solicitud Recibida',
+          headerSubtitle: 'Migracion de WordPress a Astro',
+          greeting: `Hola ${nombre}, gracias por tu interés en ${planTexto}. Hemos recibido tu solicitud correctamente.`,
+          selectedPlan: 'Plan Seleccionado',
+          nextStepLabel: 'Proximo paso:',
+          nextStepBody: 'Nos pondremos en contacto contigo en las proximas 24-48 horas para analizar tu sitio y proporcionarte un presupuesto detallado.',
+          anyQuestions: 'Si tienes alguna pregunta, no dudes en contactarnos.',
+          textGreeting: `Hola ${nombre}, gracias por tu interés en ${planTexto}.`,
+          textNextStep: 'Proximo paso: Nos pondremos en contacto contigo en las proximas 24-48 horas para proporcionarte más información y un presupuesto detallado.',
+          servicePlan: 'Servicio/Plan',
+          subject: 'Solicitud de migracion recibida - AI Security',
+          successMessage: 'Solicitud enviada correctamente',
+        };
 
     // Email HTML para el usuario (confirmación)
     const userEmailHtml = `
@@ -63,10 +100,10 @@ export const POST: APIRoute = async ({ request }) => {
                   <tr>
                     <td style="padding: 40px 40px 30px; text-align: center; background: rgba(255,255,255,0.1); backdrop-filter: blur(10px);">
                       <h1 style="margin: 0; color: #ffffff; font-size: 32px; font-weight: 700; text-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-                        Solicitud Recibida
+                        ${T.requestReceived}
                       </h1>
                       <p style="margin: 10px 0 0; color: #f0f0f0; font-size: 16px;">
-                        Migracion de WordPress a Astro
+                        ${T.headerSubtitle}
                       </p>
                     </td>
                   </tr>
@@ -78,7 +115,7 @@ export const POST: APIRoute = async ({ request }) => {
                         <tr>
                           <td style="padding: 40px;">
                             <p style="margin: 0 0 24px; color: #2d3748; font-size: 16px; line-height: 1.6;">
-                              Hola ${nombre}, gracias por tu interés en ${planTexto}. Hemos recibido tu solicitud correctamente.
+                              ${T.greeting}
                             </p>
 
                             <!-- Plan Box -->
@@ -86,7 +123,7 @@ export const POST: APIRoute = async ({ request }) => {
                               <tr>
                                 <td style="padding: 20px;">
                                   <h2 style="margin: 0 0 16px; color: #1a202c; font-size: 18px; font-weight: 600;">
-                                    Plan Seleccionado
+                                    ${T.selectedPlan}
                                   </h2>
                                   <p style="margin: 0; color: #581c87; font-size: 18px; font-weight: 700;">
                                     ${planTexto}
@@ -98,12 +135,12 @@ export const POST: APIRoute = async ({ request }) => {
                             <!-- Next Steps -->
                             <div style="background-color: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 8px; padding: 16px; margin: 24px 0;">
                               <p style="margin: 0; color: #92400e; font-size: 14px; line-height: 1.6;">
-                                <strong style="color: #78350f;">Proximo paso:</strong> Nos pondremos en contacto contigo en las proximas 24-48 horas para analizar tu sitio y proporcionarte un presupuesto detallado.
+                                <strong style="color: #78350f;">${T.nextStepLabel}</strong> ${T.nextStepBody}
                               </p>
                             </div>
 
                             <p style="margin: 24px 0 0; color: #4a5568; font-size: 14px; line-height: 1.6;">
-                              Si tienes alguna pregunta, no dudes en contactarnos.
+                              ${T.anyQuestions}
                             </p>
                           </td>
                         </tr>
@@ -130,15 +167,15 @@ export const POST: APIRoute = async ({ request }) => {
       </html>
     `;
 
-    const userTextFallback = `Solicitud Recibida - AI Security
+    const userTextFallback = `${T.requestReceived} - AI Security
 
-Hola ${nombre}, gracias por tu interés en ${planTexto}.
+${T.textGreeting}
 
-Servicio/Plan: ${planTexto}
+${T.servicePlan}: ${planTexto}
 
-Proximo paso: Nos pondremos en contacto contigo en las proximas 24-48 horas para proporcionarte más información y un presupuesto detallado.
+${T.textNextStep}
 
-Contacto: info@aisecurity.es
+${lang === 'en' ? 'Contact' : 'Contacto'}: info@aisecurity.es
 `;
 
     // Email HTML para admin (notificación)
@@ -272,7 +309,7 @@ Fecha: ${new Date().toLocaleString('es-ES', { timeZone: 'Europe/Madrid' })}
       await resend.emails.send({
         from: 'AI Security <info@aisecurity.es>',
         to: email,
-        subject: 'Solicitud de migracion recibida - AI Security',
+        subject: T.subject,
         html: userEmailHtml,
         text: userTextFallback,
       });
@@ -291,7 +328,7 @@ Fecha: ${new Date().toLocaleString('es-ES', { timeZone: 'Europe/Madrid' })}
     return new Response(
       JSON.stringify({
         success: true,
-        message: 'Solicitud enviada correctamente'
+        message: T.successMessage
       }),
       { status: 200, headers: { 'Content-Type': 'application/json' } }
     );
@@ -299,7 +336,7 @@ Fecha: ${new Date().toLocaleString('es-ES', { timeZone: 'Europe/Madrid' })}
   } catch (error) {
     console.error('Error procesando solicitud:', error);
     return new Response(
-      JSON.stringify({ error: 'Error al procesar la solicitud' }),
+      JSON.stringify({ error: lang === 'en' ? 'There was an error processing the request' : 'Error al procesar la solicitud' }),
       { status: 500, headers: { 'Content-Type': 'application/json' } }
     );
   }

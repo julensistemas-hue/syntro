@@ -5,9 +5,11 @@ import { createCalendarEvent, isValidTimeSlot, formatDate } from '../../lib/goog
 const resend = new Resend(import.meta.env.RESEND_API_KEY);
 
 export const POST: APIRoute = async ({ request }) => {
+  let lang: 'en' | 'es' = 'es';
   try {
     const data = await request.formData();
 
+    lang = data.get('lang')?.toString() === 'en' ? 'en' : 'es';
     const nombre = data.get('nombre')?.toString();
     const empresa = data.get('empresa')?.toString();
     const email = data.get('email')?.toString();
@@ -22,7 +24,7 @@ export const POST: APIRoute = async ({ request }) => {
     // Validación básica: solo email es obligatorio
     if (!email) {
       return new Response(
-        JSON.stringify({ error: 'El email es obligatorio' }),
+        JSON.stringify({ error: lang === 'en' ? 'Email is required' : 'El email es obligatorio' }),
         { status: 400, headers: { 'Content-Type': 'application/json' } }
       );
     }
@@ -31,7 +33,7 @@ export const POST: APIRoute = async ({ request }) => {
     if (selectedDate && selectedTime) {
       if (!isValidTimeSlot(selectedTime)) {
         return new Response(
-          JSON.stringify({ error: 'Horario seleccionado no válido' }),
+          JSON.stringify({ error: lang === 'en' ? 'Selected time slot is not valid' : 'Horario seleccionado no válido' }),
           { status: 400, headers: { 'Content-Type': 'application/json' } }
         );
       }
@@ -42,7 +44,7 @@ export const POST: APIRoute = async ({ request }) => {
       const fechaElegida = new Date(selectedDate + 'T00:00:00');
       if (isNaN(fechaElegida.getTime()) || fechaElegida < minFecha) {
         return new Response(
-          JSON.stringify({ error: 'Solo puedes reservar a partir de mañana. Elige otro día.' }),
+          JSON.stringify({ error: lang === 'en' ? 'You can only book from tomorrow onwards. Please choose another day.' : 'Solo puedes reservar a partir de mañana. Elige otro día.' }),
           { status: 400, headers: { 'Content-Type': 'application/json' } }
         );
       }
@@ -79,6 +81,49 @@ export const POST: APIRoute = async ({ request }) => {
     const servicioTexto = servicios ? serviciosMap[servicios] || servicios : 'No especificado';
     const empleadosTexto = empleados ? empleadosMap[empleados] || empleados : 'No especificado';
     const presupuestoTexto = presupuesto ? presupuestoMap[presupuesto] || presupuesto : 'No especificado';
+
+    // Strings localizados para el usuario final (cliente). El email al admin queda en español.
+    const T = lang === 'en'
+      ? {
+          requestReceived: 'Request Received',
+          subtitleScheduled: 'Your meeting has been scheduled',
+          subtitlePending: "We'll get in touch with you soon",
+          greeting: `Hi${nombre ? ` ${nombre}` : ''}, thank you for getting in touch. We've received your request successfully.`,
+          meetingDetails: 'Meeting Details',
+          dateLabel: 'Date',
+          timeLabel: 'Time',
+          joinMeeting: 'Join the meeting',
+          nextStepLabel: 'Next step:',
+          nextStepBody: "We'll get in touch with you within the next 24-48 hours to schedule a meeting.",
+          anyQuestions: "If you have any questions, don't hesitate to contact us.",
+          textDetails: 'Meeting details:',
+          textLink: 'Link',
+          textContactLabel: 'Contact',
+          subjectScheduled: 'Meeting scheduled - AI Security',
+          subjectPending: 'Request received - AI Security',
+          successScheduled: 'Meeting scheduled successfully',
+          successPending: 'Request sent successfully',
+        }
+      : {
+          requestReceived: 'Solicitud Recibida',
+          subtitleScheduled: 'Tu reunion ha sido agendada',
+          subtitlePending: 'Nos pondremos en contacto contigo pronto',
+          greeting: `Hola ${nombre}, gracias por tu interes en nuestros servicios de ${servicioTexto}. Hemos recibido tu solicitud correctamente.`,
+          meetingDetails: 'Detalles de la Reunion',
+          dateLabel: 'Fecha',
+          timeLabel: 'Hora',
+          joinMeeting: 'Unirse a la reunion',
+          nextStepLabel: 'Proximo paso:',
+          nextStepBody: 'Nos pondremos en contacto contigo en las proximas 24-48 horas para agendar una reunion.',
+          anyQuestions: 'Si tienes alguna pregunta, no dudes en contactarnos.',
+          textDetails: 'Detalles de la reunion:',
+          textLink: 'Enlace',
+          textContactLabel: 'Contacto',
+          subjectScheduled: 'Reunion agendada - AI Security',
+          subjectPending: 'Solicitud recibida - AI Security',
+          successScheduled: 'Reunión agendada correctamente',
+          successPending: 'Solicitud enviada correctamente',
+        };
 
     // Create Google Calendar event if date and time are selected
     let calendarEvent: { eventId: string; meetLink?: string } | null = null;
@@ -119,10 +164,10 @@ export const POST: APIRoute = async ({ request }) => {
                   <tr>
                     <td style="padding: 40px 40px 30px; text-align: center; background: rgba(255,255,255,0.1); backdrop-filter: blur(10px);">
                       <h1 style="margin: 0; color: #ffffff; font-size: 32px; font-weight: 700; text-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-                        Solicitud Recibida
+                        ${T.requestReceived}
                       </h1>
                       <p style="margin: 10px 0 0; color: #f0f0f0; font-size: 16px;">
-                        ${calendarEvent ? 'Tu reunion ha sido agendada' : 'Nos pondremos en contacto contigo pronto'}
+                        ${calendarEvent ? T.subtitleScheduled : T.subtitlePending}
                       </p>
                     </td>
                   </tr>
@@ -134,7 +179,7 @@ export const POST: APIRoute = async ({ request }) => {
                         <tr>
                           <td style="padding: 40px;">
                             <p style="margin: 0 0 24px; color: #2d3748; font-size: 16px; line-height: 1.6;">
-                              Hola ${nombre}, gracias por tu interes en nuestros servicios de ${servicioTexto}. Hemos recibido tu solicitud correctamente.
+                              ${T.greeting}
                             </p>
 
                             ${calendarEvent ? `
@@ -143,18 +188,18 @@ export const POST: APIRoute = async ({ request }) => {
                               <tr>
                                 <td style="padding: 20px;">
                                   <h2 style="margin: 0 0 16px; color: #1a202c; font-size: 18px; font-weight: 600;">
-                                    Detalles de la Reunion
+                                    ${T.meetingDetails}
                                   </h2>
                                   <p style="margin: 0 0 8px; color: #4a5568; font-size: 15px;">
-                                    <strong style="color: #2d3748;">Fecha:</strong> ${formatDate(meetingDate!)}
+                                    <strong style="color: #2d3748;">${T.dateLabel}:</strong> ${formatDate(meetingDate!)}
                                   </p>
                                   <p style="margin: 0; color: #4a5568; font-size: 15px;">
-                                    <strong style="color: #2d3748;">Hora:</strong> ${selectedTime}h
+                                    <strong style="color: #2d3748;">${T.timeLabel}:</strong> ${selectedTime}h
                                   </p>
                                   ${calendarEvent.meetLink ? `
                                   <div style="margin-top: 16px;">
                                     <a href="${calendarEvent.meetLink}" style="display: inline-block; padding: 12px 24px; background-color: #0ea5e9; color: #ffffff; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 14px;">
-                                      Unirse a la reunion
+                                      ${T.joinMeeting}
                                     </a>
                                   </div>
                                   ` : ''}
@@ -165,13 +210,13 @@ export const POST: APIRoute = async ({ request }) => {
                             <!-- Pending Contact -->
                             <div style="background-color: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 8px; padding: 16px; margin: 24px 0;">
                               <p style="margin: 0; color: #92400e; font-size: 14px; line-height: 1.6;">
-                                <strong style="color: #78350f;">Proximo paso:</strong> Nos pondremos en contacto contigo en las proximas 24-48 horas para agendar una reunion.
+                                <strong style="color: #78350f;">${T.nextStepLabel}</strong> ${T.nextStepBody}
                               </p>
                             </div>
                             `}
 
                             <p style="margin: 24px 0 0; color: #4a5568; font-size: 14px; line-height: 1.6;">
-                              Si tienes alguna pregunta, no dudes en contactarnos.
+                              ${T.anyQuestions}
                             </p>
                           </td>
                         </tr>
@@ -198,16 +243,16 @@ export const POST: APIRoute = async ({ request }) => {
       </html>
     `;
 
-    const userTextFallback = `Solicitud Recibida - AI Security
+    const userTextFallback = `${T.requestReceived} - AI Security
 
-Hola ${nombre}, gracias por tu interes en nuestros servicios de ${servicioTexto}.
+${T.greeting}
 
-${calendarEvent ? `Detalles de la reunion:
-Fecha: ${formatDate(meetingDate!)}
-Hora: ${selectedTime}h
-${calendarEvent.meetLink ? `Enlace: ${calendarEvent.meetLink}` : ''}` : 'Nos pondremos en contacto contigo en las proximas 24-48 horas para agendar una reunion.'}
+${calendarEvent ? `${T.textDetails}
+${T.dateLabel}: ${formatDate(meetingDate!)}
+${T.timeLabel}: ${selectedTime}h
+${calendarEvent.meetLink ? `${T.textLink}: ${calendarEvent.meetLink}` : ''}` : T.nextStepBody}
 
-Contacto: info@aisecurity.es
+${T.textContactLabel}: info@aisecurity.es
 `;
 
     // Email HTML para admin (notificación)
@@ -355,7 +400,7 @@ Fecha: ${new Date().toLocaleString('es-ES', { timeZone: 'Europe/Madrid' })}
       await resend.emails.send({
         from: 'AI Security <info@aisecurity.es>',
         to: email,
-        subject: calendarEvent ? 'Reunion agendada - AI Security' : 'Solicitud recibida - AI Security',
+        subject: calendarEvent ? T.subjectScheduled : T.subjectPending,
         html: userEmailHtml,
         text: userTextFallback,
       });
@@ -374,7 +419,7 @@ Fecha: ${new Date().toLocaleString('es-ES', { timeZone: 'Europe/Madrid' })}
     return new Response(
       JSON.stringify({
         success: true,
-        message: calendarEvent ? 'Reunión agendada correctamente' : 'Solicitud enviada correctamente',
+        message: calendarEvent ? T.successScheduled : T.successPending,
         calendarEventId: calendarEvent?.eventId,
         meetLink: calendarEvent?.meetLink
       }),
@@ -384,7 +429,7 @@ Fecha: ${new Date().toLocaleString('es-ES', { timeZone: 'Europe/Madrid' })}
   } catch (error) {
     console.error('Error procesando solicitud:', error);
     return new Response(
-      JSON.stringify({ error: 'Error al procesar la solicitud' }),
+      JSON.stringify({ error: lang === 'en' ? 'There was an error processing the request' : 'Error al procesar la solicitud' }),
       { status: 500, headers: { 'Content-Type': 'application/json' } }
     );
   }
