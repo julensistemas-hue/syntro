@@ -1,8 +1,8 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-const title = "Capacitación Avanzada en Wazuh | Formación Intensiva 3 Días | AI Security";
-const description = "Formación intensiva y avanzada de Wazuh en 3 días para equipos técnicos: arquitectura, configuraciones avanzadas, reglas y dashboards personalizados. Hasta 5 personas, desde 590€/persona. Remota o presencial.";
+const title = "Curso Wazuh Avanzado · Formación Intensiva 3 Días | AI Security";
+const description = "Formación avanzada e intensiva de Wazuh en 3 días para equipos técnicos: arquitectura, configuraciones avanzadas, reglas y dashboards a medida. Hasta 5 personas.";
 const canonical = "https://aisecurity.es/curso-wazuh-avanzado";
 
 // ── Próxima convocatoria (cuenta atrás ~42 días). Cambia esta fecha cuando toque. ──
@@ -211,7 +211,7 @@ const breadcrumbSchema = {
         {requisitos.map((r) => (
           <div class="rounded-2xl p-6 flex items-start gap-4" style="background:#0b1120;border:1px solid rgba(99,102,241,0.22);">
             <span class="text-3xl flex-shrink-0">{r.icon}</span>
-            <div><h3 class="text-white font-bold text-base mb-1">{r.t}</h3><p class="text-white/55 text-sm leading-relaxed">{r.d}</p></div>
+            <div><div class="text-white font-bold text-base mb-1">{r.t}</div><p class="text-white/55 text-sm leading-relaxed">{r.d}</p></div>
           </div>
         ))}
       </div>
@@ -232,7 +232,7 @@ const breadcrumbSchema = {
       <p class="text-lg text-white/80 max-w-2xl mx-auto mb-8">A lo largo de 3 días intensivos recorremos <strong class="text-white">todos los campos de Wazuh</strong> de forma práctica: arquitectura, configuraciones avanzadas, creación de reglas y dashboards personalizados.</p>
       <div class="rounded-2xl p-8" style="background:#0b1120;border:1px solid rgba(139,92,246,0.3);">
         <div class="text-4xl mb-3">🔒</div>
-        <h3 class="text-white font-bold text-xl mb-2">El temario detallado es exclusivo del curso</h3>
+        <div class="text-white font-bold text-xl mb-2">El temario detallado es exclusivo del curso</div>
         <p class="text-white/60 text-base leading-relaxed max-w-2xl mx-auto mb-6">No publicamos el contenido completo: forma parte del valor de la formación. Si tienes dudas sobre si encaja con tu equipo, lo vemos en una breve reunión sin compromiso.</p>
         <div class="flex flex-col sm:flex-row gap-3 justify-center">
           <a href="/reunion" class="inline-flex items-center justify-center gap-2 px-6 py-3 font-bold rounded-xl transition-all hover:-translate-y-0.5" style="background:linear-gradient(135deg,#7c3aed,#4f46e5);color:#fff;">Comentarlo en una reunión →</a>
@@ -279,7 +279,7 @@ const breadcrumbSchema = {
   <!-- ══ CONDICIONES ══ -->
   <section class="cg-grid py-20 relative overflow-hidden" style="background-color:#020817;">
     <div class="relative z-10 max-w-3xl mx-auto px-4 md:px-12">
-      <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-10">Condiciones de la <span style="background:linear-gradient(135deg,#a78bfa,#60a5fa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">formación</span></h2>
+      <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-10">¿Qué condiciones tiene la <span style="background:linear-gradient(135deg,#a78bfa,#60a5fa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">formación</span>?</h2>
       <div class="rounded-2xl overflow-hidden" style="border:1px solid rgba(99,102,241,0.22);">
         {condiciones.map(([k, v], i) => (
           <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 px-6 py-4" style={`background:${i % 2 === 0 ? "#0b1120" : "#0d1426"};${i > 0 ? "border-top:1px solid rgba(255,255,255,0.06);" : ""}`}>
