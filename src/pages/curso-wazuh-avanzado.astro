@@ -112,8 +112,8 @@ const breadcrumbSchema = {
       </div>
 
       <!-- Cuenta atrás convocatoria -->
-      <div class="max-w-2xl mx-auto mb-12 text-center">
-        <p class="text-white/50 text-xs uppercase tracking-widest font-semibold mb-3">Próxima convocatoria · {convocatoriaLabel}</p>
+      <div class="mb-12" style="max-width:42rem;margin-left:auto;margin-right:auto;text-align:center;">
+        <p class="text-white/50 text-xs uppercase tracking-widest font-semibold mb-3" style="text-align:center;">Próxima convocatoria · {convocatoriaLabel}</p>
         <div id="cw-countdown" class="flex items-center justify-center gap-3" data-deadline={convocatoriaISO}>
           {[["dd","Días"],["hh","Horas"],["mm","Min"],["ss","Seg"]].map(([id,label]) => (
             <div class="flex flex-col items-center">
@@ -215,8 +215,8 @@ const breadcrumbSchema = {
           </div>
         ))}
       </div>
-      <div class="mt-8 rounded-2xl p-6 text-center" style="background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.28);">
-        <p class="text-amber-200/90 text-sm leading-relaxed">
+      <div class="mt-8 rounded-2xl p-6" style="background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.28);text-align:center;">
+        <p class="text-sm leading-relaxed" style="text-align:center;color:rgba(253,230,138,0.92);max-width:46rem;margin:0 auto;">
           <strong>¿El equipo no cumple estos requisitos?</strong> Recomendamos una capacitación introductoria adaptada antes de abordar este nivel avanzado.
           <a href="/reunion" class="underline font-semibold" style="color:#fcd34d;">Contáctanos y la preparamos a medida.</a>
         </p>
