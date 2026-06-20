@@ -14,6 +14,55 @@ const {
   canonical = "https://aisecurity.es/",
   ogImage = "https://aisecurity.es/og-image.png"
 } = Astro.props;
+
+// Señales por idioma: en /en emitimos keywords y Schema.org en inglés.
+const isEn = Astro.url.pathname === "/en" || Astro.url.pathname.startsWith("/en/");
+
+const keywords = isEn
+  ? "Wazuh implementation, managed Wazuh, SIEM deployment, open source SIEM, XDR, threat detection, Wazuh consulting, security compliance"
+  : "inteligencia artificial empresas, automatización IA, chatbot empresarial, Wazuh, ENS, ciberseguridad, migración WordPress, gestor documental IA";
+
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "AI Security",
+  "url": "https://aisecurity.es",
+  "logo": "https://aisecurity.es/favicon.png",
+  "description": isEn
+    ? "Open source SIEM/XDR and cybersecurity for companies: professional Wazuh implementation, deployment and managed services, threat detection and compliance."
+    : "Soluciones de inteligencia artificial y ciberseguridad para empresas. Automatización con IA, implementación de Wazuh y cumplimiento ENS.",
+  "sameAs": ["https://www.youtube.com/@aisecurityes"],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "Customer Service",
+    "email": "info@aisecurity.es",
+    "availableLanguage": ["Spanish", "English"],
+  },
+  "address": { "@type": "PostalAddress", "addressCountry": "ES" },
+  "areaServed": isEn ? "Worldwide" : "ES",
+  "offers": [
+    {
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Service",
+        "name": isEn ? "Wazuh Implementation" : "Implementación de Wazuh",
+        "description": isEn
+          ? "Professional Wazuh installation and configuration for SIEM and compliance"
+          : "Instalación y configuración profesional de Wazuh para cumplimiento ENS",
+      },
+    },
+    {
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Service",
+        "name": isEn ? "Managed Wazuh (SIEM)" : "Automatización con IA",
+        "description": isEn
+          ? "Fully managed Wazuh service with hosting, support and continuous maintenance"
+          : "Chatbots inteligentes, gestión documental IA y automatización de procesos",
+      },
+    },
+  ],
+};
 ---
 
 <meta charset="UTF-8" />
@@ -22,7 +71,7 @@ const {
 <!-- Basic Meta Tags -->
 <title>{title}</title>
 <meta name="description" content={description} />
-<meta name="keywords" content="inteligencia artificial empresas, automatización IA, chatbot empresarial, Wazuh, ENS, ciberseguridad, migración WordPress, gestor documental IA" />
+<meta name="keywords" content={keywords} />
 <meta name="author" content="AI Security - aisecurity.es" />
 
 <!-- Favicons -->
@@ -58,47 +107,7 @@ const {
 <meta name="theme-color" content="#ffffff" />
 
 <!-- JSON-LD Schema.org markup for better SEO -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "AI Security",
-  "url": "https://AIsecurity.es",
-  "logo": "https://AIsecurity.es/favicon.png",
-  "description": "Soluciones de inteligencia artificial y ciberseguridad para empresas. Automatización con IA, implementación de Wazuh y cumplimiento ENS.",
-  "sameAs": [
-    "https://www.youtube.com/@aisecurityes"
-  ],
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "contactType": "Customer Service",
-    "areaServed": "ES",
-    "availableLanguage": "Spanish"
-  },
-  "address": {
-    "@type": "PostalAddress",
-    "addressCountry": "ES"
-  },
-  "offers": [
-    {
-      "@type": "Offer",
-      "itemOffered": {
-        "@type": "Service",
-        "name": "Implementación de Wazuh",
-        "description": "Instalación y configuración profesional de Wazuh para cumplimiento ENS"
-      }
-    },
-    {
-      "@type": "Offer",
-      "itemOffered": {
-        "@type": "Service",
-        "name": "Automatización con IA",
-        "description": "Chatbots inteligentes, gestión documental IA y automatización de procesos"
-      }
-    }
-  ]
-}
-</script>
+<script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
 
 <!---- Alpine  -->
 <script is:inline defer src="https://unpkg.com/alpinejs@3.10.5/dist/cdn.min.js">
