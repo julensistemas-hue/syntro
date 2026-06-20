@@ -1,0 +1,343 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const title = "Capacitación Avanzada en Wazuh | Formación Intensiva 3 Días | AI Security";
+const description = "Formación intensiva y avanzada de Wazuh en 3 días para equipos técnicos: arquitectura, configuraciones avanzadas, reglas y dashboards personalizados. Hasta 5 personas, desde 590€/persona. Remota o presencial.";
+const canonical = "https://aisecurity.es/curso-wazuh-avanzado";
+
+// ── Próxima convocatoria (cuenta atrás ~42 días). Cambia esta fecha cuando toque. ──
+const convocatoria = new Date("2026-08-01T10:00:00");
+const convocatoriaISO = convocatoria.toISOString();
+const convocatoriaLabel = convocatoria.toLocaleDateString("es-ES", { day: "numeric", month: "long", year: "numeric" });
+
+const precios = [
+  { n: 1, label: "1 persona",  pp: "1.100 €", total: "1.100 €" },
+  { n: 2, label: "2 personas", pp: "850 €",   total: "1.700 €" },
+  { n: 3, label: "3 personas", pp: "750 €",   total: "2.250 €" },
+  { n: 4, label: "4 personas", pp: "650 €",   total: "2.600 €" },
+  { n: 5, label: "5 personas", pp: "590 €",   total: "2.950 €", best: true },
+];
+
+const requisitos = [
+  { icon: "🖧", t: "Administración de sistemas", d: "Gestión de servidores, servicios y redes." },
+  { icon: "🐧", t: "Linux usuario-administrador", d: "Línea de comandos, servicios, ficheros de configuración y logs." },
+  { icon: "🛡️", t: "Conceptos básicos de SIEM", d: "Nociones de Wazuh o cualquier SIEM: agentes, manager, alertas." },
+  { icon: "🔍", t: "Seguridad y monitorización", d: "Fundamentos de seguridad informática y monitorización." },
+];
+
+const condiciones = [
+  ["Duración", "3 días intensivos"],
+  ["Máximo de asistentes", "5 personas"],
+  ["Modalidad", "Remota o presencial (presencial: desplazamiento aparte)"],
+  ["Material", "Documentación y ejercicios prácticos incluidos"],
+  ["Requisito", "Conocimientos previos de Linux, sistemas y SIEM"],
+  ["Validez de la oferta", "30 días desde la fecha de emisión"],
+];
+
+const courseSchema = {
+  "@context": "https://schema.org",
+  "@type": "Course",
+  "name": "Capacitación técnica avanzada en Wazuh",
+  "description": "Formación intensiva de nivel avanzado sobre Wazuh en 3 días para equipos técnicos. Arquitectura, configuraciones avanzadas, creación de reglas y dashboards personalizados.",
+  "provider": { "@type": "Organization", "name": "AI Security", "url": "https://aisecurity.es" },
+  "url": canonical,
+  "inLanguage": "es",
+  "educationalLevel": "Advanced",
+  "teaches": ["Wazuh SIEM", "Wazuh XDR", "Arquitectura Wazuh", "Reglas y decoders personalizados", "Dashboards personalizados", "Configuración avanzada"],
+  "courseMode": ["Online", "Onsite"],
+  "offers": {
+    "@type": "AggregateOffer",
+    "priceCurrency": "EUR",
+    "lowPrice": "590",
+    "highPrice": "1100",
+    "offerCount": "5",
+    "availability": "https://schema.org/InStock",
+    "url": canonical,
+  },
+  "hasCourseInstance": {
+    "@type": "CourseInstance",
+    "courseMode": "Blended",
+    "courseWorkload": "P3D",
+    "maximumAttendeeCapacity": 5,
+    "inLanguage": "es",
+    "startDate": convocatoriaISO.split("T")[0],
+  },
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "¿Para quién es esta capacitación avanzada de Wazuh?", "acceptedAnswer": { "@type": "Answer", "text": "Para equipos técnicos que van a administrar, operar o sacar el máximo partido a una implementación de Wazuh. No es una formación introductoria: es una capacitación profunda para que el equipo gestione Wazuh de forma autónoma." } },
+    { "@type": "Question", "name": "¿Qué conocimientos previos necesito?", "acceptedAnswer": { "@type": "Answer", "text": "Administración de sistemas, Linux a nivel usuario-administrador, conceptos básicos de Wazuh o de algún SIEM y nociones de seguridad y monitorización. Si el equipo no cumple estos requisitos, recomendamos una capacitación introductoria a medida antes de abordar este nivel." } },
+    { "@type": "Question", "name": "¿Cuánto cuesta la formación de 3 días?", "acceptedAnswer": { "@type": "Answer", "text": "La capacitación dura 3 días independientemente del número de asistentes. El precio por persona baja cuantas más personas se formen: desde 1.100€ para 1 persona hasta 590€ por persona con 5 asistentes (máximo). Precios sin IVA." } },
+    { "@type": "Question", "name": "¿La formación es remota o presencial?", "acceptedAnswer": { "@type": "Answer", "text": "Ambas. Se puede impartir en remoto o de forma presencial; en presencial el desplazamiento se factura aparte. Incluye documentación y ejercicios prácticos." } },
+    { "@type": "Question", "name": "¿Qué contenido cubre la capacitación?", "acceptedAnswer": { "@type": "Answer", "text": "Cubre todos los campos de Wazuh de forma práctica, desde la arquitectura hasta la creación de reglas y dashboards personalizados. El temario detallado es exclusivo del curso; si tienes dudas, lo comentamos en una breve reunión." } },
+  ],
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://aisecurity.es" },
+    { "@type": "ListItem", "position": 2, "name": "Cursos", "item": "https://aisecurity.es/cursos" },
+    { "@type": "ListItem", "position": 3, "name": "Capacitación avanzada en Wazuh", "item": canonical },
+  ],
+};
+---
+
+<BaseLayout title={title} description={description} canonical={canonical}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(courseSchema)} slot="head" />
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} slot="head" />
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} slot="head" />
+
+  <!-- ══ HERO ══ -->
+  <section class="cg-grid relative py-20 overflow-hidden" style="background-color:#020817;">
+    <div class="absolute rounded-full blur-3xl pointer-events-none" style="width:700px;height:700px;top:-200px;left:50%;transform:translateX(-50%);background:radial-gradient(circle,rgba(139,92,246,0.16),transparent 70%);"></div>
+    <div class="absolute -top-20 -right-40 w-[500px] h-[500px] pointer-events-none rounded-full blur-3xl" style="background:radial-gradient(circle,rgba(59,130,246,0.10),transparent 65%);"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 md:px-8 lg:px-16">
+      <div class="text-center mb-10 max-w-4xl mx-auto">
+        <div class="inline-flex items-center gap-2 mb-4 px-4 py-2 rounded-full border text-sm font-medium" style="background:rgba(139,92,246,0.1);border-color:rgba(139,92,246,0.3);color:#c4b5fd;">
+          <span class="w-2 h-2 rounded-full animate-pulse" style="background:#a78bfa;"></span>
+          Nivel avanzado · 3 días intensivos · Hasta 5 personas
+        </div>
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
+          Capacitación técnica <span style="background:linear-gradient(135deg,#a78bfa,#60a5fa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">avanzada en Wazuh</span>
+        </h1>
+        <p class="mt-4 text-lg text-white/80 max-w-2xl mx-auto">
+          Formación intensiva de 3 días para equipos que van a administrar y operar Wazuh. De la arquitectura a las reglas y dashboards personalizados. Tu equipo sale capaz de gestionar Wazuh de forma <strong class="text-white">autónoma</strong>.
+        </p>
+      </div>
+
+      <!-- Cuenta atrás convocatoria -->
+      <div class="max-w-2xl mx-auto mb-12 text-center">
+        <p class="text-white/50 text-xs uppercase tracking-widest font-semibold mb-3">Próxima convocatoria · {convocatoriaLabel}</p>
+        <div id="cw-countdown" class="flex items-center justify-center gap-3" data-deadline={convocatoriaISO}>
+          {[["dd","Días"],["hh","Horas"],["mm","Min"],["ss","Seg"]].map(([id,label]) => (
+            <div class="flex flex-col items-center">
+              <div id={`cw-${id}`} class="cw-num" style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:clamp(1.8rem,6vw,2.6rem);font-weight:800;color:#fff;background:rgba(139,92,246,0.1);border:1px solid rgba(139,92,246,0.3);border-radius:12px;min-width:clamp(54px,14vw,76px);padding:10px 6px;box-shadow:0 0 26px -10px rgba(139,92,246,0.6);">--</div>
+              <span class="mt-2 text-xs" style="color:rgba(255,255,255,0.45);letter-spacing:0.06em;">{label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+        <!-- Precio -->
+        <div class="w-full">
+          <div class="relative">
+            <div class="absolute -inset-px rounded-2xl pointer-events-none" style="background:linear-gradient(135deg,rgba(139,92,246,0.5),rgba(99,102,241,0.3),rgba(59,130,246,0.4));filter:blur(1px);"></div>
+            <div class="relative rounded-2xl p-8" style="background:#0b1120;border:1px solid rgba(139,92,246,0.3);">
+              <div class="text-center mb-7">
+                <p class="text-white/50 text-xs uppercase tracking-widest font-semibold mb-3">Desde</p>
+                <div class="flex items-end justify-center gap-2 mb-1">
+                  <span class="text-6xl font-extrabold text-white">590€</span>
+                  <span class="text-white/60 text-sm mb-2">/ persona</span>
+                </div>
+                <p class="text-white/40 text-xs">con 5 asistentes · sin IVA · cuantas más personas, menos por persona</p>
+              </div>
+
+              <div class="mb-7 pb-7 grid grid-cols-3 gap-2 text-center" style="border-bottom:1px solid rgba(255,255,255,0.07);">
+                <div><div class="text-white font-bold text-lg">3 días</div><div class="text-white/40 text-xs">intensivos</div></div>
+                <div><div class="text-white font-bold text-lg">5 pers.</div><div class="text-white/40 text-xs">máximo</div></div>
+                <div><div class="text-white font-bold text-lg">Avanzado</div><div class="text-white/40 text-xs">nivel</div></div>
+              </div>
+
+              <div class="flex flex-col gap-3">
+                <a href="/reunion" style="color:white;background:linear-gradient(135deg,#7c3aed,#4f46e5);"
+                  class="flex items-center justify-center gap-2 px-6 py-4 text-base font-bold rounded-xl hover:opacity-90 transition-all duration-200 hover:-translate-y-0.5 shadow-lg">
+                  Reservar plaza / Solicitar información →
+                </a>
+                <a href="#precios" style="color:white;border-color:rgba(255,255,255,0.15);"
+                  class="flex items-center justify-center px-6 py-3 text-sm font-medium rounded-xl border transition-all duration-200 hover:border-white/40">
+                  Ver precios por nº de asistentes
+                </a>
+                <a href="mailto:info@aisecurity.es?subject=Capacitación avanzada Wazuh" style="color:rgba(255,255,255,0.4);"
+                  class="text-center text-xs hover:text-white/70 transition-colors py-1">
+                  ¿Dudas? Escríbenos a info@aisecurity.es
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Para quién / qué es -->
+        <div class="w-full">
+          <div class="rounded-2xl p-7 h-full" style="background:#0b1120;border:1px solid rgba(99,102,241,0.25);">
+            <h2 class="text-white font-bold text-lg mb-6">
+              <span style="background:linear-gradient(135deg,#a78bfa,#60a5fa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">¿Para quién es esta capacitación?</span>
+            </h2>
+            <div class="space-y-3">
+              <div class="p-3 rounded-xl border-l-4 flex items-start gap-3" style="background:rgba(255,255,255,0.03);border-color:#8B5CF6;">
+                <span class="text-2xl">🎯</span>
+                <div><div class="text-white font-semibold text-sm">Equipos que operan Wazuh</div><div class="text-white/50 text-xs">Quienes van a administrar y sacar partido a una implementación real.</div></div>
+              </div>
+              <div class="p-3 rounded-xl border-l-4 flex items-start gap-3" style="background:rgba(255,255,255,0.03);border-color:#3B82F6;">
+                <span class="text-2xl">🧪</span>
+                <div><div class="text-white font-semibold text-sm">100% práctica y profunda</div><div class="text-white/50 text-xs">De la arquitectura a reglas y dashboards personalizados. No es introductoria.</div></div>
+              </div>
+              <div class="p-3 rounded-xl border-l-4 flex items-start gap-3" style="background:rgba(255,255,255,0.03);border-color:#10B981;">
+                <span class="text-2xl">🚀</span>
+                <div><div class="text-white font-semibold text-sm">Autonomía del equipo</div><div class="text-white/50 text-xs">Al terminar, el equipo gestiona Wazuh por su cuenta.</div></div>
+              </div>
+              <div class="p-3 rounded-xl border-l-4 flex items-start gap-3" style="background:rgba(255,255,255,0.03);border-color:#F59E0B;">
+                <span class="text-2xl">📍</span>
+                <div><div class="text-white font-semibold text-sm">Remota o presencial</div><div class="text-white/50 text-xs">Documentación y ejercicios prácticos incluidos.</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Diagonal -->
+  <div style="height:60px;overflow:hidden;line-height:0;">
+    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" style="display:block;width:100%;height:60px;">
+      <polygon points="0,0 1440,0 0,60" fill="#020817"/>
+      <polygon points="0,60 1440,0 1440,60" fill="#0f1a30"/>
+    </svg>
+  </div>
+
+  <!-- ══ REQUISITOS ══ -->
+  <section class="cg-grid py-20 relative overflow-hidden" style="background-color:#0f1a30;">
+    <div class="absolute -top-20 left-1/2 -translate-x-1/2 w-[700px] h-[400px] pointer-events-none rounded-full blur-3xl" style="background:radial-gradient(ellipse,rgba(139,92,246,0.10),transparent 65%);"></div>
+    <div class="relative z-10 max-w-5xl mx-auto px-4 md:px-12">
+      <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-4">¿Cumple tu equipo los <span style="background:linear-gradient(135deg,#60a5fa,#818cf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">requisitos previos</span>?</h2>
+      <p class="text-lg text-white/75 text-center max-w-3xl mx-auto mb-12">Para que la capacitación aporte verdadero valor, los asistentes deben contar con una base técnica mínima. De lo contrario, no se aprovecharía.</p>
+      <div class="grid sm:grid-cols-2 gap-5">
+        {requisitos.map((r) => (
+          <div class="rounded-2xl p-6 flex items-start gap-4" style="background:#0b1120;border:1px solid rgba(99,102,241,0.22);">
+            <span class="text-3xl flex-shrink-0">{r.icon}</span>
+            <div><h3 class="text-white font-bold text-base mb-1">{r.t}</h3><p class="text-white/55 text-sm leading-relaxed">{r.d}</p></div>
+          </div>
+        ))}
+      </div>
+      <div class="mt-8 rounded-2xl p-6 text-center" style="background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.28);">
+        <p class="text-amber-200/90 text-sm leading-relaxed">
+          <strong>¿El equipo no cumple estos requisitos?</strong> Recomendamos una capacitación introductoria adaptada antes de abordar este nivel avanzado.
+          <a href="/reunion" class="underline font-semibold" style="color:#fcd34d;">Contáctanos y la preparamos a medida.</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CONTENIDO (exclusivo) ══ -->
+  <section class="cg-grid py-20 relative overflow-hidden" style="background-color:#020817;">
+    <div class="absolute rounded-full blur-3xl pointer-events-none" style="width:600px;height:600px;top:-150px;left:50%;transform:translateX(-50%);background:radial-gradient(circle,rgba(59,130,246,0.10),transparent 70%);"></div>
+    <div class="relative z-10 max-w-4xl mx-auto px-4 md:px-12 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">¿Qué cubre la <span style="background:linear-gradient(135deg,#a78bfa,#60a5fa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">formación</span>?</h2>
+      <p class="text-lg text-white/80 max-w-2xl mx-auto mb-8">A lo largo de 3 días intensivos recorremos <strong class="text-white">todos los campos de Wazuh</strong> de forma práctica: arquitectura, configuraciones avanzadas, creación de reglas y dashboards personalizados.</p>
+      <div class="rounded-2xl p-8" style="background:#0b1120;border:1px solid rgba(139,92,246,0.3);">
+        <div class="text-4xl mb-3">🔒</div>
+        <h3 class="text-white font-bold text-xl mb-2">El temario detallado es exclusivo del curso</h3>
+        <p class="text-white/60 text-base leading-relaxed max-w-2xl mx-auto mb-6">No publicamos el contenido completo: forma parte del valor de la formación. Si tienes dudas sobre si encaja con tu equipo, lo vemos en una breve reunión sin compromiso.</p>
+        <div class="flex flex-col sm:flex-row gap-3 justify-center">
+          <a href="/reunion" class="inline-flex items-center justify-center gap-2 px-6 py-3 font-bold rounded-xl transition-all hover:-translate-y-0.5" style="background:linear-gradient(135deg,#7c3aed,#4f46e5);color:#fff;">Comentarlo en una reunión →</a>
+          <a href="mailto:info@aisecurity.es?subject=Temario capacitación avanzada Wazuh" class="inline-flex items-center justify-center gap-2 px-6 py-3 font-semibold rounded-xl border transition-all hover:border-white/40" style="border-color:rgba(255,255,255,0.16);color:#fff;">Preguntar por email</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Diagonal -->
+  <div style="height:60px;overflow:hidden;line-height:0;">
+    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" style="display:block;width:100%;height:60px;">
+      <polygon points="0,0 1440,0 0,60" fill="#020817"/>
+      <polygon points="0,60 1440,0 1440,60" fill="#0f1a30"/>
+    </svg>
+  </div>
+
+  <!-- ══ PRECIOS ══ -->
+  <section id="precios" class="cg-grid py-20 relative overflow-hidden" style="background-color:#0f1a30;">
+    <div class="relative z-10 max-w-6xl mx-auto px-4 md:px-12">
+      <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-4">¿Cuánto cuesta según el <span style="background:linear-gradient(135deg,#60a5fa,#818cf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">número de asistentes</span>?</h2>
+      <p class="text-lg text-white/75 text-center max-w-3xl mx-auto mb-12">La capacitación dura 3 días independientemente de cuántos seáis. Por eso, cuantas más personas del mismo equipo formemos, <strong class="text-white">menor es el precio por persona</strong>.</p>
+      <div class="grid grid-cols-2 lg:grid-cols-5 gap-4">
+        {precios.map((p) => (
+          <div class="rounded-2xl p-6 text-center relative" style={`background:#0b1120;border:1px solid ${p.best ? "rgba(139,92,246,0.6)" : "rgba(255,255,255,0.1)"};${p.best ? "box-shadow:0 0 40px -12px rgba(139,92,246,0.7);" : ""}`}>
+            {p.best && <span class="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-0.5 text-[10px] font-bold rounded-full text-white whitespace-nowrap" style="background:#7c3aed;">MEJOR PRECIO</span>}
+            <div class="text-white/50 text-xs font-semibold mb-3">{p.label}</div>
+            <div class="text-3xl font-extrabold text-white leading-none">{p.pp}</div>
+            <div class="text-white/40 text-xs mt-1 mb-4">por persona</div>
+            <div class="pt-3" style="border-top:1px solid rgba(255,255,255,0.08);">
+              <div class="text-white/40 text-[11px]">Total sin IVA</div>
+              <div class="text-white font-bold">{p.total}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <p class="text-center text-white/50 text-sm mt-8 max-w-2xl mx-auto">Con 5 asistentes, el coste por persona baja <strong class="text-white">casi a la mitad</strong> respecto a formar a una sola. Aprovecha para capacitar a varias personas del equipo a la vez.</p>
+      <div class="text-center mt-8">
+        <a href="/reunion" class="inline-flex items-center justify-center gap-2 px-8 py-4 font-bold rounded-xl transition-all hover:-translate-y-0.5 shadow-lg" style="background:linear-gradient(135deg,#7c3aed,#4f46e5);color:#fff;">Reservar plaza →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CONDICIONES ══ -->
+  <section class="cg-grid py-20 relative overflow-hidden" style="background-color:#020817;">
+    <div class="relative z-10 max-w-3xl mx-auto px-4 md:px-12">
+      <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-10">Condiciones de la <span style="background:linear-gradient(135deg,#a78bfa,#60a5fa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">formación</span></h2>
+      <div class="rounded-2xl overflow-hidden" style="border:1px solid rgba(99,102,241,0.22);">
+        {condiciones.map(([k, v], i) => (
+          <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 px-6 py-4" style={`background:${i % 2 === 0 ? "#0b1120" : "#0d1426"};${i > 0 ? "border-top:1px solid rgba(255,255,255,0.06);" : ""}`}>
+            <div class="text-white font-semibold text-sm sm:w-56 flex-shrink-0">{k}</div>
+            <div class="text-white/65 text-sm">{v}</div>
+          </div>
+        ))}
+      </div>
+      <div class="text-center mt-12">
+        <h3 class="text-2xl font-bold text-white mb-3">¿Formamos a tu equipo en Wazuh?</h3>
+        <p class="text-white/70 mb-6">Cuéntanos cuántos sois y tu caso. Te confirmamos fecha, modalidad y presupuesto.</p>
+        <a href="/reunion" class="inline-flex items-center justify-center gap-2 px-8 py-4 font-bold rounded-xl transition-all hover:-translate-y-0.5 shadow-lg" style="background:linear-gradient(135deg,#7c3aed,#4f46e5);color:#fff;">Solicitar información →</a>
+        <p class="text-white/35 text-xs mt-4">AI Security · info@aisecurity.es · aisecurity.es</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .cg-grid { position: relative; }
+  .cg-grid::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(rgba(59,130,246,0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(59,130,246,0.08) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    const el = document.getElementById('cw-countdown');
+    if (!el) return;
+    const deadline = new Date(el.getAttribute('data-deadline')).getTime();
+    const dd = document.getElementById('cw-dd');
+    const hh = document.getElementById('cw-hh');
+    const mm = document.getElementById('cw-mm');
+    const ss = document.getElementById('cw-ss');
+    const pad = (n) => String(n).padStart(2, '0');
+    function tick() {
+      const diff = deadline - Date.now();
+      if (diff <= 0) {
+        if (dd) dd.textContent = '00'; if (hh) hh.textContent = '00';
+        if (mm) mm.textContent = '00'; if (ss) ss.textContent = '00';
+        return;
+      }
+      const d = Math.floor(diff / 86400000);
+      const h = Math.floor((diff % 86400000) / 3600000);
+      const m = Math.floor((diff % 3600000) / 60000);
+      const s = Math.floor((diff % 60000) / 1000);
+      if (dd) dd.textContent = pad(d);
+      if (hh) hh.textContent = pad(h);
+      if (mm) mm.textContent = pad(m);
+      if (ss) ss.textContent = pad(s);
+    }
+    tick();
+    setInterval(tick, 1000);
+  })();
+</script>
