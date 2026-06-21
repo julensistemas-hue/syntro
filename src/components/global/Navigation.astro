@@ -70,7 +70,7 @@ const locale = getLocaleFromPath(currentPath);
         <div class="relative w-full lg:w-auto" @click.away="wazuhOpen = false">
           <button
             @click="wazuhOpen = !wazuhOpen"
-            class={`nav-link nav-link--highlight w-full lg:w-auto text-[11px] font-semibold tracking-wider uppercase transition-all duration-200 px-3 py-3 inline-flex items-center justify-between lg:justify-center gap-1.5 ${currentPath === '/wazuh' || currentPath === '/curso-wazuh' ? 'nav-link--active' : ''}`}
+            class={`nav-link nav-link--highlight w-full lg:w-auto text-[11px] font-semibold tracking-wider uppercase transition-all duration-200 px-3 py-3 inline-flex items-center justify-between lg:justify-center gap-1.5 ${currentPath === '/wazuh' || currentPath === '/curso-wazuh' || currentPath === '/curso-wazuh-avanzado' ? 'nav-link--active' : ''}`}
             :aria-expanded="wazuhOpen.toString()">
             <span>Wazuh</span>
             <svg class="w-3.5 h-3.5 transition-transform duration-200" :class="{'rotate-180': wazuhOpen}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -111,6 +111,17 @@ const locale = getLocaleFromPath(currentPath);
                 <div>
                   <p class="text-sm font-semibold text-white/90 group-hover:text-white transition-colors leading-tight">Curso Wazuh</p>
                   <p class="text-xs mt-0.5" style="color: rgba(148,163,184,0.7);">Formación intensiva práctica</p>
+                </div>
+              </a>
+              <a href="/curso-wazuh-avanzado" @click="wazuhOpen = false"
+                class="group flex items-start gap-3 px-4 py-3 transition-all duration-150 hover:bg-white/5">
+                <svg class="w-4 h-4 mt-0.5 flex-shrink-0" style="color: #a78bfa;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/>
+                </svg>
+                <div>
+                  <p class="text-sm font-semibold text-white/90 group-hover:text-white transition-colors leading-tight">Curso Wazuh para empresas</p>
+                  <p class="text-xs mt-0.5" style="color: rgba(148,163,184,0.7);">Formación avanzada para equipos de TI</p>
                 </div>
               </a>
             </div>
@@ -216,6 +227,12 @@ const locale = getLocaleFromPath(currentPath);
                       style={currentPath === '/curso-wazuh' ? 'background: rgba(239,68,68,0.12);' : ''}>
                       <p class="text-sm font-semibold text-white/90 group-hover:text-white transition-colors">Curso Wazuh Intensivo</p>
                       <p class="text-xs mt-0.5" style="color: rgba(148,163,184,0.7);">Formación práctica y certificada</p>
+                    </a>
+                    <a href="/curso-wazuh-avanzado" @click="dropdownOpen = false"
+                      class="group block px-3 py-2.5 rounded-lg transition-all duration-150 hover:bg-white/5"
+                      style={currentPath === '/curso-wazuh-avanzado' ? 'background: rgba(239,68,68,0.12);' : ''}>
+                      <p class="text-sm font-semibold text-white/90 group-hover:text-white transition-colors">Curso Wazuh para empresas</p>
+                      <p class="text-xs mt-0.5" style="color: rgba(148,163,184,0.7);">Avanzado · equipos de TI autónomos</p>
                     </a>
                     <a href="/servicios/concienciacion" @click="dropdownOpen = false"
                       class="group block px-3 py-2.5 rounded-lg transition-all duration-150 hover:bg-white/5"
