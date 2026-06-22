@@ -1,59 +1,67 @@
 # Google Analytics 4 — aisecurity.es
-**Generado:** 15/6/2026, 6:06:51
-**Período:** 2026-06-07 → 2026-06-14 (3 días)
+**Generado:** 22/6/2026, 6:09:48
+**Período:** 2026-06-14 → 2026-06-21 (3 días)
 
 ## Resumen
-- Sesiones totales: **47**
-- Sesiones orgánicas: **11** (23.4% del total)
+- Sesiones totales: **133**
+- Sesiones orgánicas: **92** (69.2% del total)
 
 ## Canales de tráfico
 | Canal | Sesiones | Usuarios | Bounce | Conversiones |
 |-------|----------|----------|--------|--------------|
-| Direct | 19 | 14 | 0.0% | 79 |
-| Organic Search | 11 | 8 | 0.0% | 48 |
-| Organic Video | 8 | 7 | 0.0% | 36 |
-| Unassigned | 5 | 3 | 100.0% | 198 |
-| Organic Shopping | 3 | 1 | 0.0% | 16 |
-| Referral | 1 | 1 | 0.0% | 3 |
+| Organic Search | 92 | 73 | 2.2% | 410 |
+| Direct | 27 | 20 | 0.0% | 342 |
+| Unassigned | 7 | 7 | 100.0% | 16 |
+| Organic Video | 4 | 3 | 0.0% | 16 |
+| Organic Shopping | 2 | 1 | 0.0% | 7 |
+| Referral | 1 | 1 | 0.0% | 4 |
 
 ## Top Páginas (3 días)
 | Página | Sesiones | Usuarios | Bounce | Duración media | vs anterior |
 |--------|----------|----------|--------|----------------|-------------|
-| /curso-wazuh | 24 | 20 | 0.0% | 2m 1s | ➡️ |
-| / | 15 | 11 | 6.7% | 2m 20s | 📉 -4 |
-| /blog | 3 | 3 | 0.0% | 1m 45s | 📈 +3 |
-| /consultoria-ia | 3 | 3 | 33.3% | 0m 11s | 📉 -4 |
-| /prueba-hero-g | 3 | 2 | 66.7% | 19m 34s | 📈 +3 |
-| /curso-techai-boost | 2 | 1 | 0.0% | 14m 21s | ➡️ |
-| /prueba-hero-d | 2 | 2 | 50.0% | 10m 47s | 📈 +2 |
-| /prueba-hero-e | 2 | 2 | 100.0% | 7m 17s | 📈 +2 |
-| /prueba-hero-f | 2 | 2 | 50.0% | 6m 0s | 📈 +2 |
-| /prueba-hero-h | 2 | 2 | 100.0% | 7m 4s | 📈 +2 |
-| /prueba-hero-i | 2 | 2 | 50.0% | 8m 44s | 📈 +2 |
-| /prueba-hero-j | 2 | 2 | 100.0% | 31m 49s | 📈 +2 |
-| /prueba-hero-k | 2 | 2 | 100.0% | 29m 22s | 📈 +2 |
-| /prueba-hero-l | 2 | 2 | 100.0% | 19m 20s | 📈 +2 |
-| /prueba-hero-m | 2 | 2 | 100.0% | 26m 58s | 📈 +2 |
+| /blog/que-es-wazuh-para-que-sirve | 17 | 15 | 0.0% | 7m 5s | 📈 +17 |
+| /curso-wazuh | 17 | 13 | 5.9% | 3m 41s | 📉 -7 |
+| / | 14 | 10 | 0.0% | 0m 51s | 📉 -1 |
+| /blog/como-instalar-wazuh-en-linux | 11 | 11 | 0.0% | 6m 3s | 📈 +11 |
+| /blog/que-es-wazuh-para-que-sirve/ | 11 | 8 | 9.1% | 2m 55s | 📈 +11 |
+| /blog/configurar-correo-corporativo-outlook-movil/ | 7 | 7 | 0.0% | 1m 60s | 📈 +7 |
+| /blog/ia-threat-hunting-wazuh | 7 | 6 | 14.3% | 11m 6s | 📈 +7 |
+| /blog/directiva-nis2-que-es-empresas-espana | 6 | 5 | 0.0% | 7m 56s | 📈 +6 |
+| /blog/configurar-correo-corporativo-outlook-movil | 5 | 5 | 20.0% | 3m 37s | 📈 +5 |
+| /curso-wazuh-avanzado | 4 | 2 | 0.0% | 4m 39s | 📈 +4 |
+| /presupuesto | 4 | 2 | 0.0% | 1m 38s | 📈 +3 |
+| /blog | 3 | 2 | 0.0% | 2m 8s | ➡️ |
+| /blog/detectar-phishing-outlook-microsoft-guia-empleados | 3 | 2 | 0.0% | 0m 2s | 📈 +3 |
+| /blog/nis2-a-quien-aplica-sectores-empresas-espana | 3 | 3 | 0.0% | 0m 30s | 📈 +3 |
+| /en/blog/ia-threat-hunting-wazuh | 3 | 1 | 0.0% | 8m 40s | 📈 +3 |
 
 ## Eventos y conversiones
 | Evento | Disparos | Usuarios |
 |--------|----------|----------|
-| page_view | 155 | 31 |
-| user_engagement | 143 | 28 |
-| session_start | 42 | 31 |
-| first_visit | 26 | 26 |
-| scroll | 14 | 9 |
+| page_view | 266 | 97 |
+| scroll_depth | 244 | 62 |
+| time_on_page | 240 | 65 |
+| user_engagement | 193 | 66 |
+| session_start | 126 | 97 |
+| first_visit | 93 | 93 |
+| click_button | 59 | 48 |
+| scroll | 47 | 30 |
+| popup_shown | 45 | 45 |
+| popup_closed | 40 | 40 |
+| click_link | 26 | 12 |
+| conversion_click | 7 | 2 |
 
 ## Países
-- **Spain**: 26 sesiones
+- **Spain**: 61 sesiones
+- **Mexico**: 10 sesiones
+- **Chile**: 7 sesiones
+- **Peru**: 7 sesiones
 - **Argentina**: 6 sesiones
-- **Mexico**: 3 sesiones
-- **Peru**: 2 sesiones
-- **United States**: 2 sesiones
-- **Dominican Republic**: 1 sesiones
-- **El Salvador**: 1 sesiones
-- **India**: 1 sesiones
+- **China**: 6 sesiones
+- **(not set)**: 3 sesiones
+- **Colombia**: 3 sesiones
 
 ## Dispositivos
-- **desktop**: 40 sesiones, bounce 0.0%
-- **mobile**: 2 sesiones, bounce 0.0%
+- **desktop**: 113 sesiones, bounce 0.9%
+- **mobile**: 13 sesiones, bounce 15.4%
+- **tablet**: 1 sesiones, bounce 0.0%

@@ -1,341 +1,397 @@
 {
-  "generatedAt": "2026-06-15T06:06:51.236Z",
+  "generatedAt": "2026-06-22T06:09:48.234Z",
   "propertyId": "519124169",
   "period": {
-    "startDate": "2026-06-07",
-    "endDate": "2026-06-14"
+    "startDate": "2026-06-14",
+    "endDate": "2026-06-21"
   },
   "summary": {
-    "totalSessions": 47,
-    "organicSessions": 11,
-    "organicPct": "23.4"
+    "totalSessions": 133,
+    "organicSessions": 92,
+    "organicPct": "69.2"
   },
   "topPages": [
     {
-      "page": "/curso-wazuh",
-      "sessions": 24,
-      "activeUsers": 20,
+      "page": "/blog/que-es-wazuh-para-que-sirve",
+      "sessions": 17,
+      "activeUsers": 15,
       "bounceRate": 0,
-      "avgDuration": 121.289546375,
-      "pageViews": 26,
+      "avgDuration": 425.18693488235294,
+      "pageViews": 16,
+      "prevSessions": 0,
+      "sessionsDiff": 17
+    },
+    {
+      "page": "/curso-wazuh",
+      "sessions": 17,
+      "activeUsers": 13,
+      "bounceRate": 0.058823529411764705,
+      "avgDuration": 220.53008211764705,
+      "pageViews": 19,
       "prevSessions": 24,
-      "sessionsDiff": 0
+      "sessionsDiff": -7
     },
     {
       "page": "/",
-      "sessions": 15,
+      "sessions": 14,
+      "activeUsers": 10,
+      "bounceRate": 0,
+      "avgDuration": 51.11072714285714,
+      "pageViews": 21,
+      "prevSessions": 15,
+      "sessionsDiff": -1
+    },
+    {
+      "page": "/blog/como-instalar-wazuh-en-linux",
+      "sessions": 11,
       "activeUsers": 11,
-      "bounceRate": 0.06666666666666667,
-      "avgDuration": 139.99593886666668,
-      "pageViews": 19,
-      "prevSessions": 19,
-      "sessionsDiff": -4
+      "bounceRate": 0,
+      "avgDuration": 363.04831409090906,
+      "pageViews": 12,
+      "prevSessions": 0,
+      "sessionsDiff": 11
+    },
+    {
+      "page": "/blog/que-es-wazuh-para-que-sirve/",
+      "sessions": 11,
+      "activeUsers": 8,
+      "bounceRate": 0.09090909090909091,
+      "avgDuration": 174.9013560909091,
+      "pageViews": 8,
+      "prevSessions": 0,
+      "sessionsDiff": 11
+    },
+    {
+      "page": "/blog/configurar-correo-corporativo-outlook-movil/",
+      "sessions": 7,
+      "activeUsers": 7,
+      "bounceRate": 0,
+      "avgDuration": 119.91225185714286,
+      "pageViews": 7,
+      "prevSessions": 0,
+      "sessionsDiff": 7
+    },
+    {
+      "page": "/blog/ia-threat-hunting-wazuh",
+      "sessions": 7,
+      "activeUsers": 6,
+      "bounceRate": 0.14285714285714285,
+      "avgDuration": 665.7190798571429,
+      "pageViews": 6,
+      "prevSessions": 0,
+      "sessionsDiff": 7
+    },
+    {
+      "page": "/blog/directiva-nis2-que-es-empresas-espana",
+      "sessions": 6,
+      "activeUsers": 5,
+      "bounceRate": 0,
+      "avgDuration": 476.1241293333333,
+      "pageViews": 5,
+      "prevSessions": 0,
+      "sessionsDiff": 6
+    },
+    {
+      "page": "/blog/configurar-correo-corporativo-outlook-movil",
+      "sessions": 5,
+      "activeUsers": 5,
+      "bounceRate": 0.2,
+      "avgDuration": 216.9405498,
+      "pageViews": 4,
+      "prevSessions": 0,
+      "sessionsDiff": 5
+    },
+    {
+      "page": "/curso-wazuh-avanzado",
+      "sessions": 4,
+      "activeUsers": 2,
+      "bounceRate": 0,
+      "avgDuration": 278.67983975000004,
+      "pageViews": 13,
+      "prevSessions": 0,
+      "sessionsDiff": 4
+    },
+    {
+      "page": "/presupuesto",
+      "sessions": 4,
+      "activeUsers": 2,
+      "bounceRate": 0,
+      "avgDuration": 97.67706725,
+      "pageViews": 4,
+      "prevSessions": 1,
+      "sessionsDiff": 3
     },
     {
       "page": "/blog",
       "sessions": 3,
+      "activeUsers": 2,
+      "bounceRate": 0,
+      "avgDuration": 127.59372633333334,
+      "pageViews": 3,
+      "prevSessions": 3,
+      "sessionsDiff": 0
+    },
+    {
+      "page": "/blog/detectar-phishing-outlook-microsoft-guia-empleados",
+      "sessions": 3,
+      "activeUsers": 2,
+      "bounceRate": 0,
+      "avgDuration": 2.2773666666666665,
+      "pageViews": 2,
+      "prevSessions": 0,
+      "sessionsDiff": 3
+    },
+    {
+      "page": "/blog/nis2-a-quien-aplica-sectores-empresas-espana",
+      "sessions": 3,
       "activeUsers": 3,
       "bounceRate": 0,
-      "avgDuration": 104.80573199999999,
+      "avgDuration": 29.577609666666664,
       "pageViews": 3,
       "prevSessions": 0,
       "sessionsDiff": 3
     },
     {
-      "page": "/consultoria-ia",
+      "page": "/en/blog/ia-threat-hunting-wazuh",
       "sessions": 3,
-      "activeUsers": 3,
-      "bounceRate": 0.3333333333333333,
-      "avgDuration": 10.917392333333334,
-      "pageViews": 3,
-      "prevSessions": 7,
-      "sessionsDiff": -4
+      "activeUsers": 1,
+      "bounceRate": 0,
+      "avgDuration": 520.4773856666667,
+      "pageViews": 1,
+      "prevSessions": 0,
+      "sessionsDiff": 3
     },
     {
       "page": "/prueba-hero-g",
       "sessions": 3,
       "activeUsers": 2,
-      "bounceRate": 0.6666666666666666,
-      "avgDuration": 1174.2392816666668,
-      "pageViews": 12,
+      "bounceRate": 0,
+      "avgDuration": 201.561075,
+      "pageViews": 13,
+      "prevSessions": 3,
+      "sessionsDiff": 0
+    },
+    {
+      "page": "/servicios/gestor-citas",
+      "sessions": 3,
+      "activeUsers": 2,
+      "bounceRate": 0,
+      "avgDuration": 113.77002133333333,
+      "pageViews": 3,
       "prevSessions": 0,
       "sessionsDiff": 3
     },
     {
-      "page": "/curso-techai-boost",
+      "page": "/blog/como-instalar-agente-wazuh-en-windows",
       "sessions": 2,
-      "activeUsers": 1,
+      "activeUsers": 2,
       "bounceRate": 0,
-      "avgDuration": 860.676194,
-      "pageViews": 2,
-      "prevSessions": 2,
-      "sessionsDiff": 0
-    },
-    {
-      "page": "/prueba-hero-d",
-      "sessions": 2,
-      "activeUsers": 2,
-      "bounceRate": 0.5,
-      "avgDuration": 646.780276,
-      "pageViews": 5,
-      "prevSessions": 0,
-      "sessionsDiff": 2
-    },
-    {
-      "page": "/prueba-hero-e",
-      "sessions": 2,
-      "activeUsers": 2,
-      "bounceRate": 1,
-      "avgDuration": 436.7543015,
+      "avgDuration": 156.7013465,
       "pageViews": 2,
       "prevSessions": 0,
       "sessionsDiff": 2
     },
     {
-      "page": "/prueba-hero-f",
+      "page": "/blog/como-instalar-wazuh-en-linux/",
       "sessions": 2,
-      "activeUsers": 2,
-      "bounceRate": 0.5,
-      "avgDuration": 360.20393399999995,
+      "activeUsers": 1,
+      "bounceRate": 0,
+      "avgDuration": 305.099901,
       "pageViews": 2,
       "prevSessions": 0,
       "sessionsDiff": 2
     },
     {
-      "page": "/prueba-hero-h",
+      "page": "/blog/crear-reglas-personalizadas-wazuh/",
       "sessions": 2,
       "activeUsers": 2,
-      "bounceRate": 1,
-      "avgDuration": 424.3142335,
-      "pageViews": 3,
-      "prevSessions": 0,
-      "sessionsDiff": 2
-    },
-    {
-      "page": "/prueba-hero-i",
-      "sessions": 2,
-      "activeUsers": 2,
-      "bounceRate": 0.5,
-      "avgDuration": 524.00388,
-      "pageViews": 4,
-      "prevSessions": 0,
-      "sessionsDiff": 2
-    },
-    {
-      "page": "/prueba-hero-j",
-      "sessions": 2,
-      "activeUsers": 2,
-      "bounceRate": 1,
-      "avgDuration": 1909.097159,
-      "pageViews": 13,
-      "prevSessions": 0,
-      "sessionsDiff": 2
-    },
-    {
-      "page": "/prueba-hero-k",
-      "sessions": 2,
-      "activeUsers": 2,
-      "bounceRate": 1,
-      "avgDuration": 1761.9802125,
-      "pageViews": 14,
-      "prevSessions": 0,
-      "sessionsDiff": 2
-    },
-    {
-      "page": "/prueba-hero-l",
-      "sessions": 2,
-      "activeUsers": 2,
-      "bounceRate": 1,
-      "avgDuration": 1160.477586,
-      "pageViews": 5,
-      "prevSessions": 0,
-      "sessionsDiff": 2
-    },
-    {
-      "page": "/prueba-hero-m",
-      "sessions": 2,
-      "activeUsers": 2,
-      "bounceRate": 1,
-      "avgDuration": 1618.105199,
-      "pageViews": 5,
-      "prevSessions": 0,
-      "sessionsDiff": 2
-    },
-    {
-      "page": "/prueba-heros",
-      "sessions": 2,
-      "activeUsers": 2,
-      "bounceRate": 0.5,
-      "avgDuration": 1628.3004765,
-      "pageViews": 24,
-      "prevSessions": 0,
-      "sessionsDiff": 2
-    },
-    {
-      "page": "/consultoria-ia-alicante",
-      "sessions": 1,
-      "activeUsers": 1,
       "bounceRate": 0,
-      "avgDuration": 144.90194,
+      "avgDuration": 157.4043065,
       "pageViews": 2,
-      "prevSessions": 1,
-      "sessionsDiff": 0
-    },
-    {
-      "page": "/curso-seo-geo-claude",
-      "sessions": 1,
-      "activeUsers": 1,
-      "bounceRate": 0,
-      "avgDuration": 0,
-      "pageViews": 1,
       "prevSessions": 0,
-      "sessionsDiff": 1
-    },
-    {
-      "page": "/presupuesto",
-      "sessions": 1,
-      "activeUsers": 1,
-      "bounceRate": 0,
-      "avgDuration": 2.073449,
-      "pageViews": 1,
-      "prevSessions": 2,
-      "sessionsDiff": -1
-    },
-    {
-      "page": "/prueba-hero-a",
-      "sessions": 1,
-      "activeUsers": 1,
-      "bounceRate": 0,
-      "avgDuration": 31.228479,
-      "pageViews": 5,
-      "prevSessions": 0,
-      "sessionsDiff": 1
+      "sessionsDiff": 2
     }
   ],
   "channels": [
     {
-      "channel": "Direct",
-      "sessions": 19,
-      "activeUsers": 14,
-      "bounceRate": 0,
-      "conversions": 79
-    },
-    {
       "channel": "Organic Search",
-      "sessions": 11,
-      "activeUsers": 8,
-      "bounceRate": 0,
-      "conversions": 48
+      "sessions": 92,
+      "activeUsers": 73,
+      "bounceRate": 0.021739130434782608,
+      "conversions": 410
     },
     {
-      "channel": "Organic Video",
-      "sessions": 8,
-      "activeUsers": 7,
+      "channel": "Direct",
+      "sessions": 27,
+      "activeUsers": 20,
       "bounceRate": 0,
-      "conversions": 36
+      "conversions": 342
     },
     {
       "channel": "Unassigned",
-      "sessions": 5,
-      "activeUsers": 3,
+      "sessions": 7,
+      "activeUsers": 7,
       "bounceRate": 1,
-      "conversions": 198
+      "conversions": 16
+    },
+    {
+      "channel": "Organic Video",
+      "sessions": 4,
+      "activeUsers": 3,
+      "bounceRate": 0,
+      "conversions": 16
     },
     {
       "channel": "Organic Shopping",
-      "sessions": 3,
+      "sessions": 2,
       "activeUsers": 1,
       "bounceRate": 0,
-      "conversions": 16
+      "conversions": 7
     },
     {
       "channel": "Referral",
       "sessions": 1,
       "activeUsers": 1,
       "bounceRate": 0,
-      "conversions": 3
+      "conversions": 4
     }
   ],
   "events": [
     {
       "event": "page_view",
-      "count": 155,
-      "users": 31
+      "count": 266,
+      "users": 97
+    },
+    {
+      "event": "scroll_depth",
+      "count": 244,
+      "users": 62
+    },
+    {
+      "event": "time_on_page",
+      "count": 240,
+      "users": 65
     },
     {
       "event": "user_engagement",
-      "count": 143,
-      "users": 28
+      "count": 193,
+      "users": 66
     },
     {
       "event": "session_start",
-      "count": 42,
-      "users": 31
+      "count": 126,
+      "users": 97
     },
     {
       "event": "first_visit",
-      "count": 26,
-      "users": 26
+      "count": 93,
+      "users": 93
+    },
+    {
+      "event": "click_button",
+      "count": 59,
+      "users": 48
     },
     {
       "event": "scroll",
-      "count": 14,
-      "users": 9
+      "count": 47,
+      "users": 30
+    },
+    {
+      "event": "popup_shown",
+      "count": 45,
+      "users": 45
+    },
+    {
+      "event": "popup_closed",
+      "count": 40,
+      "users": 40
+    },
+    {
+      "event": "click_link",
+      "count": 26,
+      "users": 12
+    },
+    {
+      "event": "conversion_click",
+      "count": 7,
+      "users": 2
+    },
+    {
+      "event": "popup_cta_click",
+      "count": 2,
+      "users": 2
+    },
+    {
+      "event": "click",
+      "count": 1,
+      "users": 1
+    },
+    {
+      "event": "conversion_form",
+      "count": 1,
+      "users": 1
     }
   ],
   "countries": [
     {
       "country": "Spain",
-      "sessions": 26,
-      "users": 17
+      "sessions": 61,
+      "users": 45
+    },
+    {
+      "country": "Mexico",
+      "sessions": 10,
+      "users": 9
+    },
+    {
+      "country": "Chile",
+      "sessions": 7,
+      "users": 6
+    },
+    {
+      "country": "Peru",
+      "sessions": 7,
+      "users": 5
     },
     {
       "country": "Argentina",
       "sessions": 6,
+      "users": 3
+    },
+    {
+      "country": "China",
+      "sessions": 6,
       "users": 6
     },
     {
-      "country": "Mexico",
+      "country": "(not set)",
+      "sessions": 3,
+      "users": 3
+    },
+    {
+      "country": "Colombia",
       "sessions": 3,
       "users": 2
-    },
-    {
-      "country": "Peru",
-      "sessions": 2,
-      "users": 1
-    },
-    {
-      "country": "United States",
-      "sessions": 2,
-      "users": 2
-    },
-    {
-      "country": "Dominican Republic",
-      "sessions": 1,
-      "users": 1
-    },
-    {
-      "country": "El Salvador",
-      "sessions": 1,
-      "users": 1
-    },
-    {
-      "country": "India",
-      "sessions": 1,
-      "users": 1
     }
   ],
   "devices": [
     {
       "device": "desktop",
-      "sessions": 40,
-      "users": 29,
-      "bounceRate": 0
+      "sessions": 113,
+      "users": 86,
+      "bounceRate": 0.008849557522123894
     },
     {
       "device": "mobile",
-      "sessions": 2,
-      "users": 2,
+      "sessions": 13,
+      "users": 11,
+      "bounceRate": 0.15384615384615385
+    },
+    {
+      "device": "tablet",
+      "sessions": 1,
+      "users": 1,
       "bounceRate": 0
     }
   ]
