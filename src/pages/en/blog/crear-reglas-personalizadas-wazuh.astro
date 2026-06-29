@@ -1,5 +1,6 @@
 ---
 import BlogLayoutEn from "../../../layouts/BlogLayoutEn.astro";
+import WazuhEnCtaBlock from "../../../components/blog/WazuhEnCtaBlock.astro";
 ---
 
 <BlogLayoutEn
@@ -230,5 +231,7 @@ import BlogLayoutEn from "../../../layouts/BlogLayoutEn.astro";
 
   <h3>What are dynamic variables in a Wazuh rule description?</h3>
   <p>Dynamic variables use the <code>$(field)</code> syntax inside the <code>&lt;description&gt;</code> tag. Wazuh substitutes them with the real value extracted by the decoder, so the alert shows the actual source IP or affected resource instead of static text.</p>
+
+  <WazuhEnCtaBlock />
 
 </BlogLayoutEn>

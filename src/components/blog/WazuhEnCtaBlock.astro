@@ -1,0 +1,176 @@
+---
+// WazuhEnCtaBlock — bloque de 2 CTAs para los blogs de Wazuh en inglés.
+// 1) Curso Wazuh en inglés (próximamente, €100) → popup para apuntarse a la lista.
+// 2) Consultoría / implementación de Wazuh → /en/wazuh.
+// Eventos GA4 propios y trackeables: wazuh_en_waitlist_open / _signup / consulting_click.
+---
+
+<aside class="wz-cta not-prose" aria-label="Wazuh resources">
+  <div class="wz-grid">
+    <!-- Curso EN (lista de espera) -->
+    <div class="wz-card" style="--c:#818cf8;">
+      <span class="wz-badge">🎓 Coming soon · ~40 days · €100</span>
+      <div class="wz-title">Wazuh course — in English</div>
+      <div class="wz-text">Master Wazuh hands-on: from install to custom rules and real threat hunting. Join the waitlist and we'll email you the moment it opens.</div>
+      <button type="button" id="wz-course-btn" class="wz-btn wz-btn-primary">Join the waitlist →</button>
+    </div>
+
+    <!-- Consultoría / implementación -->
+    <a href="/en/wazuh" id="wz-consult-link" class="wz-card wz-card-link" style="--c:#60a5fa;">
+      <span class="wz-badge wz-badge-alt">🛠️ Done-for-you</span>
+      <div class="wz-title">Need Wazuh in your company?</div>
+      <div class="wz-text">We deploy Wazuh for you — or add advanced, custom configurations as a consulting service. Production-grade and compliance-ready.</div>
+      <span class="wz-btn wz-btn-ghost">Get Wazuh consulting →</span>
+    </a>
+  </div>
+
+  <!-- Popup lista de espera -->
+  <div id="wz-modal" class="wz-modal" aria-hidden="true">
+    <div class="wz-modal-card" role="dialog" aria-modal="true" aria-label="Wazuh course waitlist">
+      <button type="button" id="wz-modal-close" class="wz-modal-close" aria-label="Close">✕</button>
+      <div class="wz-modal-ic">🛡️</div>
+      <div class="wz-modal-title">Wazuh course · English edition</div>
+      <div class="wz-modal-sub">Launching in ~40 days (€100). Leave your email and we'll notify you the moment it's available — no spam.</div>
+      <form id="wz-form" class="wz-form">
+        <input type="email" id="wz-email" name="email" required placeholder="you@company.com" autocomplete="email" class="wz-input" />
+        <button type="submit" id="wz-submit" class="wz-btn wz-btn-primary wz-submit">Notify me →</button>
+      </form>
+      <div id="wz-msg" class="wz-msg"></div>
+    </div>
+  </div>
+</aside>
+
+<style>
+  .wz-cta { margin: 2.5rem 0; }
+  .wz-grid { display: grid; gap: 1rem; grid-template-columns: 1fr; }
+  @media (min-width: 720px) { .wz-grid { grid-template-columns: 1fr 1fr; } }
+
+  .wz-card {
+    position: relative;
+    display: flex; flex-direction: column;
+    padding: 1.5rem;
+    border-radius: 16px;
+    background: rgba(255,255,255,0.035);
+    border: 1px solid rgba(255,255,255,0.1);
+    backdrop-filter: blur(8px);
+    text-decoration: none;
+    overflow: hidden;
+    transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease, background .2s ease;
+  }
+  .wz-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--c), transparent 85%);
+  }
+  .wz-card-link:hover { transform: translateY(-4px); border-color: var(--c); background: rgba(255,255,255,0.05); box-shadow: 0 16px 40px -18px var(--c); }
+
+  .wz-badge {
+    display: inline-block; align-self: flex-start;
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.02em;
+    padding: 5px 11px; border-radius: 9999px; margin-bottom: 0.9rem;
+    color: #c7d2fe; background: color-mix(in srgb, var(--c) 14%, transparent);
+    border: 1px solid color-mix(in srgb, var(--c) 35%, transparent);
+  }
+  .wz-badge-alt { color: #bfdbfe; }
+
+  .wz-title { font-size: 1.18rem; font-weight: 800; color: #f0f6ff; line-height: 1.2; margin-bottom: 0.5rem; }
+  .wz-text { font-size: 0.9rem; line-height: 1.55; color: rgba(240,246,255,0.66); flex: 1; margin-bottom: 1.25rem; }
+
+  .wz-btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem;
+    align-self: flex-start;
+    padding: 0.7rem 1.3rem; border-radius: 0.7rem;
+    font-weight: 700; font-size: 0.9rem; cursor: pointer; text-decoration: none;
+    border: none; transition: transform .2s ease, box-shadow .2s ease, filter .2s ease, background .2s ease;
+  }
+  .wz-btn-primary { color: #0a0f1a; background: var(--c); box-shadow: 0 10px 26px -10px var(--c); }
+  .wz-btn-primary:hover { filter: brightness(1.1); transform: translateY(-1px); }
+  .wz-btn-ghost { color: #e2e8f0; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.16); }
+  .wz-card-link:hover .wz-btn-ghost { border-color: var(--c); color: #fff; }
+
+  /* Modal */
+  .wz-modal {
+    position: fixed; inset: 0; z-index: 9998; display: none;
+    align-items: center; justify-content: center; padding: 1rem;
+    background: rgba(2,6,16,0.78); backdrop-filter: blur(4px);
+  }
+  .wz-modal.open { display: flex; }
+  .wz-modal-card {
+    position: relative; width: min(440px, calc(100vw - 2rem));
+    background: linear-gradient(155deg,#0b1020 0%,#141a33 60%,#0b1020 100%);
+    border: 1px solid rgba(129,140,248,0.35); border-radius: 20px;
+    padding: 2rem 1.9rem; text-align: center;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.7);
+  }
+  .wz-modal-close {
+    position: absolute; top: 14px; right: 14px; width: 30px; height: 30px;
+    border-radius: 50%; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+    color: #94a3b8; cursor: pointer; font-size: 0.85rem;
+  }
+  .wz-modal-ic { font-size: 2rem; }
+  .wz-modal-title { font-size: 1.3rem; font-weight: 800; color: #f0f6ff; margin: 0.5rem 0 0.5rem; }
+  .wz-modal-sub { font-size: 0.9rem; line-height: 1.55; color: #94a3b8; margin-bottom: 1.3rem; }
+  .wz-form { display: flex; flex-direction: column; gap: 0.65rem; }
+  .wz-input {
+    width: 100%; padding: 0.8rem 1rem; border-radius: 11px;
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.14);
+    color: #f0f6ff; font-size: 0.95rem; outline: none;
+  }
+  .wz-input:focus { border-color: #818cf8; }
+  .wz-submit { width: 100%; --c: #7c83f5; background: linear-gradient(135deg,#4f46e5,#7c3aed); color: #fff; }
+  .wz-submit:hover { filter: brightness(1.08); }
+  .wz-msg { margin-top: 0.9rem; font-size: 0.85rem; display: none; }
+</style>
+
+<script>
+  (function () {
+    function ga(name, params) {
+      try { (window).dataLayer = (window).dataLayer || []; (window).dataLayer.push(['event', name, params || {}]); } catch (e) {}
+    }
+    const path = location.pathname;
+    const courseBtn = document.getElementById('wz-course-btn');
+    const consultLink = document.getElementById('wz-consult-link');
+    const modal = document.getElementById('wz-modal');
+    const closeBtn = document.getElementById('wz-modal-close');
+    const form = document.getElementById('wz-form');
+    const input = document.getElementById('wz-email');
+    const submit = document.getElementById('wz-submit');
+    const msg = document.getElementById('wz-msg');
+
+    function open() { if (modal) { modal.classList.add('open'); modal.setAttribute('aria-hidden', 'false'); setTimeout(() => input && input.focus(), 50); } }
+    function close() { if (modal) { modal.classList.remove('open'); modal.setAttribute('aria-hidden', 'true'); } }
+
+    courseBtn && courseBtn.addEventListener('click', () => { ga('wazuh_en_waitlist_open', { page_path: path }); open(); });
+    closeBtn && closeBtn.addEventListener('click', close);
+    modal && modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+
+    consultLink && consultLink.addEventListener('click', () => { ga('wazuh_en_consulting_click', { page_path: path }); });
+
+    form && form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = (input && input.value || '').trim();
+      if (msg) { msg.style.display = 'none'; }
+      if (!email || email.indexOf('@') < 0) { if (input) input.style.borderColor = '#f87171'; return; }
+      if (input) input.style.borderColor = 'rgba(255,255,255,0.14)';
+      if (submit) { submit.disabled = true; submit.textContent = 'Sending...'; }
+      try {
+        const res = await fetch('/api/lista-espera-wazuh-en', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, source: path }),
+        });
+        if (res.ok) {
+          ga('wazuh_en_waitlist_signup', { page_path: path });
+          if (form) form.style.display = 'none';
+          if (msg) { msg.style.display = 'block'; msg.style.color = '#86efac'; msg.textContent = "✓ You're on the list! We'll email you when the course opens."; }
+        } else {
+          const d = await res.json().catch(() => ({}));
+          if (msg) { msg.style.display = 'block'; msg.style.color = '#fca5a5'; msg.textContent = d.error || 'Something went wrong. Please try again.'; }
+          if (submit) { submit.disabled = false; submit.textContent = 'Notify me →'; }
+        }
+      } catch (err) {
+        if (msg) { msg.style.display = 'block'; msg.style.color = '#fca5a5'; msg.textContent = 'Connection error. Email info@aisecurity.es'; }
+        if (submit) { submit.disabled = false; submit.textContent = 'Notify me →'; }
+      }
+    });
+  })();
+</script>
