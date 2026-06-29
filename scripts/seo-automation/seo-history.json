@@ -1719,6 +1719,221 @@
           "isNew": false
         }
       ]
+    },
+    {
+      "date": "2026-06-29T06:09:12.729Z",
+      "totals": {
+        "current": {
+          "clicks": 29,
+          "impressions": 1812
+        },
+        "previous": {
+          "clicks": 21,
+          "impressions": 1799
+        }
+      },
+      "topKeywords": [
+        {
+          "keyword": "wazuh",
+          "clicks": 8,
+          "impressions": 1317,
+          "ctr": 0.006074411541381929,
+          "position": 7.08580106302202,
+          "prevClicks": 6,
+          "prevPosition": 7.042121684867395,
+          "isNew": false
+        },
+        {
+          "keyword": "wazuh que es",
+          "clicks": 3,
+          "impressions": 106,
+          "ctr": 0.02830188679245283,
+          "position": 10.20754716981132,
+          "prevClicks": 2,
+          "prevPosition": 11.139130434782608,
+          "isNew": false
+        },
+        {
+          "keyword": "como instalar wazuh en ubuntu server",
+          "clicks": 2,
+          "impressions": 5,
+          "ctr": 0.4,
+          "position": 3.2,
+          "prevClicks": 0,
+          "prevPosition": 4.333333333333334,
+          "isNew": false
+        },
+        {
+          "keyword": "instalar wazuh en ubuntu 24.04",
+          "clicks": 2,
+          "impressions": 2,
+          "ctr": 1,
+          "position": 1,
+          "prevClicks": 1,
+          "prevPosition": 1.1428571428571428,
+          "isNew": false
+        },
+        {
+          "keyword": "install wazuh server on ubuntu 24.04",
+          "clicks": 2,
+          "impressions": 4,
+          "ctr": 0.5,
+          "position": 2.5,
+          "prevClicks": 0,
+          "prevPosition": null,
+          "isNew": true
+        },
+        {
+          "keyword": "install wazuh ubuntu 24.04",
+          "clicks": 2,
+          "impressions": 3,
+          "ctr": 0.6666666666666666,
+          "position": 1.3333333333333333,
+          "prevClicks": 0,
+          "prevPosition": null,
+          "isNew": true
+        },
+        {
+          "keyword": "instalar wazuh en ubuntu server",
+          "clicks": 1,
+          "impressions": 7,
+          "ctr": 0.14285714285714285,
+          "position": 2.428571428571429,
+          "prevClicks": 2,
+          "prevPosition": 3,
+          "isNew": false
+        },
+        {
+          "keyword": "nis 2 españa",
+          "clicks": 1,
+          "impressions": 3,
+          "ctr": 0.3333333333333333,
+          "position": 2.666666666666667,
+          "prevClicks": 0,
+          "prevPosition": null,
+          "isNew": true
+        },
+        {
+          "keyword": "ubuntu install wazuh",
+          "clicks": 1,
+          "impressions": 2,
+          "ctr": 0.5,
+          "position": 4.5,
+          "prevClicks": 0,
+          "prevPosition": null,
+          "isNew": true
+        },
+        {
+          "keyword": "wazuh agent windows",
+          "clicks": 1,
+          "impressions": 16,
+          "ctr": 0.0625,
+          "position": 6.4375,
+          "prevClicks": 0,
+          "prevPosition": null,
+          "isNew": true
+        },
+        {
+          "keyword": "wazuh ens",
+          "clicks": 1,
+          "impressions": 1,
+          "ctr": 1,
+          "position": 2,
+          "prevClicks": 0,
+          "prevPosition": null,
+          "isNew": true
+        },
+        {
+          "keyword": "wazuh install ubuntu 24.04",
+          "clicks": 1,
+          "impressions": 1,
+          "ctr": 1,
+          "position": 3,
+          "prevClicks": 0,
+          "prevPosition": null,
+          "isNew": true
+        },
+        {
+          "keyword": "wazuh mcp",
+          "clicks": 1,
+          "impressions": 36,
+          "ctr": 0.027777777777777776,
+          "position": 9.36111111111111,
+          "prevClicks": 0,
+          "prevPosition": null,
+          "isNew": true
+        },
+        {
+          "keyword": "wazuh mcp server",
+          "clicks": 1,
+          "impressions": 22,
+          "ctr": 0.045454545454545456,
+          "position": 9.090909090909092,
+          "prevClicks": 0,
+          "prevPosition": null,
+          "isNew": true
+        },
+        {
+          "keyword": "wazuh para que sirve",
+          "clicks": 1,
+          "impressions": 8,
+          "ctr": 0.125,
+          "position": 2.125,
+          "prevClicks": 0,
+          "prevPosition": null,
+          "isNew": true
+        },
+        {
+          "keyword": "wazuh que es y para que sirve",
+          "clicks": 1,
+          "impressions": 7,
+          "ctr": 0.14285714285714285,
+          "position": 4.714285714285714,
+          "prevClicks": 0,
+          "prevPosition": null,
+          "isNew": true
+        },
+        {
+          "keyword": "\"ley de coordinación y gobernanza de la ciberseguridad\" \"boe\" \"2026\"",
+          "clicks": 0,
+          "impressions": 2,
+          "ctr": 0,
+          "position": 3.5,
+          "prevClicks": 0,
+          "prevPosition": null,
+          "isNew": true
+        },
+        {
+          "keyword": "\"ley de coordinación y gobernanza de la ciberseguridad\" boe 2026",
+          "clicks": 0,
+          "impressions": 3,
+          "ctr": 0,
+          "position": 2.666666666666667,
+          "prevClicks": 0,
+          "prevPosition": 2,
+          "isNew": false
+        },
+        {
+          "keyword": "\"real decreto-ley 7/2025\" \"nis2\"",
+          "clicks": 0,
+          "impressions": 3,
+          "ctr": 0,
+          "position": 6.333333333333333,
+          "prevClicks": 0,
+          "prevPosition": 9,
+          "isNew": false
+        },
+        {
+          "keyword": "\"siem\" -site:reddit.com -site:twitter.com -site:x.com -site:wykop.pl -site:tripadvisor.com -site:youtube.com -site:yelp.com -site:booking.com -site:facebook.com -site:instagram.com -site:tiktok.com",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 3,
+          "prevClicks": 0,
+          "prevPosition": null,
+          "isNew": true
+        }
+      ]
     }
   ]
 }
