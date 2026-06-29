@@ -41,7 +41,7 @@
 
       <div class="p-7">
         <!-- Plan seleccionado -->
-        <div id="plan-display" class="hidden mb-6 p-3 rounded-xl flex items-center gap-3" style="background:rgba(59,130,246,0.08);border:1px solid rgba(59,130,246,0.25);">
+        <div id="plan-display" class="mb-6 p-3 rounded-xl flex items-center gap-3" style="display:none;background:rgba(59,130,246,0.08);border:1px solid rgba(59,130,246,0.25);">
           <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="#60a5fa" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
           </svg>
@@ -132,7 +132,7 @@
             onmouseover="this.style.opacity='0.92';this.style.transform='translateY(-1px)'"
             onmouseout="this.style.opacity='1';this.style.transform='translateY(0)'">
             <span id="btn-text">Send request</span>
-            <span id="btn-spinner" class="hidden inline-flex items-center gap-2">
+            <span id="btn-spinner" class="inline-flex items-center gap-2" style="display:none;">
               <svg class="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                 <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
@@ -193,7 +193,7 @@
 
     if (planInput) planInput.value = plan;
     if (planDisplay && planName) {
-      planDisplay.classList.remove('hidden');
+      planDisplay.style.display = 'flex';
 
       const planNames: { [key: string]: string } = {
         'landing': 'Landing Page (€450)',
@@ -245,8 +245,8 @@
     e.preventDefault();
 
     if (submitBtn) { submitBtn.disabled = true; submitBtn.style.opacity = '0.6'; }
-    if (btnText) btnText.classList.add('hidden');
-    if (btnSpinner) btnSpinner.classList.remove('hidden');
+    if (btnText) btnText.style.display = 'none';
+    if (btnSpinner) btnSpinner.style.display = 'inline-flex';
 
     const formData = new FormData(form);
     const data = {
@@ -260,12 +260,19 @@
       lang: 'en',
     };
 
+    // Safety timeout: prevents an endless spinner if the request never
+    // resolves (long cold start, dropped connection, intercepting extension).
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 20000);
+
     try {
       const response = await fetch('/api/send-migration-contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
+        signal: controller.signal,
       });
+      clearTimeout(timeoutId);
 
       const result = await response.json();
 
@@ -279,11 +286,18 @@
         throw new Error(result.error || 'Error sending the form');
       }
     } catch (error) {
+      clearTimeout(timeoutId);
       console.error('Error:', error);
-      showAlert('❌ Error sending the request. Please try again.', 'error');
+      const isTimeout = error instanceof DOMException && error.name === 'AbortError';
+      showAlert(
+        isTimeout
+          ? '⏱️ The request is taking too long. Please check your connection and try again.'
+          : '❌ Error sending the request. Please try again.',
+        'error'
+      );
       if (submitBtn) { submitBtn.disabled = false; submitBtn.style.opacity = '1'; }
-      if (btnText) btnText.classList.remove('hidden');
-      if (btnSpinner) btnSpinner.classList.add('hidden');
+      if (btnText) btnText.style.display = '';
+      if (btnSpinner) btnSpinner.style.display = 'none';
     }
   });
 </script>
