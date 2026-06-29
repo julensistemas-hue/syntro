@@ -1,5 +1,6 @@
 ---
 import BlogLayoutEn from "../../../layouts/BlogLayoutEn.astro";
+import WazuhEnCtaBlock from "../../../components/blog/WazuhEnCtaBlock.astro";
 ---
 
 <BlogLayoutEn
@@ -41,51 +42,7 @@ import BlogLayoutEn from "../../../layouts/BlogLayoutEn.astro";
     Claude queries Wazuh in real time and can run active responses directly. It's not just monitoring — it's <strong>AI-assisted incident response</strong>.
   </p>
 
-  <!-- Locked course video -->
-  <div class="my-8">
-    <div class="relative w-full rounded-xl overflow-hidden" style="border: 2px solid #2d3748;">
-      <div class="relative" style="padding-bottom: 56.25%;">
-        <img
-          src="https://img.youtube.com/vi/aK8CHYIjxxo/maxresdefault.jpg"
-          alt="Video: Wazuh MCP Server with Claude"
-          class="absolute inset-0 w-full h-full object-cover"
-          style="filter: blur(2px) brightness(0.4);"
-        />
-        <div class="absolute inset-0 flex items-center justify-center" style="background: linear-gradient(135deg, rgba(0,101,255,0.2) 0%, rgba(0,0,0,0.7) 100%);">
-          <div class="text-center">
-            <div class="w-20 h-20 mx-auto mb-4 rounded-full flex items-center justify-center" style="background-color: rgba(255,255,255,0.1); border: 2px solid rgba(255,255,255,0.2);">
-              <svg class="w-10 h-10" style="color: rgba(255,255,255,0.5);" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/>
-              </svg>
-            </div>
-            <div class="mb-2">
-              <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-medium" style="background-color: rgba(245, 158, 11, 0.2); color: #fbbf24;">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
-                </svg>
-                Course content
-              </span>
-            </div>
-            <h3 class="text-xl font-bold mb-2" style="color: #ffffff;">Wazuh MCP Server: Query and Act with Claude</h3>
-            <p class="text-sm mb-4" style="color: #9ca3af;">15 minutes · Full installation and live demo</p>
-            <a
-              href="/en/wazuh"
-              class="inline-flex items-center gap-2 px-6 py-3 font-semibold rounded-lg transition-all hover:scale-105"
-              style="background: linear-gradient(135deg, #0065ff 0%, #0052cc 100%); color: #ffffff;">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
-              </svg>
-              Learn more about Wazuh
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <p class="text-center text-base-600 mt-3 text-sm">
-      Access the full video with our Wazuh services at aisecurity.es
-    </p>
-  </div>
+  <WazuhEnCtaBlock />
 
   <h2>How do you clone the Wazuh MCP Server repository?</h2>
 
