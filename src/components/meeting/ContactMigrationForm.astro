@@ -259,12 +259,19 @@
       plan: formData.get('plan') || 'No especificado'
     };
 
+    // Timeout de seguridad: si la petición no resuelve nunca (cold start largo,
+    // corte de red, extensión que la intercepta), evitamos el spinner infinito.
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 20000);
+
     try {
       const response = await fetch('/api/send-migration-contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
+        signal: controller.signal,
       });
+      clearTimeout(timeoutId);
 
       const result = await response.json();
 
@@ -278,8 +285,15 @@
         throw new Error(result.error || 'Error al enviar el formulario');
       }
     } catch (error) {
+      clearTimeout(timeoutId);
       console.error('Error:', error);
-      showAlert('❌ Error al enviar la solicitud. Por favor, inténtalo de nuevo.', 'error');
+      const isTimeout = error instanceof DOMException && error.name === 'AbortError';
+      showAlert(
+        isTimeout
+          ? '⏱️ La solicitud está tardando demasiado. Revisa tu conexión e inténtalo de nuevo.'
+          : '❌ Error al enviar la solicitud. Por favor, inténtalo de nuevo.',
+        'error'
+      );
       if (submitBtn) { submitBtn.disabled = false; submitBtn.style.opacity = '1'; }
       if (btnText) btnText.classList.remove('hidden');
       if (btnSpinner) btnSpinner.classList.add('hidden');
