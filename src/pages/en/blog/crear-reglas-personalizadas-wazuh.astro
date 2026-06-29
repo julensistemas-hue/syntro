@@ -42,6 +42,8 @@ import WazuhEnCtaBlock from "../../../components/blog/WazuhEnCtaBlock.astro";
     Custom rules in Wazuh let you detect specific patterns in your logs and trigger alerts when certain conditions are met. In this article we go through practical examples using NAS logs: detecting folder access, specific users and actions such as Delete or Write.
   </p>
 
+  <WazuhEnCtaBlock />
+
   <!-- Locked course video -->
   <div class="my-8">
     <div class="relative w-full rounded-xl overflow-hidden" style="border: 2px solid #2d3748;">
@@ -231,7 +233,5 @@ import WazuhEnCtaBlock from "../../../components/blog/WazuhEnCtaBlock.astro";
 
   <h3>What are dynamic variables in a Wazuh rule description?</h3>
   <p>Dynamic variables use the <code>$(field)</code> syntax inside the <code>&lt;description&gt;</code> tag. Wazuh substitutes them with the real value extracted by the decoder, so the alert shows the actual source IP or affected resource instead of static text.</p>
-
-  <WazuhEnCtaBlock />
 
 </BlogLayoutEn>
