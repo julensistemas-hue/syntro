@@ -1,4 +1,4 @@
-name: 🔍 Page Quality Check
+name: 🤖 SEO/GEO Auto-fix
 
 on:
   push:
@@ -6,16 +6,28 @@ on:
     paths:
       - 'src/pages/**/*.astro'
 
+# Necesario para que el bot pueda commitear las mejoras
+permissions:
+  contents: write
+
 jobs:
-  quality-check:
-    name: Analizar calidad SEO/GEO/PageSpeed
+  autofix:
+    name: Detectar y auto-mejorar SEO/GEO
     runs-on: ubuntu-latest
+    # No re-disparar en los commits del propio bot
+    if: "!contains(github.event.head_commit.message, '[skip ci]') && !contains(github.event.head_commit.message, 'seo-bot')"
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 2
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
 
       - name: Detectar páginas modificadas
         id: changed
@@ -35,29 +47,13 @@ jobs:
 
       - name: Nada que analizar → salir
         if: steps.changed.outputs.files == ''
-        run: echo "No hay páginas .astro modificadas fuera de /api/ — saliendo." && exit 0
+        run: echo "No hay páginas .astro modificadas fuera de /api/ — saliendo."
 
-      - name: Esperar deployment de Vercel (~4 min)
-        if: steps.changed.outputs.files != ''
-        run: |
-          echo "⏳ Esperando 4 min para que Vercel despliegue..."
-          sleep 240
-
-      - name: Confirmar que el sitio responde
-        if: steps.changed.outputs.files != ''
-        run: |
-          for i in 1 2 3 4 5; do
-            STATUS=$(curl -s -o /dev/null -w "%{http_code}" https://aisecurity.es/ || echo "000")
-            echo "Intento $i → HTTP $STATUS"
-            [ "$STATUS" = "200" ] && break
-            sleep 30
-          done
-
-      - name: Ejecutar análisis de calidad
+      - name: Analizar y auto-mejorar (IA + deterministas)
         if: steps.changed.outputs.files != ''
         env:
           CHANGED_FILES: ${{ steps.changed.outputs.files }}
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
-          PAGESPEED_API_KEY: ${{ secrets.PAGESPEED_API_KEY }}
           EMAIL_TO: julen.sistemas@gmail.com
-        run: node .github/scripts/check-page-quality.js
+        run: node .github/scripts/seo-autofix.cjs
