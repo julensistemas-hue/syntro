@@ -1,24 +1,24 @@
 {
   "currentVariations": {
     "ciberseguridad-basica-empleados-guia-completa": {
-      "titleIndex": 2,
-      "descIndex": 2
+      "titleIndex": 0,
+      "descIndex": 0
     },
     "detectar-phishing-gmail-guia-empleados": {
-      "titleIndex": 2,
-      "descIndex": 2
+      "titleIndex": 0,
+      "descIndex": 0
     },
     "detectar-phishing-outlook-microsoft-guia-empleados": {
-      "titleIndex": 2,
-      "descIndex": 2
+      "titleIndex": 0,
+      "descIndex": 0
     },
     "tu-contrasena-mayuscula-numeros-hackeable": {
-      "titleIndex": 2,
-      "descIndex": 2
+      "titleIndex": 0,
+      "descIndex": 0
     },
     "contrasenas-seguras-empleados-guia-completa": {
-      "titleIndex": 2,
-      "descIndex": 2
+      "titleIndex": 0,
+      "descIndex": 0
     }
   },
   "history": [
@@ -371,7 +371,77 @@
           "newDesc": "Plataforma de formación en contraseñas para empresas. Incluye test de evaluación, certificado y seguimiento del progreso del equipo."
         }
       ]
+    },
+    {
+      "timestamp": "2026-07-01T11:56:18.096Z",
+      "rotations": [
+        {
+          "slug": "ciberseguridad-basica-empleados-guia-completa",
+          "from": {
+            "title": 2,
+            "desc": 2
+          },
+          "to": {
+            "title": 0,
+            "desc": 0
+          },
+          "newTitle": "Ciberseguridad Básica para Empleados: Guía Completa 2025",
+          "newDesc": "Guía práctica de ciberseguridad para empleados: contraseñas, phishing, WiFi, dispositivos e ingeniería social. Incluye test de concienciación gratuito para evaluar a tu equipo."
+        },
+        {
+          "slug": "detectar-phishing-gmail-guia-empleados",
+          "from": {
+            "title": 2,
+            "desc": 2
+          },
+          "to": {
+            "title": 0,
+            "desc": 0
+          },
+          "newTitle": "Cómo detectar emails de phishing en Gmail: Guía para empleados",
+          "newDesc": "Aprende a identificar emails fraudulentos en Gmail. Verifica remitentes, detecta enlaces sospechosos y evalúa a tu equipo con nuestro test de concienciación gratuito para empleados."
+        },
+        {
+          "slug": "detectar-phishing-outlook-microsoft-guia-empleados",
+          "from": {
+            "title": 2,
+            "desc": 2
+          },
+          "to": {
+            "title": 0,
+            "desc": 0
+          },
+          "newTitle": "Cómo detectar emails de phishing en Outlook y Microsoft 365: Guía para empleados",
+          "newDesc": "Aprende a identificar emails fraudulentos en Outlook y Microsoft 365. Verifica remitentes, detecta enlaces sospechosos y prueba nuestro test de concienciación gratuito para empleados."
+        },
+        {
+          "slug": "tu-contrasena-mayuscula-numeros-hackeable",
+          "from": {
+            "title": 2,
+            "desc": 2
+          },
+          "to": {
+            "title": 0,
+            "desc": 0
+          },
+          "newTitle": "¿Tu contraseña empieza con mayúscula y acaba en números? Es hackeable",
+          "newDesc": "Si tu contraseña sigue el patrón Palabra2024 o similar, los hackers la descifran en minutos. Descubre por qué este patrón es predecible y prueba nuestro test de concienciación gratuito para empleados."
+        },
+        {
+          "slug": "contrasenas-seguras-empleados-guia-completa",
+          "from": {
+            "title": 2,
+            "desc": 2
+          },
+          "to": {
+            "title": 0,
+            "desc": 0
+          },
+          "newTitle": "Contraseñas Seguras para Empleados: Guía Completa 2025",
+          "newDesc": "Mini-curso gratuito de seguridad de contraseñas. Aprende a crear contraseñas seguras, usar gestores como Passbolt, activar 2FA y cumplir ISO 27001 y ENS."
+        }
+      ]
     }
   ],
-  "lastRotation": "2026-06-15T15:10:28.883Z"
+  "lastRotation": "2026-07-01T11:56:18.096Z"
 }
